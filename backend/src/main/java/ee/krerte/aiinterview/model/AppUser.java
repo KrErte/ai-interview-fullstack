@@ -28,8 +28,9 @@ public class AppUser {
     private String fullName;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "role", nullable = false)
     private UserRole role;
+
 
     @Column(name = "enabled", nullable = false)
     private boolean enabled;

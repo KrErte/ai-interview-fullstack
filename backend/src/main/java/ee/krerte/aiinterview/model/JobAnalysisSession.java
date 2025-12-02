@@ -18,24 +18,51 @@ public class JobAnalysisSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email")
+    /**
+     * Kasutaja e-mail, kellele see tööanalüüs kuulub.
+     */
+    @Column(nullable = false)
     private String email;
 
-    @Column(name = "summary", length = 4000)
+    /**
+     * Töö ametinimetus (nt "Senior Java Developer").
+     */
+    @Column(name = "job_title", nullable = false)
+    private String jobTitle;
+
+    /**
+     * Ettevõtte nimi (nt "Bolt", "Wise").
+     */
+    @Column(name = "company_name")
+    private String companyName;
+
+    /**
+     * Algne töökuulutuse kirjeldus (toores tekst).
+     */
+    @Column(name = "job_description", columnDefinition = "TEXT")
+    private String jobDescription;
+
+    /**
+     * Analüüsitud peamised oskused / märksõnad.
+     */
+    @Column(name = "skills_summary", columnDefinition = "TEXT")
+    private String skillsSummary;
+
+    /**
+     * Sobivuse skoor (0–100).
+     */
+    @Column(name = "fit_score")
+    private Integer fitScore;
+
+    /**
+     * Üldine kokkuvõte / soovitused (see on see, mida DataSeeder praegu .summary(...) meetodiga määrab).
+     */
+    @Column(name = "summary", columnDefinition = "TEXT")
     private String summary;
 
-    @Column(name = "match_score")
-    private Double matchScore;
-
-    @Column(name = "missing_skills_json", length = 4000)
-    private String missingSkillsJson;
-
-    @Column(name = "roadmap_json", length = 4000)
-    private String roadmapJson;
-
-    @Column(name = "suggested_improvements_json", length = 4000)
-    private String suggestedImprovementsJson;
-
-    @Column(name = "created_at")
+    /**
+     * Sessiooni loomise aeg.
+     */
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 }

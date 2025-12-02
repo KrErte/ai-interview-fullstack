@@ -10,6 +10,8 @@ import java.util.List;
 @Builder
 public class UserProgressResponse {
 
+    private String email;
+
     // vastab: totalJobAnalyses: number;
     private long totalJobAnalyses;
 

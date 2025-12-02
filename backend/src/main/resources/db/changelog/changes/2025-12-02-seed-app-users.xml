@@ -2,32 +2,29 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+        xsi:schemaLocation="
+           http://www.liquibase.org/xml/ns/dbchangelog
+           https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
-    <changeSet id="2025-12-02-seed-users" author="ai">
-        <comment>Initial test users</comment>
+    <!-- olemasolev changeSet app_users seedimiseks jääb alles siia üles kui sul on -->
 
-        <!-- Test user -->
-        <insert tableName="app_users">
-            <column name="email"        value="test@ai.com"/>
-            <column name="full_name"    value="Test User"/>
-            <column name="role"         value="CANDIDATE"/>
-            <column name="created_at"   valueDate="2025-12-02T10:00:00"/>
-            <column name="password"
-                    value="$2a$10$QWfpg3GPYtc8zF4gCcy92u5VxTQJHcCjFj2Tgmu0E6UQeqF3j2Tga"/>
+    <!-- USER PROGRESS SEED -->
+    <changeSet id="2025-12-02-seed-user-progress" author="ai">
+        <insert tableName="training_progress">
+            <column name="email" value="test@ai.com"/>
+            <column name="total_tasks" valueNumeric="20"/>
+            <column name="completed_tasks" valueNumeric="12"/>
+            <column name="total_job_analyses" valueNumeric="4"/>
+            <column name="total_training_sessions" valueNumeric="3"/>
+            <column name="training_progress_percent" valueNumeric="60"/>
+
+            <!-- need sul juba olid -->
+            <column name="last_active" valueDate="2025-12-02T15:00:00"/>
+            <column name="status" value="IN_PROGRESS"/>
+
+            <!-- SEE ON PUUDUV VEERG, MIS TEKITAB VEA -->
+            <column name="last_updated" valueDate="2025-12-02T15:00:00"/>
         </insert>
-
-        <!-- Admin user -->
-        <insert tableName="app_users">
-            <column name="email"        value="admin@ai.com"/>
-            <column name="full_name"    value="Admin User"/>
-            <column name="role"         value="ADMIN"/>
-            <column name="created_at"   valueDate="2025-12-02T10:00:01"/>
-            <column name="password"
-                    value="$2a$10$h6b8toC9Z4pT7tG3kb0E9e4CL3zUu8cCbS1vRUuiv2gTglK.Bi.G6"/>
-        </insert>
-
     </changeSet>
 
 </databaseChangeLog>

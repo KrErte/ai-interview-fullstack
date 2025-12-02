@@ -18,7 +18,7 @@ public class JobAnalysisSessionService {
         JobAnalysisSession session = JobAnalysisSession.builder()
                 .email(email)
                 .jobTitle(jobTitle)
-                .description(description)
+                .jobDescription(description)
                 .createdAt(LocalDateTime.now())
                 .build();
 

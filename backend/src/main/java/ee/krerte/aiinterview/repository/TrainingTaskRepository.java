@@ -8,15 +8,31 @@ import java.util.Optional;
 
 public interface TrainingTaskRepository extends JpaRepository<TrainingTask, Long> {
 
-    // olemasolevad kasutused teistes teenustes
-    List<TrainingTask> findByEmail(String email);
+    /**
+     * Kõik treening-taskid konkreetse e-maili järgi (count).
+     */
+    long countByEmail(String email);
 
-    Optional<TrainingTask> findByEmailAndTaskKey(String email, String taskKey);
+    /**
+     * Lõpetatud (completed = true) treening-taskide arv.
+     * Mõlemad kujud on projektis kasutusel, seega defineerime mõlemad.
+     */
+    long countByEmailAndCompletedTrue(String email);
 
     long countByEmailAndCompletedIsTrue(String email);
 
-    // meie progressi jaoks
-    long countByEmail(String email);
+    /**
+     * Kõik treening-taskid kasutaja järgi.
+     */
+    List<TrainingTask> findByEmail(String email);
 
+    /**
+     * Kõik treening-taskid kasutaja järgi, uuemad ees.
+     */
     List<TrainingTask> findByEmailOrderByCreatedAtDesc(String email);
+
+    /**
+     * Ühe unikaalse taski leidmine email + taskKey järgi.
+     */
+    Optional<TrainingTask> findByEmailAndTaskKey(String email, String taskKey);
 }

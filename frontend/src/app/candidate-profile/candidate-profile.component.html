@@ -1,83 +1,93 @@
-<div class="profile-page">
+<div class="profile-container">
+  <h1 class="title">Minu profiil</h1>
+  <p class="subtitle">
+    Siin näed oma edenemist Job Matcheris ja AI Coach treeningutes.
+  </p>
 
-  <!-- Laadimine -->
-  <div *ngIf="loading" class="profile-loading">
-    <div class="spinner"></div>
-    <span>Laen profiili andmeid...</span>
-  </div>
+  <div class="profile-grid">
+    <!-- ÜLDINE STATISTIKA – vasak kast -->
+    <div class="card">
+      <h2 class="card-title">Üldine statistika</h2>
 
-  <!-- Error -->
-  <div *ngIf="!loading && error" class="profile-error">
-    {{ error }}
-  </div>
-
-  <!-- Sisu -->
-  <div *ngIf="!loading && !error" class="profile-content">
-    <h1 class="profile-title">Minu profiil</h1>
-    <p class="profile-subtitle">
-      Siin näed oma edenemist Job Matcheris ja AI Coach treeningutes.
-    </p>
-
-    <div class="profile-grid">
-      <!-- Üldine statistika -->
-      <section class="profile-card">
-        <h2 class="card-title">ÜLDINE STATISTIKA</h2>
-
-        <div class="stat-row">
-          <span class="stat-label">Job matcher analüüse</span>
-          <span class="stat-value">{{ totalJobAnalyses }}</span>
+      <div class="stats-list">
+        <div class="stats-item">
+          <span>Job matcheri analüüse</span>
+          <span>{{ progress?.totalJobAnalyses ?? 0 }}</span>
         </div>
 
-        <div class="stat-row">
-          <span class="stat-label">Treening sessioone</span>
-          <span class="stat-value">{{ totalTrainingSessions }}</span>
+        <div class="stats-item">
+          <span>Treening sessioone</span>
+          <span>{{ progress?.totalTrainingSessions ?? 0 }}</span>
         </div>
 
-        <div class="stat-row">
-          <span class="stat-label">Viimane aktiivsus</span>
-          <span class="stat-value">{{ lastActiveText }}</span>
+        <div class="stats-item">
+          <span>Tehtud treeningtaskid</span>
+          <span>{{ progress?.completedTasks ?? 0 }}</span>
         </div>
 
-        <div class="divider"></div>
-
-        <div class="stat-row">
-          <span class="stat-label">Viimane match skoor</span>
-          <span class="stat-value">{{ lastMatchScoreText }}</span>
+        <div class="stats-item">
+          <span>Treeningu staatus</span>
+          <span>{{ progress?.status || 'NOT_STARTED' }}</span>
         </div>
 
-        <div class="stat-row">
-          <span class="stat-label">Viimane kokkuvõte</span>
-          <span class="stat-value stat-value--summary">
-            {{ lastMatchSummaryText }}
+        <div class="stats-item stats-item-wide">
+          <span>Viimane aktiivsus</span>
+          <span>
+            {{
+              progress?.lastActivityAt
+                ? (progress?.lastActivityAt | date : 'dd.MM.yyyy HH:mm')
+                : '–'
+            }}
           </span>
         </div>
-      </section>
+      </div>
+    </div>
 
-      <!-- Treeningu edenemine -->
-      <section class="profile-card">
-        <h2 class="card-title">TREENINGU EDENEMINE</h2>
+    <!-- PROGRESS & METRICS – parem kast -->
+    <div class="card">
+      <h2 class="card-title">Progress &amp; metrics</h2>
 
-        <div class="progress-bar-wrapper">
-          <div class="progress-bar">
-            <div
-              class="progress-bar__fill"
-              [style.width.%]="trainingProgressPercent">
-            </div>
-          </div>
-          <div class="progress-bar__label">
-            {{ trainingProgressPercent }}%
-          </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span>Treeningu edenemine</span>
+          <span>{{ progress?.trainingProgressPercent || 0 }}%</span>
         </div>
 
-        <!-- Kui tahad hiljem lisada tugevusi/nõrkusi -->
-        <div class="extra-hint" *ngIf="progress?.lastTrainerStrengths?.length">
-          Viimase sessiooni tugevused: {{ progress?.lastTrainerStrengths.join(', ') }}
+        <div class="progress-bar">
+          <div
+            class="progress-fill"
+            [style.width.%]="progress?.trainingProgressPercent || 0"
+          ></div>
         </div>
 
-        <div class="extra-hint" *ngIf="progress?.lastTrainerWeaknesses?.length">
-          Arengukohad: {{ progress?.lastTrainerWeaknesses.join(', ') }}
+        <p class="progress-helper">
+          Iga treeningtask ja job matcheri analüüs liigutab sind järgmisele
+          tasemele lähemale.
+        </p>
+      </div>
+
+      <div class="summary-list">
+        <div class="summary-row">
+          <span>Kokku treeningtaskid</span>
+          <span>{{ progress?.totalTasks ?? 0 }}</span>
         </div>
-      </section>
+        <div class="summary-row">
+          <span>Lõpetatud taskid</span>
+          <span>{{ progress?.completedTasks ?? 0 }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Job matcheri analüüse</span>
+          <span>{{ progress?.totalJobAnalyses ?? 0 }}</span>
+        </div>
+      </div>
+
+      <div class="next-step">
+        <div class="next-step-title">Järgmine loogiline samm</div>
+        <p>
+          Ava <span class="accent">Treener</span> vaade ja vali üks soft skills
+          roadmap, et tõsta oma treeningu edenemist üle 0%.
+        </p>
+      </div>
     </div>
   </div>
 </div>

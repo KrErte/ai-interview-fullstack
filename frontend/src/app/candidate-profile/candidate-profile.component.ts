@@ -9,10 +9,9 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './candidate-profile.component.html',
-  styleUrls: ['./candidate-profile.component.scss']
+  styleUrls: ['./candidate-profile.component.scss'],
 })
 export class CandidateProfileComponent implements OnInit {
-
   email: string | null = null;
   progress: UserProgress | null = null;
   loading = false;
@@ -36,61 +35,19 @@ export class CandidateProfileComponent implements OnInit {
     }
 
     this.loading = true;
-    this.error = null;
 
     this.userProgressService.getProgress(this.email).subscribe({
       next: (data) => {
         this.progress = data;
-        this.loading = false;
+        this.error = null;
       },
       error: (err) => {
-        console.error('Failed to load user progress', err);
-        this.error = 'Edenemise laadimine ebaõnnestus. Proovi hiljem uuesti.';
+        console.error('Viga progressi laadimisel', err);
+        this.error = 'Progressi laadimine ebaõnnestus';
+      },
+      complete: () => {
         this.loading = false;
-      }
+      },
     });
-  }
-
-  // --- UI helperid ---
-
-  get lastActiveText(): string {
-    if (!this.progress?.lastActive) {
-      return '-';
-    }
-    try {
-      const d = new Date(this.progress.lastActive);
-      return d.toLocaleString('et-EE', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-    } catch {
-      return '-';
-    }
-  }
-
-  get lastMatchScoreText(): string {
-    if (this.progress?.lastMatchScore == null) {
-      return '-';
-    }
-    return `${this.progress.lastMatchScore}%`;
-  }
-
-  get lastMatchSummaryText(): string {
-    return this.progress?.lastMatchSummary || '-';
-  }
-
-  get totalJobAnalyses(): number {
-    return this.progress?.totalJobAnalyses ?? 0;
-  }
-
-  get totalTrainingSessions(): number {
-    return this.progress?.totalTrainingSessions ?? 0;
-  }
-
-  get trainingProgressPercent(): number {
-    return this.progress?.trainingProgressPercent ?? 0;
   }
 }

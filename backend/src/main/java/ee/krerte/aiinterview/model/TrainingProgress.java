@@ -44,50 +44,35 @@ public class TrainingProgress {
 
     /**
      * Treeningu staatuse enum (NOT NULL).
-     * NB! Enum ise on eraldi failis TrainingStatus.java
+     * NB! Enum ise on eraldi failis TrainingStatus.
      */
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private TrainingStatus status;
 
     /**
-     * Viimane aktiivsuse aeg – kas töökuulutuse analüüs või treeningvastus.
+     * Viimane aktiivsus (frontendis kuvatav "Last active").
+     * Mappime veerule last_active.
      */
     @Column(name = "last_active")
-    private LocalDateTime lastActive;
-
-    @Column(name = "last_match_score")
-    private Integer lastMatchScore;
-
-    @Column(name = "last_match_summary", length = 1000)
-    private String lastMatchSummary;
+    private LocalDateTime lastActivityAt;
 
     /**
-     * Millal seda progressi viimati uuendati (meta).
+     * Sisemine "viimati uuendatud" timestamp.
+     * DB-s on see NOT NULL veerg LAST_UPDATED, seega PEAB entity seda täitma.
      */
-    @Column(name = "last_updated")
+    @Column(name = "last_updated", nullable = false)
     private LocalDateTime lastUpdated;
 
     /**
-     * Tagame, et:
-     *  - status EI OLE null (DB veerg on NOT NULL)
-     *  - lastUpdated saab väärtuse kui seda ei ole seatud
-     *
-     * Kasutame TrainingStatus.values()[0], et mitte oletada enum’i konkreetset nime.
-     * See tähendab: esimene enum väärtus on vaikimisi staatus.
+     * Viimase tööanalüüsi match score.
      */
-    @PrePersist
-    public void prePersist() {
-        if (status == null) {
-            status = TrainingStatus.values()[0]; // nt NEW / IN_PROGRESS / ACTIVE – mis iganes sul esimesena defineeritud on
-        }
-        if (lastUpdated == null) {
-            lastUpdated = LocalDateTime.now();
-        }
-    }
+    @Column(name = "last_match_score")
+    private Integer lastMatchScore;
 
-    @PreUpdate
-    public void preUpdate() {
-        lastUpdated = LocalDateTime.now();
-    }
+    /**
+     * Viimase tööanalüüsi kokkuvõte (short summary).
+     */
+    @Column(name = "last_match_summary", length = 1000)
+    private String lastMatchSummary;
 }

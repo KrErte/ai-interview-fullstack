@@ -1,54 +1,71 @@
 package ee.krerte.aiinterview.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 /**
  * Päring ühe treening-taski staatuse / vastuse uuendamiseks.
  *
- * NB! Toetab nii taskKey kui questionKey välja – vana kood (SkillCoach)
- * kasutab questionKey'd, uus UI kasutab taskKey'd.
+ * Seda DTO-d kasutavad:
+ *  - MindsetRoadmapController
+ *  - SkillCoachController
+ *  - TrainingProgressController
+ *  - TrainingTaskController
+ *
+ * NB! Kasutame siin:
+ *  - answer         – üldine vastuse tekst (nt SkillCoachilt)
+ *  - answerText     – alternatiivne väli (TrainingTaskController kasutab getAnswerText())
+ *  - completed      – Boolean, et kontroller saaks kasutada getCompleted()
  */
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class TrainingTaskRequest {
 
+    @Email
+    @NotBlank
     private String email;
 
     /**
-     * Eelistatud väli uues loogikas.
+     * Unikaalne võti konkreetse treening-taski jaoks (nt "mindset.conflict-resolution.1").
      */
+    @NotBlank
     private String taskKey;
 
     /**
-     * Tagasiühilduvus vanale koodile (SkillCoach).
+     * Küsimuse tekst (võib UI-s muutuda).
      */
-    private String questionKey;
+    private String question;
 
     /**
-     * Kas kasutaja märgib taski tehtuks.
+     * Vastuse tekst (üldine väli, mida kasutab nt SkillCoachController).
      */
-    private Boolean completed;
+    private String answer;
 
     /**
-     * Kasutaja vastuse tekst (avatud vastused).
+     * Vastuse tekst alternatiivse nimega (TrainingTaskController kasutab getAnswerText()).
      */
     private String answerText;
 
     /**
-     * Võimalik skoor (AI või muu loogika poolt).
+     * Kas task on lõpetatud (true = valmis).
+     * Boolean, et genereeruks getCompleted().
+     */
+    private Boolean completed;
+
+    /**
+     * Skoor (nt 0–100), võib olla null, kui pole veel hinnatud.
      */
     private Integer score;
 
     /**
-     * Abimeetod – tagastab kasutatava key (taskKey eelistatud, muidu questionKey).
+     * Abimeetod, mida kontrollerid kutsuvad: request.resolveTaskKey()
+     * Praegu tagastame otse taskKey – kui kunagi tahad keerukamat loogikat
+     * (nt roadmap + indeksist kokku panna), saab siia panna.
      */
     public String resolveTaskKey() {
-        if (taskKey != null && !taskKey.isBlank()) {
-            return taskKey;
-        }
-        return questionKey;
+        return this.taskKey;
     }
 }

@@ -1,6 +1,9 @@
 package ee.krerte.aiinterview.model;
 
 public enum UserRole {
-    USER,
+    CANDIDATE,
     ADMIN
+    // kui tahad hiljem lisada:
+    // INTERVIEWER,
+    // OTHER_ROLES...
 }

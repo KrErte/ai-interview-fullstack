@@ -1,26 +1,34 @@
 package ee.krerte.aiinterview.dto;
 
-import lombok.Builder;
-import lombok.Value;
+import ee.krerte.aiinterview.model.TrainingStatus;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Value
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TrainingProgressResponse {
 
-    int totalJobAnalyses;
+    private String email;
+    private int totalTasks;
+    private int completedTasks;
+    private int totalJobAnalyses;
+    private int totalTrainingSessions;
 
-    int totalTrainingSessions;
+    /**
+     * Progress protsentides, lubame komakoha (nt 62.5).
+     */
+    private Double trainingProgressPercent;
 
-    Integer trainingProgressPercent; // 0–100 (me tagastame alati mitte-null)
+    /**
+     * Viimane aktiivsus (treening või tööanalüüs).
+     */
+    private LocalDateTime lastActivityAt;
 
-    LocalDateTime lastActive;
-
-    Integer lastMatchScore;
-    String lastMatchSummary;
-
-    List<String> lastTrainerStrengths;
-    List<String> lastTrainerWeaknesses;
+    /**
+     * Üldine treeningu staatus.
+     */
+    private TrainingStatus status;
 }
