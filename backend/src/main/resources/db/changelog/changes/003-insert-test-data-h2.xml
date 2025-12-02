@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="003-insert-test-data" author="chatgpt">
+        <insert tableName="training_task">
+            <column name="email" value="test@test.com"/>
+            <column name="question" value="Test question from Liquibase"/>
+            <column name="score" value="0"/>
+            <column name="created_at" valueDate="2025-01-01T12:00:00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

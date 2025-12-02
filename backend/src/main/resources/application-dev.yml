@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  liquibase:
+    enabled: true
+    # Kasutame sama H2 master-faili mis põhiprofiilgi
+    change-log: classpath:db/changelog/db.changelog-master-h2.xml

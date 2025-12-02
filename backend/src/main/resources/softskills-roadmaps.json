@@ -1,0 +1,55 @@
+{
+  "conflict_management": [
+    {
+      "order": 1,
+      "questionText": "Kirjelda olukorda, kus sinu tiimis tekkis konflikt tehnilise lahenduse üle. Mis täpselt juhtus?",
+      "difficulty": "easy"
+    },
+    {
+      "order": 2,
+      "questionText": "Kuidas sa sellesse konflikti sekkusid ja mida tegid, et arutelu muutuks rahulikumaks ja konstruktiivsemaks?",
+      "difficulty": "medium"
+    },
+    {
+      "order": 3,
+      "questionText": "Milliseid õppetunde sa sellest olukorrast kaasa võtsid ja mida teeksid järgmisel korral teisiti?",
+      "difficulty": "hard"
+    }
+  ],
+  "clear_communication": [
+    {
+      "order": 1,
+      "questionText": "Räägi olukorrast, kus pidid keerulise tehnilise teema lahti seletama mitte-tehnilisele kolleegile.",
+      "difficulty": "easy"
+    },
+    {
+      "order": 2,
+      "questionText": "Kuidas sa kontrollisid, kas teine pool sinu selgitusest päriselt aru sai?",
+      "difficulty": "medium"
+    }
+  ],
+  "technical_initiative": [
+    {
+      "order": 1,
+      "questionText": "Kirjelda olukorda, kus võtsid ise initsiatiivi tehnilise probleemi lahendamisel.",
+      "difficulty": "easy"
+    },
+    {
+      "order": 2,
+      "questionText": "Mis riske sa enne otsustamist kaalusin ja kuidas neid maandasid?",
+      "difficulty": "medium"
+    }
+  ],
+  "ownership": [
+    {
+      "order": 1,
+      "questionText": "Räägi olukorrast, kus bug või probleem jäi justkui \"omanikuta\". Kuidas sa selle enda peale võtsid?",
+      "difficulty": "easy"
+    },
+    {
+      "order": 2,
+      "questionText": "Kuidas sa tagasid, et sama probleemi tulevikus ei korduks?",
+      "difficulty": "medium"
+    }
+  ]
+}

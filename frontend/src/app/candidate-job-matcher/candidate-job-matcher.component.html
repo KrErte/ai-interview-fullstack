@@ -1,0 +1,95 @@
+<div class="page">
+  <h1>Job Matcher</h1>
+  <p class="intro">
+    Lae siia oma CV tekst ja töökuulutuse kirjeldus. AI analüüsib, kui hästi sa sobid ja mida oleks vaja juurde õppida.
+  </p>
+
+  <!-- DEV / AI Generator ribad -->
+  <div class="dev-bar">
+    <button type="button" class="btn secondary" (click)="useRandomSample()">
+      Genereeri näidis CV + töökuulutus
+    </button>
+    <button type="button" class="btn secondary" (click)="seedFakeHistory(15)">
+      Lisa 15 testanalüüsi profiili ajalukku
+    </button>
+
+    <span class="dev-info" *ngIf="devInfo">
+      {{ devInfo }}
+    </span>
+  </div>
+
+  <div class="form-section">
+    <label>
+      E-post
+      <input [(ngModel)]="email" type="email" placeholder="sinu@email.com" />
+    </label>
+
+    <label>
+      CV tekst
+      <textarea [(ngModel)]="cvText" rows="10"
+        placeholder="Kleebi siia oma CV tekst..."></textarea>
+    </label>
+
+    <div class="pdf-upload">
+      <span>Või lae CV PDF:</span>
+      <input type="file" accept="application/pdf" (change)="onPdfSelected($event)" />
+      <span class="file-name" *ngIf="cvFileName">Valitud fail: {{ cvFileName }}</span>
+      <div class="error" *ngIf="pdfError">{{ pdfError }}</div>
+    </div>
+
+    <label>
+      Töökuulutuse kirjeldus
+      <textarea [(ngModel)]="jobDescription" rows="8"
+        placeholder="Kleebi siia töökuulutuse tekst..."></textarea>
+    </label>
+
+    <div class="buttons">
+      <button (click)="analyzeSuitability()" [disabled]="loading" class="btn primary">
+        {{ loading ? 'Analüüsin...' : 'Analüüsi sobivust' }}
+      </button>
+      <button type="button" class="btn secondary" (click)="clearForm()">
+        Puhasta vorm
+      </button>
+      <button type="button" class="btn ghost" (click)="goToTrainer()">
+        Mine treenerisse harjutama
+      </button>
+    </div>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </div>
+
+  <div class="result-section" *ngIf="result">
+    <h2>Analüüsi tulemus</h2>
+
+    <p class="score">
+      Sobivuse skoor:
+      <strong>{{ result.scorePercent }}%</strong>
+    </p>
+
+    <p class="summary">
+      <strong>AI kokkuvõte:</strong><br />
+      {{ result.summary }}
+    </p>
+
+    <div *ngIf="result.missingSkills?.length">
+      <h3>Puuduvad / nõrgad oskused</h3>
+      <ul>
+        <li *ngFor="let skill of result.missingSkills">{{ skill }}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="result.roadmap?.length">
+      <h3>Soovituslik arenguteekond</h3>
+      <ol>
+        <li *ngFor="let step of result.roadmap">{{ step }}</li>
+      </ol>
+    </div>
+
+    <div *ngIf="result.suggestedImprovements?.length">
+      <h3>Soovitused CV / profiili parandamiseks</h3>
+      <ul>
+        <li *ngFor="let tip of result.suggestedImprovements">{{ tip }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="2025-12-01-7-add-match-score-column" author="chatgpt">
+
+        <!-- Kui veerg juba olemas (nt hilisemates jooksutustes), ära errorda -->
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="job_analysis_session" columnName="match_score"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="job_analysis_session">
+            <column name="match_score" type="int" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

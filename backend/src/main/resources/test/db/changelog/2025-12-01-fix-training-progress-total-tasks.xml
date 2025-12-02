@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+          http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!-- Lisa total_tasks veerule default 0, et NOT NULL constraint ei kukuks -->
+    <changeSet id="2025-12-01-3-fix-total-tasks-default" author="chatgpt">
+        <!-- Olemasolevatele ridadele väärtus 0 (praegu nagunii tühi tabel, aga safe) -->
+        <update tableName="training_progress">
+            <column name="total_tasks" valueNumeric="0"/>
+            <where>total_tasks IS NULL</where>
+        </update>
+
+        <!-- Lisa default 0, et tulevased INSERTid saaksid seda kasutada -->
+        <addDefaultValue
+                tableName="training_progress"
+                columnName="total_tasks"
+                defaultValueNumeric="0"
+                columnDataType="int"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,533 @@
+/* PAGE ROOT – navbariga joondatud vasakule */
+.trainer-page {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2rem 3rem 3rem 3.5rem;
+  color: #e5e7eb;
+}
+
+/* HEADER */
+.trainer-header {
+  margin-bottom: 1.5rem;
+}
+
+.trainer-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #f9fafb;
+}
+
+.trainer-subtitle {
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  color: #9ca3af;
+}
+
+/* 3-COLUMN GRID: LEFT NAV · CENTER · RIGHT SIDEBAR */
+.trainer-grid {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) 320px;
+  gap: 1.75rem;
+  align-items: flex-start;
+}
+
+/* LEFT NAV */
+.trainer-left-nav {
+  align-self: stretch;
+}
+
+.left-nav-card {
+  background: radial-gradient(circle at top left, #020617, #020617 60%);
+  border-radius: 1.25rem;
+  padding: 1.3rem 1.4rem;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.8);
+}
+
+.left-nav-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #38bdf8;
+  margin-bottom: 0.2rem;
+}
+
+.left-nav-subtitle {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.9rem;
+}
+
+.left-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.left-nav-item {
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.16s ease;
+}
+
+.left-nav-item:hover {
+  border-color: rgba(148, 163, 184, 0.6);
+  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
+  transform: translateY(-1px);
+}
+
+.left-nav-item--active {
+  border-color: rgba(56, 189, 248, 0.8);
+  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.95), #020617);
+}
+
+.left-nav-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+.left-nav-meta {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* CENTER COLUMN: ACTIVE SESSION + FOCUS CARD + COACH */
+.trainer-center {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* SIDEBAR */
+.trainer-sidebar {
+  max-width: 320px;
+  position: sticky;
+  top: 1.5rem;
+}
+
+/* CARD BASE */
+.active-session,
+.roadmap-card,
+.sidebar-card {
+  background: radial-gradient(circle at top left, #0f172a, #020617 55%);
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.85);
+}
+
+/* ACTIVE SESSION */
+.active-session-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #38bdf8;
+  margin-bottom: 0.35rem;
+}
+
+.active-session-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+.active-session-subtitle {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.active-session-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.active-session-meta {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #cbd5f5;
+}
+
+.active-session-step {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #a5b4fc;
+}
+
+.active-session-progress-label {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.18);
+  color: #e0f2fe;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+  margin-top: 1.2rem;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: #020617;
+  overflow: hidden;
+  border: 1px solid #0f172a;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22c55e, #06b6d4);
+  transition: width 0.25s ease-out;
+}
+
+/* FOCUS SKILL CARD */
+.roadmap-card {
+  margin-top: 0.3rem;
+}
+
+.roadmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.roadmap-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.focus-card {
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  background: radial-gradient(circle at top left, rgba(8, 47, 73, 0.9), rgba(15, 23, 42, 1));
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  transition: box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.focus-card-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.roadmap-tags {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.level-pill,
+.status-pill {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.level-pill {
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+}
+
+.status-pill {
+  background: rgba(22, 163, 74, 0.09);
+}
+
+.status-pill--next {
+  background: rgba(59, 130, 246, 0.13);
+  color: #bfdbfe;
+}
+
+.status-pill--in-progress {
+  background: rgba(234, 179, 8, 0.18);
+  color: #facc15;
+}
+
+.status-pill--done {
+  background: rgba(22, 163, 74, 0.25);
+  color: #bbf7d0;
+}
+
+.focus-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+  color: #f9fafb;
+}
+
+.focus-card-subtitle {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.focus-card-impact {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #cbd5f5;
+}
+
+/* Empty state */
+.roadmap-empty {
+  min-height: 80px;
+  border-radius: 1rem;
+  border: 1px dashed rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.7);
+  font-size: 0.85rem;
+  color: #64748b;
+  padding: 1rem 1rem;
+}
+
+/* AI COACH */
+.coach-block {
+  margin-top: 0.4rem;
+}
+
+.coach-body {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.coach-question-block {
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.coach-question-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.coach-question-text {
+  font-size: 0.9rem;
+  color: #e5e7eb;
+}
+
+.coach-answer-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.coach-answer-label {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.coach-answer-input {
+  width: 100%;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.95);
+  padding: 0.8rem 0.9rem;
+  font-size: 0.9rem;
+  color: #e5e7eb;
+  resize: vertical;
+}
+
+.coach-answer-input::placeholder {
+  color: #6b7280;
+}
+
+.coach-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.coach-submit-button,
+.coach-evaluate-button {
+  flex: 1 1 180px;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.coach-submit-button {
+  background: linear-gradient(90deg, #22c55e, #0ea5e9);
+  color: #f9fafb;
+  box-shadow: 0 12px 26px rgba(16, 185, 129, 0.45);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.coach-submit-button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.coach-evaluate-button {
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  color: #e5e7eb;
+}
+
+.coach-evaluate-button:hover {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* Demo score + feedback */
+.coach-score {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 0.9rem;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+}
+
+.coach-score-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e0f2fe;
+}
+
+.coach-score-label {
+  font-size: 0.75rem;
+  color: #93c5fd;
+}
+
+.coach-feedback {
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  color: #a5b4fc;
+}
+
+/* SIDEBAR DETAILID */
+.sidebar-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+.career-level-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-bottom: 0.4rem;
+}
+
+.career-level-label {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #6b7280;
+}
+
+.career-level-current {
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+.career-level-progress-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+.career-level-bar {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: #020617;
+  overflow: hidden;
+  border: 1px solid #0f172a;
+}
+
+.career-level-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22c55e, #0ea5e9);
+}
+
+.skill-matrix {
+  margin-top: 1rem;
+}
+
+.skill-matrix-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-bottom: 0.4rem;
+}
+
+.skill-matrix-tag {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.skill-matrix-placeholder {
+  border-radius: 0.9rem;
+  border: 1px dashed rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.85);
+  padding: 1.25rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .trainer-page {
+    padding-inline: 1.5rem;
+  }
+
+  .trainer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .trainer-sidebar {
+    position: static;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .trainer-page {
+    padding: 1.25rem 1rem 2.5rem;
+  }
+
+  .active-session-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .active-session-meta {
+    text-align: left;
+  }
+}

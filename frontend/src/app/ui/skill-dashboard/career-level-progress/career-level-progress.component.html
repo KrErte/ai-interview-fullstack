@@ -1,0 +1,47 @@
+<div class="clp-card">
+  <div class="clp-header">
+    <div>
+      <h3 class="clp-title">Career level</h3>
+      <p class="clp-subtitle">Sinu kasvuteekond järgmise rollitasemeni.</p>
+    </div>
+    <span class="clp-chip">
+      {{ currentLevel }} · {{ percentToNext }}% next
+    </span>
+  </div>
+
+  <div class="clp-levels">
+    <div
+      class="clp-level"
+      *ngFor="let level of levels; let i = index"
+    >
+      <div
+        class="clp-level-dot"
+        [ngClass]="{ 'clp-level-dot--active': isReached(level) }"
+      ></div>
+
+      <span class="clp-level-label">
+        {{ level }}
+      </span>
+
+      <div
+        *ngIf="i < levels.length - 1"
+        class="clp-level-line"
+        [ngClass]="{
+          'clp-level-line--active': isReached(levels[i + 1])
+        }"
+      ></div>
+    </div>
+  </div>
+
+  <div class="clp-progress">
+    <div class="clp-progress-bar">
+      <div
+        class="clp-progress-fill"
+        [style.width.%]="percentToNext"
+      ></div>
+    </div>
+    <div class="clp-progress-text">
+      {{ percentToNext }}% to next level
+    </div>
+  </div>
+</div>

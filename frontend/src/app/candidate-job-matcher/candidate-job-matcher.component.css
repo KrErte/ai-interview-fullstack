@@ -1,0 +1,93 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.intro {
+  opacity: 0.85;
+  margin-bottom: 16px;
+}
+
+.dev-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.dev-info {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.form-section label {
+  display: block;
+  margin-bottom: 16px;
+}
+
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.pdf-upload {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-name {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn.primary {
+  background: #22c55e;
+  color: #000;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+}
+
+.error {
+  color: #ff4d4f;
+  margin-top: 4px;
+}
+
+.result-section {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #333;
+}
+
+.score {
+  font-size: 1.2rem;
+}

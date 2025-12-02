@@ -1,0 +1,27 @@
+.feedback-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.feedback-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.feedback-bubble {
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #f8fafc;
+}
+
+.feedback-empty {
+  padding: 0.8rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  color: #94a3b8;
+  border: 1px dashed rgba(255,255,255,0.08);
+}

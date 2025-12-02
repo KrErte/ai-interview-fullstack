@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <!-- 001 – training_task tabel + algsed read -->
+    <include file="changes/001-create-training-task-h2.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="changes/001-init-training-task.xml"
+             relativeToChangelogFile="true"/>
+
+    <!-- 002 – score_updated veerg -->
+    <include file="changes/002-add-score-updatedat.xml"
+             relativeToChangelogFile="true"/>
+
+    <!-- 003 – testandmed -->
+    <include file="changes/003-insert-test-data-h2.xml"
+             relativeToChangelogFile="true"/>
+
+    <!-- 004 – app_users tabel -->
+    <include file="changes/004-create-app-users-h2.xml"
+             relativeToChangelogFile="true"/>
+
+    <!-- 005 – job_analysis_session tabel -->
+    <include file="changes/005-create-job-analysis-session-table.xml"
+             relativeToChangelogFile="true"/>
+
+    <!-- 006 – softskill_training_task tabel -->
+    <include file="changes/006-create-softskill_training_task.xml"
+             relativeToChangelogFile="true"/>
+
+    <!-- 008 – training_task_progress tabel -->
+    <include file="changes/008-training-task-progress.xml"
+             relativeToChangelogFile="true"/>
+
+
+    <!-- ============================ -->
+    <!-- 2025-12-01 PROGRESSI UUENDUSED -->
+    <!-- ============================ -->
+
+    <include file="changes/2025-12-01-add-training-progress-columns.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="changes/2025-12-01-add-training-progress-totals.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="changes/2025-12-01-fix-training-progress-total-tasks.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="changes/2025-12-01-fix-training-progress-completed-tasks.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="changes/2025-12-01-fix-training-progress-percent.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="changes/2025-12-01-drop-old-progress-percent.xml"
+             relativeToChangelogFile="true"/>
+
+
+    <!-- ============================ -->
+    <!-- 2025-12-01 USERS + JOB-SESSION -->
+    <!-- ============================ -->
+
+    <include file="changes/2025-12-01-add-password-column-app-users.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="changes/2025-12-01-add-email-column-job-analysis-session.xml"
+             relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

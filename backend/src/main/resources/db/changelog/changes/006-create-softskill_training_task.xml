@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="006-add-task-key-to-training-task" author="chatgpt">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="training_task" columnName="task_key"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="training_task">
+            <column name="task_key"
+                    type="varchar(255)"
+                    remarks="Kasutatakse AI soft-skill treeningu jaoks (nt conflict_team_1)"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

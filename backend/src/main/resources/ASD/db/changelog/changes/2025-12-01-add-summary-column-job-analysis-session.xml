@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="2025-12-01-9-add-summary-column-job-analysis-session" author="chatgpt">
+
+        <!-- Kui veerg juba olemas (nt käsitsi lisatud), märgi RAN -->
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="job_analysis_session" columnName="summary"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="job_analysis_session">
+            <column name="summary" type="varchar(2000)"/>
+        </addColumn>
+
+    </changeSet>
+
+</databaseChangeLog>
