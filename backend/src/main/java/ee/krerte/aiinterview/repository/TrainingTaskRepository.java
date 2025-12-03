@@ -8,41 +8,23 @@ import java.util.Optional;
 
 public interface TrainingTaskRepository extends JpaRepository<TrainingTask, Long> {
 
+    long countByEmail(String email);
+
+    long countByEmailAndCompletedIsTrue(String email);
+
     /**
-     * Kõik treeningtaskid kasutaja emaili järgi.
+     * Kõik taskid antud kasutajale (järjekord vaba).
+     * Kasutavad MindsetRoadmapService, SkillMatrixService, SoftSkillMatrixService.
      */
     List<TrainingTask> findByEmail(String email);
 
     /**
-     * Kõik treeningtaskid kasutaja emaili järgi, uuemad esimesena.
-     * (kasutab TrainingService).
+     * Kõik taskid antud kasutajale, uuem enne.
      */
     List<TrainingTask> findByEmailOrderByCreatedAtDesc(String email);
 
     /**
-     * Mitu treeningtaski on antud emailiga kokku.
-     */
-    long countByEmail(String email);
-
-    /**
-     * Mitu treeningtaski on antud emailiga ja completed = true.
-     * Kasutatakse ProgressService'is.
-     */
-    long countByEmailAndCompletedIsTrue(String email);
-
-    /**
-     * Sama, kuid "CompletedTrue" stiilis – kasutame UserProgressService'is.
-     */
-    long countByEmailAndCompletedTrue(String email);
-
-    /**
-     * Viimane (uuendatud) treeningtask antud kasutajale – kasutame lastActivity arvutamiseks.
-     */
-    Optional<TrainingTask> findTopByEmailOrderByUpdatedAtDesc(String email);
-
-    /**
-     * Leia konkreetne task loogilise võtme järgi (roadmap key).
-     * Kasutab TrainingService ja TrainingTaskController.
+     * Konkreetsed taskid email + taskKey järgi (treeningu identifikaator).
      */
     Optional<TrainingTask> findByEmailAndTaskKey(String email, String taskKey);
 }

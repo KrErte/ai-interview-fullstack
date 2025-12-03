@@ -1,5 +1,3 @@
-package ee.krerte.aiinterview.service;
-
 import ee.krerte.aiinterview.model.RoadmapTask;
 import ee.krerte.aiinterview.repository.RoadmapTaskRepository;
 import lombok.RequiredArgsConstructor;

@@ -9,13 +9,10 @@ import ee.krerte.aiinterview.repository.TrainingProgressRepository;
 import ee.krerte.aiinterview.repository.TrainingTaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -26,38 +23,74 @@ public class UserProgressService {
     private final JobAnalysisSessionRepository jobAnalysisSessionRepository;
 
     /**
-     * Tagastab profiili koondandmed vastavalt UserProgressResponse DTO ülesehitusele.
+     * Põhimeetod kasutaja profiili progressi jaoks.
      */
+    @Transactional(readOnly = true)
     public UserProgressResponse getUserProgress(String email) {
+        // Võtame TrainingProgress, kui olemas
+        TrainingProgress progress = trainingProgressRepository.findByEmail(email).orElse(null);
 
-        TrainingProgress progress = trainingProgressRepository
-                .findByEmail(email)
-                .orElse(null);
+        // Mitu Job Matcheri analüüsi on tehtud
+        long totalJobAnalyses = jobAnalysisSessionRepository.countByEmail(email);
 
-        long totalJobAnalyses = progress != null ? progress.getTotalJobAnalyses() : 0;
+        // Mitu treeningsessiooni – hoiame TrainingProgressis
         int totalTrainingSessions = progress != null ? progress.getTotalTrainingSessions() : 0;
 
-        Double trainingProgressPercent =
-                progress != null ? (double) progress.getTrainingProgressPercent() : null;
+        // Viimane aktiivsus
+        LocalDateTime lastActive = null;
 
-        // JAGU 1: päris viimane aktiivsus
-        LocalDateTime lastActive = calculateLastActivity(email);
+        // 1) kui TrainingProgressis on juba lastActivityAt, kasutame seda
+        if (progress != null && progress.getLastActivityAt() != null) {
+            lastActive = progress.getLastActivityAt();
+        } else {
+            // 2) arvutame viimase aktiivsuse treening-taskide ja Job Matcheri põhjal
+            LocalDateTime lastTaskActivity = trainingTaskRepository.findByEmailOrderByCreatedAtDesc(email)
+                    .stream()
+                    .findFirst()
+                    .map(task -> {
+                        LocalDateTime updated = task.getUpdatedAt();
+                        return updated != null ? updated : task.getCreatedAt();
+                    })
+                    .orElse(null);
 
-        // JAGU 2: logi viimane job matcheri skoor (kui olemas)
-        Optional<JobAnalysisSession> lastSessionOpt =
-                jobAnalysisSessionRepository.findTopByEmailOrderByCreatedAtDesc(email);
+            LocalDateTime lastJobActivity = jobAnalysisSessionRepository
+                    .findTopByEmailOrderByCreatedAtDesc(email)
+                    .map(JobAnalysisSession::getCreatedAt)
+                    .orElse(null);
 
-        Double lastMatchScore = lastSessionOpt.map(JobAnalysisSession::getMatchScore).orElse(null);
-        String lastMatchSummary = lastSessionOpt.map(JobAnalysisSession::getSummary).orElse(null);
+            lastActive = max(lastTaskActivity, lastJobActivity);
+        }
 
-        // JAGU 3: viimase treeningu tugevused ja nõrkused
-        List<String> strengths = lastSessionOpt
-                .map(JobAnalysisSession::getStrengths)
-                .orElse(Collections.emptyList());
+        // Viimane match skoor + kokkuvõte
+        Double lastMatchScore = null;
+        String lastMatchSummary = null;
 
-        List<String> weaknesses = lastSessionOpt
-                .map(JobAnalysisSession::getWeaknesses)
-                .orElse(Collections.emptyList());
+        if (progress != null) {
+            lastMatchScore = progress.getLastMatchScore();
+            lastMatchSummary = progress.getLastMatchSummary();
+        }
+
+        // Kui TrainingProgressis EI OLE skoori, proovime viimasest JobAnalysisSessionist.
+        // (Kokkuvõtet me enam JobAnalysisSessionist ei küsi – pole getMatchSummary meetodit.)
+        if (lastMatchScore == null) {
+            JobAnalysisSession lastJob = jobAnalysisSessionRepository
+                    .findTopByEmailOrderByCreatedAtDesc(email)
+                    .orElse(null);
+
+            if (lastJob != null) {
+                lastMatchScore = lastJob.getMatchScore();
+            }
+        }
+
+        // Treeningu progress protsentides
+        Double trainingProgressPercent = null;
+        if (progress != null) {
+            trainingProgressPercent = (double) progress.getTrainingProgressPercent();
+        }
+
+        // Strengths/weaknesses – praegu tühi list, et mitte viidata mitteeksisteerivatele meetoditele
+        List<String> strengths = List.of();
+        List<String> weaknesses = List.of();
 
         return UserProgressResponse.builder()
                 .email(email)
@@ -73,23 +106,16 @@ public class UserProgressService {
     }
 
     /**
-     * Arvutab viimase aktiivsuse:
-     * max(viimane TrainingTask.createdAt, viimane JobAnalysisSession.createdAt)
+     * Alias, juhuks kui kontroller kutsub vana nimega meetodit.
      */
-    private LocalDateTime calculateLastActivity(String email) {
+    @Transactional(readOnly = true)
+    public UserProgressResponse getProgress(String email) {
+        return getUserProgress(email);
+    }
 
-        Optional<TrainingTask> lastTaskOpt =
-                trainingTaskRepository.findTopByEmailOrderByCreatedAtDesc(email);
-
-        Optional<JobAnalysisSession> lastJobOpt =
-                jobAnalysisSessionRepository.findTopByEmailOrderByCreatedAtDesc(email);
-
-        LocalDateTime lastTaskTime = lastTaskOpt.map(TrainingTask::getCreatedAt).orElse(null);
-        LocalDateTime lastJobTime = lastJobOpt.map(JobAnalysisSession::getCreatedAt).orElse(null);
-
-        return Stream.of(lastTaskTime, lastJobTime)
-                .filter(Objects::nonNull)
-                .max(LocalDateTime::compareTo)
-                .orElse(null);
+    private LocalDateTime max(LocalDateTime a, LocalDateTime b) {
+        if (a == null) return b;
+        if (b == null) return a;
+        return a.isAfter(b) ? a : b;
     }
 }

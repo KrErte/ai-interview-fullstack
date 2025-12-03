@@ -2,9 +2,11 @@ package ee.krerte.aiinterview.service;
 
 import ee.krerte.aiinterview.dto.TrainingProgressResponse;
 import ee.krerte.aiinterview.dto.TrainingTaskRequest;
+import ee.krerte.aiinterview.model.JobAnalysisSession;
 import ee.krerte.aiinterview.model.TrainingProgress;
 import ee.krerte.aiinterview.model.TrainingStatus;
 import ee.krerte.aiinterview.model.TrainingTask;
+import ee.krerte.aiinterview.repository.JobAnalysisSessionRepository;
 import ee.krerte.aiinterview.repository.TrainingProgressRepository;
 import ee.krerte.aiinterview.repository.TrainingTaskRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class TrainingService {
 
     private final TrainingTaskRepository trainingTaskRepository;
     private final TrainingProgressRepository trainingProgressRepository;
+    private final JobAnalysisSessionRepository jobAnalysisSessionRepository;
 
     /**
      * VANA signatuur, mida kasutavad ProgressController ja TrainingProgressController:
@@ -44,6 +47,11 @@ public class TrainingService {
 
     /**
      * Põhimeetod progressi arvutamiseks (vanade kontrollerite jaoks).
+     *
+     * Arvutab:
+     *  - totalTasks, completedTasks
+     *  - trainingProgressPercent (0–100)
+     *  - lastActivityAt = max(viimane treening-task, viimane Job Matcheri sessioon)
      */
     @Transactional(readOnly = true)
     public TrainingProgressResponse getTrainingProgress(String email) {
@@ -61,16 +69,33 @@ public class TrainingService {
         // Ümardame Integeriks (0–100)
         int roundedPercent = (int) Math.round(progressPercent);
 
-        // Viimane aktiivsus: võtame viimase taski järgi (updatedAt > createdAt)
+        // 1) Viimane aktiivsus treening-taskide järgi (updatedAt > createdAt)
         List<TrainingTask> tasks = trainingTaskRepository.findByEmailOrderByCreatedAtDesc(email);
 
-        LocalDateTime lastActivity = null;
+        LocalDateTime lastTaskActivity = null;
         if (!tasks.isEmpty()) {
             TrainingTask latest = tasks.get(0);
             if (latest.getUpdatedAt() != null) {
-                lastActivity = latest.getUpdatedAt();
+                lastTaskActivity = latest.getUpdatedAt();
             } else {
-                lastActivity = latest.getCreatedAt();
+                lastTaskActivity = latest.getCreatedAt();
+            }
+        }
+
+        // 2) Viimane aktiivsus Job Matcheri järgi (JobAnalysisSession.createdAt)
+        LocalDateTime lastJobActivity = jobAnalysisSessionRepository
+                .findTopByEmailOrderByCreatedAtDesc(email)
+                .map(JobAnalysisSession::getCreatedAt)
+                .orElse(null);
+
+        // 3) Viimane aktiivsus kokku: max(lastTaskActivity, lastJobActivity)
+        LocalDateTime lastActivity = null;
+        if (lastTaskActivity != null) {
+            lastActivity = lastTaskActivity;
+        }
+        if (lastJobActivity != null) {
+            if (lastActivity == null || lastJobActivity.isAfter(lastActivity)) {
+                lastActivity = lastJobActivity;
             }
         }
 

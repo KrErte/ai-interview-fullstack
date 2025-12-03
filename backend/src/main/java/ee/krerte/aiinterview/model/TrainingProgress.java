@@ -25,63 +25,67 @@ public class TrainingProgress {
     private String email;
 
     /**
-     * Kokku treeningtaskide arv.
+     * Mitu treeningülesannet on kokku genereeritud.
      */
     @Column(name = "total_tasks", nullable = false)
-    private Integer totalTasks;
+    private int totalTasks;
 
     /**
-     * Lõpetatud treeningtaskide arv.
+     * Mitu treeningülesannet on lõpetatud.
      */
     @Column(name = "completed_tasks", nullable = false)
-    private Integer completedTasks;
+    private int completedTasks;
 
     /**
-     * Job Matcheri analüüside koguarv.
+     * Mitu Job Matcheri analüüsi on kasutaja teinud.
      */
     @Column(name = "total_job_analyses", nullable = false)
-    private Integer totalJobAnalyses;
+    private int totalJobAnalyses;
 
     /**
-     * Kokku treeningusessioone (võid praegu 0 hoida / tulevikus kasutada).
+     * Mitu treeningsessiooni on salvestatud.
      */
     @Column(name = "total_training_sessions", nullable = false)
-    private Integer totalTrainingSessions;
+    private int totalTrainingSessions;
 
     /**
      * Üldine progress protsentides (0–100).
      */
     @Column(name = "training_progress_percent", nullable = false)
-    private Integer trainingProgressPercent;
+    private int trainingProgressPercent;
 
     /**
-     * Treeningu staatus (NOT_STARTED, IN_PROGRESS, COMPLETED).
+     * Treeningu staatuse enum (NOT NULL).
+     *
+     * NB! Väli NIMI on 'status', et Lombok genereeriks
+     * getStatus()/setStatus() ja builder().status(),
+     * mida kõik teenused/DTOd juba kasutavad.
      */
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "training_status", nullable = false)
     private TrainingStatus status;
 
     /**
-     * Viimane aktiivsus (viimane training task või job analysis).
+     * Viimane aktiivsus profiilis.
      */
-    @Column(name = "last_active")
+    @Column(name = "last_activity_at")
     private LocalDateTime lastActivityAt;
 
     /**
-     * Viimase progressi uuenduse aeg.
+     * Viimane aeg, kui progressi arvutati või midagi uuendati.
      */
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
     /**
-     * Viimase Job Matcheri analüüsi match score.
+     * Viimane Job Matcheri skoor (nullable).
      */
     @Column(name = "last_match_score")
     private Double lastMatchScore;
 
     /**
-     * Viimase Job Matcheri analüüsi lühikokkuvõte.
+     * Viimane Job Matcheri kokkuvõte (nullable).
      */
-    @Column(name = "last_match_summary", columnDefinition = "CLOB")
+    @Column(name = "last_match_summary")
     private String lastMatchSummary;
 }
