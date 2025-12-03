@@ -43,7 +43,7 @@ public class TrainingService {
     }
 
     /**
-     * Põhimeetod progressi arvutamiseks.
+     * Põhimeetod progressi arvutamiseks (vanade kontrollerite jaoks).
      */
     @Transactional(readOnly = true)
     public TrainingProgressResponse getTrainingProgress(String email) {
@@ -53,14 +53,15 @@ public class TrainingService {
         int totalTasks = Math.toIntExact(totalTasksCount);
         int completedTasks = Math.toIntExact(completedTasksCount);
 
-        // Arvuta protsent Double-na
-        Double progressPercent = 0.0;
+        // Protsent double'ina
+        double progressPercent = 0.0;
         if (totalTasksCount > 0) {
             progressPercent = (completedTasksCount * 100.0) / totalTasksCount;
         }
-        Double roundedPercent = Math.round(progressPercent * 10.0) / 10.0;
+        // Ümardame Integeriks (0–100)
+        int roundedPercent = (int) Math.round(progressPercent);
 
-        // Viimane aktiivsus: võtame viimase taski järgi
+        // Viimane aktiivsus: võtame viimase taski järgi (updatedAt > createdAt)
         List<TrainingTask> tasks = trainingTaskRepository.findByEmailOrderByCreatedAtDesc(email);
 
         LocalDateTime lastActivity = null;
@@ -73,7 +74,7 @@ public class TrainingService {
             }
         }
 
-        // Võtame olemasoleva TrainingProgress või loome uue (ilma lastActivity viiteta lambdas!)
+        // Võtame olemasoleva TrainingProgress või loome uue
         TrainingProgress progress = trainingProgressRepository.findByEmail(email)
                 .orElseGet(() -> TrainingProgress.builder()
                         .email(email)
@@ -83,13 +84,17 @@ public class TrainingService {
                         .totalTrainingSessions(0)
                         .trainingProgressPercent(0)
                         .status(TrainingStatus.NOT_STARTED)
+                        .lastActivityAt(null)
+                        .lastUpdated(LocalDateTime.now())
+                        .lastMatchScore(null)
+                        .lastMatchSummary(null)
                         .build()
                 );
 
         // Uuendame entitit
         progress.setTotalTasks(totalTasks);
         progress.setCompletedTasks(completedTasks);
-        progress.setTrainingProgressPercent(progressPercent.intValue());
+        progress.setTrainingProgressPercent(roundedPercent);
         progress.setLastActivityAt(lastActivity);
         progress.setLastUpdated(lastActivity != null ? lastActivity : LocalDateTime.now());
 
@@ -114,6 +119,8 @@ public class TrainingService {
                 .trainingProgressPercent(roundedPercent)
                 .lastActivityAt(progress.getLastActivityAt())
                 .status(progress.getStatus())
+                .lastMatchScore(progress.getLastMatchScore())
+                .lastMatchSummary(progress.getLastMatchSummary())
                 .build();
     }
 

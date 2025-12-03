@@ -12,7 +12,17 @@ public interface JobAnalysisSessionRepository extends JpaRepository<JobAnalysisS
      * Mitu Job Matcheri analüüsi on antud emailiga tehtud.
      */
     long countByEmail(String email);
+
+    /**
+     * Kõik sessioonid antud kasutajale.
+     */
     List<JobAnalysisSession> findByEmail(String email);
+
+    /**
+     * Kas antud emailiga on üldse sessioone olemas.
+     * Kasutab DataSeeder.
+     */
+    boolean existsByEmail(String email);
 
     /**
      * Viimane Job Matcheri sessioon antud kasutajale (createdAt DESC LIMIT 1).

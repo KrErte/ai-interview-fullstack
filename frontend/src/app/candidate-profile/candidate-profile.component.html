@@ -1,93 +1,105 @@
-<div class="profile-container">
-  <h1 class="title">Minu profiil</h1>
-  <p class="subtitle">
-    Siin näed oma edenemist Job Matcheris ja AI Coach treeningutes.
-  </p>
+<div class="profile-page">
 
-  <div class="profile-grid">
-    <!-- ÜLDINE STATISTIKA – vasak kast -->
-    <div class="card">
-      <h2 class="card-title">Üldine statistika</h2>
+  <!-- LOADING -->
+  <div *ngIf="loading" class="loading-state">
+    Laen profiili andmeid...
+  </div>
 
-      <div class="stats-list">
-        <div class="stats-item">
+  <!-- ERROR -->
+  <div *ngIf="!loading && error" class="error-state">
+    {{ error }}
+  </div>
+
+  <!-- SISU -->
+  <ng-container *ngIf="!loading && !error && progress as p">
+
+    <!-- LEHE PEALKIRI -->
+    <header class="profile-header">
+      <h1 class="page-title">Minu profiil</h1>
+      <p class="page-subtitle">
+        Siin näed oma edenemist Job Matcheris ja AI Coach treeningutes.
+      </p>
+    </header>
+
+    <!-- KAARTIDE GRID -->
+    <div class="profile-grid">
+
+      <!-- ÜLDINE STATISTIKA -->
+      <section class="card card-main">
+        <h2 class="card-title">Üldine statistika</h2>
+
+        <div class="stat-row">
           <span>Job matcheri analüüse</span>
-          <span>{{ progress?.totalJobAnalyses ?? 0 }}</span>
+          <span class="value">{{ p.totalJobAnalyses }}</span>
         </div>
 
-        <div class="stats-item">
+        <div class="stat-row">
           <span>Treening sessioone</span>
-          <span>{{ progress?.totalTrainingSessions ?? 0 }}</span>
+          <span class="value">{{ p.totalTrainingSessions }}</span>
         </div>
 
-        <div class="stats-item">
+        <div class="stat-row">
           <span>Tehtud treeningtaskid</span>
-          <span>{{ progress?.completedTasks ?? 0 }}</span>
+          <span class="value">{{ p.totalTasks }}</span>
         </div>
 
-        <div class="stats-item">
+        <div class="stat-row">
           <span>Treeningu staatus</span>
-          <span>{{ progress?.status || 'NOT_STARTED' }}</span>
+          <span class="value status">{{ p.status }}</span>
         </div>
 
-        <div class="stats-item stats-item-wide">
+        <div class="stat-row">
           <span>Viimane aktiivsus</span>
-          <span>
-            {{
-              progress?.lastActivityAt
-                ? (progress?.lastActivityAt | date : 'dd.MM.yyyy HH:mm')
-                : '–'
-            }}
+          <span class="value">
+            {{ p.lastActivityAt ?? '-' }}
           </span>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- PROGRESS & METRICS – parem kast -->
-    <div class="card">
-      <h2 class="card-title">Progress &amp; metrics</h2>
+      <!-- PROGRESS & METRICS -->
+      <section class="card card-metrics">
+        <h2 class="card-title">Progress &amp; Metrics</h2>
 
-      <div class="progress-section">
         <div class="progress-header">
           <span>Treeningu edenemine</span>
-          <span>{{ progress?.trainingProgressPercent || 0 }}%</span>
+          <span class="value">{{ p.trainingProgressPercent }}%</span>
         </div>
 
         <div class="progress-bar">
-          <div
-            class="progress-fill"
-            [style.width.%]="progress?.trainingProgressPercent || 0"
-          ></div>
+          <div class="bar-fill" [style.width.%]="p.trainingProgressPercent"></div>
         </div>
 
-        <p class="progress-helper">
-          Iga treeningtask ja job matcheri analüüs liigutab sind järgmisele
-          tasemele lähemale.
-        </p>
-      </div>
-
-      <div class="summary-list">
-        <div class="summary-row">
+        <div class="stat-row">
           <span>Kokku treeningtaskid</span>
-          <span>{{ progress?.totalTasks ?? 0 }}</span>
+          <span class="value">{{ p.totalTasks }}</span>
         </div>
-        <div class="summary-row">
-          <span>Lõpetatud taskid</span>
-          <span>{{ progress?.completedTasks ?? 0 }}</span>
-        </div>
-        <div class="summary-row">
-          <span>Job matcheri analüüse</span>
-          <span>{{ progress?.totalJobAnalyses ?? 0 }}</span>
-        </div>
-      </div>
 
-      <div class="next-step">
-        <div class="next-step-title">Järgmine loogiline samm</div>
-        <p>
-          Ava <span class="accent">Treener</span> vaade ja vali üks soft skills
-          roadmap, et tõsta oma treeningu edenemist üle 0%.
-        </p>
-      </div>
+        <div class="stat-row">
+          <span>Lõpetatud taskid</span>
+          <span class="value">{{ p.completedTasks }}</span>
+        </div>
+
+        <div class="stat-row">
+          <span>Job matcheri analüüse</span>
+          <span class="value">{{ p.totalJobAnalyses }}</span>
+        </div>
+
+        <div class="stat-row">
+          <span>Treening sessioone</span>
+          <span class="value">{{ p.totalTrainingSessions }}</span>
+        </div>
+
+        <!-- JÄRGMINE LOOGILINE SAMM (sama vibe nagu esimesel pildil) -->
+        <div class="next-step-box">
+          <h3 class="next-step-title">Järgmine loogiline samm</h3>
+          <p class="next-step-text">
+            Ava <span class="highlight">Treener</span> vaade ja vali üks soft skills roadmap,
+            et tõsta oma treeningu edenemist üle 0%.
+          </p>
+        </div>
+
+      </section>
+
     </div>
-  </div>
+  </ng-container>
 </div>

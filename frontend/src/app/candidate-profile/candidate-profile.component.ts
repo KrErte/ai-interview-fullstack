@@ -9,11 +9,13 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './candidate-profile.component.html',
-  styleUrls: ['./candidate-profile.component.scss'],
+  styleUrls: ['./candidate-profile.component.scss']
 })
 export class CandidateProfileComponent implements OnInit {
+
   email: string | null = null;
   progress: UserProgress | null = null;
+
   loading = false;
   error: string | null = null;
 
@@ -30,24 +32,20 @@ export class CandidateProfileComponent implements OnInit {
   }
 
   loadProgress(): void {
-    if (!this.email) {
-      return;
-    }
+    if (!this.email) return;
 
     this.loading = true;
+    this.error = null;
 
     this.userProgressService.getProgress(this.email).subscribe({
       next: (data) => {
         this.progress = data;
-        this.error = null;
-      },
-      error: (err) => {
-        console.error('Viga progressi laadimisel', err);
-        this.error = 'Progressi laadimine ebaõnnestus';
-      },
-      complete: () => {
         this.loading = false;
       },
+      error: () => {
+        this.error = 'Viga andmete laadimisel';
+        this.loading = false;
+      }
     });
   }
 }

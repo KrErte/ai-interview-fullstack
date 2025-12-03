@@ -9,30 +9,40 @@ import java.util.Optional;
 public interface TrainingTaskRepository extends JpaRepository<TrainingTask, Long> {
 
     /**
-     * Kõik treening-taskid konkreetse e-maili järgi (count).
-     */
-    long countByEmail(String email);
-
-    /**
-     * Lõpetatud (completed = true) treening-taskide arv.
-     * Mõlemad kujud on projektis kasutusel, seega defineerime mõlemad.
-     */
-    long countByEmailAndCompletedTrue(String email);
-
-    long countByEmailAndCompletedIsTrue(String email);
-
-    /**
-     * Kõik treening-taskid kasutaja järgi.
+     * Kõik treeningtaskid kasutaja emaili järgi.
      */
     List<TrainingTask> findByEmail(String email);
 
     /**
-     * Kõik treening-taskid kasutaja järgi, uuemad ees.
+     * Kõik treeningtaskid kasutaja emaili järgi, uuemad esimesena.
+     * (kasutab TrainingService).
      */
     List<TrainingTask> findByEmailOrderByCreatedAtDesc(String email);
 
     /**
-     * Ühe unikaalse taski leidmine email + taskKey järgi.
+     * Mitu treeningtaski on antud emailiga kokku.
+     */
+    long countByEmail(String email);
+
+    /**
+     * Mitu treeningtaski on antud emailiga ja completed = true.
+     * Kasutatakse ProgressService'is.
+     */
+    long countByEmailAndCompletedIsTrue(String email);
+
+    /**
+     * Sama, kuid "CompletedTrue" stiilis – kasutame UserProgressService'is.
+     */
+    long countByEmailAndCompletedTrue(String email);
+
+    /**
+     * Viimane (uuendatud) treeningtask antud kasutajale – kasutame lastActivity arvutamiseks.
+     */
+    Optional<TrainingTask> findTopByEmailOrderByUpdatedAtDesc(String email);
+
+    /**
+     * Leia konkreetne task loogilise võtme järgi (roadmap key).
+     * Kasutab TrainingService ja TrainingTaskController.
      */
     Optional<TrainingTask> findByEmailAndTaskKey(String email, String taskKey);
 }

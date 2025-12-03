@@ -24,55 +24,64 @@ public class TrainingProgress {
     @Column(nullable = false)
     private String email;
 
+    /**
+     * Kokku treeningtaskide arv.
+     */
     @Column(name = "total_tasks", nullable = false)
-    private int totalTasks;
+    private Integer totalTasks;
 
+    /**
+     * Lõpetatud treeningtaskide arv.
+     */
     @Column(name = "completed_tasks", nullable = false)
-    private int completedTasks;
+    private Integer completedTasks;
 
+    /**
+     * Job Matcheri analüüside koguarv.
+     */
     @Column(name = "total_job_analyses", nullable = false)
-    private int totalJobAnalyses;
+    private Integer totalJobAnalyses;
 
+    /**
+     * Kokku treeningusessioone (võid praegu 0 hoida / tulevikus kasutada).
+     */
     @Column(name = "total_training_sessions", nullable = false)
-    private int totalTrainingSessions;
+    private Integer totalTrainingSessions;
 
     /**
      * Üldine progress protsentides (0–100).
      */
     @Column(name = "training_progress_percent", nullable = false)
-    private int trainingProgressPercent;
+    private Integer trainingProgressPercent;
 
     /**
-     * Treeningu staatuse enum (NOT NULL).
-     * NB! Enum ise on eraldi failis TrainingStatus.
+     * Treeningu staatus (NOT_STARTED, IN_PROGRESS, COMPLETED).
      */
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private TrainingStatus status;
 
     /**
-     * Viimane aktiivsus (frontendis kuvatav "Last active").
-     * Mappime veerule last_active.
+     * Viimane aktiivsus (viimane training task või job analysis).
      */
     @Column(name = "last_active")
     private LocalDateTime lastActivityAt;
 
     /**
-     * Sisemine "viimati uuendatud" timestamp.
-     * DB-s on see NOT NULL veerg LAST_UPDATED, seega PEAB entity seda täitma.
+     * Viimase progressi uuenduse aeg.
      */
-    @Column(name = "last_updated", nullable = false)
+    @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
     /**
-     * Viimase tööanalüüsi match score.
+     * Viimase Job Matcheri analüüsi match score.
      */
     @Column(name = "last_match_score")
-    private Integer lastMatchScore;
+    private Double lastMatchScore;
 
     /**
-     * Viimase tööanalüüsi kokkuvõte (short summary).
+     * Viimase Job Matcheri analüüsi lühikokkuvõte.
      */
-    @Column(name = "last_match_summary", length = 1000)
+    @Column(name = "last_match_summary", columnDefinition = "CLOB")
     private String lastMatchSummary;
 }

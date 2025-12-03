@@ -19,50 +19,45 @@ public class JobAnalysisSession {
     private Long id;
 
     /**
-     * Kasutaja e-mail, kellele see tööanalüüs kuulub.
+     * Kasutaja email (võib olla ka null, kui anonüümne).
      */
-    @Column(nullable = false)
+    @Column(name = "email")
     private String email;
 
     /**
-     * Töö ametinimetus (nt "Senior Java Developer").
+     * Originaalne kasutaja email enne refaktorit (USER_EMAIL veerg).
+     * Soovi korral võid selle hiljem eemaldada, kui pole vaja.
      */
-    @Column(name = "job_title", nullable = false)
+    @Column(name = "user_email")
+    private String userEmail;
+
+    @Column(name = "job_title")
     private String jobTitle;
 
-    /**
-     * Ettevõtte nimi (nt "Bolt", "Wise").
-     */
-    @Column(name = "company_name")
-    private String companyName;
-
-    /**
-     * Algne töökuulutuse kirjeldus (toores tekst).
-     */
-    @Column(name = "job_description", columnDefinition = "TEXT")
+    @Column(name = "job_description", columnDefinition = "CLOB")
     private String jobDescription;
 
     /**
-     * Analüüsitud peamised oskused / märksõnad.
+     * AI analüüsi toor-tulemus (JSON või tekst).
      */
-    @Column(name = "skills_summary", columnDefinition = "TEXT")
-    private String skillsSummary;
+    @Column(name = "analysis_result", columnDefinition = "CLOB")
+    private String analysisResult;
 
-    /**
-     * Sobivuse skoor (0–100).
-     */
-    @Column(name = "fit_score")
-    private Integer fitScore;
+    @Column(name = "missing_skills_json", columnDefinition = "CLOB")
+    private String missingSkillsJson;
 
-    /**
-     * Üldine kokkuvõte / soovitused (see on see, mida DataSeeder praegu .summary(...) meetodiga määrab).
-     */
-    @Column(name = "summary", columnDefinition = "TEXT")
+    @Column(name = "roadmap_json", columnDefinition = "CLOB")
+    private String roadmapJson;
+
+    @Column(name = "suggested_improvements_json", columnDefinition = "CLOB")
+    private String suggestedImprovementsJson;
+
+    @Column(name = "match_score")
+    private Double matchScore;
+
+    @Column(name = "summary", columnDefinition = "CLOB")
     private String summary;
 
-    /**
-     * Sessiooni loomise aeg.
-     */
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 }

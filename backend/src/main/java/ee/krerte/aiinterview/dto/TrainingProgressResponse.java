@@ -5,30 +5,45 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class TrainingProgressResponse {
 
     private String email;
-    private int totalTasks;
-    private int completedTasks;
-    private int totalJobAnalyses;
-    private int totalTrainingSessions;
+
+    private Integer totalTasks;
+
+    private Integer completedTasks;
+
+    private Integer totalJobAnalyses;
+
+    private Integer totalTrainingSessions;
 
     /**
-     * Progress protsentides, lubame komakoha (nt 62.5).
+     * Üldine progress protsentides (0–100).
      */
-    private Double trainingProgressPercent;
+    private Integer trainingProgressPercent;
 
     /**
-     * Viimane aktiivsus (treening või tööanalüüs).
+     * Treeningu staatus (NOT_STARTED, IN_PROGRESS, COMPLETED).
+     */
+    private TrainingStatus status;
+
+    /**
+     * Viimane aktiivsus (viimane training task või job analysis).
      */
     private LocalDateTime lastActivityAt;
 
     /**
-     * Üldine treeningu staatus.
+     * Viimase Job Matcheri analüüsi match score.
      */
-    private TrainingStatus status;
+    private Double lastMatchScore;
+
+    /**
+     * Viimase Job Matcheri analüüsi lühikokkuvõte.
+     */
+    private String lastMatchSummary;
 }
