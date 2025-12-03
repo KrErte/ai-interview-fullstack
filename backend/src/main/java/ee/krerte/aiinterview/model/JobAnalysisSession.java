@@ -51,6 +51,10 @@ public class JobAnalysisSession {
 
     @Column(name = "suggested_improvements_json", columnDefinition = "CLOB")
     private String suggestedImprovementsJson;
+    @Column(name = "ai_summary", columnDefinition = "TEXT")
+    private String aiSummary;
+    @Column(name = "ai_score")
+    private Integer aiScore;
 
     @Column(name = "match_score")
     private Double matchScore;

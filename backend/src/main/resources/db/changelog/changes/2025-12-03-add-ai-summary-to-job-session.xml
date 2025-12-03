@@ -6,11 +6,11 @@
           http://www.liquibase.org/xml/ns/dbchangelog
           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
-    <!--
-      Siin ei viitsi me käsitsi kõiki faile loetleda.
-      includeAll võtab KÕIK failid kaustast 'changes' (selle masteri suhtes).
-      Failid jooksevad järjestuse järgi (001..., 002..., 2025-12-01-... jne),
-      seega praegune numeratsioon töötab ideaalselt.
-    -->
-    <includeAll path="changes" relativeToChangelogFile="true"/>
+    <!-- Lisame ai_summary veeru job_analysis_session tabelisse -->
+    <changeSet id="2025-12-03-add-ai-summary-to-job-session" author="chatgpt">
+        <addColumn tableName="job_analysis_session">
+            <column name="ai_summary" type="CLOB"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

@@ -6,4 +6,4 @@ spring:
   liquibase:
     enabled: true
     # Kasutame sama H2 master-faili mis põhiprofiilgi
-    change-log: classpath:db/changelog/db.changelog-master-h2.xml
+    change-log: classpath:db/changelog/master-h2.xml

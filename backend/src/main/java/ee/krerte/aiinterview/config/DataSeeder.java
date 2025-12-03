@@ -1,40 +1,75 @@
 package ee.krerte.aiinterview.config;
 
 import ee.krerte.aiinterview.model.JobAnalysisSession;
+import ee.krerte.aiinterview.model.TrainingProgress;
+import ee.krerte.aiinterview.model.TrainingStatus;
 import ee.krerte.aiinterview.repository.JobAnalysisSessionRepository;
+import ee.krerte.aiinterview.repository.TrainingProgressRepository;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
-public class DataSeeder implements CommandLineRunner {
+public class DataSeeder {
 
+    private final TrainingProgressRepository trainingProgressRepository;
     private final JobAnalysisSessionRepository jobAnalysisSessionRepository;
 
-    @Override
-    public void run(String... args) {
-        String email = "test@ai.com";
+    @PostConstruct
+    public void seed() {
+        seedUser("user@example.com");
+        seedUser("test@ai.com");
+    }
 
-        boolean exists = jobAnalysisSessionRepository.existsByEmail(email);
-        if (!exists) {
-            JobAnalysisSession session = JobAnalysisSession.builder()
-                    .email(email)
-                    .userEmail(email)
-                    .jobTitle("Senior Java Developer")
-                    .jobDescription("Example seeded job description.")
-                    .analysisResult("Seeded analysis result.")
-                    .missingSkillsJson("[]")
-                    .roadmapJson("[]")
-                    .suggestedImprovementsJson("[]")
-                    .matchScore(0.75)
-                    .summary("Seeded summary for test user.")
-                    .createdAt(LocalDateTime.now())
-                    .build();
+    private void seedUser(String email) {
+        seedTrainingProgress(email);
+        seedJobAnalysisSession(email);
+    }
 
-            jobAnalysisSessionRepository.save(session);
+    private void seedTrainingProgress(String email) {
+        boolean trainingExists = trainingProgressRepository.existsByEmail(email);
+
+        if (trainingExists) {
+            return;
         }
+
+        TrainingProgress tp = TrainingProgress.builder()
+                .email(email)
+                .totalTasks(0)
+                .completedTasks(0)
+                .totalJobAnalyses(0)
+                .totalTrainingSessions(0)
+                .trainingProgressPercent(0)
+                .status(TrainingStatus.NOT_STARTED)
+                .lastActivityAt(LocalDateTime.now())
+                .lastUpdated(LocalDateTime.now())
+                // Double – kasutame 0.0, mitte 0
+                .lastMatchScore(0.0)
+                .lastMatchSummary("No match yet")
+                .build();
+
+        trainingProgressRepository.save(tp);
+    }
+
+    private void seedJobAnalysisSession(String email) {
+        boolean jobExists = jobAnalysisSessionRepository.existsByEmail(email);
+
+        if (jobExists) {
+            return;
+        }
+
+        JobAnalysisSession session = JobAnalysisSession.builder()
+                .email(email)
+                .createdAt(LocalDateTime.now().minusDays(1))
+                .jobTitle("Software Engineer")
+                .jobDescription("Example description for initial seeded Job Matcher session.")
+                .aiSummary("Initial seeded AI summary for demo purposes.")
+                .aiScore(75)
+                .build();
+
+        jobAnalysisSessionRepository.save(session);
     }
 }

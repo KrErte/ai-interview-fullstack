@@ -7,6 +7,13 @@ import java.util.Optional;
 
 public interface TrainingProgressRepository extends JpaRepository<TrainingProgress, Long> {
 
-    Optional<TrainingProgress> findByEmail(String email);
+    /**
+     * Kas antud emailiga on juba TrainingProgress kirje olemas.
+     */
+    boolean existsByEmail(String email);
 
+    /**
+     * Leiab progressi kasutaja emaili järgi.
+     */
+    Optional<TrainingProgress> findByEmail(String email);
 }

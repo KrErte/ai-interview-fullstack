@@ -2,11 +2,8 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="
-           http://www.liquibase.org/xml/ns/dbchangelog
-           https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
-
-    <!-- olemasolev changeSet app_users seedimiseks jääb alles siia üles kui sul on -->
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
 
     <!-- USER PROGRESS SEED -->
     <changeSet id="2025-12-02-seed-user-progress" author="ai">
@@ -18,12 +15,17 @@
             <column name="total_training_sessions" valueNumeric="3"/>
             <column name="training_progress_percent" valueNumeric="60"/>
 
-            <!-- need sul juba olid -->
+            <!-- olemasolevad veerud -->
             <column name="last_active" valueDate="2025-12-02T15:00:00"/>
-            <column name="status" value="IN_PROGRESS"/>
+            <column name="last_activity_at" valueDate="2025-12-02T15:00:00"/>
 
-            <!-- SEE ON PUUDUV VEERG, MIS TEKITAB VEA -->
+            <!-- SIIN ON NÜÜD KRIITILINE VEERG, MIS ON NOT NULL -->
             <column name="last_updated" valueDate="2025-12-02T15:00:00"/>
+
+            <!-- soovi korral:
+            <column name="last_match_score" valueNumeric="60"/>
+            <column name="last_match_summary" value="Algne kokkuvõte"/>
+            -->
         </insert>
     </changeSet>
 

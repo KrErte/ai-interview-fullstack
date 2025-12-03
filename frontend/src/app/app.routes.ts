@@ -46,6 +46,13 @@ export const routes: Routes = [
     import('./candidate-profile/candidate-profile.component').then(
       (m) => m.CandidateProfileComponent
     ),
+},
+{
+  path: 'workstyle-assessment',
+  loadComponent: () =>
+    import('./workstyle-assessment/workstyle-assessment.component')
+      .then(m => m.WorkstyleAssessmentComponent)
 }
+
 
 ];

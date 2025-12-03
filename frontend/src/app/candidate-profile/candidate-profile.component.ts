@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserProgressService } from '../services/user-progress.service';
 import { UserProgress } from '../models/user-progress.model';
-import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-candidate-profile',
@@ -13,39 +13,48 @@ import { AuthService } from '../services/auth.service';
 })
 export class CandidateProfileComponent implements OnInit {
 
-  email: string | null = null;
-  progress: UserProgress | null = null;
-
-  loading = false;
-  error: string | null = null;
+  loading = signal(true);
+  error = signal<string | null>(null);
+  email = signal<string | null>(null);
+  progress = signal<UserProgress | null>(null);
 
   constructor(
+    private route: ActivatedRoute,
     private userProgressService: UserProgressService,
-    private authService: AuthService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.email = this.authService.getCurrentUserEmail();
-    if (this.email) {
-      this.loadProgress();
+    // 1) proovi URL-ist: /candidate-profile/:email
+    const emailFromUrl = this.route.snapshot.paramMap.get('email');
+
+    // 2) kui URL-is pole, proovi localStorage’ist
+    const emailFromStorage =
+      localStorage.getItem('userEmail') || localStorage.getItem('email');
+
+    const email = emailFromUrl || emailFromStorage;
+
+    if (!email) {
+      this.error.set('Email puudub (URL-ist ega localStorage’ist ei leitud).');
+      this.loading.set(false);
+      return;
     }
-  }
 
-  loadProgress(): void {
-    if (!this.email) return;
+    this.email.set(email);
 
-    this.loading = true;
-    this.error = null;
-
-    this.userProgressService.getProgress(this.email).subscribe({
-      next: (data) => {
-        this.progress = data;
-        this.loading = false;
+    this.userProgressService.getProgress(email).subscribe({
+      next: (p) => {
+        this.progress.set(p);
+        this.loading.set(false);
       },
       error: () => {
-        this.error = 'Viga andmete laadimisel';
-        this.loading = false;
+        this.error.set('Profiili laadimine ebaõnnestus.');
+        this.loading.set(false);
       }
     });
+  }
+
+  goToWorkstyle(): void {
+    this.router.navigate(['/workstyle-assessment']);
   }
 }

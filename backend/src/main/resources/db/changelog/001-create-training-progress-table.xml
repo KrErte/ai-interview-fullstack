@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="001-create-training-progress-table" author="krerte">
+        <createTable tableName="training_progress">
+
+            <!-- Primaarvõti -->
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <!-- Kasutaja e-mail -->
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- Treeningülesannete kogus + lõpetatud -->
+            <column name="total_tasks" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="completed_tasks" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- Job Matcheri analüüside arv -->
+            <column name="total_job_analyses" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- Treeningsessioonide kogus -->
+            <column name="total_training_sessions" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- Üldine progress protsentides (0–100) -->
+            <column name="training_progress_percent" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- Treeningu staatus (enum STRING-na) -->
+            <column name="training_status" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- Viimane uuendus (LocalDateTime) -->
+            <column name="last_updated" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- Viimane aktiivsus (LocalDateTime, võib olla null) -->
+            <column name="last_activity_at" type="TIMESTAMP"/>
+
+            <!-- Viimane match’i skoor (Double) -->
+            <column name="last_match_score" type="DOUBLE"/>
+
+            <!-- Viimane match’i kokkuvõte (String) -->
+            <column name="last_match_summary" type="CLOB"/>
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

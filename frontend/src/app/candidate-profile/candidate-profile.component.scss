@@ -1,147 +1,171 @@
-/* Kogu lehe wrapper – sama tume taust nagu teistes vaadetes */
 .profile-page {
-  min-height: calc(100vh - 64px);
-  padding: 48px 40px 64px;
-  background: #020617; // slate-950
-  color: #e5e7eb;      // slate-200
+  min-height: 100vh;
+  padding: 3rem 8vw;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+  color: #e5f5ff;
 }
 
-/* Ülemine pealkiri + tekst */
+.loading-state,
+.error-state {
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  font-size: 0.95rem;
+}
+
+.error-state {
+  border-color: #f97373;
+  color: #fecaca;
+}
+
+/* HEADER */
+
 .profile-header {
-  max-width: 1120px;
-  margin: 0 auto 32px auto;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .page-title {
-  font-size: 32px;
-  line-height: 1.1;
+  font-size: 2.1rem;
   font-weight: 700;
-  color: #f9fafb; // peaaegu valge
-  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
 }
 
 .page-subtitle {
-  font-size: 15px;
-  color: #9ca3af; // text-gray-400
+  font-size: 0.98rem;
+  color: #9ca3af;
 }
 
-/* GRID KAARTIDEJAOKS – 2 veergu laiadel ekraanidel */
+/* GRID – 3 kaarti desktopil */
+
 .profile-grid {
-  max-width: 1120px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
 }
 
-/* CARD BAASSTIIL (sarnane treeneri/roadmapi kaardiga) */
+@media (min-width: 960px) {
+  .profile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* CARD BASE */
+
 .card {
-  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
-              radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.15), transparent 55%),
-              rgba(15, 23, 42, 0.96); // slate-900
-  border-radius: 24px;
-  padding: 24px 28px;
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: radial-gradient(circle at top left, #0f172a, #020617);
+  border-radius: 1.5rem;
+  padding: 1.75rem 1.9rem;
   box-shadow:
-    0 32px 80px rgba(15, 23, 42, 0.9),
-    0 0 0 1px rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(18px);
-}
-
-.card-main {
-  /* vasak kaart võib olla veidi kõrgem, kui vaja */
-}
-
-.card-metrics {
+    0 18px 45px rgba(15, 23, 42, 0.8),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.12);
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
-/* Kaardi pealkirjad */
+.card-main,
+.card-metrics,
+.card-personality {
+  min-height: 260px;
+}
+
 .card-title {
-  font-size: 18px;
-  margin-bottom: 16px;
-  color: #e5e7eb;
+  font-size: 1.1rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  margin-bottom: 0.75rem;
 }
 
-/* Statistika read */
+.card-subtitle {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+/* STAT ROWS */
+
 .stat-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 9px 0;
-  font-size: 14px;
-  color: #e2e8f0; // slate-200
-  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(30, 64, 175, 0.5);
+  font-size: 0.92rem;
 
   &:last-child {
     border-bottom: none;
-    padding-bottom: 0;
   }
 }
 
-.value {
+.stat-row .value {
   font-weight: 600;
-  color: #34ef8f; // neon roheline
+  color: #e5f5ff;
 }
 
-.status {
+.stat-row .status {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.4);
   text-transform: uppercase;
-  color: #7dd3fc; // cyan-300
+  letter-spacing: 0.06em;
 }
 
-/* Progress bar */
+/* PROGRESS & METRICS */
+
 .progress-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
-  color: #e2e8f0;
-  font-size: 14px;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
 }
 
 .progress-bar {
-  width: 100%;
-  height: 10px;
-  background: rgba(15, 23, 42, 0.9);
+  position: relative;
+  height: 0.6rem;
   border-radius: 999px;
-  margin-bottom: 18px;
+  background: rgba(15, 23, 42, 0.9);
   overflow: hidden;
-  border: 1px solid rgba(148, 163, 184, 0.4);
+  margin-bottom: 0.8rem;
 }
 
-.bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #10b981, #22c55e, #a3e635);
-  border-radius: 999px;
-  transition: width 0.4s ease;
+.progress-bar .bar-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #22c55e, #a3e635);
 }
 
-/* Järgmise sammu kast (kaart sees) */
+/* NEXT STEP BOX */
+
 .next-step-box {
-  margin-top: 18px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px dashed rgba(52, 211, 153, 0.65);
+  margin-top: 0.8rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1.1rem;
+  border: 1px dashed rgba(52, 211, 153, 0.5);
+  background: radial-gradient(circle at top left, rgba(6, 95, 70, 0.35), transparent);
 }
 
 .next-step-title {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  color: #a5b4fc; // indigo-300
-  margin-bottom: 6px;
+  letter-spacing: 0.09em;
+  color: #a5b4fc;
+  margin-bottom: 0.35rem;
 }
 
 .next-step-text {
-  font-size: 13px;
-  color: #cbd5f5;
+  font-size: 0.88rem;
+  color: #bfdbfe;
 }
 
 .highlight {
@@ -149,29 +173,53 @@
   font-weight: 600;
 }
 
-/* Loading / error */
-.loading-state,
-.error-state {
-  max-width: 1120px;
-  margin: 16px auto 0 auto;
-  font-size: 14px;
+/* PERSONALITY CARD */
+
+.card-personality {
+  border-color: rgba(129, 140, 248, 0.5);
+  box-shadow:
+    0 18px 45px rgba(30, 64, 175, 0.7),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
 }
 
-.loading-state {
-  color: #e5e7eb;
+.personality-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.error-state {
-  color: #fecaca;
-}
+.personality-list li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+  padding: 0.45rem 0;
 
-/* Responsiivsus – väiksematel ekraanidel stack üks veerg */
-@media (max-width: 1024px) {
-  .profile-page {
-    padding: 32px 16px 48px;
+  &:last-child {
+    border-bottom: none;
   }
+}
 
-  .profile-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
+.personality-list .value {
+  font-weight: 600;
+  color: #e5defe;
+}
+
+.personality-list .placeholder {
+  opacity: 0.7;
+}
+
+.personality-cta {
+  margin-top: 0.7rem;
+  padding: 0.75rem 0.8rem;
+  border-radius: 0.9rem;
+  background: rgba(30, 64, 175, 0.35);
+}
+
+.personality-cta .cta-text {
+  font-size: 0.86rem;
+  color: #c7d2fe;
 }
