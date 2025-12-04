@@ -13,7 +13,7 @@ export interface EvaluateAnswerRequest {
   providedIn: 'root',
 })
 export class QuestionService {
-  private readonly baseUrl = `${environment.apiUrl}/questions`;
+  private readonly baseUrl = `${environment.apiBaseUrl}/questions`;
 
   constructor(private readonly http: HttpClient) {}
 

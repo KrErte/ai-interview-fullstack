@@ -25,7 +25,7 @@ export interface AuthResponse {
 export class AuthService {
   private readonly TOKEN_KEY = 'aiim_token';
   private readonly EMAIL_KEY = 'aiim_email';
-  private readonly baseUrl = `${environment.apiUrl}/auth`;
+  private readonly baseUrl = `${environment.apiBaseUrl}/auth`;
 
   constructor(private http: HttpClient) {}
 

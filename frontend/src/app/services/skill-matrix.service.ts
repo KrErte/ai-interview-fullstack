@@ -6,7 +6,7 @@ import { SkillMatrixResponse } from '../models/skill-matrix.model';
 
 @Injectable({ providedIn: 'root' })
 export class SkillMatrixService {
-  private readonly apiBaseUrl = environment.apiUrl;
+  private readonly apiBaseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 

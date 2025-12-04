@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class StarAnswerService {
 
-  private readonly apiUrl = `${environment.apiUrl}/star`;
+  private readonly apiUrl = `${environment.apiBaseUrl}/star`;
 
   constructor(private http: HttpClient) {}
 

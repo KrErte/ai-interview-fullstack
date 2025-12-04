@@ -10,7 +10,7 @@ import { JobAnalysisResponse } from '../models/job-analysis-response.model';
 })
 export class JobAnalysisService {
   // eeldus: environment.apiUrl = 'http://localhost:8080/api' vms
-  private readonly baseUrl = `${environment.apiUrl}/job-analysis`;
+  private readonly baseUrl = `${environment.apiBaseUrl}/job-analysis`;
 
   constructor(private readonly http: HttpClient) {}
 
