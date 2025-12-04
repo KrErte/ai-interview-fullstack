@@ -16,7 +16,7 @@ import java.util.*;
 @Slf4j
 public class AIExampleAnswerService {
 
-    @Value("${openai.api-key}")
+    @Value("${openai.api-key:${OPENAI_API_KEY:dummy-openai-key}}")
     private String apiKey;
 
     @Value("${openai.base-url:https://api.openai.com/v1}")

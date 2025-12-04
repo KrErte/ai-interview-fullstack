@@ -26,7 +26,7 @@ public class AiEvaluationClient {
 
     private final ObjectMapper objectMapper;
 
-    @Value("${openai.api-key}")
+    @Value("${openai.api-key:${OPENAI_API_KEY:dummy-openai-key}}")
     private String apiKey;
 
     @Value("${openai.base-url:https://api.openai.com/v1}")

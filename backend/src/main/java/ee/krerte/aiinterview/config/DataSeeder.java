@@ -68,6 +68,7 @@ public class DataSeeder {
                 .jobDescription("Example description for initial seeded Job Matcher session.")
                 .aiSummary("Initial seeded AI summary for demo purposes.")
                 .aiScore(75)
+                .matchScore(0.0)
                 .build();
 
         jobAnalysisSessionRepository.save(session);

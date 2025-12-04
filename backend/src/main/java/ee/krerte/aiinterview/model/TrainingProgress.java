@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Builder(builderClassName = "TrainingProgressBuilder", toBuilder = true)
 public class TrainingProgress {
 
     @Id
@@ -88,4 +88,20 @@ public class TrainingProgress {
      */
     @Column(name = "last_match_summary")
     private String lastMatchSummary;
+
+    public TrainingStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TrainingStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getLastActivityAt() {
+        return lastActivityAt;
+    }
+
+    public void setLastActivityAt(LocalDateTime lastActivityAt) {
+        this.lastActivityAt = lastActivityAt;
+    }
 }

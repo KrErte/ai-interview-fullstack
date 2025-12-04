@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+      Fix existing NULL values in MATCH_SCORE and then ensure the column is NOT NULL.
+      This changeSet is idempotent and safe to run on dev.
+    -->
+    <changeSet id="2025-12-03-fix-match-score-null-values" author="chatgpt">
+
+        <!-- Run only if table and column actually exist -->
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="job_analysis_session"/>
+            <columnExists tableName="job_analysis_session" columnName="match_score"/>
+        </preConditions>
+
+        <!-- 1) Update any existing NULL match_score rows to 0 -->
+        <update tableName="job_analysis_session">
+            <column name="match_score" valueNumeric="0"/>
+            <where>match_score IS NULL</where>
+        </update>
+
+        <!-- 2) Make sure the column is NOT NULL (type int/number) -->
+        <addNotNullConstraint
+                tableName="job_analysis_session"
+                columnName="match_score"
+                columnDataType="INT"/>
+    </changeSet>
+
+</databaseChangeLog>

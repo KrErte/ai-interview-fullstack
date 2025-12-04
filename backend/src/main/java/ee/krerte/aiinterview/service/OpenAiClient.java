@@ -3,9 +3,9 @@ package ee.krerte.aiinterview.service;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.krerte.aiinterview.config.OpenAiProperties;
 import ee.krerte.aiinterview.model.Question;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -24,17 +24,13 @@ import java.util.List;
 @Service
 public class OpenAiClient {
 
-    @Value("${openai.api-key}")
-    private String apiKey;
-
-    @Value("${openai.base-url}")
-    private String baseUrl;       // nt https://api.openai.com/v1
-
-    @Value("${openai.model}")
-    private String modelName;     // nt gpt-4o-mini, gpt-4.1-mini jne
-
+    private final OpenAiProperties properties;
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    public OpenAiClient(OpenAiProperties properties) {
+        this.properties = properties;
+    }
 
     /* =======================================================================
        PÕHI-MEETOD: madala taseme chat completion
@@ -44,10 +40,10 @@ public class OpenAiClient {
                             Integer maxTokens,
                             Double temperature) {
 
-        String url = baseUrl + "/chat/completions";
+        String url = properties.getBaseUrl() + "/chat/completions";
 
         OpenAiRequest body = OpenAiRequest.builder()
-                .model(modelName)
+                .model(properties.getModel())
                 .messages(messages)
                 .maxTokens(maxTokens != null ? maxTokens : 2048)
                 .temperature(temperature != null ? temperature : 0.7)
@@ -55,7 +51,7 @@ public class OpenAiClient {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(apiKey);
+        headers.setBearerAuth(properties.getApiKey());
 
         HttpEntity<OpenAiRequest> entity = new HttpEntity<>(body, headers);
 

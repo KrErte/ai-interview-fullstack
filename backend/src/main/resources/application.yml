@@ -1,11 +1,9 @@
-openai:
-  api-key: ${OPENAI_API_KEY:dummy}
-  base-url: https://api.openai.com/v1
-  model: gpt-4.1-mini
+server:
+  port: 8080
 
 spring:
   datasource:
-    url: jdbc:h2:file:./data/aiinterview-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:aiinterview-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: sa
     password:
@@ -13,11 +11,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
+        dialect: ee.krerte.aiinterview.config.H2FriendlyPostgreSQLDialect
         format_sql: true
-        dialect: org.hibernate.dialect.H2Dialect
 
   liquibase:
     enabled: true
@@ -27,11 +25,23 @@ spring:
     console:
       enabled: true
       path: /h2-console
-
-server:
-  port: 8080
+      settings:
+        web-allow-others: true
 
 logging:
   level:
     root: INFO
-    ee.krerte.aiinterview: DEBUG
+    liquibase: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+openai:
+  # Safe default; can be overridden with env or another profile
+  base-url: https://api.openai.com/v1
+  
+  # Read from environment variable if present; fallback to a placeholder
+  # (I will set OPENAI_API_KEY in my local env when actually using it)
+  api-key: ${OPENAI_API_KEY:dummy-openai-key}
+  
+  # Default model name; adjust if the code expects another one
+  model: gpt-4.1-mini

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!-- Add training_status column -->
+    <changeSet id="004-01-add-training-status" author="krerte">
+        <addColumn tableName="training_progress">
+            <column name="training_status" type="varchar(50)" />
+        </addColumn>
+    </changeSet>
+
+    <!-- Add last_activity_at column -->
+    <changeSet id="004-02-add-last-activity-at" author="krerte">
+        <addColumn tableName="training_progress">
+            <column name="last_activity_at" type="timestamp" />
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

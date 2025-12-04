@@ -56,7 +56,7 @@ public class JobAnalysisSession {
     @Column(name = "ai_score")
     private Integer aiScore;
 
-    @Column(name = "match_score")
+    @Column(name = "match_score", nullable = false)
     private Double matchScore;
 
     @Column(name = "summary", columnDefinition = "CLOB")

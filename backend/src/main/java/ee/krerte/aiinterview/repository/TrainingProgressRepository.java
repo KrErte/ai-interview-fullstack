@@ -2,6 +2,8 @@ package ee.krerte.aiinterview.repository;
 
 import ee.krerte.aiinterview.model.TrainingProgress;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -10,7 +12,8 @@ public interface TrainingProgressRepository extends JpaRepository<TrainingProgre
     /**
      * Kas antud emailiga on juba TrainingProgress kirje olemas.
      */
-    boolean existsByEmail(String email);
+    @Query("SELECT COUNT(t) > 0 FROM TrainingProgress t WHERE t.email = :email")
+    boolean existsByEmail(@Param("email") String email);
 
     /**
      * Leiab progressi kasutaja emaili järgi.

@@ -5,10 +5,17 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
             https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
 
-    <!-- Include ALL files from the "changes" folder -->
-    <includeAll
-            path="db/changelog/changes"
-            relativeToChangelogFile="false"
-            errorIfMissingOrEmpty="false" />
+    <!-- MAIN TABLE CREATION -->
+    <include file="001-create-training-progress-table.xml" relativeToChangelogFile="true"/>
+    <include file="002-create-job-analysis-session-table.xml" relativeToChangelogFile="true"/>
+    <include file="003-create-app-user-table.xml" relativeToChangelogFile="true"/>
+
+    <!-- UPDATES -->
+    <include file="004-add-status-lastactivity-training-progress.xml" relativeToChangelogFile="true"/>
+
+    <!-- TRAINING_TASK RELATED CHANGES -->
+    <include file="changes/001-create-training-task-h2.xml" relativeToChangelogFile="true"/>
+    <include file="changes/002-add-score-updatedat.xml" relativeToChangelogFile="true"/>
+    <include file="changes/006-create-softskill_training_task.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

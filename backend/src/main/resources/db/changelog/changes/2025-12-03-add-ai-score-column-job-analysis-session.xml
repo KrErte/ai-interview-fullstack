@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!-- Lisa ai_score veerg job_analysis_session tabelisse -->
+    <changeSet id="2025-12-03-add-ai-score-column-job-analysis-session"
+               author="lembit">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="job_analysis_session"/>
+            <not>
+                <columnExists tableName="job_analysis_session" columnName="ai_score"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="job_analysis_session">
+            <column name="ai_score" type="INT">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
