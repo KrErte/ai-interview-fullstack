@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
+import { provideRouter } from '@angular/router';
+import { WorkstyleAssessmentComponent } from './workstyle-assessment/workstyle-assessment.component';
 
-export const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
@@ -52,7 +54,11 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./workstyle-assessment/workstyle-assessment.component')
       .then(m => m.WorkstyleAssessmentComponent)
-}
-
-
+},
+{
+  path: 'workstyle-assessment',
+  component: WorkstyleAssessmentComponent,
+},
 ];
+
+export default provideRouter(appRoutes);

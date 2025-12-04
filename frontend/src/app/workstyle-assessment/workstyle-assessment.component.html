@@ -1,316 +1,53 @@
-<div class="workstyle-page">
-  <div class="max-w-4xl mx-auto">
+<div class="workstyle-assessment p-6 max-w-xl mx-auto bg-white shadow rounded-lg mt-10">
+  <h2 class="text-2xl font-bold mb-5 text-center">Tööstli hindamine</h2>
+  <div *ngIf="error" class="text-red-500 mb-4">{{ error }}</div>
 
-    <header class="mb-6">
-      <h1 class="text-2xl font-semibold text-slate-50">
-        Workstyle Assessment
-      </h1>
-      <p class="text-sm text-slate-400 mt-1">
-        Lühike vorm → AI vestlus → tööstiili profiil, mida saad jagada sõbra
-        või tiimikaaslasega, et enne koostööd näha, kas töömeetodid sobivad.
-      </p>
-
-      <div class="flex items-center gap-2 mt-4 text-xs">
-        <span class="step-pill" [class.step-pill-active]="step() === 1">1</span>
-        <span class="text-slate-400 mr-2">Lühike vorm</span>
-
-        <span class="step-pill" [class.step-pill-active]="step() === 2">2</span>
-        <span class="text-slate-400 mr-2">AI vestlus</span>
-
-        <span class="step-pill" [class.step-pill-active]="step() === 3">3</span>
-        <span class="text-slate-400">Profiil</span>
+  <ng-container *ngIf="session && !session.completed; else completedBlock">
+    <div>
+      <div class="mb-4">
+        <div class="text-lg font-semibold mb-2">Küsimus:</div>
+        <div class="bg-gray-100 rounded p-4">{{ session.currentQuestion }}</div>
       </div>
-    </header>
-
-    <div *ngIf="error()" class="text-sm text-red-400 mb-4">
-      {{ error() }}
-    </div>
-
-    <div *ngIf="loading()" class="text-sm text-slate-400 mb-4">
-      Laen küsimusi...
-    </div>
-
-    <!-- STEP 1: LÜHIKE VORM -->
-    <section *ngIf="step() === 1" class="card space-y-5">
-      <form [formGroup]="emailAndBaselineForm" (ngSubmit)="goToInterview()" class="space-y-5">
-        <div>
-          <label class="form-label">Sinu e-mail</label>
-          <input
-            type="email"
-            class="form-input"
-            formControlName="email"
-            placeholder="sina@firma.ee"
-          />
-          <p
-            *ngIf="emailAndBaselineForm.touched && emailAndBaselineForm.get('email')?.invalid"
-            class="form-error"
-          >
-            Palun sisesta kehtiv e-mail.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="slider-block">
-            <div class="flex justify-between text-xs text-slate-400 mb-1">
-              <span>Kaos &amp; spontaanne</span>
-              <span>Struktureeritud &amp; plaaniline</span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              formControlName="structurePreference"
-              class="w-full"
-            />
-          </div>
-
-          <div class="slider-block">
-            <div class="flex justify-between text-xs text-slate-400 mb-1">
-              <span>Ship it now</span>
-              <span>Perfektsus enne shippingut</span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              formControlName="speedPreference"
-              class="w-full"
-            />
-          </div>
-
-          <div class="slider-block">
-            <div class="flex justify-between text-xs text-slate-400 mb-1">
-              <span>Koosolekud &amp; live ping</span>
-              <span>Async &amp; kirjalik</span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              formControlName="asyncPreference"
-              class="w-full"
-            />
-          </div>
-
-          <div class="slider-block">
-            <div class="flex justify-between text-xs text-slate-400 mb-1">
-              <span>Diplomaatiline, kaudne</span>
-              <span>Otsekohene &amp; brutaaalselt aus</span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              formControlName="conflictDirectness"
-              class="w-full"
-            />
-          </div>
-
-          <div class="slider-block">
-            <div class="flex justify-between text-xs text-slate-400 mb-1">
-              <span>Vajan palju juhendamist</span>
-              <span>Täielik autonoomia</span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              formControlName="autonomyNeed"
-              class="w-full"
-            />
-          </div>
-
-          <div class="slider-block">
-            <div class="flex justify-between text-xs text-slate-400 mb-1">
-              <span>Madal tolerants kaosele</span>
-              <span>Kõrge tolerants kaosele</span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              formControlName="chaosTolerance"
-              class="w-full"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label class="form-label text-xs">
-            Lisa lühidalt, mis sind töökaaslaste/tiimide juures kõige rohkem
-            häirib või mille suhtes oled ülitundlik (vabatahtlik)
-          </label>
-          <textarea
-            rows="3"
-            class="form-textarea"
-            formControlName="notes"
-            placeholder="Nt: kui mind pommitatakse pidevalt chat'is deep worki ajal; kui PR-d on lohakad; kui kokkuleppeid ignoreeritakse jne."
-          ></textarea>
-        </div>
-
-        <div class="flex justify-end">
-          <button type="submit" class="btn-primary" [disabled]="loading()">
-            Jätka AI vestlusega
-          </button>
-        </div>
-      </form>
-    </section>
-
-    <!-- STEP 2: AI VESTLUS -->
-    <section *ngIf="step() === 2" class="card">
-      <ng-container *ngIf="currentQuestion() as q">
-        <div class="flex items-center justify-between mb-2 text-xs text-slate-400">
-          <span>Küsimus {{ currentIndex() + 1 }} / {{ questions().length }}</span>
-          <span>{{ q.dimensionKey }}</span>
-        </div>
-
-        <h2 class="text-lg font-medium text-slate-50 mb-4">
-          {{ q.text }}
-        </h2>
-
-        <div class="mb-4">
-          <div class="flex justify-between text-xs text-slate-400 mb-1">
-            <span>{{ q.scaleLabelLow }}</span>
-            <span>{{ q.scaleLabelHigh }}</span>
-          </div>
-          <input
-            type="range"
-            min="1"
-            max="5"
-            [ngModel]="getCurrentValue()"
-            (ngModelChange)="setAnswerForCurrent($event)"
-            class="w-full"
-          />
-          <div class="flex justify-between mt-1 text-xs text-slate-300">
-            <span *ngFor="let v of [1,2,3,4,5]">{{ v }}</span>
-          </div>
-        </div>
-
-        <div class="mb-6">
-          <label class="form-label text-xs">
-            Kirjelda lühidalt mõnda olukorda, mis seda hästi iseloomustab
-            (vabatahtlik)
-          </label>
-          <textarea
-            rows="3"
-            class="form-textarea"
-            [ngModel]="getCurrentNote()"
-            (ngModelChange)="setNoteForCurrent($event)"
-          ></textarea>
-        </div>
-
-        <div class="flex items-center justify-between gap-3">
-          <button
-            type="button"
-            class="btn-secondary"
-            (click)="prevQuestion()"
-            [disabled]="currentIndex() === 0"
-          >
-            Eelmine
-          </button>
-
-          <div class="flex gap-3">
-            <button
-              type="button"
-              class="btn-secondary"
-              *ngIf="currentIndex() < questions().length - 1"
-              (click)="nextQuestion()"
-              [disabled]="!canGoNext()"
-            >
-              Järgmine
-            </button>
-
-            <button
-              type="button"
-              class="btn-primary"
-              *ngIf="currentIndex() === questions().length - 1"
-              (click)="finishInterview()"
-              [disabled]="saving()"
-            >
-              Lõpeta &amp; genereeri profiil
-            </button>
-          </div>
-        </div>
-      </ng-container>
-    </section>
-
-    <!-- STEP 3: PROFIIL -->
-    <section *ngIf="step() === 3 && profile()" class="card mt-6">
-      <div class="flex justify-between items-start mb-4">
-        <div>
-          <h2 class="text-lg font-medium text-slate-50">
-            Sinu tööstiili profiil
-          </h2>
-          <p class="text-xs text-slate-400 mt-1">
-            Viimati uuendatud:
-            {{ profile()!.updatedAt | date:'dd.MM.yyyy HH:mm' }}
-          </p>
-        </div>
-        <button type="button" class="btn-secondary" (click)="restart()">
-          Tee uus hindamine
+      <form (ngSubmit)="submitAnswer()" class="space-y-4">
+        <textarea class="w-full border-gray-300 rounded p-3 focus:ring focus:ring-blue-200 transition"
+                  [(ngModel)]="answer" name="answer" placeholder="Sinu vastus" rows="4"
+                  [disabled]="loading"></textarea>
+        <button type="submit" class="btn btn-primary w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded disabled:opacity-50"
+                [disabled]="loading || !answer.trim()">
+          Järgmine
         </button>
+      </form>
+      <div *ngIf="summaryList.length > 0" class="mt-6">
+        <div class="font-medium text-gray-500 mb-2">Vastatud:</div>
+        <ul class="list-disc pl-6 text-gray-800 space-y-1">
+          <li *ngFor="let qa of summaryList">{{ qa.question }}<br><span class="font-semibold">Sinu vastus:</span> {{ qa.answer }}</li>
+        </ul>
       </div>
+    </div>
+  </ng-container>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        <div class="stat-pill">
-          <span class="stat-label">Struktuur vs paindlikkus</span>
-          <span class="stat-value">
-            {{ profile()!.structureScore }}/100
-          </span>
-        </div>
-        <div class="stat-pill">
-          <span class="stat-label">Kiirus vs kvaliteet</span>
-          <span class="stat-value">
-            {{ profile()!.speedScore }}/100
-          </span>
-        </div>
-        <div class="stat-pill">
-          <span class="stat-label">Async suhtlus eelistus</span>
-          <span class="stat-value">
-            {{ profile()!.asyncPreferenceScore }}/100
-          </span>
-        </div>
-        <div class="stat-pill">
-          <span class="stat-label">Konfliktide otsekohesus</span>
-          <span class="stat-value">
-            {{ profile()!.conflictDirectnessScore }}/100
-          </span>
-        </div>
-        <div class="stat-pill">
-          <span class="stat-label">Autonoomia vajadus</span>
-          <span class="stat-value">
-            {{ profile()!.autonomyScore }}/100
-          </span>
-        </div>
-        <div class="stat-pill">
-          <span class="stat-label">Tolerants kaosele</span>
-          <span class="stat-value">
-            {{ profile()!.toleranceForChaosScore }}/100
-          </span>
-        </div>
-        <div class="stat-pill">
-          <span class="stat-label">Suhtluse detailsus</span>
-          <span class="stat-value">
-            {{ profile()!.communicationDetailScore }}/100
-          </span>
-        </div>
-        <div class="stat-pill">
-          <span class="stat-label">Koodikvaliteedi latt</span>
-          <span class="stat-value">
-            {{ profile()!.codeQualityStrictnessScore }}/100
-          </span>
-        </div>
-      </div>
+  <ng-template #completedBlock>
+    <div class="text-center">
+      <div class="text-xl font-semibold mb-6">Test lõpetatud! Kokkuvõte:</div>
+      <table class="w-full table-auto border shadow rounded bg-gray-50">
+        <thead>
+          <tr>
+            <th class="px-3 py-2 border-b text-left text-gray-700">Küsimus</th>
+            <th class="px-3 py-2 border-b text-left text-gray-700">Sinu vastus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let qa of summaryList">
+            <td class="border-b px-3 py-2 align-top">{{ qa.question }}</td>
+            <td class="border-b px-3 py-2 align-top">{{ qa.answer }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-primary mt-8 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded" (click)="startSession()" [disabled]="loading">
+        Alusta uus test
+      </button>
+    </div>
+  </ng-template>
 
-      <div class="mt-4">
-        <h3 class="text-sm font-semibold text-slate-100 mb-1">
-          AI kokkuvõte
-        </h3>
-        <p class="text-sm text-slate-300 whitespace-pre-line">
-          {{ profile()!.summary }}
-        </p>
-      </div>
-    </section>
-
-  </div>
+  <div *ngIf="loading" class="text-gray-500 text-center mt-6">Laadimine...</div>
 </div>

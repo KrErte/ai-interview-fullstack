@@ -17,5 +17,6 @@
     <include file="changes/001-create-training-task-h2.xml" relativeToChangelogFile="true"/>
     <include file="changes/002-add-score-updatedat.xml" relativeToChangelogFile="true"/>
     <include file="changes/006-create-softskill_training_task.xml" relativeToChangelogFile="true"/>
+    <include file="changes/006-create-workstyle-session.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

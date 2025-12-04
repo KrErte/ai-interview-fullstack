@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2025-12-04-create-workstyle-session" author="chatgpt">
+
+        <createTable tableName="workstyle_session">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated_at" type="timestamp"/>
+            <column name="current_question" type="varchar(2000)"/>
+            <column name="answers_json" type="CLOB"/>
+            <column name="completed" type="boolean" defaultValueBoolean="false"/>
+        </createTable>
+
+        <createIndex tableName="workstyle_session"
+                     indexName="idx_workstyle_session_email">
+            <column name="email"/>
+        </createIndex>
+
+    </changeSet>
+
+</databaseChangeLog>

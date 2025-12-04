@@ -56,14 +56,14 @@ public class TrainingProgress {
 
     /**
      * Treeningu staatuse enum (NOT NULL).
-     *
-     * NB! Väli NIMI on 'status', et Lombok genereeriks
+     * STATUS: Väli NIMI on 'status', et Lombok genereeriks
      * getStatus()/setStatus() ja builder().status(),
      * mida kõik teenused/DTOd juba kasutavad.
      */
     @Enumerated(EnumType.STRING)
-    @Column(name = "training_status", nullable = false)
-    private TrainingStatus status;
+    @Column(name = "status", nullable = false)
+    @Builder.Default
+    private TrainingStatus status = TrainingStatus.NOT_STARTED;
 
     /**
      * Viimane aktiivsus profiilis.
@@ -89,19 +89,10 @@ public class TrainingProgress {
     @Column(name = "last_match_summary")
     private String lastMatchSummary;
 
-    public TrainingStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TrainingStatus status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getLastActivityAt() {
-        return lastActivityAt;
-    }
-
-    public void setLastActivityAt(LocalDateTime lastActivityAt) {
-        this.lastActivityAt = lastActivityAt;
+    @PrePersist
+    public void prePersist() {
+        if (status == null) {
+            status = TrainingStatus.NOT_STARTED;
+        }
     }
 }
