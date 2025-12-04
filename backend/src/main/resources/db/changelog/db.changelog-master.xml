@@ -18,5 +18,6 @@
     <include file="changes/002-add-score-updatedat.xml" relativeToChangelogFile="true"/>
     <include file="changes/006-create-softskill_training_task.xml" relativeToChangelogFile="true"/>
     <include file="changes/006-create-workstyle-session.xml" relativeToChangelogFile="true"/>
+    <include file="changes/007-seed-test-data.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
