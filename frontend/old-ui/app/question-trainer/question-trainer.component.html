@@ -1,0 +1,224 @@
+<div class="trainer-page">
+  <!-- PAGE HEADER -->
+  <header class="trainer-header">
+    <h1 class="trainer-title">Soft skills roadmap</h1>
+    <p class="trainer-subtitle">
+      Vali fookus-oskused ja treeni neid AI coachi abil.
+    </p>
+  </header>
+
+  <!-- 3-COLUMN GRID: LEFT ROADMAP LIST · CENTER CONTENT · RIGHT SIDEBAR -->
+  <section class="trainer-grid">
+    <!-- LEFT: ROADMAPS LIST / MENU -->
+    <aside class="trainer-left-nav">
+      <div class="left-nav-card">
+        <div class="left-nav-title">Roadmaps</div>
+        <p class="left-nav-subtitle">
+          Vali, millise soft-skill teekonnaga tahad praegu töötada.
+        </p>
+
+        <ul class="left-nav-list">
+          <li
+            class="left-nav-item"
+            *ngFor="let item of allRoadmapItems"
+            [class.left-nav-item--active]="activeItem?.id === item.id"
+            (click)="startSession(item)"
+          >
+            <div class="left-nav-label">
+              {{ item.title }}
+            </div>
+            <div class="left-nav-meta">
+              {{ item.subtitle }}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- CENTER: ACTIVE SESSION + FOCUS CARD + AI COACH -->
+    <main class="trainer-center">
+      <!-- ACTIVE SESSION -->
+      <section class="active-session" *ngIf="activeItem; else noSelection">
+        <div class="active-session-header">
+          <div>
+            <div class="active-session-label">Aktiivne treeningsessioon</div>
+            <h2 class="active-session-title">{{ activeTitle }}</h2>
+            <p class="active-session-subtitle">
+              {{ activeSubtitle }}
+            </p>
+          </div>
+          <div class="active-session-meta">
+            <span class="active-session-step">
+              Küsimus {{ currentQuestionNumber }} / {{ totalQuestions }}
+            </span>
+            <span class="active-session-progress-label">
+              {{ progressPercent }}%
+            </span>
+          </div>
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-bar-fill"
+            [style.width.%]="progressPercent"
+          ></div>
+        </div>
+      </section>
+
+      <ng-template #noSelection>
+        <section class="active-session empty">
+          <div>
+            <div class="active-session-label">Aktiivne treeningsessioon</div>
+            <h2 class="active-session-title">
+              Vali roadmap vasakult listist, et alustada sessiooni
+            </h2>
+            <p class="active-session-subtitle">
+              Klõpsa mõnel fookus-oskuse pealkirjal – AI coach valib sulle
+              sobivad küsimused.
+            </p>
+          </div>
+        </section>
+      </ng-template>
+
+      <!-- FOCUS SKILL CARD (üks kaart) -->
+      <section class="roadmap-card">
+        <header class="roadmap-header">
+          <h2 class="roadmap-title">Fookus-oskuse kaart</h2>
+        </header>
+
+        <ng-container *ngIf="activeItem; else noFocus">
+          <div class="focus-card">
+            <div class="focus-card-header">
+              <div class="roadmap-tags">
+                <span class="level-pill">
+                  {{ getLevelLabel(activeItem!.level) }}
+                </span>
+                <span
+                  class="status-pill"
+                  [ngClass]="{
+                    'status-pill--next': activeItem!.status === 'NEXT',
+                    'status-pill--in-progress': activeItem!.status === 'IN_PROGRESS',
+                    'status-pill--done': activeItem!.status === 'COMPLETED'
+                  }"
+                >
+                  {{ getStatusLabel(activeItem!.status) }}
+                </span>
+              </div>
+
+              <h3 class="focus-card-title">{{ activeItem!.title }}</h3>
+              <p class="focus-card-subtitle">{{ activeItem!.subtitle }}</p>
+              <p class="focus-card-impact">
+                {{ getImpactText(activeItem!) }}
+              </p>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #noFocus>
+          <div class="roadmap-empty">
+            Ühtegi fookus-oskust ei ole hetkel valitud. Vali üks vasakust
+            roadmap-menüüst.
+          </div>
+        </ng-template>
+      </section>
+
+      <!-- AI COACH BLOCK -->
+      <section class="active-session coach-block">
+        <div class="active-session-label">
+          AI Coach – konfliktijuhtimine &amp; soft skills
+        </div>
+
+        <div *ngIf="activeItem; else coachInfo" class="coach-body">
+          <div class="coach-question-block">
+            <div class="coach-question-label">Järgmine küsimus</div>
+            <div class="coach-question-text">
+              {{ currentQuestionText }}
+            </div>
+          </div>
+
+          <div class="coach-answer-block">
+            <label class="coach-answer-label" for="answer">
+              Sinu vastus
+            </label>
+            <textarea
+              id="answer"
+              [(ngModel)]="currentAnswer"
+              rows="5"
+              class="coach-answer-input"
+              placeholder="Kirjelda olukorda ja oma käitumist nii detailselt kui võimalik..."
+            ></textarea>
+
+            <div class="coach-actions">
+              <button
+                class="coach-submit-button"
+                type="button"
+                (click)="submitAnswer()"
+              >
+                Saada vastus ja küsi järgmine
+              </button>
+
+              <button
+                class="coach-evaluate-button"
+                type="button"
+                (click)="evaluateAnswer()"
+              >
+                Hinda vastust (demo)
+              </button>
+            </div>
+
+            <!-- Demo score + feedback -->
+            <div class="coach-score" *ngIf="demoScore !== null">
+              <div class="coach-score-value">
+                {{ (demoScore * 100) | number: '1.0-0' }}%
+              </div>
+              <div class="coach-score-label">
+                Hinnanguline vastuse tugevus (demo)
+              </div>
+            </div>
+
+            <div class="coach-feedback" *ngIf="lastEvaluationMessage">
+              {{ lastEvaluationMessage }}
+            </div>
+          </div>
+        </div>
+
+        <ng-template #coachInfo>
+          <p class="active-session-subtitle">
+            Sessiooni alustamiseks vali roadmap kaardilt või vasakust menüüst
+            fookus-oskust.
+          </p>
+        </ng-template>
+      </section>
+    </main>
+
+    <!-- RIGHT: PROGRESS & METRICS SIDEBAR -->
+    <aside class="trainer-sidebar">
+      <section class="sidebar-card">
+        <h2 class="sidebar-title">Progress &amp; metrics</h2>
+
+        <div class="career-level">
+          <div class="career-level-header">
+            <span class="career-level-label">Career level</span>
+            <span class="career-level-current">Level: Junior → Mid</span>
+          </div>
+          <div class="career-level-bar">
+            <div class="career-level-fill" style="width: 60%"></div>
+          </div>
+          <div class="career-level-progress-label">
+            60% to next level (demo)
+          </div>
+        </div>
+
+        <div class="skill-matrix">
+          <div class="skill-matrix-header">
+            <span>Skill matrix</span>
+            <span class="skill-matrix-tag">Soft skills</span>
+          </div>
+          <div class="skill-matrix-placeholder">
+            Radar chart (demo placeholder)
+          </div>
+        </div>
+      </section>
+    </aside>
+  </section>
+</div>

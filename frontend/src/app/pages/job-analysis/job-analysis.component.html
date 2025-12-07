@@ -1,0 +1,97 @@
+<div class="space-y-6">
+  <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-4">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-emerald-400 text-sm font-semibold uppercase tracking-wide">Job Analysis</p>
+        <h1 class="text-2xl font-semibold text-slate-50">AI-powered breakdown</h1>
+      </div>
+      <span class="rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-semibold text-emerald-300">Live API</span>
+    </div>
+
+    <form class="space-y-4" [formGroup]="form">
+      <div class="grid gap-4 md:grid-cols-2">
+        <label class="block space-y-1">
+          <span class="text-sm text-slate-300">CV text</span>
+          <textarea
+            rows="6"
+            formControlName="cvText"
+            class="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/40 focus:border-emerald-400 focus:ring-2"
+            placeholder="Parsed CV text"
+          ></textarea>
+        </label>
+
+        <label class="block space-y-1">
+          <span class="text-sm text-slate-300">Job description</span>
+          <textarea
+            rows="6"
+            formControlName="jobDescription"
+            class="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/40 focus:border-emerald-400 focus:ring-2"
+            placeholder="Paste the role you want to analyze"
+          ></textarea>
+          <small class="text-rose-300" *ngIf="form.controls.jobDescription.touched && form.controls.jobDescription.invalid">Job description is required.</small>
+        </label>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          class="rounded-lg bg-emerald-500 px-4 py-2 font-semibold text-slate-900 hover:bg-emerald-400 disabled:opacity-60"
+          [disabled]="loading"
+          (click)="analyze()"
+        >
+          {{ loading ? 'Analyzing…' : 'Analyze' }}
+        </button>
+        <p class="text-sm text-slate-400">We send both fields to <code>/api/job-analysis</code>.</p>
+      </div>
+    </form>
+
+    <p *ngIf="error" class="rounded-lg border border-rose-400/40 bg-rose-500/10 px-3 py-2 text-sm text-rose-200">
+      {{ error }}
+    </p>
+  </div>
+
+  <div *ngIf="result" class="space-y-4">
+    <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm text-slate-400">Match score</p>
+        <p class="text-3xl font-semibold text-emerald-400">{{ score() }}%</p>
+      </div>
+      <p class="text-sm text-slate-300">{{ result?.summary }}</p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4 space-y-2">
+        <p class="text-xs uppercase tracking-wide text-emerald-300">Strengths</p>
+        <ul class="list-disc list-inside space-y-1 text-sm text-emerald-100">
+          <li *ngFor="let item of result?.strengths">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4 space-y-2">
+        <p class="text-xs uppercase tracking-wide text-amber-300">Weaknesses</p>
+        <ul class="list-disc list-inside space-y-1 text-sm text-amber-100">
+          <li *ngFor="let item of result?.weaknesses">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4 space-y-2">
+        <p class="text-xs uppercase tracking-wide text-rose-300">Missing skills</p>
+        <ul class="list-disc list-inside space-y-1 text-sm text-rose-100">
+          <li *ngFor="let item of (result?.missingSkills || result?.gaps)">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 space-y-3">
+      <p class="text-xs uppercase tracking-wide text-slate-400">Suggested improvements</p>
+      <p class="text-sm text-slate-200">{{ result?.suggestedImprovements }}</p>
+      <div class="space-y-2">
+        <p class="text-xs uppercase tracking-wide text-slate-400">Roadmap</p>
+        <ol class="list-decimal list-inside space-y-1 text-sm text-slate-200">
+          <li *ngFor="let step of result?.roadmap">{{ step }}</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+

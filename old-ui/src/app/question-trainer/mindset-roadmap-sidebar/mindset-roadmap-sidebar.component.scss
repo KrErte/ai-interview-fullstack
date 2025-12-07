@@ -1,0 +1,26 @@
+.roadmap-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.roadmap-item {
+  padding: 0.8rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #f8fafc;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.roadmap-item:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateX(2px);
+}
+
+.roadmap-item--active {
+  background: rgba(59,130,246,0.25);
+  border: 1px solid rgba(59,130,246,0.5);
+  box-shadow: 0 6px 20px rgba(59,130,246,0.25);
+}

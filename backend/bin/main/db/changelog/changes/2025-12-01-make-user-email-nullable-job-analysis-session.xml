@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="2025-12-01-10-make-user-email-nullable-job-analysis-session" author="chatgpt">
+
+        <!-- Kui veergu pole (puhas skeem vms), märgi lihtsalt RAN -->
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="job_analysis_session" columnName="user_email"/>
+        </preConditions>
+
+        <!-- Eemaldame NOT NULL constraint'i user_email veerult -->
+        <dropNotNullConstraint
+                tableName="job_analysis_session"
+                columnName="user_email"
+                columnDataType="varchar(255)"/>
+    </changeSet>
+
+</databaseChangeLog>

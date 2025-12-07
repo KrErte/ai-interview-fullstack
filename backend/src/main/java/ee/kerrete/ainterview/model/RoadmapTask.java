@@ -25,6 +25,12 @@ public class RoadmapTask {
     private String description; // "Harjuta ootamatut veaolukorda"
     private boolean completed;
 
+    @Column(name = "day_number")
+    private Integer dayNumber;
+
+    @Column(name = "order_index")
+    private Integer orderIndex;
+
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

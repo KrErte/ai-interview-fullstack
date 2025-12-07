@@ -1,0 +1,60 @@
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  color: white;
+  position: relative;
+}
+
+.bg-ai {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  filter: blur(20px);
+  z-index: -1;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: bold;
+}
+
+h1 span {
+  color: #10b981;
+}
+
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 14px 26px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: #10b981;
+  color: black;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background: #1f2937;
+  border: 2px solid #10b981;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #10b981;
+  color: black;
+}

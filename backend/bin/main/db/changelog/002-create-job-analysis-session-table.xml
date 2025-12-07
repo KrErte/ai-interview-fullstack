@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="002-create-job-analysis-session-table" author="krerte">
+        <preConditions onFail="MARK_RAN" onError="MARK_RAN">
+            <not>
+                <tableExists tableName="job_analysis_session"/>
+            </not>
+        </preConditions>
+        <createTable tableName="job_analysis_session">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="user_email" type="VARCHAR(255)"/>
+            <column name="job_title" type="VARCHAR(255)"/>
+            <column name="job_description" type="CLOB"/>
+            <column name="analysis_result" type="CLOB"/>
+            <column name="missing_skills_json" type="CLOB"/>
+            <column name="roadmap_json" type="CLOB"/>
+            <column name="suggested_improvements_json" type="CLOB"/>
+            <column name="ai_summary" type="CLOB"/>
+            <column name="ai_score" type="INT"/>
+            <column name="match_score" type="DOUBLE" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="summary" type="CLOB"/>
+            <column name="created_at" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
+

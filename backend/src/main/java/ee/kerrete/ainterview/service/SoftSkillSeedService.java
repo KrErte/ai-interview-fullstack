@@ -48,6 +48,13 @@ public class SoftSkillSeedService {
         return Optional.of(list.get(askedCount));
     }
 
+    /**
+     * Tagastab, mitu eelseadistatud küsimust antud teema jaoks on.
+     */
+    public int getSeedCount(String roadmapKey) {
+        return seedsByRoadmap.getOrDefault(roadmapKey, Collections.emptyList()).size();
+    }
+
     @Data
     public static class SeedQuestion {
         private int order;

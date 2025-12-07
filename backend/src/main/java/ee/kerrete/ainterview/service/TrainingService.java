@@ -7,6 +7,7 @@ import ee.kerrete.ainterview.model.TrainingProgress;
 import ee.kerrete.ainterview.model.TrainingStatus;
 import ee.kerrete.ainterview.model.TrainingTask;
 import ee.kerrete.ainterview.repository.JobAnalysisSessionRepository;
+import ee.kerrete.ainterview.repository.RoadmapTaskRepository;
 import ee.kerrete.ainterview.repository.TrainingProgressRepository;
 import ee.kerrete.ainterview.repository.TrainingTaskRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class TrainingService {
     private final TrainingTaskRepository trainingTaskRepository;
     private final TrainingProgressRepository trainingProgressRepository;
     private final JobAnalysisSessionRepository jobAnalysisSessionRepository;
+    private final RoadmapTaskRepository roadmapTaskRepository;
 
     /**
      * VANA signatuur, mida kasutavad ProgressController ja TrainingProgressController:
@@ -58,13 +60,22 @@ public class TrainingService {
         long totalTasksCount = trainingTaskRepository.countByEmail(email);
         long completedTasksCount = trainingTaskRepository.countByEmailAndCompletedIsTrue(email);
 
+        long roadmapTotal = roadmapTaskRepository.countByEmail(email);
+        long roadmapCompleted = roadmapTaskRepository.countByEmailAndCompletedIsTrue(email);
+
         int totalTasks = Math.toIntExact(totalTasksCount);
         int completedTasks = Math.toIntExact(completedTasksCount);
+
+        totalTasks += Math.toIntExact(roadmapTotal);
+        completedTasks += Math.toIntExact(roadmapCompleted);
 
         // Protsent double'ina
         double progressPercent = 0.0;
         if (totalTasksCount > 0) {
             progressPercent = (completedTasksCount * 100.0) / totalTasksCount;
+        }
+        if (roadmapTotal > 0) {
+            progressPercent = ((completedTasks) * 100.0) / (double) (totalTasks);
         }
         // Ümardame Integeriks (0–100)
         int roundedPercent = (int) Math.round(progressPercent);
@@ -122,6 +133,7 @@ public class TrainingService {
         progress.setTrainingProgressPercent(roundedPercent);
         progress.setLastActivityAt(lastActivity);
         progress.setLastUpdated(lastActivity != null ? lastActivity : LocalDateTime.now());
+        progress.setTotalJobAnalyses(Math.toIntExact(jobAnalysisSessionRepository.countByEmail(email)));
 
         if (totalTasks == 0) {
             progress.setStatus(TrainingStatus.NOT_STARTED);
@@ -165,6 +177,11 @@ public class TrainingService {
                         .build()
                 );
 
+        if (task.getCreatedAt() == null) {
+            task.setCreatedAt(LocalDateTime.now());
+        }
+
+        task.setSkillKey(request.getSkillKey());
         // Vastuse tekst – eelistame "answer", kui tühi/null, siis "answerText"
         String answer = request.getAnswer();
         if (answer == null || answer.isBlank()) {

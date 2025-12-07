@@ -1,6 +1,10 @@
 package ee.kerrete.ainterview.service;
 
 import ee.kerrete.ainterview.dto.ProfileOverviewResponse;
+import ee.kerrete.ainterview.model.JobAnalysisSession;
+import ee.kerrete.ainterview.model.TrainingProgress;
+import ee.kerrete.ainterview.repository.JobAnalysisSessionRepository;
+import ee.kerrete.ainterview.repository.TrainingProgressRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +21,26 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProfileOverviewService {
 
-    private final JobAnalysisStatsService jobAnalysisStatsService;
+    private final JobAnalysisSessionRepository jobAnalysisSessionRepository;
+    private final TrainingProgressRepository trainingProgressRepository;
 
     public ProfileOverviewResponse getOverview(String email) {
 
-        int totalAnalyses = jobAnalysisStatsService.getTotalAnalyses();
-        int totalAnalysesForEmail = jobAnalysisStatsService.getTotalAnalysesFor(email);
+        int totalAnalyses = Math.toIntExact(jobAnalysisSessionRepository.count());
+        int totalAnalysesForEmail = email != null
+                ? Math.toIntExact(jobAnalysisSessionRepository.countByEmail(email))
+                : 0;
 
-        JobAnalysisStatsService.JobAnalysisRecord last =
-                jobAnalysisStatsService.getLastFor(email);
+        JobAnalysisSession last =
+                email != null ? jobAnalysisSessionRepository.findTopByEmailOrderByCreatedAtDesc(email).orElse(null) : null;
 
-        Double lastScore = last != null ? last.getScore() : null;
+        Double lastScore = last != null ? last.getMatchScore() : null;
         String lastSummary = last != null ? last.getSummary() : null;
-        String lastActive = last != null ? last.getTimestamp().toString() : null;
+        String lastActive = last != null && last.getCreatedAt() != null ? last.getCreatedAt().toString() : null;
+
+        TrainingProgress progress = email != null
+                ? trainingProgressRepository.findByEmail(email).orElse(null)
+                : null;
 
         return ProfileOverviewResponse.builder()
                 .totalAnalyses(totalAnalyses)
@@ -37,6 +48,7 @@ public class ProfileOverviewService {
                 .lastMatchScoreForEmail(lastScore)
                 .lastSummaryForEmail(lastSummary)
                 .lastActive(lastActive)
+                .trainingSessionCount(progress != null ? progress.getTotalTrainingSessions() : 0)
                 .build();
     }
 }

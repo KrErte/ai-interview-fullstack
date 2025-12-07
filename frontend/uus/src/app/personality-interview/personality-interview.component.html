@@ -1,0 +1,123 @@
+<div class="personality-page">
+  <!-- HEADER -->
+  <header class="page-header">
+    <div>
+      <h1 class="page-title">Isiksuse & tööstiili intervjuu</h1>
+      <p class="page-subtitle">
+        GPT küsib sinult küsimusi töömeetodite, suhete, konfliktide lahendamise ja
+        eelistuste kohta. Vastuste põhjal saame tekitada tööstiili profiili.
+      </p>
+    </div>
+
+    <button class="restart-btn" type="button" (click)="startInterview()">
+      Alusta uuesti
+    </button>
+  </header>
+
+  <!-- ERROR / LOADER -->
+  <div *ngIf="error" class="status status-error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="loading && !currentQuestion && history.length === 0" class="status">
+    Käivitan GPT intervjuud...
+  </div>
+
+  <!-- SISU -->
+  <div class="layout">
+    <!-- CHAT / INTERVJUU -->
+    <section class="card chat-card">
+      <h2 class="card-title">Intervjuu</h2>
+
+      <div class="chat-window">
+        <!-- ajaloo küsimused & vastused -->
+        <ng-container *ngFor="let turn of history">
+          <div class="bubble-row">
+            <div class="bubble bubble-ai">
+              <span class="bubble-label">GPT</span>
+              <p>{{ turn.question }}</p>
+            </div>
+          </div>
+
+          <div class="bubble-row bubble-row-right">
+            <div class="bubble bubble-user">
+              <span class="bubble-label">Sina</span>
+              <p>{{ turn.answer }}</p>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- aktiivne küsimus -->
+        <div *ngIf="currentQuestion" class="bubble-row">
+          <div class="bubble bubble-ai">
+            <span class="bubble-label">GPT</span>
+            <p>{{ currentQuestion }}</p>
+          </div>
+        </div>
+
+        <!-- kui lõpetatud -->
+        <div *ngIf="finished" class="finished-box">
+          Intervjuu on praegu lõppenud. GPT saab sinu vastustest kokku panna
+          isiksuse- ja tööstiili profiili.
+        </div>
+      </div>
+
+      <!-- vastuse sisestamine -->
+      <form class="answer-form" (ngSubmit)="submitAnswer()" *ngIf="!finished">
+        <textarea
+          [(ngModel)]="answerText"
+          name="answer"
+          rows="4"
+          placeholder="Kirjelda oma vastust võimalikult konkreetselt ja näidetega..."
+        ></textarea>
+
+        <div class="answer-actions">
+          <span class="hint"
+            >Vihje: kasuta näiteid päris olukordadest – konfliktid, tiimitöö,
+            tähtajad, jne.</span
+          >
+          <button
+            type="submit"
+            class="submit-btn"
+            [disabled]="loading || !answerText.trim()"
+          >
+            {{ loading ? 'Saadan...' : 'Saada vastus' }}
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- KOKKUVÕTE / SELGITUS -->
+    <section class="card summary-card">
+      <h2 class="card-title">Mida GPT siit õpib?</h2>
+      <ul class="summary-list">
+        <li>
+          <strong>Töömeetodid:</strong>
+          kas oled pigem planeerija või spontaanne, kas eelistad süvenemist või
+          multitaskingut.
+        </li>
+        <li>
+          <strong>Suhted töökaaslastega:</strong>
+          kuidas teed koostööd, jagad infot, annad tagasisidet.
+        </li>
+        <li>
+          <strong>Konfliktide lahendamine:</strong>
+          millist stiili kasutad pingelistes olukordades.
+        </li>
+        <li>
+          <strong>Isiksuse olemus:</strong>
+          introvert / ekstrovert, riskitaluvus, otsustusviis.
+        </li>
+        <li>
+          <strong>Eelistused:</strong>
+          tööaeg, kaug- vs kontoritöö, juhendamine vs iseseisev töö.
+        </li>
+      </ul>
+
+      <p class="summary-footer">
+        Hiljem saame need vastused siduda tööpakkumiste, rollide ja tiimitüüpidega
+        ning näidata, kus sul on kõige suurem sobivus.
+      </p>
+    </section>
+  </div>
+</div>

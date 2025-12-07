@@ -1,0 +1,110 @@
+<div class="job-match-page">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Candidate</p>
+      <h1>Job match</h1>
+      <p class="lede">
+        Upload your CV PDF and paste the job description to see how well you align.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <form [formGroup]="form" (ngSubmit)="analyze()" class="form-grid">
+      <div class="field">
+        <label class="label">CV (PDF)</label>
+        <div class="file-row">
+          <input
+            type="file"
+            accept=".pdf,application/pdf"
+            (change)="onCvSelected($event)"
+          />
+          <div class="file-meta" *ngIf="cvFileName">
+            <span class="file-name">{{ cvFileName }}</span>
+            <span class="pill" *ngIf="uploadingCv">Uploading…</span>
+            <span class="pill success" *ngIf="!uploadingCv && cvText">Ready</span>
+          </div>
+        </div>
+        <p class="help">PDF only (keep it under ~5 MB). We extract text server-side to keep formatting intact.</p>
+        <div class="error" *ngIf="uploadError">{{ uploadError }}</div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="jobDescription">Job description</label>
+        <textarea
+          id="jobDescription"
+          rows="8"
+          formControlName="jobDescription"
+          placeholder="Paste the job description here..."
+        ></textarea>
+        <p class="help">Paste the full job description so we can match skills and craft your roadmap.</p>
+        <div class="error" *ngIf="form.controls.jobDescription.invalid && form.controls.jobDescription.touched">
+          Please add at least 20 characters for the job description.
+        </div>
+      </div>
+
+      <div class="actions">
+        <button
+          type="submit"
+          class="primary-btn"
+          [disabled]="analyzeDisabled"
+        >
+          {{ analyzing ? 'Analyzing…' : 'Analyze my match' }}
+        </button>
+        <p class="small" *ngIf="analyzeDisabled && !uploadingCv && !analyzing">
+          Add your CV and job description to enable analysis.
+        </p>
+      </div>
+
+      <div class="error" *ngIf="analyzeError">{{ analyzeError }}</div>
+    </form>
+  </div>
+
+  <div class="card result-card" *ngIf="result">
+    <div class="score-row">
+      <div class="score">
+        {{ result.matchPercent ?? '–' }}%
+        <span class="score-label">match</span>
+      </div>
+      <div class="pill ghost" *ngIf="result.matchScore != null">
+        Raw score: {{ result.matchScore | number: '1.0-2' }}
+      </div>
+    </div>
+
+    <p class="summary">{{ result.summary }}</p>
+
+    <div *ngIf="result.strengths?.length">
+      <h3>Strengths</h3>
+      <ul>
+        <li *ngFor="let skill of result.strengths">{{ skill }}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="result.weaknesses?.length">
+      <h3>Weaknesses</h3>
+      <ul>
+        <li *ngFor="let item of result.weaknesses">{{ item }}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="result.missingSkills?.length">
+      <h3>Missing / weaker skills</h3>
+      <ul>
+        <li *ngFor="let skill of result.missingSkills">{{ skill }}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="result.suggestedImprovements">
+      <h3>Suggested improvements</h3>
+      <p>{{ result.suggestedImprovements }}</p>
+    </div>
+
+    <div *ngIf="result.roadmap?.length">
+      <h3>Suggested roadmap</h3>
+      <ol>
+        <li *ngFor="let step of result.roadmap">{{ step }}</li>
+      </ol>
+    </div>
+  </div>
+</div>
+

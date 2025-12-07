@@ -34,12 +34,12 @@ public class JobAnalysisStatsService {
             return;
         }
 
-        Double score = response != null ? response.getScore() : null;
+        Double matchScore = response != null ? response.getMatchScore() : null;
         String summary = response != null ? response.getSummary() : null;
 
         JobAnalysisRecord record = new JobAnalysisRecord(
                 email,
-                score,
+                matchScore,
                 summary,
                 OffsetDateTime.now()
         );
@@ -90,16 +90,16 @@ public class JobAnalysisStatsService {
      */
     public static class JobAnalysisRecord {
         private final String email;
-        private final Double score;
+        private final Double matchScore;
         private final String summary;
         private final OffsetDateTime timestamp;
 
         public JobAnalysisRecord(String email,
-                                 Double score,
+                                 Double matchScore,
                                  String summary,
                                  OffsetDateTime timestamp) {
             this.email = email;
-            this.score = score;
+            this.matchScore = matchScore;
             this.summary = summary;
             this.timestamp = timestamp;
         }
@@ -108,8 +108,8 @@ public class JobAnalysisStatsService {
             return email;
         }
 
-        public Double getScore() {
-            return score;
+        public Double getMatchScore() {
+            return matchScore;
         }
 
         public String getSummary() {

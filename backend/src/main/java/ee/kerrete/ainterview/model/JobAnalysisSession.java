@@ -46,6 +46,12 @@ public class JobAnalysisSession {
     @Column(name = "missing_skills_json", columnDefinition = "CLOB")
     private String missingSkillsJson;
 
+    @Column(name = "strengths_json", columnDefinition = "CLOB")
+    private String strengthsJson;
+
+    @Column(name = "weaknesses_json", columnDefinition = "CLOB")
+    private String weaknessesJson;
+
     @Column(name = "roadmap_json", columnDefinition = "CLOB")
     private String roadmapJson;
 

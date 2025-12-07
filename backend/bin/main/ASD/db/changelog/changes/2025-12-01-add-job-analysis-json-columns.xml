@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="2025-12-01-8-add-job-analysis-json-columns" author="chatgpt">
+
+        <!-- Kui veerud juba olemas, märgi lihtsalt RAN -->
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="job_analysis_session" columnName="missing_skills_json"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="job_analysis_session">
+            <column name="missing_skills_json" type="varchar(4000)"/>
+            <column name="roadmap_json" type="varchar(4000)"/>
+            <column name="suggested_improvements_json" type="varchar(4000)"/>
+        </addColumn>
+
+    </changeSet>
+
+</databaseChangeLog>

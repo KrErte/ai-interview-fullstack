@@ -1,0 +1,42 @@
+<div class="ai-feedback-panel" *ngIf="feedback; else emptyState">
+  <h2 class="feedback-title">AI tagasiside</h2>
+
+  <div class="feedback-content">
+    {{ feedback }}
+  </div>
+
+  <div class="feedback-actions">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="onNextQuestion()"
+    >
+      Järgmine küsimus
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-ghost"
+      (click)="onClearAnswer()"
+    >
+      Tühjenda vastus
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="onReEvaluate()"
+    >
+      Hinda uuesti
+    </button>
+  </div>
+</div>
+
+<ng-template #emptyState>
+  <div class="ai-feedback-empty">
+    <p>
+      Kirjuta oma vastus ja vajuta <strong>“Hinda vastust”</strong>, et näha AI
+      tagasisidet.
+    </p>
+  </div>
+</ng-template>

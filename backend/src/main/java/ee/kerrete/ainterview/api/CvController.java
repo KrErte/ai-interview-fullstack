@@ -1,20 +1,24 @@
 package ee.kerrete.ainterview.api;
 
 import ee.kerrete.ainterview.dto.CvTextResponse;
-import org.apache.pdfbox.Loader;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
+import ee.kerrete.ainterview.service.CvSummaryService;
+import ee.kerrete.ainterview.service.CvTextExtractService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-
 @RestController
 @RequestMapping("/api/cv")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 public class CvController {
+
+    private final CvTextExtractService cvTextExtractService;
+    private final CvSummaryService cvSummaryService;
 
     @PostMapping(
             value = "/extract-text",
@@ -22,17 +26,33 @@ public class CvController {
     )
     public ResponseEntity<CvTextResponse> extractText(
             @RequestPart("file") MultipartFile file
-    ) throws IOException {
+    ) {
 
         if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body(new CvTextResponse(""));
+            return ResponseEntity.badRequest().body(CvTextResponse.builder().text("").build());
         }
 
-        // PDFBox 3.x – kasutame Loader.loadPDF(byte[])
-        try (PDDocument document = Loader.loadPDF(file.getBytes())) {
-            PDFTextStripper stripper = new PDFTextStripper();
-            String text = stripper.getText(document);
-            return ResponseEntity.ok(new CvTextResponse(text));
+        String text = cvTextExtractService.extractText(file);
+        String email = resolveEmail();
+        var summary = cvSummaryService.saveSummary(email, text);
+
+        CvTextResponse response = CvTextResponse.builder()
+                .text(text)
+                .headline(summary.getHeadline())
+                .skills(summary.getParsedSkills())
+                .experienceSummary(summary.getExperienceSummary())
+                .build();
+        return ResponseEntity.ok(response);
+    }
+
+    private String resolveEmail() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof String principal) {
+            return principal;
         }
+        if (authentication != null && authentication.getName() != null) {
+            return authentication.getName();
+        }
+        return "anonymous@local";
     }
 }

@@ -1,0 +1,14 @@
+Use GPT-5.1 Codex Max Extra High in SUPERFAST MODE.
+
+Rules:
+- Do NOT perform deep project-wide checks.
+- Do NOT run any validation passes.
+- Do NOT re-analyze unrelated files.
+- Do NOT run tests or type inference passes unless required.
+- Do NOT rewrite or reformat files unnecessarily.
+- Only inspect files directly related to the task.
+- Execute fixes at maximum speed with minimal overhead.YY
+- Never fallback to smaller models.
+- Never output explanations, only final code/results.
+- Always output full file replacements when the user asks.
+- Respect user’s preference for ultra-fast responses and direct outputs.

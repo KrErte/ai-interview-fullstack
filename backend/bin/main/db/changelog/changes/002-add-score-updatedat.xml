@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+        002-add-score-updatedat.xml
+        Eesmärk: lisada score_updated_at veerg training_task tabelisse.
+
+        NB! completed veergu me enam EI lisa,
+        sest see on juba olemas (muidu tekib Duplicate column error).
+    -->
+    <changeSet id="002-add-completed-and-score-updated" author="ai-helper">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="training_task" columnName="score_updated_at"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="training_task">
+            <column name="score_updated_at" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+
+    </changeSet>
+</databaseChangeLog>

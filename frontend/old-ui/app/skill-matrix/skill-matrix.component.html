@@ -1,0 +1,75 @@
+<div class="skill-matrix-card">
+  <h2 class="title">Skill matrix & tase</h2>
+
+  <div class="inner-card">
+    <h3 class="subtitle">Skill matrix & tase</h3>
+
+    <p class="info-text">
+      <strong>Praegune tase:</strong> {{ currentLevel }}
+    </p>
+    <p class="info-text">
+      <strong>Järgmine tase:</strong> {{ nextLevel }}
+    </p>
+
+    <hr class="divider" />
+
+    <!-- RADAR CHART -->
+    <div *ngIf="skills.length > 0" class="radar-wrapper">
+      <h4 class="section-title">Oskuste kaart (Radar)</h4>
+      <div class="radar-container">
+        <canvas #radarCanvas></canvas>
+      </div>
+    </div>
+
+    <h4 class="section-title mt-4">Oskused (otse backendist):</h4>
+
+    <!-- Kui oskusi pole -->
+    <div *ngIf="skills.length === 0" class="info-text">
+      Oskuseid pole veel hinnatud. Kasuta treenerit või Job Matcherit, et täita
+      matrix.
+    </div>
+
+    <!-- Oskuste list + progressbarid + ikoonid -->
+    <div *ngFor="let s of skills" class="skill-row">
+      <div class="skill-label-row clickable" (click)="onSkillClick(s)">
+        <span class="skill-name">
+          <span class="skill-icon">{{ getIconFor(s) }}</span>
+          {{ s.skillName }}
+        </span>
+        <span class="skill-percent">{{ s.level }}%</span>
+      </div>
+
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" [style.width.%]="s.level"></div>
+      </div>
+
+      <div class="skill-category">
+        Kategooria: {{ s.category }} ·
+        <span class="coach-hint">kliki, et avada AI coach</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI COACH POPUP -->
+<div *ngIf="isCoachOpen" class="popup-backdrop">
+  <div class="popup-modal">
+    <h3 class="popup-title">
+      AI Coach – {{ selectedSkillName }}
+    </h3>
+
+    <div *ngIf="isCoachLoading" class="coach-loading">
+      ⏳ AI mõtleb...
+    </div>
+
+    <pre *ngIf="!isCoachLoading && coachResponse" class="coach-response">
+{{ coachResponse }}
+    </pre>
+
+    <div *ngIf="!isCoachLoading && !coachResponse" class="coach-response">
+      Vastus puudub.
+    </div>
+
+    <button class="close-btn" (click)="closeCoach()">Sulge</button>
+  </div>
+</div>

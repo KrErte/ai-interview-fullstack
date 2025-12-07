@@ -1,0 +1,35 @@
+<nav class="flex flex-col h-full py-8 px-4 bg-gray-900 w-64">
+  <div class="flex-grow">
+    <ul class="space-y-2">
+      <li>
+        <a routerLink="/app/dashboard" routerLinkActive="bg-gray-800 text-blue-400"
+           [routerLinkActiveOptions]="{ exact: true }"
+           class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800 hover:text-white transition-colors">
+          <span class="material-icons">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/app/assessment" routerLinkActive="bg-gray-800 text-blue-400"
+           class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800 hover:text-white transition-colors">
+          <span class="material-icons">psychology</span>
+          <span>Workstyle Assessment</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/app/training" routerLinkActive="bg-gray-800 text-blue-400"
+           class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800 hover:text-white transition-colors">
+          <span class="material-icons">school</span>
+          <span>Training</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/app/profile" routerLinkActive="bg-gray-800 text-blue-400"
+           class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800 hover:text-white transition-colors">
+          <span class="material-icons">account_circle</span>
+          <span>Profile</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

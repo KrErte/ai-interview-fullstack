@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <!--
+        Placeholder changelog.
+
+        Päris 'email' veerg job_analysis_session tabelile lisatakse failis
+        2025-12-01-add-email-column-job-analysis-session.xml.
+
+        See fail on siin ainult selleks, et master changelog'i include oleks rahul
+        ja Liquibase ei viskaks enam "Premature end of file" viga.
+    -->
+
+</databaseChangeLog>

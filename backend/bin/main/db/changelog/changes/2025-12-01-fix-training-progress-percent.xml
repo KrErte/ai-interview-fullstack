@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+          http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!-- Paranda training_progress_percent: NULL -> 0 + default 0 -->
+    <changeSet id="2025-12-01-5-fix-training-progress-percent-default" author="chatgpt">
+        <!-- Igaks juhuks: kui on ridu, kus training_progress_percent on NULL, pane 0 -->
+        <update tableName="training_progress">
+            <column name="training_progress_percent" valueNumeric="0"/>
+            <where>training_progress_percent IS NULL</where>
+        </update>
+
+        <!-- Lisa default value tulevaste INSERTide jaoks -->
+        <addDefaultValue
+                tableName="training_progress"
+                columnName="training_progress_percent"
+                defaultValueNumeric="0"
+                columnDataType="int"/>
+    </changeSet>
+
+</databaseChangeLog>

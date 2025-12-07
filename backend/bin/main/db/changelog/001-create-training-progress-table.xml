@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="001-create-training-progress-table" author="krerte">
+        <preConditions onFail="MARK_RAN" onError="MARK_RAN">
+            <not>
+                <tableExists tableName="training_progress"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="training_progress">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_tasks" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="completed_tasks" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_job_analyses" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_training_sessions" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="training_progress_percent" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_activity_at" type="TIMESTAMP"/>
+            <column name="last_updated" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_match_score" type="DOUBLE"/>
+            <column name="last_match_summary" type="CLOB"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

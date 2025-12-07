@@ -1,0 +1,101 @@
+<div class="candidate-page">
+
+  <h1 class="page-title">Kandidaadi vaade</h1>
+  <p class="subtitle">
+    Lae oma CV üles ja saa isiklik <b>küsimuste list</b>, <b>harjutused</b> ja <b>30-päevane roadmap</b>.
+  </p>
+
+  <!-- CV UPLOAD -->
+  <section class="cv-section">
+    <h2 class="section-title">Sinu CV</h2>
+
+    <div class="cv-upload-row">
+      <label class="upload-label">
+        Laadi üles PDF CV:
+        <input type="file" accept="application/pdf" (change)="onCvFileSelected($event)" />
+      </label>
+
+      <span *ngIf="cvFileName" class="file-name">
+        Valitud fail: {{ cvFileName }}
+      </span>
+    </div>
+
+    <div *ngIf="cvUploadError" class="error-box">
+      {{ cvUploadError }}
+    </div>
+
+    <h3 class="mini-title">CV tekst (loetud PDF-ist või kleebitud käsitsi)</h3>
+    <textarea
+      [(ngModel)]="cvText"
+      rows="6"
+      class="textarea cv-textarea"
+      placeholder="Siia ilmub CV tekst PDF-ist või kleebi CV sisu käsitsi...">
+    </textarea>
+
+    <div *ngIf="loadError" class="error-box">
+      {{ loadError }}
+    </div>
+
+    <button
+      type="button"
+      class="primary-btn"
+      (click)="generateCandidatePlan()">
+      {{ isThinking ? 'AI koostab plaani…' : 'Genereeri treeningplaan CV põhjal' }}
+    </button>
+  </section>
+
+  <!-- AI THINKING -->
+  <div *ngIf="isThinking" class="thinking-box">
+    <span class="spinner"></span>
+    <p>AI mõtleb…</p>
+  </div>
+
+  <!-- POSSIBLE QUESTIONS -->
+  <section *ngIf="questions.length" class="block-section">
+    <h2 class="section-title">Mida sinu CV põhjal küsitakse ({{ questions.length }})</h2>
+
+    <ul class="question-list">
+      <li *ngFor="let q of questions" class="question-item">
+        <div class="q-meta">
+          <span class="pill pill-category">{{ q.category }}</span>
+          <span class="pill pill-difficulty">{{ q.difficulty }}</span>
+        </div>
+        <div class="q-text">
+          {{ q.question }}
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PRACTICE BLOCKS -->
+  <section *ngIf="practiceBlocks.length" class="block-section">
+    <h2 class="section-title">Sinu isiklik harjutusplaan</h2>
+
+    <div class="practice-grid">
+      <div *ngFor="let block of practiceBlocks" class="practice-card">
+        <h3>{{ block.title }}</h3>
+        <ul>
+          <li *ngFor="let item of block.items">
+            {{ item }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section *ngIf="roadmap.length" class="block-section">
+    <h2 class="section-title">30-päevane intervjueerimise roadmap</h2>
+
+    <div class="roadmap">
+      <div *ngFor="let step of roadmap" class="roadmap-step">
+        <div class="roadmap-label">{{ step.label }}</div>
+        <div class="roadmap-content">
+          <h3>{{ step.focus }}</h3>
+          <p>{{ step.details }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

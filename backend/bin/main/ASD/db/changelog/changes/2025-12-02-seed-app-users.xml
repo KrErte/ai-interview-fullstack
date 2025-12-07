@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="2025-12-02-seed-users" author="ai">
+        <comment>Initial test users</comment>
+
+        <!-- Test user -->
+        <insert tableName="app_users">
+            <column name="email"        value="test@ai.com"/>
+            <column name="full_name"    value="Test User"/>
+            <column name="role"         value="CANDIDATE"/>
+            <column name="created_at"   valueDate="2025-12-02T10:00:00"/>
+            <column name="password"
+                    value="$2a$10$QWfpg3GPYtc8zF4gCcy92u5VxTQJHcCjFj2Tgmu0E6UQeqF3j2Tga"/>
+        </insert>
+
+        <!-- Admin user -->
+        <insert tableName="app_users">
+            <column name="email"        value="admin@ai.com"/>
+            <column name="full_name"    value="Admin User"/>
+            <column name="role"         value="ADMIN"/>
+            <column name="created_at"   valueDate="2025-12-02T10:00:01"/>
+            <column name="password"
+                    value="$2a$10$h6b8toC9Z4pT7tG3kb0E9e4CL3zUu8cCbS1vRUuiv2gTglK.Bi.G6"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

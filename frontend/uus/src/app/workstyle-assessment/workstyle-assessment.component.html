@@ -1,0 +1,53 @@
+<div class="workstyle-assessment p-6 max-w-xl mx-auto bg-white shadow rounded-lg mt-10">
+  <h2 class="text-2xl font-bold mb-5 text-center">Tööstli hindamine</h2>
+  <div *ngIf="error" class="text-red-500 mb-4">{{ error }}</div>
+
+  <ng-container *ngIf="session && !session.completed; else completedBlock">
+    <div>
+      <div class="mb-4">
+        <div class="text-lg font-semibold mb-2">Küsimus:</div>
+        <div class="bg-gray-100 rounded p-4">{{ session.currentQuestion }}</div>
+      </div>
+      <form (ngSubmit)="submitAnswer()" class="space-y-4">
+        <textarea class="w-full border-gray-300 rounded p-3 focus:ring focus:ring-blue-200 transition"
+                  [(ngModel)]="answer" name="answer" placeholder="Sinu vastus" rows="4"
+                  [disabled]="loading"></textarea>
+        <button type="submit" class="btn btn-primary w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded disabled:opacity-50"
+                [disabled]="loading || !answer.trim()">
+          Järgmine
+        </button>
+      </form>
+      <div *ngIf="summaryList.length > 0" class="mt-6">
+        <div class="font-medium text-gray-500 mb-2">Vastatud:</div>
+        <ul class="list-disc pl-6 text-gray-800 space-y-1">
+          <li *ngFor="let qa of summaryList">{{ qa.question }}<br><span class="font-semibold">Sinu vastus:</span> {{ qa.answer }}</li>
+        </ul>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #completedBlock>
+    <div class="text-center">
+      <div class="text-xl font-semibold mb-6">Test lõpetatud! Kokkuvõte:</div>
+      <table class="w-full table-auto border shadow rounded bg-gray-50">
+        <thead>
+          <tr>
+            <th class="px-3 py-2 border-b text-left text-gray-700">Küsimus</th>
+            <th class="px-3 py-2 border-b text-left text-gray-700">Sinu vastus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let qa of summaryList">
+            <td class="border-b px-3 py-2 align-top">{{ qa.question }}</td>
+            <td class="border-b px-3 py-2 align-top">{{ qa.answer }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-primary mt-8 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded" (click)="startSession()" [disabled]="loading">
+        Alusta uus test
+      </button>
+    </div>
+  </ng-template>
+
+  <div *ngIf="loading" class="text-gray-500 text-center mt-6">Laadimine...</div>
+</div>

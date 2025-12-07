@@ -1,0 +1,28 @@
+<div class="flex h-screen">
+  <app-job-seeker-sidebar class="w-64 hidden md:block bg-gray-900 text-white"></app-job-seeker-sidebar>
+  <div class="flex-1 flex flex-col min-w-0">
+    <!-- Topbar -->
+    <header class="flex items-center px-6 h-16 bg-white border-b border-gray-200 justify-between">
+      <div class="font-bold text-xl">AI Interview Coach</div>
+      <div class="flex items-center gap-4">
+        <div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">{{ userInitials }}</div>
+        <div class="relative">
+          <button (click)="toggleUserMenu()" class="flex items-center text-sm font-medium focus:outline-none">
+            {{ userName }} <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div *ngIf="userMenuOpen" class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+            <div class="py-1">
+              <a routerLink="/app/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+              <button (click)="logout()" class="block px-4 py-2 w-full text-left text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="p-6 bg-gray-100 flex-1 min-h-0 overflow-y-auto">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

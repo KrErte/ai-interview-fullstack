@@ -1,0 +1,62 @@
+<nav class="nav">
+  <div class="nav-left">
+    <span class="logo">AI Interview Mentor</span>
+  </div>
+
+  <ul class="nav-links">
+    <li>
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Home
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/interviewer" routerLinkActive="active">
+        Intervjueerija
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/trainer" routerLinkActive="active">
+        Treener
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/candidate-profile" routerLinkActive="active">
+        Minu profiil
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/job-matcher" routerLinkActive="active">
+        🔍 Job Matcher
+      </a>
+    </li>
+
+    <!-- lükkab auth osa paremale -->
+    <li class="nav-spacer"></li>
+
+    <!-- kui pole sisse logitud -->
+    <li *ngIf="!auth.isLoggedIn()">
+      <a
+        routerLink="/auth"
+        routerLinkActive="active"
+        class="auth-link"
+      >
+        Login / Register
+      </a>
+    </li>
+
+    <!-- kui on sisse logitud -->
+    <li *ngIf="auth.isLoggedIn()">
+      <button class="logout-btn" (click)="logout()">
+        Logi välja
+      </button>
+    </li>
+  </ul>
+</nav>

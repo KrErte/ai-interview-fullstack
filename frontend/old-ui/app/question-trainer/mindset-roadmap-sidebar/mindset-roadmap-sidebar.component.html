@@ -1,0 +1,34 @@
+<div class="roadmap-list">
+  <ng-container *ngIf="items && items.length; else emptyState">
+    <button
+      type="button"
+      class="roadmap-item"
+      *ngFor="let item of items"
+      [class.roadmap-item--active]="item.id === activeItemId"
+      (click)="onClickItem(item.id)"
+    >
+      <div class="roadmap-item-header">
+        <span class="roadmap-item-title">{{ item.title }}</span>
+      </div>
+      <div class="roadmap-item-meta">
+        <span class="roadmap-item-level">{{ getLevelLabel(item.level) }}</span>
+        <span class="roadmap-item-skill">{{ item.skillTag }}</span>
+        <span
+          class="roadmap-item-status"
+          [class.roadmap-item-status--done]="item.completed"
+        >
+          {{ item.completed ? '✓ Done' : 'In progress' }}
+        </span>
+      </div>
+      <p class="roadmap-item-description">
+        {{ item.description }}
+      </p>
+    </button>
+  </ng-container>
+
+  <ng-template #emptyState>
+    <div class="roadmap-empty">
+      Hetkel ei ole ühtegi roadmapi sammu defineeritud.
+    </div>
+  </ng-template>
+</div>

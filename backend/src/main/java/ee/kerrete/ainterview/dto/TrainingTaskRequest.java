@@ -35,6 +35,11 @@ public class TrainingTaskRequest {
     private String taskKey;
 
     /**
+     * Soft-skilli/oskuse võti, mille alla treening kuulub (nt "conflict_management").
+     */
+    private String skillKey;
+
+    /**
      * Küsimuse tekst (võib UI-s muutuda).
      */
     private String question;

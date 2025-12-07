@@ -1,0 +1,184 @@
+.skill-matrix-card {
+  margin-top: 1.5rem;
+  color: #e5e7eb;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.inner-card {
+  background: #020617;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.8);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.info-text {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.divider {
+  border-color: #1f2937;
+  margin: 1rem 0;
+}
+
+.section-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+/* RADAR CHART */
+.radar-wrapper {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.radar-container {
+  width: 100%;
+  max-width: 420px;
+  height: 260px;
+  margin-top: 0.5rem;
+}
+
+/* Oskuste list */
+.skill-row {
+  margin-top: 0.75rem;
+}
+
+.skill-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.skill-name {
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.skill-percent {
+  font-weight: 600;
+}
+
+.skill-icon {
+  margin-right: 6px;
+  font-size: 20px;
+  display: inline-block;
+  transform: translateY(2px);
+}
+
+.progress-bar-bg {
+  width: 100%;
+  background: #111827;
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 8px;
+  border-radius: 999px;
+  background: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.skill-category {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.15rem;
+}
+
+.coach-hint {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* clickable row */
+.clickable {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.15rem 0.25rem;
+
+  &:hover {
+    background: rgba(59, 130, 246, 0.12);
+  }
+}
+
+/* POPUP */
+
+.popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup-modal {
+  background: #020617;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 420px;
+  max-width: 90%;
+  border: 1px solid #1e293b;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+}
+
+.popup-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.coach-loading {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.coach-response {
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+  color: #e5e7eb;
+  background: #020617;
+  border-radius: 0.5rem;
+  border: 1px solid #111827;
+  padding: 0.75rem;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.close-btn {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  border: none;
+  background: #3b82f6;
+  color: #f9fafb;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background: #2563eb;
+  }
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+          http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="2025-12-03-01-add-last-activity-to-training-progress"
+               author="ai">
+
+        <addColumn tableName="training_progress">
+            <column name="last_activity_at" type="TIMESTAMP" />
+        </addColumn>
+
+    </changeSet>
+
+</databaseChangeLog>

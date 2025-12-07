@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+      See changeSet teeb lihtsalt update sellele reale,
+      mille me juba eelmises changeSet'is INSERT'iga lõime.
+      VANA STATUS VEERG ON KUSTUTATUD, seega seda enam ei puuduta.
+    -->
+    <changeSet id="2025-12-02-seed-user-progress" author="ai">
+        <update tableName="training_progress">
+            <column name="completed_tasks" valueNumeric="12"/>
+            <column name="last_active" valueDate="2025-12-02T15:00:00"/>
+            <column name="last_updated" valueDate="2025-12-02T15:00:00"/>
+
+            <!-- status VEERGU EI OLE ENAM, ÄRA PUUDUTA -->
+            <!-- <column name="status" value="IN_PROGRESS"/> -->
+
+            <column name="total_job_analyses" valueNumeric="4"/>
+            <column name="total_tasks" valueNumeric="20"/>
+            <column name="total_training_sessions" valueNumeric="3"/>
+            <column name="training_progress_percent" valueNumeric="60"/>
+
+            <where>email = 'test@ai.com'</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>

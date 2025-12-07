@@ -15,6 +15,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -113,6 +114,11 @@ public class SoftSkillQuestionService {
         TrainingTask task = TrainingTask.builder()
                 .email(request.getEmail())
                 .taskKey(taskKey)
+                .skillKey(request.getRoadmapKey())
+                .question(request.getPreviousQuestion())
+                .answer(request.getPreviousAnswer())
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
                 .completed(true)
                 .score(score != null ? score : 0)
                 .build();

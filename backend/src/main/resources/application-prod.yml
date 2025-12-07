@@ -1,0 +1,42 @@
+server:
+  port: 8080
+  forward-headers-strategy: framework
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/plain,text/css,text/javascript,application/javascript
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://postgres:5432/ai}
+    username: ${DB_USER:ai}
+    password: ${DB_PASS:ai123}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+  h2:
+    console:
+      enabled: false
+
+logging:
+  level:
+    root: INFO
+    liquibase: INFO
+    org.hibernate.SQL: WARN
+
+app:
+  cors:
+    # Set from env FRONTEND_BASE_URL, e.g. https://your-domain.com
+    allowed-origins: ${FRONTEND_BASE_URL:https://your-domain.com}
+

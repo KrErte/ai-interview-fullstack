@@ -1,0 +1,179 @@
+<div class="min-h-screen bg-gray-50 py-8 px-4">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <div class="text-sm text-gray-500 flex items-center gap-2">
+      <span>Dashboard</span>
+      <span>›</span>
+      <span>Roadmap</span>
+      <span>›</span>
+      <span class="font-semibold text-gray-800">Coach</span>
+    </div>
+
+    <div class="space-y-1">
+      <h1 class="text-3xl font-bold text-gray-900">AI Skill Coach</h1>
+      <p class="text-gray-600">Practice tasks, get instant feedback, and track your progress.</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <div class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold text-gray-900">Training plan</h2>
+          <span class="text-xs text-gray-500" *ngIf="loadingSessions">Loading…</span>
+        </div>
+        <div *ngIf="loadError" class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+          {{ loadError }}
+        </div>
+        <div class="space-y-3">
+          <div *ngIf="loadingSessions" class="flex items-center gap-2 text-sm text-gray-600">
+            <span class="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-gray-800"></span>
+            Fetching your sessions…
+          </div>
+          <div *ngIf="!loadingSessions && !sessions.length" class="text-sm text-gray-600">
+            No sessions available. Run a job match to generate a roadmap.
+          </div>
+          <button
+            *ngFor="let session of sessions"
+            type="button"
+            class="w-full rounded-lg border px-4 py-3 text-left transition hover:border-gray-400"
+            [ngClass]="{
+              'border-gray-900 bg-gray-50': activeSession?.session.id === session.id,
+              'border-gray-200 bg-white': activeSession?.session.id !== session.id
+            }"
+            (click)="startSession(session)"
+          >
+            <div class="flex items-center justify-between">
+              <div class="text-sm font-semibold text-gray-900">{{ session.title }}</div>
+              <span
+                class="rounded-full px-2 py-1 text-xs font-semibold"
+                [ngClass]="{
+                  'bg-amber-100 text-amber-800': session.status === 'Planned',
+                  'bg-blue-100 text-blue-800': session.status === 'In progress',
+                  'bg-emerald-100 text-emerald-800': session.status === 'Completed'
+                }"
+              >
+                {{ session.status }}
+              </span>
+            </div>
+            <div class="mt-1 text-xs text-gray-600 flex items-center gap-2">
+              <span class="rounded-full bg-gray-100 px-2 py-1 font-medium text-gray-700">{{ session.skill }}</span>
+              <span class="rounded-full bg-gray-100 px-2 py-1 font-medium text-gray-700">{{ session.difficulty }}</span>
+              <span class="text-gray-500">{{ session.estimatedMinutes }} min</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm space-y-4 lg:col-span-1">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold text-gray-900">Active session</h2>
+          <span class="text-xs text-gray-500" *ngIf="loadingQuestion">Loading…</span>
+        </div>
+
+        <div *ngIf="!activeSession" class="space-y-3">
+          <p class="text-sm text-gray-600">Pick a session from the left to begin.</p>
+          <button
+            type="button"
+            class="inline-flex items-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-800"
+            (click)="startFirstSession()"
+          >
+            Start session
+          </button>
+        </div>
+
+        <div *ngIf="activeSession" class="space-y-3">
+          <div class="space-y-1">
+            <div class="text-xs text-gray-500">{{ activeSession.session.role }} • {{ activeSession.session.level }}</div>
+            <div class="text-xl font-semibold text-gray-900">{{ activeSession.session.title }}</div>
+            <div class="text-sm text-gray-600 flex items-center gap-2">
+              <span class="rounded-full bg-gray-100 px-2 py-1 font-medium text-gray-700">{{ activeSession.session.skill }}</span>
+              <span class="rounded-full bg-gray-100 px-2 py-1 font-medium text-gray-700">{{ activeSession.session.difficulty }}</span>
+              <span class="text-gray-500">{{ activeSession.session.estimatedMinutes }} min</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-gray-200 bg-gray-50 p-4">
+            <p class="text-sm font-semibold text-gray-800">Question / Task</p>
+            <p class="mt-2 text-sm text-gray-900 leading-relaxed" *ngIf="!loadingQuestion">{{ activeSession.questionText }}</p>
+            <div *ngIf="loadingQuestion" class="flex items-center gap-2 text-sm text-gray-600">
+              <span class="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-gray-800"></span>
+              Fetching the next question…
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-sm font-semibold text-gray-800" for="answer">Your answer</label>
+            <textarea
+              id="answer"
+              [(ngModel)]="answerText"
+              rows="8"
+              class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900/10"
+              placeholder="Draft your structured response..."
+              [disabled]="submittingAnswer || loadingQuestion"
+            ></textarea>
+            <p *ngIf="answerError" class="text-xs text-red-600">{{ answerError }}</p>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <button
+              type="button"
+              class="inline-flex items-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-800"
+              [disabled]="submittingAnswer || loadingQuestion"
+              (click)="submitAnswer()"
+            >
+              {{ submittingAnswer ? 'Sending…' : 'Submit answer' }}
+            </button>
+            <button
+              type="button"
+              class="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-800 shadow-sm hover:bg-gray-100"
+              [disabled]="loadingQuestion"
+              (click)="skipSession()"
+            >
+              Skip / Next question
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold text-gray-900">AI coach feedback</h2>
+          <span class="text-xs text-gray-500">Live mock</span>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-sm">
+            <span class="font-semibold text-gray-800">{{ scoreText }}</span>
+            <span class="text-gray-500">{{ scorePercent }}%</span>
+          </div>
+          <div class="h-2 rounded-full bg-gray-100 overflow-hidden">
+            <div class="h-2 bg-gray-900" [style.width.%]="scorePercent"></div>
+          </div>
+        </div>
+
+        <div class="space-y-2 max-h-64 overflow-auto pr-1">
+          <div
+            *ngFor="let item of feedback"
+            class="rounded-lg border border-gray-200 bg-gray-50 p-3 space-y-1"
+          >
+            <span
+              class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold"
+              [ngClass]="{
+                'bg-emerald-100 text-emerald-800': item.type === 'strength',
+                'bg-amber-100 text-amber-800': item.type === 'issue',
+                'bg-blue-100 text-blue-800': item.type === 'hint'
+              }"
+            >
+              {{ item.type }}
+            </span>
+            <p class="text-sm text-gray-900 leading-relaxed">{{ item.text }}</p>
+          </div>
+        </div>
+
+        <div class="rounded-lg border border-gray-200 bg-gray-50 p-3">
+          <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide">Next recommendation</p>
+          <p class="text-sm text-gray-900 mt-1">{{ nextRecommendation }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

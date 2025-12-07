@@ -67,8 +67,20 @@ public class TrainingTask {
     private String taskKey;
 
     /**
+     * Treenitava soft-skill teema (nt conflict_management).
+     */
+    @Column(name = "skill_key")
+    private String skillKey;
+
+    /**
      * Kas task on lõpetatud (treening tehtud, skoor OK jne).
      */
     @Column(name = "completed", nullable = false)
     private boolean completed;
+
+    /**
+     * Viimane AI tagasiside kasutaja vastusele.
+     */
+    @Column(name = "feedback", columnDefinition = "CLOB")
+    private String feedback;
 }

@@ -31,6 +31,8 @@ dependencies {
     implementation 'org.apache.pdfbox:pdfbox:3.0.2'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
     implementation 'org.liquibase:liquibase-core'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
@@ -41,4 +43,13 @@ dependencies {
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+}
+
+bootJar {
+    archiveBaseName = 'backend'
+    archiveVersion = ''
+}
+
+springBoot {
+    mainClass = 'ee.kerrete.ainterview.AiInterviewBackendApplication'
 }

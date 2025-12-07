@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+          http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!-- Pane completed_tasks veerule default 0, et NOT NULL constraint ei viskaks -->
+    <changeSet id="2025-12-01-4-fix-completed-tasks-default" author="chatgpt">
+        <!-- Kui on mingeid ridu, kus completed_tasks on NULL, siis pane 0 -->
+        <update tableName="training_progress">
+            <column name="completed_tasks" valueNumeric="0"/>
+            <where>completed_tasks IS NULL</where>
+        </update>
+
+        <!-- Lisa default 0 tulevaste INSERTide jaoks -->
+        <addDefaultValue
+                tableName="training_progress"
+                columnName="completed_tasks"
+                defaultValueNumeric="0"
+                columnDataType="int"/>
+    </changeSet>
+
+</databaseChangeLog>

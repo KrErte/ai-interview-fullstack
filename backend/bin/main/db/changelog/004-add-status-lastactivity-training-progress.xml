@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+        004 - Lisame treeningu staatuse ja viimase aktiivsuse aja
+        Tabel: training_progress
+    -->
+
+    <!-- 004-01: training_status veerg -->
+    <changeSet id="004-01-add-training-status" author="krerte">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="training_progress" columnName="training_status"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="training_progress">
+            <column name="training_status" type="varchar(50)" defaultValue="NOT_STARTED">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <!-- soovi korral vaikimisi väärtus olemasolevatele ridadele -->
+        <update tableName="training_progress">
+            <column name="training_status" value="NOT_STARTED"/>
+        </update>
+    </changeSet>
+
+    <!-- 004-02: last_activity_at veerg
+         NB! Guarditud preConditions plokiga, et vältida
+         "Duplicate column name LAST_ACTIVITY_AT" viga,
+         kui veerg juba eksisteerib (nt 001-changeSetis või varasemas skeemis).
+    -->
+    <changeSet id="004-02-add-last-activity-at" author="krerte">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="training_progress" columnName="last_activity_at"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="training_progress">
+            <column name="last_activity_at" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

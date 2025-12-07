@@ -1,8 +1,8 @@
 package ee.kerrete.ainterview.api;
 
-import ee.kerrete.ainterview.model.RoadmapTask;
+import ee.kerrete.ainterview.dto.RoadmapTaskDto;
+import ee.kerrete.ainterview.dto.UpdateRoadmapTaskRequest;
 import ee.kerrete.ainterview.service.RoadmapService;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,20 +16,13 @@ public class RoadmapController {
 
     private final RoadmapService roadmapService;
 
-    @GetMapping
-    public List<RoadmapTask> getTasks(@RequestParam String email) {
+    @GetMapping("/{email}")
+    public List<RoadmapTaskDto> getTasks(@PathVariable String email) {
         return roadmapService.getTasksForEmail(email);
     }
 
     @PostMapping("/update")
-    public List<RoadmapTask> updateTask(@RequestBody UpdateRequest dto) {
-        return roadmapService.updateTask(dto.getEmail(), dto.getTaskKey(), dto.isCompleted());
-    }
-
-    @Data
-    public static class UpdateRequest {
-        private String email;
-        private String taskKey;
-        private boolean completed;
+    public List<RoadmapTaskDto> updateTask(@RequestBody UpdateRoadmapTaskRequest request) {
+        return roadmapService.updateTask(request);
     }
 }

@@ -1,4 +1,4 @@
-package ee.kerrete.ainterview.auth;
+package ee.kerrete.ainterview.auth.dto;
 
 import ee.kerrete.ainterview.model.UserRole;
 import lombok.AllArgsConstructor;

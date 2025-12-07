@@ -1,0 +1,59 @@
+<div class="profile-page">
+
+  <!-- LOADING -->
+  <div *ngIf="loading()" class="loading-state">
+    Laen profiili andmeid...
+  </div>
+
+  <!-- ERROR -->
+  <div *ngIf="!loading() && error()" class="error-state">
+    {{ error() }}
+  </div>
+
+  <!-- SISU -->
+  <ng-container *ngIf="!loading() && !error() && progress() as p">
+
+    <!-- PEALKIRI -->
+    <header class="profile-header mb-6">
+      <h1 class="page-title">Minu profiil</h1>
+      <p class="page-subtitle">
+        Ülevaade sinu edenemisest ja tööstiilist.
+      </p>
+
+      <button
+        type="button"
+        class="btn-primary mt-4"
+        (click)="goToWorkstyle()"
+      >
+        Mine tööstiili hindamisele
+      </button>
+    </header>
+
+    <!-- GRID -->
+    <div class="profile-grid">
+
+      <!-- TREENING -->
+      <section class="card">
+        <h2 class="section-title">Treeningu edenemine</h2>
+        <p class="stat-text">
+          Lõpetatud ülesandeid: {{ p.completedTasks }} / {{ p.totalTasks }}
+        </p>
+        <p class="stat-text">
+          Treeningprotsent: {{ p.trainingProgressPercent }}%
+        </p>
+      </section>
+
+      <!-- JOB MATCHER -->
+      <section class="card">
+        <h2 class="section-title">Job Matcher</h2>
+        <p class="stat-text">
+          Analüüse kokku: {{ p.totalJobAnalyses }}
+        </p>
+        <p class="stat-text">
+          Sessioone kokku: {{ p.totalTrainingSessions }}
+        </p>
+      </section>
+
+    </div>
+  </ng-container>
+</div>

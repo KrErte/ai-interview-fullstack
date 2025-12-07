@@ -12,6 +12,8 @@ public interface TrainingTaskRepository extends JpaRepository<TrainingTask, Long
 
     long countByEmailAndCompletedIsTrue(String email);
 
+    boolean existsByEmailAndQuestion(String email, String question);
+
     /**
      * Kõik taskid antud kasutajale (järjekord vaba).
      * Kasutavad MindsetRoadmapService, SkillMatrixService, SoftSkillMatrixService.
@@ -22,6 +24,12 @@ public interface TrainingTaskRepository extends JpaRepository<TrainingTask, Long
      * Kõik taskid antud kasutajale, uuem enne.
      */
     List<TrainingTask> findByEmailOrderByCreatedAtDesc(String email);
+
+    List<TrainingTask> findByEmailAndSkillKeyOrderByCreatedAtDesc(String email, String skillKey);
+
+    Optional<TrainingTask> findTopByEmailAndSkillKeyOrderByCreatedAtDesc(String email, String skillKey);
+
+    long countByEmailAndSkillKey(String email, String skillKey);
 
     /**
      * Konkreetsed taskid email + taskKey järgi (treeningu identifikaator).

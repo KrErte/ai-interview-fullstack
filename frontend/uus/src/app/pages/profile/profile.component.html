@@ -1,0 +1,126 @@
+<div class="space-y-6">
+  <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <p class="text-emerald-400 text-sm font-semibold uppercase tracking-wide">Profile</p>
+      <h1 class="text-2xl font-semibold text-slate-50">Your job seeker identity</h1>
+      <p class="text-slate-400 text-sm">Profile overview data comes from the backend.</p>
+    </div>
+    <div class="text-right">
+      <p class="text-sm text-slate-400">Profile completeness</p>
+      <p class="text-3xl font-semibold text-emerald-300">
+        {{ profile?.profileCompleteness || 0 }}%
+      </p>
+    </div>
+  </div>
+
+  <p *ngIf="loading" class="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-300">Loading…</p>
+  <p *ngIf="error" class="rounded-lg border border-rose-400/40 bg-rose-500/10 px-3 py-2 text-sm text-rose-200">{{ error }}</p>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+      <p class="text-sm text-slate-400">Analyses run</p>
+      <p class="text-2xl font-semibold text-slate-100">{{ progress?.totalJobAnalyses || 0 }}</p>
+      <p class="text-xs text-slate-500">Latest score: {{ progress?.lastMatchScore ? (progress?.lastMatchScore | number:'1.0-0') + '%' : '—' }}</p>
+    </div>
+    <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+      <p class="text-sm text-slate-400">Training sessions</p>
+      <p class="text-2xl font-semibold text-slate-100">{{ progress?.totalTrainingSessions || 0 }}</p>
+      <p class="text-xs text-slate-500">Progress: {{ progress?.trainingProgressPercent || 0 }}%</p>
+    </div>
+    <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+      <p class="text-sm text-slate-400">Last active</p>
+      <p class="text-xl font-semibold text-slate-100">
+        {{ progress?.lastActivityAt ? (progress?.lastActivityAt | date:'short') : 'No data' }}
+      </p>
+      <p class="text-xs text-slate-500">{{ progress?.lastMatchSummary || 'Run a job analysis to fill this.' }}</p>
+    </div>
+  </div>
+
+  <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-4">
+      <form class="space-y-4" [formGroup]="form">
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="block space-y-1">
+            <span class="text-sm text-slate-300">Full name</span>
+            <input
+              type="text"
+              formControlName="fullName"
+              class="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-slate-100 outline-none ring-emerald-500/40 focus:border-emerald-400 focus:ring-2"
+              placeholder="Your name"
+            />
+          </label>
+
+          <label class="block space-y-1">
+            <span class="text-sm text-slate-300">Current role</span>
+            <input
+              type="text"
+              formControlName="currentRole"
+              class="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-slate-100 outline-none ring-emerald-500/40 focus:border-emerald-400 focus:ring-2"
+              placeholder="Current position"
+            />
+          </label>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="block space-y-1">
+            <span class="text-sm text-slate-300">Target role</span>
+            <input
+              type="text"
+              formControlName="targetRole"
+              class="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-slate-100 outline-none ring-emerald-500/40 focus:border-emerald-400 focus:ring-2"
+              placeholder="Desired position"
+            />
+          </label>
+
+          <label class="block space-y-1">
+            <span class="text-sm text-slate-300">Years of experience</span>
+            <input
+              type="number"
+              formControlName="yearsOfExperience"
+              class="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-slate-100 outline-none ring-emerald-500/40 focus:border-emerald-400 focus:ring-2"
+              placeholder="5"
+            />
+          </label>
+        </div>
+
+        <label class="block space-y-1">
+          <span class="text-sm text-slate-300">Key skills (comma separated)</span>
+          <input
+            type="text"
+            formControlName="skills"
+            class="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-slate-100 outline-none ring-emerald-500/40 focus:border-emerald-400 focus:ring-2"
+            placeholder="Java, Spring, Angular, AWS"
+          />
+        </label>
+
+        <label class="block space-y-1">
+          <span class="text-sm text-slate-300">Short bio</span>
+          <textarea
+            rows="4"
+            formControlName="bio"
+            class="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/40 focus:border-emerald-400 focus:ring-2"
+            placeholder="Summarize your strengths and career goals"
+          ></textarea>
+        </label>
+
+        <div class="flex items-center justify-between">
+          <p class="text-xs text-slate-500">These fields power job matching and dashboard stats.</p>
+          <button
+            type="button"
+            class="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-emerald-400 disabled:opacity-60"
+            [disabled]="saving"
+            (click)="saveProfile()"
+          >
+            {{ saving ? 'Saving…' : 'Save profile' }}
+          </button>
+        </div>
+      </form>
+
+      <p *ngIf="message" class="rounded-lg border border-emerald-400/40 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-200">
+        {{ message }}
+      </p>
+      <p *ngIf="error && !saving" class="rounded-lg border border-rose-400/40 bg-rose-500/10 px-3 py-2 text-sm text-rose-200">
+        {{ error }}
+      </p>
+    </div>
+</div>
+

@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,21 +14,24 @@ import java.util.List;
 public class JobAnalysisResponse {
 
     /**
-     * Sobivuse skoor (0–100).
-     * Seda kasutavad:
-     *  - JobAnalysisService (getScore/setScore)
-     *  - JobAnalysisSessionService
-     *  - JobAnalysisStatsService (profiili statistika jaoks)
+     * Sobivuse skoor (0–1 või 0–100, sõltuvalt mudeli vastusest).
+     * Kui OpenAI tagastab välja "score", seotakse see JsonAlias abil.
      */
-    private Double score;
+    @JsonAlias({"score"})
+    private Double matchScore;
 
     /**
-     * Lühike kokkuvõte, kuidas CV ja töökuulutus sobivad.
+     * Kandidaadi tugevused võrreldes töökuulutusega.
      */
-    private String summary;
+    private List<String> strengths;
 
     /**
-     * Osad oskused, mis töökuulutuse järgi puudu jäävad.
+     * Nõrkused või riskikohad võrreldes töökuulutusega.
+     */
+    private List<String> weaknesses;
+
+    /**
+     * Oskused, mis töökuulutuse järgi puudu jäävad.
      */
     private List<String> missingSkills;
 
@@ -37,7 +41,12 @@ public class JobAnalysisResponse {
     private List<String> roadmap;
 
     /**
-     * Konkreetsed soovitused CV ja profiili paremaks muutmiseks.
+     * Kokkuvõtlikud soovitused CV/oskuste parandamiseks (tekstina).
      */
-    private List<String> suggestedImprovements;
+    private String suggestedImprovements;
+
+    /**
+     * Lühike kokkuvõte (säilitame, et profiili ülevaated jääksid toimima).
+     */
+    private String summary;
 }

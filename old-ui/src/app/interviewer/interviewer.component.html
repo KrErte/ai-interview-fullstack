@@ -1,0 +1,118 @@
+<div class="interviewer-page">
+
+  <!-- TITLE -->
+  <h1 class="page-title">Intervjueerija vaade</h1>
+  <p class="subtitle">
+    Lae kandidaadi CV üles, genereeri AI abil küsimused ja hinda tema vastuseid.
+  </p>
+
+  <!-- CV UPLOAD + CV TEXT -->
+  <section class="cv-section">
+    <h2 class="section-title">Kandidaadi CV</h2>
+
+    <div class="cv-upload-row">
+      <label class="upload-label">
+        Laadi üles PDF CV:
+        <input type="file" accept="application/pdf" (change)="onCvFileSelected($event)" />
+      </label>
+
+      <span *ngIf="cvFileName" class="file-name">
+        Valitud fail: {{ cvFileName }}
+      </span>
+    </div>
+
+    <div *ngIf="cvUploadError" class="error-box">
+      {{ cvUploadError }}
+    </div>
+
+    <h3 class="mini-title">CV tekst (loetud PDF-ist või kleebitud käsitsi)</h3>
+    <textarea
+      [(ngModel)]="cvText"
+      rows="6"
+      class="textarea cv-textarea"
+      placeholder="Siia ilmub CV tekst PDF-ist või kleebi CV sisu käsitsi...">
+    </textarea>
+
+    <div *ngIf="loadError" class="error-box">
+      {{ loadError }}
+    </div>
+
+    <button
+      type="button"
+      class="secondary-btn"
+      (click)="loadQuestionsFromCv()">
+      {{ loadingQuestions ? 'Genereerin...' : 'Genereeri CV põhised küsimused' }}
+    </button>
+  </section>
+
+  <!-- AI THINKING -->
+  <div *ngIf="isThinking" class="thinking-box">
+    <span class="spinner"></span>
+    <p>AI mõtleb…</p>
+  </div>
+
+  <!-- GENERATED QUESTIONS -->
+  <section *ngIf="questions.length" class="question-list-section">
+    <h2 class="section-title">Genereeritud küsimused ({{ questions.length }})</h2>
+
+    <ul class="question-list">
+      <li *ngFor="let q of questions" (click)="useQuestion(q)" class="question-item">
+        <div class="q-meta">
+          <span class="pill pill-category">{{ q.category }}</span>
+          <span class="pill pill-difficulty">{{ q.difficulty }}</span>
+        </div>
+        <div class="q-text">
+          {{ q.question }}
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SELECTED QUESTION + ANSWER -->
+  <section class="answer-section" *ngIf="question">
+    <h2 class="section-title">Valitud küsimus</h2>
+    <textarea
+      [(ngModel)]="question"
+      rows="2"
+      class="textarea question-textarea"
+      readonly>
+    </textarea>
+
+    <h2 class="section-title">Kandidaadi vastus</h2>
+    <textarea
+      [(ngModel)]="answer"
+      (input)="onAnswerInput()"
+      rows="5"
+      class="textarea answer-textarea"
+      placeholder="Kandidaadi vastus...">
+    </textarea>
+
+    <button
+      type="button"
+      class="primary-btn"
+      (click)="onSubmitAnswer()">
+      Saada AI-le hindamiseks
+    </button>
+  </section>
+
+  <!-- EVALUATION -->
+  <section *ngIf="evaluation" class="evaluation-section">
+    <h2 class="section-title">AI hinnang</h2>
+
+    <div class="evaluation-card">
+      <p><strong>Üldskoor:</strong> {{ evaluation.score }} / 100</p>
+      <p><strong>Toon & stiil:</strong> {{ evaluation.tone }}</p>
+
+      <h3>Puuduvad punktid:</h3>
+      <ul>
+        <li *ngFor="let m of evaluation.missingPoints">
+          {{ m }}
+        </li>
+      </ul>
+
+      <h3>AI soovitused:</h3>
+      <p>{{ evaluation.tips }}</p>
+    </div>
+  </section>
+
+</div>

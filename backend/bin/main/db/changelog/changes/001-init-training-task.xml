@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="001-init-training-task" author="chatgpt">
+        <insert tableName="training_task">
+            <column name="email" value="first@example.com"/>
+            <column name="question" value="Demo question"/>
+            <column name="answer" value=""/>
+            <column name="score" value="0"/>
+            <column name="created_at" valueDate="2025-01-01T10:00:00"/>
+            <column name="updated_at" valueDate="2025-01-01T10:00:00"/>
+            <column name="score_updated"/>
+            <column name="task_key" value="demo-key"/>
+            <column name="completed" valueBoolean="false"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

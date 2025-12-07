@@ -1,0 +1,177 @@
+/* Kogu lehe wrapper – sama tume taust nagu teistes vaadetes */
+.profile-page {
+  min-height: calc(100vh - 64px);
+  padding: 48px 40px 64px;
+  background: #020617; // slate-950
+  color: #e5e7eb;      // slate-200
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ülemine pealkiri + tekst */
+.profile-header {
+  max-width: 1120px;
+  margin: 0 auto 32px auto;
+}
+
+.page-title {
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #f9fafb; // peaaegu valge
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 15px;
+  color: #9ca3af; // text-gray-400
+}
+
+/* GRID KAARTIDEJAOKS – 2 veergu laiadel ekraanidel */
+.profile-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+/* CARD BAASSTIIL (sarnane treeneri/roadmapi kaardiga) */
+.card {
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
+              radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.15), transparent 55%),
+              rgba(15, 23, 42, 0.96); // slate-900
+  border-radius: 24px;
+  padding: 24px 28px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow:
+    0 32px 80px rgba(15, 23, 42, 0.9),
+    0 0 0 1px rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(18px);
+}
+
+.card-main {
+  /* vasak kaart võib olla veidi kõrgem, kui vaja */
+}
+
+.card-metrics {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Kaardi pealkirjad */
+.card-title {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #e5e7eb;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Statistika read */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  font-size: 14px;
+  color: #e2e8f0; // slate-200
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.value {
+  font-weight: 600;
+  color: #34ef8f; // neon roheline
+}
+
+.status {
+  text-transform: uppercase;
+  color: #7dd3fc; // cyan-300
+}
+
+/* Progress bar */
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #e2e8f0;
+  font-size: 14px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 999px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #22c55e, #a3e635);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* Järgmise sammu kast (kaart sees) */
+.next-step-box {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px dashed rgba(52, 211, 153, 0.65);
+}
+
+.next-step-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a5b4fc; // indigo-300
+  margin-bottom: 6px;
+}
+
+.next-step-text {
+  font-size: 13px;
+  color: #cbd5f5;
+}
+
+.highlight {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+/* Loading / error */
+.loading-state,
+.error-state {
+  max-width: 1120px;
+  margin: 16px auto 0 auto;
+  font-size: 14px;
+}
+
+.loading-state {
+  color: #e5e7eb;
+}
+
+.error-state {
+  color: #fecaca;
+}
+
+/* Responsiivsus – väiksematel ekraanidel stack üks veerg */
+@media (max-width: 1024px) {
+  .profile-page {
+    padding: 32px 16px 48px;
+  }
+
+  .profile-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

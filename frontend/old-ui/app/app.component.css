@@ -1,0 +1,11 @@
+.page-content {
+  min-height: calc(100vh - 64px);
+  background: #020617;      /* tume taust */
+  color: #e5e7eb;           /* hele tekst (umbes text-gray-300) */
+}
+
+/* pealkirjad veel heledamaks, et oleks nagu roadmapil */
+.page-content h1,
+.page-content h2 {
+  color: #f9fafb;           /* peaaegu puhas valge */
+}

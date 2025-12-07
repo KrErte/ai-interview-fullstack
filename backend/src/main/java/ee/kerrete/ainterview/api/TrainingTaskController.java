@@ -39,6 +39,10 @@ public class TrainingTaskController {
 
         task.setEmail(request.getEmail());
         task.setTaskKey(taskKey);
+        task.setSkillKey(request.getSkillKey());
+        if (request.getQuestion() != null && !request.getQuestion().isBlank()) {
+            task.setQuestion(request.getQuestion());
+        }
 
         // salvestame vastuse teksti (DTO.answerText -> entity.answer)
         if (request.getAnswerText() != null && !request.getAnswerText().isBlank()) {
