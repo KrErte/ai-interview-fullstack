@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: ee.kerrete.ainterview.config.H2FriendlyPostgreSQLDialect
+        format_sql: false
+
+  liquibase:
+    enabled: true
+    change-log: classpath:test/db/changelog/db.changelog-master.xml
+    drop-first: true
+    clear-checksums: false
+
+  h2:
+    console:
+      enabled: false
+
+logging:
+  level:
+    root: WARN
+    liquibase: INFO
+    org.hibernate.SQL: DEBUG
+

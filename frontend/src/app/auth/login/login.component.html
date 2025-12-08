@@ -21,6 +21,11 @@
       </div>
 
       <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-7">
+        <div *ngIf="error" class="alert alert-error" aria-live="polite">
+          <span class="indicator" aria-hidden="true"></span>
+          <span class="text-sm">{{ error }}</span>
+        </div>
+
         <div class="space-y-5">
           <div>
             <label for="email" class="block text-xs font-medium uppercase tracking-wide text-slate-300">
@@ -34,7 +39,14 @@
                 autocomplete="email"
                 placeholder="you@example.com"
                 class="block w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-50 placeholder:text-slate-400 shadow-inner outline-none ring-0 transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/70"
+                [class.border-rose-400]="form.controls['email'].touched && form.controls['email'].invalid"
               />
+              <small
+                *ngIf="form.controls['email'].touched && form.controls['email'].invalid"
+                class="mt-1 block text-xs text-rose-300"
+              >
+                Sisesta kehtiv email.
+              </small>
             </div>
           </div>
 
@@ -50,7 +62,14 @@
                 autocomplete="current-password"
                 placeholder="••••••••"
                 class="block w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-50 placeholder:text-slate-400 shadow-inner outline-none ring-0 transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/70"
+                [class.border-rose-400]="form.controls['password'].touched && form.controls['password'].invalid"
               />
+              <small
+                *ngIf="form.controls['password'].touched && form.controls['password'].invalid"
+                class="mt-1 block text-xs text-rose-300"
+              >
+                Parool on kohustuslik.
+              </small>
             </div>
           </div>
         </div>
@@ -58,10 +77,14 @@
         <div class="space-y-3">
           <button
             type="submit"
-            [disabled]="form.invalid"
-            class="inline-flex w-full items-center justify-center rounded-2xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/40 transition hover:bg-emerald-400 hover:shadow-emerald-400/50 disabled:cursor-not-allowed disabled:bg-emerald-600/50 disabled:text-slate-300 disabled:shadow-none"
+            [disabled]="form.invalid || loading"
+            class="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/40 transition hover:bg-emerald-400 hover:shadow-emerald-400/50 disabled:cursor-not-allowed disabled:bg-emerald-600/50 disabled:text-slate-300 disabled:shadow-none"
           >
-            Logi sisse
+            <span *ngIf="!loading">Logi sisse</span>
+            <span *ngIf="loading" class="inline-flex items-center gap-2">
+              <span class="spinner" aria-hidden="true"></span>
+              Logime sisse...
+            </span>
           </button>
 
           <p class="pt-1 text-center text-xs text-slate-400">

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthResponse, AuthService } from '../../services/auth.service';
+import { AuthService, LoginRequest, LoginResponse } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -32,27 +32,29 @@ export class LoginComponent implements OnInit {
   }
 
   submit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
+    if (this.loading) {
       return;
     }
 
-    if (this.loading) {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
 
     this.error = null;
     this.loading = true;
 
-    const { email, password } = this.form.value;
+    const { email, password } = this.form.value as LoginRequest;
     if (!email || !password) {
       this.loading = false;
       this.error = 'Vale email või parool.';
       return;
     }
 
-    this.auth.login(email, password).subscribe({
-      next: (res: AuthResponse) => {
+    const payload: LoginRequest = { email, password };
+
+    this.auth.login(payload).subscribe({
+      next: (res: LoginResponse) => {
         this.auth.saveAuth(res);
         this.loading = false;
         this.router.navigate(['/dashboard']);

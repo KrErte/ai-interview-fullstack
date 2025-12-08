@@ -36,38 +36,11 @@
     <include file="changes/008-training-task-progress.xml"
              relativeToChangelogFile="true"/>
 
-
     <!-- ============================ -->
     <!-- 2025-12-01 PROGRESSI UUENDUSED -->
     <!-- ============================ -->
 
     <include file="changes/2025-12-01-add-training-progress-columns.xml"
-             relativeToChangelogFile="true"/>
-
-    <include file="changes/2025-12-01-add-training-progress-totals.xml"
-             relativeToChangelogFile="true"/>
-
-    <include file="changes/2025-12-01-fix-training-progress-total-tasks.xml"
-             relativeToChangelogFile="true"/>
-
-    <include file="changes/2025-12-01-fix-training-progress-completed-tasks.xml"
-             relativeToChangelogFile="true"/>
-
-    <include file="changes/2025-12-01-fix-training-progress-percent.xml"
-             relativeToChangelogFile="true"/>
-
-    <include file="changes/2025-12-01-drop-old-progress-percent.xml"
-             relativeToChangelogFile="true"/>
-
-
-    <!-- ============================ -->
-    <!-- 2025-12-01 USERS + JOB-SESSION -->
-    <!-- ============================ -->
-
-    <include file="changes/2025-12-01-add-password-column-app-users.xml"
-             relativeToChangelogFile="true"/>
-
-    <include file="changes/2025-12-01-add-email-column-job-analysis-session.xml"
              relativeToChangelogFile="true"/>
 
     <!-- 2025-12-06 – roadmap_task tabel -->

@@ -1,0 +1,27 @@
+<div class="auth-layout min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 p-6 md:p-0 relative overflow-hidden">
+  <!-- Vignette overlay -->
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 z-0"></div>
+  
+  <!-- Background blur effects -->
+  <div class="pointer-events-none absolute inset-0 z-0">
+    <div class="absolute -top-40 -left-40 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-indigo-500/10 blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/5 blur-[140px]"></div>
+  </div>
+
+  <!-- Centered card with glass effect -->
+  <div class="relative z-10 w-full max-w-md">
+    <div class="rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl p-8 md:p-10">
+      <!-- Logo/Title -->
+      <div class="mb-8 text-center">
+        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 border border-emerald-400/30 shadow-lg shadow-emerald-500/20">
+          <span class="text-2xl font-bold text-emerald-400">AI</span>
+        </div>
+        <h1 class="text-2xl font-semibold text-white tracking-tight">AI Interview</h1>
+      </div>
+
+      <!-- Content projection -->
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

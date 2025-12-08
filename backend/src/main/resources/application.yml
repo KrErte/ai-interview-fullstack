@@ -4,6 +4,8 @@ server:
 spring:
   profiles:
     active: local
+  liquibase:
+    drop-first: false
 
   jpa:
     hibernate:

@@ -32,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain)
             throws ServletException, IOException {
         String path = request.getServletPath();
-        if (path.startsWith("/auth/")) {
+        if (path.startsWith("/auth") || path.startsWith("/api/auth")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -72,10 +72,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(@NonNull HttpServletRequest request) {
         String path = request.getServletPath();
-        return path.startsWith("/api/auth")
-                || path.startsWith("/auth")
+        return path.startsWith("/auth")
+                || path.startsWith("/api/auth")
                 || path.startsWith("/h2-console")
                 || path.equals("/api/ping");
     }
 }
-

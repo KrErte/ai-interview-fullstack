@@ -2,6 +2,8 @@ package ee.kerrete.ainterview.config;
 
 import ee.kerrete.ainterview.auth.JwtAuthenticationFilter;
 import ee.kerrete.ainterview.repository.AppUserRepository;
+import ee.kerrete.ainterview.security.CustomAccessDeniedHandler;
+import ee.kerrete.ainterview.security.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +44,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         return username ->
             appUserRepository
-                .findByEmail(username)
+                .findByEmailIgnoreCase(username)
                 .map(user -> (UserDetails) user)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
     }
@@ -90,6 +92,7 @@ public class SecurityConfig {
                     // Public endpoints (auth + docs + health)
                     .requestMatchers(
                         "/auth/**",
+                        "/api/auth/**",
                         "/actuator/**",
                         "/v3/api-docs/**",
                         "/swagger-ui/**",
@@ -101,6 +104,10 @@ public class SecurityConfig {
                     // Everything else -> JWT protected
                     .anyRequest().authenticated();
             })
+            .exceptionHandling(ex -> ex
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                .accessDeniedHandler(new CustomAccessDeniedHandler())
+            )
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
@@ -123,8 +130,9 @@ public class SecurityConfig {
             )
         );
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "X-Requested-With"));
         configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L); // Cache preflight for 1 hour
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

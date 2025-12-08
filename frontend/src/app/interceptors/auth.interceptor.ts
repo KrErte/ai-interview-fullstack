@@ -3,11 +3,14 @@ import { HttpInterceptorFn } from '@angular/common/http';
 /**
  * Adds the Authorization header to every outgoing request when a token exists.
  * Does not override an existing Authorization header.
+ * Uses 'token' key to match AuthService storage.
  */
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem('authToken');
+  // Use 'token' key to match AuthService.TOKEN_KEY
+  const token = localStorage.getItem('token');
 
-  if (!token || req.headers.has('Authorization')) {
+  // Skip if no token, Authorization header already exists, or request is to auth endpoints
+  if (!token || req.headers.has('Authorization') || req.url.includes('/auth')) {
     return next(req);
   }
 

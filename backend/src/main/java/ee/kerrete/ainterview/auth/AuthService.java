@@ -43,6 +43,12 @@ public class AuthService {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "User with this email already exists");
             });
 
+        if (request.getConfirmPassword() != null
+            && !request.getConfirmPassword().isBlank()
+            && !request.getPassword().equals(request.getConfirmPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Passwords do not match");
+        }
+
         LocalDateTime now = LocalDateTime.now();
 
         UserRole role = request.getRole() != null ? request.getRole() : UserRole.CANDIDATE;
@@ -62,6 +68,8 @@ public class AuthService {
         // JwtService eeldab tõenäoliselt Stringi (email / username)
         String token = jwtService.generateToken(user.getEmail());
 
+        log.info("User registered successfully: {}", user.getEmail());
+
         return AuthResponse.builder()
             .token(token)
             .email(user.getEmail())
@@ -75,12 +83,16 @@ public class AuthService {
      */
     public AuthResponse login(LoginRequest request) {
         try {
+            log.debug("Attempting authentication for email: {}", request.getEmail());
+
             Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
             );
 
             AppUser user = (AppUser) authentication.getPrincipal();
             String token = jwtService.generateToken(user.getEmail());
+
+            log.info("User logged in successfully: {}", user.getEmail());
 
             return AuthResponse.builder()
                 .token(token)
