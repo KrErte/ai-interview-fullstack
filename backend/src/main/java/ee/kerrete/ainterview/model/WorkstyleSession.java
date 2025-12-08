@@ -26,7 +26,7 @@ public class WorkstyleSession {
     private String currentQuestion;
 
     @Lob
-    @Column(name = "answers_json")
+    @Column(columnDefinition = "CLOB")
     private String answersJson;
 
     @Column(nullable = false)

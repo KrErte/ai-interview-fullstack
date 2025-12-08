@@ -189,7 +189,7 @@ public class DataSeeder implements CommandLineRunner {
         WorkstyleSession session = new WorkstyleSession();
         session.setEmail(email);
         session.setCurrentQuestion("Seeded workstyle question");
-        session.setAnswersJson("[]");
+        session.setAnswersJson("{}");
         session.setCompleted(false);
         session.setCreatedAt(now);
         session.setUpdatedAt(now);

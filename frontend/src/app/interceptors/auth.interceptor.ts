@@ -1,16 +1,13 @@
-import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { HttpInterceptorFn } from '@angular/common/http';
 
+/**
+ * Adds the Authorization header to every outgoing request when a token exists.
+ * Does not override an existing Authorization header.
+ */
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const authService = inject(AuthService);
-  const router = inject(Router);
-  const token = authService.getToken();
+  const token = localStorage.getItem('authToken');
 
-  // Auth endpoints don't need the token
-  if (!token || req.url.includes('/auth')) {
+  if (!token || req.headers.has('Authorization')) {
     return next(req);
   }
 
@@ -20,13 +17,5 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     }
   });
 
-  return next(authReq).pipe(
-    catchError((error: HttpErrorResponse) => {
-      if (error.status === 401 || error.status === 403) {
-        authService.logout();
-        router.navigate(['/login'], { queryParams: { reason: 'session-expired' } });
-      }
-      return throwError(() => error);
-    })
-  );
+  return next(authReq);
 };

@@ -1,13 +1,20 @@
 package ee.kerrete.ainterview.auth;
 
+import ee.kerrete.ainterview.auth.dto.AuthResponse;
 import ee.kerrete.ainterview.auth.dto.LoginRequest;
 import ee.kerrete.ainterview.auth.dto.RegisterRequest;
-import ee.kerrete.ainterview.auth.dto.AuthResponse;
 import ee.kerrete.ainterview.model.AppUser;
 import ee.kerrete.ainterview.model.UserRole;
 import ee.kerrete.ainterview.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,11 +24,13 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthService {
 
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     /**
      * Registreeri uus kasutaja – vaikimisi roll CANDIDATE.
@@ -30,23 +39,23 @@ public class AuthService {
 
         // Kontroll: kas sama emailiga kasutaja juba eksisteerib
         appUserRepository.findByEmail(request.getEmail())
-                .ifPresent(u -> {
-                    throw new ResponseStatusException(HttpStatus.CONFLICT, "User with this email already exists");
-                });
+            .ifPresent(u -> {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "User with this email already exists");
+            });
 
         LocalDateTime now = LocalDateTime.now();
 
         UserRole role = request.getRole() != null ? request.getRole() : UserRole.CANDIDATE;
 
         AppUser user = AppUser.builder()
-                .email(request.getEmail())
-                .fullName(request.getFullName())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(role)
-                .enabled(true)
-                .createdAt(now)
-                .updatedAt(now)
-                .build();
+            .email(request.getEmail())
+            .fullName(request.getFullName())
+            .password(passwordEncoder.encode(request.getPassword()))
+            .role(role)
+            .enabled(true)
+            .createdAt(now)
+            .updatedAt(now)
+            .build();
 
         appUserRepository.save(Objects.requireNonNull(user));
 
@@ -54,37 +63,40 @@ public class AuthService {
         String token = jwtService.generateToken(user.getEmail());
 
         return AuthResponse.builder()
-                .token(token)
-                .email(user.getEmail())
-                .fullName(user.getFullName())
-                .userRole(user.getRole())
-                .build();
+            .token(token)
+            .email(user.getEmail())
+            .fullName(user.getFullName())
+            .userRole(user.getRole())
+            .build();
     }
 
     /**
      * Logi sisse olemasoleva kasutajana.
      */
     public AuthResponse login(LoginRequest request) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+            );
 
-        AppUser user = appUserRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials"));
+            AppUser user = (AppUser) authentication.getPrincipal();
+            String token = jwtService.generateToken(user.getEmail());
 
-        // OLULINE: ära kodeeri uuesti, kasuta matches()
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials");
-        }
-
-        if (!user.isEnabled()) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "User is disabled");
-        }
-
-        String token = jwtService.generateToken(user.getEmail());
-
-        return AuthResponse.builder()
+            return AuthResponse.builder()
                 .token(token)
                 .email(user.getEmail())
                 .fullName(user.getFullName())
                 .userRole(user.getRole())
                 .build();
+        } catch (DisabledException ex) {
+            log.warn("Login failed for {}: user is disabled", request.getEmail());
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "User is disabled");
+        } catch (AuthenticationException ex) {
+            log.warn("Login failed for {}: invalid credentials", request.getEmail());
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials");
+        } catch (Exception ex) {
+            log.error("Unexpected error during login for {}", request.getEmail(), ex);
+            throw new AuthenticationServiceException("Authentication failed", ex);
+        }
     }
 }

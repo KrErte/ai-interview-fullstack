@@ -1,36 +1,48 @@
-<nav class="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/80 backdrop-blur">
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-    <div class="flex items-center gap-2">
-      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 font-semibold">
-        JS
-      </div>
-      <div class="leading-tight">
-        <p class="text-sm text-slate-200 font-semibold">Job Seeker</p>
-        <p class="text-xs text-slate-400">AI Interview Mentor</p>
-      </div>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <span class="logo">AI Interview Mentor</span>
     </div>
 
-    <div class="flex flex-1 items-center justify-center gap-3 text-sm">
-      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
-      <a routerLink="/upload-cv" routerLinkActive="active" class="nav-link">Upload CV</a>
-      <a routerLink="/job-match" routerLinkActive="active" class="nav-link">Job Match</a>
-      <a routerLink="/job-analysis" routerLinkActive="active" class="nav-link">Job Analysis</a>
-      <a routerLink="/training" routerLinkActive="active" class="nav-link">Training</a>
-      <a routerLink="/profile" routerLinkActive="active" class="nav-link">Profile</a>
-    </div>
+    <ul class="nav-links">
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a routerLink="/upload-cv" routerLinkActive="active">Upload CV</a>
+      </li>
+      <li>
+        <a routerLink="/job-match" routerLinkActive="active">Job Match</a>
+      </li>
+      <li>
+        <a routerLink="/job-analysis" routerLinkActive="active">Job Analysis</a>
+      </li>
+      <li>
+        <a routerLink="/training" routerLinkActive="active">Training</a>
+      </li>
+      <li>
+        <a routerLink="/profile" routerLinkActive="active">Profile</a>
+      </li>
 
-    <div class="flex items-center gap-3 text-sm">
-      <ng-container *ngIf="auth.isLoggedIn(); else authLinks">
-        <span class="hidden sm:inline text-slate-300">{{ auth.getCurrentUserName() || auth.getCurrentUserEmail() }}</span>
-        <button class="rounded-full border border-emerald-500 px-3 py-1 text-emerald-300 hover:bg-emerald-500 hover:text-slate-900 transition" (click)="logout()">
+      <li class="nav-spacer"></li>
+
+      <li *ngIf="!auth.isLoggedIn()">
+        <a routerLink="/login" routerLinkActive="active" class="auth-link">Login</a>
+      </li>
+      <li *ngIf="!auth.isLoggedIn()">
+        <a routerLink="/register" routerLinkActive="active" class="auth-link">Register</a>
+      </li>
+
+      <li *ngIf="auth.isLoggedIn()" class="user-chip">
+        {{ auth.getCurrentUserName() || auth.getCurrentUserEmail() }}
+      </li>
+      <li *ngIf="auth.isLoggedIn()">
+        <button class="logout-btn" (click)="logout()">
           Logout
         </button>
-      </ng-container>
-
-      <ng-template #authLinks>
-        <a routerLink="/login" class="rounded-full border border-slate-600 px-3 py-1 text-slate-200 hover:border-emerald-500">Login</a>
-        <a routerLink="/register" class="rounded-full bg-emerald-500 px-3 py-1 text-slate-900 font-semibold hover:bg-emerald-400">Register</a>
-      </ng-template>
-    </div>
+      </li>
+    </ul>
   </div>
 </nav>

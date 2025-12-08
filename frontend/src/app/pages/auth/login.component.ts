@@ -8,7 +8,8 @@ import { AuthService, LoginPayload } from '../../services/auth.service';
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   form = this.fb.group({
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   });
   loading = false;
   error = '';
+  sessionExpired = false;
 
   constructor(
     private auth: AuthService,
@@ -28,13 +30,15 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     const reason = this.route.snapshot.queryParamMap.get('reason');
     if (reason === 'session-expired') {
-      this.error = 'Session expired. Please sign in again.';
+      this.sessionExpired = true;
+      this.error = 'Sessioon aegus. Palun logi uuesti sisse.';
     }
   }
 
   submit() {
     if (this.loading) return;
     this.error = '';
+    this.sessionExpired = false;
     this.loading = true;
 
     if (this.form.invalid) {

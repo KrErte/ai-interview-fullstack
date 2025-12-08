@@ -1,12 +1,16 @@
 package ee.kerrete.ainterview.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 /**
- * Stores a candidate's self-declared profile fields that power matching and dashboard.
+ * Candidate self-declared profile that powers matching and dashboard.
  */
 @Entity
 @Table(name = "user_profile")
@@ -21,29 +25,38 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * Logical key – must match AppUser.email.
+     */
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "current_role")
+    /**
+     * Current role/title of the candidate.
+     * Use a non-reserved column name to keep H2 happy.
+     */
+    @Column(name = "current_role_name")
     private String currentRole;
 
-    @Column(name = "target_role")
+    /**
+     * Target role/title of the candidate.
+     */
+    @Column(name = "target_role_name")
     private String targetRole;
+
+    /**
+     * Free-form skills JSON / comma-separated list.
+     */
+    @Lob
+    private String skills;
+
+    @Lob
+    private String bio;
 
     @Column(name = "years_of_experience")
     private Integer yearsOfExperience;
-
-    /**
-     * Comma separated skills list or JSON string for flexibility.
-     */
-    @Column(name = "skills", columnDefinition = "CLOB")
-    private String skills;
-
-    @Column(name = "bio", columnDefinition = "CLOB")
-    private String bio;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -52,22 +65,18 @@ public class UserProfile {
     private LocalDateTime updatedAt;
 
     @PrePersist
-    public void onCreate() {
+    public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
-        createdAt = now;
-        updatedAt = now;
+        if (createdAt == null) {
+            createdAt = now;
+        }
+        if (updatedAt == null) {
+            updatedAt = now;
+        }
     }
 
     @PreUpdate
-    public void onUpdate() {
-        updatedAt = LocalDateTime.now();
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 }
-
-
-
-
-
-
-
-

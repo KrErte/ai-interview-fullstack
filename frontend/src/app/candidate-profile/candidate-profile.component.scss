@@ -44,14 +44,8 @@
 
 .profile-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.75rem;
-}
-
-@media (min-width: 960px) {
-  .profile-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
 
 /* CARD BASE */
@@ -222,4 +216,14 @@
 .personality-cta .cta-text {
   font-size: 0.86rem;
   color: #c7d2fe;
+}
+
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 2rem 1.25rem;
+  }
+
+  .card {
+    padding: 1.4rem 1.5rem;
+  }
 }

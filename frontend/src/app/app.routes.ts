@@ -1,13 +1,14 @@
 import { Routes } from '@angular/router';
 import { provideRouter } from '@angular/router';
-import { authGuard } from './guards/auth.guard';
+import { authGuard, loginRedirectGuard } from './guards/auth.guard';
 
 export const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   {
     path: 'login',
+    canActivate: [loginRedirectGuard],
     loadComponent: () =>
-      import('./pages/auth/login.component').then(m => m.LoginComponent)
+      import('./auth/login/login.component').then(m => m.LoginComponent)
   },
   {
     path: 'register',
