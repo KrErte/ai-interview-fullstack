@@ -24,10 +24,22 @@ public class SkillMatrixService {
      *
      * Siia saad hiljem lihtsalt juurde panna uusi seoseid.
      */
-    private static final Map<String, SkillDefinition> TASK_SKILL_MAP = Map.of(
-            "demo-task-1", new SkillDefinition("Self-reflection", "soft"),
-            "trainer_q1", new SkillDefinition("Conflict Management", "soft")
-            // lisa hiljem: "trainer_q2", new SkillDefinition("Ownership & Proactivity", "ownership")
+    private static final Map<String, SkillDefinition> TASK_SKILL_MAP = Map.ofEntries(
+            Map.entry("demo-task-1", new SkillDefinition("Self-reflection", "soft")),
+            Map.entry("trainer_q1", new SkillDefinition("Conflict Management", "soft")),
+            Map.entry("rest_api_design", new SkillDefinition("REST API Design", "backend")),
+            Map.entry("system_design_scaling", new SkillDefinition("System Design", "architecture")),
+            Map.entry("cloud_aws_basics", new SkillDefinition("Cloud (AWS)", "cloud")),
+            Map.entry("ci_cd_pipeline", new SkillDefinition("CI/CD", "devops")),
+            Map.entry("observability_intro", new SkillDefinition("Observability", "devops")),
+            Map.entry("testing_junit", new SkillDefinition("Automated Testing", "quality")),
+            Map.entry("security_basics", new SkillDefinition("App Security", "security")),
+            Map.entry("database_tuning", new SkillDefinition("Database Performance", "data")),
+            Map.entry("frontend_angular", new SkillDefinition("Angular UI", "frontend")),
+            Map.entry("communication_storytelling", new SkillDefinition("Communication", "soft")),
+            Map.entry("leadership_growth", new SkillDefinition("Leadership", "soft")),
+            Map.entry("ownership_mindset", new SkillDefinition("Ownership", "culture")),
+            Map.entry("mentoring_junior", new SkillDefinition("Mentoring", "soft"))
     );
 
     public SkillMatrixResponse getSkillMatrix(String email) {

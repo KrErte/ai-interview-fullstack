@@ -1,9 +1,8 @@
 package ee.kerrete.ainterview.config;
 
-import ee.kerrete.ainterview.auth.JwtAuthenticationFilter;
-import ee.kerrete.ainterview.repository.AppUserRepository;
-import ee.kerrete.ainterview.security.CustomAccessDeniedHandler;
-import ee.kerrete.ainterview.security.CustomAuthenticationEntryPoint;
+import ee.kerrete.ainterview.auth.handler.AccessDeniedHandlerImpl;
+import ee.kerrete.ainterview.auth.handler.AuthenticationEntryPointImpl;
+import ee.kerrete.ainterview.auth.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,9 +18,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -31,6 +28,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+/**
+ * Spring Security configuration.
+ * Configures JWT-based stateless authentication.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -38,20 +39,22 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
-    private final AppUserRepository appUserRepository;
+    private final AuthenticationEntryPointImpl authEntryPoint;
+    private final AccessDeniedHandlerImpl accessDeniedHandler;
+    private final UserDetailsService userDetailsService;
+
+    private static final String[] PUBLIC_ENDPOINTS = {
+        "/auth/**",
+        "/api/auth/**",
+        "/actuator/**",
+        "/v3/api-docs/**",
+        "/swagger-ui/**",
+        "/swagger-ui.html",
+        "/error"
+    };
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return username ->
-            appUserRepository
-                .findByEmailIgnoreCase(username)
-                .map(user -> (UserDetails) user)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider(PasswordEncoder passwordEncoder,
-                                                         UserDetailsService userDetailsService) {
+    public AuthenticationProvider authenticationProvider(PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder);
@@ -71,13 +74,7 @@ public class SecurityConfig {
 
         http
             .cors(Customizer.withDefaults())
-            .csrf(csrf -> {
-                if (isLocalProfile) {
-                    // Local-only: allow H2 console without CSRF tokens
-                    csrf.ignoringRequestMatchers("/h2-console/**");
-                }
-                csrf.disable();
-            })
+            .csrf(csrf -> csrf.disable())
             .headers(headers -> {
                 if (isLocalProfile) {
                     // Local-only: H2 console requires frames
@@ -89,24 +86,13 @@ public class SecurityConfig {
                     auth.requestMatchers("/h2-console/**").permitAll();
                 }
                 auth
-                    // Public endpoints (auth + docs + health)
-                    .requestMatchers(
-                        "/auth/**",
-                        "/api/auth/**",
-                        "/actuator/**",
-                        "/v3/api-docs/**",
-                        "/swagger-ui/**",
-                        "/swagger-ui.html",
-                        "/error"
-                    ).permitAll()
-                    // Allow preflight
+                    .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
                     .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                    // Everything else -> JWT protected
                     .anyRequest().authenticated();
             })
             .exceptionHandling(ex -> ex
-                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-                .accessDeniedHandler(new CustomAccessDeniedHandler())
+                .authenticationEntryPoint(authEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler)
             )
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -123,16 +109,14 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(
-            List.of(
-                "http://localhost:4200",
-                "http://127.0.0.1:4200"
-            )
-        );
+        configuration.setAllowedOrigins(List.of(
+            "http://localhost:4200",
+            "http://127.0.0.1:4200"
+        ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "X-Requested-With"));
         configuration.setAllowCredentials(true);
-        configuration.setMaxAge(3600L); // Cache preflight for 1 hour
+        configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

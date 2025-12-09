@@ -1,13 +1,25 @@
 package ee.kerrete.ainterview.config;
 
+import ee.kerrete.ainterview.security.CurrentUserResolver;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+
 /**
- * Hetkel ei tee siin CORS-i – kogu CORS on SecurityConfig-is,
- * et vältida konfliktseid konfiguratsioone.
+ * Web MVC configuration.
+ * CORS is configured in SecurityConfig to avoid conflicts.
  */
 @Configuration
+@RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
-    // ei override'i addCorsMappings enam
+
+    private final CurrentUserResolver currentUserResolver;
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(currentUserResolver);
+    }
 }

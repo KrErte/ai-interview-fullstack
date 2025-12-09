@@ -1,78 +1,70 @@
 package ee.kerrete.ainterview.config;
 
 import lombok.extern.slf4j.Slf4j;
-import ee.kerrete.ainterview.exception.InvalidCredentialsException;
-import ee.kerrete.ainterview.exception.UserDisabledException;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
+/**
+ * Global exception handler for non-auth related exceptions.
+ * Auth exceptions are handled by AuthExceptionHandler.
+ */
 @RestControllerAdvice
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(0)  // Lower precedence than AuthExceptionHandler
 @Slf4j
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(InvalidCredentialsException.class)
-    public ResponseEntity<Map<String, String>> handleInvalidCredentials(InvalidCredentialsException ex) {
-        log.warn("Handling InvalidCredentialsException: {}", ex.getMessage());
-        return ResponseEntity
-            .status(HttpStatus.UNAUTHORIZED)
-            .body(Map.of("message", "Invalid credentials"));
-    }
-
-    @ExceptionHandler(UserDisabledException.class)
-    public ResponseEntity<Map<String, String>> handleUserDisabled(UserDisabledException ex) {
-        log.warn("Handling UserDisabledException: {}", ex.getMessage());
-        return ResponseEntity
-            .status(HttpStatus.FORBIDDEN)
-            .body(Map.of("message", "User is disabled"));
-    }
-
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<Map<String, String>> handleResponseStatusException(ResponseStatusException ex) {
-
         HttpStatusCode status = ex.getStatusCode();
         String message = ex.getReason();
 
-        log.warn("Handling ResponseStatusException: status={}, reason={}, message={}", status, ex.getReason(), ex.getMessage());
+        log.warn("ResponseStatusException: status={}, reason={}", status, ex.getReason());
 
-        // Provide correct fallback messages expected by tests
+        // Provide fallback messages for common status codes
         if (message == null || message.isBlank()) {
-            if (status.value() == 401) {
-                message = "Invalid credentials";
-            } else if (status.value() == 403) {
-                message = "User is disabled";
-            } else {
-                message = "Unexpected error";
-            }
+            message = switch (status.value()) {
+                case 401 -> "Invalid credentials";
+                case 403 -> "Access denied";
+                case 404 -> "Not found";
+                default -> "Unexpected error";
+            };
         }
 
         return ResponseEntity
-                .status(status)
-                .body(Map.of("message", message));
+            .status(status)
+            .body(Map.of("message", message));
     }
 
-    @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<Map<String, String>> handleBadCredentials(BadCredentialsException ex) {
-        log.warn("Handling BadCredentialsException: {}", ex.getMessage());
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValidation(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = ex.getBindingResult().getFieldErrors().stream()
+            .collect(Collectors.toMap(
+                fieldError -> fieldError.getField(),
+                fieldError -> fieldError.getDefaultMessage() != null
+                    ? fieldError.getDefaultMessage()
+                    : "Invalid value",
+                (first, second) -> first
+            ));
+        log.warn("Validation failed: {}", errors);
         return ResponseEntity
-                .status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("message", "Invalid credentials"));
+            .status(HttpStatus.BAD_REQUEST)
+            .body(errors);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleGenericException(Exception ex) {
-        log.error("Handling unexpected exception", ex);
+        log.error("Unexpected exception", ex);
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("message", "Unexpected error"));
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(Map.of("message", "Unexpected error"));
     }
 }

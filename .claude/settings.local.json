@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(./gradlew :backend:test:*)",
+      "Bash(curl:*)",
+      "Bash(./gradlew clean bootRun --no-daemon)",
+      "Bash(./gradlew bootRun:*)",
+      "Bash(rm:*)"
+    ]
+  }
+}

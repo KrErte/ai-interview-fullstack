@@ -43,39 +43,21 @@ describe('AuthService - Login', () => {
       token: 'jwt-token-123',
       email: 'test@example.com',
       fullName: 'Test User',
-      userRole: 'CANDIDATE'
+      role: 'CANDIDATE'
     };
 
     service.login(loginRequest).subscribe(response => {
       expect(response.token).toBe('jwt-token-123');
       expect(response.email).toBe('test@example.com');
-      expect(localStorage.getItem('token')).toBe('jwt-token-123');
-      expect(localStorage.getItem('authEmail')).toBe('test@example.com');
-      expect(localStorage.getItem('authFullName')).toBe('Test User');
-      expect(localStorage.getItem('authUserRole')).toBe('CANDIDATE');
+      expect(localStorage.getItem('auth_token')).toBe('jwt-token-123');
+      expect(localStorage.getItem('auth_email')).toBe('test@example.com');
+      expect(localStorage.getItem('auth_fullName')).toBe('Test User');
+      expect(localStorage.getItem('auth_role')).toBe('CANDIDATE');
     });
 
-    const req = httpMock.expectOne(`${environment.apiBaseUrl}/auth/login`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/auth/login`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(loginRequest);
-    req.flush(mockResponse);
-  });
-
-  it('should login with email and password overload', () => {
-    const mockResponse = {
-      token: 'jwt-token-123',
-      email: 'test@example.com',
-      fullName: 'Test User',
-      userRole: 'CANDIDATE'
-    };
-
-    service.login('test@example.com', 'password123').subscribe();
-
-    const req = httpMock.expectOne(`${environment.apiBaseUrl}/auth/login`);
-    expect(req.request.body).toEqual({
-      email: 'test@example.com',
-      password: 'password123'
-    });
     req.flush(mockResponse);
   });
 
@@ -89,11 +71,11 @@ describe('AuthService - Login', () => {
       next: () => fail('should have failed'),
       error: (error) => {
         expect(error.status).toBe(401);
-        expect(localStorage.getItem('token')).toBeNull();
+        expect(localStorage.getItem('auth_token')).toBeNull();
       }
     });
 
-    const req = httpMock.expectOne(`${environment.apiBaseUrl}/auth/login`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/auth/login`);
     req.flush(
       { message: 'Invalid credentials' },
       { status: 401, statusText: 'Unauthorized' }
@@ -110,11 +92,11 @@ describe('AuthService - Login', () => {
       next: () => fail('should have failed'),
       error: (error) => {
         expect(error.status).toBe(403);
-        expect(localStorage.getItem('token')).toBeNull();
+        expect(localStorage.getItem('auth_token')).toBeNull();
       }
     });
 
-    const req = httpMock.expectOne(`${environment.apiBaseUrl}/auth/login`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/auth/login`);
     req.flush(
       { message: 'User is disabled' },
       { status: 403, statusText: 'Forbidden' }
@@ -130,15 +112,15 @@ describe('AuthService - Login', () => {
     const mockResponse = {
       email: 'test@example.com',
       fullName: 'Test User',
-      userRole: 'CANDIDATE'
+      role: 'CANDIDATE'
       // token is missing
     };
 
     service.login(loginRequest).subscribe(() => {
-      expect(localStorage.getItem('token')).toBeNull();
+      expect(localStorage.getItem('auth_token')).toBeNull();
     });
 
-    const req = httpMock.expectOne(`${environment.apiBaseUrl}/auth/login`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/auth/login`);
     req.flush(mockResponse);
   });
 });

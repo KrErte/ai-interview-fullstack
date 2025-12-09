@@ -25,5 +25,7 @@
     <include file="changes/2025-12-06-create-cv-summary-table.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-06-extend-job-analysis-session-results.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-06-extend-roadmap-task-ordering.xml" relativeToChangelogFile="true"/>
+    <include file="changes/2025-12-09-rename-user-profile-columns.xml" relativeToChangelogFile="true"/>
+    <include file="changes/test-user-seed-2025-12-09.yaml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

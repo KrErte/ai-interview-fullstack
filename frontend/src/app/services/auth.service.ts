@@ -18,9 +18,9 @@ export interface RegisterPayload {
 
 export interface LoginResponse {
   token: string;
-  email?: string;
-  fullName?: string;
-  userRole?: string;
+  email: string;
+  fullName: string;
+  role: string;
 }
 
 export type AuthResponse = LoginResponse;
@@ -30,28 +30,28 @@ export type AuthResponse = LoginResponse;
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
-  private readonly EMAIL_KEY = 'authEmail';
-  private readonly NAME_KEY = 'authFullName';
-  private readonly ROLE_KEY = 'authUserRole';
-  private readonly baseUrl = `${environment.apiBaseUrl}/api/auth`;
+  private readonly EMAIL_KEY = 'auth_email';
+  private readonly NAME_KEY = 'auth_fullName';
+  private readonly ROLE_KEY = 'auth_role';
+  private readonly authUrl = `${environment.apiUrl}/api/auth`;
 
   constructor(private http: HttpClient, private router: Router) {}
 
   register(payload: RegisterPayload): Observable<LoginResponse> {
     return this.http
-      .post<AuthResponse>(`${this.baseUrl}/register`, payload)
+      .post<AuthResponse>(`${this.authUrl}/register`, payload)
       .pipe(tap((res) => this.saveAuth(res, payload.email, payload.fullName)));
   }
 
   /**
    * Login with email and password.
-   * POSTs to /api/auth/login with { email, password }
+   * POSTs to /auth/login with { email, password }
    */
   login(payload: LoginRequest): Observable<LoginResponse> {
     const body = { email: payload.email, password: payload.password };
 
     return this.http
-      .post<AuthResponse>(`${this.baseUrl}/login`, body)
+      .post<AuthResponse>(`${this.authUrl}/login`, body)
       .pipe(tap((res) => this.saveAuth(res, body.email)));
   }
 
@@ -72,8 +72,8 @@ export class AuthService {
       localStorage.setItem(this.NAME_KEY, fullName);
     }
 
-    if (res.userRole) {
-      localStorage.setItem(this.ROLE_KEY, res.userRole);
+    if (res.role) {
+      localStorage.setItem(this.ROLE_KEY, res.role);
     }
   }
 

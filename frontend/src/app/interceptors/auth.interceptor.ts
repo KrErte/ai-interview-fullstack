@@ -1,16 +1,17 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 /**
- * Adds the Authorization header to every outgoing request when a token exists.
- * Does not override an existing Authorization header.
- * Uses 'token' key to match AuthService storage.
+ * Attaches JWT from localStorage to all /api/** requests as Authorization header.
+ * Skips when no token, when a header already exists, or for auth endpoints.
  */
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  // Use 'token' key to match AuthService.TOKEN_KEY
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('auth_token');
 
-  // Skip if no token, Authorization header already exists, or request is to auth endpoints
-  if (!token || req.headers.has('Authorization') || req.url.includes('/auth')) {
+  const isApiRequest = req.url.includes('/api/');
+  const isAuthRequest = req.url.includes('/auth');
+  const hasAuthHeader = req.headers.has('Authorization');
+
+  if (!token || !isApiRequest || hasAuthHeader || isAuthRequest) {
     return next(req);
   }
 

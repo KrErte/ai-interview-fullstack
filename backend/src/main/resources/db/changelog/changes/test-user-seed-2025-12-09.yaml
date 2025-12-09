@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: test-user-seed-2025-12-09
+      author: backend-bot
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        sqlCheck:
+          expectedResult: 0
+          sql: SELECT COUNT(*) FROM app_users WHERE email = 'test@mentor.ee'
+      changes:
+        - insert:
+            tableName: app_users
+            columns:
+              - column:
+                  name: email
+                  value: test@mentor.ee
+              - column:
+                  name: password
+                  value: $2a$10$53Yz0CTqkl8D1yWdp4inYOZsNT85aR1dVw73w.wHkmVckTcoyWA9C
+              - column:
+                  name: full_name
+                  value: Test Kasutaja
+              - column:
+                  name: role
+                  value: USER
+              - column:
+                  name: enabled
+                  valueBoolean: true
+              - column:
+                  name: created_at
+                  valueDate: 2025-12-09T00:00:00
+              - column:
+                  name: updated_at
+                  valueDate: 2025-12-09T00:00:00
+

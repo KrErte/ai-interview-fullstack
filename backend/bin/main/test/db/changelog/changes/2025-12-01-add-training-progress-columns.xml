@@ -2,9 +2,8 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="
-          http://www.liquibase.org/xml/ns/dbchangelog
-          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
 
     <!-- Lisa puuduolevad veerud training_progress tabelisse -->
     <changeSet id="2025-12-01-1-add-training-progress-columns" author="chatgpt">

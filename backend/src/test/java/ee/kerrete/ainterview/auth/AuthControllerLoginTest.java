@@ -1,7 +1,7 @@
 package ee.kerrete.ainterview.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ee.kerrete.ainterview.auth.dto.LoginRequest;
+import ee.kerrete.ainterview.auth.dto.request.LoginRequest;
 import ee.kerrete.ainterview.model.AppUser;
 import ee.kerrete.ainterview.model.UserRole;
 import ee.kerrete.ainterview.repository.AppUserRepository;
@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -59,22 +60,25 @@ class AuthControllerLoginTest {
     void testLogin_ValidCredentials_Returns200WithToken() throws Exception {
         LoginRequest request = new LoginRequest(TEST_EMAIL, TEST_PASSWORD);
 
-        mockMvc.perform(post("/auth/login")
+        mockMvc.perform(post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.token").exists())
                 .andExpect(jsonPath("$.token").isString())
-                .andExpect(jsonPath("$.email").value(TEST_EMAIL))
+                .andExpect(jsonPath("$.accessToken").exists())
+                .andExpect(jsonPath("$.refreshToken").exists())
+                .andExpect(jsonPath("$.email").value(TEST_EMAIL.toLowerCase()))
                 .andExpect(jsonPath("$.fullName").value(TEST_NAME))
-                .andExpect(jsonPath("$.userRole").value("CANDIDATE"));
+                .andExpect(jsonPath("$.role").value("CANDIDATE"))
+                .andExpect(jsonPath("$.userId").value(notNullValue()));
     }
 
     @Test
     void testLogin_InvalidPassword_Returns401() throws Exception {
         LoginRequest request = new LoginRequest(TEST_EMAIL, "wrongpassword");
 
-        mockMvc.perform(post("/auth/login")
+        mockMvc.perform(post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isUnauthorized())
@@ -85,7 +89,7 @@ class AuthControllerLoginTest {
     void testLogin_NonExistentUser_Returns401() throws Exception {
         LoginRequest request = new LoginRequest("nonexistent@example.com", TEST_PASSWORD);
 
-        mockMvc.perform(post("/auth/login")
+        mockMvc.perform(post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isUnauthorized())
@@ -101,7 +105,7 @@ class AuthControllerLoginTest {
 
         LoginRequest request = new LoginRequest(TEST_EMAIL, TEST_PASSWORD);
 
-        mockMvc.perform(post("/auth/login")
+        mockMvc.perform(post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isForbidden())
@@ -109,10 +113,10 @@ class AuthControllerLoginTest {
     }
 
     @Test
-    void testLogin_InvalidEmailFormat_Returns400() throws Exception {
+    void testLogin_InvalidEmailFormat_ReturnsBadRequest() throws Exception {
         LoginRequest request = new LoginRequest("invalid-email", TEST_PASSWORD);
 
-        mockMvc.perform(post("/auth/login")
+        mockMvc.perform(post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
@@ -120,13 +124,45 @@ class AuthControllerLoginTest {
     }
 
     @Test
-    void testLogin_BlankPassword_Returns400() throws Exception {
+    void testLogin_BlankPassword_ReturnsBadRequest() throws Exception {
         LoginRequest request = new LoginRequest(TEST_EMAIL, "");
 
-        mockMvc.perform(post("/auth/login")
+        mockMvc.perform(post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.password").exists());
+    }
+
+    @Test
+    void testRefresh_ValidToken_ReturnsNewTokens() throws Exception {
+        // First login to get tokens
+        LoginRequest loginRequest = new LoginRequest(TEST_EMAIL, TEST_PASSWORD);
+        String loginResponse = mockMvc.perform(post("/api/auth/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(loginRequest)))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        String refreshToken = objectMapper.readTree(loginResponse).get("refreshToken").asText();
+
+        // Use refresh token to get new tokens
+        mockMvc.perform(post("/api/auth/refresh")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"refreshToken\":\"" + refreshToken + "\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.token").exists())
+                .andExpect(jsonPath("$.accessToken").exists())
+                .andExpect(jsonPath("$.refreshToken").exists());
+    }
+
+    @Test
+    void testRefresh_InvalidToken_Returns401() throws Exception {
+        mockMvc.perform(post("/api/auth/refresh")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"refreshToken\":\"invalid-token\"}"))
+                .andExpect(status().isUnauthorized());
     }
 }

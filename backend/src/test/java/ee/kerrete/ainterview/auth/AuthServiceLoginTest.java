@@ -1,7 +1,9 @@
 package ee.kerrete.ainterview.auth;
 
-import ee.kerrete.ainterview.auth.dto.AuthResponse;
-import ee.kerrete.ainterview.auth.dto.LoginRequest;
+import ee.kerrete.ainterview.auth.dto.request.LoginRequest;
+import ee.kerrete.ainterview.auth.dto.response.AuthResponse;
+import ee.kerrete.ainterview.auth.jwt.JwtService;
+import ee.kerrete.ainterview.auth.service.AuthService;
 import ee.kerrete.ainterview.model.AppUser;
 import ee.kerrete.ainterview.model.UserRole;
 import ee.kerrete.ainterview.repository.AppUserRepository;
@@ -21,6 +23,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -43,14 +47,17 @@ class AuthServiceLoginTest {
 
     private static final String TEST_EMAIL = "test@example.com";
     private static final String TEST_PASSWORD = "password123";
-    private static final String TEST_TOKEN = "jwt-token-123";
+    private static final String TEST_ACCESS_TOKEN = "access-token-123";
+    private static final String TEST_REFRESH_TOKEN = "refresh-token-456";
     private static final String TEST_NAME = "Test User";
+    private static final Long TEST_USER_ID = 1L;
 
     @Test
-    void testLogin_ValidCredentials_ReturnsToken() {
+    void testLogin_ValidCredentials_ReturnsTokens() {
         // Given
         LoginRequest request = new LoginRequest(TEST_EMAIL, TEST_PASSWORD);
         AppUser user = AppUser.builder()
+                .id(TEST_USER_ID)
                 .email(TEST_EMAIL)
                 .fullName(TEST_NAME)
                 .role(UserRole.CANDIDATE)
@@ -61,19 +68,26 @@ class AuthServiceLoginTest {
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
                 .thenReturn(auth);
         when(auth.getPrincipal()).thenReturn(user);
-        when(jwtService.generateToken(TEST_EMAIL)).thenReturn(TEST_TOKEN);
+        when(jwtService.generateAccessToken(eq(TEST_EMAIL), eq(UserRole.CANDIDATE), eq(TEST_USER_ID)))
+                .thenReturn(TEST_ACCESS_TOKEN);
+        when(jwtService.generateRefreshToken(TEST_EMAIL)).thenReturn(TEST_REFRESH_TOKEN);
 
         // When
         AuthResponse response = authService.login(request);
 
         // Then
         assertNotNull(response);
-        assertEquals(TEST_TOKEN, response.getToken());
-        assertEquals(TEST_EMAIL, response.getEmail());
-        assertEquals(TEST_NAME, response.getFullName());
-        assertEquals(UserRole.CANDIDATE, response.getUserRole());
+        assertEquals(TEST_ACCESS_TOKEN, response.token());
+        assertEquals(TEST_ACCESS_TOKEN, response.accessToken());
+        assertEquals(TEST_REFRESH_TOKEN, response.refreshToken());
+        assertEquals(TEST_EMAIL, response.email());
+        assertEquals(TEST_NAME, response.fullName());
+        assertEquals(UserRole.CANDIDATE.name(), response.role());
+        assertEquals(TEST_USER_ID, response.userId());
+
         verify(authenticationManager).authenticate(any(UsernamePasswordAuthenticationToken.class));
-        verify(jwtService).generateToken(TEST_EMAIL);
+        verify(jwtService).generateAccessToken(TEST_EMAIL, UserRole.CANDIDATE, TEST_USER_ID);
+        verify(jwtService).generateRefreshToken(TEST_EMAIL);
     }
 
     @Test
@@ -88,7 +102,7 @@ class AuthServiceLoginTest {
                 () -> authService.login(request));
         assertEquals(HttpStatus.UNAUTHORIZED, exception.getStatusCode());
         assertTrue(exception.getMessage().contains("Invalid credentials"));
-        verify(jwtService, never()).generateToken(anyString());
+        verify(jwtService, never()).generateAccessToken(anyString(), any(), any());
     }
 
     @Test
@@ -103,6 +117,6 @@ class AuthServiceLoginTest {
                 () -> authService.login(request));
         assertEquals(HttpStatus.FORBIDDEN, exception.getStatusCode());
         assertTrue(exception.getMessage().contains("User is disabled"));
-        verify(jwtService, never()).generateToken(anyString());
+        verify(jwtService, never()).generateAccessToken(anyString(), any(), any());
     }
 }

@@ -34,6 +34,9 @@ public class DataSeeder implements CommandLineRunner {
     private static final String USER_EMAIL = "user@local.test";
     private static final String ADMIN_PASSWORD = "Admin123!";
     private static final String USER_PASSWORD = "User123!";
+    private static final String TEST_EMAIL = "test@mentor.ee";
+    private static final String TEST_PASSWORD = "$2a$10$53Yz0CTqkl8D1yWdp4inYOZsNT85aR1dVw73w.wHkmVckTcoyWA9C";
+
 
     private final AppUserRepository appUserRepository;
     private final TrainingTaskRepository trainingTaskRepository;
@@ -48,6 +51,7 @@ public class DataSeeder implements CommandLineRunner {
 
         seedAppUser(ADMIN_EMAIL, ADMIN_PASSWORD, "Local Admin", UserRole.ADMIN, now);
         seedAppUser(USER_EMAIL, USER_PASSWORD, "Local User", UserRole.USER, now);
+        seedAppUser(TEST_EMAIL, TEST_PASSWORD, "Test Kasutaja", UserRole.USER, now);
 
         seedTrainingTasks(USER_EMAIL, now);
 

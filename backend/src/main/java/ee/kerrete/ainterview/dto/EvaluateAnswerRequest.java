@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,5 +31,6 @@ public class EvaluateAnswerRequest {
     /**
      * Kasutaja vastus (STAR meetodil).
      */
+    @NotBlank
     private String answer;
 }

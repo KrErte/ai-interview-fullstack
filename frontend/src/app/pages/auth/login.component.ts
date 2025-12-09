@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { AuthService, LoginRequest } from '../../services/auth.service';
+import { AuthService, LoginRequest, LoginResponse } from '../../services/auth.service';
 import { AuthLayoutComponent } from '../../layouts/auth/auth-layout.component';
 
 @Component({
@@ -55,18 +55,27 @@ export class LoginComponent implements OnInit {
     };
 
     this.auth.login(payload).subscribe({
-      next: () => {
+      next: (response: LoginResponse) => {
+        // Persist auth details for subsequent API calls
+        localStorage.setItem('auth_token', response.token);
+        localStorage.setItem('auth_email', response.email);
+        localStorage.setItem('auth_role', response.role);
+        if (response.fullName) {
+          localStorage.setItem('auth_fullName', response.fullName);
+        }
+
         this.loading = false;
         this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         this.loading = false;
-        // Extract error message from backend response (400/401/403)
         const status = err?.status;
+        const backendMsg = err?.error?.message || err?.error?.error;
+
         if (status === 400 || status === 401 || status === 403) {
-          this.error = err?.error?.message || err?.error?.error || 'Invalid email or password.';
+          this.error = backendMsg || 'Invalid email or password.';
         } else {
-          this.error = err?.error?.message || err?.message || 'Login failed. Please try again.';
+          this.error = 'Unexpected error';
         }
       }
     });
