@@ -1,0 +1,206 @@
+<div class="space-y-6">
+  <div
+    class="rounded-2xl border border-amber-500/30 bg-gradient-to-r from-slate-950 to-slate-900 p-6 shadow-xl shadow-amber-500/20"
+  >
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm font-semibold text-amber-300">Story Forge LITE</p>
+        <h1 class="text-2xl font-semibold text-slate-50">Curate your STAR stories</h1>
+        <p class="text-sm text-slate-400">
+          Capture short STAR stories you can reuse across interviews.
+        </p>
+      </div>
+      <div class="flex gap-2">
+        <button
+          type="button"
+          (click)="startNewStory()"
+          class="rounded-lg bg-amber-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-amber-500/20 hover:bg-amber-400"
+        >
+          New story
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-[minmax(0,3fr)_minmax(0,4fr)]">
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <div class="mb-4 flex items-center justify-between gap-2">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-300">
+            Your stories
+          </h2>
+          <span class="text-xs text-slate-500">
+            {{ stories.length || 0 }} saved
+          </span>
+        </div>
+
+        <div *ngIf="loading" class="text-sm text-slate-400">
+          Loading stories…
+        </div>
+
+        <p *ngIf="error" class="mb-3 rounded-md border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-xs text-rose-100">
+          {{ error }}
+        </p>
+
+        <ng-container *ngIf="!loading && stories.length; else emptyStories">
+          <ul class="space-y-3 max-h-[460px] overflow-y-auto pr-1">
+            <li
+              *ngFor="let story of stories"
+              class="rounded-xl border border-slate-800 bg-slate-950/80 p-4"
+            >
+              <div class="mb-2 flex items-start justify-between gap-2">
+                <div>
+                  <h3 class="text-sm font-semibold text-slate-100">
+                    {{ story.title }}
+                  </h3>
+                  <p class="text-xs text-slate-500">
+                    {{ formatDate(story.updatedAt || story.createdAt) }}
+                  </p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    *ngIf="story.tag"
+                    class="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-200"
+                  >
+                    {{ story.tag }}
+                  </span>
+                  <button
+                    type="button"
+                    (click)="editStory(story)"
+                    class="rounded border border-slate-700 px-2 py-1 text-xs text-slate-200 hover:border-amber-400"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    (click)="deleteStory(story)"
+                    [disabled]="deletingId === story.id"
+                    class="rounded border border-rose-500/40 px-2 py-1 text-xs text-rose-200 hover:border-rose-400 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    <span *ngIf="deletingId !== story.id">Delete</span>
+                    <span *ngIf="deletingId === story.id">Deleting…</span>
+                  </button>
+                </div>
+              </div>
+              <p class="text-xs text-slate-400">
+                {{ story.situation }}
+              </p>
+            </li>
+          </ul>
+        </ng-container>
+
+        <ng-template #emptyStories>
+          <div *ngIf="!loading" class="flex h-32 flex-col items-center justify-center text-center text-sm text-slate-400">
+            <p class="mb-1">No stories yet.</p>
+            <p>Start with one strong example you’d like to reuse in interviews.</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <div class="mb-3 flex items-center justify-between gap-2">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-300">
+            {{ editingStory ? 'Edit story' : 'New story' }}
+          </h2>
+          <span class="rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-200">
+            STAR
+          </span>
+        </div>
+
+        <div *ngIf="showForm; else formHint" class="space-y-4">
+          <div>
+            <label class="mb-1 block text-xs font-medium text-slate-400">Title</label>
+            <input
+              type="text"
+              [(ngModel)]="form.title"
+              placeholder="e.g. Rescuing a critical production incident"
+              class="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-500/60"
+            />
+          </div>
+
+          <div>
+            <label class="mb-1 block text-xs font-medium text-slate-400">Situation</label>
+            <textarea
+              [(ngModel)]="form.situation"
+              rows="2"
+              class="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 placeholder:text-slate-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-500/60"
+              placeholder="Where were you? What was the context?"
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="mb-1 block text-xs font-medium text-slate-400">Task</label>
+            <textarea
+              [(ngModel)]="form.task"
+              rows="2"
+              class="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 placeholder:text-slate-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-500/60"
+              placeholder="What were you responsible for?"
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="mb-1 block text-xs font-medium text-slate-400">Action</label>
+            <textarea
+              [(ngModel)]="form.action"
+              rows="2"
+              class="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 placeholder:text-slate-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-500/60"
+              placeholder="What did you actually do?"
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="mb-1 block text-xs font-medium text-slate-400">Result</label>
+            <textarea
+              [(ngModel)]="form.result"
+              rows="2"
+              class="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 placeholder:text-slate-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-500/60"
+              placeholder="What changed? What was the impact?"
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="mb-1 block text-xs font-medium text-slate-400">Tag</label>
+            <input
+              type="text"
+              [(ngModel)]="form.tag"
+              placeholder="e.g. Leadership, Ownership, Collaboration"
+              class="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 placeholder:text-slate-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-500/60"
+            />
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <button
+              type="button"
+              (click)="saveStory()"
+              [disabled]="saving"
+              class="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-amber-500/20 hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <span *ngIf="!saving">{{ editingStory ? 'Update story' : 'Save story' }}</span>
+              <span *ngIf="saving">Saving…</span>
+            </button>
+
+            <button
+              type="button"
+              (click)="cancelForm()"
+              [disabled]="saving"
+              class="rounded-lg border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:border-amber-400 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <ng-template #formHint>
+          <div class="flex h-40 flex-col items-center justify-center text-center text-sm text-slate-400">
+            <p class="mb-1">Click “New story” to start drafting a STAR note.</p>
+            <p>Keep it short and focused so you can recall it easily in a live interview.</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+

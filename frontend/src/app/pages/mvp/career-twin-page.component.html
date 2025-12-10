@@ -1,0 +1,118 @@
+<div class="space-y-6">
+  <div
+    class="rounded-2xl border border-cyan-500/30 bg-gradient-to-r from-slate-950 to-slate-900 p-6 shadow-xl shadow-cyan-500/20"
+  >
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm font-semibold text-cyan-300">Career Twin LITE</p>
+        <h1 class="text-2xl font-semibold text-slate-50">Log your interview memories</h1>
+        <p class="text-sm text-slate-400">
+          Drop quick notes after interviews or practice sessions and let the AI spot patterns.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,3fr)]">
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-300">
+          Log a memory or insight
+        </h2>
+
+        <textarea
+          [(ngModel)]="entryText"
+          rows="6"
+          placeholder="What did you learn? What surprised you? What will you do differently next time?"
+          class="w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500/60"
+        ></textarea>
+
+        <div class="mt-4 flex flex-wrap gap-3">
+          <button
+            type="button"
+            (click)="saveEntry()"
+            [disabled]="saving"
+            class="inline-flex items-center gap-2 rounded-lg bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            <span *ngIf="!saving">Save entry</span>
+            <span *ngIf="saving" class="flex items-center gap-2">
+              <span
+                class="h-3 w-3 animate-spin rounded-full border-2 border-cyan-900 border-t-cyan-300"
+              ></span>
+              Saving…
+            </span>
+          </button>
+        </div>
+
+        <p *ngIf="error" class="mt-4 rounded-md border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-xs text-rose-100">
+          {{ error }}
+        </p>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <div class="mb-3 flex items-center justify-between gap-2">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-300">
+            Recent entries
+          </h2>
+          <span class="text-xs text-slate-500">
+            Last 5
+          </span>
+        </div>
+
+        <div *ngIf="loadingEntries" class="text-sm text-slate-400">
+          Loading recent entries…
+        </div>
+
+        <ng-container *ngIf="!loadingEntries && entries.length; else emptyEntries">
+          <ul class="space-y-3 max-h-[260px] overflow-y-auto pr-1">
+            <li
+              *ngFor="let entry of entries"
+              class="rounded-xl border border-slate-800 bg-slate-950/80 p-4"
+            >
+              <p class="mb-1 text-xs text-slate-500">
+                {{ formatDate(entry.createdAt) }}
+              </p>
+              <p class="text-sm text-slate-100">
+                {{ entry.text }}
+              </p>
+            </li>
+          </ul>
+        </ng-container>
+
+        <ng-template #emptyEntries>
+          <div *ngIf="!loadingEntries" class="flex h-28 flex-col items-center justify-center text-center text-sm text-slate-400">
+            <p class="mb-1">No entries yet.</p>
+            <p>Log a small win or tough moment right after your next interview.</p>
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <div class="mb-2 flex items-center justify-between gap-2">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-300">
+            Simple AI insight
+          </h2>
+          <span class="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-200">
+            Experimental
+          </span>
+        </div>
+
+        <div *ngIf="loadingInsight" class="text-sm text-slate-400">
+          Looking across your notes for patterns…
+        </div>
+
+        <p *ngIf="!loadingInsight && insight" class="text-sm text-slate-100">
+          {{ insight }}
+        </p>
+
+        <p *ngIf="!loadingInsight && !insight" class="text-sm text-slate-400">
+          Add a few entries to help the AI surface themes in how you interview and grow.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+

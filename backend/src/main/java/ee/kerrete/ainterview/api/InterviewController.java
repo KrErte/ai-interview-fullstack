@@ -1,27 +1,18 @@
 package ee.kerrete.ainterview.api;
 
-import ee.kerrete.ainterview.dto.EvaluateAnswerRequest;
-import ee.kerrete.ainterview.dto.EvaluateAnswerResponse;
-import ee.kerrete.ainterview.service.EvaluationService;
-import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-@RestController
-@RequestMapping("/api")
+/**
+ * LEGACY PLACEHOLDER CONTROLLER.
+ *
+ * This class used to be a Spring @RestController named "interviewController".
+ * It has been stripped of all Spring annotations to avoid bean name conflicts
+ * with the new InterviewController under:
+ *
+ *   ee.kerrete.ainterview.interview.api.InterviewController
+ *
+ * The real interview endpoints now live in the new package.
+ * This placeholder exists only so that any old imports still compile.
+ */
+@Deprecated
 public class InterviewController {
-
-    private final EvaluationService evaluationService;
-
-    public InterviewController(EvaluationService evaluationService) {
-        this.evaluationService = evaluationService;
-    }
-
-    @PostMapping("/evaluate")
-    public ResponseEntity<EvaluateAnswerResponse> evaluate(
-            @Valid @RequestBody EvaluateAnswerRequest request) {
-
-        EvaluateAnswerResponse response = evaluationService.evaluate(request);
-        return ResponseEntity.ok(response);
-    }
+    // intentionally empty – no Spring annotations, no endpoints
 }

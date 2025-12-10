@@ -27,5 +27,11 @@
     <include file="changes/2025-12-06-extend-roadmap-task-ordering.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-09-rename-user-profile-columns.xml" relativeToChangelogFile="true"/>
     <include file="changes/test-user-seed-2025-12-09.yaml" relativeToChangelogFile="true"/>
+    <include file="changes/interview_sessions.xml" relativeToChangelogFile="true"/>
+    <include file="changes/company_profiles.xml" relativeToChangelogFile="true"/>
+    <include file="changes/behavioral_stories.xml" relativeToChangelogFile="true"/>
+    <include file="changes/user_memory_entries.xml" relativeToChangelogFile="true"/>
+    <include file="skill-matrix/skill-matrix-tables.xml" relativeToChangelogFile="true"/>
+    <include file="db.changelog-soft-skills-001.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

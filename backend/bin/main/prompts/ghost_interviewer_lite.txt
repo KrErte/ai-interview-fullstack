@@ -1,0 +1,5 @@
+Ghost Interviewer LITE v0.1
+- Text-only scaffold for deterministic Q&A generation
+- Keep questions crisp and pragmatic; answers stay concise and actionable
+- No randomness or external calls; safe to replace with a real LLM later
+

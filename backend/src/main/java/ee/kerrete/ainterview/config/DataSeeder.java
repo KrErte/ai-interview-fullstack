@@ -28,14 +28,13 @@ import java.util.Optional;
 @Component
 @Profile({"local", "dev"})
 @RequiredArgsConstructor
+// Local dev demo users: admin@local.test / Admin123!, user@local.test / User123!
 public class DataSeeder implements CommandLineRunner {
 
     private static final String ADMIN_EMAIL = "admin@local.test";
     private static final String USER_EMAIL = "user@local.test";
     private static final String ADMIN_PASSWORD = "Admin123!";
     private static final String USER_PASSWORD = "User123!";
-    private static final String TEST_EMAIL = "test@mentor.ee";
-    private static final String TEST_PASSWORD = "$2a$10$53Yz0CTqkl8D1yWdp4inYOZsNT85aR1dVw73w.wHkmVckTcoyWA9C";
 
 
     private final AppUserRepository appUserRepository;
@@ -51,7 +50,6 @@ public class DataSeeder implements CommandLineRunner {
 
         seedAppUser(ADMIN_EMAIL, ADMIN_PASSWORD, "Local Admin", UserRole.ADMIN, now);
         seedAppUser(USER_EMAIL, USER_PASSWORD, "Local User", UserRole.USER, now);
-        seedAppUser(TEST_EMAIL, TEST_PASSWORD, "Test Kasutaja", UserRole.USER, now);
 
         seedTrainingTasks(USER_EMAIL, now);
 
@@ -62,6 +60,9 @@ public class DataSeeder implements CommandLineRunner {
         seedJobAnalysisSessionIfMissing(ADMIN_EMAIL, now);
 
         seedWorkstyleSessionIfMissing(USER_EMAIL, now);
+
+        log.info("Demo admin user ready: email={} password={}", ADMIN_EMAIL, ADMIN_PASSWORD);
+        log.info("Demo normal user ready: email={} password={}", USER_EMAIL, USER_PASSWORD);
     }
 
     private void seedAppUser(String email, String rawPassword, String fullName, UserRole role, LocalDateTime now) {
@@ -80,6 +81,10 @@ public class DataSeeder implements CommandLineRunner {
             }
             if (!user.isEnabled()) {
                 user.setEnabled(true);
+                updated = true;
+            }
+            if (user.getFullName() == null || user.getFullName().isBlank()) {
+                user.setFullName(fullName);
                 updated = true;
             }
 

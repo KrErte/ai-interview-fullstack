@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2025-12-10-soft-skills-tables" author="cursor-backend-agent">
+
+        <createTable tableName="soft_skill_evaluation">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dimension" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="score" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="CLOB"/>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="soft_skill_evaluation"
+                     indexName="idx_soft_skill_eval_email">
+            <column name="email"/>
+        </createIndex>
+
+        <createTable tableName="soft_skill_merged_profile">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="overall_score" type="int"/>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="soft_skill_merged_profile"
+                     indexName="idx_soft_skill_merged_profile_email">
+            <column name="email"/>
+        </createIndex>
+
+        <createTable tableName="soft_skill_merged_dimension">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="profile_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dimension" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="merged_score" type="int"/>
+            <column name="explanation" type="CLOB"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="soft_skill_merged_dimension"
+                                 baseColumnNames="profile_id"
+                                 constraintName="fk_soft_skill_merged_dim_profile"
+                                 referencedTableName="soft_skill_merged_profile"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <createIndex tableName="soft_skill_merged_dimension"
+                     indexName="idx_soft_skill_merged_dim_profile">
+            <column name="profile_id"/>
+        </createIndex>
+
+    </changeSet>
+
+</databaseChangeLog>
+
+

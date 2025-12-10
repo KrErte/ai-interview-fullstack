@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2025-12-10-skill-matrix-tables" author="backend-agent">
+
+        <createTable tableName="skill_interview_session">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="candidate_email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_id" type="VARCHAR(255)"/>
+            <column name="position_id" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_phase" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+        </createTable>
+
+        <createTable tableName="skill_matrix">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="session_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="overall_score" type="DECIMAL(5,2)"/>
+            <column name="recommendation_level" type="VARCHAR(50)"/>
+            <column name="summary" type="CLOB"/>
+        </createTable>
+
+        <createTable tableName="skill_evaluation">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="skill_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_key" type="VARCHAR(255)"/>
+            <column name="interviewer_type" type="VARCHAR(50)"/>
+            <column name="score" type="DECIMAL(5,2)"/>
+            <column name="confidence" type="DECIMAL(5,2)"/>
+            <column name="evidence_text" type="CLOB"/>
+            <column name="session_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="skill_matrix"
+                                 baseColumnNames="session_id"
+                                 constraintName="fk_skill_matrix_session"
+                                 referencedTableName="skill_interview_session"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="skill_evaluation"
+                                 baseColumnNames="session_id"
+                                 constraintName="fk_skill_eval_session"
+                                 referencedTableName="skill_interview_session"
+                                 referencedColumnNames="id"/>
+
+        <createIndex indexName="idx_skill_matrix_session" tableName="skill_matrix">
+            <column name="session_id"/>
+        </createIndex>
+
+        <createIndex indexName="idx_skill_eval_session" tableName="skill_evaluation">
+            <column name="session_id"/>
+        </createIndex>
+
+        <createIndex indexName="idx_skill_eval_skill" tableName="skill_evaluation">
+            <column name="skill_key"/>
+        </createIndex>
+
+    </changeSet>
+</databaseChangeLog>
+

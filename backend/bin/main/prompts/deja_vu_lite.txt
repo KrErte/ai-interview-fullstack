@@ -1,0 +1,5 @@
+Interview Déjà Vu LITE
+- Read the job description and surface likely screening questions
+- Prioritise impact, ownership, and risk-mitigation themes
+- Output should be stable and repeatable
+

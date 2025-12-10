@@ -1,0 +1,5 @@
+Career Twin LITE
+- Append reflective entries, then surface lightweight insights
+- Top keywords = most frequent non-trivial terms
+- Last entries = freshest three notes for quick recall
+

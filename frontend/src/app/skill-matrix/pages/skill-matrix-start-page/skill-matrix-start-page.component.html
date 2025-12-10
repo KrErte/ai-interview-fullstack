@@ -1,0 +1,121 @@
+<div class="space-y-6">
+  <div
+    class="rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-slate-950 to-slate-900 p-6 shadow-xl shadow-emerald-500/20"
+  >
+    <div
+      class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div>
+        <p class="text-sm font-semibold text-emerald-400">
+          Skill Matrix Interviewer
+        </p>
+        <h1 class="text-2xl font-semibold text-slate-50">
+          Start new interview
+        </h1>
+        <p class="text-sm text-slate-400">
+          Configure the role and candidate, then launch an AI-powered skill
+          matrix interview.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-[minmax(0,3fr)_minmax(0,4fr)]">
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <h2
+          class="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-300"
+        >
+          Interview setup
+        </h2>
+
+        <form class="space-y-4" (ngSubmit)="startInterview()">
+          <div>
+            <label
+              class="mb-1 block text-xs font-medium text-slate-400"
+              for="jobRole"
+              >Job / role</label
+            >
+            <input
+              id="jobRole"
+              type="text"
+              [(ngModel)]="jobRole"
+              name="jobRole"
+              placeholder="e.g. Senior Fullstack Engineer"
+              class="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-500/60"
+            />
+          </div>
+
+          <div>
+            <label
+              class="mb-1 block text-xs font-medium text-slate-400"
+              for="candidateEmail"
+              >Candidate email</label
+            >
+            <input
+              id="candidateEmail"
+              type="email"
+              [(ngModel)]="candidateEmail"
+              name="candidateEmail"
+              placeholder="candidate@example.com"
+              class="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-500/60"
+            />
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="submit"
+              [disabled]="loading"
+              class="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <span *ngIf="!loading">Start interview</span>
+              <span *ngIf="loading" class="flex items-center gap-2">
+                <span
+                  class="h-3 w-3 animate-spin rounded-full border-2 border-emerald-900 border-t-emerald-300"
+                ></span>
+                Starting…
+              </span>
+            </button>
+          </div>
+        </form>
+
+        <p
+          *ngIf="error"
+          class="mt-4 rounded-md border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-xs text-rose-100"
+        >
+          {{ error }}
+        </p>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <h2
+          class="mb-2 text-sm font-semibold uppercase tracking-wide text-slate-300"
+        >
+          How it works
+        </h2>
+        <p class="mb-3 text-sm text-slate-400">
+          The Skill Matrix Interviewer runs a structured multi-phase interview,
+          scoring the candidate across technical, soft, and system skills.
+        </p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li class="flex gap-2">
+            <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            <span>Start from a role and candidate email.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            <span>Answer questions in each phase in the session view.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            <span>Review the final skill matrix and recommendation.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+

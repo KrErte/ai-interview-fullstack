@@ -1,0 +1,169 @@
+<div class="space-y-6" *ngIf="session; else loadingOrError">
+  <div
+    class="rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-slate-950 to-slate-900 p-6 shadow-xl shadow-emerald-500/20"
+  >
+    <div
+      class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div>
+        <p class="text-sm font-semibold text-emerald-400">
+          Skill Matrix Interviewer
+        </p>
+        <h1 class="text-2xl font-semibold text-slate-50">
+          Live interview session
+        </h1>
+        <p class="text-sm text-slate-400">
+          Answer questions and watch the skill matrix evolve in real time.
+        </p>
+      </div>
+
+      <div class="flex flex-col items-start gap-2 sm:items-end">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-200"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+          {{ currentPhaseLabel }}
+        </span>
+        <p class="text-xs text-slate-400">
+          {{ session?.jobRole }} · {{ session?.candidateEmail }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <h2
+          class="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-300"
+        >
+          Active question
+        </h2>
+
+        <div class="mb-4 rounded-xl bg-slate-900 px-4 py-3">
+          <p
+            class="text-sm font-medium text-slate-100"
+            *ngIf="session?.activeQuestion; else noQuestion"
+          >
+            {{ session?.activeQuestion }}
+          </p>
+          <ng-template #noQuestion>
+            <p class="text-sm text-slate-400">
+              Waiting for the next question from the interviewer…
+            </p>
+          </ng-template>
+        </div>
+
+        <div class="space-y-3">
+          <label
+            class="block text-xs font-medium uppercase tracking-wide text-slate-400"
+            for="answer"
+            >Your answer</label
+          >
+          <textarea
+            id="answer"
+            rows="6"
+            [(ngModel)]="answerText"
+            name="answerText"
+            placeholder="Write your answer here…"
+            class="w-full resize-y rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-500/60"
+          ></textarea>
+
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-xs text-slate-500">
+              Tip: aim for structured, concrete answers (STAR format works
+              great).
+            </p>
+
+            <button
+              type="button"
+              (click)="submitAnswer()"
+              [disabled]="submitting || !session?.activeQuestion"
+              class="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <span *ngIf="!submitting">Submit answer</span>
+              <span *ngIf="submitting" class="flex items-center gap-2">
+                <span
+                  class="h-3 w-3 animate-spin rounded-full border-2 border-emerald-900 border-t-emerald-300"
+                ></span>
+                Sending…
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <p
+          *ngIf="error"
+          class="mt-4 rounded-md border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-xs text-rose-100"
+        >
+          {{ error }}
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <h3
+          class="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-400"
+        >
+          Conversation log
+        </h3>
+        <div class="max-h-72 space-y-2 overflow-y-auto pr-1 text-sm">
+          <div
+            *ngFor="let msg of session?.messages"
+            class="rounded-lg border border-slate-800 bg-slate-950/70 px-3 py-2"
+          >
+            <p
+              class="mb-1 text-[0.7rem] font-semibold uppercase tracking-wide"
+              [ngClass]="{
+                'text-emerald-300': msg.role === 'INTERVIEWER',
+                'text-sky-300': msg.role === 'CANDIDATE',
+                'text-slate-400': msg.role === 'SYSTEM'
+              }"
+            >
+              {{ msg.role }}
+            </p>
+            <p class="whitespace-pre-wrap text-slate-100">
+              {{ msg.content }}
+            </p>
+          </div>
+
+          <p
+            *ngIf="!session?.messages?.length"
+            class="text-xs text-slate-500"
+          >
+            Messages will appear here as the interview progresses.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <h2
+          class="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-300"
+        >
+          Skill matrix snapshot
+        </h2>
+        <p class="text-sm text-slate-400">
+          MVP placeholder – this panel will show per-skill scores and phase
+          progress as the backend evolves.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingOrError>
+  <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-6">
+    <p *ngIf="loadingSession" class="text-sm text-slate-300">
+      Loading session…
+    </p>
+    <p *ngIf="!loadingSession && error" class="text-sm text-rose-300">
+      {{ error }}
+    </p>
+    <p *ngIf="!loadingSession && !error" class="text-sm text-slate-400">
+      Preparing your interview session…
+    </p>
+  </div>
+</ng-template>
+
+

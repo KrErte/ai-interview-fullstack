@@ -1,0 +1,95 @@
+<div class="space-y-6">
+  <div
+    class="rounded-2xl border border-indigo-500/30 bg-gradient-to-r from-slate-950 to-slate-900 p-6 shadow-xl shadow-indigo-500/20"
+  >
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm font-semibold text-indigo-400">Interview Déjà Vu LITE</p>
+        <h1 class="text-2xl font-semibold text-slate-50">Predict interview questions</h1>
+        <p class="text-sm text-slate-400">
+          Paste a job description and get a quick preview of likely interview questions.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-[minmax(0,3fr)_minmax(0,4fr)]">
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-300">
+          Job description
+        </h2>
+
+        <textarea
+          [(ngModel)]="jobDescription"
+          rows="10"
+          placeholder="Paste the JD here…"
+          class="w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-500/60"
+        ></textarea>
+
+        <div class="mt-4 flex flex-wrap gap-3">
+          <button
+            type="button"
+            (click)="predict()"
+            [disabled]="loading"
+            class="inline-flex items-center gap-2 rounded-lg bg-indigo-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-indigo-500/30 transition hover:bg-indigo-400 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            <span *ngIf="!loading">Predict questions</span>
+            <span *ngIf="loading" class="flex items-center gap-2">
+              <span
+                class="h-3 w-3 animate-spin rounded-full border-2 border-indigo-900 border-t-indigo-300"
+              ></span>
+              Predicting…
+            </span>
+          </button>
+        </div>
+
+        <p *ngIf="error" class="mt-4 rounded-md border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-xs text-rose-100">
+          {{ error }}
+        </p>
+
+        <p *ngIf="loading && !error" class="mt-4 text-xs text-slate-400">
+          Scanning the description for likely themes and question patterns…
+        </p>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+        <div class="mb-3 flex items-center justify-between gap-2">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-300">
+            Predicted questions
+          </h2>
+          <span class="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-300">
+            LITE preview
+          </span>
+        </div>
+
+        <ng-container *ngIf="result?.questions?.length; else emptyState">
+          <ol class="space-y-3 max-h-[480px] overflow-y-auto pr-1">
+            <li
+              *ngFor="let q of result?.questions; index as i"
+              class="rounded-xl border border-slate-800 bg-slate-950/80 p-4"
+            >
+              <p class="mb-1 text-xs font-medium uppercase tracking-wide text-indigo-300">
+                Question {{ i + 1 }}
+              </p>
+              <p class="text-sm text-slate-100">
+                {{ q }}
+              </p>
+            </li>
+          </ol>
+        </ng-container>
+
+        <ng-template #emptyState>
+          <div class="flex h-40 flex-col items-center justify-center text-center text-sm text-slate-400">
+            <p class="mb-1">No predictions yet.</p>
+            <p>Paste a JD and let the AI surface common interview themes.</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+

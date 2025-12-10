@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
+import { TRAINING_PROGRESS_SEED } from '../mock-data/training.seed';
 
 export interface TrainingProgress {
   email: string;
@@ -37,7 +38,12 @@ export class TrainingService {
   getProgress(email?: string): Observable<TrainingProgress> {
     const targetEmail = email || this.auth.getCurrentUserEmail() || '';
     const params = new HttpParams().set('email', targetEmail);
-    return this.http.get<TrainingProgress>(`${this.baseUrl}/api/training/progress`, { params });
+    return this.http
+      .get<TrainingProgress>(`${this.baseUrl}/api/training/progress`, { params })
+      .pipe(
+        map((response) => response || TRAINING_PROGRESS_SEED),
+        catchError(() => of(TRAINING_PROGRESS_SEED))
+      );
   }
 
   updateTask(request: TrainingTaskRequest): Observable<TrainingProgress> {
