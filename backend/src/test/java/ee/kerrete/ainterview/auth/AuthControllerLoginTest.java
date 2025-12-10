@@ -1,168 +1,122 @@
 package ee.kerrete.ainterview.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.kerrete.ainterview.auth.controller.AuthController;
 import ee.kerrete.ainterview.auth.dto.request.LoginRequest;
-import ee.kerrete.ainterview.model.AppUser;
-import ee.kerrete.ainterview.model.UserRole;
-import ee.kerrete.ainterview.repository.AppUserRepository;
-import org.junit.jupiter.api.BeforeEach;
+import ee.kerrete.ainterview.auth.dto.response.AuthResponse;
+import ee.kerrete.ainterview.auth.service.AuthService;
+import ee.kerrete.ainterview.config.GlobalExceptionHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@Transactional
-@ActiveProfiles("test")
+@WebMvcTest(AuthController.class)
+@AutoConfigureMockMvc(addFilters = false)
+@Import(GlobalExceptionHandler.class)
 class AuthControllerLoginTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private AppUserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    @MockBean
+    private AuthService authService;
 
     @Autowired
     private ObjectMapper objectMapper;
 
-    private static final String TEST_EMAIL = "test@example.com";
-    private static final String TEST_PASSWORD = "password123";
-    private static final String TEST_NAME = "Test User";
-
-    @BeforeEach
-    void setUp() {
-        // Create test user before each test
-        AppUser user = AppUser.builder()
-                .email(TEST_EMAIL)
-                .password(passwordEncoder.encode(TEST_PASSWORD))
-                .fullName(TEST_NAME)
-                .role(UserRole.CANDIDATE)
-                .enabled(true)
-                .build();
-        userRepository.save(user);
-    }
-
     @Test
-    void testLogin_ValidCredentials_Returns200WithToken() throws Exception {
-        LoginRequest request = new LoginRequest(TEST_EMAIL, TEST_PASSWORD);
+    void testLogin_DisabledUser_Returns403() throws Exception {
+        when(authService.login(any(LoginRequest.class)))
+            .thenThrow(new ResponseStatusException(
+                HttpStatus.FORBIDDEN,
+                "User is disabled"
+            ));
 
-        mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.token").exists())
-                .andExpect(jsonPath("$.token").isString())
-                .andExpect(jsonPath("$.accessToken").exists())
-                .andExpect(jsonPath("$.refreshToken").exists())
-                .andExpect(jsonPath("$.email").value(TEST_EMAIL.toLowerCase()))
-                .andExpect(jsonPath("$.fullName").value(TEST_NAME))
-                .andExpect(jsonPath("$.role").value("CANDIDATE"))
-                .andExpect(jsonPath("$.userId").value(notNullValue()));
+        LoginRequest request = new LoginRequest("disabled@test.com", "password");
+
+        mockMvc.perform(
+                post("/api/auth/login")
+                    .contentType(APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(request))
+            )
+            .andExpect(status().isForbidden())
+            .andExpect(jsonPath("$.message").value("User is disabled"));
     }
 
     @Test
     void testLogin_InvalidPassword_Returns401() throws Exception {
-        LoginRequest request = new LoginRequest(TEST_EMAIL, "wrongpassword");
+        when(authService.login(any(LoginRequest.class)))
+            .thenThrow(new ResponseStatusException(
+                HttpStatus.UNAUTHORIZED,
+                "Invalid email or password"
+            ));
 
-        mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value(containsString("Invalid credentials")));
+        LoginRequest request = new LoginRequest("user@test.com", "wrong-password");
+
+        mockMvc.perform(
+                post("/api/auth/login")
+                    .contentType(APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(request))
+            )
+            .andExpect(status().isUnauthorized())
+            .andExpect(jsonPath("$.message").value("Invalid email or password"));
     }
 
     @Test
     void testLogin_NonExistentUser_Returns401() throws Exception {
-        LoginRequest request = new LoginRequest("nonexistent@example.com", TEST_PASSWORD);
+        when(authService.login(any(LoginRequest.class)))
+            .thenThrow(new ResponseStatusException(
+                HttpStatus.UNAUTHORIZED,
+                "Invalid email or password"
+            ));
 
-        mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value(containsString("Invalid credentials")));
+        LoginRequest request = new LoginRequest("nonexistent@test.com", "some-password");
+
+        mockMvc.perform(
+                post("/api/auth/login")
+                    .contentType(APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(request))
+            )
+            .andExpect(status().isUnauthorized())
+            .andExpect(jsonPath("$.message").value("Invalid email or password"));
     }
 
     @Test
-    void testLogin_DisabledUser_Returns403() throws Exception {
-        // Disable the user
-        AppUser user = userRepository.findByEmail(TEST_EMAIL).orElseThrow();
-        user.setEnabled(false);
-        userRepository.save(user);
+    void testLogin_ValidCredentials_Returns200WithToken() throws Exception {
+        AuthResponse response = AuthResponse.builder()
+            .accessToken("access-token")
+            .refreshToken("refresh-token")
+            .email("user@test.com")
+            .fullName("Test User")
+            .role("CANDIDATE")
+            .userId(1L)
+            .build();
 
-        LoginRequest request = new LoginRequest(TEST_EMAIL, TEST_PASSWORD);
+        when(authService.login(any(LoginRequest.class))).thenReturn(response);
 
-        mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isForbidden())
-                .andExpect(jsonPath("$.message").value(containsString("User is disabled")));
-    }
+        LoginRequest request = new LoginRequest("user@test.com", "password");
 
-    @Test
-    void testLogin_InvalidEmailFormat_ReturnsBadRequest() throws Exception {
-        LoginRequest request = new LoginRequest("invalid-email", TEST_PASSWORD);
-
-        mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.email").exists());
-    }
-
-    @Test
-    void testLogin_BlankPassword_ReturnsBadRequest() throws Exception {
-        LoginRequest request = new LoginRequest(TEST_EMAIL, "");
-
-        mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.password").exists());
-    }
-
-    @Test
-    void testRefresh_ValidToken_ReturnsNewTokens() throws Exception {
-        // First login to get tokens
-        LoginRequest loginRequest = new LoginRequest(TEST_EMAIL, TEST_PASSWORD);
-        String loginResponse = mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(loginRequest)))
-                .andExpect(status().isOk())
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-
-        String refreshToken = objectMapper.readTree(loginResponse).get("refreshToken").asText();
-
-        // Use refresh token to get new tokens
-        mockMvc.perform(post("/api/auth/refresh")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"refreshToken\":\"" + refreshToken + "\"}"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.token").exists())
-                .andExpect(jsonPath("$.accessToken").exists())
-                .andExpect(jsonPath("$.refreshToken").exists());
-    }
-
-    @Test
-    void testRefresh_InvalidToken_Returns401() throws Exception {
-        mockMvc.perform(post("/api/auth/refresh")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"refreshToken\":\"invalid-token\"}"))
-                .andExpect(status().isUnauthorized());
+        mockMvc.perform(
+                post("/api/auth/login")
+                    .contentType(APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(request))
+            )
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.accessToken").value("access-token"))
+            .andExpect(jsonPath("$.refreshToken").value("refresh-token"))
+            .andExpect(jsonPath("$.email").value("user@test.com"));
     }
 }

@@ -25,3 +25,30 @@ insert into user_profile (bio,created_at,current_role_name,email,full_name,skill
 2025-12-09 19:12:43.350892+02:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(360 /* table: -2 id: 318 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
 insert into user_profile (bio,created_at,current_role_name,email,full_name,skills,target_role_name,updated_at,years_of_experience) values (?,?,?,?,?,?,?,?,?) [22018-224]
+2025-12-09 19:54:53.683247+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(366 /* table: -2 id: 446 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
+update user_profile set bio=?,created_at=?,current_role_name=?,email=?,full_name=?,skills=?,target_role_name=?,updated_at=?,years_of_experience=? where id=? [22018-224]
+2025-12-09 19:54:53.743247+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(364 /* table: -2 id: 473 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
+insert into user_profile (bio,created_at,current_role_name,email,full_name,skills,target_role_name,updated_at,years_of_experience) values (?,?,?,?,?,?,?,?,?) [22018-224]
+2025-12-09 19:54:53.777245+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(360 /* table: -2 id: 500 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
+insert into user_profile (bio,created_at,current_role_name,email,full_name,skills,target_role_name,updated_at,years_of_experience) values (?,?,?,?,?,?,?,?,?) [22018-224]
+2025-12-10 09:53:18.145789+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(366 /* table: -2 id: 578 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
+update user_profile set bio=?,created_at=?,current_role_name=?,email=?,full_name=?,skills=?,target_role_name=?,updated_at=?,years_of_experience=? where id=? [22018-224]
+2025-12-10 09:53:18.208790+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(364 /* table: -2 id: 605 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
+insert into user_profile (bio,created_at,current_role_name,email,full_name,skills,target_role_name,updated_at,years_of_experience) values (?,?,?,?,?,?,?,?,?) [22018-224]
+2025-12-10 09:53:18.260790+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(360 /* table: -2 id: 632 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
+insert into user_profile (bio,created_at,current_role_name,email,full_name,skills,target_role_name,updated_at,years_of_experience) values (?,?,?,?,?,?,?,?,?) [22018-224]
+2025-12-10 10:59:55.380587+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(366 /* table: -2 id: 660 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
+update user_profile set bio=?,created_at=?,current_role_name=?,email=?,full_name=?,skills=?,target_role_name=?,updated_at=?,years_of_experience=? where id=? [22018-224]
+2025-12-10 10:59:55.432586+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(364 /* table: -2 id: 687 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
+insert into user_profile (bio,created_at,current_role_name,email,full_name,skills,target_role_name,updated_at,years_of_experience) values (?,?,?,?,?,?,?,?,?) [22018-224]
+2025-12-10 10:59:55.481587+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "SPACE(360 /* table: -2 id: 714 */) (USER_PROFILE: ""BIO"" INTEGER)"; SQL statement:
+insert into user_profile (bio,created_at,current_role_name,email,full_name,skills,target_role_name,updated_at,years_of_experience) values (?,?,?,?,?,?,?,?,?) [22018-224]

@@ -86,10 +86,16 @@ public class AuthService {
 
         } catch (DisabledException ex) {
             log.warn("Login failed - user disabled: {}", request.email());
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "User is disabled");
+            throw new ResponseStatusException(
+                HttpStatus.FORBIDDEN,
+                "User is disabled"
+            );
         } catch (AuthenticationException ex) {
             log.warn("Login failed - invalid credentials: {}", request.email());
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials");
+            throw new ResponseStatusException(
+                HttpStatus.UNAUTHORIZED,
+                "Invalid email or password"
+            );
         }
     }
 
