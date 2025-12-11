@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -15,6 +15,17 @@ import {
   SoftSkillMergedProfile,
   SoftSkillMergerApiService
 } from '../../core/services/soft-skill-merger-api.service';
+import {
+  SoftSkillCatalogService,
+  SoftSkillDimension
+} from '../../core/services/soft-skill-catalog.service';
+
+type InterviewerStyle = 'HR' | 'TECHNICAL' | 'MIXED';
+
+interface StylePreset {
+  title: string;
+  hint: string;
+}
 
 @Component({
   selector: 'app-soft-skill-merger-page',
@@ -23,7 +34,7 @@ import {
   templateUrl: './soft-skill-merger-page.component.html',
   styleUrls: ['./soft-skill-merger-page.component.scss']
 })
-export class SoftSkillMergerPageComponent {
+export class SoftSkillMergerPageComponent implements OnInit {
   form: FormGroup;
 
   loading = false;
@@ -35,6 +46,54 @@ export class SoftSkillMergerPageComponent {
     'createdAt' | 'saved' | 'savedProfileId'
   > | null = null;
   parsedRequest: SoftSkillMergeRequest | null = null;
+  selectedStyle: InterviewerStyle = 'MIXED';
+  dimensionsMap: Record<string, SoftSkillDimension> = {};
+  expandedDimensions = new Set<string>();
+
+  readonly stylePresets: Record<InterviewerStyle, StylePreset[]> = {
+    HR: [
+      {
+        title: 'How does the candidate handle conflict in a team?',
+        hint: 'Look for empathy, de-escalation, constructive feedback.'
+      },
+      {
+        title: 'How does the candidate respond to feedback?',
+        hint: 'Growth mindset, openness, specific examples.'
+      },
+      {
+        title: 'What motivates this candidate in the long term?',
+        hint: 'Intrinsic motivation, alignment with company values.'
+      }
+    ],
+    TECHNICAL: [
+      {
+        title: 'How does the candidate debug complex production issues?',
+        hint: 'Systematic approach, logging, monitoring.'
+      },
+      {
+        title: 'Describe a time they had to choose between speed and quality.',
+        hint: 'Trade-offs, risk management.'
+      },
+      {
+        title: 'How do they explain technical topics to non-technical people?',
+        hint: 'Clarity, analogies, patience.'
+      }
+    ],
+    MIXED: [
+      {
+        title: 'What kind of environment helps this candidate perform at their best?',
+        hint: 'Team culture, autonomy, support.'
+      },
+      {
+        title: 'How do they react when a sprint goal is suddenly changed?',
+        hint: 'Adaptability, communication.'
+      },
+      {
+        title: 'How do they collaborate with QA/PM/Design?',
+        hint: 'Cross-functional teamwork, ownership.'
+      }
+    ]
+  };
 
   readonly sampleJson = `{
   "email": "candidate@example.com",
@@ -56,13 +115,28 @@ export class SoftSkillMergerPageComponent {
   constructor(
     private readonly fb: FormBuilder,
     private readonly mergerApi: SoftSkillMergerApiService,
-    private readonly auth: AuthService
+    private readonly auth: AuthService,
+    private readonly catalog: SoftSkillCatalogService
   ) {
     this.form = this.fb.group({
       jsonInput: ['', [Validators.required]],
       emailOverride: [this.auth.getCurrentUserEmail() || ''],
-      saveMerged: [true]
+      saveMerged: [true],
+      interviewerStyle: [this.selectedStyle]
     });
+  }
+
+  ngOnInit(): void {
+    this.loadDimensions();
+  }
+
+  get currentStyle(): InterviewerStyle {
+    const value = this.form.get('interviewerStyle')?.value as InterviewerStyle;
+    return value || this.selectedStyle;
+  }
+
+  get currentPreset(): StylePreset[] {
+    return this.stylePresets[this.currentStyle] || [];
   }
 
   get canSubmit(): boolean {
@@ -71,6 +145,31 @@ export class SoftSkillMergerPageComponent {
 
   onPasteSample(): void {
     this.form.get('jsonInput')?.setValue(this.sampleJson);
+  }
+
+  insertSkeleton(): void {
+    const email =
+      (this.form.get('emailOverride')?.value || '').toString().trim() ||
+      this.auth.getCurrentUserEmail() ||
+      'candidate@example.com';
+    const style = this.currentStyle;
+    this.selectedStyle = style;
+    const sourceType =
+      style === 'HR' ? 'HR' : style === 'TECHNICAL' ? 'TECH_LEAD' : 'MIXED';
+
+    const skeleton = {
+      email,
+      saveMerged: true,
+      sources: [
+        {
+          sourceType,
+          label: 'Interview notes',
+          content: 'Paste your interviewer notes here.'
+        }
+      ]
+    };
+
+    this.form.get('jsonInput')?.setValue(JSON.stringify(skeleton, null, 2));
   }
 
   merge(): void {
@@ -211,5 +310,40 @@ export class SoftSkillMergerPageComponent {
 
   trackByDimension(_index: number, dim: MergedDimensionScore): string {
     return dim?.dimension || String(_index);
+  }
+
+  dimensionMeta(key: string): SoftSkillDimension | null {
+    return this.dimensionsMap[key] || null;
+  }
+
+  humanLabel(key: string): string {
+    return this.dimensionsMap[key]?.label || key;
+  }
+
+  toggleDim(key: string): void {
+    if (this.expandedDimensions.has(key)) {
+      this.expandedDimensions.delete(key);
+    } else {
+      this.expandedDimensions.add(key);
+    }
+    this.expandedDimensions = new Set(this.expandedDimensions);
+  }
+
+  isExpanded(key: string): boolean {
+    return this.expandedDimensions.has(key);
+  }
+
+  private loadDimensions(): void {
+    this.catalog.getDimensions().subscribe({
+      next: (dims) => {
+        this.dimensionsMap = dims.reduce((acc, dim) => {
+          acc[dim.key] = dim;
+          return acc;
+        }, {} as Record<string, SoftSkillDimension>);
+      },
+      error: () => {
+        this.dimensionsMap = {};
+      }
+    });
   }
 }

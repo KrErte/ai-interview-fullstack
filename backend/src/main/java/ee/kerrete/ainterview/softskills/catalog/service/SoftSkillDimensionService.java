@@ -2,7 +2,6 @@ package ee.kerrete.ainterview.softskills.catalog.service;
 
 import ee.kerrete.ainterview.softskills.catalog.entity.SoftSkillDimension;
 import ee.kerrete.ainterview.softskills.catalog.repository.SoftSkillDimensionRepository;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,16 +17,6 @@ import java.util.Optional;
 public class SoftSkillDimensionService {
 
     private final SoftSkillDimensionRepository repository;
-
-    @PostConstruct
-    @Transactional
-    public void seedIfEmpty() {
-        if (repository.count() > 0) {
-            return;
-        }
-        repository.saveAll(SoftSkillDimensionSeedData.all());
-        log.info("Seeded soft skill dimensions catalog with {} entries", repository.count());
-    }
 
     @Transactional(readOnly = true)
     public List<SoftSkillDimension> findAll() {

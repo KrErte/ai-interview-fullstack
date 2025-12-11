@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 export type SeniorityLevel = 'Junior' | 'Mid' | 'Senior';
+export type InterviewStyle = 'HR' | 'TECH' | 'TEAM_LEAD' | 'MIXED';
 
 export interface InterviewSimulationRequest {
   companyName: string;
@@ -19,6 +20,47 @@ export interface InterviewQuestionAnswer {
 export interface InterviewSimulationResponse {
   sessionId?: string;
   questions: InterviewQuestionAnswer[];
+}
+
+export interface InterviewSessionStartRequest {
+  companyName: string;
+  roleTitle: string;
+  seniority: SeniorityLevel;
+  style: InterviewStyle;
+}
+
+export interface InterviewQuestion {
+  id?: string;
+  question: string;
+  modelAnswerHint?: string;
+}
+
+export interface InterviewSessionStartResponse {
+  sessionId: string;
+  question: InterviewQuestion;
+}
+
+export interface InterviewSessionAnswerRequest {
+  sessionId: string;
+  answer: string;
+}
+
+export interface InterviewDimensionScore {
+  dimension: string;
+  score: number;
+}
+
+export interface InterviewSummary {
+  overallFitPercent: number;
+  strengths: string[];
+  weaknesses: string[];
+  dimensionScores: InterviewDimensionScore[];
+}
+
+export interface InterviewSessionAnswerResponse {
+  isFinished: boolean;
+  question?: InterviewQuestion;
+  summary?: InterviewSummary;
 }
 
 export interface DejaVuPredictRequest {
@@ -82,6 +124,24 @@ export class MvpApiService {
   ): Observable<InterviewSimulationResponse> {
     return this.http.post<InterviewSimulationResponse>(
       `${this.baseUrl}/api/interview/simulate`,
+      payload
+    );
+  }
+
+  startInterviewSession(
+    payload: InterviewSessionStartRequest
+  ): Observable<InterviewSessionStartResponse> {
+    return this.http.post<InterviewSessionStartResponse>(
+      `${this.baseUrl}/api/interview/session/start`,
+      payload
+    );
+  }
+
+  submitInterviewAnswer(
+    payload: InterviewSessionAnswerRequest
+  ): Observable<InterviewSessionAnswerResponse> {
+    return this.http.post<InterviewSessionAnswerResponse>(
+      `${this.baseUrl}/api/interview/session/answer`,
       payload
     );
   }

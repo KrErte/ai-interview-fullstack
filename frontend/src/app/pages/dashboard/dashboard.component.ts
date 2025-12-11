@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AiService, DashboardStats } from '../../services/ai.service';
-import { TrainingService, TrainingProgress } from '../../services/training.service';
+import { TrainingApiService, TrainingStatus } from '../../core/services/training-api.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -16,13 +16,13 @@ export class DashboardComponent implements OnInit {
   email = this.auth.getCurrentUserEmail();
   name = this.auth.getCurrentUserName();
   stats?: DashboardStats;
-  progress?: TrainingProgress;
+  trainingStatus?: TrainingStatus;
   loading = false;
   error = '';
 
   constructor(
     private ai: AiService,
-    private training: TrainingService,
+    private training: TrainingApiService,
     private auth: AuthService
   ) {}
 
@@ -36,11 +36,11 @@ export class DashboardComponent implements OnInit {
 
     forkJoin({
       stats: this.ai.getDashboard(),
-      progress: this.training.getProgress()
+      trainingStatus: this.training.getTrainingStatus()
     }).subscribe({
-      next: ({ stats, progress }) => {
+      next: ({ stats, trainingStatus }) => {
         this.stats = stats;
-        this.progress = progress;
+        this.trainingStatus = trainingStatus;
         this.loading = false;
       },
       error: (err) => {

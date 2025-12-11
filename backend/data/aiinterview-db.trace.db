@@ -1,7 +1,7 @@
-2025-12-11 13:11:46.948507+02:00 jdbc[3]: exception
+2025-12-11 22:19:00.557932+02:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DATABASECHANGELOGLOCK" not found; SQL statement:
 SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOGLOCK [42102-224]
-2025-12-11 13:11:47.148506+02:00 jdbc[3]: exception
+2025-12-11 22:19:00.758931+02:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "T.TRAINING_STATUS" not found; SQL statement:
 select t.training_status from PUBLIC.training_progress t where 0=1 [42122-224]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
@@ -88,7 +88,7 @@ select t.training_status from PUBLIC.training_progress t where 0=1 [42122-224]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
 	at ee.kerrete.ainterview.AiInterviewBackendApplication.main(AiInterviewBackendApplication.java:12)
-2025-12-11 13:11:47.168504+02:00 jdbc[3]: exception
+2025-12-11 22:19:00.778746+02:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "T.SCORE_UPDATED_AT" not found; SQL statement:
 select t.score_updated_at from PUBLIC.training_task t where 0=1 [42122-224]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
@@ -175,7 +175,7 @@ select t.score_updated_at from PUBLIC.training_task t where 0=1 [42122-224]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
 	at ee.kerrete.ainterview.AiInterviewBackendApplication.main(AiInterviewBackendApplication.java:12)
-2025-12-11 13:11:47.198505+02:00 jdbc[3]: exception
+2025-12-11 22:19:00.805748+02:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "T.SKILL_KEY" not found; SQL statement:
 select t.skill_key from PUBLIC.training_task t where 0=1 [42122-224]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
@@ -263,7 +263,7 @@ select t.skill_key from PUBLIC.training_task t where 0=1 [42122-224]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
 	at ee.kerrete.ainterview.AiInterviewBackendApplication.main(AiInterviewBackendApplication.java:12)
-2025-12-11 13:11:47.328508+02:00 jdbc[3]: exception
+2025-12-11 22:19:00.924748+02:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "T.LABEL" not found; SQL statement:
 select t.label from PUBLIC.soft_skill_dimension t where 0=1 [42122-224]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)

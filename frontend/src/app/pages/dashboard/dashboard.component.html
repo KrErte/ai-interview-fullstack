@@ -34,14 +34,14 @@
       <p class="text-sm text-slate-400">Training progress</p>
       <div class="flex items-end justify-between">
         <p class="text-3xl font-semibold text-emerald-300">
-          {{ stats?.trainingProgressPercent || progress?.trainingProgressPercent || 0 }}%
+          {{ trainingStatus?.progressPercent || stats?.trainingProgressPercent || 0 }}%
         </p>
-        <p class="text-xs text-slate-500">{{ stats?.completedTrainingTasks || progress?.completedTasks || 0 }} / {{ stats?.totalTrainingTasks || progress?.totalTasks || 0 }} tasks</p>
+        <p class="text-xs text-slate-500">{{ stats?.completedTrainingTasks || trainingStatus?.completedTasks || 0 }} / {{ stats?.totalTrainingTasks || trainingStatus?.totalTasks || 0 }} tasks</p>
       </div>
       <div class="mt-3 h-2 rounded-full bg-slate-800">
         <div
           class="h-2 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500"
-          [style.width.%]="stats?.trainingProgressPercent || progress?.trainingProgressPercent || 0"
+          [style.width.%]="trainingStatus?.progressPercent || stats?.trainingProgressPercent || 0"
         ></div>
       </div>
     </div>
@@ -53,7 +53,7 @@
       </p>
       <p class="text-xs text-slate-500">Last analysis: {{ stats?.lastAnalysisSummary || 'No analyses yet' }}</p>
       <p class="text-xs text-slate-500 mt-2">
-        Last active: {{ formatDate(stats?.lastActive || progress?.lastActivityAt) }}
+        Last active: {{ formatDate(stats?.lastActive) }}
       </p>
     </div>
   </div>
