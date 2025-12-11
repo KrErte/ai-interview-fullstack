@@ -42,10 +42,12 @@ public class SoftSkillMergerService {
         }
 
         Map<SoftSkillDimension, List<SoftSkillEvaluation>> byDimension = evaluations.stream()
+                .map(e -> new DimensionWrapper(resolveEnumDimension(e.getDimension()), e))
+                .filter(dw -> dw.dimension() != null)
                 .collect(Collectors.groupingBy(
-                        SoftSkillEvaluation::getDimension,
+                        DimensionWrapper::dimension,
                         () -> new EnumMap<>(SoftSkillDimension.class),
-                        Collectors.toList()
+                        Collectors.mapping(DimensionWrapper::evaluation, Collectors.toList())
                 ));
 
         // Build merged dimension entities deterministically (sorted by enum order)
@@ -127,6 +129,23 @@ public class SoftSkillMergerService {
                 })
                 .collect(Collectors.joining(" | "));
     }
+
+    private SoftSkillDimension resolveEnumDimension(String dimensionKey) {
+        if (!StringUtils.hasText(dimensionKey)) {
+            return null;
+        }
+        String normalized = dimensionKey.trim()
+            .replace(' ', '_')
+            .replace('-', '_')
+            .toUpperCase();
+        try {
+            return SoftSkillDimension.valueOf(normalized);
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    private record DimensionWrapper(SoftSkillDimension dimension, SoftSkillEvaluation evaluation) { }
 }
 
 

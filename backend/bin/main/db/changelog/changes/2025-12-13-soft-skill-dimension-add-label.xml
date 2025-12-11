@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2025-12-13-soft-skill-dimension-add-label" author="backend-bot">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="soft_skill_dimension"/>
+            <not>
+                <columnExists tableName="soft_skill_dimension" columnName="label"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="soft_skill_dimension">
+            <column name="label" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
+

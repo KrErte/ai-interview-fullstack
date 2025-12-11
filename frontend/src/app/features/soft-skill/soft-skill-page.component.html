@@ -1,0 +1,48 @@
+<div class="min-h-screen bg-slate-900 text-slate-100">
+  <div class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+    <header class="space-y-2">
+      <p class="text-sm uppercase tracking-wide text-emerald-300">
+        Soft Skills
+      </p>
+      <h1 class="text-3xl font-semibold">Soft Skill Merger</h1>
+      <p class="text-slate-300">
+        Capture feedback from different sources and see a merged profile.
+      </p>
+    </header>
+
+    <div class="flex gap-6 border-b border-slate-700">
+      <button
+        class="pb-3 text-sm font-semibold transition-colors border-b-2"
+        [ngClass]="{
+          'border-emerald-500 text-emerald-300': isActive('evaluation'),
+          'border-transparent text-slate-400 hover:text-slate-200': !isActive('evaluation')
+        }"
+        type="button"
+        (click)="setActiveTab('evaluation')"
+      >
+        New Evaluation
+      </button>
+      <button
+        class="pb-3 text-sm font-semibold transition-colors border-b-2"
+        [ngClass]="{
+          'border-emerald-500 text-emerald-300': isActive('merged'),
+          'border-transparent text-slate-400 hover:text-slate-200': !isActive('merged')
+        }"
+        type="button"
+        (click)="setActiveTab('merged')"
+      >
+        Merged Profile
+      </button>
+    </div>
+
+    <section>
+      <app-soft-skill-evaluation-form
+        *ngIf="isActive('evaluation')"
+      ></app-soft-skill-evaluation-form>
+      <app-soft-skill-merged-profile
+        *ngIf="isActive('merged')"
+      ></app-soft-skill-merged-profile>
+    </section>
+  </div>
+</div>
+

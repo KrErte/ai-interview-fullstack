@@ -43,3 +43,4 @@ Korra:
 
 ## 4. Local run
 Backend:
+cd

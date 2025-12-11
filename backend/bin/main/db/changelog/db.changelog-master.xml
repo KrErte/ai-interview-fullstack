@@ -33,5 +33,10 @@
     <include file="changes/user_memory_entries.xml" relativeToChangelogFile="true"/>
     <include file="skill-matrix/skill-matrix-tables.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-soft-skills-001.xml" relativeToChangelogFile="true"/>
+    <include file="changes/2025-12-11-soft-skill-merger-tables.xml" relativeToChangelogFile="true"/>
+    <include file="changes/2025-12-12-soft-skill-merged-profile-v2.xml" relativeToChangelogFile="true"/>
+    <include file="changes/2025-12-13-soft-skill-dimension-catalog.xml" relativeToChangelogFile="true"/>
+    <include file="changes/2025-12-13-soft-skill-dimension-add-label.xml" relativeToChangelogFile="true"/>
+    <include file="changes/2025-12-14-soft-skill-dimension-drop-display-name.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

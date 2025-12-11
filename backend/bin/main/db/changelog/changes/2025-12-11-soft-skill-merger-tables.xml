@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2025-12-11-soft-skill-legacy-rename" author="cursor-backend-agent">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="soft_skill_evaluation"/>
+                <tableExists tableName="soft_skill_merged_profile"/>
+                <tableExists tableName="soft_skill_merged_dimension"/>
+            </and>
+        </preConditions>
+
+        <dropForeignKeyConstraint baseTableName="soft_skill_merged_dimension"
+                                  constraintName="fk_soft_skill_merged_dim_profile"/>
+
+        <dropIndex indexName="idx_soft_skill_eval_email"
+                   tableName="soft_skill_evaluation"/>
+        <dropIndex indexName="idx_soft_skill_merged_profile_email"
+                   tableName="soft_skill_merged_profile"/>
+        <dropIndex indexName="idx_soft_skill_merged_dim_profile"
+                   tableName="soft_skill_merged_dimension"/>
+
+        <renameTable oldTableName="soft_skill_evaluation"
+                     newTableName="legacy_soft_skill_evaluation"/>
+        <renameTable oldTableName="soft_skill_merged_profile"
+                     newTableName="legacy_soft_skill_merged_profile"/>
+        <renameTable oldTableName="soft_skill_merged_dimension"
+                     newTableName="legacy_soft_skill_merged_dimension"/>
+
+        <addForeignKeyConstraint baseTableName="legacy_soft_skill_merged_dimension"
+                                 baseColumnNames="profile_id"
+                                 constraintName="fk_legacy_soft_skill_merged_dim_profile"
+                                 referencedTableName="legacy_soft_skill_merged_profile"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <createIndex tableName="legacy_soft_skill_evaluation"
+                     indexName="idx_legacy_soft_skill_eval_email">
+            <column name="email"/>
+        </createIndex>
+        <createIndex tableName="legacy_soft_skill_merged_profile"
+                     indexName="idx_legacy_soft_skill_merged_profile_email">
+            <column name="email"/>
+        </createIndex>
+        <createIndex tableName="legacy_soft_skill_merged_dimension"
+                     indexName="idx_legacy_soft_skill_merged_dim_profile">
+            <column name="profile_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="2025-12-11-soft-skill-merger-tables" author="cursor-backend-agent">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="soft_skill_evaluation"/>
+            </not>
+        </preConditions>
+        <createTable tableName="soft_skill_dimension">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dimension_key" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="display_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(500)"/>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="soft_skill_evaluation">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="pk_soft_skill_eval_v2" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_context" type="varchar(255)"/>
+            <column name="source_type" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source_label" type="varchar(255)"/>
+            <column name="overall_comment" type="CLOB"/>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="soft_skill_evaluation"
+                     indexName="idx_soft_skill_eval_email">
+            <column name="email"/>
+        </createIndex>
+        <createIndex tableName="soft_skill_evaluation"
+                     indexName="idx_soft_skill_eval_job_context">
+            <column name="job_context"/>
+        </createIndex>
+
+        <createTable tableName="soft_skill_score">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="pk_soft_skill_score_v2" nullable="false"/>
+            </column>
+            <column name="evaluation_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dimension_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="score" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="explanation" type="CLOB"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="soft_skill_score"
+                                 baseColumnNames="evaluation_id"
+                                 constraintName="fk_soft_skill_score_evaluation"
+                                 referencedTableName="soft_skill_evaluation"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="soft_skill_score"
+                                 baseColumnNames="dimension_id"
+                                 constraintName="fk_soft_skill_score_dimension"
+                                 referencedTableName="soft_skill_dimension"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <createIndex tableName="soft_skill_score"
+                     indexName="idx_soft_skill_score_evaluation">
+            <column name="evaluation_id"/>
+        </createIndex>
+        <createIndex tableName="soft_skill_score"
+                     indexName="idx_soft_skill_score_dimension">
+            <column name="dimension_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
+

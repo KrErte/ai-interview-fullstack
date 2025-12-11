@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2025-12-12-soft-skill-merged-profile-v2" author="cursor-backend-agent">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="soft_skill_merged_profile"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="soft_skill_merged_profile">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="pk_soft_skill_merged_profile_v2" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="summary" type="CLOB"/>
+            <column name="strengths_json" type="CLOB"/>
+            <column name="risks_json" type="CLOB"/>
+            <column name="communication_style" type="varchar(512)"/>
+            <column name="collaboration_style" type="varchar(512)"/>
+            <column name="growth_areas_json" type="CLOB"/>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="soft_skill_merged_profile"
+                     indexName="idx_soft_skill_merged_profile_email_v2">
+            <column name="email"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
+

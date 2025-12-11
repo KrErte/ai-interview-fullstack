@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "soft_skill_merged_profile")
+@Table(name = "legacy_soft_skill_merged_profile")
 @Getter
 @Setter
 @NoArgsConstructor

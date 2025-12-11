@@ -1,0 +1,181 @@
+<form class="space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div *ngIf="submitSuccess" class="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-emerald-200">
+    {{ submitSuccess }}
+  </div>
+
+  <div *ngIf="submitError" class="rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-rose-200">
+    {{ submitError }}
+  </div>
+
+  <div class="grid gap-4 lg:grid-cols-2">
+    <div class="rounded-2xl border border-slate-800 bg-slate-800/60 p-5 shadow">
+      <h2 class="mb-4 text-lg font-semibold text-slate-100">
+        Evaluation details
+      </h2>
+
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <label class="block text-sm text-slate-300">
+            Candidate email *
+          </label>
+          <input
+            type="email"
+            class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+            [formControlName]="'email'"
+            placeholder="candidate@example.com"
+          />
+          <p *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-xs text-rose-300">
+            Please enter a valid email.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <label class="block text-sm text-slate-300">Job context</label>
+          <input
+            type="text"
+            class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+            [formControlName]="'jobContext'"
+            placeholder="Senior Backend Engineer"
+          />
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="space-y-2">
+            <label class="block text-sm text-slate-300">
+              Source type *
+            </label>
+            <select
+              class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+              [formControlName]="'sourceType'"
+            >
+              <option *ngFor="let type of sourceTypes" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-sm text-slate-300">Source label</label>
+            <input
+              type="text"
+              class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+              [formControlName]="'sourceLabel'"
+              placeholder="HR 1st round"
+            />
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="block text-sm text-slate-300">Overall comment</label>
+          <textarea
+            rows="3"
+            class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+            [formControlName]="'overallComment'"
+            placeholder="Summarize overall impression..."
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-slate-800 bg-slate-800/60 p-5 shadow">
+      <div class="mb-4 flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-semibold text-slate-100">Dimension scores</h2>
+          <p class="text-sm text-slate-400">Add scores for each relevant dimension.</p>
+        </div>
+        <button
+          type="button"
+          class="rounded-lg bg-emerald-500 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-60"
+          (click)="addScore()"
+          [disabled]="!dimensions.length || loadingDimensions"
+        >
+          Add dimension score
+        </button>
+      </div>
+
+      <div *ngIf="loadingDimensions" class="animate-pulse text-sm text-slate-300">
+        Loading dimensions…
+      </div>
+      <div *ngIf="dimensionsError" class="rounded-lg border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-sm text-rose-200">
+        {{ dimensionsError }}
+      </div>
+
+      <div class="space-y-4" *ngIf="!loadingDimensions && !dimensionsError">
+        <div formArrayName="scores" class="space-y-4">
+          <div
+            class="rounded-xl border border-slate-700 bg-slate-900/50 p-4"
+            *ngFor="let score of scoresArray.controls; let i = index; trackBy: trackByIndex"
+            [formGroupName]="i"
+          >
+            <div class="flex items-start gap-3">
+              <div class="flex-1 space-y-3">
+                <div class="grid gap-3 md:grid-cols-2">
+                  <div class="space-y-2">
+                    <label class="block text-sm text-slate-300">Dimension *</label>
+                    <select
+                      class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+                      formControlName="dimensionKey"
+                    >
+                      <option *ngFor="let dimension of dimensions" [value]="dimension.key">
+                        {{ dimension.displayName || dimension.key }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="block text-sm text-slate-300">Score (1-5) *</label>
+                    <input
+                      type="number"
+                      min="1"
+                      max="5"
+                      class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+                      formControlName="score"
+                    />
+                    <p *ngIf="score.get('score')?.touched && score.get('score')?.invalid" class="text-xs text-rose-300">
+                      Score must be between 1 and 5.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label class="block text-sm text-slate-300">Explanation</label>
+                  <textarea
+                    rows="2"
+                    class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+                    formControlName="explanation"
+                    placeholder="Optional context or notes"
+                  ></textarea>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="rounded-lg border border-slate-700 px-2 py-1 text-sm text-slate-300 transition hover:bg-slate-800 disabled:opacity-40"
+                (click)="removeScore(i)"
+                [disabled]="scoresArray.length <= 1"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p *ngIf="!scoresArray.length" class="text-sm text-slate-400">
+          Add at least one dimension score to save an evaluation.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <button
+      type="submit"
+      class="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-60"
+      [disabled]="!canSubmit"
+    >
+      <span *ngIf="submitting">Saving...</span>
+      <span *ngIf="!submitting">Save evaluation</span>
+    </button>
+  </div>
+</form>
+

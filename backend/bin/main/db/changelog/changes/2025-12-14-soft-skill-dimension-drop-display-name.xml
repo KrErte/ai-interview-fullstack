@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2025-12-14-soft-skill-dimension-drop-display-name" author="backend-bot">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="soft_skill_dimension"/>
+                <columnExists tableName="soft_skill_dimension" columnName="display_name"/>
+            </and>
+        </preConditions>
+
+        <dropColumn tableName="soft_skill_dimension" columnName="display_name"/>
+    </changeSet>
+
+</databaseChangeLog>
+

@@ -4,7 +4,6 @@ public enum InterviewPhase {
     HR,
     TECHNICAL,
     TEAM_FIT,
-    COACHING,
-    RETRO
+    EVALUATION
 }
 

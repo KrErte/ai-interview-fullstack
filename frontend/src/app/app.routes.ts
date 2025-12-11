@@ -49,9 +49,22 @@ export const appRoutes: Routes = [
     path: 'soft-skills',
     canActivate: [authGuard],
     loadComponent: () =>
+      import('./features/soft-skill/soft-skill-page.component').then(
+        m => m.SoftSkillPageComponent
+      )
+  },
+  {
+    path: 'soft-skill-merger',
+    canActivate: [authGuard],
+    loadComponent: () =>
       import('./pages/soft-skills/soft-skill-merger-page.component').then(
         m => m.SoftSkillMergerPageComponent
       )
+  },
+  {
+    path: 'soft-skills/merger',
+    pathMatch: 'full',
+    redirectTo: 'soft-skill-merger'
   },
   {
     path: 'skill-matrix',

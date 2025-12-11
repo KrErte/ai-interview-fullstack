@@ -1,212 +1,215 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import {
-  SoftSkillService,
-  SoftSkillDimension,
-  SoftSkillEvaluationResponse,
-  SoftSkillMergedProfileResponse,
-  SoftSkillSource
-} from '../../services/soft-skill.service';
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
+import { finalize } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-
-interface NewEvaluationForm {
-  source: SoftSkillSource | '';
-  dimension: SoftSkillDimension | '';
-  score: number | null;
-  comment: string;
-}
+import {
+  MergedDimensionScore,
+  SoftSkillMergeRequest,
+  SoftSkillMergeResponse,
+  SoftSkillMergedProfile,
+  SoftSkillMergerApiService
+} from '../../core/services/soft-skill-merger-api.service';
 
 @Component({
   selector: 'app-soft-skill-merger-page',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './soft-skill-merger-page.component.html',
   styleUrls: ['./soft-skill-merger-page.component.scss']
 })
 export class SoftSkillMergerPageComponent {
-  email = this.auth.getCurrentUserEmail() || '';
+  form: FormGroup;
 
-  evaluations: SoftSkillEvaluationResponse[] = [];
-  mergedProfile: SoftSkillMergedProfileResponse | null = null;
-
-  loadingEvaluations = false;
-  loadingProfile = false;
-  savingEvaluation = false;
-  mergingProfile = false;
-
-  showAddForm = false;
-
-  error = '';
-  evaluationError = '';
-  mergeError = '';
+  loading = false;
+  errorMessage = '';
   successMessage = '';
+  mergedProfile: SoftSkillMergedProfile | null = null;
+  lastResponseMeta: Pick<
+    SoftSkillMergeResponse,
+    'createdAt' | 'saved' | 'savedProfileId'
+  > | null = null;
+  parsedRequest: SoftSkillMergeRequest | null = null;
 
-  readonly sources: { value: SoftSkillSource; label: string }[] = [
-    { value: 'HR', label: 'HR' },
-    { value: 'TECH_LEAD', label: 'Tech Lead' },
-    { value: 'TEAM_LEAD', label: 'Team Lead' }
-  ];
-
-  readonly dimensions: { value: SoftSkillDimension; label: string }[] = [
-    { value: 'ADAPTABILITY', label: 'Adaptability' },
-    { value: 'GROWTH_MINDSET', label: 'Growth mindset' },
-    { value: 'COMMUNICATION', label: 'Communication' },
-    { value: 'COLLABORATION', label: 'Collaboration' },
-    { value: 'OWNERSHIP', label: 'Ownership' },
-    { value: 'PROBLEM_SOLVING', label: 'Problem solving' },
-    { value: 'LEADERSHIP', label: 'Leadership' }
-  ];
-
-  newEvaluation: NewEvaluationForm = {
-    source: 'HR',
-    dimension: 'ADAPTABILITY',
-    score: 70,
-    comment: ''
-  };
+  readonly sampleJson = `{
+  "email": "candidate@example.com",
+  "saveMerged": true,
+  "sources": [
+    {
+      "sourceType": "TEAM_LEAD",
+      "label": "Tech screen",
+      "content": "Clear communicator, asks clarifying questions, strong ownership."
+    },
+    {
+      "sourceType": "HR",
+      "label": "Hiring manager",
+      "content": "Collaborative, keeps stakeholders updated, good stress management."
+    }
+  ]
+}`;
 
   constructor(
-    private readonly softSkills: SoftSkillService,
+    private readonly fb: FormBuilder,
+    private readonly mergerApi: SoftSkillMergerApiService,
     private readonly auth: AuthService
-  ) {}
-
-  useMyEmail(): void {
-    const current = this.auth.getCurrentUserEmail();
-    if (current) {
-      this.email = current;
-    }
-  }
-
-  loadData(): void {
-    if (!this.email) {
-      this.error = 'Please enter an email address.';
-      return;
-    }
-
-    this.error = '';
-    this.successMessage = '';
-    this.loadEvaluations();
-    this.loadMergedProfile();
-  }
-
-  private loadEvaluations(): void {
-    this.loadingEvaluations = true;
-    this.evaluationError = '';
-
-    this.softSkills.getEvaluations(this.email).subscribe({
-      next: (items) => {
-        this.evaluations = items || [];
-        this.loadingEvaluations = false;
-      },
-      error: (err) => {
-        this.loadingEvaluations = false;
-        this.evaluationError =
-          err?.error?.message || 'Failed to load soft skill evaluations.';
-      }
+  ) {
+    this.form = this.fb.group({
+      jsonInput: ['', [Validators.required]],
+      emailOverride: [this.auth.getCurrentUserEmail() || ''],
+      saveMerged: [true]
     });
   }
 
-  private loadMergedProfile(): void {
-    this.loadingProfile = true;
-    this.mergeError = '';
-
-    this.softSkills.getMergedProfile(this.email).subscribe({
-      next: (profile) => {
-        this.mergedProfile = profile;
-        this.loadingProfile = false;
-      },
-      error: () => {
-        // Having no profile yet is not an error – just show empty state.
-        this.mergedProfile = null;
-        this.loadingProfile = false;
-      }
-    });
+  get canSubmit(): boolean {
+    return !this.loading && !!this.form.get('jsonInput')?.value;
   }
 
-  toggleAddForm(): void {
-    this.showAddForm = !this.showAddForm;
-    this.evaluationError = '';
+  onPasteSample(): void {
+    this.form.get('jsonInput')?.setValue(this.sampleJson);
+  }
+
+  merge(): void {
+    this.errorMessage = '';
     this.successMessage = '';
+    this.mergedProfile = null;
+    this.lastResponseMeta = null;
+
+    const request = this.buildRequestFromInput();
+    if (!request) {
+      return;
+    }
+
+    this.parsedRequest = request;
+    this.loading = true;
+
+    this.mergerApi
+      .mergeSoftSkills(request)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: response => {
+          this.mergedProfile = response.mergedProfile;
+          this.lastResponseMeta = {
+            createdAt: response.createdAt,
+            saved: response.saved,
+            savedProfileId: response.savedProfileId
+          };
+          this.successMessage = response.saved
+            ? 'Merged profile created and saved.'
+            : 'Merged profile created (not persisted).';
+        },
+        error: err => {
+          // eslint-disable-next-line no-console
+          console.error('Merge request failed', err);
+          this.errorMessage =
+            err?.error?.message ||
+            'Unable to merge soft skills right now. Please check the JSON and try again.';
+        }
+      });
   }
 
-  saveEvaluation(): void {
-    if (!this.email) {
-      this.evaluationError = 'Please enter an email before adding evaluations.';
-      return;
+  private buildRequestFromInput(): SoftSkillMergeRequest | null {
+    const rawJson = (this.form.get('jsonInput')?.value || '').toString().trim();
+    const emailOverride = (this.form.get('emailOverride')?.value || '')
+      .toString()
+      .trim();
+    const saveMergedFlag = !!this.form.get('saveMerged')?.value;
+
+    if (!rawJson) {
+      this.errorMessage = 'Paste the AI JSON response before merging.';
+      return null;
     }
 
-    if (!this.newEvaluation.source || !this.newEvaluation.dimension) {
-      this.evaluationError = 'Please select both source and dimension.';
-      return;
+    let parsed: any;
+    try {
+      parsed = JSON.parse(rawJson);
+    } catch (err: any) {
+      this.errorMessage = `Invalid JSON: ${
+        err?.message || 'could not parse input.'
+      }`;
+      return null;
     }
 
-    if (
-      this.newEvaluation.score === null ||
-      this.newEvaluation.score < 0 ||
-      this.newEvaluation.score > 100
-    ) {
-      this.evaluationError = 'Score must be between 0 and 100.';
-      return;
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      this.errorMessage = 'Expected a JSON object with email and sources.';
+      return null;
     }
 
-    this.savingEvaluation = true;
-    this.evaluationError = '';
+    const email =
+      emailOverride ||
+      (parsed.email && parsed.email.toString().trim()) ||
+      '';
+    if (!email) {
+      this.errorMessage =
+        'Email is required. Provide it in the JSON under "email" or via the override field.';
+      return null;
+    }
 
-    const payload = {
-      email: this.email,
-      source: this.newEvaluation.source as SoftSkillSource,
-      dimension: this.newEvaluation.dimension as SoftSkillDimension,
-      score: this.newEvaluation.score,
-      comment: this.newEvaluation.comment || ''
+    const sourcesRaw: any[] = Array.isArray(parsed.sources)
+      ? parsed.sources
+      : [];
+    const sources = sourcesRaw
+      .map(src => ({
+        sourceType: (src?.sourceType || 'OTHER').toString().trim(),
+        label: src?.label ? src.label.toString().trim() : null,
+        content: (src?.content || '').toString().trim(),
+        dimensionScores: Array.isArray(src?.dimensionScores)
+          ? src.dimensionScores.map((d: any) => ({
+              dimension: (d?.dimension || '').toString().trim(),
+              score:
+                d?.score === undefined || d?.score === null
+                  ? null
+                  : Number(d.score),
+              explanation: d?.explanation
+                ? d.explanation.toString().trim()
+                : null
+            }))
+          : undefined
+      }))
+      .filter(s => !!s.content);
+
+    if (!sources.length) {
+      this.errorMessage =
+        'At least one source with "sourceType" and non-empty "content" is required.';
+      return null;
+    }
+
+    const request: SoftSkillMergeRequest = {
+      email,
+      jobContext: parsed.jobContext ? parsed.jobContext.toString().trim() : null,
+      sources,
+      saveMerged: parsed.saveMerged ?? saveMergedFlag
     };
 
-    this.softSkills.createEvaluation(payload).subscribe({
-      next: () => {
-        this.savingEvaluation = false;
-        this.successMessage = 'Evaluation saved.';
-        this.newEvaluation = {
-          source: 'HR',
-          dimension: 'ADAPTABILITY',
-          score: 70,
-          comment: ''
-        };
-        this.loadEvaluations();
-      },
-      error: (err) => {
-        this.savingEvaluation = false;
-        this.evaluationError =
-          err?.error?.message || 'Failed to save evaluation.';
-      }
-    });
+    return request;
   }
 
-  runMerge(): void {
-    if (!this.email) {
-      this.mergeError = 'Please enter an email before running the merge.';
-      return;
+  confidencePct(confidence: number | null | undefined): number {
+    if (
+      confidence === null ||
+      confidence === undefined ||
+      Number.isNaN(confidence)
+    ) {
+      return 0;
     }
-
-    this.mergingProfile = true;
-    this.mergeError = '';
-    this.successMessage = '';
-
-    this.softSkills.mergeProfile(this.email).subscribe({
-      next: () => {
-        this.mergingProfile = false;
-        this.successMessage = 'AI merge completed.';
-        this.loadMergedProfile();
-      },
-      error: (err) => {
-        this.mergingProfile = false;
-        this.mergeError =
-          err?.error?.message || 'Failed to run AI merge for this profile.';
-      }
-    });
+    const pct = Math.round(Math.min(Math.max(confidence, 0), 1) * 100);
+    return pct;
   }
 
-  trackByEvaluationId(_index: number, item: SoftSkillEvaluationResponse): string {
-    return item.id || `${item.email}-${item.dimension}-${item.source}-${item.createdAt}`;
+  confidenceTone(
+    confidence: number | null | undefined
+  ): 'low' | 'medium' | 'high' {
+    const value = confidence ?? 0;
+    if (value >= 0.67) return 'high';
+    if (value >= 0.34) return 'medium';
+    return 'low';
+  }
+
+  trackByDimension(_index: number, dim: MergedDimensionScore): string {
+    return dim?.dimension || String(_index);
   }
 }
-
-

@@ -1,33 +1,45 @@
 package ee.kerrete.ainterview.softskills.dto;
 
-import ee.kerrete.ainterview.softskills.enums.SoftSkillDimension;
-import ee.kerrete.ainterview.softskills.enums.SoftSkillSource;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-/**
- * Incoming request for storing a single soft-skill evaluation.
- */
+import java.util.List;
+
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class SoftSkillEvaluationRequest {
 
-    /**
-     * Candidate email this evaluation belongs to.
-     */
+    @Email
+    @NotBlank
     private String email;
 
-    private SoftSkillDimension dimension;
+    @NotBlank
+    private String sourceType;
 
-    private SoftSkillSource source;
+    @Valid
+    @NotEmpty
+    private List<SoftSkillScoreRequest> scores;
 
-    /**
-     * Score in range [0, 100].
-     */
-    private Integer score;
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class SoftSkillScoreRequest {
+        @NotBlank
+        private String dimensionKey;
 
-    /**
-     * Free-text comment from the evaluator.
-     */
-    private String comment;
+        @NotNull
+        private Integer score;
+
+        private String explanation;
+    }
 }
-
-

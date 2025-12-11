@@ -8,7 +8,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: false
     properties:
       hibernate:
@@ -23,7 +23,7 @@ spring:
         web-allow-others: true
 
   liquibase:
-    enabled: false
+    enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
     drop-first: false
     clear-checksums: false

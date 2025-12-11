@@ -1,6 +1,5 @@
 package ee.kerrete.ainterview.softskills.entity;
 
-import ee.kerrete.ainterview.softskills.enums.SoftSkillDimension;
 import ee.kerrete.ainterview.softskills.enums.SoftSkillSource;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "soft_skill_evaluation")
+@Table(name = "legacy_soft_skill_evaluation")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -37,9 +37,9 @@ public class SoftSkillEvaluation {
     @Column(nullable = false, length = 255)
     private String email;
 
-    @Enumerated(EnumType.STRING)
+    @NotBlank
     @Column(nullable = false, length = 100)
-    private SoftSkillDimension dimension;
+    private String dimension;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)

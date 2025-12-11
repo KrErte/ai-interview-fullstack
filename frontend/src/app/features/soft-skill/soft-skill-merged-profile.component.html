@@ -1,0 +1,103 @@
+<div class="space-y-4">
+  <div class="rounded-2xl border border-slate-800 bg-slate-800/60 p-5 shadow">
+    <h2 class="mb-4 text-lg font-semibold text-slate-100">Merged profile</h2>
+    <form
+      class="grid gap-4 md:grid-cols-[1.5fr,auto]"
+      [formGroup]="form"
+      (ngSubmit)="loadProfile()"
+    >
+      <div class="space-y-2">
+        <label class="block text-sm text-slate-300">Candidate email *</label>
+        <input
+          type="email"
+          class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+          formControlName="email"
+          placeholder="candidate@example.com"
+        />
+        <p *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-xs text-rose-300">
+          Please enter a valid email.
+        </p>
+      </div>
+
+      <div class="flex items-end">
+        <button
+          type="submit"
+          class="w-full rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-60"
+          [disabled]="loading"
+        >
+          <span *ngIf="loading">Loading…</span>
+          <span *ngIf="!loading">Load merged profile</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="errorMessage" class="rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-rose-200">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="loading" class="rounded-xl border border-slate-800 bg-slate-800/60 px-4 py-3 text-sm text-slate-200">
+    Loading merged profile...
+  </div>
+
+  <ng-container *ngIf="!loading && mergedProfile">
+    <div class="rounded-2xl border border-slate-800 bg-slate-800/70 p-5 shadow space-y-3">
+      <div class="flex flex-wrap items-center gap-2">
+        <div class="text-lg font-semibold text-slate-100">
+          {{ mergedProfile.candidateEmail }}
+        </div>
+      </div>
+      <p class="text-sm text-slate-200 leading-relaxed">
+        {{ mergedProfile.summary || 'No summary available yet for this candidate.' }}
+      </p>
+    </div>
+
+    <div *ngIf="hasDimensions" class="grid gap-4 md:grid-cols-2">
+      <div
+        *ngFor="let dimension of mergedProfile?.dimensions"
+        class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow"
+      >
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-sm uppercase tracking-wide text-emerald-300">
+              {{ labelForDimension(dimension.dimensionKey) }}
+            </p>
+            <p class="text-xs text-slate-400">{{ dimension.dimensionKey }}</p>
+            <p class="mt-2 inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold"
+               [ngClass]="confidenceBadgeClass(dimension.confidence)">
+              {{ dimension.confidence | titlecase }} confidence
+            </p>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-semibold text-slate-100">
+              {{ dimension.mergedScore ?? 'N/A' }}/5
+            </div>
+            <div class="mt-1 inline-flex items-center gap-1 rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-300">
+              <span>{{ dimension.sourcesMerged }}</span>
+              <span>sources</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!hasDimensions" class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 text-center text-slate-300">
+      <div class="text-3xl">🧭</div>
+      <p class="mt-3 text-lg font-semibold text-slate-100">No evaluations found yet.</p>
+      <p class="text-sm text-slate-400">
+        Try adding a new Soft Skill evaluation first.
+      </p>
+    </div>
+  </ng-container>
+
+  <div *ngIf="!loading && hasSubmitted && !mergedProfile" class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 text-center text-slate-300">
+    <div class="text-3xl">🔍</div>
+    <p class="mt-3 text-lg font-semibold text-slate-100">
+      No profile loaded yet.
+    </p>
+    <p class="text-sm text-slate-400">
+      Enter a candidate email and load the merged profile.
+    </p>
+  </div>
+</div>
+

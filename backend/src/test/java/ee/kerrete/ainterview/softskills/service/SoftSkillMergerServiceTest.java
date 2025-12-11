@@ -17,6 +17,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@SuppressWarnings("all")
 class SoftSkillMergerServiceTest {
 
     private InMemoryEvaluationRepository evaluationRepository;
@@ -37,7 +38,7 @@ class SoftSkillMergerServiceTest {
         evaluationRepository.storage.add(
                 SoftSkillEvaluation.builder()
                         .email(email)
-                        .dimension(SoftSkillDimension.COMMUNICATION)
+                        .dimension("communication")
                         .source(SoftSkillSource.HR)
                         .score(80)
                         .comment("Strong communicator.")
@@ -46,7 +47,7 @@ class SoftSkillMergerServiceTest {
         evaluationRepository.storage.add(
                 SoftSkillEvaluation.builder()
                         .email(email)
-                        .dimension(SoftSkillDimension.COMMUNICATION)
+                        .dimension("communication")
                         .source(SoftSkillSource.TECH_LEAD)
                         .score(60)
                         .comment("Could be clearer in RFCs.")
@@ -55,7 +56,7 @@ class SoftSkillMergerServiceTest {
         evaluationRepository.storage.add(
             SoftSkillEvaluation.builder()
                     .email(email)
-                    .dimension(SoftSkillDimension.TEAMWORK)
+                    .dimension("teamwork")
                     .source(SoftSkillSource.TEAM_LEAD)
                     .score(90)
                     .comment("Great collaborator.")
@@ -92,6 +93,7 @@ class SoftSkillMergerServiceTest {
      * Minimal in-memory implementation of SoftSkillEvaluationRepository
      * for exercising the merge logic without Spring context.
      */
+    @SuppressWarnings("NullableProblems")
     private static class InMemoryEvaluationRepository implements SoftSkillEvaluationRepository {
         private final List<SoftSkillEvaluation> storage = new ArrayList<>();
 
@@ -105,7 +107,9 @@ class SoftSkillMergerServiceTest {
         @Override
         public List<SoftSkillEvaluation> findByEmailAndDimension(String email, SoftSkillDimension dimension) {
             return storage.stream()
-                    .filter(e -> email.equals(e.getEmail()) && dimension == e.getDimension())
+                    .filter(e -> email.equals(e.getEmail())
+                        && dimension != null
+                        && dimension.name().equalsIgnoreCase(String.valueOf(e.getDimension())))
                     .toList();
         }
 
@@ -239,6 +243,7 @@ class SoftSkillMergerServiceTest {
      * Minimal in-memory implementation of SoftSkillMergedProfileRepository
      * for exercising the merge logic without Spring context.
      */
+    @SuppressWarnings("NullableProblems")
     private static class InMemoryMergedProfileRepository implements SoftSkillMergedProfileRepository {
 
         private SoftSkillMergedProfile profile;

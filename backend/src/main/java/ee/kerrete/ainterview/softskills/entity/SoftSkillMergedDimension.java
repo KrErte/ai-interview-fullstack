@@ -20,7 +20,7 @@ import org.hibernate.annotations.UuidGenerator;
 import java.util.UUID;
 
 @Entity
-@Table(name = "soft_skill_merged_dimension")
+@Table(name = "legacy_soft_skill_merged_dimension")
 @Getter
 @Setter
 @NoArgsConstructor

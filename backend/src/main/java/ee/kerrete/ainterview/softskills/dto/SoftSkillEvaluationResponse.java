@@ -1,6 +1,5 @@
 package ee.kerrete.ainterview.softskills.dto;
 
-import ee.kerrete.ainterview.softskills.enums.SoftSkillDimension;
 import ee.kerrete.ainterview.softskills.enums.SoftSkillSource;
 import lombok.Builder;
 import lombok.Value;
@@ -14,7 +13,7 @@ public class SoftSkillEvaluationResponse {
 
     UUID id;
     String email;
-    SoftSkillDimension dimension;
+    String dimension;
     SoftSkillSource source;
     Integer score;
     String comment;

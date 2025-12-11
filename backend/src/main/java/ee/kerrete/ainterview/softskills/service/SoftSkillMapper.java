@@ -1,6 +1,5 @@
 package ee.kerrete.ainterview.softskills.service;
 
-import ee.kerrete.ainterview.softskills.dto.SoftSkillEvaluationRequest;
 import ee.kerrete.ainterview.softskills.dto.SoftSkillEvaluationResponse;
 import ee.kerrete.ainterview.softskills.dto.SoftSkillMergedDimensionDto;
 import ee.kerrete.ainterview.softskills.dto.SoftSkillMergedProfileResponse;
@@ -18,19 +17,6 @@ public final class SoftSkillMapper {
 
     private SoftSkillMapper() {
         // utility
-    }
-
-    public static SoftSkillEvaluation toEntity(SoftSkillEvaluationRequest request) {
-        if (request == null) {
-            return null;
-        }
-        return SoftSkillEvaluation.builder()
-                .email(request.getEmail())
-                .dimension(request.getDimension())
-                .source(request.getSource())
-                .score(request.getScore())
-                .comment(request.getComment())
-                .build();
     }
 
     public static SoftSkillEvaluationResponse toDto(SoftSkillEvaluation entity) {
@@ -84,6 +70,7 @@ public final class SoftSkillMapper {
                 .dimensions(toDimensionDtoList(entity.getDimensions()))
                 .build();
     }
+
 }
 
 

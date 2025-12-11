@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2025-12-13-soft-skill-dimension-catalog" author="cursor-backend-agent">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="soft_skill_dimension"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="soft_skill_dimension">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dimension_key" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="label" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="definition" type="CLOB"/>
+            <column name="high_signals" type="CLOB"/>
+            <column name="low_signals" type="CLOB"/>
+            <column name="interview_signals" type="CLOB"/>
+            <column name="coaching_ideas" type="CLOB"/>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2025-12-13-soft-skill-dimension-catalog-add-columns" author="cursor-backend-agent">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="soft_skill_dimension"/>
+        </preConditions>
+        <addColumn tableName="soft_skill_dimension">
+            <column name="definition" type="CLOB"/>
+        </addColumn>
+        <addColumn tableName="soft_skill_dimension">
+            <column name="high_signals" type="CLOB"/>
+        </addColumn>
+        <addColumn tableName="soft_skill_dimension">
+            <column name="low_signals" type="CLOB"/>
+        </addColumn>
+        <addColumn tableName="soft_skill_dimension">
+            <column name="interview_signals" type="CLOB"/>
+        </addColumn>
+        <addColumn tableName="soft_skill_dimension">
+            <column name="coaching_ideas" type="CLOB"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
+

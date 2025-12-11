@@ -2,9 +2,38 @@
   display: block;
 }
 
-.soft-skill-table {
-  max-height: 20rem;
-  overflow: auto;
+.soft-skill-textarea {
+  min-height: 12rem;
+  resize: vertical;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
 }
 
+.glass-card {
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(10px);
+  border-radius: 0.75rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.pill-emerald {
+  background: rgba(16, 185, 129, 0.12);
+  color: #a7f3d0;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.pill-amber {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fcd34d;
+  border-color: rgba(251, 191, 36, 0.35);
+}
 
