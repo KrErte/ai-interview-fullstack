@@ -100,9 +100,25 @@
             <p class="text-xs uppercase tracking-wide text-emerald-300">Active interview</p>
             <h2 class="text-sm font-semibold text-slate-100">Ghost Interviewer session</h2>
           </div>
-          <span class="rounded-full bg-slate-800 px-3 py-1 text-[11px] text-emerald-200">
-            {{ interviewerStyle }}
-          </span>
+          <div class="flex flex-col items-end gap-1 text-[11px]">
+            <span class="inline-flex items-center gap-1 rounded-full bg-slate-800 px-3 py-1 text-emerald-200">
+              <span
+                class="inline-block h-1.5 w-1.5 rounded-full"
+                [ngClass]="{
+                  'bg-emerald-400 animate-pulse': currentQuestion && !loading && !summary,
+                  'bg-amber-400 animate-pulse': loading && !summary,
+                  'bg-slate-500': !currentQuestion && !summary
+                }"
+              ></span>
+              <span *ngIf="!summary && currentQuestion && !loading">Live · Waiting for your answer</span>
+              <span *ngIf="!summary && currentQuestion && loading">AI analyzing your answer…</span>
+              <span *ngIf="!summary && !currentQuestion && !loading">Idle · Start an interview on the left</span>
+              <span *ngIf="summary">Session finished</span>
+            </span>
+            <span class="rounded-full bg-slate-900/80 px-3 py-1 text-slate-300">
+              Style: {{ interviewerStyle }}
+            </span>
+          </div>
         </div>
 
         <ng-container *ngIf="summary; else liveInterview">
@@ -231,6 +247,20 @@
                   Session: {{ currentSessionId || '—' }}
                 </span>
               </div>
+              <div *ngIf="totalQuestions && currentQuestionNumber" class="mt-1 space-y-1">
+                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                  <span>Progress</span>
+                  <span>
+                    {{ currentQuestionNumber }} / {{ totalQuestions }}
+                  </span>
+                </div>
+                <div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-800/80">
+                  <div
+                    class="h-1.5 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 transition-all duration-500"
+                    [style.width.%]="(currentQuestionNumber! / (totalQuestions || 1)) * 100"
+                  ></div>
+                </div>
+              </div>
               <p class="text-base font-semibold text-slate-100">
                 {{ currentQuestion?.question }}
               </p>
@@ -261,6 +291,10 @@
                 </span>
               </button>
 
+              <p *ngIf="loading" class="text-[11px] text-slate-400">
+                The AI is scoring your answer against soft-skill dimensions and preparing the next question.
+              </p>
+
               <div *ngIf="lastLocalAnalysis" class="rounded-lg border border-slate-800 bg-slate-900/60 p-3 space-y-2">
                 <p class="text-[11px] uppercase tracking-wide text-slate-400">Signals</p>
                 <div class="flex flex-wrap gap-2 text-xs">
@@ -276,6 +310,41 @@
                   </ng-container>
                 </div>
               </div>
+
+              <p *ngIf="error" class="rounded-md border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-xs text-rose-100">
+                {{ error }}
+              </p>
+            </div>
+
+            <div *ngIf="answersHistory.length" class="rounded-xl border border-slate-800 bg-slate-950/60 p-4 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="text-xs font-semibold uppercase tracking-wide text-slate-300">
+                  Transcript
+                </h3>
+                <span class="text-[11px] text-slate-400">
+                  {{ answersHistory.length }} answer{{ answersHistory.length === 1 ? '' : 's' }}
+                  logged
+                </span>
+              </div>
+              <ol class="space-y-3 max-h-56 overflow-y-auto pr-1">
+                <li
+                  *ngFor="let entry of answersHistory"
+                  class="rounded-lg border border-slate-800 bg-slate-950/80 p-3 space-y-1 text-sm"
+                >
+                  <p class="text-[11px] font-medium uppercase tracking-wide text-emerald-300">
+                    Question {{ entry.questionNumber }}
+                  </p>
+                  <p class="text-slate-100">
+                    {{ entry.question }}
+                  </p>
+                  <p class="mt-1 text-[11px] font-medium uppercase tracking-wide text-slate-400">
+                    Your answer
+                  </p>
+                  <p class="whitespace-pre-line text-slate-200">
+                    {{ entry.answer }}
+                  </p>
+                </li>
+              </ol>
             </div>
           </ng-container>
         </ng-template>

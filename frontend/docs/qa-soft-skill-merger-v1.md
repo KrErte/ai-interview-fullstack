@@ -13,3 +13,9 @@ Backend endpoint expectation:
 - `POST /api/soft-skills/merge` (falls back to `/api/soft-skill/merge` on 404/405).
 - Response must include `mergedProfile.summary`, `strengths[]`, `risks[]`, `dimensionScoresMerged[]` with `mergedScore` 1–5 and `confidence` 0–1, plus optional `meta.overallConfidence`.
 
+
+
+
+
+
+

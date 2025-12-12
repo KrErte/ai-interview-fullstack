@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2025-12-14-add-interview-session-progress" author="backend-agent">
+        <addColumn tableName="interview_session">
+            <column name="interviewer_style" type="VARCHAR(50)"/>
+            <column name="last1_answer" type="CLOB"/>
+            <column name="last3_answers" type="CLOB"/>
+            <column name="last5_answers" type="CLOB"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
+

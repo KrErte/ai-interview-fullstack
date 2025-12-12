@@ -1,0 +1,497 @@
+[
+    {
+      "key": "communication",
+      "label": "Communication",
+      "definition": "The ability to express ideas clearly and tailor communication to the audience.",
+      "highSignals": [
+        "Structures thoughts logically",
+        "Uses clear, precise language",
+        "Checks for understanding",
+        "Adapts vocabulary to audience",
+        "Provides context proactively"
+      ],
+      "lowSignals": [
+        "Frequently causes misunderstandings",
+        "Uses jargon unnecessarily",
+        "Assumes others know missing context",
+        "Provides incomplete explanations",
+        "Rambles or loses the main point"
+      ],
+      "interviewSignals": [
+        "Answers are structured (e.g., STAR)",
+        "Candidate asks clarifying questions",
+        "Technical concepts are communicated simply",
+        "Examples given include communication challenges",
+        "Candidate summarizes understanding back to interviewer"
+      ],
+      "coachingIdeas": [
+        "Practice the STAR method",
+        "Record yourself explaining a concept",
+        "Ask recipients to repeat key points",
+        "Use written follow-ups for clarity",
+        "Join a speaking or communication workshop"
+      ]
+    },
+    {
+      "key": "ownership",
+      "label": "Ownership",
+      "definition": "Taking full responsibility for outcomes and driving tasks to completion without constant oversight.",
+      "highSignals": [
+        "Volunteers for challenging tasks",
+        "Acknowledges mistakes openly",
+        "Follows up without being asked",
+        "Fixes problems outside immediate scope",
+        "Communicates blockers early"
+      ],
+      "lowSignals": [
+        "Blames external factors for failures",
+        "Waits to be told what to do",
+        "Drops tasks when they get hard",
+        "Avoids accountability",
+        "Requires constant check-ins"
+      ],
+      "interviewSignals": [
+        "Uses 'I' when describing accomplishments",
+        "Describes personal actions, not just team outcomes",
+        "Shows awareness of end-to-end impact",
+        "Explains how they handled setbacks",
+        "Demonstrates follow-through in examples"
+      ],
+      "coachingIdeas": [
+        "Own one small project end-to-end",
+        "Practice blameless post-mortems",
+        "Set public commitments and track them",
+        "Adopt one 'orphan problem' weekly",
+        "Journal about missed initiative opportunities"
+      ]
+    },
+    {
+      "key": "conflict_management",
+      "label": "Conflict Management",
+      "definition": "Navigating disagreements constructively while maintaining professional relationships.",
+      "highSignals": [
+        "Addresses tensions early",
+        "Separates people from problems",
+        "Seeks to understand before defending",
+        "Proposes compromise solutions",
+        "Stays calm in heated discussions"
+      ],
+      "lowSignals": [
+        "Avoids difficult conversations",
+        "Becomes defensive when challenged",
+        "Holds grudges",
+        "Escalates prematurely to management",
+        "Takes disagreements personally"
+      ],
+      "interviewSignals": [
+        "Provides specific conflict resolution examples",
+        "Describes other party's perspective fairly",
+        "Shows direct conversation, not avoidance",
+        "Demonstrates learning from past conflicts",
+        "Balances assertiveness with empathy"
+      ],
+      "coachingIdeas": [
+        "Practice steel-manning opposing views",
+        "Use 'I notice, I feel, I need' framework",
+        "Role-play difficult conversations",
+        "Study interest-based negotiation",
+        "Identify personal conflict triggers"
+      ]
+    },
+    {
+      "key": "collaboration",
+      "label": "Collaboration",
+      "definition": "Working effectively with others to achieve shared goals while balancing individual and team success.",
+      "highSignals": [
+        "Seeks input from diverse teammates",
+        "Shares credit generously",
+        "Adapts style to complement others",
+        "Makes space for quieter voices",
+        "Builds on others' ideas"
+      ],
+      "lowSignals": [
+        "Works in isolation unnecessarily",
+        "Dominates discussions",
+        "Hoards information",
+        "Prioritizes personal recognition",
+        "Struggles to integrate feedback"
+      ],
+      "interviewSignals": [
+        "Uses 'we' for team accomplishments",
+        "Credits specific teammates",
+        "Describes adapting to team needs",
+        "Shows awareness of role in team context",
+        "Gives examples of helping others succeed"
+      ],
+      "coachingIdeas": [
+        "Pair with different team members regularly",
+        "Practice active listening in meetings",
+        "Ask 'Who else should be involved?'",
+        "Document and share learnings",
+        "Request collaboration feedback from peers"
+      ]
+    },
+    {
+      "key": "stress_resilience",
+      "label": "Stress Resilience",
+      "definition": "Maintaining effectiveness and composure under pressure, deadlines, or setbacks.",
+      "highSignals": [
+        "Maintains quality under pressure",
+        "Stays solution-focused in crises",
+        "Communicates capacity clearly when overloaded",
+        "Bounces back quickly from setbacks",
+        "Uses healthy coping strategies"
+      ],
+      "lowSignals": [
+        "Quality drops under pressure",
+        "Becomes anxious or short-tempered",
+        "Shuts down facing difficulties",
+        "Struggles to recover momentum",
+        "Transfers stress to teammates"
+      ],
+      "interviewSignals": [
+        "Describes pressure situations calmly",
+        "Shows maintained performance in tough times",
+        "Demonstrates self-awareness of stress responses",
+        "Provides recovery-from-failure examples",
+        "Discusses sustainability practices"
+      ],
+      "coachingIdeas": [
+        "Develop a personal stress protocol",
+        "Reframe challenges as growth opportunities",
+        "Build regular recovery into routine",
+        "Identify early burnout warning signs",
+        "Strengthen support network"
+      ]
+    },
+    {
+      "key": "learning_mindset",
+      "label": "Learning Mindset",
+      "definition": "Commitment to continuous growth through curiosity, openness, and learning from experience.",
+      "highSignals": [
+        "Actively seeks and acts on feedback",
+        "Pursues learning beyond job requirements",
+        "Asks thoughtful questions",
+        "Treats failures as learning opportunities",
+        "Shares knowledge with others"
+      ],
+      "lowSignals": [
+        "Becomes defensive about feedback",
+        "Sticks to familiar approaches",
+        "Shows little curiosity",
+        "Repeats same mistakes",
+        "Resists new tools or methods"
+      ],
+      "interviewSignals": [
+        "Describes recent skills learned",
+        "Shows enthusiasm for unfamiliar topics",
+        "Gives examples of changing based on feedback",
+        "Asks insightful questions about role",
+        "Discusses failures with clear takeaways"
+      ],
+      "coachingIdeas": [
+        "Set quarterly learning goals",
+        "Keep a lessons-learned journal",
+        "Teach something new monthly",
+        "Take on unfamiliar-skill projects",
+        "Request feedback after deliverables"
+      ]
+    },
+    {
+      "key": "stakeholder_management",
+      "label": "Stakeholder Management",
+      "definition": "Identifying and engaging effectively with those who influence or are affected by your work.",
+      "highSignals": [
+        "Identifies stakeholders early",
+        "Tailors communication to each stakeholder",
+        "Manages expectations proactively",
+        "Builds trust through consistency",
+        "Navigates conflicting priorities well"
+      ],
+      "lowSignals": [
+        "Surprises stakeholders with bad news",
+        "Misses key stakeholders until problems arise",
+        "Over-promises and under-delivers",
+        "Creates confusion through poor communication",
+        "Avoids difficult stakeholder conversations"
+      ],
+      "interviewSignals": [
+        "Describes stakeholder mapping at project start",
+        "Shows managing up and across org lines",
+        "Handles conflicting priorities in examples",
+        "Provides trust-building evidence",
+        "Discusses proactive communication strategies"
+      ],
+      "coachingIdeas": [
+        "Create stakeholder maps for initiatives",
+        "Schedule regular proactive check-ins",
+        "Practice delivering difficult news",
+        "Build relationships before you need them",
+        "Document stakeholder communication preferences"
+      ]
+    },
+    {
+      "key": "autonomy",
+      "label": "Autonomy",
+      "definition": "Working independently with sound judgment while knowing when to escalate or seek input.",
+      "highSignals": [
+        "Makes progress without explicit instructions",
+        "Researches before asking for help",
+        "Knows when to decide vs. consult",
+        "Self-organizes work effectively",
+        "Seeks goal alignment, then executes"
+      ],
+      "lowSignals": [
+        "Requires detailed instructions",
+        "Asks easily-researched questions",
+        "Either decides alone or escalates everything",
+        "Loses productivity without structure",
+        "Waits for permission unnecessarily"
+      ],
+      "interviewSignals": [
+        "Describes self-directed projects",
+        "Shows figuring things out independently",
+        "Demonstrates appropriate escalation judgment",
+        "Provides self-organization evidence",
+        "Discusses staying aligned while autonomous"
+      ],
+      "coachingIdeas": [
+        "Research 15 min before asking questions",
+        "Propose solutions alongside problems",
+        "Create personal tracking systems",
+        "Discuss decision boundaries with manager",
+        "Practice faster small decisions"
+      ]
+    },
+    {
+      "key": "technical_initiative",
+      "label": "Technical Initiative",
+      "definition": "Proactively identifying and addressing technical improvements or opportunities without being asked.",
+      "highSignals": [
+        "Identifies and addresses technical debt",
+        "Experiments with beneficial new tools",
+        "Suggests process or architecture improvements",
+        "Creates documentation or tooling for team",
+        "Stays current and shares learnings"
+      ],
+      "lowSignals": [
+        "Only implements what's specified",
+        "Ignores code smells or debt",
+        "Shows no interest in improvements",
+        "Waits for others to define direction",
+        "Resists new technical approaches"
+      ],
+      "interviewSignals": [
+        "Describes self-initiated improvements",
+        "Shows going beyond requirements",
+        "Discusses technologies explored personally",
+        "Provides team practice contributions",
+        "Demonstrates domain trend awareness"
+      ],
+      "coachingIdeas": [
+        "Dedicate time for technical exploration",
+        "Maintain and advocate for improvement backlog",
+        "Give suggestions in code reviews",
+        "Write internal tech posts or give talks",
+        "Volunteer for proof-of-concept work"
+      ]
+    },
+    {
+      "key": "reliability",
+      "label": "Reliability",
+      "definition": "Consistently delivering on commitments and being dependable in day-to-day work.",
+      "highSignals": [
+        "Meets deadlines or communicates early",
+        "Follows through on all commitments",
+        "Maintains consistent quality",
+        "Dependable during critical moments",
+        "Prepared for meetings, delivers action items"
+      ],
+      "lowSignals": [
+        "Misses deadlines without warning",
+        "Makes commitments but doesn't follow through",
+        "Inconsistent work quality",
+        "Often unavailable when needed",
+        "Forgets action items between meetings"
+      ],
+      "interviewSignals": [
+        "Arrives on time and prepared",
+        "References confirm dependability",
+        "Describes commitment tracking systems",
+        "Shows follow-through under difficulty",
+        "Discusses handling competing priorities"
+      ],
+      "coachingIdeas": [
+        "Use one system for all commitments",
+        "Under-promise and over-deliver",
+        "Communicate at first sign of risk",
+        "Build buffer time into estimates",
+        "Review and close out commitments regularly"
+      ]
+    },
+    {
+      "key": "adaptability",
+      "label": "Adaptability",
+      "definition": "Adjusting effectively to changing circumstances, requirements, or environments.",
+      "highSignals": [
+        "Adjusts quickly to priority changes",
+        "Stays productive during transitions",
+        "Embraces new tools and processes",
+        "Helps others navigate change",
+        "Finds opportunities in disruption"
+      ],
+      "lowSignals": [
+        "Frustrated when plans change",
+        "Clings to old ways of working",
+        "Complains rather than contributing",
+        "Struggles with ambiguity",
+        "Resists new responsibilities"
+      ],
+      "interviewSignals": [
+        "Describes navigating changes positively",
+        "Shows flexibility during interview",
+        "Gives skill-pivot examples",
+        "Discusses organizational change experience",
+        "Comfortable with hypothetical ambiguity"
+      ],
+      "coachingIdeas": [
+        "Reframe change by listing benefits",
+        "Build skills outside comfort zone",
+        "Practice 'yes, and' thinking",
+        "Study successful transition stories",
+        "Volunteer for unfamiliar projects"
+      ]
+    },
+    {
+      "key": "empathy",
+      "label": "Empathy",
+      "definition": "Understanding and considering others' perspectives, feelings, and needs in professional contexts.",
+      "highSignals": [
+        "Considers impact on others before acting",
+        "Listens to understand, not just respond",
+        "Adjusts approach to emotional context",
+        "Advocates for user/customer needs",
+        "Supports teammates in difficult times"
+      ],
+      "lowSignals": [
+        "Dismisses others' concerns",
+        "Decides without considering impact",
+        "Struggles to understand different reactions",
+        "Ignores human factors for pure logic",
+        "Appears indifferent to colleagues' challenges"
+      ],
+      "interviewSignals": [
+        "Describes situations from others' views",
+        "Shows awareness of impact on teammates",
+        "Discusses user needs authentically",
+        "Demonstrates active listening",
+        "Provides colleague-support examples"
+      ],
+      "coachingIdeas": [
+        "Practice perspective-taking exercises",
+        "Ask 'What do you need?' before solving",
+        "Conduct user interviews regularly",
+        "Read fiction to build perspective skills",
+        "Reflect on received empathy moments"
+      ]
+    },
+    {
+      "key": "time_management",
+      "label": "Time Management",
+      "definition": "Organizing time effectively to prioritize important work and meet commitments.",
+      "highSignals": [
+        "Prioritizes by impact, not urgency",
+        "Breaks projects into milestones",
+        "Protects focused work time",
+        "Finishes with time for review",
+        "Says no to low-priority requests"
+      ],
+      "lowSignals": [
+        "Rushes at the last minute",
+        "Spends time on low-impact work",
+        "Cannot estimate task duration",
+        "Allows constant interruptions",
+        "Overcommits regularly"
+      ],
+      "interviewSignals": [
+        "Describes clear prioritization systems",
+        "Shows on-schedule complex deliveries",
+        "Discusses competing priority handling",
+        "Gives scope negotiation examples",
+        "Demonstrates realistic effort estimates"
+      ],
+      "coachingIdeas": [
+        "Use time-boxing for tasks",
+        "Block calendar for deep work",
+        "Track actual vs. estimated time",
+        "Apply the two-minute rule",
+        "Identify and protect peak hours"
+      ]
+    },
+    {
+      "key": "decision_making",
+      "label": "Decision Making",
+      "definition": "Making sound, timely decisions with appropriate analysis and accountability for outcomes.",
+      "highSignals": [
+        "Decides with appropriate speed",
+        "Gathers input without over-analyzing",
+        "Communicates decisions with reasoning",
+        "Takes accountability for outcomes",
+        "Adjusts when new information emerges"
+      ],
+      "lowSignals": [
+        "Avoids or delays decisions",
+        "Decides impulsively without consideration",
+        "Fails to communicate decisions",
+        "Blames others for poor outcomes",
+        "Sticks to wrong decisions rigidly"
+      ],
+      "interviewSignals": [
+        "Describes decision-making process clearly",
+        "Balances analysis with action",
+        "Involves others appropriately",
+        "Gives decision-reversal examples",
+        "Owns both successes and failures"
+      ],
+      "coachingIdeas": [
+        "Classify decisions as reversible or not",
+        "Set deadlines to avoid paralysis",
+        "Write reasoning before deciding",
+        "Use the 10/10/10 method",
+        "Conduct quarterly decision reviews"
+      ]
+    },
+    {
+      "key": "feedback_receptivity",
+      "label": "Feedback Receptivity",
+      "definition": "Receiving and acting on feedback constructively without defensiveness.",
+      "highSignals": [
+        "Thanks people for feedback",
+        "Shows visible behavior change",
+        "Seeks feedback proactively",
+        "Separates work critique from personal",
+        "Creates safety for honest feedback"
+      ],
+      "lowSignals": [
+        "Becomes defensive or makes excuses",
+        "Dismisses feedback as unfair",
+        "Receives feedback but doesn't change",
+        "Avoids feedback situations",
+        "Reacts negatively, discouraging honesty"
+      ],
+      "interviewSignals": [
+        "Describes feedback received and actions taken",
+        "Responds well to interviewer challenges",
+        "Shows curiosity about improvement areas",
+        "Discusses feedback-seeking behaviors",
+        "Demonstrates humility about limitations"
+      ],
+      "coachingIdeas": [
+        "Say 'Thank you' before responding",
+        "Wait 24 hours before judging feedback",
+        "Request feedback after each project",
+        "Keep a feedback log for patterns",
+        "Share development goals openly"
+      ]
+    }
+  ]

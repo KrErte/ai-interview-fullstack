@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/soft-skills")
+@RequestMapping({"/api/soft-skills", "/api/soft-skill"})
 @RequiredArgsConstructor
 public class SoftSkillDimensionController {
 
