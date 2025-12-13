@@ -1,0 +1,169 @@
+<ng-container *ngIf="state$ | async as state">
+  <div
+    *ngIf="state.isDrawerOpen"
+    class="fixed inset-0 z-40 flex justify-end bg-black/40"
+  >
+    <div
+      class="flex h-full w-full max-w-[520px] flex-col border-l border-slate-800 bg-slate-950/95 text-slate-100 shadow-2xl"
+    >
+      <div class="flex items-center justify-between border-b border-slate-800 px-4 py-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide text-emerald-400">
+            Global Control Room
+          </p>
+          <p class="text-xs text-slate-400">
+            Inspect raw interview traffic for this session.
+          </p>
+        </div>
+        <button
+          type="button"
+          (click)="close()"
+          class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 hover:border-emerald-400 hover:text-emerald-200"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="flex-1 space-y-4 overflow-y-auto px-4 py-4 text-xs">
+        <section class="rounded-lg border border-slate-800 bg-slate-900/80 p-3">
+          <h3 class="mb-2 text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+            Session summary
+          </h3>
+          <div class="space-y-1 text-[11px] text-slate-300">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400">Session ID</span>
+              <span class="truncate text-slate-100">
+                {{ state.sessionInfo?.sessionId || '—' }}
+              </span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400">Session UUID</span>
+              <span class="truncate text-emerald-300">
+                {{ state.sessionInfo?.sessionUuid || '—' }}
+              </span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400">Email</span>
+              <span class="truncate text-slate-100">
+                {{ state.sessionInfo?.email || '—' }}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-lg border border-slate-800 bg-slate-900/80 p-3">
+          <div class="mb-2 flex items-center justify-between">
+            <h3 class="text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+              Last request
+            </h3>
+            <button
+              type="button"
+              (click)="copyJson(state.lastRequest)"
+              class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-[11px] text-slate-300 hover:border-emerald-400 hover:text-emerald-200"
+            >
+              Copy JSON
+            </button>
+          </div>
+          <pre
+            class="max-h-48 overflow-auto rounded-md bg-slate-950/80 p-2 font-mono text-[11px] text-slate-100"
+          >{{ formatJson(state.lastRequest) }}</pre>
+        </section>
+
+        <section class="rounded-lg border border-slate-800 bg-slate-900/80 p-3">
+          <div class="mb-2 flex items-center justify-between">
+            <h3 class="text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+              Last response
+            </h3>
+            <button
+              type="button"
+              (click)="copyJson(state.lastResponse)"
+              class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-[11px] text-slate-300 hover:border-emerald-400 hover:text-emerald-200"
+            >
+              Copy JSON
+            </button>
+          </div>
+          <pre
+            class="max-h-48 overflow-auto rounded-md bg-slate-950/80 p-2 font-mono text-[11px] text-slate-100"
+          >{{ formatJson(state.lastResponse) }}</pre>
+        </section>
+
+        <section
+          *ngIf="state.lastResponse as resp"
+          class="rounded-lg border border-slate-800 bg-slate-900/80 p-3"
+        >
+          <h3 class="mb-2 text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+            Decision & progress
+          </h3>
+          <div class="space-y-1 text-[11px] text-slate-300">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400">Decision</span>
+              <span class="truncate text-emerald-300">
+                {{ resp.decision || '—' }}
+              </span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400">Question #</span>
+              <span class="truncate text-slate-100">
+                {{ resp.progress?.questionCount ?? '—' }}
+              </span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400">Current dimension</span>
+              <span class="truncate text-slate-100">
+                {{ resp.progress?.currentDimension || '—' }}
+              </span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400">Last1 avg</span>
+              <span class="truncate text-slate-100">
+                {{ resp.progress?.last1Average ?? '—' }}
+              </span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400">Last3 avg</span>
+              <span class="truncate text-slate-100">
+                {{ resp.progress?.last3Average ?? '—' }}
+              </span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400">Complete</span>
+              <span class="truncate text-slate-100">
+                {{ resp.sessionComplete ? 'yes' : 'no' }}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-lg border border-slate-800 bg-slate-900/80 p-3">
+          <div class="mb-2 flex items-center justify-between">
+            <h3 class="text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+              Postman body (next-question)
+            </h3>
+            <button
+              type="button"
+              (click)="copy(buildPostmanBody(state))"
+              class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-[11px] text-slate-300 hover:border-emerald-400 hover:text-emerald-200"
+              [disabled]="!state.sessionInfo?.sessionUuid"
+            >
+              Copy JSON
+            </button>
+          </div>
+          <pre
+            class="max-h-40 overflow-auto rounded-md bg-slate-950/80 p-2 font-mono text-[11px] text-slate-100"
+          >{{ buildPostmanBody(state) }}</pre>
+        </section>
+
+        <section *ngIf="state.lastError" class="rounded-lg border border-rose-500/40 bg-rose-900/30 p-3">
+          <h3 class="mb-2 text-[11px] font-semibold uppercase tracking-wide text-rose-200">
+            Last error
+          </h3>
+          <pre
+            class="max-h-32 overflow-auto rounded-md bg-rose-950/60 p-2 font-mono text-[11px] text-rose-100"
+          >{{ formatJson(state.lastError) }}</pre>
+        </section>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+

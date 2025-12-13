@@ -30,6 +30,7 @@
     <include file="changes/interview_sessions.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-14-add-interview-session-progress.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-14-add-session-uuid-interview-session.xml" relativeToChangelogFile="true"/>
+    <include file="changes/2025-12-14-interview-session-state-v1.xml" relativeToChangelogFile="true"/>
     <include file="changes/company_profiles.xml" relativeToChangelogFile="true"/>
     <include file="changes/behavioral_stories.xml" relativeToChangelogFile="true"/>
     <include file="changes/user_memory_entries.xml" relativeToChangelogFile="true"/>
@@ -41,5 +42,6 @@
     <include file="changes/2025-12-13-soft-skill-dimension-add-label.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-14-soft-skill-dimension-drop-display-name.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-13-training-task-status.xml" relativeToChangelogFile="true"/>
+    <include file="changes/2025-12-15-add-overall-fit-prev.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

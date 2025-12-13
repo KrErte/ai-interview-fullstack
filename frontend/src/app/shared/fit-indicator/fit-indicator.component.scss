@@ -1,0 +1,15 @@
+.fit-indicator {
+  &.fit-indicator--up {
+    .border-emerald-500 {
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+    }
+  }
+
+  &.fit-indicator--down {
+    .border-rose-500 {
+      box-shadow: 0 0 10px rgba(248, 113, 113, 0.25);
+    }
+  }
+}
+
+

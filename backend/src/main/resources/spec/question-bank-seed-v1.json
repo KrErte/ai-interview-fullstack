@@ -1,0 +1,110 @@
+{
+  "version": "v1",
+  "constraints": {
+    "deterministic": true,
+    "no_llm_calls": true,
+    "selection_strategy": "rule_based"
+  },
+  "styles": ["HR", "TECH", "TEAM_LEAD", "MIXED"],
+  "dimensions": [
+    {
+      "key": "ownership_accountability",
+      "name": "Ownership & Accountability",
+      "questions": {
+        "opening": [
+          "Describe a situation where you took responsibility for a problem that wasn’t formally yours.",
+          "Tell me about a failure you owned end-to-end."
+        ],
+        "probe": [
+          "What specific actions did you personally take?",
+          "How did you measure success or recovery?"
+        ],
+        "challenge": [
+          "What would you do differently if the same failure happened again?",
+          "What risks did you underestimate?"
+        ]
+      }
+    },
+    {
+      "key": "communication_clarity",
+      "name": "Communication & Clarity",
+      "questions": {
+        "opening": [
+          "How do you ensure alignment when working with multiple stakeholders?",
+          "Describe a time your message was misunderstood."
+        ],
+        "probe": [
+          "What signals told you alignment was missing?",
+          "How did you adapt your communication style?"
+        ],
+        "challenge": [
+          "How do you handle disagreement from senior stakeholders?",
+          "What trade-offs do you make between speed and clarity?"
+        ]
+      }
+    },
+    {
+      "key": "problem_solving_depth",
+      "name": "Problem Solving Depth",
+      "questions": {
+        "opening": [
+          "Walk me through a complex problem you solved recently.",
+          "Describe a decision you made with incomplete information."
+        ],
+        "probe": [
+          "What alternatives did you consider?",
+          "Which assumptions proved wrong?"
+        ],
+        "challenge": [
+          "How would you stress-test your solution?",
+          "What would break first at scale?"
+        ]
+      }
+    },
+    {
+      "key": "collaboration_leadership",
+      "name": "Collaboration & Leadership",
+      "questions": {
+        "opening": [
+          "How do you handle conflict within a team?",
+          "Describe a time you influenced without authority."
+        ],
+        "probe": [
+          "What feedback did you give or receive?",
+          "How did you align incentives?"
+        ],
+        "challenge": [
+          "What would you do if the team resisted your approach?",
+          "How do you balance consensus with decisiveness?"
+        ]
+      }
+    }
+  ],
+  "style_overrides": {
+    "HR": {
+      "focus_dimensions": ["ownership_accountability", "communication_clarity"],
+      "challenge_threshold": 0.4
+    },
+    "TECH": {
+      "focus_dimensions": ["problem_solving_depth"],
+      "challenge_threshold": 0.6
+    },
+    "TEAM_LEAD": {
+      "focus_dimensions": ["collaboration_leadership", "ownership_accountability"],
+      "challenge_threshold": 0.5
+    },
+    "MIXED": {
+      "focus_dimensions": [
+        "ownership_accountability",
+        "communication_clarity",
+        "problem_solving_depth",
+        "collaboration_leadership"
+      ],
+      "challenge_threshold": 0.5
+    }
+  },
+  "scoring": {
+    "axes": ["depth", "specificity", "relevance"],
+    "scale": [1, 5]
+  }
+}

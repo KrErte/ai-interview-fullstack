@@ -11,4 +11,5 @@ public class CreateInterviewSessionResponse {
 
     private Long sessionId;
     private String email;
+    private java.util.UUID sessionUuid;
 }

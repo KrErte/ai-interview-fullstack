@@ -1,0 +1,218 @@
+{
+  "title": "Interview Intelligence v1.0.1 ADDENDUM",
+  "status": "APPROVED",
+  "purpose": "Clarifications to resolve deterministic implementation blockers in v1.0",
+  "supersedes": null,
+  "addendum_sections": [
+    {
+      "id": "A1",
+      "resolves": "#1 Scale/Threshold Mismatch",
+      "clarification": {
+        "score_normalization": "All score comparisons use normalized values.",
+        "formula": "(raw_score - scale.min) / (scale.max - scale.min)",
+        "example": "Raw score 3 on 1-5 scale → (3-1)/(5-1) = 0.5"
+      }
+    },
+    {
+      "id": "A2",
+      "resolves": "#2 Undefined 'flat' Trend",
+      "clarification": {
+        "flat_definition": "last3_answers.score.trend == 'flat' when (max - min) of last 3 normalized scores <= 0.15",
+        "formula": "flat = (max(last3) - min(last3)) <= 0.15"
+      }
+    },
+    {
+      "id": "A3",
+      "resolves": "#3 Rule Priority Order",
+      "clarification": {
+        "evaluation_mode": "first_match_wins",
+        "priority_order": [
+          "R6",
+          "R1",
+          "R5",
+          "R3",
+          "R4",
+          "R2",
+          "R_DEFAULT"
+        ],
+        "behavior": "Evaluate rules in priority order. Execute first rule whose condition is true. Stop evaluation."
+      }
+    },
+    {
+      "id": "A4",
+      "resolves": "#4 History Window Guards",
+      "clarification": {
+        "R3_guard": "R3 condition only evaluates when question_count >= 3. Otherwise R3 is skipped.",
+        "R4_guard": "R4 condition only evaluates when question_count >= 5. Otherwise R4 is skipped."
+      }
+    },
+    {
+      "id": "A5",
+      "resolves": "#5 Initial Dimension Selection",
+      "clarification": {
+        "algorithm": "Select first dimension from style.focus_dimensions array."
+      }
+    },
+    {
+      "id": "A6",
+      "resolves": "#6 probe_count Lifecycle",
+      "clarification": {
+        "initial_value": 0,
+        "increment": "probe_count++ immediately after select_probe_question executes",
+        "reset_on_dimension_switch": "probe_count = 0 immediately after switch_dimension executes",
+        "reset_on_challenge": "probe_count = 0 immediately after select_challenge_question executes"
+      }
+    },
+    {
+      "id": "A7",
+      "resolves": "#7 Escalate/Switch Ambiguity",
+      "clarification": {
+        "R5_action_replacement": "escalate_or_switch_dimension is replaced by switch_dimension",
+        "rationale": "Escalation is out of scope for v1.0. R5 deterministically switches dimension."
+      }
+    },
+    {
+      "id": "A8",
+      "resolves": "#8 Coverage Definition",
+      "clarification": {
+        "removal": "Remove 'all_focus_dimensions_covered' from completion.criteria.",
+        "completion_criteria_v1.0.1": [
+          "max_questions_reached"
+        ],
+        "rationale": "Dimension coverage tracking requires additional state not defined in v1.0. Deferred to v1.1."
+      }
+    },
+    {
+      "id": "A9",
+      "resolves": "#9 Question Selection Strategy",
+      "clarification": {
+        "intra_type_selection": "sequential_no_repeat",
+        "algorithm": "For each (dimension, question_type) pair, maintain index starting at 0. Select question at current index. Increment index after selection. Track used question IDs in session state.",
+        "exhaustion_behavior": {
+          "order": [
+            "opening",
+            "probe",
+            "challenge"
+          ],
+          "rule": "If current question_type exhausted in current_dimension, select from next type in order.",
+          "type_exhaustion": "If all types exhausted in current_dimension, execute switch_dimension.",
+          "total_exhaustion": "If all questions in all focus_dimensions exhausted, execute complete_session."
+        },
+        "session_state_addition": {
+          "field": "used_question_ids",
+          "type": "array<string>",
+          "init": []
+        }
+      }
+    },
+    {
+      "id": "A10",
+      "resolves": "#10 Boundary Condition",
+      "clarification": {
+        "threshold_equality": "Score exactly equal to challenge_threshold satisfies '>=' condition (R4), not '<' condition (R2)."
+      }
+    },
+    {
+      "id": "A11",
+      "resolves": "#11 Default Fallback Rule",
+      "clarification": {
+        "new_rule": {
+          "id": "R_DEFAULT",
+          "if": "no_other_rule_matched",
+          "then": "select_opening_question",
+          "note": "Evaluated last per A3 priority order. Selects opening question in current_dimension."
+        }
+      }
+    },
+    {
+      "id": "A12",
+      "resolves": "#12 Threshold Source of Truth",
+      "clarification": {
+        "canonical_source": "interview-intelligence-v1-canonical.json → style_parameters",
+        "question_bank_role": "question-bank-seed-v1.json → style_overrides.challenge_threshold values are advisory only. Implementations MUST read from canonical source.",
+        "conflict_resolution": "If values differ, canonical source wins."
+      }
+    },
+    {
+      "id": "A13",
+      "resolves": "Dimension Switch Target",
+      "clarification": {
+        "algorithm": "On switch_dimension: select next dimension in style.focus_dimensions array (circular).",
+        "formula": "next_index = (current_index + 1) % focus_dimensions.length",
+        "single_dimension_case": "If focus_dimensions.length == 1, switch_dimension is a no-op (remain in same dimension)."
+      }
+    },
+    {
+      "id": "A14",
+      "resolves": "Weighted Average Specification",
+      "clarification": {
+        "last5_weights": [
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3
+        ],
+        "weight_order": "Oldest answer gets weight[0], newest gets weight[4].",
+        "formula": "weighted_avg = sum(score[i] * weight[i]) for i in 0..4"
+      }
+    }
+  ],
+  "updated_rules_summary": {
+    "evaluation_order": [
+      "R6",
+      "R1",
+      "R5",
+      "R3",
+      "R4",
+      "R2",
+      "R_DEFAULT"
+    ],
+    "R1": {
+      "if": "question_count == 0",
+      "then": "select_opening_question"
+    },
+    "R2": {
+      "if": "last_answer.score.normalized < challenge_threshold",
+      "then": "select_probe_question"
+    },
+    "R3": {
+      "if": "question_count >= 3 AND flat(last3)",
+      "then": "switch_dimension"
+    },
+    "R4": {
+      "if": "question_count >= 5 AND last5_weighted_avg >= challenge_threshold",
+      "then": "select_challenge_question"
+    },
+    "R5": {
+      "if": "probe_count >= style.probe_depth",
+      "then": "switch_dimension"
+    },
+    "R6": {
+      "if": "question_count >= max_questions",
+      "then": "complete_session"
+    },
+    "R_DEFAULT": {
+      "if": "no_other_rule_matched",
+      "then": "select_opening_question"
+    }
+  },
+  "state_lifecycle_summary": {
+    "probe_count": {
+      "init": 0,
+      "increment_on": "select_probe_question",
+      "reset_on": [
+        "switch_dimension",
+        "select_challenge_question"
+      ]
+    },
+    "current_dimension": {
+      "init": "focus_dimensions[0]",
+      "update_on": "switch_dimension → focus_dimensions[(current_index + 1) % length]"
+    },
+    "question_count": {
+      "init": 0,
+      "increment_on": "any question selection (opening, probe, or challenge)"
+    }
+  }
+}

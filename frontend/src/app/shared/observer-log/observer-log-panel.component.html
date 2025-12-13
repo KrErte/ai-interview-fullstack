@@ -1,0 +1,19 @@
+<ng-container *ngIf="DEMO_OBSERVER_LOG">
+  <div class="flex items-center justify-between gap-2 mb-2">
+    <div class="text-sm font-semibold opacity-80">OBSERVER LOG <span class="opacity-50">(DEMO)</span></div>
+    <button type="button" class="text-xs underline opacity-70 hover:opacity-100" (click)="clear()">Clear</button>
+  </div>
+
+  <div *ngIf="entries.length === 0" class="text-sm opacity-60">No logs yet.</div>
+
+  <div *ngIf="entries.length > 0" class="space-y-2 max-h-64 overflow-auto pr-1">
+    <div *ngFor="let e of entries" class="text-xs opacity-90">
+      <div class="flex items-center gap-2">
+        <span class="opacity-60">{{ e.ts | date:'HH:mm:ss' }}</span>
+        <span class="font-semibold">{{ typeLabel(e.type) }}</span>
+        <span class="opacity-60">{{ e.level }}</span>
+      </div>
+      <div class="opacity-90">{{ e.message }}</div>
+    </div>
+  </div>
+</ng-container>

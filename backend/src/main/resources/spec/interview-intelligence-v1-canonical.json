@@ -1,0 +1,105 @@
+{
+  "name": "Interview Intelligence v1",
+  "status": "APPROVED",
+  "version": "1.0",
+  "constraints": {
+    "deterministic": true,
+    "no_llm_calls": true,
+    "rule_based": true
+  },
+  "api": {
+    "endpoint": "POST /api/interviews/{sessionId}/next-question",
+    "response": {
+      "fields": ["question", "decision", "progress", "sessionComplete"]
+    }
+  },
+  "session_state": {
+    "persistent": {
+      "interviewer_style": ["HR", "TECH", "TEAM_LEAD", "MIXED"],
+      "max_questions": 10
+    },
+    "mutable": {
+      "status": "IN_PROGRESS",
+      "question_count": 0,
+      "current_dimension": null,
+      "probe_count": 0
+    }
+  },
+  "decision_logic": {
+    "type": "deterministic_tree",
+    "rules": [
+      {
+        "id": "R1",
+        "if": "question_count == 0",
+        "then": "select_opening_question"
+      },
+      {
+        "id": "R2",
+        "if": "last_answer.score.avg < challenge_threshold",
+        "then": "select_probe_question"
+      },
+      {
+        "id": "R3",
+        "if": "last3_answers.score.trend == 'flat'",
+        "then": "switch_dimension"
+      },
+      {
+        "id": "R4",
+        "if": "last5_answers.score.avg >= challenge_threshold",
+        "then": "select_challenge_question"
+      },
+      {
+        "id": "R5",
+        "if": "probe_count >= 2",
+        "then": "escalate_or_switch_dimension"
+      },
+      {
+        "id": "R6",
+        "if": "question_count >= max_questions",
+        "then": "complete_session"
+      }
+    ]
+  },
+  "scoring": {
+    "axes": ["depth", "specificity", "relevance"],
+    "scale": {
+      "min": 1,
+      "max": 5
+    },
+    "aggregation": {
+      "last1": "direct",
+      "last3": "moving_average",
+      "last5": "weighted_average"
+    }
+  },
+  "style_parameters": {
+    "HR": {
+      "probe_depth": 2,
+      "challenge_threshold": 0.4
+    },
+    "TECH": {
+      "probe_depth": 3,
+      "challenge_threshold": 0.6
+    },
+    "TEAM_LEAD": {
+      "probe_depth": 2,
+      "challenge_threshold": 0.5
+    },
+    "MIXED": {
+      "probe_depth": 2,
+      "challenge_threshold": 0.5
+    }
+  },
+  "completion": {
+    "criteria": [
+      "max_questions_reached",
+      "all_focus_dimensions_covered"
+    ],
+    "outputs": [
+      "dimension_scores",
+      "strengths",
+      "risks",
+      "overall_fit_percentage"
+    ]
+  }
+}

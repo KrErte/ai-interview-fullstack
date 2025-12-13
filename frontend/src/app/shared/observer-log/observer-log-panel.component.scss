@@ -1,0 +1,14 @@
+.fit-observer-log-panel {
+  pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+      monospace;
+  }
+}
+
+.observer-log-entry {
+  &:hover {
+    box-shadow: 0 0 10px rgba(15, 118, 110, 0.35);
+  }
+}
+
+

@@ -1,0 +1,62 @@
+<div
+  class="fit-indicator flex items-center gap-2 text-[11px]"
+  [ngClass]="{
+    'fit-indicator--up': trendDir === 'up',
+    'fit-indicator--down': trendDir === 'down'
+  }"
+>
+  <!-- Non-compact: header overall fit badge -->
+  <ng-container *ngIf="!compact">
+    <div class="inline-flex items-center gap-2 rounded-full border px-3 py-1 bg-slate-900/80" [ngClass]="overallBadgeClass">
+      <span class="text-slate-400">Overall fit</span>
+      <ng-container *ngIf="!showCalculating; else calculating">
+        <span class="font-semibold text-sm leading-none">
+          {{ overallPercent }}%
+        </span>
+        <span *ngIf="hasTrend" class="inline-flex items-center gap-1 text-xs"
+          [ngClass]="{
+            'text-emerald-300': trendDir === 'up',
+            'text-amber-300': trendDir === 'flat',
+            'text-rose-300': trendDir === 'down'
+          }"
+        >
+          <span>{{ trendSymbol }}</span>
+          <span class="text-[10px] text-slate-400">
+            {{ trendLabel }}
+          </span>
+        </span>
+      </ng-container>
+      <ng-template #calculating>
+        <span class="text-slate-400">Puudub piisavalt andmeid</span>
+      </ng-template>
+    </div>
+  </ng-container>
+
+  <!-- Compact: per-dimension line under question -->
+  <ng-container *ngIf="compact">
+    <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[11px] text-slate-300">
+      <span class="text-slate-400">
+        Current focus:
+      </span>
+      <span class="font-medium text-slate-100">
+        {{ dimensionLabel || '—' }}
+      </span>
+      <span class="text-slate-500">
+        •
+      </span>
+      <span class="text-slate-400">
+        Fit (this dimension):
+      </span>
+      <span class="font-semibold" [ngClass]="dimensionBadgeClass">
+        <ng-container *ngIf="dimensionPercent !== null; else dimUnknown">
+          {{ dimensionPercent }}%
+        </ng-container>
+        <ng-template #dimUnknown>
+          —
+        </ng-template>
+      </span>
+    </div>
+  </ng-container>
+</div>
+
+

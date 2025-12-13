@@ -1,7 +1,33 @@
+# Gradle
+.gradle/
+build/
+
+# Java
+*.class
+*.jar
+
+# IntelliJ / IDE
 .idea/
-backend/.gradle/
-backend/build/
-frontend/dist/
-frontend/node_modules/
-frontend/.angular/
-backend.zip
+*.iml
+out/
+
+# Node
+node_modules/
+
+# Frontend builds
+dist/
+
+# Local DB
+*.mv.db
+*.trace.db
+backend/data/
+
+# Generated / bin
+**/bin/
+
+# Archives
+*.zip
+
+# Misc
+file-system.probe
+__dummy__/

@@ -1,0 +1,172 @@
+<div
+  *ngIf="open"
+  class="fixed inset-0 z-40 flex justify-end bg-black/40"
+  (keydown)="onKeydown($event)"
+>
+  <button
+    type="button"
+    class="h-full w-full cursor-default"
+    (click)="onBackdropClick()"
+    aria-label="Close explain fit overlay"
+  ></button>
+
+  <div
+    class="fit-explain-drawer relative flex h-full w-full max-w-md flex-col border-l border-slate-800 bg-slate-950/95 text-slate-100 shadow-2xl outline-none"
+    tabindex="0"
+  >
+    <div class="flex items-center justify-between border-b border-slate-800 px-4 py-3">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-emerald-400">
+          Selgita sobivust
+        </p>
+        <p class="text-xs text-slate-400">
+          Kuidas AI hindab sinu sobivust ja millele ta tugineb.
+        </p>
+      </div>
+      <button
+        type="button"
+        class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 hover:border-emerald-400 hover:text-emerald-200"
+        (click)="closed.emit()"
+        aria-label="Close"
+      >
+        ✕
+      </button>
+    </div>
+
+    <div class="flex-1 space-y-4 overflow-y-auto px-4 py-4 text-xs">
+      <ng-container *ngIf="breakdown?.answeredCount && breakdown.answeredCount >= 3; else notEnough">
+        <section class="rounded-lg border border-slate-800 bg-slate-900/80 p-3 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+                Confidence
+              </p>
+              <p class="text-[11px] text-slate-400">
+                Põhineb {{ breakdown?.answeredCount }} vastusel.
+              </p>
+            </div>
+            <span
+              class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[11px]"
+              [ngClass]="confidenceClass()"
+            >
+              {{ confidenceLabel() }}
+            </span>
+          </div>
+        </section>
+
+        <section class="rounded-lg border border-slate-800 bg-slate-900/80 p-3 space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+              Dimensions
+            </h3>
+          </div>
+          <div class="space-y-2">
+            <div
+              *ngFor="let dim of breakdown?.dimensions || []"
+              class="rounded-md border border-slate-800 bg-slate-950/80 p-2 space-y-1"
+            >
+              <div class="flex items-center justify-between gap-2">
+                <div>
+                  <p class="text-[11px] font-semibold text-slate-100">
+                    {{ dim.label || dim.key }}
+                  </p>
+                  <p class="text-[10px] text-slate-500">
+                    {{ bandLabel(dim.band) }}
+                  </p>
+                </div>
+                <span class="text-[11px] text-emerald-300" *ngIf="dim.scorePercent !== null; else noScore">
+                  {{ dim.scorePercent }}%
+                </span>
+                <ng-template #noScore>
+                  <span class="text-[11px] text-slate-500">—</span>
+                </ng-template>
+              </div>
+              <div class="h-1.5 w-full rounded-full bg-slate-800">
+                <div
+                  class="h-1.5 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500"
+                  [style.width.%]="dim.scorePercent || 0"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-lg border border-slate-800 bg-slate-900/80 p-3 space-y-3">
+          <div class="grid gap-3 md:grid-cols-2">
+            <div>
+              <h3 class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-300">
+                Strength insights
+              </h3>
+              <ng-container *ngIf="dimensionStrengths().length; else noStrengths">
+                <ul class="space-y-1 text-[11px] text-slate-100">
+                  <li
+                    *ngFor="let dim of dimensionStrengths()"
+                    class="space-y-1"
+                  >
+                    <p class="font-medium text-emerald-200">
+                      {{ dim.label || dim.key }}
+                    </p>
+                    <ul class="space-y-0.5 pl-3 list-disc">
+                      <li
+                        *ngFor="let i of strengthInsights(dim)"
+                        class="text-emerald-100"
+                      >
+                        {{ i.text }}
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </ng-container>
+              <ng-template #noStrengths>
+                <p class="text-[11px] text-slate-500">Puuduvad tugevuste tähelepanekud.</p>
+              </ng-template>
+            </div>
+
+            <div>
+              <h3 class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-amber-300">
+                Risk insights
+              </h3>
+              <ng-container *ngIf="dimensionRisks().length; else noRisks">
+                <ul class="space-y-1 text-[11px] text-slate-100">
+                  <li
+                    *ngFor="let dim of dimensionRisks()"
+                    class="space-y-1"
+                  >
+                    <p class="font-medium text-amber-200">
+                      {{ dim.label || dim.key }}
+                    </p>
+                    <ul class="space-y-0.5 pl-3 list-disc">
+                      <li
+                        *ngFor="let i of riskInsights(dim)"
+                        class="text-amber-100"
+                      >
+                        {{ i.text }}
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </ng-container>
+              <ng-template #noRisks>
+                <p class="text-[11px] text-slate-500">Praegu riske ei rõhutata.</p>
+              </ng-template>
+            </div>
+          </div>
+        </section>
+      </ng-container>
+
+      <ng-template #notEnough>
+        <section class="rounded-lg border border-slate-800 bg-slate-900/80 p-3 space-y-2">
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+            Puudub piisavalt andmeid
+          </p>
+          <p class="text-[11px] text-slate-400">
+            Sobivuse arvutamiseks vajame veel mõnda vastust. Vasta vähemalt kolmele küsimusele,
+            et näha detailset sobivuse analüüsi.
+          </p>
+        </section>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+

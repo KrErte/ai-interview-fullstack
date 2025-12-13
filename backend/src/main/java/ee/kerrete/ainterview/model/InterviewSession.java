@@ -57,6 +57,18 @@ public class InterviewSession {
     @Column(name = "last5_answers", columnDefinition = "CLOB")
     private String last5Answers;
 
+    @Column(name = "question_count")
+    private Integer questionCount;
+
+    @Column(name = "current_dimension")
+    private String currentDimension;
+
+    @Column(name = "probe_count")
+    private Integer probeCount;
+
+    @Column(name = "overall_fit_prev")
+    private Double overallFitPrev;
+
     /**
      * Serialized list of Q&A pairs (JSON stored as text for simplicity).
      */
