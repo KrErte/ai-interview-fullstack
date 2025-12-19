@@ -1,0 +1,88 @@
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-snapshot-card',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/80 to-slate-900/40 p-8 backdrop-blur-sm card-hover">
+      <!-- Header -->
+      <div class="flex items-center gap-3 mb-8">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold text-slate-100">Risk Snapshot</h2>
+          <p class="text-sm text-slate-500">Your career readiness overview</p>
+        </div>
+      </div>
+
+      <!-- Main Score Display -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-8 mb-8">
+        <!-- Risk Score -->
+        <div class="text-center sm:text-left">
+          <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-2">Risk Score</p>
+          <div class="flex items-baseline gap-1">
+            <span class="text-6xl font-bold" [ngClass]="getRiskColorClass()">{{ riskPercent }}</span>
+            <span class="text-3xl font-semibold text-slate-500">%</span>
+          </div>
+          <p class="text-sm text-slate-500 mt-2">{{ getRiskLabel() }}</p>
+        </div>
+
+        <!-- Divider -->
+        <div class="hidden sm:block w-px h-24 bg-gradient-to-b from-transparent via-slate-700 to-transparent"></div>
+
+        <!-- Confidence -->
+        <div class="text-center sm:text-left">
+          <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-2">Confidence</p>
+          <div class="flex items-baseline gap-1">
+            <span class="text-5xl font-bold text-slate-200">{{ formatConfidence() }}</span>
+          </div>
+          <p class="text-sm text-slate-500 mt-2">Based on {{ signalsCount }} signals</p>
+        </div>
+      </div>
+
+      <!-- Coverage Bar -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between text-sm">
+          <span class="text-slate-400">Assessment Coverage</span>
+          <span class="font-medium text-slate-300">{{ coverage | number:'1.0-0' }}%</span>
+        </div>
+        <div class="h-2 rounded-full bg-slate-800 overflow-hidden">
+          <div
+            class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 animate-progress"
+            [style.width.%]="coverage"
+          ></div>
+        </div>
+        <p class="text-xs text-slate-500">
+          Higher coverage means more accurate risk assessment and roadmap recommendations.
+        </p>
+      </div>
+    </div>
+  `
+})
+export class SnapshotCardComponent {
+  @Input() riskPercent = 0;
+  @Input() confidence = 0;
+  @Input() signalsCount = 0;
+  @Input() coverage = 0;
+
+  formatConfidence(): string {
+    return `${(this.confidence * 100).toFixed(1)}%`;
+  }
+
+  getRiskColorClass(): string {
+    if (this.riskPercent >= 70) return 'text-emerald-400';
+    if (this.riskPercent >= 40) return 'text-amber-400';
+    return 'text-rose-400';
+  }
+
+  getRiskLabel(): string {
+    if (this.riskPercent >= 70) return 'Low Risk - Well Prepared';
+    if (this.riskPercent >= 40) return 'Medium Risk - Room to Improve';
+    return 'High Risk - Needs Attention';
+  }
+}
