@@ -1,0 +1,76 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
+@Component({
+  selector: 'app-navbar',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  template: `
+    <nav class="sticky top-0 z-50 border-b border-slate-800/50 bg-slate-950/90 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
+        <!-- Logo / Brand -->
+        <a routerLink="/" class="flex items-center gap-3 group">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/30 transition-shadow">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <div class="hidden sm:block">
+            <p class="text-lg font-semibold text-slate-100 group-hover:text-white transition-colors">Futureproof</p>
+            <p class="text-xs text-slate-500">Risk Assessment</p>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="flex items-center gap-1">
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+            Home
+          </a>
+          <a routerLink="/risk" routerLinkActive="active" class="nav-link">
+            Risk
+          </a>
+        </div>
+
+        <!-- User Section -->
+        <div class="flex items-center gap-3">
+          <ng-container *ngIf="auth.isLoggedIn(); else authLinks">
+            <span class="hidden md:inline text-sm text-slate-400">
+              {{ auth.getCurrentUserName() || auth.getCurrentUserEmail() }}
+            </span>
+            <button
+              (click)="logout()"
+              class="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/50 px-4 py-2 text-sm text-slate-300 hover:border-slate-600 hover:bg-slate-800 hover:text-white transition-all"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              <span class="hidden sm:inline">Logout</span>
+            </button>
+          </ng-container>
+
+          <ng-template #authLinks>
+            <a
+              routerLink="/login"
+              class="rounded-lg border border-slate-700 bg-slate-800/50 px-4 py-2 text-sm text-slate-300 hover:border-slate-600 hover:bg-slate-800 hover:text-white transition-all"
+            >
+              Login
+            </a>
+          </ng-template>
+        </div>
+      </div>
+    </nav>
+  `
+})
+export class NavbarComponent {
+  constructor(
+    public auth: AuthService,
+    private router: Router
+  ) {}
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+}

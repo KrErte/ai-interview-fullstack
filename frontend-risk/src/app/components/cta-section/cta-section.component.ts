@@ -1,0 +1,111 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-cta-section',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="rounded-3xl border border-slate-800/50 bg-gradient-to-br from-emerald-900/20 to-slate-900/40 p-8 backdrop-blur-sm">
+      <!-- Precision Banner -->
+      <div
+        *ngIf="roadmapPrecision === 'LOW'"
+        class="flex items-start gap-4 p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 mb-6"
+      >
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/20 shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <p class="text-blue-300 font-medium mb-1">Improve Roadmap Precision</p>
+          <p class="text-sm text-blue-200/70">
+            This roadmap is based on partial signals. Answering a few more questions will improve precision.
+          </p>
+        </div>
+      </div>
+
+      <!-- Main CTA Content -->
+      <div class="flex flex-col lg:flex-row items-center gap-8">
+        <!-- Left side: Text -->
+        <div class="flex-1 text-center lg:text-left">
+          <h2 class="text-2xl font-semibold text-slate-100 mb-3">
+            Ready to take action?
+          </h2>
+          <p class="text-slate-400 leading-relaxed max-w-xl">
+            Generate a personalized learning roadmap based on your assessment results.
+            Get step-by-step guidance to address your weaknesses and boost your career readiness.
+          </p>
+        </div>
+
+        <!-- Right side: Button -->
+        <div class="shrink-0">
+          <button
+            (click)="onGenerateRoadmap.emit()"
+            [disabled]="!roadmapAllowed || loading"
+            class="group relative flex items-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 px-8 py-4 font-semibold text-white shadow-xl shadow-emerald-500/25 transition-all hover:shadow-emerald-500/40 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-emerald-500/25"
+          >
+            <span *ngIf="!loading">Generate Roadmap</span>
+            <span *ngIf="loading" class="flex items-center gap-2">
+              <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Generating...
+            </span>
+            <svg
+              *ngIf="!loading"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 transition-transform group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+
+          <p *ngIf="!roadmapAllowed" class="text-center text-sm text-slate-500 mt-3">
+            Complete more of your assessment to unlock
+          </p>
+        </div>
+      </div>
+
+      <!-- Roadmap Preview (if available) -->
+      <div *ngIf="roadmap && roadmap.length > 0" class="mt-8 pt-8 border-t border-slate-800/50">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-slate-100">Your Roadmap</h3>
+            <p class="text-sm text-slate-500">{{ roadmap.length }} steps to success</p>
+          </div>
+        </div>
+
+        <ol class="space-y-3">
+          <li
+            *ngFor="let step of roadmap; let i = index"
+            class="flex items-start gap-4 p-4 rounded-2xl bg-slate-800/30 border border-slate-800/50"
+          >
+            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 font-semibold text-sm shrink-0">
+              {{ i + 1 }}
+            </div>
+            <p class="text-slate-300 leading-relaxed">{{ step }}</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  `
+})
+export class CtaSectionComponent {
+  @Input() roadmapAllowed = false;
+  @Input() roadmapPrecision: 'LOW' | 'MEDIUM' | 'HIGH' | undefined;
+  @Input() roadmap: string[] = [];
+  @Input() loading = false;
+
+  @Output() onGenerateRoadmap = new EventEmitter<void>();
+}
