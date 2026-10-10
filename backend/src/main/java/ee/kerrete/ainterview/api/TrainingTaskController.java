@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.TrainingTaskRequest;
 import ee.kerrete.ainterview.model.TrainingTask;
 import ee.kerrete.ainterview.repository.TrainingTaskRepository;
@@ -21,6 +22,7 @@ public class TrainingTaskController {
 
     @PostMapping
     public ResponseEntity<Void> saveOrUpdateTask(@RequestBody TrainingTaskRequest request) {
+        request.setEmail(CurrentUser.email());
         String taskKey = request.resolveTaskKey();
 
         log.info("Save training task email={} taskKey={}", request.getEmail(), taskKey);

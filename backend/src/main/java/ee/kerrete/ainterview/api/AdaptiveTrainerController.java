@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.AdaptiveAnalysisRequest;
 import ee.kerrete.ainterview.dto.AdaptiveAnalysisResponse;
 import ee.kerrete.ainterview.dto.SoftSkillQuestionRequest;
@@ -26,6 +27,7 @@ public class AdaptiveTrainerController {
     public ResponseEntity<AdaptiveAnalysisResponse> analyze(
             @RequestBody AdaptiveAnalysisRequest request
     ) {
+        request.setEmail(CurrentUser.email());
         return ResponseEntity.ok(aiAdaptiveService.analyzeAnswer(request));
     }
 
@@ -38,6 +40,7 @@ public class AdaptiveTrainerController {
     public ResponseEntity<SoftSkillQuestionResponse> nextSoftQuestion(
             @RequestBody SoftSkillQuestionRequest request
     ) {
+        request.setEmail(CurrentUser.email());
         SoftSkillQuestionResponse response = softSkillQuestionService.generateQuestion(request);
         return ResponseEntity.ok(response);
     }

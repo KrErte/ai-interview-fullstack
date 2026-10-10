@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.EvaluateAnswerRequest;
 import ee.kerrete.ainterview.dto.EvaluateAnswerResponse;
 import ee.kerrete.ainterview.service.EvaluationService;
@@ -20,6 +21,7 @@ public class InterviewController {
     @PostMapping("/evaluate")
     public ResponseEntity<EvaluateAnswerResponse> evaluate(
             @Valid @RequestBody EvaluateAnswerRequest request) {
+        request.setEmail(CurrentUser.email());
 
         EvaluateAnswerResponse response = evaluationService.evaluate(request);
         return ResponseEntity.ok(response);

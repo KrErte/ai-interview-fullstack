@@ -1,11 +1,10 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.UserProfileDto;
 import ee.kerrete.ainterview.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,18 +28,9 @@ public class UserProfileController {
         return ResponseEntity.ok(userProfileService.saveProfile(resolved, dto));
     }
 
-    private String resolveEmail(String fallback) {
-        if (fallback != null && !fallback.isBlank()) {
-            return fallback;
-        }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof String principal) {
-            return principal;
-        }
-        if (authentication != null && authentication.getName() != null) {
-            return authentication.getName();
-        }
-        throw new IllegalArgumentException("Unable to resolve user email");
+    /** FP-17: always the authenticated user; an ?email= parameter is ignored. */
+    private String resolveEmail(String ignored) {
+        return CurrentUser.email();
     }
 }
 

@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.AdaptiveAnalysisRequest;
 import ee.kerrete.ainterview.dto.AdaptiveAnalysisResponse;
 import ee.kerrete.ainterview.dto.TrainingTaskRequest;
@@ -34,6 +35,7 @@ public class SkillCoachController {
     public ResponseEntity<AdaptiveAnalysisResponse> analyze(
             @RequestBody AdaptiveAnalysisRequest request
     ) {
+        request.setEmail(CurrentUser.email());
         AdaptiveAnalysisResponse response = aiAdaptiveService.analyzeAnswer(request);
         return ResponseEntity.ok(response);
     }
@@ -48,6 +50,7 @@ public class SkillCoachController {
     public ResponseEntity<AdaptiveAnalysisResponse> answerAndSave(
             @RequestBody AdaptiveAnalysisRequest request
     ) {
+        request.setEmail(CurrentUser.email());
         // 1. Küsi AI-lt analüüs
         AdaptiveAnalysisResponse response = aiAdaptiveService.analyzeAnswer(request);
 

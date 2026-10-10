@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.EvaluateAnswerRequest;
 import ee.kerrete.ainterview.dto.EvaluateAnswerResponse;
 import ee.kerrete.ainterview.service.EvaluationService;
@@ -34,6 +35,7 @@ public class EvaluationController {
     public ResponseEntity<EvaluateAnswerResponse> evaluate(
             @Valid @RequestBody EvaluateAnswerRequest request
     ) {
+        request.setEmail(CurrentUser.email());
         log.info("Evaluate answer for email='{}', questionId='{}'",
                 request.getEmail(), request.getQuestionId());
 

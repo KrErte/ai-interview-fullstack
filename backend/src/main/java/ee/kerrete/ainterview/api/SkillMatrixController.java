@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.SkillMatrixResponse;
 import ee.kerrete.ainterview.service.SkillMatrixService;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +16,9 @@ public class SkillMatrixController {
     private final SkillMatrixService skillMatrixService;
 
     @GetMapping("/matrix")     // <-- /api/skills/matrix
-    public ResponseEntity<SkillMatrixResponse> getSkillMatrix(
-            @RequestParam String email) {
+    public ResponseEntity<SkillMatrixResponse> getSkillMatrix() {
 
-        SkillMatrixResponse response = skillMatrixService.getSkillMatrix(email);
+        SkillMatrixResponse response = skillMatrixService.getSkillMatrix(CurrentUser.email());
         return ResponseEntity.ok(response);
     }
 }
