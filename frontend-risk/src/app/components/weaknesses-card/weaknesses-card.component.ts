@@ -51,17 +51,11 @@ import { CommonModule } from '@angular/common';
         </div>
       </ng-template>
 
-      <!-- Coverage Info -->
+      <!-- Gap count: number of entries in the list above (weaknesses + gaps + missing skills) -->
       <div *ngIf="weaknesses.length > 0" class="mt-6 pt-6 border-t border-slate-800/50">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-sm text-slate-400">Signal Coverage</span>
-          <span class="text-sm font-medium text-slate-300">{{ coverage | number:'1.0-0' }}%</span>
-        </div>
-        <div class="h-2 rounded-full bg-slate-800 overflow-hidden">
-          <div
-            class="h-full rounded-full bg-gradient-to-r from-amber-500 to-orange-400 animate-progress"
-            [style.width.%]="coverage"
-          ></div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-slate-400">Gaps found</span>
+          <span class="text-sm font-medium text-slate-300" data-testid="gap-count">{{ weaknesses.length }}</span>
         </div>
         <p class="text-xs text-slate-500 mt-3">
           Identified by comparing your CV with the job description.
@@ -104,6 +98,10 @@ export class WeaknessesCardComponent {
     return this._weaknesses;
   }
   private _weaknesses: string[] = [];
+  /**
+   * Analysis coverage (0-100). No longer rendered here (the snapshot card shows
+   * "Analysis Coverage"); kept so existing [coverage] bindings still compile.
+   */
   @Input() coverage = 0;
   showAll = false;
 
