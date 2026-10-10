@@ -45,8 +45,10 @@ export interface RiskAssessment {
 export interface JobMatchResult {
   jobTitle?: string;
   jobDescription?: string;
-  fitScore?: number;
-  matchScore?: number;
+  /** 0-1 fraction or 0-100; may arrive as a number or a numeric string. */
+  fitScore?: number | string | null;
+  /** Same contract as fitScore; used when fitScore is missing. */
+  matchScore?: number | string | null;
   strengths?: string[];
   weaknesses?: string[];
   missingSkills?: string[];

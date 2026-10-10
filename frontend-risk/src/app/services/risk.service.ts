@@ -5,6 +5,25 @@ import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import { RiskAssessment, JobMatchResult, CvUploadResponse } from '../models/risk.model';
 
+/**
+ * Returns a finite number for a number or a numeric string, otherwise null.
+ * Strings are trimmed; empty/whitespace-only and non-numeric strings are
+ * treated as missing (null). Number('') would be 0, so the empty check matters.
+ * Booleans, objects, NaN and +/-Infinity are also null.
+ */
+export function toFiniteNumber(value: unknown): number | null {
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? value : null;
+  }
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (trimmed === '') return null;
+    const parsed = Number(trimmed);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
 export interface JobMatchRequest {
   email?: string;
   cvText: string;
@@ -68,12 +87,23 @@ export class RiskService {
   private transformToRiskAssessment(result: JobMatchResult): RiskAssessment {
     // CV-to-job match score (higher = better match), normalised to 0-100.
     // This is NOT a replaceability / risk score.
-    // Missing (null/undefined/NaN/non-number) stays null so the UI can show an
-    // empty state; a genuine 0 is kept as 0. Values <= 1 are treated as a 0-1
-    // fraction, larger values as already 0-100. Both branches are rounded so
-    // the displayed number and the band label agree (e.g. 69.5 -> 70).
+    //
+    // Scale contract for the backend fitScore / matchScore (fitScore wins when
+    // both are usable):
+    //   - raw > 1  -> already on a 0-100 scale:  80   -> 80
+    //   - raw <= 1 -> a 0-1 fraction, x100:      0.85 -> 85
+    //   - raw === 1 exactly is a 0-1 fraction, so it means 100% (not 1%).
+    //   - 0 (or "0") is a genuine 0% score, not "missing".
+    // Both branches are rounded so the displayed number and the band label
+    // agree (e.g. 69.5 -> 70).
+    //
+    // Numeric strings ("80", " 0.85 ") are accepted via toFiniteNumber().
+    // null/undefined/NaN/Infinity, empty or whitespace-only strings and
+    // non-numeric strings count as missing: matchPercent stays null and the
+    // snapshot card shows its empty state.
     const rawScore = [result.fitScore, result.matchScore]
-      .find((v): v is number => typeof v === 'number' && Number.isFinite(v));
+      .map(toFiniteNumber)
+      .find((v): v is number => v !== null);
     const matchPercent = rawScore === undefined
       ? null
       : rawScore > 1 ? Math.round(rawScore) : Math.round(rawScore * 100);
