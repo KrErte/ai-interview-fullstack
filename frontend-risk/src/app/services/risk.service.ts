@@ -35,7 +35,7 @@ export class RiskService {
   }
 
   /**
-   * Analyze job match and get risk assessment
+   * Analyze how well the CV matches the job description
    */
   analyzeJob(payload: JobMatchRequest): Observable<RiskAssessment> {
     const email = payload.email || this.auth.getCurrentUserEmail() || '';
@@ -66,8 +66,10 @@ export class RiskService {
    * Transform backend response to RiskAssessment model
    */
   private transformToRiskAssessment(result: JobMatchResult): RiskAssessment {
+    // CV-to-job match score (higher = better match), normalised to 0-100.
+    // This is NOT a replaceability / risk score.
     const rawScore = result.fitScore ?? result.matchScore ?? 0;
-    const riskPercent = rawScore > 1 ? rawScore : Math.round(rawScore * 100);
+    const matchPercent = rawScore > 1 ? rawScore : Math.round(rawScore * 100);
 
     // Calculate confidence based on available data signals
     const signals = [
@@ -93,7 +95,7 @@ export class RiskService {
     else if (coverage >= 50) roadmapPrecision = 'MEDIUM';
 
     return {
-      riskPercent,
+      matchPercent,
       confidence,
       signalsCount,
       coverage,

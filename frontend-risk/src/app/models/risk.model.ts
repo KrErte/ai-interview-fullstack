@@ -2,8 +2,8 @@
  * Risk assessment data model
  */
 export interface RiskAssessment {
-  /** Risk percentage (0-100) */
-  riskPercent: number;
+  /** CV-to-job match score (0-100); higher means a better match */
+  matchPercent: number;
 
   /** Confidence level (0-1), displayed as percentage */
   confidence: number;
