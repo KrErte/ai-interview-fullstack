@@ -18,6 +18,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -258,6 +259,12 @@ public class JobAnalysisService {
         }
     }
 
+    /**
+     * Creates the initial roadmap from an analysis, but only when the user has no roadmap yet.
+     * A new analysis never overwrites an existing plan and never deletes (completed) tasks;
+     * replacing a plan is an explicit action via RoadmapService.savePlan.
+     * Tasks are written with a single saveAll call, which runs in one transaction.
+     */
     private void persistRoadmapTasks(String email, List<String> roadmapSteps) {
         if (email == null || email.isBlank()) {
             return;
@@ -265,15 +272,18 @@ public class JobAnalysisService {
         if (roadmapSteps == null || roadmapSteps.isEmpty()) {
             return;
         }
+        if (roadmapTaskRepository.countByEmail(email) > 0) {
+            log.info("Roadmap already exists for user, not overwriting it with the new analysis");
+            return;
+        }
 
-        roadmapTaskRepository.deleteByEmail(email);
-
+        List<RoadmapTask> tasks = new ArrayList<>();
         int index = 1;
         for (String step : roadmapSteps) {
             if (step == null || step.isBlank()) {
                 continue;
             }
-            RoadmapTask task = RoadmapTask.builder()
+            tasks.add(RoadmapTask.builder()
                     .email(email)
                     .taskKey("step-" + index)
                     .title("Step " + index)
@@ -281,9 +291,11 @@ public class JobAnalysisService {
                     .completed(false)
                     .dayNumber(index)
                     .orderIndex(index)
-                    .build();
-            roadmapTaskRepository.save(task);
+                    .build());
             index++;
+        }
+        if (!tasks.isEmpty()) {
+            roadmapTaskRepository.saveAll(tasks);
         }
     }
 
