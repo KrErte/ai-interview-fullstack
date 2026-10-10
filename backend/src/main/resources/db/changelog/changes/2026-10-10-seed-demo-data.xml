@@ -7,12 +7,13 @@
     <!--
         FP-18: replaces changes/007-seed-test-data.xml, which never inserted anything (its precondition
         was inverted: <not><tableIsEmpty/></not> with onFail=MARK_RAN) and had no context, so it
-        could also run in prod. 007 is left untouched (existing databases already recorded it as
-        MARK_RAN, so editing it would never re-run and would only change its checksum); its include
-        in db.changelog-master.xml is now limited to the "demo" context too.
+        could also run in prod. Its include was removed from db.changelog-master.xml and the file was
+        deleted: as a "demo" changeset it would still have inserted demo users into any database that
+        already had users. Databases that recorded 007 keep those DATABASECHANGELOG rows (ignored).
 
         These changesets run only with spring.liquibase.contexts=demo (local and dev profiles) and
-        only when the target table is empty. Roles are mapped to the UserRole enum (CANDIDATE, USER,
+        only when the target table is empty. Training progress is seeded only when every user is a
+        demo user, so a database with real users gets no demo rows at all. Roles are mapped to the UserRole enum (CANDIDATE, USER,
         ADMIN): the old INTERVIEWER and HR rows would not load through JPA, so they are seeded as USER.
         Old status COMPLETE is not a TrainingStatus value; COMPLETED is used.
 
@@ -73,6 +74,7 @@
     <changeSet id="2026-10-10-seed-demo-training-progress" author="futureproof-backend" context="demo">
         <preConditions onFail="MARK_RAN">
             <tableIsEmpty tableName="training_progress"/>
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM app_users WHERE email NOT LIKE '%@demo.local'</sqlCheck>
         </preConditions>
         <insert tableName="training_progress">
             <column name="email" value="candidate1@demo.local"/>

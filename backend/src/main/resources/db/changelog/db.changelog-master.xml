@@ -18,8 +18,9 @@
     <include file="changes/002-add-score-updatedat.xml" relativeToChangelogFile="true"/>
     <include file="changes/006-create-softskill_training_task.xml" relativeToChangelogFile="true"/>
     <include file="changes/006-create-workstyle-session.xml" relativeToChangelogFile="true"/>
-    <!-- Demo data: only with spring.liquibase.contexts=demo (local/dev), never in prod. -->
-    <include file="changes/007-seed-test-data.xml" relativeToChangelogFile="true" context="demo"/>
+    <!-- FP-18: changes/007-seed-test-data.xml was removed (inverted precondition; it seeded only when
+         app_users was NOT empty). Databases that already recorded its changesets keep those rows;
+         Liquibase ignores recorded changesets that are no longer in the changelog. -->
     <include file="changes/2025-12-06-create-roadmap-task-table.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-06-add-training-task-feedback-skill.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-06-create-user-profile-table.xml" relativeToChangelogFile="true"/>
