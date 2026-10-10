@@ -27,7 +27,8 @@ public class UserProfile {
     @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "current_role")
+    // Renamed from current_role (reserved word in PostgreSQL/H2), see 2026-10-10-rename-user-profile-current-role.xml
+    @Column(name = "current_job_role")
     private String currentRole;
 
     @Column(name = "target_role")
