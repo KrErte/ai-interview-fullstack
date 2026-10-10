@@ -9,8 +9,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const token = authService.getToken();
 
-  // Auth endpoints don't need the token
-  if (!token || req.url.includes('/auth')) {
+  // Auth endpoints and the public AI readiness test don't need the token
+  if (!token || req.url.includes('/auth') || req.url.includes('/api/ai-readiness')) {
     return next(req);
   }
 

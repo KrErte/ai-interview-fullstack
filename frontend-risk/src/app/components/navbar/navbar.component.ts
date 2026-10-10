@@ -28,6 +28,9 @@ import { AuthService } from '../../services/auth.service';
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
             Home
           </a>
+          <a routerLink="/ai-test" routerLinkActive="active" class="nav-link">
+            AI test
+          </a>
           <a routerLink="/risk" routerLinkActive="active" class="nav-link">
             Risk
           </a>

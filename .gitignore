@@ -5,3 +5,6 @@ frontend/dist/
 frontend/node_modules/
 frontend/.angular/
 backend.zip
+frontend-risk/node_modules/
+frontend-risk/dist/
+frontend-risk/.angular/

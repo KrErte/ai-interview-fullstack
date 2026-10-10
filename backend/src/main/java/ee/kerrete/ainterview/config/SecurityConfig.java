@@ -51,6 +51,7 @@ public class SecurityConfig {
                                 "/auth/**",
                                 "/api/auth/**",
                                 "/api/ping",
+                                "/api/ai-readiness/**",
                                 "/h2-console/**",
                                 "/error"
                         ).permitAll()

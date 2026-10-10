@@ -1,0 +1,918 @@
+[
+  {
+    "id": "software-developer",
+    "name": "Tarkvaraarendaja",
+    "category": "IT",
+    "tasks": [
+      { "name": "Tüüpkoodi kirjutamine (CRUD, boilerplate, integratsioonid)", "share": 25, "automation": 0.8 },
+      { "name": "Silumine ja koodi ülevaatus", "share": 15, "automation": 0.55 },
+      { "name": "Süsteemi disain ja arhitektuur", "share": 15, "automation": 0.3 },
+      { "name": "Nõuete täpsustamine ja suhtlus tellijaga", "share": 15, "automation": 0.2 },
+      { "name": "Testide kirjutamine", "share": 10, "automation": 0.7 },
+      { "name": "Dokumentatsioon", "share": 10, "automation": 0.8 },
+      { "name": "Tootmiskeskkonna intsidendid ja DevOps", "share": 10, "automation": 0.4 }
+    ],
+    "humanEdge": [
+      "Äriprobleemi mõistmine ja õige asja ehitamine",
+      "Arhitektuursed kompromissid ja vastutus tootmises",
+      "AI genereeritud koodi kriitiline ülevaatus ja turvalisus"
+    ],
+    "aiTools": ["Claude Code", "GitHub Copilot", "Cursor", "AI code review"],
+    "pivotRoles": ["AI/LLM rakenduste arendaja", "Platform / DevEx insener", "Tehniline arhitekt"],
+    "roadmap": [
+      {
+        "title": "AI-ga paarisprogrammeerimine",
+        "items": [
+          "Kasuta agentset koodiabilist (Claude Code, Cursor) päris ülesannetel – mitte ainult autocomplete.",
+          "Õpi andma konteksti: CLAUDE.md / reeglifailid, testid enne koodi, väikesed sammud.",
+          "Lase AI-l kirjutada testid ja dokumentatsioon, sina vaata üle."
+        ],
+        "project": "Võta oma vana projekt ja lase AI-agendil parandada 5 bugi või lisada 1 funktsioon – mõõda aega."
+      },
+      {
+        "title": "LLM-id oma rakendustes",
+        "items": [
+          "LLM API (Anthropic / OpenAI): struktureeritud väljund, tool use, striimimine.",
+          "RAG: embedding'ud, vektorandmebaas (pgvector), chunking.",
+          "Spring AI või LangChain4j Java maailmas."
+        ],
+        "project": "Lisa olemasolevasse Spring Boot rakendusse AI-funktsioon (nt dokumendist küsimustele vastamine)."
+      },
+      {
+        "title": "Tootmiskõlblik AI",
+        "items": [
+          "Evalid ja regressioonitestid promptidele.",
+          "Kulud, latentsus, rate limit'id, cache.",
+          "Turvalisus: prompt injection, andmelekked, MCP serverid."
+        ],
+        "project": "Ehita MCP server oma ettevõtte/projekti API jaoks ja ühenda see AI-assistendiga."
+      }
+    ]
+  },
+  {
+    "id": "qa-tester",
+    "name": "Testija / QA",
+    "category": "IT",
+    "tasks": [
+      { "name": "Käsitsi testide läbiviimine", "share": 30, "automation": 0.8 },
+      { "name": "Testjuhtumite kirjutamine", "share": 20, "automation": 0.75 },
+      { "name": "Testautomaatika skriptid", "share": 20, "automation": 0.6 },
+      { "name": "Uuriv testimine", "share": 15, "automation": 0.35 },
+      { "name": "Vigade triaaž ja suhtlus arendajatega", "share": 15, "automation": 0.3 }
+    ],
+    "humanEdge": [
+      "Kasutaja vaatenurk ja 'mis võib valesti minna' intuitsioon",
+      "Riskipõhine testistrateegia",
+      "AI-süsteemide endi testimine"
+    ],
+    "aiTools": ["Playwright + AI", "Copilot", "Testjuhtumite genereerimine LLM-iga"],
+    "pivotRoles": ["AI/LLM kvaliteediinsener (evalid)", "SDET", "Kvaliteedijuht"],
+    "roadmap": [
+      {
+        "title": "AI testimise kiirendajana",
+        "items": [
+          "Genereeri testjuhtumeid nõuetest ja kasutajalugudest.",
+          "Lase AI-l kirjutada Playwright/Selenium teste – sina hoolda arhitektuuri.",
+          "Testandmete genereerimine."
+        ],
+        "project": "Automatiseeri ühe rakenduse regressioonikomplekt AI abiga ja võrdle ajakulu."
+      },
+      {
+        "title": "AI-süsteemide testimine",
+        "items": [
+          "LLM-rakenduste evalid: täpsus, hallutsinatsioonid, toon, turvalisus.",
+          "Prompt injection ja red teaming põhitõed.",
+          "Tööriistad: promptfoo, DeepEval, Langfuse."
+        ],
+        "project": "Kirjuta eval-komplekt mõnele chatbotile (50 küsimust + oodatud vastused + automaatne hindamine)."
+      },
+      {
+        "title": "Kvaliteedistrateegia AI ajastul",
+        "items": [
+          "Riskipõhine testimine, kui koodi kirjutab AI.",
+          "Visuaalne ja agentne testimine.",
+          "CI pipeline'i kvaliteediväravad."
+        ],
+        "project": "Lisa CI-sse AI-põhine koodiülevaatus + testide genereerimine pull request'idele."
+      }
+    ]
+  },
+  {
+    "id": "data-analyst",
+    "name": "Andmeanalüütik",
+    "category": "IT",
+    "tasks": [
+      { "name": "Andmete puhastamine ja ettevalmistus", "share": 25, "automation": 0.8 },
+      { "name": "Aruanded ja dashboard'id", "share": 25, "automation": 0.75 },
+      { "name": "SQL päringud", "share": 15, "automation": 0.8 },
+      { "name": "Tulemuste tõlgendamine ja soovitused", "share": 20, "automation": 0.35 },
+      { "name": "Suhtlus ärikasutajatega", "share": 15, "automation": 0.2 }
+    ],
+    "humanEdge": [
+      "Õige küsimuse küsimine ja äri kontekst",
+      "Andmekvaliteedi ja -lõksude tundmine",
+      "Lugude rääkimine andmetega ja otsuste mõjutamine"
+    ],
+    "aiTools": ["ChatGPT/Claude andmeanalüüs", "Copilot Power BI-s", "Text-to-SQL"],
+    "pivotRoles": ["Analytics engineer", "AI/ML analüütik", "Toote analüütik"],
+    "roadmap": [
+      {
+        "title": "AI analüüsi kiirendajana",
+        "items": [
+          "Lase AI-l kirjutada SQL-i ja Pythonit – õpi seda kontrollima.",
+          "Andmete uurimine AI-ga (failide üleslaadimine, graafikud).",
+          "Automaatsed kokkuvõtted aruannetest."
+        ],
+        "project": "Võta avalik andmestik (nt Statistikaamet) ja tee AI-ga analüüs + kirjalik raport 2 tunniga."
+      },
+      {
+        "title": "Semantiline kiht ja text-to-SQL",
+        "items": [
+          "dbt ja semantiline mudel, et AI vastused oleksid õiged.",
+          "Text-to-SQL lahendused ja nende piirid.",
+          "Python + LLM API andmete klassifitseerimiseks."
+        ],
+        "project": "Ehita sisemine 'küsi andmetelt' tööriist, mis vastab 10 tüüpküsimusele."
+      },
+      {
+        "title": "ML ja ennustav analüüs",
+        "items": [
+          "Põhilised ML mudelid (regressioon, klassifikatsioon) scikit-learniga.",
+          "Mõõdikud ja eksperimentide disain (A/B testid).",
+          "Mudelite selgitatavus."
+        ],
+        "project": "Kliendilahkumise ennustusmudel + selgitus ärikasutajale."
+      }
+    ]
+  },
+  {
+    "id": "devops-engineer",
+    "name": "DevOps / pilveinsener",
+    "category": "IT",
+    "tasks": [
+      { "name": "IaC ja konfiguratsiooni skriptid (Terraform, Helm, YAML)", "share": 25, "automation": 0.65 },
+      { "name": "CI/CD pipeline'ide hooldus", "share": 20, "automation": 0.55 },
+      { "name": "Intsidentidele reageerimine", "share": 20, "automation": 0.3 },
+      { "name": "Arhitektuur ja võimsuse planeerimine", "share": 15, "automation": 0.3 },
+      { "name": "Turve ja vastavus", "share": 10, "automation": 0.4 },
+      { "name": "Koostöö arendustiimidega", "share": 10, "automation": 0.2 }
+    ],
+    "humanEdge": [
+      "Vastutus tootmiskeskkonna eest ja otsused kriisis",
+      "Süsteemide terviklik mõistmine",
+      "Turvalisuse ja kulude kompromissid"
+    ],
+    "aiTools": ["Claude Code / Copilot IaC jaoks", "AIOps tööriistad", "K8s AI-assistendid"],
+    "pivotRoles": ["MLOps / LLMOps insener", "Platform engineer", "SRE"],
+    "roadmap": [
+      {
+        "title": "AI infrakoodis",
+        "items": [
+          "Genereeri ja vaata üle Terraform/Helm/K8s manifeste AI-ga.",
+          "Logide ja alertide analüüs LLM-iga.",
+          "Runbook'ide automatiseerimine."
+        ],
+        "project": "Ehita AI-assistent, mis loeb K8s pod'i logid ja pakub intsidendi põhjuse + paranduse."
+      },
+      {
+        "title": "LLMOps",
+        "items": [
+          "Mudelite serveerimine: vLLM, Ollama, GPU node'id Kubernetes'es.",
+          "AI gateway: rate limit, kulude jälgimine, fallback mudelid.",
+          "Observability: Langfuse, OpenTelemetry LLM-ide jaoks."
+        ],
+        "project": "Paigalda avatud mudel (nt Llama/Mistral) K8s klastrisse koos monitooringuga."
+      },
+      {
+        "title": "Agentne infra",
+        "items": [
+          "AI agendid CI/CD-s (automaatsed parandused, PR-id).",
+          "Turvalised piirangud agentidele (sandbox, õigused).",
+          "Platform engineering: sisemised AI teenused arendajatele."
+        ],
+        "project": "CI pipeline, kus AI parandab ebaõnnestunud build'i ja avab PR-i."
+      }
+    ]
+  },
+  {
+    "id": "designer",
+    "name": "UX/UI disainer",
+    "category": "Loov",
+    "tasks": [
+      { "name": "Wireframe'id ja maketid", "share": 25, "automation": 0.65 },
+      { "name": "Visuaalsed elemendid ja illustratsioonid", "share": 15, "automation": 0.8 },
+      { "name": "Kasutajauuringud", "share": 20, "automation": 0.3 },
+      { "name": "Töötoad ja huvigruppide juhtimine", "share": 15, "automation": 0.15 },
+      { "name": "Disainisüsteemid", "share": 15, "automation": 0.5 },
+      { "name": "Kasutatavustestid", "share": 10, "automation": 0.35 }
+    ],
+    "humanEdge": [
+      "Kasutajate empaatia ja uuringute tõlgendamine",
+      "Maitse ja tootestrateegia",
+      "Huvigruppide joondamine"
+    ],
+    "aiTools": ["Figma AI", "Midjourney / generatiivsed pildid", "v0 / Lovable prototüübid"],
+    "pivotRoles": ["Design engineer", "AI-toodete UX disainer", "Tootejuht"],
+    "roadmap": [
+      {
+        "title": "Generatiivne disain",
+        "items": [
+          "Ideede ja variantide genereerimine (pildid, layoutid).",
+          "Figma AI ja pluginad.",
+          "Prototüübid koodis AI-ga (v0, Lovable, Claude)."
+        ],
+        "project": "Disaini ja ehita AI-ga töötav prototüüp ühe päevaga."
+      },
+      {
+        "title": "AI uuringutes",
+        "items": [
+          "Intervjuude transkribeerimine ja sünteesimine.",
+          "Personade ja hüpoteeside genereerimine – ja nende valideerimine päris inimestega.",
+          "Kasutatavustestide analüüs."
+        ],
+        "project": "Tee 5 kasutajaintervjuud ja sünteesi AI abil – võrdle oma käsitsi järeldustega."
+      },
+      {
+        "title": "AI-toodete disain",
+        "items": [
+          "Vestlus- ja agentliidesed, ebakindluse kuvamine.",
+          "Usaldus, läbipaistvus, vigade käsitlemine.",
+          "Põhiline front-end (HTML/CSS/React)."
+        ],
+        "project": "Disaini AI-assistendi kasutajakogemus koos veaolukordadega."
+      }
+    ]
+  },
+  {
+    "id": "marketing",
+    "name": "Turundusspetsialist",
+    "category": "Äri",
+    "tasks": [
+      { "name": "Sisu loomine (postitused, bännerid, tekstid)", "share": 25, "automation": 0.8 },
+      { "name": "Kampaaniate analüütika", "share": 20, "automation": 0.7 },
+      { "name": "Strateegia ja positsioneerimine", "share": 20, "automation": 0.3 },
+      { "name": "Reklaamide seadistamine ja optimeerimine", "share": 15, "automation": 0.7 },
+      { "name": "Partnerlused ja suhted", "share": 20, "automation": 0.15 }
+    ],
+    "humanEdge": [
+      "Brändi tunnetus ja kliendi sügav mõistmine",
+      "Strateegilised valikud ja eelarve vastutus",
+      "Suhted partnerite ja meediaga"
+    ],
+    "aiTools": ["ChatGPT/Claude sisu jaoks", "Canva AI", "Meta/Google Advantage+ kampaaniad"],
+    "pivotRoles": ["Growth / marketing automation spetsialist", "Turundusanalüütik", "Brändistrateeg"],
+    "roadmap": [
+      {
+        "title": "AI sisutootmises",
+        "items": [
+          "Brändi hääle juhend AI jaoks (näited, keelatud sõnad).",
+          "Ühest sisust 10 formaati (blogi → postitused → meil → video skript).",
+          "Pildid ja videod generatiivsete tööriistadega."
+        ],
+        "project": "Tee ühe kuu sotsiaalmeedia kalender AI-ga 1 päevaga."
+      },
+      {
+        "title": "Andmed ja automatiseerimine",
+        "items": [
+          "Kampaaniaandmete analüüs AI-ga.",
+          "Marketing automation: Zapier/Make + AI (lead'ide hindamine, isikupärastatud meilid).",
+          "SEO AI-otsingu ajastul (GEO)."
+        ],
+        "project": "Automatiseeri lead'ide kvalifitseerimine: vorm → AI hinnang → CRM."
+      },
+      {
+        "title": "Strateegia ja eksperimendid",
+        "items": [
+          "Kiire A/B testimine AI-ga loodud variantidega.",
+          "Kliendiuuringud ja segmenteerimine.",
+          "Mõõdikud, mis näitavad päris mõju."
+        ],
+        "project": "Käivita 3 kampaaniavarianti, mõõda ja kirjuta õppetunnid."
+      }
+    ]
+  },
+  {
+    "id": "copywriter",
+    "name": "Copywriter / sisulooja",
+    "category": "Loov",
+    "tasks": [
+      { "name": "Tekstide mustandite kirjutamine", "share": 40, "automation": 0.85 },
+      { "name": "Toimetamine ja korrektuur", "share": 20, "automation": 0.85 },
+      { "name": "Taustauuring", "share": 15, "automation": 0.7 },
+      { "name": "Brändi hääl ja sisustrateegia", "share": 15, "automation": 0.35 },
+      { "name": "Intervjuud ja originaalsed lood", "share": 10, "automation": 0.2 }
+    ],
+    "humanEdge": [
+      "Originaalne vaatenurk ja isiklik kogemus",
+      "Intervjuud ja päris allikad",
+      "Toimetaja otsustusvõime – mis on hea ja mis mitte"
+    ],
+    "aiTools": ["Claude/ChatGPT", "Grammarly", "Perplexity uurimiseks"],
+    "pivotRoles": ["Sisustrateeg", "AI-sisu toimetaja / kvaliteedijuht", "Brand voice / conversation designer"],
+    "roadmap": [
+      {
+        "title": "AI kui mustandikirjutaja",
+        "items": [
+          "Õpi suunama: brief, sihtgrupp, näited, toon, pikkus.",
+          "Toimeta AI teksti nii, et see kõlab nagu sina.",
+          "Faktikontroll ja allikad."
+        ],
+        "project": "Kirjuta 5 artiklit AI abiga ja mõõda ajasäästu + kvaliteeti."
+      },
+      {
+        "title": "Positsioneeri end toimetajaks ja strateegiks",
+        "items": [
+          "Sisustrateegia ja -kalendrid.",
+          "Brändi hääle juhendid, mida AI saab järgida.",
+          "SEO + AI-otsing."
+        ],
+        "project": "Koosta kliendile brändi hääle juhend + promptide teek."
+      },
+      {
+        "title": "Konversatsioonidisain",
+        "items": [
+          "Chatbotide ja AI-assistentide isiksus ja tekstid.",
+          "Süsteemipromptide kirjutamine.",
+          "Kasutajatestid vestlusliidesega."
+        ],
+        "project": "Kirjuta ühele ettevõttele klienditeeninduse boti süsteemiprompt ja testi seda."
+      }
+    ]
+  },
+  {
+    "id": "customer-support",
+    "name": "Klienditeenindaja",
+    "category": "Teenindus",
+    "tasks": [
+      { "name": "Standardküsimustele vastamine", "share": 40, "automation": 0.9 },
+      { "name": "Pöördumiste suunamine ja dokumenteerimine", "share": 20, "automation": 0.85 },
+      { "name": "Keerulised juhtumid ja eskalatsioonid", "share": 20, "automation": 0.35 },
+      { "name": "Empaatiline suhtlus ja kliendi hoidmine", "share": 20, "automation": 0.2 }
+    ],
+    "humanEdge": [
+      "Pahane või haavatav klient vajab inimest",
+      "Erandite ja keeruliste juhtumite lahendamine",
+      "Tagasiside tootele: mis tegelikult katki on"
+    ],
+    "aiTools": ["Intercom Fin / Zendesk AI", "AI vastuste mustandid", "Teadmusbaasi tööriistad"],
+    "pivotRoles": ["AI-boti treener / konversatsioonidisainer", "Kliendiedu juht", "Teadmusbaasi haldur"],
+    "roadmap": [
+      {
+        "title": "AI kolleegina",
+        "items": [
+          "Kasuta AI-d vastuste mustanditeks ja kokkuvõteteks.",
+          "Õpi märkama, millal AI vastus on vale.",
+          "Hea teadmusbaasi artikli kirjutamine."
+        ],
+        "project": "Kirjuta 20 KKK artiklit ümber nii, et chatbot saaks neid kasutada."
+      },
+      {
+        "title": "Boti treener",
+        "items": [
+          "Kuidas klienditeeninduse AI-botid töötavad (RAG, eskaleerimine).",
+          "Vestluste analüüs: kus bot ebaõnnestub.",
+          "Promptide ja vastuste parandamine."
+        ],
+        "project": "Analüüsi 100 boti vestlust ja tee 10 parendusettepanekut."
+      },
+      {
+        "title": "Kliendiedu",
+        "items": [
+          "Proaktiivne kliendihaldus, churn'i märgid.",
+          "CRM ja andmed.",
+          "Läbirääkimised ja säilitamine."
+        ],
+        "project": "Kliendi tervise skoori mudel lihtsa tabeli + AI-ga."
+      }
+    ]
+  },
+  {
+    "id": "sales",
+    "name": "Müügiesindaja",
+    "category": "Äri",
+    "tasks": [
+      { "name": "Potentsiaalsete klientide otsimine ja uurimine", "share": 20, "automation": 0.75 },
+      { "name": "Pöördumismeilid ja järelkontakt", "share": 15, "automation": 0.8 },
+      { "name": "CRM-i haldus", "share": 15, "automation": 0.85 },
+      { "name": "Vajaduste kaardistamine ja läbirääkimised", "share": 35, "automation": 0.15 },
+      { "name": "Kliendisuhte hoidmine", "share": 15, "automation": 0.15 }
+    ],
+    "humanEdge": [
+      "Usaldus ja suhted",
+      "Läbirääkimised ja keeruliste tehingute juhtimine",
+      "Kliendi tegeliku probleemi mõistmine"
+    ],
+    "aiTools": ["Clay / Apollo AI", "Gong / kõnede analüüs", "CRM AI-assistendid"],
+    "pivotRoles": ["Solutions consultant", "Key account manager", "Revenue operations"],
+    "roadmap": [
+      {
+        "title": "Ettevalmistus AI-ga",
+        "items": [
+          "Kliendi uurimine enne kohtumist 5 minutiga.",
+          "Isikupärastatud pöördumised mastaabis (ilma spämmita).",
+          "Kõnede kokkuvõtted ja CRM-i automaatne täitmine."
+        ],
+        "project": "Ehita töövoog: ettevõtte nimi → AI ülevaade + 3 personaliseeritud avalauset."
+      },
+      {
+        "title": "Müügikõne treening",
+        "items": [
+          "Rollimäng AI-ga (vastuväited, läbirääkimised).",
+          "Kõnede analüüs: kus kaotad tehingu.",
+          "Ettepanekute ja pakkumiste koostamine."
+        ],
+        "project": "Treeni AI-ga 10 vastuväite käsitlemist ja salvesta parimad vastused."
+      },
+      {
+        "title": "Konsultatiivne müük",
+        "items": [
+          "Õpi müüdava toote AI-võimekust tehniliselt selgitama.",
+          "ROI kalkulatsioonid.",
+          "Pikaajaline kliendihaldus."
+        ],
+        "project": "Koosta kliendile ROI kalkulaator ja esitlus."
+      }
+    ]
+  },
+  {
+    "id": "accountant",
+    "name": "Raamatupidaja",
+    "category": "Finants",
+    "tasks": [
+      { "name": "Kannete tegemine ja arvete töötlus", "share": 30, "automation": 0.9 },
+      { "name": "Pangaväljavõtete ja kontode võrdlemine", "share": 20, "automation": 0.8 },
+      { "name": "Aruandlus", "share": 15, "automation": 0.7 },
+      { "name": "Maksu- ja regulatsiooninõustamine", "share": 20, "automation": 0.35 },
+      { "name": "Suhtlus kliendiga", "share": 15, "automation": 0.2 }
+    ],
+    "humanEdge": [
+      "Vastutus ja allkiri",
+      "Kohaliku maksuõiguse tõlgendamine erijuhtudel",
+      "Ärinõustamine numbrite põhjal"
+    ],
+    "aiTools": ["Merit/SmartAccounts automaatika", "AI arvetuvastus", "Excel Copilot"],
+    "pivotRoles": ["Finantskontroller / nõustaja", "Finantsprotsesside automatiseerija", "Maksunõustaja"],
+    "roadmap": [
+      {
+        "title": "Automatiseeri rutiin",
+        "items": [
+          "Arvete ja tšekkide automaatne tuvastus.",
+          "Pangakannete automaatsed reeglid.",
+          "Excel/Sheets + AI valemite ja analüüsi jaoks."
+        ],
+        "project": "Automatiseeri ühe kliendi kuu lõpu protsess ja mõõda säästetud tunde."
+      },
+      {
+        "title": "Analüüs ja nõustamine",
+        "items": [
+          "Rahavoo prognoosid AI abiga.",
+          "Juhtkonna aruanded lihtsas keeles.",
+          "Maksuküsimuste uurimine AI-ga – ja vastuste kontroll allikast."
+        ],
+        "project": "Koosta kliendile igakuine 'mida numbrid ütlevad' kokkuvõte AI abiga."
+      },
+      {
+        "title": "Finantsprotsesside juht",
+        "items": [
+          "Protsesside kaardistamine ja automatiseerimine (Make/Zapier).",
+          "Andmekvaliteet ja kontrollid.",
+          "Nõustamisteenuse hinnastamine."
+        ],
+        "project": "Paku 'automatiseeritud raamatupidamine + nõustamine' paketti esimesele kliendile."
+      }
+    ]
+  },
+  {
+    "id": "lawyer",
+    "name": "Jurist",
+    "category": "Õigus",
+    "tasks": [
+      { "name": "Dokumentide läbitöötamine (due diligence)", "share": 25, "automation": 0.75 },
+      { "name": "Lepingute koostamine", "share": 20, "automation": 0.65 },
+      { "name": "Õiguslik uurimistöö", "share": 20, "automation": 0.7 },
+      { "name": "Kliendi nõustamine ja strateegia", "share": 20, "automation": 0.25 },
+      { "name": "Kohtus esindamine ja läbirääkimised", "share": 15, "automation": 0.1 }
+    ],
+    "humanEdge": [
+      "Vastutus ja kutse-eetika",
+      "Strateegia ja kliendi huvide kaalumine",
+      "Kohtus ja läbirääkimistel esinemine"
+    ],
+    "aiTools": ["Harvey / Legora", "Claude/ChatGPT dokumentide analüüsiks", "Riigi Teataja + AI otsing"],
+    "pivotRoles": ["Legal tech / legal ops spetsialist", "AI regulatsiooni (AI Act) ekspert", "Andmekaitse jurist"],
+    "roadmap": [
+      {
+        "title": "AI dokumenditöös",
+        "items": [
+          "Lepingute riskide tuvastamine ja võrdlus.",
+          "Konfidentsiaalsus: millist tööriista tohib kasutada.",
+          "Hallutsineeritud viidete kontroll – alati."
+        ],
+        "project": "Koosta lepingu läbivaatuse kontrollnimekiri + prompt ja testi 10 lepingul."
+      },
+      {
+        "title": "AI regulatsioon",
+        "items": [
+          "EL AI Act, GDPR ja AI, vastutus.",
+          "AI-süsteemide riskiklassid.",
+          "Ettevõtte AI kasutuspoliitika koostamine."
+        ],
+        "project": "Kirjuta ühele ettevõttele AI kasutamise sisepoliitika."
+      },
+      {
+        "title": "Legal ops",
+        "items": [
+          "Mallide ja dokumendiautomaatika.",
+          "Teadmushaldus büroos.",
+          "Teenuse hinnastamine, kui töö kiireneb 5x."
+        ],
+        "project": "Automatiseeri üks tüüpdokument (nt NDA) küsimustik → valmis leping."
+      }
+    ]
+  },
+  {
+    "id": "hr-recruiter",
+    "name": "Personalispetsialist / värbaja",
+    "category": "Äri",
+    "tasks": [
+      { "name": "CV-de sõelumine", "share": 25, "automation": 0.8 },
+      { "name": "Töökuulutused ja kirjavahetus", "share": 15, "automation": 0.8 },
+      { "name": "Ajastamine ja administratsioon", "share": 15, "automation": 0.9 },
+      { "name": "Intervjuud", "share": 25, "automation": 0.25 },
+      { "name": "Töötajasuhted ja konfliktid", "share": 20, "automation": 0.15 }
+    ],
+    "humanEdge": [
+      "Inimeste hindamine ja kultuurisobivus",
+      "Konfidentsiaalsed ja tundlikud vestlused",
+      "Organisatsiooni arendamine"
+    ],
+    "aiTools": ["ATS AI-funktsioonid", "LinkedIn Recruiter AI", "AI intervjuuküsimuste koostamine"],
+    "pivotRoles": ["People analytics", "Organisatsiooni arendus / AI ümberõpe", "Talent partner"],
+    "roadmap": [
+      {
+        "title": "Värbamise kiirendamine",
+        "items": [
+          "Töökuulutused ja intervjuu küsimused AI-ga.",
+          "CV sõelumine – ja kallutatuse (bias) riskid.",
+          "Automaatne ajastamine ja kandidaadi kogemus."
+        ],
+        "project": "Koosta ühele ametikohale AI abil kompetentsimudel + struktureeritud intervjuu."
+      },
+      {
+        "title": "AI ja õigus/eetika",
+        "items": [
+          "AI Act: värbamine on kõrge riskiga valdkond.",
+          "GDPR kandidaatide andmetega.",
+          "Läbipaistvus kandidaatidele."
+        ],
+        "project": "Kirjuta ettevõttele 'AI värbamises' põhimõtted."
+      },
+      {
+        "title": "Ümberõppe juht",
+        "items": [
+          "Töötajate AI-oskuste kaardistamine.",
+          "Sisekoolituste programmi loomine.",
+          "People analytics."
+        ],
+        "project": "Kasuta seda rakendust: kaardista meeskonna AI valmisolek ja koosta koolituskava."
+      }
+    ]
+  },
+  {
+    "id": "project-manager",
+    "name": "Projektijuht",
+    "category": "Äri",
+    "tasks": [
+      { "name": "Staatuse raportid", "share": 20, "automation": 0.8 },
+      { "name": "Ajakavad ja planeerimine", "share": 20, "automation": 0.6 },
+      { "name": "Koosolekute märkmed ja järeltegevused", "share": 10, "automation": 0.9 },
+      { "name": "Huvigruppide joondamine", "share": 25, "automation": 0.15 },
+      { "name": "Riskid ja otsused", "share": 15, "automation": 0.3 },
+      { "name": "Meeskonna juhtimine", "share": 10, "automation": 0.1 }
+    ],
+    "humanEdge": [
+      "Inimeste joondamine ja konfliktide lahendamine",
+      "Prioriteetide ja kompromisside otsustamine",
+      "Vastutus tulemuse eest"
+    ],
+    "aiTools": ["Jira/Confluence AI", "Koosolekute AI märkmed", "Claude/ChatGPT planeerimiseks"],
+    "pivotRoles": ["AI transformatsiooni projektijuht", "Tootejuht", "Delivery lead"],
+    "roadmap": [
+      {
+        "title": "Admin AI-le",
+        "items": [
+          "Koosolekute märkmed, otsused, ülesanded automaatselt.",
+          "Staatusraportid tickettidest.",
+          "Riskiregistri ülevaatus AI-ga."
+        ],
+        "project": "Automatiseeri iganädalane staatusraport (Jira → AI → Slack/meil)."
+      },
+      {
+        "title": "AI projektide juhtimine",
+        "items": [
+          "Kuidas AI projektid erinevad: ebakindlus, evalid, andmed.",
+          "Use-case'ide valik ja ROI.",
+          "Muutuste juhtimine ja inimeste kaasamine."
+        ],
+        "project": "Juhi oma organisatsioonis üks AI pilootprojekt algusest lõpuni."
+      },
+      {
+        "title": "Tootejuhtimine",
+        "items": [
+          "Discovery ja kasutajauuringud.",
+          "Prototüüpimine AI-ga.",
+          "Mõõdikud ja eksperimendid."
+        ],
+        "project": "Tee AI-ga klikitav prototüüp ja testi 5 kasutajaga."
+      }
+    ]
+  },
+  {
+    "id": "teacher",
+    "name": "Õpetaja / koolitaja",
+    "category": "Haridus",
+    "tasks": [
+      { "name": "Tundide ja materjalide ettevalmistus", "share": 25, "automation": 0.7 },
+      { "name": "Hindamine ja tagasiside", "share": 15, "automation": 0.7 },
+      { "name": "Klassis õpetamine", "share": 35, "automation": 0.15 },
+      { "name": "Mentorlus ja hingehoid", "share": 15, "automation": 0.1 },
+      { "name": "Administratsioon", "share": 10, "automation": 0.8 }
+    ],
+    "humanEdge": [
+      "Motiveerimine ja suhe õpilasega",
+      "Klassi dünaamika juhtimine",
+      "Väärtuskasvatus ja eeskuju"
+    ],
+    "aiTools": ["ChatGPT/Claude tunnikavadeks", "MagicSchool AI", "AI hindamisabilised"],
+    "pivotRoles": ["Haridustehnoloog", "Õppedisainer", "AI-koolitaja"],
+    "roadmap": [
+      {
+        "title": "Ettevalmistus AI-ga",
+        "items": [
+          "Tunnikavad, ülesanded ja diferentseerimine eri tasemetele.",
+          "Tagasiside mustandid – lõpliku hinnangu annad sina.",
+          "Eesti keele kvaliteedi kontroll AI vastustes."
+        ],
+        "project": "Valmista ühe kursuse materjalid AI abiga ja mõõda ajasäästu."
+      },
+      {
+        "title": "Õpetamine AI ajastul",
+        "items": [
+          "Ülesanded, mida AI ei tee õpilase eest ära (protsess, suuline kaitsmine).",
+          "Õpilaste AI-kirjaoskus.",
+          "Akadeemiline ausus ja kooli AI-poliitika."
+        ],
+        "project": "Kujunda üks hindamisülesanne ümber nii, et AI kasutamine on lubatud ja õpetlik."
+      },
+      {
+        "title": "Haridustehnoloogia",
+        "items": [
+          "Isikupärastatud õpe ja AI-tuutorid.",
+          "Õppedisaini põhimõtted.",
+          "Kolleegide koolitamine."
+        ],
+        "project": "Korralda kolleegidele AI töötuba."
+      }
+    ]
+  },
+  {
+    "id": "healthcare",
+    "name": "Tervishoiutöötaja (arst, õde)",
+    "category": "Tervis",
+    "tasks": [
+      { "name": "Dokumenteerimine", "share": 25, "automation": 0.75 },
+      { "name": "Diagnoosi ja otsuste tugi", "share": 15, "automation": 0.45 },
+      { "name": "Patsiendi füüsiline hooldus ja protseduurid", "share": 35, "automation": 0.05 },
+      { "name": "Suhtlus patsiendi ja lähedastega", "share": 15, "automation": 0.15 },
+      { "name": "Koordineerimine ja logistika", "share": 10, "automation": 0.4 }
+    ],
+    "humanEdge": [
+      "Füüsiline hooldus ja protseduurid",
+      "Kliiniline otsus ja vastutus",
+      "Empaatia ja usaldus"
+    ],
+    "aiTools": ["Kõnetuvastus ja AI märkmed (ambient scribe)", "Kliinilised otsustustoed", "Pildianalüüs"],
+    "pivotRoles": ["Kliinilise informaatika spetsialist", "Digitervise tootejuht", "Kvaliteedi- ja ohutusjuht"],
+    "roadmap": [
+      {
+        "title": "Vähem paberitööd",
+        "items": [
+          "AI dokumenteerimisabilised ja nende piirid.",
+          "Patsiendiandmete kaitse – mida EI tohi üldistesse tööriistadesse panna.",
+          "Patsiendiinfo lihtsas keeles."
+        ],
+        "project": "Koosta 5 patsiendijuhendit lihtsas keeles AI abil (ilma isikuandmeteta)."
+      },
+      {
+        "title": "Kliiniline AI",
+        "items": [
+          "Kuidas lugeda AI-tööriistade uuringuid (tundlikkus, spetsiifilisus, bias).",
+          "Meditsiiniseadmete regulatsioon (MDR) ja AI.",
+          "Otsustustoe kasutamine ja ülekasutamise ohud."
+        ],
+        "project": "Kirjuta kolleegidele lühike ülevaade ühest AI-tööriistast sinu erialal."
+      },
+      {
+        "title": "Digitervis",
+        "items": [
+          "Andmestandardid (FHIR) põhimõtteliselt.",
+          "Protsesside parendus ja muutuste juhtimine.",
+          "Koostöö IT-ga."
+        ],
+        "project": "Kaardista oma osakonna 3 suurimat ajaraiskajat ja paku AI-lahendus."
+      }
+    ]
+  },
+  {
+    "id": "translator",
+    "name": "Tõlkija",
+    "category": "Loov",
+    "tasks": [
+      { "name": "Tõlke mustand", "share": 50, "automation": 0.9 },
+      { "name": "Järeltoimetamine ja kvaliteedikontroll", "share": 20, "automation": 0.6 },
+      { "name": "Terminoloogia haldus", "share": 10, "automation": 0.7 },
+      { "name": "Kultuuriline kohandamine (transkreatsioon)", "share": 10, "automation": 0.35 },
+      { "name": "Suhtlus kliendiga", "share": 10, "automation": 0.2 }
+    ],
+    "humanEdge": [
+      "Juriidilised ja meditsiinilised tõlked, kus on vastutus",
+      "Loovtõlge ja kultuuriline nüanss",
+      "Väikekeelte (sh eesti keele) kvaliteet"
+    ],
+    "aiTools": ["DeepL", "Claude/GPT tõlge", "CAT tööriistad + MT", "Neurotõlge (TÜ)"],
+    "pivotRoles": ["Lokaliseerimisjuht", "AI-keelemudelite andmete ja kvaliteedi spetsialist", "Vandetõlk / eriala tõlkija"],
+    "roadmap": [
+      {
+        "title": "MT + järeltoimetamine",
+        "items": [
+          "Masintõlke järeltoimetamise (MTPE) standardid.",
+          "Promptitud tõlge: glossaar, toon, sihtgrupp promptis.",
+          "Mudelite võrdlus eesti keeles."
+        ],
+        "project": "Võrdle 3 mudelit 10 lehekülje tõlkel ja dokumenteeri vead."
+      },
+      {
+        "title": "Kvaliteet ja keeleandmed",
+        "items": [
+          "Tõlkekvaliteedi hindamine (MQM).",
+          "Keelemudelite treeningandmed ja hindamine – siin on nõudlus eesti keele ekspertide järele.",
+          "Terminibaasid."
+        ],
+        "project": "Koosta ühe valdkonna terminibaas, mida AI saab kasutada."
+      },
+      {
+        "title": "Lokaliseerimine",
+        "items": [
+          "Tarkvara ja turunduse lokaliseerimine.",
+          "Projektijuhtimine ja töövood.",
+          "Spetsialiseerumine (õigus, meditsiin, tehnika)."
+        ],
+        "project": "Lokaliseeri üks veebileht/rakendus AI + enda toimetamisega."
+      }
+    ]
+  },
+  {
+    "id": "skilled-trades",
+    "name": "Oskustööline (elektrik, ehitaja, mehaanik)",
+    "category": "Tööstus",
+    "tasks": [
+      { "name": "Füüsiline paigaldus ja remont", "share": 55, "automation": 0.05 },
+      { "name": "Rikete diagnoosimine kohapeal", "share": 15, "automation": 0.2 },
+      { "name": "Hinnapakkumised", "share": 10, "automation": 0.7 },
+      { "name": "Dokumentatsioon ja admin", "share": 10, "automation": 0.8 },
+      { "name": "Suhtlus kliendiga", "share": 10, "automation": 0.15 }
+    ],
+    "humanEdge": [
+      "Käeline töö muutuvas keskkonnas",
+      "Ohutus ja vastutus",
+      "Kliendi usaldus kohapeal"
+    ],
+    "aiTools": ["ChatGPT pakkumiste ja meilide jaoks", "Fotopõhine diagnostika", "Häälmärkmed"],
+    "pivotRoles": ["Tehniline järelevalve / projektijuht", "Nutimaja / päikeseenergia spetsialist", "Oma ettevõte"],
+    "roadmap": [
+      {
+        "title": "Kontoritöö AI-le",
+        "items": [
+          "Hinnapakkumised ja arved AI abiga.",
+          "Häälmärkmetest aktid ja raportid.",
+          "Kliendi meilidele vastamine."
+        ],
+        "project": "Tee pakkumise mall, mille AI täidab sinu häälmärkme põhjal."
+      },
+      {
+        "title": "AI tööriistana objektil",
+        "items": [
+          "Foto + AI rikke diagnoosimiseks ja juhendite leidmiseks.",
+          "Normid ja standardid AI otsinguga (kontrolli alati allikat).",
+          "Materjalide arvutused."
+        ],
+        "project": "Koosta oma valdkonna 'AI-abimees' promptide kogu."
+      },
+      {
+        "title": "Kasva ettevõtjaks",
+        "items": [
+          "Turundus ja koduleht AI-ga.",
+          "Planeerimine ja broneerimine.",
+          "Uued nišid: soojuspumbad, päike, nutimaja, laadijad."
+        ],
+        "project": "Tee AI-ga koduleht ja Google'i profiil oma teenusele."
+      }
+    ]
+  },
+  {
+    "id": "manager",
+    "name": "Juht / ettevõtja",
+    "category": "Juhtimine",
+    "tasks": [
+      { "name": "Strateegia", "share": 20, "automation": 0.2 },
+      { "name": "Inimeste juhtimine", "share": 25, "automation": 0.1 },
+      { "name": "Finantsid ja aruandlus", "share": 15, "automation": 0.7 },
+      { "name": "Müük ja võrgustik", "share": 20, "automation": 0.15 },
+      { "name": "Operatsioonid ja admin", "share": 20, "automation": 0.7 }
+    ],
+    "humanEdge": [
+      "Visioon ja valikud",
+      "Inimeste motiveerimine ja palkamine",
+      "Vastutus ja riskivõtt"
+    ],
+    "aiTools": ["Claude/ChatGPT strateegia sparringuks", "Microsoft/Google Workspace AI", "No-code automaatika"],
+    "pivotRoles": ["AI transformatsiooni juht", "AI-native ettevõtte asutaja", "Nõustaja"],
+    "roadmap": [
+      {
+        "title": "Juhi isiklik AI",
+        "items": [
+          "AI sparringupartnerina: strateegia, otsused, kirjad.",
+          "Aruannete ja numbrite kokkuvõtted.",
+          "Ajaplaneerimine ja delegeerimine."
+        ],
+        "project": "Kasuta AI-d 2 nädalat igas otsuses 'kuradi advokaadina' ja pane kirja õppetunnid."
+      },
+      {
+        "title": "AI organisatsioonis",
+        "items": [
+          "Use-case'ide kaardistamine ja ROI.",
+          "AI kasutuspoliitika, turve, andmed.",
+          "Meeskonna koolitamine ja kultuur."
+        ],
+        "project": "Lase kogu meeskonnal teha see test ja koosta koolituskava."
+      },
+      {
+        "title": "AI-native äri",
+        "items": [
+          "Milliseid protsesse saab 10x kiiremaks teha.",
+          "Uued tooted/teenused AI abil.",
+          "Konkurentide jälgimine."
+        ],
+        "project": "Käivita üks AI-põhine piloot, mõõda tulemust 30 päeva."
+      }
+    ]
+  },
+  {
+    "id": "other",
+    "name": "Muu / ei leia oma ametit",
+    "category": "Muu",
+    "tasks": [
+      { "name": "Info töötlemine (dokumendid, tabelid, meilid)", "share": 30, "automation": 0.7 },
+      { "name": "Suhtlus inimestega", "share": 25, "automation": 0.25 },
+      { "name": "Otsused ja vastutus", "share": 20, "automation": 0.3 },
+      { "name": "Füüsiline töö", "share": 15, "automation": 0.1 },
+      { "name": "Loov töö", "share": 10, "automation": 0.4 }
+    ],
+    "humanEdge": [
+      "Kontekst ja kogemus, mida AI ei tea",
+      "Suhted ja usaldus",
+      "Vastutus otsuste eest"
+    ],
+    "aiTools": ["Claude", "ChatGPT", "Gemini", "Microsoft Copilot"],
+    "pivotRoles": ["Oma valdkonna AI-ekspert", "Protsesside automatiseerija", "Koolitaja"],
+    "roadmap": [
+      {
+        "title": "Kaardista oma töö",
+        "items": [
+          "Kirjuta üles kõik oma tööülesanded ja nende ajakulu ühe nädala jooksul.",
+          "Märgi iga ülesande juures: korduv / suhtlus / otsus / füüsiline.",
+          "Vali 3 korduvat ülesannet AI katsetusteks."
+        ],
+        "project": "Tee oma tööst 'AI kaart' – mis läheb AI-le, mis jääb sulle."
+      },
+      {
+        "title": "Katseta ja mõõda",
+        "items": [
+          "Proovi valitud ülesandeid AI-ga 2 nädalat.",
+          "Mõõda ajasäästu ja kvaliteeti.",
+          "Jaga tulemusi kolleegidega."
+        ],
+        "project": "Kirjuta 1-leheküljeline kokkuvõte: mida AI sinu töös muudab."
+      },
+      {
+        "title": "Võimenda inimlikku osa",
+        "items": [
+          "Investeeri oskustesse, mis jäävad sulle: suhtlus, otsused, domeen.",
+          "Otsi oma valdkonnas AI-ga seotud uusi rolle.",
+          "Ehita nähtavust: jaga, mida õppisid."
+        ],
+        "project": "Paku tööandjale üks protsessi parendus AI abil."
+      }
+    ]
+  }
+]
