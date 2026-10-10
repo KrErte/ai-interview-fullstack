@@ -1,5 +1,5 @@
 # Lokaalne käivitus: docker compose up -d --build
-# Sisselogimise kasutajad: cp .env.example .env ja täida SEED_* väärtused (.env on gitignored).
+# Enne esimest käivitust: cp .env.example .env ja täida DB_PASSWORD, JWT_SECRET ja SEED_* (.env on gitignored).
 # Rakendus: http://localhost:4200  (AI test: http://localhost:4200/ai-test)
 services:
   postgres:
@@ -7,7 +7,10 @@ services:
     environment:
       POSTGRES_DB: ai
       POSTGRES_USER: ai
-      POSTGRES_PASSWORD: ai123
+      # FP-28: no default; DB_PASSWORD from .env (same variable is passed to the backend below).
+      # Postgres applies it only when the pgdata-local volume is first created. An existing volume
+      # keeps its original password (ai123 for volumes created before FP-28): see .env.example.
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env (see .env.example)}
     volumes:
       - pgdata-local:/var/lib/postgresql/data
     healthcheck:
@@ -22,7 +25,9 @@ services:
       SPRING_PROFILES_ACTIVE: prod
       DB_URL: jdbc:postgresql://postgres:5432/ai
       DB_USER: ai
-      DB_PASS: ai123
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env (see .env.example)}
+      # FP-28: required (compose refuses to start without it); the backend refuses a key shorter than 32 bytes, a placeholder or the old built-in key.
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set in .env (see .env.example)}
       FRONTEND_BASE_URL: http://localhost:4200
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       # Login users seeded at startup by ProdDataSeeder (FP-19/FP-22). Values come from the

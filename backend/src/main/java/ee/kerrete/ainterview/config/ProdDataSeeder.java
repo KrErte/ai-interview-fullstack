@@ -84,13 +84,11 @@ public class ProdDataSeeder implements CommandLineRunner {
     public void run(String... args) {
         LocalDateTime now = LocalDateTime.now();
 
-        if (adminEmail != null && StringUtils.hasText(adminPassword)) {
+        if (isUsable("SEED_ADMIN", adminEmail, adminPassword)) {
             seedAdmin(now);
-        } else {
-            log.info("Admin seeding skipped: SEED_ADMIN_EMAIL and SEED_ADMIN_PASSWORD are not both set");
         }
 
-        if (demoEmail != null && StringUtils.hasText(demoPassword)) {
+        if (isUsable("SEED_DEMO", demoEmail, demoPassword)) {
             seedDemoUser(now);
             seedDemoProfile(now);
             seedCvSummary(now);
@@ -99,9 +97,37 @@ public class ProdDataSeeder implements CommandLineRunner {
             seedTrainingTasks(now);
             seedTrainingProgress(now);
             log.info("PROD demo data ready for {}", demoEmail);
-        } else {
-            log.info("Demo seeding skipped: SEED_DEMO_EMAIL and SEED_DEMO_PASSWORD are not both set");
         }
+    }
+
+    /**
+     * FP-28: a seed user needs an email and a real password. Blank passwords and the .env.example
+     * placeholder ("change-me") are rejected with a warning; the password itself is never logged.
+     */
+    private boolean isUsable(String prefix, String email, String password) {
+        if (email == null && !StringUtils.hasText(password)) {
+            log.info("{} seeding skipped: {}_EMAIL and {}_PASSWORD are not set", prefix, prefix, prefix);
+            return false;
+        }
+        if (email == null) {
+            log.warn("{} seeding skipped: {}_PASSWORD is set but {}_EMAIL is empty", prefix, prefix, prefix);
+            return false;
+        }
+        if (!StringUtils.hasText(password)) {
+            log.warn("{} seeding skipped for {}: {}_PASSWORD is empty", prefix, email, prefix);
+            return false;
+        }
+        if (isPlaceholderPassword(password)) {
+            log.warn("{} seeding skipped for {}: {}_PASSWORD is still the placeholder from .env.example; "
+                    + "set a real password", prefix, email, prefix);
+            return false;
+        }
+        return true;
+    }
+
+    static boolean isPlaceholderPassword(String password) {
+        String normalized = password.trim().toLowerCase(java.util.Locale.ROOT);
+        return normalized.equals("change-me") || normalized.equals("changeme") || normalized.equals("change_me");
     }
 
     private void seedAdmin(LocalDateTime now) {
