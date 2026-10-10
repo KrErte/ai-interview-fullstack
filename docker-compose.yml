@@ -1,4 +1,5 @@
 # Lokaalne käivitus: docker compose up -d --build
+# Sisselogimise kasutajad: cp .env.example .env ja täida SEED_* väärtused (.env on gitignored).
 # Rakendus: http://localhost:4200  (AI test: http://localhost:4200/ai-test)
 services:
   postgres:
@@ -24,6 +25,13 @@ services:
       DB_PASS: ai123
       FRONTEND_BASE_URL: http://localhost:4200
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      # Login users seeded at startup by ProdDataSeeder (FP-19/FP-22). Values come from the
+      # gitignored .env next to this file (template: .env.example). A user is created only when
+      # both its email and password are set; without .env nothing is seeded. Passwords are never logged.
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:-}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
+      SEED_DEMO_EMAIL: ${SEED_DEMO_EMAIL:-}
+      SEED_DEMO_PASSWORD: ${SEED_DEMO_PASSWORD:-}
     ports:
       - "8080:8080"
     depends_on:
