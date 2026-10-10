@@ -8,6 +8,8 @@ COPY gradlew gradlew.bat settings.gradle build.gradle /app/
 COPY gradle /app/gradle
 COPY src /app/src
 
+# Strip CRLF in case the file was checked out on Windows with autocrlf
+RUN sed -i 's/\r$//' gradlew
 RUN chmod +x gradlew
 RUN ./gradlew bootJar -x test --no-daemon
 
