@@ -24,6 +24,14 @@ services:
       DB_USER: ai
       DB_PASS: ai123
       FRONTEND_BASE_URL: https://YOUR_DOMAIN
+      # Optional startup seeding (FP-19, see backend/src/main/resources/application-prod.yml).
+      # Values come from the gitignored .env next to this file (template: .env.example).
+      # A user is created only when both its email and password are set; passwords are never logged.
+      # Unset/missing .env -> empty values -> nothing is seeded.
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:-}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
+      SEED_DEMO_EMAIL: ${SEED_DEMO_EMAIL:-}
+      SEED_DEMO_PASSWORD: ${SEED_DEMO_PASSWORD:-}
     depends_on:
       postgres:
         condition: service_healthy
