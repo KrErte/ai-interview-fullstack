@@ -19,7 +19,7 @@ import { AuthService } from '../../services/auth.service';
             </svg>
           </div>
           <h1 class="text-2xl font-bold text-slate-100">Create your account</h1>
-          <p class="text-slate-500 mt-2">Start your career risk assessment journey</p>
+          <p class="text-slate-500 mt-2">See how well your CV matches the jobs you want</p>
         </div>
 
         <!-- Register Form -->

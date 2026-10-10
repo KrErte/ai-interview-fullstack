@@ -63,13 +63,20 @@ export class RiskService {
   }
 
   /**
-   * Transform backend response to RiskAssessment model
+   * Transform backend job-analysis response to the job match model (RiskAssessment)
    */
   private transformToRiskAssessment(result: JobMatchResult): RiskAssessment {
     // CV-to-job match score (higher = better match), normalised to 0-100.
     // This is NOT a replaceability / risk score.
-    const rawScore = result.fitScore ?? result.matchScore ?? 0;
-    const matchPercent = rawScore > 1 ? rawScore : Math.round(rawScore * 100);
+    // Missing (null/undefined/NaN/non-number) stays null so the UI can show an
+    // empty state; a genuine 0 is kept as 0. Values <= 1 are treated as a 0-1
+    // fraction, larger values as already 0-100. Both branches are rounded so
+    // the displayed number and the band label agree (e.g. 69.5 -> 70).
+    const rawScore = [result.fitScore, result.matchScore]
+      .find((v): v is number => typeof v === 'number' && Number.isFinite(v));
+    const matchPercent = rawScore === undefined
+      ? null
+      : rawScore > 1 ? Math.round(rawScore) : Math.round(rawScore * 100);
 
     // Calculate confidence based on available data signals
     const signals = [

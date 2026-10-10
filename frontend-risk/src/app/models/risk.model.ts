@@ -1,9 +1,15 @@
 /**
- * Risk assessment data model
+ * Job match data model: result of comparing a CV with a job description.
+ * matchPercent is a CV-to-job match score (higher = better match), not a
+ * replaceability score. Type names (RiskAssessment, RiskState) are kept for
+ * compatibility with the /risk route and services.
  */
 export interface RiskAssessment {
-  /** CV-to-job match score (0-100); higher means a better match */
-  matchPercent: number;
+  /**
+   * CV-to-job match score, rounded to an integer 0-100; higher means a better match.
+   * null when the backend returned no usable score (no analysis result yet).
+   */
+  matchPercent: number | null;
 
   /** Confidence level (0-1), displayed as percentage */
   confidence: number;
@@ -61,7 +67,7 @@ export interface CvUploadResponse {
 }
 
 /**
- * Risk state for the UI
+ * Job match page state for the UI
  */
 export interface RiskState {
   assessmentReady: boolean;
