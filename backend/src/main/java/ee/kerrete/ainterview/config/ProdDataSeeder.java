@@ -4,15 +4,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.kerrete.ainterview.model.*;
 import ee.kerrete.ainterview.repository.*;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
-import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -20,17 +20,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Seeds the production database at startup.
+ * <p>
+ * FP-19: no credentials are hardcoded and no password is ever logged. Users are created only when
+ * their credentials are configured (see application-prod.yml):
+ * <ul>
+ *     <li>{@code SEED_ADMIN_EMAIL} + {@code SEED_ADMIN_PASSWORD}: admin user (role ADMIN)</li>
+ *     <li>{@code SEED_DEMO_EMAIL} + {@code SEED_DEMO_PASSWORD}: demo user (role USER) plus demo profile,
+ *     CV summary, job analyses, roadmap, training tasks and progress</li>
+ * </ul>
+ * If a pair is missing (or blank) that user is not created. Existing users are never given a new
+ * password; they are only re-enabled and given their expected role.
+ */
 @Slf4j
 @Component
 @Profile("prod")
-@RequiredArgsConstructor
 public class ProdDataSeeder implements CommandLineRunner {
-
-    private static final String ADMIN_EMAIL = "admin@example.com";
-    private static final String DEMO_EMAIL = "demo@example.com";
-    private static final String DEMO_PASSWORD = "demo123!";
-    private static final int ADMIN_PASSWORD_LENGTH = 32;
-    private static final String PASSWORD_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#%&*";
 
     private final AppUserRepository appUserRepository;
     private final UserProfileRepository userProfileRepository;
@@ -42,28 +48,64 @@ public class ProdDataSeeder implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    private final String adminEmail;
+    private final String adminPassword;
+    private final String demoEmail;
+    private final String demoPassword;
+
+    public ProdDataSeeder(AppUserRepository appUserRepository,
+                          UserProfileRepository userProfileRepository,
+                          CvSummaryRepository cvSummaryRepository,
+                          JobAnalysisSessionRepository jobAnalysisSessionRepository,
+                          RoadmapTaskRepository roadmapTaskRepository,
+                          TrainingTaskRepository trainingTaskRepository,
+                          TrainingProgressRepository trainingProgressRepository,
+                          PasswordEncoder passwordEncoder,
+                          @Value("${app.seed.admin.email:}") String adminEmail,
+                          @Value("${app.seed.admin.password:}") String adminPassword,
+                          @Value("${app.seed.demo.email:}") String demoEmail,
+                          @Value("${app.seed.demo.password:}") String demoPassword) {
+        this.appUserRepository = appUserRepository;
+        this.userProfileRepository = userProfileRepository;
+        this.cvSummaryRepository = cvSummaryRepository;
+        this.jobAnalysisSessionRepository = jobAnalysisSessionRepository;
+        this.roadmapTaskRepository = roadmapTaskRepository;
+        this.trainingTaskRepository = trainingTaskRepository;
+        this.trainingProgressRepository = trainingProgressRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.adminEmail = trimToNull(adminEmail);
+        this.adminPassword = adminPassword;
+        this.demoEmail = trimToNull(demoEmail);
+        this.demoPassword = demoPassword;
+    }
+
     @Override
     @Transactional
     public void run(String... args) {
         LocalDateTime now = LocalDateTime.now();
 
-        String adminPassword = seedAdmin(now);
-        seedDemoUser(now);
-        seedDemoProfile(now);
-        seedCvSummary(now);
-        seedJobAnalyses(now);
-        seedRoadmap(now);
-        seedTrainingTasks(now);
-        seedTrainingProgress(now);
-
-        if (adminPassword != null) {
-            log.info("PROD ADMIN CREATED -> email={} password={}", ADMIN_EMAIL, adminPassword);
+        if (adminEmail != null && StringUtils.hasText(adminPassword)) {
+            seedAdmin(now);
+        } else {
+            log.info("Admin seeding skipped: SEED_ADMIN_EMAIL and SEED_ADMIN_PASSWORD are not both set");
         }
-        log.info("PROD demo data ready for {}", DEMO_EMAIL);
+
+        if (demoEmail != null && StringUtils.hasText(demoPassword)) {
+            seedDemoUser(now);
+            seedDemoProfile(now);
+            seedCvSummary(now);
+            seedJobAnalyses(now);
+            seedRoadmap(now);
+            seedTrainingTasks(now);
+            seedTrainingProgress(now);
+            log.info("PROD demo data ready for {}", demoEmail);
+        } else {
+            log.info("Demo seeding skipped: SEED_DEMO_EMAIL and SEED_DEMO_PASSWORD are not both set");
+        }
     }
 
-    private String seedAdmin(LocalDateTime now) {
-        AppUser existing = appUserRepository.findByEmail(ADMIN_EMAIL).orElse(null);
+    private void seedAdmin(LocalDateTime now) {
+        AppUser existing = appUserRepository.findByEmail(adminEmail).orElse(null);
         if (existing != null) {
             boolean updated = false;
             if (!existing.isEnabled()) {
@@ -78,25 +120,24 @@ public class ProdDataSeeder implements CommandLineRunner {
                 existing.setUpdatedAt(now);
                 appUserRepository.save(existing);
             }
-            return null;
+            return;
         }
 
-        String password = generateSecurePassword(ADMIN_PASSWORD_LENGTH);
         AppUser admin = AppUser.builder()
-                .email(ADMIN_EMAIL)
+                .email(adminEmail)
                 .fullName("Production Admin")
-                .password(passwordEncoder.encode(password))
+                .password(passwordEncoder.encode(adminPassword))
                 .role(UserRole.ADMIN)
                 .enabled(true)
                 .createdAt(now)
                 .updatedAt(now)
                 .build();
         appUserRepository.save(Objects.requireNonNull(admin));
-        return password;
+        log.info("Seeded admin user {}", adminEmail);
     }
 
     private void seedDemoUser(LocalDateTime now) {
-        appUserRepository.findByEmail(DEMO_EMAIL)
+        appUserRepository.findByEmail(demoEmail)
                 .ifPresentOrElse(user -> {
                     boolean changed = false;
                     if (!user.isEnabled()) {
@@ -113,23 +154,23 @@ public class ProdDataSeeder implements CommandLineRunner {
                     }
                 }, () -> {
                     AppUser demo = AppUser.builder()
-                            .email(DEMO_EMAIL)
+                            .email(demoEmail)
                             .fullName("Demo Candidate")
-                            .password(passwordEncoder.encode(DEMO_PASSWORD))
+                            .password(passwordEncoder.encode(demoPassword))
                             .role(UserRole.USER)
                             .enabled(true)
                             .createdAt(now)
                             .updatedAt(now)
                             .build();
                     appUserRepository.save(Objects.requireNonNull(demo));
-                    log.info("Seeded demo user {}", DEMO_EMAIL);
+                    log.info("Seeded demo user {}", demoEmail);
                 });
     }
 
     private void seedDemoProfile(LocalDateTime now) {
-        UserProfile profile = userProfileRepository.findByEmail(DEMO_EMAIL)
+        UserProfile profile = userProfileRepository.findByEmail(demoEmail)
                 .orElseGet(() -> UserProfile.builder()
-                        .email(DEMO_EMAIL)
+                        .email(demoEmail)
                         .createdAt(now)
                         .updatedAt(now)
                         .build());
@@ -145,9 +186,9 @@ public class ProdDataSeeder implements CommandLineRunner {
     }
 
     private void seedCvSummary(LocalDateTime now) {
-        CvSummary summary = cvSummaryRepository.findByEmail(DEMO_EMAIL)
+        CvSummary summary = cvSummaryRepository.findByEmail(demoEmail)
                 .orElseGet(() -> CvSummary.builder()
-                        .email(DEMO_EMAIL)
+                        .email(demoEmail)
                         .createdAt(now)
                         .updatedAt(now)
                         .build());
@@ -165,7 +206,7 @@ public class ProdDataSeeder implements CommandLineRunner {
     }
 
     private void seedJobAnalyses(LocalDateTime now) {
-        if (jobAnalysisSessionRepository.countByEmail(DEMO_EMAIL) >= 5) {
+        if (jobAnalysisSessionRepository.countByEmail(demoEmail) >= 5) {
             return;
         }
 
@@ -229,8 +270,8 @@ public class ProdDataSeeder implements CommandLineRunner {
                                                 String aiSummary,
                                                 String summary) {
         return JobAnalysisSession.builder()
-                .email(DEMO_EMAIL)
-                .userEmail(DEMO_EMAIL)
+                .email(demoEmail)
+                .userEmail(demoEmail)
                 .jobTitle(title)
                 .jobDescription("Demo description for " + title)
                 .analysisResult(toJson(Map.of(
@@ -253,24 +294,24 @@ public class ProdDataSeeder implements CommandLineRunner {
     }
 
     private void seedRoadmap(LocalDateTime now) {
-        if (roadmapTaskRepository.countByEmail(DEMO_EMAIL) > 0) {
+        if (roadmapTaskRepository.countByEmail(demoEmail) > 0) {
             return;
         }
 
         List<RoadmapTask> tasks = List.of(
-                RoadmapTask.builder().email(DEMO_EMAIL).taskKey("day-1-java-healthcheck")
+                RoadmapTask.builder().email(demoEmail).taskKey("day-1-java-healthcheck")
                         .title("Day 1: Java service healthcheck")
                         .description("Add /actuator health, metrics, and structured logging.")
                         .completed(true).dayNumber(1).orderIndex(1).build(),
-                RoadmapTask.builder().email(DEMO_EMAIL).taskKey("day-2-angular-hardening")
+                RoadmapTask.builder().email(demoEmail).taskKey("day-2-angular-hardening")
                         .title("Day 2: Angular hardening")
                         .description("Add route guards, lazy loading, and production error handler.")
                         .completed(false).dayNumber(2).orderIndex(2).build(),
-                RoadmapTask.builder().email(DEMO_EMAIL).taskKey("day-3-ci-cd")
+                RoadmapTask.builder().email(demoEmail).taskKey("day-3-ci-cd")
                         .title("Day 3: CI/CD and container polish")
                         .description("Optimize Dockerfiles, multi-stage builds, and image scanning.")
                         .completed(false).dayNumber(3).orderIndex(3).build(),
-                RoadmapTask.builder().email(DEMO_EMAIL).taskKey("day-4-k8s-readiness")
+                RoadmapTask.builder().email(demoEmail).taskKey("day-4-k8s-readiness")
                         .title("Day 4: Kubernetes readiness")
                         .description("Add readiness/liveness probes, resource limits, and rollout plan.")
                         .completed(false).dayNumber(4).orderIndex(4).build()
@@ -282,7 +323,7 @@ public class ProdDataSeeder implements CommandLineRunner {
     private void seedTrainingTasks(LocalDateTime now) {
         List<TrainingTask> tasks = List.of(
                 TrainingTask.builder()
-                        .email(DEMO_EMAIL)
+                        .email(demoEmail)
                         .question("Tell me about a time you led a migration to the cloud.")
                         .answer("Led a phased migration to AWS with zero downtime using blue/green deployments.")
                         .score(82)
@@ -295,7 +336,7 @@ public class ProdDataSeeder implements CommandLineRunner {
                         .feedback("Clear STAR structure. Add cost-optimization results.")
                         .build(),
                 TrainingTask.builder()
-                        .email(DEMO_EMAIL)
+                        .email(demoEmail)
                         .question("Explain how you ensure Angular apps stay performant in production.")
                         .answer("Use lazy loading, trackBy, OnPush change detection, and bundle analysis.")
                         .score(78)
@@ -308,7 +349,7 @@ public class ProdDataSeeder implements CommandLineRunner {
                         .feedback("Good mention of OnPush; add perf budgets and real-user monitoring.")
                         .build(),
                 TrainingTask.builder()
-                        .email(DEMO_EMAIL)
+                        .email(demoEmail)
                         .question("How would you design CI/CD for this repository?")
                         .answer("Multi-stage Docker builds, quality gates, SBOM, image scanning, and staged deploy.")
                         .score(0)
@@ -330,9 +371,9 @@ public class ProdDataSeeder implements CommandLineRunner {
     }
 
     private void seedTrainingProgress(LocalDateTime now) {
-        TrainingProgress progress = trainingProgressRepository.findByEmail(DEMO_EMAIL)
+        TrainingProgress progress = trainingProgressRepository.findByEmail(demoEmail)
                 .orElseGet(() -> TrainingProgress.builder()
-                        .email(DEMO_EMAIL)
+                        .email(demoEmail)
                         .totalTasks(0)
                         .completedTasks(0)
                         .totalJobAnalyses(0)
@@ -343,9 +384,9 @@ public class ProdDataSeeder implements CommandLineRunner {
                         .lastActivityAt(now)
                         .build());
 
-        int trainingTasks = Math.toIntExact(trainingTaskRepository.countByEmail(DEMO_EMAIL));
-        int completedTraining = Math.toIntExact(trainingTaskRepository.countByEmailAndCompletedIsTrue(DEMO_EMAIL));
-        long analyses = jobAnalysisSessionRepository.countByEmail(DEMO_EMAIL);
+        int trainingTasks = Math.toIntExact(trainingTaskRepository.countByEmail(demoEmail));
+        int completedTraining = Math.toIntExact(trainingTaskRepository.countByEmailAndCompletedIsTrue(demoEmail));
+        long analyses = jobAnalysisSessionRepository.countByEmail(demoEmail);
 
         progress.setTotalTasks(trainingTasks);
         progress.setCompletedTasks(completedTraining);
@@ -356,7 +397,7 @@ public class ProdDataSeeder implements CommandLineRunner {
         progress.setLastActivityAt(now);
         progress.setLastUpdated(now);
 
-        jobAnalysisSessionRepository.findByEmail(DEMO_EMAIL).stream()
+        jobAnalysisSessionRepository.findByEmail(demoEmail).stream()
                 .max(Comparator.comparing(JobAnalysisSession::getMatchScore))
                 .ifPresent(top -> {
                     progress.setLastMatchScore(top.getMatchScore());
@@ -366,13 +407,8 @@ public class ProdDataSeeder implements CommandLineRunner {
         trainingProgressRepository.save(progress);
     }
 
-    private String generateSecurePassword(int length) {
-        SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            sb.append(PASSWORD_ALPHABET.charAt(random.nextInt(PASSWORD_ALPHABET.length())));
-        }
-        return sb.toString();
+    private static String trimToNull(String value) {
+        return StringUtils.hasText(value) ? value.trim() : null;
     }
 
     private String toJson(Object value) {

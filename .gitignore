@@ -5,3 +5,7 @@ frontend/dist/
 frontend/node_modules/
 frontend/.angular/
 backend.zip
+
+# Local secrets for docker compose (FP-19); copy .env.example to .env
+.env
+!.env.example
