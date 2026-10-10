@@ -4,7 +4,7 @@
 - Backend: Java 17, Spring Boot 3.3, Spring Security + JWT, JPA, Liquibase, PostgreSQL (H2 lokaalselt), Gradle – kaust `backend/`.
 - Frontend: Angular 19 standalone + Tailwind – kaust `frontend-risk/` (vana `frontend/` ära puutu).
 - Ametite/küsimuste/roadmapide sisu: `backend/src/main/resources/ai-readiness/*.json`.
-- Käivitus: `docker compose -f docker-compose.local.yml up --build` → http://localhost:4200/ai-test
+- Käivitus: `docker compose up -d --build` → http://localhost:4200/ai-test
 - Testid: `cd backend && ./gradlew test`, frontend build: `cd frontend-risk && npm run build`.
 
 ## Meeskonnareeglid (botid)
