@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.service;
 
+import ee.kerrete.ainterview.ai.AiUnavailableException;
 import ee.kerrete.ainterview.dto.CandidatePlanRequest;
 import ee.kerrete.ainterview.model.LearningPlan;
 import org.junit.jupiter.api.Test;
@@ -79,14 +80,14 @@ class CandidatePlanServiceTest {
     }
 
     @Test
-    void fallbackPlanIsStoredPerUserToo() {
+    void unparsableAnswerIsNotStoredAsPlan() {
+        // FP-20: an unusable AI answer is "AI unavailable" (503), not a stored fallback plan
         CandidatePlanService service = new CandidatePlanService(openAiClient);
         lenient().when(openAiClient.createChatCompletion(anyString(), anyString())).thenReturn("not json");
 
-        LearningPlan fallback = service.buildPlan("a@example.com", request("cv", "goal"));
-
-        assertThat(service.getLastPlan("a@example.com")).isSameAs(fallback);
-        assertThat(service.getLastPlan("b@example.com")).isNull();
+        assertThatThrownBy(() -> service.buildPlan("a@example.com", request("cv", "goal")))
+                .isInstanceOf(AiUnavailableException.class);
+        assertThat(service.getLastPlan("a@example.com")).isNull();
     }
 
     @Test

@@ -107,7 +107,9 @@ class ActuatorAndH2ConsoleSecurityTest {
             "spring.datasource.url=jdbc:h2:mem:fp30-prod" + H2,
             "spring.datasource.driver-class-name=org.h2.Driver",
             "spring.datasource.username=sa",
-            "spring.datasource.password="
+            // FP-28: the prod profile fails fast without a DB password and JWT secret
+            "spring.datasource.password=test-only",
+            "JWT_SECRET=test-only-jwt-secret-0123456789abcdef0123456789abcdef"
     })
     @AutoConfigureMockMvc
     @ActiveProfiles("prod")
