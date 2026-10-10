@@ -61,15 +61,29 @@ export function getJobMatchColorClass(matchPercent: number): string {
         <!-- Job Match Score -->
         <div class="text-center sm:text-left">
           <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-2">Job match</p>
-          <div
-            class="flex items-baseline gap-1"
-            role="img"
-            [attr.aria-label]="'Job match: ' + matchPercent + '%, ' + getMatchLabel()"
-          >
-            <span class="text-6xl font-bold" [ngClass]="getMatchColorClass()" aria-hidden="true">{{ matchPercent }}</span>
-            <span class="text-3xl font-semibold text-slate-500" aria-hidden="true">%</span>
-          </div>
-          <p class="text-sm text-slate-500 mt-2">{{ getMatchLabel() }}</p>
+          <ng-container *ngIf="hasScore(); else noScore">
+            <div
+              class="flex items-baseline gap-1"
+              role="img"
+              [attr.aria-label]="'Job match: ' + displayPercent() + '%, ' + getMatchLabel()"
+            >
+              <span class="text-6xl font-bold" [ngClass]="getMatchColorClass()" aria-hidden="true">{{ displayPercent() }}</span>
+              <span class="text-3xl font-semibold text-slate-500" aria-hidden="true">%</span>
+            </div>
+            <p class="text-sm text-slate-500 mt-2">{{ getMatchLabel() }}</p>
+          </ng-container>
+          <ng-template #noScore>
+            <div
+              class="flex items-baseline gap-1"
+              role="img"
+              aria-label="Job match: no score yet"
+            >
+              <span class="text-6xl font-bold text-slate-500" aria-hidden="true">&mdash;</span>
+            </div>
+            <p class="text-sm text-slate-500 mt-2 max-w-xs">
+              No job match yet. Submit your CV and a job description to see your match.
+            </p>
+          </ng-template>
         </div>
 
         <!-- Divider -->
@@ -105,8 +119,11 @@ export function getJobMatchColorClass(matchPercent: number): string {
   `
 })
 export class SnapshotCardComponent {
-  /** CV-to-job match score (0-100); higher is better. */
-  @Input() matchPercent = 0;
+  /**
+   * CV-to-job match score (0-100); higher is better.
+   * null/undefined/NaN = no score yet (empty state); 0 is a real score.
+   */
+  @Input() matchPercent: number | null | undefined = null;
   @Input() confidence = 0;
   @Input() signalsCount = 0;
   @Input() coverage = 0;
@@ -115,11 +132,21 @@ export class SnapshotCardComponent {
     return `${(this.confidence * 100).toFixed(1)}%`;
   }
 
+  /** True only for a finite number, so a genuine 0 counts as a score. */
+  hasScore(): boolean {
+    return typeof this.matchPercent === 'number' && Number.isFinite(this.matchPercent);
+  }
+
+  /** Rounded score used for both the number and the band, so they agree. */
+  displayPercent(): number {
+    return Math.round(this.matchPercent as number);
+  }
+
   getMatchColorClass(): string {
-    return getJobMatchColorClass(this.matchPercent);
+    return getJobMatchColorClass(this.displayPercent());
   }
 
   getMatchLabel(): string {
-    return getJobMatchLabel(this.matchPercent);
+    return getJobMatchLabel(this.displayPercent());
   }
 }
