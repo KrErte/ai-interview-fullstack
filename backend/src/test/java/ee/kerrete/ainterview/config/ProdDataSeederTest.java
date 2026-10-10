@@ -62,7 +62,7 @@ class ProdDataSeederTest {
         verify(appUserRepository, never()).save(any());
         verifyNoInteractions(userProfileRepository, cvSummaryRepository, jobAnalysisSessionRepository,
                 roadmapTaskRepository, trainingTaskRepository, trainingProgressRepository);
-        assertThat(output.getAll()).contains("Admin seeding skipped").contains("Demo seeding skipped");
+        assertThat(output.getAll()).contains("SEED_ADMIN seeding skipped").contains("SEED_DEMO seeding skipped");
         assertThat(output.getAll()).doesNotContainIgnoringCase("password=");
     }
 
@@ -106,6 +106,28 @@ class ProdDataSeederTest {
                 .doesNotContain(ADMIN_PASSWORD)
                 .doesNotContain(DEMO_PASSWORD)
                 .doesNotContainIgnoringCase("password=");
+    }
+
+    @org.junit.jupiter.params.ParameterizedTest
+    @org.junit.jupiter.params.provider.ValueSource(strings = {"change-me", "CHANGE-ME", " change-me ", "changeme"})
+    void placeholderPasswordIsRejectedWithWarningWithoutPassword(String placeholder, CapturedOutput output) {
+        seeder(ADMIN_EMAIL, placeholder, DEMO_EMAIL, placeholder).run();
+
+        verify(appUserRepository, never()).save(any());
+        verifyNoInteractions(userProfileRepository);
+        assertThat(output.getAll())
+                .contains("SEED_ADMIN seeding skipped for " + ADMIN_EMAIL)
+                .contains("SEED_DEMO seeding skipped for " + DEMO_EMAIL)
+                .contains("placeholder")
+                .doesNotContain(placeholder.trim());
+    }
+
+    @Test
+    void blankPasswordWithEmailIsRejectedWithWarning(CapturedOutput output) {
+        seeder(ADMIN_EMAIL, "   ", "", "").run();
+
+        verify(appUserRepository, never()).save(any());
+        assertThat(output.getAll()).contains("SEED_ADMIN seeding skipped for " + ADMIN_EMAIL + ": SEED_ADMIN_PASSWORD is empty");
     }
 
     @Test
