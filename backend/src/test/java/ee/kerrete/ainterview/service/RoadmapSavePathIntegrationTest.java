@@ -11,8 +11,11 @@ import ee.kerrete.ainterview.repository.TrainingProgressRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +41,8 @@ import static org.assertj.core.api.Assertions.assertThat;
         "spring.datasource.password="
 })
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(RoadmapService.class)
+@ImportAutoConfiguration(JacksonAutoConfiguration.class)
+@Import({RoadmapService.class, ProductEventService.class})
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 class RoadmapSavePathIntegrationTest {
 
@@ -50,6 +54,8 @@ class RoadmapSavePathIntegrationTest {
     private JobAnalysisSessionRepository jobAnalysisSessionRepository;
     @Autowired
     private TrainingProgressRepository trainingProgressRepository;
+    @Autowired
+    private ApplicationEventPublisher events;
 
     private JobAnalysisService jobAnalysisService;
     private String email;
@@ -59,7 +65,7 @@ class RoadmapSavePathIntegrationTest {
         email = "fp7-" + UUID.randomUUID() + "@example.com";
         // No OpenAI key configured -> deterministic fallback analysis with a 4-step roadmap.
         jobAnalysisService = new JobAnalysisService(new ObjectMapper(), roadmapTaskRepository,
-                jobAnalysisSessionRepository, trainingProgressRepository);
+                jobAnalysisSessionRepository, trainingProgressRepository, events);
     }
 
     private static RoadmapTaskDto dto(String key, String title, int day) {

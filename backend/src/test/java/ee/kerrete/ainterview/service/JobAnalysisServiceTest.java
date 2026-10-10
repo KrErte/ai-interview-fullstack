@@ -22,6 +22,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
@@ -61,6 +62,8 @@ class JobAnalysisServiceTest {
     private JobAnalysisSessionRepository jobAnalysisSessionRepository;
     @Mock
     private TrainingProgressRepository trainingProgressRepository;
+    @Mock
+    private ApplicationEventPublisher events;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private JobAnalysisService service;
@@ -68,7 +71,7 @@ class JobAnalysisServiceTest {
     @BeforeEach
     void setUp() {
         service = new JobAnalysisService(objectMapper, roadmapTaskRepository,
-                jobAnalysisSessionRepository, trainingProgressRepository);
+                jobAnalysisSessionRepository, trainingProgressRepository, events);
         ReflectionTestUtils.setField(service, "baseUrl", BASE_URL);
         ReflectionTestUtils.setField(service, "model", "test-model");
     }

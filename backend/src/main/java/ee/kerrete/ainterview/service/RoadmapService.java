@@ -2,15 +2,18 @@ package ee.kerrete.ainterview.service;
 
 import ee.kerrete.ainterview.dto.RoadmapTaskDto;
 import ee.kerrete.ainterview.dto.UpdateRoadmapTaskRequest;
+import ee.kerrete.ainterview.model.ProductEventType;
 import ee.kerrete.ainterview.model.RoadmapTask;
 import ee.kerrete.ainterview.repository.RoadmapTaskRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,6 +23,8 @@ import java.util.stream.Collectors;
 public class RoadmapService {
 
     private final RoadmapTaskRepository repo;
+    /** product analytics: written by ProductEventService after commit, see ProductEventOccurred */
+    private final ApplicationEventPublisher events;
 
     @Transactional(readOnly = true)
     public List<RoadmapTaskDto> getTasksForEmail(String email) {
@@ -36,8 +41,14 @@ public class RoadmapService {
         RoadmapTask task = repo.findByEmailAndTaskKey(request.getEmail(), request.getTaskKey())
                 .orElseThrow(() -> new IllegalArgumentException("Roadmap task not found for given email and key"));
 
+        boolean wasCompleted = task.isCompleted();
         task.setCompleted(request.isCompleted());
         repo.save(task);
+
+        if (!wasCompleted && request.isCompleted()) {
+            events.publishEvent(new ProductEventOccurred(request.getEmail(), ProductEventType.TASK_COMPLETED,
+                    Map.of("taskKey", task.getTaskKey() != null ? task.getTaskKey() : "")));
+        }
 
         return getTasksForEmail(request.getEmail());
     }
@@ -72,6 +83,7 @@ public class RoadmapService {
         repo.flush();
 
         int generated = 1;
+        int created = 0;
         for (RoadmapTaskDto dto : tasks) {
             String key = dto.getTaskKey();
             if (key == null || key.isBlank()) {
@@ -95,6 +107,11 @@ public class RoadmapService {
                     .build();
             repo.save(task);
             order++;
+            created++;
+        }
+        if (created > 0) {
+            events.publishEvent(new ProductEventOccurred(email, ProductEventType.PLAN_GENERATED,
+                    Map.of("source", "training_start", "taskCount", created)));
         }
         return getTasksForEmail(email);
     }
