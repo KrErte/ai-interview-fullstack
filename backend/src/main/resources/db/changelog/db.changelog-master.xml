@@ -18,7 +18,9 @@
     <include file="changes/002-add-score-updatedat.xml" relativeToChangelogFile="true"/>
     <include file="changes/006-create-softskill_training_task.xml" relativeToChangelogFile="true"/>
     <include file="changes/006-create-workstyle-session.xml" relativeToChangelogFile="true"/>
-    <include file="changes/007-seed-test-data.xml" relativeToChangelogFile="true"/>
+    <!-- FP-18: changes/007-seed-test-data.xml was removed (inverted precondition; it seeded only when
+         app_users was NOT empty). Databases that already recorded its changesets keep those rows;
+         Liquibase ignores recorded changesets that are no longer in the changelog. -->
     <include file="changes/2025-12-06-create-roadmap-task-table.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-06-add-training-task-feedback-skill.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-06-create-user-profile-table.xml" relativeToChangelogFile="true"/>
@@ -26,5 +28,8 @@
     <include file="changes/2025-12-06-extend-job-analysis-session-results.xml" relativeToChangelogFile="true"/>
     <include file="changes/2025-12-06-extend-roadmap-task-ordering.xml" relativeToChangelogFile="true"/>
     <include file="changes/2026-10-10-rename-user-profile-current-role.xml" relativeToChangelogFile="true"/>
+
+    <!-- DEMO DATA (FP-18): context "demo" only, see the file header -->
+    <include file="changes/2026-10-10-seed-demo-data.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

@@ -5,6 +5,10 @@ spring:
   profiles:
     active: local
 
+  liquibase:
+    # FP-18: safe default; demo seed changesets (context "demo") only run when a profile opts in.
+    contexts: prod
+
   jpa:
     hibernate:
       ddl-auto: none
