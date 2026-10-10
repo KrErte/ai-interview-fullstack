@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+        FP-16: current_role is a reserved word/function in PostgreSQL (and H2 2.x), so Hibernate's
+        unquoted "insert into user_profile (..., current_role, ...)" fails with
+        "syntax error at or near current_role". Rename the column to a non-reserved name.
+        Liquibase quotes the reserved old name itself (PostgreSQL: "current_role", H2: "CURRENT_ROLE").
+    -->
+    <changeSet id="2026-10-10-rename-user-profile-current-role" author="futureproof-backend">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="user_profile" columnName="current_role"/>
+        </preConditions>
+        <renameColumn tableName="user_profile"
+                      oldColumnName="current_role"
+                      newColumnName="current_job_role"
+                      columnDataType="VARCHAR(255)"/>
+    </changeSet>
+</databaseChangeLog>
