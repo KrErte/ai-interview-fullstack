@@ -5,6 +5,11 @@ spring:
   profiles:
     active: local
 
+  h2:
+    console:
+      # FP-30: off by default (and in dev/prod); only application-local.yml enables it
+      enabled: false
+
   jpa:
     hibernate:
       ddl-auto: none
@@ -30,5 +35,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,mappings
+        # FP-30: only health is exposed over HTTP (and it is the only public one, see SecurityConfig)
+        include: health
       base-path: /actuator
+  endpoint:
+    health:
+      show-details: never
+      show-components: never
