@@ -98,11 +98,6 @@ export class WeaknessesCardComponent {
     return this._weaknesses;
   }
   private _weaknesses: string[] = [];
-  /**
-   * Analysis coverage (0-100). No longer rendered here (the snapshot card shows
-   * "Analysis Coverage"); kept so existing [coverage] bindings still compile.
-   */
-  @Input() coverage = 0;
   showAll = false;
 
   get displayedWeaknesses(): string[] {
