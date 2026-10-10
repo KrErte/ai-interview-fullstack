@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!-- FP-10: minimal product analytics events (plan_generated, task_completed, ...) -->
+    <changeSet id="2026-10-10-create-product-event-table" author="futureproof">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="product_event"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="product_event">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_type" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="details" type="CLOB"/>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="product_event" indexName="idx_product_event_email">
+            <column name="email"/>
+        </createIndex>
+        <createIndex tableName="product_event" indexName="idx_product_event_type_created">
+            <column name="event_type"/>
+            <column name="created_at"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

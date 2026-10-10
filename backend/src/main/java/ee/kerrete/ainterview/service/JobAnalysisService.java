@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.kerrete.ainterview.dto.JobAnalysisRequest;
 import ee.kerrete.ainterview.dto.JobAnalysisResponse;
 import ee.kerrete.ainterview.model.JobAnalysisSession;
+import ee.kerrete.ainterview.model.ProductEventType;
 import ee.kerrete.ainterview.model.RoadmapTask;
 import ee.kerrete.ainterview.model.TrainingProgress;
 import ee.kerrete.ainterview.model.TrainingStatus;
@@ -14,6 +15,7 @@ import ee.kerrete.ainterview.repository.TrainingProgressRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -33,6 +35,8 @@ public class JobAnalysisService {
     private final RoadmapTaskRepository roadmapTaskRepository;
     private final JobAnalysisSessionRepository jobAnalysisSessionRepository;
     private final TrainingProgressRepository trainingProgressRepository;
+    /** product analytics: written by ProductEventService after commit, see ProductEventOccurred */
+    private final ApplicationEventPublisher events;
 
     @Value("${openai.api-key:}")
     private String apiKey;
@@ -296,6 +300,8 @@ public class JobAnalysisService {
         }
         if (!tasks.isEmpty()) {
             roadmapTaskRepository.saveAll(tasks);
+            events.publishEvent(new ProductEventOccurred(email, ProductEventType.PLAN_GENERATED,
+                    Map.of("source", "job_analysis", "taskCount", tasks.size())));
         }
     }
 
