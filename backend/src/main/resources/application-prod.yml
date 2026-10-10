@@ -39,6 +39,16 @@ logging:
     org.hibernate.SQL: WARN
 
 app:
+  # FP-19: startup seeding (ProdDataSeeder). Nothing is hardcoded and passwords are never logged.
+  # A user is created only when both its email and password are set; leave them unset to seed nothing.
+  # Existing users keep their password (they are only re-enabled and given the expected role).
+  seed:
+    admin:
+      email: ${SEED_ADMIN_EMAIL:}        # admin user, role ADMIN
+      password: ${SEED_ADMIN_PASSWORD:}
+    demo:
+      email: ${SEED_DEMO_EMAIL:}         # demo user, role USER, plus demo profile/analyses/roadmap data
+      password: ${SEED_DEMO_PASSWORD:}
   cors:
     # Set from env FRONTEND_BASE_URL, e.g. https://your-domain.com
     allowed-origins: ${FRONTEND_BASE_URL:https://your-domain.com}

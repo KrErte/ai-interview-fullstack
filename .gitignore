@@ -8,3 +8,7 @@ backend.zip
 frontend-risk/node_modules/
 frontend-risk/dist/
 frontend-risk/.angular/
+
+# Local secrets for docker compose (FP-19); copy .env.example to .env
+.env
+!.env.example
