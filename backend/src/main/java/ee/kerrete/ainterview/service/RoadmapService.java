@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.service;
 
+import ee.kerrete.ainterview.api.NotFoundException;
 import ee.kerrete.ainterview.dto.RoadmapTaskDto;
 import ee.kerrete.ainterview.dto.UpdateRoadmapTaskRequest;
 import ee.kerrete.ainterview.model.ProductEventType;
@@ -26,20 +27,41 @@ public class RoadmapService {
     /** product analytics: written by ProductEventService after commit, see ProductEventOccurred */
     private final ApplicationEventPublisher events;
 
+    /**
+     * Display order of a user's roadmap (FP-25), stable across re-saves:
+     * <ol>
+     *   <li>{@code orderIndex} ascending: the explicit position. {@link #savePlan} gives new tasks positions
+     *   after the highest kept (completed) task, so kept tasks stay first and new tasks follow in request
+     *   order. Tasks without a position (legacy rows) count as position 0, i.e. first.</li>
+     *   <li>{@code dayNumber} ascending, missing day last.</li>
+     *   <li>{@code id} ascending (creation order), then {@code taskKey}, as final tie-breakers.</li>
+     * </ol>
+     * Ordering by day number first (the old behaviour) put new tasks without a day number before the
+     * kept completed tasks.
+     */
+    static final Comparator<RoadmapTask> DISPLAY_ORDER = Comparator
+            .comparing((RoadmapTask t) -> t.getOrderIndex() != null ? t.getOrderIndex() : 0)
+            .thenComparing(RoadmapTask::getDayNumber, Comparator.nullsLast(Comparator.naturalOrder()))
+            .thenComparing(RoadmapTask::getId, Comparator.nullsLast(Comparator.naturalOrder()))
+            .thenComparing(RoadmapTask::getTaskKey, Comparator.nullsLast(Comparator.naturalOrder()));
+
     @Transactional(readOnly = true)
     public List<RoadmapTaskDto> getTasksForEmail(String email) {
         return repo.findByEmail(email).stream()
-                .sorted(Comparator.comparing((RoadmapTask t) -> t.getDayNumber() != null ? t.getDayNumber() : 0)
-                        .thenComparing(t -> t.getOrderIndex() != null ? t.getOrderIndex() : 0)
-                        .thenComparing(RoadmapTask::getTaskKey))
+                .sorted(DISPLAY_ORDER)
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * @throws NotFoundException (404) if the user has no task with that key; the same for a key that
+     *                           only exists for another user, so existence is not revealed
+     */
     @Transactional
     public List<RoadmapTaskDto> updateTask(UpdateRoadmapTaskRequest request) {
-        RoadmapTask task = repo.findByEmailAndTaskKey(request.getEmail(), request.getTaskKey())
-                .orElseThrow(() -> new IllegalArgumentException("Roadmap task not found for given email and key"));
+        RoadmapTask task = (request.getTaskKey() == null ? java.util.Optional.<RoadmapTask>empty()
+                : repo.findByEmailAndTaskKey(request.getEmail(), request.getTaskKey()))
+                .orElseThrow(() -> new NotFoundException("Roadmap task not found"));
 
         boolean wasCompleted = task.isCompleted();
         task.setCompleted(request.isCompleted());
