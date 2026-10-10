@@ -142,7 +142,7 @@ class AiUnavailableWebMvcTest {
 
         @Test
         void candidatePlan() throws Exception {
-            when(candidatePlanService.buildPlan(any())).thenThrow(unavailable);
+            when(candidatePlanService.buildPlan(any(), any())).thenThrow(unavailable);
             mvc.perform(json(post("/api/plan"), "{\"cvText\":\"cv\",\"goal\":\"dev\"}"))
                     .andExpect(status().isServiceUnavailable())
                     .andExpect(content().json(BODY, true));

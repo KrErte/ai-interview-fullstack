@@ -112,7 +112,7 @@ class NoKeyModeTest {
     @Test
     void candidatePlanThrows() {
         CandidatePlanService service = new CandidatePlanService(openAiClient(""));
-        assertThatThrownBy(() -> service.buildPlan(new CandidatePlanRequest())).isInstanceOf(AiUnavailableException.class);
+        assertThatThrownBy(() -> service.buildPlan("nokey@test", new CandidatePlanRequest())).isInstanceOf(AiUnavailableException.class);
     }
 
     @Test
