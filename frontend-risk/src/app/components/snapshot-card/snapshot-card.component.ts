@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { toFiniteNumber, clampPercent } from '../../services/risk.service';
+import { toFiniteNumber, clampPercent, roundPercent } from '../../services/risk.service';
 
 /**
  * Qualitative bands for the CV-to-job match score (0-100).
@@ -139,9 +139,15 @@ export class SnapshotCardComponent {
     return toFiniteNumber(this.matchPercent) !== null;
   }
 
-  /** Rounded, 0-100 clamped score used for both the number and the band, so they agree. */
+  /**
+   * Rounded, 0-100 clamped score used for both the number and the band, so they agree.
+   * matchPercent is already on the 0-100 scale (RiskService.toMatchPercent), so
+   * no x100 here. Uses the same roundPercent() as the service, so a non-integer
+   * input with float noise (28.499999999999996) still shows 29, and an integer
+   * from the service passes through unchanged.
+   */
   displayPercent(): number {
-    return clampPercent(Math.round(toFiniteNumber(this.matchPercent) ?? 0));
+    return clampPercent(roundPercent(toFiniteNumber(this.matchPercent) ?? 0));
   }
 
   getMatchColorClass(): string {

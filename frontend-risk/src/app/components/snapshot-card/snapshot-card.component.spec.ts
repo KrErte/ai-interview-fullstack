@@ -3,10 +3,9 @@ import {
   SnapshotCardComponent,
   getJobMatchBand,
   getJobMatchLabel,
-  getJobMatchColorClass,
-  STRONG_MATCH_THRESHOLD,
-  PARTIAL_MATCH_THRESHOLD
+  getJobMatchColorClass
 } from './snapshot-card.component';
+import { toMatchPercent } from '../../services/risk.service';
 
 describe('job match band helpers', () => {
   const cases: Array<[number, string, string, string]> = [
@@ -25,11 +24,6 @@ describe('job match band helpers', () => {
       expect(getJobMatchColorClass(score)).toBe(color);
     });
   }
-
-  it('uses 70 / 40 as the thresholds', () => {
-    expect(STRONG_MATCH_THRESHOLD).toBe(70);
-    expect(PARTIAL_MATCH_THRESHOLD).toBe(40);
-  });
 });
 
 describe('SnapshotCardComponent (rendered)', () => {
@@ -77,6 +71,42 @@ describe('SnapshotCardComponent (rendered)', () => {
     expect(caption()).toBe('Strong match');
     expect(aria()).toBe('Job match: 70%, Strong match');
   });
+
+  it('does not re-introduce float error when given a noisy percent (28.499999999999996 -> 29)', () => {
+    render(0.285 * 100);
+    expect(digits()).toBe('29');
+    expect(aria()).toBe('Job match: 29%, Weak match');
+    render(0.145 * 100);
+    expect(digits()).toBe('15');
+  });
+
+  it('does not double-round: 69.49 -> 69% Partial match', () => {
+    render(69.49);
+    expect(digits()).toBe('69');
+    expect(aria()).toBe('Job match: 69%, Partial match');
+  });
+
+  // Service -> card: the card must show exactly what RiskService computed.
+  const pipeline: Array<[number, string, string]> = [
+    [0.145, '15', 'Weak match'],
+    [0.285, '29', 'Weak match'],
+    [0.565, '57', 'Partial match'],
+    [0.575, '58', 'Partial match'],
+    [0.695, '70', 'Strong match'],
+    [0.6949, '69', 'Partial match'],
+    [0.3949, '39', 'Weak match'],
+    [0.395, '40', 'Partial match']
+  ];
+  for (const [raw, shown, label] of pipeline) {
+    it(`raw score ${raw} -> service ${shown} -> card "${shown}% ${label}"`, () => {
+      const pct = toMatchPercent(raw);
+      expect(String(pct)).toBe(shown);
+      render(pct);
+      expect(digits()).toBe(shown);
+      expect(caption()).toBe(label);
+      expect(aria()).toBe(`Job match: ${shown}%, ${label}`);
+    });
+  }
 
   it('clamps out-of-range inputs to 0-100', () => {
     render(150);

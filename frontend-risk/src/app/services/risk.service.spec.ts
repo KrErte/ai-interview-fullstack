@@ -5,6 +5,9 @@ import {
   RiskService,
   toFiniteNumber,
   clampPercent,
+  roundPercent,
+  toMatchPercent,
+  cleanStrings,
   buildGaps,
   MISSING_SKILL_PREFIX
 } from './risk.service';
@@ -74,6 +77,80 @@ describe('clampPercent', () => {
     expect(clampPercent(0)).toBe(0);
     expect(clampPercent(55)).toBe(55);
     expect(clampPercent(100)).toBe(100);
+  });
+});
+
+describe('roundPercent (float noise removed, rounded once)', () => {
+  // Exact decimal math: 0.145 * 100 = 14.5 -> 15, 0.285 -> 28.5 -> 29,
+  // 0.565 -> 56.5 -> 57, 0.575 -> 57.5 -> 58. In IEEE-754 these products land
+  // just below .5 (e.g. 28.499999999999996), so a bare Math.round gives 1 less.
+  const cases: Array<[number, number]> = [
+    [0.145, 15],
+    [0.285, 29],
+    [0.565, 57],
+    [0.575, 58],
+    [0.695, 70],
+    [0.6949, 69],
+    [0.3949, 39],
+    [0.395, 40]
+  ];
+  for (const [raw, expected] of cases) {
+    it(`${raw} * 100 -> ${expected}`, () => {
+      expect(roundPercent(raw * 100)).toBe(expected);
+    });
+  }
+
+  it('does not double-round (69.49 stays 69, not 69.5 -> 70)', () => {
+    expect(roundPercent(69.49)).toBe(69);
+    expect(roundPercent(39.49)).toBe(39);
+  });
+
+  it('leaves integers unchanged', () => {
+    expect(roundPercent(0)).toBe(0);
+    expect(roundPercent(70)).toBe(70);
+    expect(roundPercent(100)).toBe(100);
+  });
+});
+
+describe('toMatchPercent (score-scale contract)', () => {
+  it('rounds 0-1 fractions at band edges correctly', () => {
+    expect(toMatchPercent(0.145)).toBe(15);
+    expect(toMatchPercent(0.285)).toBe(29);
+    expect(toMatchPercent(0.565)).toBe(57);
+    expect(toMatchPercent(0.575)).toBe(58);
+    expect(toMatchPercent(0.695)).toBe(70);
+    expect(toMatchPercent(0.6949)).toBe(69);
+    expect(toMatchPercent(0.3949)).toBe(39);
+    expect(toMatchPercent(0.395)).toBe(40);
+  });
+
+  it('1 is a fraction (100); (1, 2) is a percent (1.2 -> 1, 1.5 -> 2)', () => {
+    expect(toMatchPercent(1)).toBe(100);
+    expect(toMatchPercent(1.2)).toBe(1);
+    expect(toMatchPercent(1.5)).toBe(2);
+  });
+
+  it('clamps to 0-100 and accepts numeric strings', () => {
+    expect(toMatchPercent(150)).toBe(100);
+    expect(toMatchPercent(-5)).toBe(0);
+    expect(toMatchPercent('80')).toBe(80);
+  });
+
+  it('returns null for missing/invalid scores, 0 for a real 0', () => {
+    expect(toMatchPercent(null)).toBeNull();
+    expect(toMatchPercent(undefined)).toBeNull();
+    expect(toMatchPercent('abc')).toBeNull();
+    expect(toMatchPercent('')).toBeNull();
+    expect(toMatchPercent(NaN)).toBeNull();
+    expect(toMatchPercent(0)).toBe(0);
+  });
+});
+
+describe('cleanStrings', () => {
+  it('keeps trimmed non-blank strings and drops everything else', () => {
+    expect(cleanStrings([' a ', '', '  ', null, 3, 'b'])).toEqual(['a', 'b']);
+    expect(cleanStrings(null)).toEqual([]);
+    expect(cleanStrings('x')).toEqual([]);
   });
 });
 
@@ -210,6 +287,24 @@ describe('RiskService', () => {
       expect(percent('abc', '  ')).toBeNull();
     });
 
+    it('rounds band-edge fractions once, without float error', () => {
+      expect(percent(0.145)).toBe(15);
+      expect(percent(0.285)).toBe(29);
+      expect(percent(0.565)).toBe(57);
+      expect(percent(0.575)).toBe(58);
+      expect(percent(0.695)).toBe(70);
+      expect(percent(0.6949)).toBe(69);
+      expect(percent(0.3949)).toBe(39);
+      expect(percent(0.395)).toBe(40);
+      expect(percent(null, 0.285)).toBe(29);
+    });
+
+    it('treats values in (1, 2) as a percent (1.2 -> 1, 1.5 -> 2), like backend normalizeScore', () => {
+      expect(percent(1.2)).toBe(1);
+      expect(percent(1.5)).toBe(2);
+      expect(percent(null, 1.5)).toBe(2);
+    });
+
     it('clamps out-of-range scores to 0-100', () => {
       expect(percent(-5)).toBe(0);
       expect(percent(150)).toBe(100);
@@ -249,14 +344,63 @@ describe('RiskService', () => {
     expect(a.matchPercent).toBeNull();
     expect(a.strengths).toEqual(['Angular', 'TypeScript']);
     expect(a.weaknesses).toEqual(['Testing', 'Missing skill: Docker']);
-    // signals: strengths 2 + weaknesses 1 + missingSkills 2 + gaps 0 + roadmap 1 + summary 1
-    expect(a.signalsCount).toBe(7);
-    expect(a.confidence).toBeCloseTo(0.85, 10);
+    // signals: strengths 2 + gaps list 2 (weaknesses 'Testing' + missingSkills
+    // 'Docker'; missing 'testing' duplicates the weakness and is dropped by
+    // buildGaps) + roadmap 1 + summary 1 = 6.
+    // Before FP-29 the raw lengths were counted (2 + 1 + 2 + 0 + 1 + 1 = 7, confidence 0.85).
+    expect(a.signalsCount).toBe(6);
+    expect(a.confidence).toBeCloseTo(0.8, 10);
+    // coverage unchanged: 5 of 6 categories present (gaps is null).
     expect(a.coverage).toBeCloseTo((5 / 6) * 100, 10);
     expect(a.roadmapPrecision).toBe('HIGH');
     expect(a.roadmapAllowedByDepth).toBeTrue();
     expect(a.summary).toBe('Decent fit');
     expect(a.roadmap).toEqual(['Learn Docker']);
+  });
+
+  describe('signalsCount / coverage use the cleaned, deduped lists', () => {
+    it('does not count duplicate or blank gap entries as signals', () => {
+      const a = transform({
+        weaknesses: ['Testing', ' testing ', '', '   '],
+        gaps: ['TESTING', 'Leadership'],
+        missingSkills: ['Docker', 'docker', 'Testing', '']
+      });
+      expect(a.weaknesses).toEqual(['Testing', 'Leadership', 'Missing skill: Docker']);
+      expect(a.signalsCount).toBe(a.weaknesses.length);
+      expect(a.signalsCount).toBe(3);
+      expect(a.confidence).toBeCloseTo(0.65, 10);
+      // weaknesses, missingSkills, gaps present -> 3 of 6
+      expect(a.coverage).toBeCloseTo(50, 10);
+      expect(a.roadmapPrecision).toBe('MEDIUM');
+    });
+
+    it('does not count blank strengths, roadmap steps or summary', () => {
+      const a = transform({
+        strengths: ['Angular', '', '  '],
+        roadmap: ['', ' '],
+        summary: '   '
+      });
+      expect(a.signalsCount).toBe(1);
+      expect(a.confidence).toBeCloseTo(0.55, 10);
+      expect(a.coverage).toBeCloseTo((1 / 6) * 100, 10);
+    });
+
+    it('treats a category holding only blanks/junk as absent in coverage', () => {
+      const a = transform({
+        strengths: ['', '   '],
+        weaknesses: ['  ', null, 42],
+        missingSkills: [''],
+        gaps: ['\t'],
+        roadmap: [''],
+        summary: ''
+      } as unknown as JobMatchResult);
+      expect(a.signalsCount).toBe(0);
+      expect(a.confidence).toBe(0.5);
+      expect(a.coverage).toBe(0);
+      expect(a.roadmapPrecision).toBe('LOW');
+      expect(a.roadmapAllowedByDepth).toBeFalse();
+      expect(a.weaknesses).toEqual([]);
+    });
   });
 
   it('maps an empty backend response to a safe, empty assessment', () => {

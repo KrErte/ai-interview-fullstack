@@ -7,7 +7,6 @@ describe('WeaknessesCardComponent', () => {
 
   const render = (weaknesses: string[] | null | undefined) => {
     fixture.componentRef.setInput('weaknesses', weaknesses);
-    fixture.componentRef.setInput('coverage', 83);
     fixture.detectChanges();
   };
   const items = () =>
