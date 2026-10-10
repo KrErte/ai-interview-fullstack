@@ -6,7 +6,7 @@
  */
 export interface RiskAssessment {
   /**
-   * CV-to-job match score, rounded to an integer 0-100; higher means a better match.
+   * CV-to-job match score, rounded to an integer and clamped to 0-100; higher means a better match.
    * null when the backend returned no usable score (no analysis result yet).
    */
   matchPercent: number | null;
@@ -23,7 +23,10 @@ export interface RiskAssessment {
   /** List of identified strengths */
   strengths: string[];
 
-  /** List of identified weaknesses */
+  /**
+   * Gaps between the CV and the job: backend weaknesses + gaps + missingSkills
+   * (as "Missing skill: X"), deduped case-insensitively. Empty means no gaps.
+   */
   weaknesses: string[];
 
   /** Whether roadmap generation is allowed based on assessment depth */
@@ -51,8 +54,10 @@ export interface JobMatchResult {
   matchScore?: number | string | null;
   strengths?: string[];
   weaknesses?: string[];
-  missingSkills?: string[];
-  gaps?: string[];
+  /** Skills the job needs but the CV lacks; sent by both OpenAI and fallback paths. May be null. */
+  missingSkills?: string[] | null;
+  /** Not sent by the current backend JobAnalysisResponse; kept for compatibility. */
+  gaps?: string[] | null;
   roadmap?: string[];
   suggestedImprovements?: string;
   summary?: string;

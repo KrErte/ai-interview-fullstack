@@ -92,7 +92,18 @@ import { CommonModule } from '@angular/common';
   `
 })
 export class WeaknessesCardComponent {
-  @Input() weaknesses: string[] = [];
+  /**
+   * Gap entries (backend weaknesses + gaps + missingSkills, see buildGaps()).
+   * The "No major gaps found" state only shows when this is empty; null is
+   * treated as empty.
+   */
+  @Input() set weaknesses(value: string[] | null | undefined) {
+    this._weaknesses = Array.isArray(value) ? value : [];
+  }
+  get weaknesses(): string[] {
+    return this._weaknesses;
+  }
+  private _weaknesses: string[] = [];
   @Input() coverage = 0;
   showAll = false;
 

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { toFiniteNumber } from '../../services/risk.service';
+import { toFiniteNumber, clampPercent } from '../../services/risk.service';
 
 /**
  * Qualitative bands for the CV-to-job match score (0-100).
@@ -139,9 +139,9 @@ export class SnapshotCardComponent {
     return toFiniteNumber(this.matchPercent) !== null;
   }
 
-  /** Rounded score used for both the number and the band, so they agree. */
+  /** Rounded, 0-100 clamped score used for both the number and the band, so they agree. */
   displayPercent(): number {
-    return Math.round(toFiniteNumber(this.matchPercent) ?? 0);
+    return clampPercent(Math.round(toFiniteNumber(this.matchPercent) ?? 0));
   }
 
   getMatchColorClass(): string {
