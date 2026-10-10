@@ -1,7 +1,8 @@
 package ee.kerrete.ainterview.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ee.kerrete.ainterview.dto.EvaluateAnswerRequest;
+import ee.kerrete.ainterview.ai.AiUnavailableException;
+import ee.kerrete.ainterview.ai.OpenAiKey;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +17,7 @@ import java.util.*;
 @Slf4j
 public class AIExampleAnswerService {
 
-    @Value("${openai.api-key:${OPENAI_API_KEY:dummy-openai-key}}")
+    @Value("${openai.api-key:}")
     private String apiKey;
 
     @Value("${openai.base-url:https://api.openai.com/v1}")
@@ -28,7 +29,9 @@ public class AIExampleAnswerService {
     private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public String generateExampleStarAnswer(String question) throws Exception {
+    /** @throws AiUnavailableException without an API key (no request is sent) or when the call fails */
+    public String generateExampleStarAnswer(String question) {
+        OpenAiKey.require(apiKey);
         String prompt = """
                 You are a senior software engineer preparing a STAR interview answer.
                 Write a professional STAR answer to the following question:
@@ -56,15 +59,23 @@ public class AIExampleAnswerService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
 
-        ResponseEntity<String> responseEntity =
-                restTemplate.postForEntity(baseUrl + "/chat/completions",
-                        new HttpEntity<>(body, headers),
-                        String.class);
+        try {
+            ResponseEntity<String> responseEntity =
+                    restTemplate.postForEntity(baseUrl + "/chat/completions",
+                            new HttpEntity<>(body, headers),
+                            String.class);
 
-        String content = objectMapper.readTree(responseEntity.getBody())
-                .path("choices").get(0)
-                .path("message").path("content").asText();
-
-        return content;
+            String content = objectMapper.readTree(responseEntity.getBody())
+                    .path("choices").path(0)
+                    .path("message").path("content").asText("");
+            if (content.isBlank()) {
+                throw new AiUnavailableException("OpenAI returned no content");
+            }
+            return content;
+        } catch (AiUnavailableException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new AiUnavailableException("OpenAI example answer failed: " + e.getMessage(), e);
+        }
     }
 }

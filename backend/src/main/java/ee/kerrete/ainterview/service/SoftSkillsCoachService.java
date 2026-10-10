@@ -2,6 +2,8 @@ package ee.kerrete.ainterview.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.kerrete.ainterview.ai.AiUnavailableException;
+import ee.kerrete.ainterview.ai.OpenAiKey;
 import ee.kerrete.ainterview.dto.CoachAnswerRequest;
 import ee.kerrete.ainterview.dto.CoachAnswerResponse;
 import ee.kerrete.ainterview.dto.CoachStateResponse;
@@ -49,7 +51,7 @@ public class SoftSkillsCoachService {
     private final SoftSkillSeedService softSkillSeedService;
     private final JobAnalysisSessionRepository jobAnalysisSessionRepository;
 
-    @Value("${openai.api-key:${OPENAI_API_KEY:dummy-openai-key}}")
+    @Value("${openai.api-key:}")
     private String apiKey;
 
     @Value("${openai.base-url:https://api.openai.com/v1}")
@@ -221,10 +223,12 @@ public class SoftSkillsCoachService {
     }
 
     private JsonNode callOpenAi(String systemPrompt, String userPrompt) {
+        // FP-20: no-key mode is a configuration state, not an error: INFO, no stack trace, no outbound call
+        if (!OpenAiKey.isConfigured(apiKey)) {
+            log.info("SoftSkillsCoachService: no OpenAI API key configured (no-key mode), answering ai_unavailable");
+            throw new OpenAiCoachException("OpenAI API võti puudub.", new IllegalStateException("openai.api-key missing"));
+        }
         try {
-            if (!StringUtils.hasText(apiKey)) {
-                throw new OpenAiCoachException("OpenAI API võti puudub.", new IllegalStateException("openai.api-key missing"));
-            }
 
             Map<String, Object> body = new HashMap<>();
             body.put("model", model);
@@ -268,7 +272,7 @@ public class SoftSkillsCoachService {
 
             return objectMapper.readTree(content);
         } catch (Exception e) {
-            log.error("SoftSkillsCoachService OpenAI error", e);
+            log.warn("SoftSkillsCoachService OpenAI call failed", e);
             throw new OpenAiCoachException("OpenAI teenus ei ole saadaval.", e);
         }
     }
@@ -599,7 +603,8 @@ public class SoftSkillsCoachService {
         private final boolean sessionComplete;
     }
 
-    public static class OpenAiCoachException extends RuntimeException {
+    /** FP-20: mapped to 503 {"error":"ai_unavailable"} by AiUnavailableAdvice. */
+    public static class OpenAiCoachException extends AiUnavailableException {
         public OpenAiCoachException(String message, Throwable cause) {
             super(message, cause);
         }

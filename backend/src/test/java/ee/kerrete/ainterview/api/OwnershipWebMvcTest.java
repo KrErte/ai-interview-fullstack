@@ -148,14 +148,14 @@ class OwnershipWebMvcTest {
         @WithMockUser(username = ME)
         void principalEmailWinsOverBodyEmail() throws Exception {
             JobAnalysisResponse res = new JobAnalysisResponse();
-            res.setMatchScore(0.5);
+            res.setMatchScore(50);
             when(jobAnalysisService.analyze(any())).thenReturn(res);
 
             mockMvc.perform(post("/api/job-analysis")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content("{\"email\":\"" + OTHER + "\",\"cvText\":\"cv\",\"jobDescription\":\"jd\"}"))
                     .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.matchScore").value(0.5));
+                    .andExpect(jsonPath("$.matchScore").value(50));
 
             ArgumentCaptor<JobAnalysisRequest> captor = ArgumentCaptor.forClass(JobAnalysisRequest.class);
             verify(jobAnalysisService).analyze(captor.capture());

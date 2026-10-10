@@ -23,7 +23,8 @@ logging:
 
 openai:
   base-url: https://api.openai.com/v1
-  api-key: ${OPENAI_API_KEY:dummy-openai-key}
+  # FP-20: empty = no-key mode (no OpenAI calls; AI-only endpoints answer 503 ai_unavailable)
+  api-key: ${OPENAI_API_KEY:}
   model: gpt-4.1-mini
 
 management:

@@ -2,6 +2,8 @@ package ee.kerrete.ainterview.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.kerrete.ainterview.ai.AiUnavailableException;
+import ee.kerrete.ainterview.ai.OpenAiKey;
 import ee.kerrete.ainterview.dto.AdaptiveAnalysisRequest;
 import ee.kerrete.ainterview.dto.AdaptiveAnalysisResponse;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,7 @@ public class AiAdaptiveService {
 
     private final ObjectMapper objectMapper;
 
-    @Value("${openai.api-key:${OPENAI_API_KEY:dummy-openai-key}}")
+    @Value("${openai.api-key:}")
     private String apiKey;
 
     @Value("${openai.base-url:https://api.openai.com/v1}")
@@ -32,7 +34,12 @@ public class AiAdaptiveService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
+    /**
+     * @throws AiUnavailableException without an API key (no request is sent), or when the call fails or the
+     *                                answer cannot be used (FP-20: no error text as feedback)
+     */
     public AdaptiveAnalysisResponse analyzeAnswer(AdaptiveAnalysisRequest request) {
+        OpenAiKey.require(apiKey);
         try {
             String prompt = buildPrompt(request);
 
@@ -76,7 +83,7 @@ public class AiAdaptiveService {
             if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null) {
                 log.error("OpenAI HTTP error: status={} body={}",
                         response.getStatusCode(), response.getBody());
-                return AdaptiveAnalysisResponse.error("OpenAI vastus ei olnud edukas.");
+                throw new AiUnavailableException("OpenAI response was not successful: " + response.getStatusCode());
             }
 
             String responseBody = response.getBody();
@@ -90,7 +97,7 @@ public class AiAdaptiveService {
                     .asText();
 
             if (content == null || content.isBlank()) {
-                return AdaptiveAnalysisResponse.error("OpenAI ei tagastanud sisu.");
+                throw new AiUnavailableException("OpenAI returned no content");
             }
 
             // Mudel võib panna ```json wrapperi ümber
@@ -104,7 +111,7 @@ public class AiAdaptiveService {
                 json = objectMapper.readTree(cleaned);
             } catch (IOException e) {
                 log.error("Ei suutnud OpenAI JSON-i parsida. content={}", cleaned, e);
-                return AdaptiveAnalysisResponse.error("OpenAI vastuse parsimine ebaõnnestus.");
+                throw new AiUnavailableException("OpenAI answer could not be parsed", e);
             }
 
             Map<String, Integer> scores = new HashMap<>();
@@ -128,9 +135,11 @@ public class AiAdaptiveService {
                     .weakestSkill(weakestSkill)
                     .build();
 
+        } catch (AiUnavailableException e) {
+            throw e;
         } catch (Exception e) {
             log.error("Viga AI skill coachi kutsel", e);
-            return AdaptiveAnalysisResponse.error("Sisemine viga vastuse analüüsimisel.");
+            throw new AiUnavailableException("OpenAI analysis failed: " + e.getMessage(), e);
         }
     }
 

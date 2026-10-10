@@ -14,11 +14,13 @@ import java.util.List;
 public class JobAnalysisResponse {
 
     /**
-     * Sobivuse skoor (0–1 või 0–100, sõltuvalt mudeli vastusest).
+     * Match score: ALWAYS an integer 0–100 in the /api/job-analysis JSON (FP-20 contract, e.g. 83, never 83.0).
+     * The service reads the model's raw number itself and normalizes it ({@code JobAnalysisService.normalizeScore}):
+     * only values below 1 are fractions (x100), then clamp 0–100 and round.
      * Kui OpenAI tagastab välja "score", seotakse see JsonAlias abil.
      */
     @JsonAlias({"score"})
-    private Double matchScore;
+    private Integer matchScore;
 
     /**
      * Kandidaadi tugevused võrreldes töökuulutusega.
@@ -49,4 +51,10 @@ public class JobAnalysisResponse {
      * Lühike kokkuvõte (säilitame, et profiili ülevaated jääksid toimima).
      */
     private String summary;
+
+    /**
+     * true when this is the local heuristic analysis (no OpenAI key or the AI call failed) instead of
+     * an AI analysis (FP-20).
+     */
+    private boolean fallback;
 }

@@ -1,5 +1,7 @@
 package ee.kerrete.ainterview.service;
 
+import ee.kerrete.ainterview.ai.AiUnavailableException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.kerrete.ainterview.dto.CandidatePlanRequest;
 import ee.kerrete.ainterview.model.LearningPlan;
@@ -58,17 +60,8 @@ public class CandidatePlanService {
             lastPlan = plan;
             return plan;
         } catch (Exception e) {
-            // fallback plaan, et UI ei jääks tühjaks
-            LearningPlan fallback = new LearningPlan();
-            fallback.setHeadline("Õppekava genereerimine ebaõnnestus.");
-            fallback.setSummary("Proovi uuesti. Võid CV-d ja eesmärki natuke täpsustada.");
-            fallback.setSteps(List.of(
-                    "Kirjelda CV-s tehnoloogiad punktidena.",
-                    "Lisa CV-sse GitHubi link näidisprojektidele.",
-                    "Genereeri uus õppeplaan."
-            ));
-            lastPlan = fallback;
-            return fallback;
+            // FP-20: an unusable AI answer is "AI unavailable" (503), not a "generation failed" plan
+            throw new AiUnavailableException("OpenAI learning plan could not be parsed", e);
         }
     }
 
