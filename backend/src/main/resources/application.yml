@@ -9,6 +9,9 @@ spring:
     console:
       # FP-30: off by default (and in dev/prod); only application-local.yml enables it
       enabled: false
+  liquibase:
+    # FP-18: safe default; demo seed changesets (context "demo") only run when a profile opts in.
+    contexts: prod
 
   jpa:
     hibernate:
