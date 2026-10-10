@@ -7,6 +7,7 @@ import { SnapshotCardComponent } from '../../components/snapshot-card/snapshot-c
 import { StrengthsCardComponent } from '../../components/strengths-card/strengths-card.component';
 import { WeaknessesCardComponent } from '../../components/weaknesses-card/weaknesses-card.component';
 import { CtaSectionComponent } from '../../components/cta-section/cta-section.component';
+import { CvUploadComponent } from '../../components/cv-upload/cv-upload.component';
 import { RiskService } from '../../services/risk.service';
 import { RiskStateService } from '../../services/risk-state.service';
 import { RiskAssessment } from '../../models/risk.model';
@@ -20,7 +21,8 @@ import { RiskAssessment } from '../../models/risk.model';
     SnapshotCardComponent,
     StrengthsCardComponent,
     WeaknessesCardComponent,
-    CtaSectionComponent
+    CtaSectionComponent,
+    CvUploadComponent
   ],
   template: `
     <div class="min-h-screen">
@@ -51,13 +53,20 @@ import { RiskAssessment } from '../../models/risk.model';
 
           <form [formGroup]="form" class="space-y-6">
             <div>
-              <label class="block text-sm font-medium text-slate-300 mb-2">Your CV / Resume</label>
+              <label for="cv-text" class="block text-sm font-medium text-slate-300 mb-2">Your CV / Resume</label>
               <textarea
+                id="cv-text"
                 formControlName="cvText"
+                [readonly]="uploadingCv"
                 rows="5"
                 class="w-full rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3 text-slate-200 placeholder-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all resize-none"
-                placeholder="Paste your CV text here..."
+                placeholder="Paste your CV text here, or upload a PDF or .txt file below..."
               ></textarea>
+              <app-cv-upload
+                [target]="form.controls.cvText"
+                [disabled]="loading"
+                (uploadingChange)="uploadingCv = $event"
+              ></app-cv-upload>
             </div>
 
             <div>
@@ -76,7 +85,7 @@ import { RiskAssessment } from '../../models/risk.model';
             <button
               type="button"
               (click)="runAssessment()"
-              [disabled]="form.invalid || loading"
+              [disabled]="form.invalid || loading || uploadingCv"
               class="w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-4 font-semibold text-white shadow-lg shadow-emerald-500/25 transition-all hover:shadow-emerald-500/40 hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               <span class="flex items-center justify-center gap-2">
@@ -183,6 +192,8 @@ export class RiskPageComponent implements OnInit, OnDestroy {
   });
 
   loading = false;
+  /** True while a CV file is being uploaded/extracted (blocks Analyze). */
+  uploadingCv = false;
   generatingRoadmap = false;
   error: string | null = null;
   assessment: RiskAssessment | null = null;
@@ -215,6 +226,7 @@ export class RiskPageComponent implements OnInit, OnDestroy {
   }
 
   runAssessment(): void {
+    if (this.uploadingCv || this.loading) return;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
