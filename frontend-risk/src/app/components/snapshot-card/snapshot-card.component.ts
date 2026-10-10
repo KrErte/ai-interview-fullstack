@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { toFiniteNumber, clampPercent } from '../../services/risk.service';
 
 /**
  * Qualitative bands for the CV-to-job match score (0-100).
@@ -76,12 +77,12 @@ export function getJobMatchColorClass(matchPercent: number): string {
             <div
               class="flex items-baseline gap-1"
               role="img"
-              aria-label="Job match: no score yet"
+              aria-label="Job match: not available"
             >
               <span class="text-6xl font-bold text-slate-500" aria-hidden="true">&mdash;</span>
             </div>
             <p class="text-sm text-slate-500 mt-2 max-w-xs">
-              No job match yet. Submit your CV and a job description to see your match.
+              We couldn't calculate a match for this job.
             </p>
           </ng-template>
         </div>
@@ -102,7 +103,7 @@ export function getJobMatchColorClass(matchPercent: number): string {
       <!-- Coverage Bar -->
       <div class="space-y-3">
         <div class="flex items-center justify-between text-sm">
-          <span class="text-slate-400">Assessment Coverage</span>
+          <span class="text-slate-400">Analysis Coverage</span>
           <span class="font-medium text-slate-300">{{ coverage | number:'1.0-0' }}%</span>
         </div>
         <div class="h-2 rounded-full bg-slate-800 overflow-hidden">
@@ -121,7 +122,8 @@ export function getJobMatchColorClass(matchPercent: number): string {
 export class SnapshotCardComponent {
   /**
    * CV-to-job match score (0-100); higher is better.
-   * null/undefined/NaN = no score yet (empty state); 0 is a real score.
+   * null/undefined/NaN/non-numeric = no score (empty state); 0 is a real score.
+   * Uses the same finite-number check as RiskService (toFiniteNumber).
    */
   @Input() matchPercent: number | null | undefined = null;
   @Input() confidence = 0;
@@ -132,14 +134,14 @@ export class SnapshotCardComponent {
     return `${(this.confidence * 100).toFixed(1)}%`;
   }
 
-  /** True only for a finite number, so a genuine 0 counts as a score. */
+  /** True only for a finite number (or numeric string), so a genuine 0 counts as a score. */
   hasScore(): boolean {
-    return typeof this.matchPercent === 'number' && Number.isFinite(this.matchPercent);
+    return toFiniteNumber(this.matchPercent) !== null;
   }
 
-  /** Rounded score used for both the number and the band, so they agree. */
+  /** Rounded, 0-100 clamped score used for both the number and the band, so they agree. */
   displayPercent(): number {
-    return Math.round(this.matchPercent as number);
+    return clampPercent(Math.round(toFiniteNumber(this.matchPercent) ?? 0));
   }
 
   getMatchColorClass(): string {

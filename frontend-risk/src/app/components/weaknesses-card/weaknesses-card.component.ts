@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
         </div>
         <div>
           <h2 class="text-xl font-semibold text-slate-100">Areas to Improve</h2>
-          <p class="text-sm text-slate-500">Key signals that need attention</p>
+          <p class="text-sm text-slate-500">Gaps between your CV and this job</p>
         </div>
       </div>
 
@@ -46,8 +46,8 @@ import { CommonModule } from '@angular/common';
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <p class="text-emerald-400 mb-1">Looking great!</p>
-          <p class="text-sm text-slate-500">No critical weaknesses detected in your profile</p>
+          <p class="text-emerald-400 mb-1">No major gaps found</p>
+          <p class="text-sm text-slate-500">Your CV covers the key requirements we checked for this job</p>
         </div>
       </ng-template>
 
@@ -64,7 +64,7 @@ import { CommonModule } from '@angular/common';
           ></div>
         </div>
         <p class="text-xs text-slate-500 mt-3">
-          These signals are identified from your profile and job requirements analysis.
+          Identified by comparing your CV with the job description.
         </p>
       </div>
 
@@ -74,7 +74,7 @@ import { CommonModule } from '@angular/common';
           (click)="showAll = !showAll"
           class="text-sm text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-2"
         >
-          <span>{{ showAll ? 'Show less' : 'Show all ' + weaknesses.length + ' areas' }}</span>
+          <span>{{ showAll ? 'Show less' : 'Show all ' + weaknesses.length + ' gaps' }}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-4 w-4 transition-transform"
@@ -92,7 +92,18 @@ import { CommonModule } from '@angular/common';
   `
 })
 export class WeaknessesCardComponent {
-  @Input() weaknesses: string[] = [];
+  /**
+   * Gap entries (backend weaknesses + gaps + missingSkills, see buildGaps()).
+   * The "No major gaps found" state only shows when this is empty; null is
+   * treated as empty.
+   */
+  @Input() set weaknesses(value: string[] | null | undefined) {
+    this._weaknesses = Array.isArray(value) ? value : [];
+  }
+  get weaknesses(): string[] {
+    return this._weaknesses;
+  }
+  private _weaknesses: string[] = [];
   @Input() coverage = 0;
   showAll = false;
 

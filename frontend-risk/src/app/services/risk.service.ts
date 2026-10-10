@@ -5,6 +5,80 @@ import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import { RiskAssessment, JobMatchResult, CvUploadResponse } from '../models/risk.model';
 
+/**
+ * Returns a finite number for a number or a numeric string, otherwise null.
+ * Strings are trimmed; empty/whitespace-only and non-numeric strings are
+ * treated as missing (null). Number('') would be 0, so the empty check matters.
+ * Booleans, objects, NaN and +/-Infinity are also null.
+ */
+export function toFiniteNumber(value: unknown): number | null {
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? value : null;
+  }
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (trimmed === '') return null;
+    const parsed = Number(trimmed);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
+/**
+ * Clamps a match percentage to the 0-100 range. Call after rounding so that
+ * out-of-range backend values (-5, 150) still produce a valid score/band.
+ */
+export function clampPercent(value: number): number {
+  return Math.min(100, Math.max(0, value));
+}
+
+/** Prefix used for gap entries derived from the backend's missingSkills. */
+export const MISSING_SKILL_PREFIX = 'Missing skill: ';
+
+/** Case-insensitive, whitespace-normalised key used to dedupe gap entries. */
+function gapKey(text: string): string {
+  return text.trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+/** Keeps only non-blank strings, trimmed. Tolerates null/undefined/non-array input. */
+function cleanStrings(list: unknown): string[] {
+  if (!Array.isArray(list)) return [];
+  return list
+    .filter((v): v is string => typeof v === 'string')
+    .map(v => v.trim())
+    .filter(v => v !== '');
+}
+
+/**
+ * Builds the gaps list shown in the "Areas to Improve" card from the backend's
+ * weaknesses, gaps and missingSkills (all string[] on the wire; any of them may
+ * be missing or null).
+ *
+ * - weaknesses first, then gaps, then missingSkills as "Missing skill: X".
+ * - Deduped case-insensitively (trimmed, whitespace collapsed), first
+ *   occurrence wins. A missing skill is skipped when an earlier entry equals
+ *   either the bare skill ("Docker") or its label ("Missing skill: Docker").
+ * - Empty only when all three sources are empty, so "No major gaps found" is
+ *   never shown while the backend reports missing skills.
+ */
+export function buildGaps(result: Pick<JobMatchResult, 'weaknesses' | 'gaps' | 'missingSkills'> | null | undefined): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  const add = (label: string, ...keys: string[]) => {
+    if (keys.some(k => seen.has(gapKey(k)))) return;
+    keys.forEach(k => seen.add(gapKey(k)));
+    out.push(label);
+  };
+  for (const w of [...cleanStrings(result?.weaknesses), ...cleanStrings(result?.gaps)]) {
+    add(w, w);
+  }
+  for (const skill of cleanStrings(result?.missingSkills)) {
+    const label = MISSING_SKILL_PREFIX + skill;
+    add(label, label, skill);
+  }
+  return out;
+}
+
 export interface JobMatchRequest {
   email?: string;
   cvText: string;
@@ -68,15 +142,26 @@ export class RiskService {
   private transformToRiskAssessment(result: JobMatchResult): RiskAssessment {
     // CV-to-job match score (higher = better match), normalised to 0-100.
     // This is NOT a replaceability / risk score.
-    // Missing (null/undefined/NaN/non-number) stays null so the UI can show an
-    // empty state; a genuine 0 is kept as 0. Values <= 1 are treated as a 0-1
-    // fraction, larger values as already 0-100. Both branches are rounded so
-    // the displayed number and the band label agree (e.g. 69.5 -> 70).
+    //
+    // Scale contract for the backend fitScore / matchScore (fitScore wins when
+    // both are usable):
+    //   - raw > 1  -> already on a 0-100 scale:  80   -> 80
+    //   - raw <= 1 -> a 0-1 fraction, x100:      0.85 -> 85
+    //   - raw === 1 exactly is a 0-1 fraction, so it means 100% (not 1%).
+    //   - 0 (or "0") is a genuine 0% score, not "missing".
+    // Both branches are rounded so the displayed number and the band label
+    // agree (e.g. 69.5 -> 70), then clamped to 0-100 (-5 -> 0, 150 -> 100).
+    //
+    // Numeric strings ("80", " 0.85 ") are accepted via toFiniteNumber().
+    // null/undefined/NaN/Infinity, empty or whitespace-only strings and
+    // non-numeric strings count as missing: matchPercent stays null and the
+    // snapshot card shows its empty state.
     const rawScore = [result.fitScore, result.matchScore]
-      .find((v): v is number => typeof v === 'number' && Number.isFinite(v));
+      .map(toFiniteNumber)
+      .find((v): v is number => v !== null);
     const matchPercent = rawScore === undefined
       ? null
-      : rawScore > 1 ? Math.round(rawScore) : Math.round(rawScore * 100);
+      : clampPercent(rawScore > 1 ? Math.round(rawScore) : Math.round(rawScore * 100));
 
     // Calculate confidence based on available data signals
     const signals = [
@@ -107,7 +192,7 @@ export class RiskService {
       signalsCount,
       coverage,
       strengths: result.strengths || [],
-      weaknesses: [...(result.weaknesses || []), ...(result.gaps || [])],
+      weaknesses: buildGaps(result),
       roadmapAllowedByDepth: coverage >= 30,
       roadmapPrecision,
       summary: result.summary,
