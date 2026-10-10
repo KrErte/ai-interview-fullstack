@@ -36,26 +36,44 @@ public class SecurityConfig {
     @Value("${app.cors.allowed-origins:http://localhost:4200,http://127.0.0.1:4200}")
     private String corsAllowedOrigins;
 
+    /** FP-30: the H2 console is off unless a profile (only application-local.yml) enables it. */
+    @Value("${spring.h2.console.enabled:false}")
+    private boolean h2ConsoleEnabled;
+
+    @Value("${spring.h2.console.path:/h2-console}")
+    private String h2ConsolePath;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 // kasutame allpool defineeritud corsConfigurationSource()
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .headers(headers -> headers.frameOptions(frame -> frame.disable())) // H2 jaoks
+                // Default X-Frame-Options DENY; the H2 console (frames) needs SAMEORIGIN, only when enabled.
+                .headers(headers -> headers.frameOptions(frame -> {
+                    if (h2ConsoleEnabled) {
+                        frame.sameOrigin();
+                    } else {
+                        frame.deny();
+                    }
+                }))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        // CORS preflight peab ALATI läbi minema
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers(
-                                "/auth/**",
-                                "/api/auth/**",
-                                "/api/ping",
-                                "/h2-console/**",
-                                "/error"
-                        ).permitAll()
-                        .anyRequest().hasAnyRole("ADMIN", "USER", "CANDIDATE")
-                )
+                .authorizeHttpRequests(auth -> {
+                    // CORS preflight peab ALATI läbi minema
+                    auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                            .requestMatchers(
+                                    "/auth/**",
+                                    "/api/auth/**",
+                                    "/api/ping",
+                                    "/error"
+                            ).permitAll()
+                            // FP-30: liveness/readiness for docker/load balancers; status only, no details
+                            .requestMatchers(HttpMethod.GET, "/actuator/health").permitAll();
+                    if (h2ConsoleEnabled) {
+                        auth.requestMatchers(h2ConsolePath + "/**").permitAll();
+                    }
+                    auth.anyRequest().hasAnyRole("ADMIN", "USER", "CANDIDATE");
+                })
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
