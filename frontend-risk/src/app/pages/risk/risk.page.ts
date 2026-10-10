@@ -27,14 +27,14 @@ import { RiskAssessment } from '../../models/risk.model';
       <!-- Page Header -->
       <div class="text-center mb-12">
         <h1 class="text-4xl font-bold text-slate-100 mb-4">
-          <span class="gradient-text">Career Risk</span> Assessment
+          <span class="gradient-text">Job Match</span> Analysis
         </h1>
         <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-          Understand your career readiness and get personalized recommendations to minimize risk.
+          See how well your CV matches a job description and get personalized recommendations to close the gaps.
         </p>
       </div>
 
-      <!-- Assessment Input (if no assessment yet) -->
+      <!-- Job match input (if no result yet) -->
       <div *ngIf="!assessment && !loading" class="max-w-2xl mx-auto mb-12">
         <div class="rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/80 to-slate-900/40 p-8 backdrop-blur-sm">
           <div class="flex items-center gap-3 mb-6">
@@ -44,7 +44,7 @@ import { RiskAssessment } from '../../models/risk.model';
               </svg>
             </div>
             <div>
-              <h2 class="text-xl font-semibold text-slate-100">Start Your Assessment</h2>
+              <h2 class="text-xl font-semibold text-slate-100">Check Your Job Match</h2>
               <p class="text-sm text-slate-500">Paste your CV and target job description</p>
             </div>
           </div>
@@ -83,7 +83,7 @@ import { RiskAssessment } from '../../models/risk.model';
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                 </svg>
-                Analyze My Career Risk
+                Analyze My Job Match
               </span>
             </button>
           </form>
@@ -96,7 +96,7 @@ import { RiskAssessment } from '../../models/risk.model';
           <div class="h-20 w-20 rounded-full border-4 border-slate-800"></div>
           <div class="absolute top-0 left-0 h-20 w-20 rounded-full border-4 border-emerald-500 border-t-transparent animate-spin"></div>
         </div>
-        <p class="text-lg text-slate-300 mt-6">Analyzing your career profile...</p>
+        <p class="text-lg text-slate-300 mt-6">Analyzing your CV against the job description...</p>
         <p class="text-sm text-slate-500 mt-2">This may take a moment</p>
       </div>
 
@@ -109,7 +109,7 @@ import { RiskAssessment } from '../../models/risk.model';
             </svg>
           </div>
           <div>
-            <p class="text-rose-300 font-medium">Assessment Failed</p>
+            <p class="text-rose-300 font-medium">Job match analysis failed</p>
             <p class="text-sm text-rose-200/70 mt-1">{{ error }}</p>
             <button
               (click)="resetAssessment()"
@@ -121,7 +121,7 @@ import { RiskAssessment } from '../../models/risk.model';
         </div>
       </div>
 
-      <!-- Assessment Results -->
+      <!-- Job match results -->
       <div *ngIf="assessment && !loading" class="space-y-8">
         <!-- Summary Banner -->
         <div *ngIf="assessment.summary" class="rounded-2xl border border-slate-800/50 bg-slate-900/40 p-6">
@@ -134,7 +134,7 @@ import { RiskAssessment } from '../../models/risk.model';
         <div class="grid gap-8 lg:grid-cols-2">
           <!-- Snapshot Card (full width on mobile, left on desktop) -->
           <app-snapshot-card
-            [riskPercent]="assessment.riskPercent"
+            [matchPercent]="assessment.matchPercent"
             [confidence]="assessment.confidence"
             [signalsCount]="assessment.signalsCount"
             [coverage]="assessment.coverage"
@@ -149,7 +149,6 @@ import { RiskAssessment } from '../../models/risk.model';
           <!-- Weaknesses Card -->
           <app-weaknesses-card
             [weaknesses]="assessment.weaknesses"
-            [coverage]="assessment.coverage"
           ></app-weaknesses-card>
         </div>
 
@@ -168,7 +167,7 @@ import { RiskAssessment } from '../../models/risk.model';
             (click)="resetAssessment()"
             class="text-slate-400 hover:text-slate-300 text-sm transition-colors"
           >
-            Start a new assessment
+            Start a new job match
           </button>
         </div>
       </div>
@@ -233,7 +232,7 @@ export class RiskPageComponent implements OnInit, OnDestroy {
         this.riskState.setAssessment(assessment);
       },
       error: (err) => {
-        this.riskState.setError(err?.error?.message || 'Failed to analyze. Please try again.');
+        this.riskState.setError(err?.error?.message || "We couldn't analyze your job match. Please try again.");
       }
     });
   }

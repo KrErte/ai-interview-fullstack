@@ -1,5 +1,42 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { toFiniteNumber, clampPercent, roundPercent } from '../../services/risk.service';
+
+/**
+ * Qualitative bands for the CV-to-job match score (0-100).
+ * Higher score = better match with the job description.
+ */
+export type JobMatchBand = 'strong' | 'partial' | 'weak';
+
+export const STRONG_MATCH_THRESHOLD = 70;
+export const PARTIAL_MATCH_THRESHOLD = 40;
+
+export function getJobMatchBand(matchPercent: number): JobMatchBand {
+  if (matchPercent >= STRONG_MATCH_THRESHOLD) return 'strong';
+  if (matchPercent >= PARTIAL_MATCH_THRESHOLD) return 'partial';
+  return 'weak';
+}
+
+const JOB_MATCH_LABELS: Record<JobMatchBand, string> = {
+  strong: 'Strong match',
+  partial: 'Partial match',
+  weak: 'Weak match'
+};
+
+/** Green = good match, amber = partial, red = weak. */
+const JOB_MATCH_COLOR_CLASSES: Record<JobMatchBand, string> = {
+  strong: 'text-emerald-400',
+  partial: 'text-amber-400',
+  weak: 'text-rose-400'
+};
+
+export function getJobMatchLabel(matchPercent: number): string {
+  return JOB_MATCH_LABELS[getJobMatchBand(matchPercent)];
+}
+
+export function getJobMatchColorClass(matchPercent: number): string {
+  return JOB_MATCH_COLOR_CLASSES[getJobMatchBand(matchPercent)];
+}
 
 @Component({
   selector: 'app-snapshot-card',
@@ -15,21 +52,39 @@ import { CommonModule } from '@angular/common';
           </svg>
         </div>
         <div>
-          <h2 class="text-xl font-semibold text-slate-100">Risk Snapshot</h2>
-          <p class="text-sm text-slate-500">Your career readiness overview</p>
+          <h2 class="text-xl font-semibold text-slate-100">Job Match Snapshot</h2>
+          <p class="text-sm text-slate-500">How well your CV matches this job description</p>
         </div>
       </div>
 
       <!-- Main Score Display -->
       <div class="flex flex-col sm:flex-row items-center justify-between gap-8 mb-8">
-        <!-- Risk Score -->
+        <!-- Job Match Score -->
         <div class="text-center sm:text-left">
-          <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-2">Risk Score</p>
-          <div class="flex items-baseline gap-1">
-            <span class="text-6xl font-bold" [ngClass]="getRiskColorClass()">{{ riskPercent }}</span>
-            <span class="text-3xl font-semibold text-slate-500">%</span>
-          </div>
-          <p class="text-sm text-slate-500 mt-2">{{ getRiskLabel() }}</p>
+          <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-2">Job match</p>
+          <ng-container *ngIf="hasScore(); else noScore">
+            <div
+              class="flex items-baseline gap-1"
+              role="img"
+              [attr.aria-label]="'Job match: ' + displayPercent() + '%, ' + getMatchLabel()"
+            >
+              <span class="text-6xl font-bold" [ngClass]="getMatchColorClass()" aria-hidden="true">{{ displayPercent() }}</span>
+              <span class="text-3xl font-semibold text-slate-500" aria-hidden="true">%</span>
+            </div>
+            <p class="text-sm text-slate-500 mt-2">{{ getMatchLabel() }}</p>
+          </ng-container>
+          <ng-template #noScore>
+            <div
+              class="flex items-baseline gap-1"
+              role="img"
+              aria-label="Job match: not available"
+            >
+              <span class="text-6xl font-bold text-slate-500" aria-hidden="true">&mdash;</span>
+            </div>
+            <p class="text-sm text-slate-500 mt-2 max-w-xs">
+              We couldn't calculate a match for this job.
+            </p>
+          </ng-template>
         </div>
 
         <!-- Divider -->
@@ -48,7 +103,7 @@ import { CommonModule } from '@angular/common';
       <!-- Coverage Bar -->
       <div class="space-y-3">
         <div class="flex items-center justify-between text-sm">
-          <span class="text-slate-400">Assessment Coverage</span>
+          <span class="text-slate-400">Analysis Coverage</span>
           <span class="font-medium text-slate-300">{{ coverage | number:'1.0-0' }}%</span>
         </div>
         <div class="h-2 rounded-full bg-slate-800 overflow-hidden">
@@ -58,14 +113,19 @@ import { CommonModule } from '@angular/common';
           ></div>
         </div>
         <p class="text-xs text-slate-500">
-          Higher coverage means more accurate risk assessment and roadmap recommendations.
+          Higher coverage means a more accurate job match and roadmap recommendations.
         </p>
       </div>
     </div>
   `
 })
 export class SnapshotCardComponent {
-  @Input() riskPercent = 0;
+  /**
+   * CV-to-job match score (0-100); higher is better.
+   * null/undefined/NaN/non-numeric = no score (empty state); 0 is a real score.
+   * Uses the same finite-number check as RiskService (toFiniteNumber).
+   */
+  @Input() matchPercent: number | null | undefined = null;
   @Input() confidence = 0;
   @Input() signalsCount = 0;
   @Input() coverage = 0;
@@ -74,15 +134,27 @@ export class SnapshotCardComponent {
     return `${(this.confidence * 100).toFixed(1)}%`;
   }
 
-  getRiskColorClass(): string {
-    if (this.riskPercent >= 70) return 'text-emerald-400';
-    if (this.riskPercent >= 40) return 'text-amber-400';
-    return 'text-rose-400';
+  /** True only for a finite number (or numeric string), so a genuine 0 counts as a score. */
+  hasScore(): boolean {
+    return toFiniteNumber(this.matchPercent) !== null;
   }
 
-  getRiskLabel(): string {
-    if (this.riskPercent >= 70) return 'Low Risk - Well Prepared';
-    if (this.riskPercent >= 40) return 'Medium Risk - Room to Improve';
-    return 'High Risk - Needs Attention';
+  /**
+   * Rounded, 0-100 clamped score used for both the number and the band, so they agree.
+   * matchPercent is already on the 0-100 scale (RiskService.toMatchPercent), so
+   * no x100 here. Uses the same roundPercent() as the service, so a non-integer
+   * input with float noise (28.499999999999996) still shows 29, and an integer
+   * from the service passes through unchanged.
+   */
+  displayPercent(): number {
+    return clampPercent(roundPercent(toFiniteNumber(this.matchPercent) ?? 0));
+  }
+
+  getMatchColorClass(): string {
+    return getJobMatchColorClass(this.displayPercent());
+  }
+
+  getMatchLabel(): string {
+    return getJobMatchLabel(this.displayPercent());
   }
 }

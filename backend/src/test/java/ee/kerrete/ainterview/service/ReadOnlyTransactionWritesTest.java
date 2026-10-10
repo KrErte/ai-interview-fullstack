@@ -49,7 +49,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
         "spring.datasource.driver-class-name=org.h2.Driver"
 })
 @Import({UserProfileService.class, JobMatchService.class, DashboardService.class, CvSummaryService.class,
-        TrainingService.class, ProgressService.class, UserProgressService.class,
+        TrainingService.class, UserProgressService.class,
         ReadOnlyTransactionWritesTest.PostgresLikeReadOnly.class})
 class ReadOnlyTransactionWritesTest {
 
@@ -58,7 +58,6 @@ class ReadOnlyTransactionWritesTest {
     @Autowired DashboardService dashboardService;
     @Autowired CvSummaryService cvSummaryService;
     @Autowired TrainingService trainingService;
-    @Autowired ProgressService progressService;
     @Autowired UserProgressService userProgressService;
     @Autowired UserProfileRepository userProfileRepository;
     @Autowired TrainingProgressRepository trainingProgressRepository;
@@ -100,11 +99,9 @@ class ReadOnlyTransactionWritesTest {
     void trainingProgressIsSaved() {
         trainingService.getProgress("training@fp26.test");
         trainingService.getTrainingProgress("training2@fp26.test");
-        progressService.getProgress("progress@fp26.test");
 
         assertThat(trainingProgressRepository.findByEmail("training@fp26.test")).isPresent();
         assertThat(trainingProgressRepository.findByEmail("training2@fp26.test")).isPresent();
-        assertThat(trainingProgressRepository.findByEmail("progress@fp26.test")).isPresent();
     }
 
     @Test

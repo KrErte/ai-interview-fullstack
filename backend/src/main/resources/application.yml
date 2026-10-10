@@ -5,6 +5,10 @@ spring:
   profiles:
     active: local
 
+  h2:
+    console:
+      # FP-30: off by default (and in dev/prod); only application-local.yml enables it
+      enabled: false
   liquibase:
     # FP-18: safe default; demo seed changesets (context "demo") only run when a profile opts in.
     contexts: prod
@@ -32,12 +36,18 @@ app:
 
 openai:
   base-url: https://api.openai.com/v1
-  api-key: ${OPENAI_API_KEY:dummy-openai-key}
+  # FP-20: empty = no-key mode (no OpenAI calls; AI-only endpoints answer 503 ai_unavailable)
+  api-key: ${OPENAI_API_KEY:}
   model: gpt-4.1-mini
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,mappings
+        # FP-30: only health is exposed over HTTP (and it is the only public one, see SecurityConfig)
+        include: health
       base-path: /actuator
+  endpoint:
+    health:
+      show-details: never
+      show-components: never

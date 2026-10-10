@@ -1,9 +1,15 @@
 /**
- * Risk assessment data model
+ * Job match data model: result of comparing a CV with a job description.
+ * matchPercent is a CV-to-job match score (higher = better match), not a
+ * replaceability score. Type names (RiskAssessment, RiskState) are kept for
+ * compatibility with the /risk route and services.
  */
 export interface RiskAssessment {
-  /** Risk percentage (0-100) */
-  riskPercent: number;
+  /**
+   * CV-to-job match score, rounded to an integer and clamped to 0-100; higher means a better match.
+   * null when the backend returned no usable score (no analysis result yet).
+   */
+  matchPercent: number | null;
 
   /** Confidence level (0-1), displayed as percentage */
   confidence: number;
@@ -17,7 +23,10 @@ export interface RiskAssessment {
   /** List of identified strengths */
   strengths: string[];
 
-  /** List of identified weaknesses */
+  /**
+   * Gaps between the CV and the job: backend weaknesses + gaps + missingSkills
+   * (as "Missing skill: X"), deduped case-insensitively. Empty means no gaps.
+   */
   weaknesses: string[];
 
   /** Whether roadmap generation is allowed based on assessment depth */
@@ -39,12 +48,16 @@ export interface RiskAssessment {
 export interface JobMatchResult {
   jobTitle?: string;
   jobDescription?: string;
-  fitScore?: number;
-  matchScore?: number;
+  /** 0-1 fraction or 0-100; may arrive as a number or a numeric string. */
+  fitScore?: number | string | null;
+  /** Same contract as fitScore; used when fitScore is missing. */
+  matchScore?: number | string | null;
   strengths?: string[];
   weaknesses?: string[];
-  missingSkills?: string[];
-  gaps?: string[];
+  /** Skills the job needs but the CV lacks; sent by both OpenAI and fallback paths. May be null. */
+  missingSkills?: string[] | null;
+  /** Not sent by the current backend JobAnalysisResponse; kept for compatibility. */
+  gaps?: string[] | null;
   roadmap?: string[];
   suggestedImprovements?: string;
   summary?: string;
@@ -61,7 +74,7 @@ export interface CvUploadResponse {
 }
 
 /**
- * Risk state for the UI
+ * Job match page state for the UI
  */
 export interface RiskState {
   assessmentReady: boolean;

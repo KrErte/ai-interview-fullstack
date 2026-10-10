@@ -2,9 +2,12 @@ package ee.kerrete.ainterview.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import ee.kerrete.ainterview.ai.OpenAiKey;
 import ee.kerrete.ainterview.dto.JobAnalysisRequest;
 import ee.kerrete.ainterview.dto.JobAnalysisResponse;
 import ee.kerrete.ainterview.model.JobAnalysisSession;
+import ee.kerrete.ainterview.model.ProductEventType;
 import ee.kerrete.ainterview.model.RoadmapTask;
 import ee.kerrete.ainterview.model.TrainingProgress;
 import ee.kerrete.ainterview.model.TrainingStatus;
@@ -14,10 +17,12 @@ import ee.kerrete.ainterview.repository.TrainingProgressRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +37,8 @@ public class JobAnalysisService {
     private final RoadmapTaskRepository roadmapTaskRepository;
     private final JobAnalysisSessionRepository jobAnalysisSessionRepository;
     private final TrainingProgressRepository trainingProgressRepository;
+    /** product analytics: written by ProductEventService after commit, see ProductEventOccurred */
+    private final ApplicationEventPublisher events;
 
     @Value("${openai.api-key:}")
     private String apiKey;
@@ -49,7 +56,7 @@ public class JobAnalysisService {
         JobAnalysisResponse response;
 
         // Kui OpenAI võti puudub, ära üldse ürita API-t kutsuda – tee fallback
-        if (apiKey == null || apiKey.isBlank()) {
+        if (!OpenAiKey.isConfigured(apiKey)) {
             log.warn("OPENAI_API_KEY puudub – kasutan fallback JobAnalysisService loogikat.");
             response = fallbackAnalyze(request);
             persistRoadmapTasks(request.getEmail(), response.getRoadmap());
@@ -127,11 +134,26 @@ public class JobAnalysisService {
             }
 
             // GPT peab tagastama puhta JSONi – proovime otse JobAnalysisResponse peale map'ida
-            JobAnalysisResponse analysis =
-                    objectMapper.readValue(content, JobAnalysisResponse.class);
+            JsonNode tree = objectMapper.readTree(content);
+            // FP-20: read the raw score ourselves; binding 0.82 straight into the Integer field would truncate it to 0
+            Double rawScore = null;
+            if (tree instanceof ObjectNode obj) {
+                JsonNode scoreNode = obj.hasNonNull("matchScore") ? obj.get("matchScore") : obj.get("score");
+                if (scoreNode != null && scoreNode.isNumber()) {
+                    rawScore = scoreNode.asDouble();
+                }
+                obj.remove("matchScore");
+                obj.remove("score");
+            }
+            JobAnalysisResponse analysis = objectMapper.treeToValue(tree, JobAnalysisResponse.class);
+            if (analysis == null) {
+                throw new IllegalStateException("OpenAI content is not a JSON object");
+            }
+            analysis.setMatchScore(normalizeScore(rawScore));
 
             // Väike sanity-check
             applyDefaults(analysis, request);
+            analysis.setFallback(false);
             response = analysis;
 
         } catch (Exception e) {
@@ -164,7 +186,7 @@ public class JobAnalysisService {
                 Return STRICT JSON with this exact structure (field names must match):
 
                 {
-                  "matchScore": number,                 // match score between 0.0 and 1.0 (or 0-100 if you prefer percentage)
+                  "matchScore": number,                 // match score as an integer from 0 to 100 (percent)
                   "strengths": ["string"],              // candidate strengths vs job description
                   "weaknesses": ["string"],             // weaknesses or risks vs job description
                   "missingSkills": ["string"],          // list of key skills the candidate is missing vs job
@@ -181,60 +203,44 @@ public class JobAnalysisService {
      * Fallback, kui OpenAI ei ole saadaval – annab siiski midagi mõistlikku.
      */
     private JobAnalysisResponse fallbackAnalyze(JobAnalysisRequest request) {
-        double score = estimateScoreHeuristically(request);
+        int score = estimateScoreHeuristically(request);
 
         JobAnalysisResponse res = new JobAnalysisResponse();
         res.setMatchScore(score);
+        res.setFallback(true);
 
-        res.setStrengths(List.of(
-                "Sul on juba kogemus Java ja Spring ökosüsteemiga.",
-                "Oled maininud meeskonnatöö ja suhtlemisoskusi, mis on töökuulutuse nõuetes."
-        ));
-
-        res.setWeaknesses(List.of(
-                "Pilvekeskkonna praktilise kogemuse osas on vähe detaile.",
-                "Automatiseeritud testimise ja CI/CD tööriistade kasutus ei ole selgelt kirjeldatud."
-        ));
-
-        // Väga lihtne pseudo-analüüs – otsime märksõnu töökuulutusest, mida CV-s ei ole
-        res.setMissingSkills(List.of(
-                "Näide: React või muu kaasaegne front-end raamistik",
-                "Näide: pilveplatvorm (AWS / GCP / Azure)",
-                "Näide: CI/CD vahendid (GitLab CI, GitHub Actions vms)"
-        ));
-
-        res.setRoadmap(List.of(
-                "Vali 1–2 pannkook-projekti, kus kasutad töökuulutuses korduvaid tehnoloogiaid.",
-                "Ehita väike lõpuprojekt, kus ühendad backend'i (Java / Spring) ja frontendi.",
-                "Lisa projektid oma GitHubi ja link CV-sse.",
-                "Harjuta tehniliste küsimuste vastuseid just puuduolevate oskuste osas."
-        ));
-
-        res.setSuggestedImprovements("Lisa CV-sse konkreetsemad tehnoloogiad ja tööriistad, "
-                + "tõsta esile mõõdetavad tulemused ning too avalehele oskused, mis kattuvad töökuulutusega.");
+        // FP-20: the heuristic only compares text lengths, so it cannot know strengths, gaps, a roadmap
+        // or advice. We never show invented content: all of these stay empty in the fallback.
+        res.setStrengths(Collections.emptyList());
+        res.setWeaknesses(Collections.emptyList());
+        res.setMissingSkills(Collections.emptyList());
+        res.setRoadmap(Collections.emptyList());
+        res.setSuggestedImprovements("");
+        // factual: what the number is and why there is nothing more
         res.setSummary("Lihtne fallback-analüüs: sobivus hinnanguliselt "
-                + Math.round(score * 100) + "%. Täpsem analüüs eeldab OpenAI ühendust.");
+                + score + "%. Täpsem analüüs eeldab OpenAI ühendust.");
 
         return res;
     }
 
     /**
      * Väga lihtne heuristika: kui CV tekst on pikk ja sarnane töökuulutusega → kõrgem skoor.
+     * Returns a whole number on the 0–100 scale (FP-20).
      */
-    private double estimateScoreHeuristically(JobAnalysisRequest request) {
+    private int estimateScoreHeuristically(JobAnalysisRequest request) {
         String cv = request.getCvText() != null ? request.getCvText() : "";
         String jd = request.getJobDescription() != null ? request.getJobDescription() : "";
 
         if (cv.isBlank() || jd.isBlank()) {
-            return 0.3;
+            return 30;
         }
 
         int cvLen = cv.length();
         int jdLen = jd.length();
         double ratio = Math.min((double) cvLen / (double) jdLen, (double) jdLen / (double) cvLen);
         // ratio 0..1 – teeme sellest umbkaudse skoori
-        double base = 0.4 + ratio * 0.5; // ~0.4–0.9
-        return Math.max(0.1, Math.min(0.95, base));
+        double base = 40 + ratio * 50; // ~40–90
+        return (int) Math.round(Math.max(10, Math.min(95, base)));
     }
 
     private void applyDefaults(JobAnalysisResponse analysis, JobAnalysisRequest request) {
@@ -258,6 +264,12 @@ public class JobAnalysisService {
         }
     }
 
+    /**
+     * Creates the initial roadmap from an analysis, but only when the user has no roadmap yet.
+     * A new analysis never overwrites an existing plan and never deletes (completed) tasks;
+     * replacing a plan is an explicit action via RoadmapService.savePlan.
+     * Tasks are written with a single saveAll call, which runs in one transaction.
+     */
     private void persistRoadmapTasks(String email, List<String> roadmapSteps) {
         if (email == null || email.isBlank()) {
             return;
@@ -265,15 +277,18 @@ public class JobAnalysisService {
         if (roadmapSteps == null || roadmapSteps.isEmpty()) {
             return;
         }
+        if (roadmapTaskRepository.countByEmail(email) > 0) {
+            log.info("Roadmap already exists for user, not overwriting it with the new analysis");
+            return;
+        }
 
-        roadmapTaskRepository.deleteByEmail(email);
-
+        List<RoadmapTask> tasks = new ArrayList<>();
         int index = 1;
         for (String step : roadmapSteps) {
             if (step == null || step.isBlank()) {
                 continue;
             }
-            RoadmapTask task = RoadmapTask.builder()
+            tasks.add(RoadmapTask.builder()
                     .email(email)
                     .taskKey("step-" + index)
                     .title("Step " + index)
@@ -281,9 +296,13 @@ public class JobAnalysisService {
                     .completed(false)
                     .dayNumber(index)
                     .orderIndex(index)
-                    .build();
-            roadmapTaskRepository.save(task);
+                    .build());
             index++;
+        }
+        if (!tasks.isEmpty()) {
+            roadmapTaskRepository.saveAll(tasks);
+            events.publishEvent(new ProductEventOccurred(email, ProductEventType.PLAN_GENERATED,
+                    Map.of("source", "job_analysis", "taskCount", tasks.size())));
         }
     }
 
@@ -303,8 +322,9 @@ public class JobAnalysisService {
                     .roadmapJson(writeSafe(response.getRoadmap()))
                     .suggestedImprovementsJson(writeSafe(response.getSuggestedImprovements()))
                     .aiSummary(response.getSummary())
-                    .aiScore(response.getMatchScore() != null ? response.getMatchScore().intValue() : null)
-                    .matchScore(normalizeScore(response.getMatchScore()))
+                    // FP-20: the response score is already normalized (integer 0-100); persist the same value
+                    .aiScore(response.getMatchScore())
+                    .matchScore(asDouble(response.getMatchScore()))
                     .summary(response.getSummary())
                     .createdAt(LocalDateTime.now())
                     .build();
@@ -331,19 +351,25 @@ public class JobAnalysisService {
                         .build());
 
         progress.setTotalJobAnalyses(progress.getTotalJobAnalyses() + 1);
-        Double normalized = normalizeScore(response.getMatchScore());
-        progress.setLastMatchScore(normalized);
+        progress.setLastMatchScore(asDouble(response.getMatchScore()));
         progress.setLastMatchSummary(response.getSummary());
         progress.setLastUpdated(LocalDateTime.now());
         trainingProgressRepository.save(progress);
     }
 
-    private Double normalizeScore(Double matchScore) {
-        if (matchScore == null) return null;
-        if (matchScore <= 1) {
-            return matchScore * 100;
-        }
-        return matchScore;
+    /**
+     * FP-20 match score contract: integer 0–100. ONLY values below 1 are fractions (0.82 -> 82); 1 stays 1
+     * (1%), since the model is asked for 0–100. Then clamp to 0–100 and round half up. Idempotent on its own
+     * output. null / NaN / infinite -> null.
+     */
+    static Integer normalizeScore(Double matchScore) {
+        if (matchScore == null || matchScore.isNaN() || matchScore.isInfinite()) return null;
+        double value = matchScore < 1 ? matchScore * 100 : matchScore;
+        return (int) Math.round(Math.max(0, Math.min(100, value)));
+    }
+
+    private static Double asDouble(Integer score) {
+        return score == null ? null : score.doubleValue();
     }
 
     private String writeSafe(Object value) {

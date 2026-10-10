@@ -34,7 +34,8 @@ public class JobAnalysisStatsService {
             return;
         }
 
-        Double matchScore = response != null ? response.getMatchScore() : null;
+        Double matchScore = response != null && response.getMatchScore() != null
+                ? response.getMatchScore().doubleValue() : null;
         String summary = response != null ? response.getSummary() : null;
 
         JobAnalysisRecord record = new JobAnalysisRecord(

@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
         </div>
         <div>
           <h2 class="text-xl font-semibold text-slate-100">Areas to Improve</h2>
-          <p class="text-sm text-slate-500">Key signals that need attention</p>
+          <p class="text-sm text-slate-500">Gaps between your CV and this job</p>
         </div>
       </div>
 
@@ -46,25 +46,19 @@ import { CommonModule } from '@angular/common';
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <p class="text-emerald-400 mb-1">Looking great!</p>
-          <p class="text-sm text-slate-500">No critical weaknesses detected in your profile</p>
+          <p class="text-emerald-400 mb-1">No major gaps found</p>
+          <p class="text-sm text-slate-500">Your CV covers the key requirements we checked for this job</p>
         </div>
       </ng-template>
 
-      <!-- Coverage Info -->
+      <!-- Gap count: number of entries in the list above (weaknesses + gaps + missing skills) -->
       <div *ngIf="weaknesses.length > 0" class="mt-6 pt-6 border-t border-slate-800/50">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-sm text-slate-400">Signal Coverage</span>
-          <span class="text-sm font-medium text-slate-300">{{ coverage | number:'1.0-0' }}%</span>
-        </div>
-        <div class="h-2 rounded-full bg-slate-800 overflow-hidden">
-          <div
-            class="h-full rounded-full bg-gradient-to-r from-amber-500 to-orange-400 animate-progress"
-            [style.width.%]="coverage"
-          ></div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-slate-400">Gaps found</span>
+          <span class="text-sm font-medium text-slate-300" data-testid="gap-count">{{ weaknesses.length }}</span>
         </div>
         <p class="text-xs text-slate-500 mt-3">
-          These signals are identified from your profile and job requirements analysis.
+          Identified by comparing your CV with the job description.
         </p>
       </div>
 
@@ -74,7 +68,7 @@ import { CommonModule } from '@angular/common';
           (click)="showAll = !showAll"
           class="text-sm text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-2"
         >
-          <span>{{ showAll ? 'Show less' : 'Show all ' + weaknesses.length + ' areas' }}</span>
+          <span>{{ showAll ? 'Show less' : 'Show all ' + weaknesses.length + ' gaps' }}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-4 w-4 transition-transform"
@@ -92,8 +86,18 @@ import { CommonModule } from '@angular/common';
   `
 })
 export class WeaknessesCardComponent {
-  @Input() weaknesses: string[] = [];
-  @Input() coverage = 0;
+  /**
+   * Gap entries (backend weaknesses + gaps + missingSkills, see buildGaps()).
+   * The "No major gaps found" state only shows when this is empty; null is
+   * treated as empty.
+   */
+  @Input() set weaknesses(value: string[] | null | undefined) {
+    this._weaknesses = Array.isArray(value) ? value : [];
+  }
+  get weaknesses(): string[] {
+    return this._weaknesses;
+  }
+  private _weaknesses: string[] = [];
   showAll = false;
 
   get displayedWeaknesses(): string[] {

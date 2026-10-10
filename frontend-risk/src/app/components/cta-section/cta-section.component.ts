@@ -33,8 +33,8 @@ import { CommonModule } from '@angular/common';
             Ready to take action?
           </h2>
           <p class="text-slate-400 leading-relaxed max-w-xl">
-            Generate a personalized learning roadmap based on your assessment results.
-            Get step-by-step guidance to address your weaknesses and boost your career readiness.
+            Generate a personalized learning roadmap based on your job match results.
+            Get step-by-step guidance to close the gaps between your CV and this job.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ import { CommonModule } from '@angular/common';
           </button>
 
           <p *ngIf="!roadmapAllowed" class="text-center text-sm text-slate-500 mt-3">
-            Complete more of your assessment to unlock
+            Add more detail to your CV and job description to unlock
           </p>
         </div>
       </div>

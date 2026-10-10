@@ -29,7 +29,7 @@ import { AuthService } from '../../services/auth.service';
 
         <!-- Subtitle -->
         <p class="text-xl text-slate-400 mb-12 max-w-xl mx-auto leading-relaxed">
-          AI-powered career risk assessment that helps you identify gaps,
+          AI-powered job match analysis that helps you identify gaps,
           leverage strengths, and build a personalized roadmap to success.
         </p>
 
@@ -70,9 +70,9 @@ import { AuthService } from '../../services/auth.service';
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-slate-100 mb-2">Risk Analysis</h3>
+          <h3 class="text-lg font-semibold text-slate-100 mb-2">Job Match Analysis</h3>
           <p class="text-slate-400 text-sm leading-relaxed">
-            Get a clear picture of your career readiness with AI-powered risk scoring.
+            See how well your CV matches a job with an AI-powered match score.
           </p>
         </div>
 

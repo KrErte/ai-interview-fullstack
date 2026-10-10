@@ -1,0 +1,32 @@
+# Normalize text files to LF in the repository; let Git pick native endings elsewhere.
+* text=auto
+
+# Files executed inside Linux containers / shells must always be checked out with LF,
+# even on Windows with core.autocrlf=true (otherwise: "/bin/sh: ./gradlew: not found").
+gradlew text eol=lf
+*.sh text eol=lf
+Dockerfile text eol=lf
+Dockerfile.* text eol=lf
+*.Dockerfile text eol=lf
+*.dockerfile text eol=lf
+
+# Windows scripts keep CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binaries: never convert line endings or diff as text
+*.jar binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.zip binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.mv.db binary
+*.trace.db binary

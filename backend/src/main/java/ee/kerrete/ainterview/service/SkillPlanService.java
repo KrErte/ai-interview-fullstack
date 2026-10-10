@@ -5,11 +5,13 @@ import ee.kerrete.ainterview.dto.SkillPlanDay;
 import ee.kerrete.ainterview.dto.SkillPlanRequest;
 import ee.kerrete.ainterview.dto.SkillPlanResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class SkillPlanService {
@@ -27,9 +29,12 @@ public class SkillPlanService {
                     request.getFocusSkills()
             );
 
-            return objectMapper.readValue(json, SkillPlanResponse.class);
+            SkillPlanResponse plan = objectMapper.readValue(json, SkillPlanResponse.class);
+            plan.setFallback(false);
+            return plan;
         } catch (Exception e) {
-            // Fallback – töötab ka ilma GPT-ta
+            // Fallback – töötab ka ilma GPT-ta (FP-20: marked fallback:true)
+            log.info("Skill plan: using the local fallback plan ({})", e.getMessage());
             return buildFallbackPlan(request);
         }
     }
@@ -62,6 +67,7 @@ public class SkillPlanService {
         return SkillPlanResponse.builder()
                 .overallGoal("Fallback-plaan: keskendutakse oskustele " + String.join(", ", skills))
                 .days(days)
+                .fallback(true)
                 .build();
     }
 

@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.CreateInterviewSessionRequest;
 import ee.kerrete.ainterview.dto.CreateInterviewSessionResponse;
 import ee.kerrete.ainterview.service.InterviewSessionService;
@@ -21,6 +22,7 @@ public class InterviewSessionController {
     public ResponseEntity<CreateInterviewSessionResponse> createSession(
             @RequestBody CreateInterviewSessionRequest request
     ) {
+        request.setEmail(CurrentUser.email());
         return ResponseEntity.ok(sessionService.createSession(request));
     }
 }
