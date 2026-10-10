@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+        FP-18: replaces changes/007-seed-test-data.xml, which never inserted anything (its precondition
+        was inverted: <not><tableIsEmpty/></not> with onFail=MARK_RAN) and had no context, so it
+        could also run in prod. 007 is left untouched (existing databases already recorded it as
+        MARK_RAN, so editing it would never re-run and would only change its checksum); its include
+        in db.changelog-master.xml is now limited to the "demo" context too.
+
+        These changesets run only with spring.liquibase.contexts=demo (local and dev profiles) and
+        only when the target table is empty. Roles are mapped to the UserRole enum (CANDIDATE, USER,
+        ADMIN): the old INTERVIEWER and HR rows would not load through JPA, so they are seeded as USER.
+        Old status COMPLETE is not a TrainingStatus value; COMPLETED is used.
+
+        Demo password for all users: Test1234! (BCrypt hash generated with Spring BCryptPasswordEncoder;
+        the hash in 007 did not match Test1234!).
+    -->
+    <changeSet id="2026-10-10-seed-demo-users" author="futureproof-backend" context="demo">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="app_users"/>
+        </preConditions>
+        <insert tableName="app_users">
+            <column name="email" value="admin@demo.local"/>
+            <column name="password" value="$2a$10$WWm21ubRCuAMhwhhyhluTeTVjmp76qCaxLz4GWpMz.M0Dd/qd19se"/>
+            <column name="full_name" value="Demo Admin"/>
+            <column name="role" value="ADMIN"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T08:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T08:00:00"/>
+        </insert>
+        <insert tableName="app_users">
+            <column name="email" value="interviewer@demo.local"/>
+            <column name="password" value="$2a$10$WWm21ubRCuAMhwhhyhluTeTVjmp76qCaxLz4GWpMz.M0Dd/qd19se"/>
+            <column name="full_name" value="Demo Interviewer"/>
+            <column name="role" value="USER"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T08:01:00"/>
+            <column name="updated_at" valueDate="2024-01-01T08:01:00"/>
+        </insert>
+        <insert tableName="app_users">
+            <column name="email" value="candidate1@demo.local"/>
+            <column name="password" value="$2a$10$WWm21ubRCuAMhwhhyhluTeTVjmp76qCaxLz4GWpMz.M0Dd/qd19se"/>
+            <column name="full_name" value="Demo Candidate 1"/>
+            <column name="role" value="CANDIDATE"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T08:02:00"/>
+            <column name="updated_at" valueDate="2024-01-01T08:02:00"/>
+        </insert>
+        <insert tableName="app_users">
+            <column name="email" value="candidate2@demo.local"/>
+            <column name="password" value="$2a$10$WWm21ubRCuAMhwhhyhluTeTVjmp76qCaxLz4GWpMz.M0Dd/qd19se"/>
+            <column name="full_name" value="Demo Candidate 2"/>
+            <column name="role" value="CANDIDATE"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T08:03:00"/>
+            <column name="updated_at" valueDate="2024-01-01T08:03:00"/>
+        </insert>
+        <insert tableName="app_users">
+            <column name="email" value="hr@demo.local"/>
+            <column name="password" value="$2a$10$WWm21ubRCuAMhwhhyhluTeTVjmp76qCaxLz4GWpMz.M0Dd/qd19se"/>
+            <column name="full_name" value="HR Demo"/>
+            <column name="role" value="USER"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T08:04:00"/>
+            <column name="updated_at" valueDate="2024-01-01T08:04:00"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2026-10-10-seed-demo-training-progress" author="futureproof-backend" context="demo">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="training_progress"/>
+        </preConditions>
+        <insert tableName="training_progress">
+            <column name="email" value="candidate1@demo.local"/>
+            <column name="total_tasks" valueNumeric="10"/>
+            <column name="completed_tasks" valueNumeric="5"/>
+            <column name="total_job_analyses" valueNumeric="3"/>
+            <column name="total_training_sessions" valueNumeric="2"/>
+            <column name="training_progress_percent" valueNumeric="50"/>
+            <column name="status" value="IN_PROGRESS"/>
+            <column name="last_activity_at" valueDate="2024-01-05T10:00:00"/>
+            <column name="last_updated" valueDate="2024-01-05T10:00:00"/>
+            <column name="last_match_score" valueNumeric="67.5"/>
+            <column name="last_match_summary" value="Match is improving."/>
+        </insert>
+        <insert tableName="training_progress">
+            <column name="email" value="candidate2@demo.local"/>
+            <column name="total_tasks" valueNumeric="9"/>
+            <column name="completed_tasks" valueNumeric="7"/>
+            <column name="total_job_analyses" valueNumeric="4"/>
+            <column name="total_training_sessions" valueNumeric="1"/>
+            <column name="training_progress_percent" valueNumeric="75"/>
+            <column name="status" value="IN_PROGRESS"/>
+            <column name="last_activity_at" valueDate="2024-01-06T11:00:00"/>
+            <column name="last_updated" valueDate="2024-01-06T11:00:00"/>
+            <column name="last_match_score" valueNumeric="78.9"/>
+            <column name="last_match_summary" value="Great job progress!"/>
+        </insert>
+        <insert tableName="training_progress">
+            <column name="email" value="admin@demo.local"/>
+            <column name="total_tasks" valueNumeric="5"/>
+            <column name="completed_tasks" valueNumeric="5"/>
+            <column name="total_job_analyses" valueNumeric="5"/>
+            <column name="total_training_sessions" valueNumeric="2"/>
+            <column name="training_progress_percent" valueNumeric="100"/>
+            <column name="status" value="COMPLETED"/>
+            <column name="last_activity_at" valueDate="2024-01-06T12:00:00"/>
+            <column name="last_updated" valueDate="2024-01-06T12:00:00"/>
+            <column name="last_match_score" valueNumeric="95.3"/>
+            <column name="last_match_summary" value="All tasks finished."/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
