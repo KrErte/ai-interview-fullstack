@@ -1,5 +1,6 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.CandidatePlanRequest;
 import ee.kerrete.ainterview.model.LearningPlan;
 import ee.kerrete.ainterview.service.CandidatePlanService;
@@ -24,8 +25,8 @@ public class CandidatePlanController {
     }
 
     @GetMapping("/last")
-    public ResponseEntity<LearningPlan> getLastPlan(@RequestParam String email) {
-        LearningPlan plan = candidatePlanService.getLastPlan(email);
+    public ResponseEntity<LearningPlan> getLastPlan() {
+        LearningPlan plan = candidatePlanService.getLastPlan(CurrentUser.email());
         if (plan == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(plan);
     }

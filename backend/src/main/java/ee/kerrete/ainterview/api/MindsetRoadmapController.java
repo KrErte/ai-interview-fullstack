@@ -1,11 +1,12 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.MindsetRoadmapDetail;
 import ee.kerrete.ainterview.dto.MindsetRoadmapSummary;
 import ee.kerrete.ainterview.dto.TrainingTaskRequest;
 import ee.kerrete.ainterview.service.MindsetRoadmapService;
 import ee.kerrete.ainterview.service.TrainingService;
-import jakarta.validation.Valid;
+import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,8 @@ import java.util.List;
 /**
  * Mindset-roadmapi API.
  *
- * - GET  /api/mindset/roadmaps?email=...
- * - GET  /api/mindset/roadmaps/{roadmapKey}?email=...
+ * - GET  /api/mindset/roadmaps            (authenticated user)
+ * - GET  /api/mindset/roadmaps/{roadmapKey} (authenticated user)
  * - POST /api/mindset/task  (uuendab ühe taski ja tagastab vastava roadmapi detailid)
  */
 @RestController
@@ -29,19 +30,20 @@ public class MindsetRoadmapController {
 
     private final MindsetRoadmapService mindsetRoadmapService;
     private final TrainingService trainingService;
+    private final Validator validator;
 
     @GetMapping("/roadmaps")
-    public ResponseEntity<List<MindsetRoadmapSummary>> getRoadmaps(@RequestParam String email) {
-        List<MindsetRoadmapSummary> roadmaps = mindsetRoadmapService.getRoadmapsForEmail(email);
+    public ResponseEntity<List<MindsetRoadmapSummary>> getRoadmaps() {
+        // FP-17: always the authenticated user; an ?email= parameter is ignored
+        List<MindsetRoadmapSummary> roadmaps = mindsetRoadmapService.getRoadmapsForEmail(CurrentUser.email());
         return ResponseEntity.ok(roadmaps);
     }
 
     @GetMapping("/roadmaps/{roadmapKey}")
     public ResponseEntity<MindsetRoadmapDetail> getRoadmapDetail(
-            @RequestParam String email,
             @PathVariable String roadmapKey
     ) {
-        MindsetRoadmapDetail detail = mindsetRoadmapService.getRoadmapDetail(email, roadmapKey);
+        MindsetRoadmapDetail detail = mindsetRoadmapService.getRoadmapDetail(CurrentUser.email(), roadmapKey);
         return ResponseEntity.ok(detail);
     }
 
@@ -50,8 +52,10 @@ public class MindsetRoadmapController {
      */
     @PostMapping("/task")
     public ResponseEntity<MindsetRoadmapDetail> updateTaskAndReturnRoadmap(
-            @Valid @RequestBody TrainingTaskRequest request
+            @RequestBody TrainingTaskRequest request
     ) {
+        request.setEmail(CurrentUser.email());
+        RequestValidation.validate(validator, request); // email is @NotBlank on the DTO
         // 1. Uuendame treening-taski ja koondprogressi (kasutame olemasolevat loogikat)
         trainingService.updateTaskStatus(request);
 
