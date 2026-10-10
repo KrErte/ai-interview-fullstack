@@ -1,0 +1,41 @@
+# Lokaalne käivitus: docker compose -f docker-compose.local.yml up --build
+# Rakendus: http://localhost:4200  (AI test: http://localhost:4200/ai-test)
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ai
+      POSTGRES_USER: ai
+      POSTGRES_PASSWORD: ai123
+    volumes:
+      - pgdata-local:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:postgresql://postgres:5432/ai
+      DB_USER: ai
+      DB_PASS: ai123
+      FRONTEND_BASE_URL: http://localhost:4200
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend-risk:
+    build: ./frontend-risk
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata-local:
