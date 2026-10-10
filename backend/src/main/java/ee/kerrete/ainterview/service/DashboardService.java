@@ -22,7 +22,8 @@ public class DashboardService {
     private final RoadmapTaskRepository roadmapTaskRepository;
     private final JobAnalysisSessionRepository jobAnalysisSessionRepository;
 
-    @Transactional(readOnly = true)
+    // Not read-only: UserProfileService.getProfile may create the profile (FP-26).
+    @Transactional
     public DashboardResponse get(String email) {
         UserProfileDto profile = userProfileService.getProfile(email);
 
