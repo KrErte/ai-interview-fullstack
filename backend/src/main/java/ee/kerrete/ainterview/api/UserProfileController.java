@@ -13,31 +13,18 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserProfileController {
 
+    // The user is always the authenticated principal (CurrentUser); an ?email= parameter sent by
+    // older clients is ignored.
+
     private final UserProfileService userProfileService;
 
     @GetMapping("/me")
-    public ResponseEntity<UserProfileDto> me(@RequestParam(value = "email", required = false) String email) {
-        String resolved = resolveEmail(email);
-        return ResponseEntity.ok(userProfileService.getProfile(resolved));
+    public ResponseEntity<UserProfileDto> me() {
+        return ResponseEntity.ok(userProfileService.getProfile(CurrentUser.email()));
     }
 
     @PutMapping("/me")
-    public ResponseEntity<UserProfileDto> save(@RequestParam(value = "email", required = false) String email,
-                                               @RequestBody UserProfileDto dto) {
-        String resolved = resolveEmail(email);
-        return ResponseEntity.ok(userProfileService.saveProfile(resolved, dto));
-    }
-
-    /** FP-17: always the authenticated user; an ?email= parameter is ignored. */
-    private String resolveEmail(String ignored) {
-        return CurrentUser.email();
+    public ResponseEntity<UserProfileDto> save(@RequestBody UserProfileDto dto) {
+        return ResponseEntity.ok(userProfileService.saveProfile(CurrentUser.email(), dto));
     }
 }
-
-
-
-
-
-
-
-

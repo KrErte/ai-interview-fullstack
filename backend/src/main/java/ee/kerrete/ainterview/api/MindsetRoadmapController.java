@@ -54,8 +54,7 @@ public class MindsetRoadmapController {
     public ResponseEntity<MindsetRoadmapDetail> updateTaskAndReturnRoadmap(
             @RequestBody TrainingTaskRequest request
     ) {
-        request.setEmail(CurrentUser.email());
-        RequestValidation.validate(validator, request); // email is @NotBlank on the DTO
+        RequestValidation.withPrincipalEmail(validator, request, TrainingTaskRequest::setEmail); // email is @NotBlank on the DTO
         // 1. Uuendame treening-taski ja koondprogressi (kasutame olemasolevat loogikat)
         trainingService.updateTaskStatus(request);
 
