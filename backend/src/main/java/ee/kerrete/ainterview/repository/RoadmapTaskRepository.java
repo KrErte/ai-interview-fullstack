@@ -17,6 +17,11 @@ public interface RoadmapTaskRepository
 
     void deleteByEmail(String email);
 
+    /**
+     * Deletes only the tasks that are not completed yet. Must run inside a transaction.
+     */
+    long deleteByEmailAndCompletedFalse(String email);
+
     long countByEmail(String email);
 
     long countByEmailAndCompletedIsTrue(String email);

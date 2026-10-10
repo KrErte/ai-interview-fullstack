@@ -73,6 +73,16 @@ class JobAnalysisServiceTest {
         ReflectionTestUtils.setField(service, "model", "test-model");
     }
 
+    /** Roadmap tasks are written with one saveAll call (FP-7); returns what was saved. */
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private List<RoadmapTask> savedRoadmapTasks() {
+        ArgumentCaptor<Iterable> captor = ArgumentCaptor.forClass(Iterable.class);
+        verify(roadmapTaskRepository).saveAll(captor.capture());
+        List<RoadmapTask> tasks = new java.util.ArrayList<>();
+        captor.getValue().forEach(t -> tasks.add((RoadmapTask) t));
+        return tasks;
+    }
+
     private static JobAnalysisRequest request(String email, String cv, String jd) {
         JobAnalysisRequest r = new JobAnalysisRequest();
         r.setEmail(email);
@@ -157,15 +167,15 @@ class JobAnalysisServiceTest {
 
             service.analyze(request(EMAIL, "abcdefghij", "0123456789"));
 
-            verify(roadmapTaskRepository).deleteByEmail(EMAIL);
-            ArgumentCaptor<RoadmapTask> tasks = ArgumentCaptor.forClass(RoadmapTask.class);
-            verify(roadmapTaskRepository, times(4)).save(tasks.capture());
-            RoadmapTask first = tasks.getAllValues().get(0);
+            verify(roadmapTaskRepository, never()).deleteByEmail(anyString());
+            List<RoadmapTask> tasks = savedRoadmapTasks();
+            assertThat(tasks).hasSize(4);
+            RoadmapTask first = tasks.get(0);
             assertThat(first.getEmail()).isEqualTo(EMAIL);
             assertThat(first.getTaskKey()).isEqualTo("step-1");
             assertThat(first.getOrderIndex()).isEqualTo(1);
             assertThat(first.isCompleted()).isFalse();
-            assertThat(tasks.getAllValues().get(3).getTaskKey()).isEqualTo("step-4");
+            assertThat(tasks.get(3).getTaskKey()).isEqualTo("step-4");
 
             ArgumentCaptor<JobAnalysisSession> session = ArgumentCaptor.forClass(JobAnalysisSession.class);
             verify(jobAnalysisSessionRepository).save(session.capture());
@@ -181,6 +191,21 @@ class JobAnalysisServiceTest {
             assertThat(progress.getValue().getTotalJobAnalyses()).isEqualTo(1);
             assertThat(progress.getValue().getLastMatchScore()).isCloseTo(90.0, within(1e-9));
             assertThat(progress.getValue().getLastUpdated()).isNotNull();
+        }
+
+        @Test
+        void existingRoadmapIsNotOverwrittenByNewAnalysis() {
+            when(roadmapTaskRepository.countByEmail(EMAIL)).thenReturn(3L);
+            when(trainingProgressRepository.findByEmail(EMAIL)).thenReturn(Optional.empty());
+
+            service.analyze(request(EMAIL, "cv", "jd"));
+
+            verify(roadmapTaskRepository, never()).deleteByEmail(anyString());
+            verify(roadmapTaskRepository, never()).saveAll(any());
+            verify(roadmapTaskRepository, never()).save(any());
+            // the analysis itself is still persisted
+            verify(jobAnalysisSessionRepository).save(any());
+            verify(trainingProgressRepository).save(any());
         }
 
         @Test
@@ -269,8 +294,9 @@ class JobAnalysisServiceTest {
                 assertThat(body.get("messages").toString()).contains("my cv").contains("the job");
             }
 
-            verify(roadmapTaskRepository).deleteByEmail(EMAIL);
-            verify(roadmapTaskRepository, times(2)).save(any(RoadmapTask.class));
+            verify(roadmapTaskRepository, never()).deleteByEmail(anyString());
+            assertThat(savedRoadmapTasks()).extracting(RoadmapTask::getDescription)
+                    .containsExactly("Learn K8s", "Build project");
             ArgumentCaptor<JobAnalysisSession> session = ArgumentCaptor.forClass(JobAnalysisSession.class);
             verify(jobAnalysisSessionRepository).save(session.capture());
             assertThat(session.getValue().getMatchScore()).isCloseTo(82.0, within(1e-9));
@@ -331,10 +357,9 @@ class JobAnalysisServiceTest {
             try (MockedConstruction<RestTemplate> ignored = stubHttp(ResponseEntity.ok(chatCompletion(content)))) {
                 service.analyze(request(EMAIL, "cv", "jd"));
             }
-            ArgumentCaptor<RoadmapTask> tasks = ArgumentCaptor.forClass(RoadmapTask.class);
-            verify(roadmapTaskRepository, times(2)).save(tasks.capture());
-            assertThat(tasks.getAllValues()).extracting(RoadmapTask::getTaskKey).containsExactly("step-1", "step-2");
-            assertThat(tasks.getAllValues()).extracting(RoadmapTask::getDescription).containsExactly("First", "Second");
+            List<RoadmapTask> tasks = savedRoadmapTasks();
+            assertThat(tasks).extracting(RoadmapTask::getTaskKey).containsExactly("step-1", "step-2");
+            assertThat(tasks).extracting(RoadmapTask::getDescription).containsExactly("First", "Second");
         }
 
         @Test
@@ -345,6 +370,7 @@ class JobAnalysisServiceTest {
             }
             verify(roadmapTaskRepository, never()).deleteByEmail(anyString());
             verify(roadmapTaskRepository, never()).save(any());
+            verify(roadmapTaskRepository, never()).saveAll(any());
             verify(jobAnalysisSessionRepository).save(any());
         }
 
@@ -372,7 +398,7 @@ class JobAnalysisServiceTest {
                 JobAnalysisResponse res = service.analyze(request(EMAIL, "cv", "jd"));
                 assertThat(res.getSummary()).startsWith("Lihtne fallback-analüüs");
             }
-            verify(roadmapTaskRepository, times(4)).save(any());
+            assertThat(savedRoadmapTasks()).hasSize(4);
             verify(jobAnalysisSessionRepository).save(any());
             verify(trainingProgressRepository).save(any());
         }
@@ -392,14 +418,14 @@ class JobAnalysisServiceTest {
                 JobAnalysisResponse res = service.analyze(request(EMAIL, "cv", "jd"));
                 assertThat(res.getSummary()).startsWith("Lihtne fallback-analüüs");
             }
-            verify(roadmapTaskRepository, times(4)).save(any());
+            assertThat(savedRoadmapTasks()).hasSize(4);
             verifyNoInteractions(jobAnalysisSessionRepository, trainingProgressRepository);
         }
 
         @Test
         void non2xxStatusFallsBack() {
             try (MockedConstruction<RestTemplate> ignored =
-                         stubHttp(ResponseEntity.status(HttpStatus.NO_CONTENT.value() + 100).body("{}"))) {
+                         stubHttp(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{}"))) {
                 JobAnalysisResponse res = service.analyze(request(null, "cv", "jd"));
                 assertThat(res.getSummary()).startsWith("Lihtne fallback-analüüs");
             }
