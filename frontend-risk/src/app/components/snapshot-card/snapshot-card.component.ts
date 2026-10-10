@@ -1,6 +1,42 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/**
+ * Qualitative bands for the CV-to-job match score (0-100).
+ * Higher score = better match with the job description.
+ */
+export type JobMatchBand = 'strong' | 'partial' | 'weak';
+
+export const STRONG_MATCH_THRESHOLD = 70;
+export const PARTIAL_MATCH_THRESHOLD = 40;
+
+export function getJobMatchBand(matchPercent: number): JobMatchBand {
+  if (matchPercent >= STRONG_MATCH_THRESHOLD) return 'strong';
+  if (matchPercent >= PARTIAL_MATCH_THRESHOLD) return 'partial';
+  return 'weak';
+}
+
+const JOB_MATCH_LABELS: Record<JobMatchBand, string> = {
+  strong: 'Strong match',
+  partial: 'Partial match',
+  weak: 'Weak match'
+};
+
+/** Green = good match, amber = partial, red = weak. */
+const JOB_MATCH_COLOR_CLASSES: Record<JobMatchBand, string> = {
+  strong: 'text-emerald-400',
+  partial: 'text-amber-400',
+  weak: 'text-rose-400'
+};
+
+export function getJobMatchLabel(matchPercent: number): string {
+  return JOB_MATCH_LABELS[getJobMatchBand(matchPercent)];
+}
+
+export function getJobMatchColorClass(matchPercent: number): string {
+  return JOB_MATCH_COLOR_CLASSES[getJobMatchBand(matchPercent)];
+}
+
 @Component({
   selector: 'app-snapshot-card',
   standalone: true,
@@ -15,21 +51,25 @@ import { CommonModule } from '@angular/common';
           </svg>
         </div>
         <div>
-          <h2 class="text-xl font-semibold text-slate-100">Risk Snapshot</h2>
-          <p class="text-sm text-slate-500">Your career readiness overview</p>
+          <h2 class="text-xl font-semibold text-slate-100">Job Match Snapshot</h2>
+          <p class="text-sm text-slate-500">How well your CV matches this job description</p>
         </div>
       </div>
 
       <!-- Main Score Display -->
       <div class="flex flex-col sm:flex-row items-center justify-between gap-8 mb-8">
-        <!-- Risk Score -->
+        <!-- Job Match Score -->
         <div class="text-center sm:text-left">
-          <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-2">Risk Score</p>
-          <div class="flex items-baseline gap-1">
-            <span class="text-6xl font-bold" [ngClass]="getRiskColorClass()">{{ riskPercent }}</span>
-            <span class="text-3xl font-semibold text-slate-500">%</span>
+          <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-2">Job match</p>
+          <div
+            class="flex items-baseline gap-1"
+            role="img"
+            [attr.aria-label]="'Job match: ' + matchPercent + '%, ' + getMatchLabel()"
+          >
+            <span class="text-6xl font-bold" [ngClass]="getMatchColorClass()" aria-hidden="true">{{ matchPercent }}</span>
+            <span class="text-3xl font-semibold text-slate-500" aria-hidden="true">%</span>
           </div>
-          <p class="text-sm text-slate-500 mt-2">{{ getRiskLabel() }}</p>
+          <p class="text-sm text-slate-500 mt-2">{{ getMatchLabel() }}</p>
         </div>
 
         <!-- Divider -->
@@ -58,14 +98,15 @@ import { CommonModule } from '@angular/common';
           ></div>
         </div>
         <p class="text-xs text-slate-500">
-          Higher coverage means more accurate risk assessment and roadmap recommendations.
+          Higher coverage means a more accurate job match and roadmap recommendations.
         </p>
       </div>
     </div>
   `
 })
 export class SnapshotCardComponent {
-  @Input() riskPercent = 0;
+  /** CV-to-job match score (0-100); higher is better. */
+  @Input() matchPercent = 0;
   @Input() confidence = 0;
   @Input() signalsCount = 0;
   @Input() coverage = 0;
@@ -74,15 +115,11 @@ export class SnapshotCardComponent {
     return `${(this.confidence * 100).toFixed(1)}%`;
   }
 
-  getRiskColorClass(): string {
-    if (this.riskPercent >= 70) return 'text-emerald-400';
-    if (this.riskPercent >= 40) return 'text-amber-400';
-    return 'text-rose-400';
+  getMatchColorClass(): string {
+    return getJobMatchColorClass(this.matchPercent);
   }
 
-  getRiskLabel(): string {
-    if (this.riskPercent >= 70) return 'Low Risk - Well Prepared';
-    if (this.riskPercent >= 40) return 'Medium Risk - Room to Improve';
-    return 'High Risk - Needs Attention';
+  getMatchLabel(): string {
+    return getJobMatchLabel(this.matchPercent);
   }
 }
