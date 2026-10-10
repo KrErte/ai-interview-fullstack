@@ -2,6 +2,8 @@ package ee.kerrete.ainterview.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.kerrete.ainterview.ai.AiUnavailableException;
+import ee.kerrete.ainterview.ai.OpenAiKey;
 import ee.kerrete.ainterview.dto.AdaptiveQuestionRequest;
 import ee.kerrete.ainterview.dto.AdaptiveQuestionResponse;
 import ee.kerrete.ainterview.dto.EvaluateAnswerRequest;
@@ -26,7 +28,7 @@ public class AiEvaluationClient {
 
     private final ObjectMapper objectMapper;
 
-    @Value("${openai.api-key:${OPENAI_API_KEY:dummy-openai-key}}")
+    @Value("${openai.api-key:}")
     private String apiKey;
 
     @Value("${openai.base-url:https://api.openai.com/v1}")
@@ -46,7 +48,12 @@ public class AiEvaluationClient {
     // =========================================================
     //  1. VASTUSE HINDAMINE (STAR, 0–100, strengths/weaknesses)
     // =========================================================
+    /**
+     * @throws AiUnavailableException without an API key (no request is sent) or when the call fails;
+     *                                EvaluationService then uses its local heuristic (fallback=true)
+     */
     public EvaluateAnswerResponse evaluateStarAnswer(EvaluateAnswerRequest request) {
+        OpenAiKey.require(apiKey);
         try {
             String url = chatCompletionsUrl();
 
@@ -127,7 +134,7 @@ public class AiEvaluationClient {
             return result;
         } catch (Exception e) {
             log.error("OpenAI evaluation error", e);
-            throw new RuntimeException("OpenAI evaluation failed: " + e.getMessage(), e);
+            throw new AiUnavailableException("OpenAI evaluation failed: " + e.getMessage(), e);
         }
     }
 
@@ -135,6 +142,9 @@ public class AiEvaluationClient {
     //  2. ADAPTIIVNE JÄRGMINE KÜSIMUS
     // =========================================================
     public AdaptiveQuestionResponse generateAdaptiveQuestion(AdaptiveQuestionRequest request) {
+        if (!OpenAiKey.isConfigured(apiKey)) {
+            return fallbackAdaptiveQuestion(); // FP-20: no outbound call without a key
+        }
         try {
             String url = chatCompletionsUrl();
 
@@ -210,12 +220,16 @@ public class AiEvaluationClient {
             return new AdaptiveQuestionResponse(questionText, false);
         } catch (Exception e) {
             log.error("OpenAI adaptive question error", e);
-            // Fallback: lihtne Result/Action küsimus
-            return new AdaptiveQuestionResponse(
-                    "Mis oli sinu tegevuse konkreetne tulemus? Proovi tuua välja numbreid või mõõdetav mõju (Result).",
-                    true
-            );
+            return fallbackAdaptiveQuestion();
         }
+    }
+
+    /** Fallback: lihtne Result/Action küsimus */
+    private AdaptiveQuestionResponse fallbackAdaptiveQuestion() {
+        return new AdaptiveQuestionResponse(
+                "Mis oli sinu tegevuse konkreetne tulemus? Proovi tuua välja numbreid või mõõdetav mõju (Result).",
+                true
+        );
     }
 
     // =========================================================

@@ -109,43 +109,45 @@ class JobAnalysisServiceTest {
         void equalLengthCvAndJobDescriptionScores090() {
             JobAnalysisResponse res = service.analyze(request(null, "abcdefghij", "0123456789"));
 
-            // ratio = 1.0 -> 0.4 + 0.5 = 0.9
-            assertThat(res.getMatchScore()).isCloseTo(0.9, within(1e-9));
+            // ratio = 1.0 -> 40 + 50 = 90 (FP-20: 0-100 scale)
+            assertThat(res.getMatchScore()).isEqualTo(90);
             assertThat(res.getSummary()).contains("90%");
-            assertThat(res.getStrengths()).isNotEmpty();
-            assertThat(res.getWeaknesses()).isNotEmpty();
-            assertThat(res.getMissingSkills()).isNotEmpty();
-            assertThat(res.getRoadmap()).hasSize(4);
-            assertThat(res.getSuggestedImprovements()).isNotBlank();
+            assertThat(res.isFallback()).isTrue();
+            // FP-20: no invented content in the fallback (strengths, gaps, roadmap, advice)
+            assertThat(res.getStrengths()).isEmpty();
+            assertThat(res.getWeaknesses()).isEmpty();
+            assertThat(res.getMissingSkills()).isEmpty();
+            assertThat(res.getRoadmap()).isEmpty();
+            assertThat(res.getSuggestedImprovements()).isEmpty();
         }
 
         @Test
         void scoreDependsOnLengthRatioRegardlessOfDirection() {
-            // ratio 0.5 -> 0.4 + 0.25 = 0.65, symmetric in cv/jd
+            // ratio 0.5 -> 40 + 25 = 65, symmetric in cv/jd
             double cvShorter = service.analyze(request(null, "x".repeat(50), "y".repeat(100))).getMatchScore();
             double jdShorter = service.analyze(request(null, "x".repeat(100), "y".repeat(50))).getMatchScore();
 
-            assertThat(cvShorter).isCloseTo(0.65, within(1e-9));
-            assertThat(jdShorter).isCloseTo(0.65, within(1e-9));
+            assertThat(cvShorter).isEqualTo(65.0);
+            assertThat(jdShorter).isEqualTo(65.0);
         }
 
         @Test
-        void veryDifferentLengthsApproachLowerBoundOf04() {
+        void veryDifferentLengthsApproachLowerBoundOf40() {
             double score = service.analyze(request(null, "x", "y".repeat(10_000))).getMatchScore();
-            assertThat(score).isBetween(0.4, 0.41);
+            assertThat(score).isEqualTo(40.0);
         }
 
         @Test
-        void blankCvReturnsDefaultScore03() {
+        void blankCvReturnsDefaultScore30() {
             JobAnalysisResponse res = service.analyze(request(null, "   ", "Java developer"));
-            assertThat(res.getMatchScore()).isEqualTo(0.3);
+            assertThat(res.getMatchScore()).isEqualTo(30);
             assertThat(res.getSummary()).contains("30%");
         }
 
         @Test
-        void nullInputsReturnDefaultScore03() {
+        void nullInputsReturnDefaultScore30() {
             JobAnalysisResponse res = service.analyze(request(null, null, null));
-            assertThat(res.getMatchScore()).isEqualTo(0.3);
+            assertThat(res.getMatchScore()).isEqualTo(30);
         }
 
         @Test
@@ -153,7 +155,7 @@ class JobAnalysisServiceTest {
             ReflectionTestUtils.setField(service, "apiKey", null);
             try (MockedConstruction<RestTemplate> rt = mockConstruction(RestTemplate.class)) {
                 JobAnalysisResponse res = service.analyze(request(null, "cv", "jd"));
-                assertThat(res.getMatchScore()).isCloseTo(0.9, within(1e-9));
+                assertThat(res.getMatchScore()).isEqualTo(90);
                 assertThat(rt.constructed()).isEmpty();
             }
         }
@@ -165,28 +167,22 @@ class JobAnalysisServiceTest {
         }
 
         @Test
-        void withEmailPersistsRoadmapSessionAndNewTrainingProgress() {
+        void withEmailPersistsSessionAndNewTrainingProgressButNoRoadmap() {
             when(trainingProgressRepository.findByEmail(EMAIL)).thenReturn(Optional.empty());
 
             service.analyze(request(EMAIL, "abcdefghij", "0123456789"));
 
-            verify(roadmapTaskRepository, never()).deleteByEmail(anyString());
-            List<RoadmapTask> tasks = savedRoadmapTasks();
-            assertThat(tasks).hasSize(4);
-            RoadmapTask first = tasks.get(0);
-            assertThat(first.getEmail()).isEqualTo(EMAIL);
-            assertThat(first.getTaskKey()).isEqualTo("step-1");
-            assertThat(first.getOrderIndex()).isEqualTo(1);
-            assertThat(first.isCompleted()).isFalse();
-            assertThat(tasks.get(3).getTaskKey()).isEqualTo("step-4");
+            // FP-20: the fallback has no (invented) roadmap, so no roadmap tasks are created
+            verifyNoInteractions(roadmapTaskRepository);
 
             ArgumentCaptor<JobAnalysisSession> session = ArgumentCaptor.forClass(JobAnalysisSession.class);
             verify(jobAnalysisSessionRepository).save(session.capture());
             assertThat(session.getValue().getEmail()).isEqualTo(EMAIL);
             assertThat(session.getValue().getJobDescription()).isEqualTo("0123456789");
-            // 0.9 is normalized to percent
+            // fallback score is already on the 0-100 scale
             assertThat(session.getValue().getMatchScore()).isCloseTo(90.0, within(1e-9));
-            assertThat(session.getValue().getAiScore()).isEqualTo(0);
+            // FP-20: aiScore uses the same normalized value (was 0 from 0.9.intValue())
+            assertThat(session.getValue().getAiScore()).isEqualTo(90);
 
             ArgumentCaptor<TrainingProgress> progress = ArgumentCaptor.forClass(TrainingProgress.class);
             verify(trainingProgressRepository).save(progress.capture());
@@ -197,8 +193,7 @@ class JobAnalysisServiceTest {
         }
 
         @Test
-        void existingRoadmapIsNotOverwrittenByNewAnalysis() {
-            when(roadmapTaskRepository.countByEmail(EMAIL)).thenReturn(3L);
+        void fallbackNeverTouchesAnExistingRoadmap() {
             when(trainingProgressRepository.findByEmail(EMAIL)).thenReturn(Optional.empty());
 
             service.analyze(request(EMAIL, "cv", "jd"));
@@ -279,7 +274,8 @@ class JobAnalysisServiceTest {
             try (MockedConstruction<RestTemplate> rt = stubHttp(ResponseEntity.ok(chatCompletion(content)))) {
                 JobAnalysisResponse res = service.analyze(request(EMAIL, "my cv", "the job"));
 
-                assertThat(res.getMatchScore()).isEqualTo(0.82);
+                assertThat(res.getMatchScore()).isEqualTo(82); // FP-20: 0.82 -> 82
+                assertThat(res.isFallback()).isFalse();
                 assertThat(res.getStrengths()).containsExactly("Java");
                 assertThat(res.getWeaknesses()).containsExactly("Cloud");
                 assertThat(res.getMissingSkills()).containsExactly("Kubernetes");
@@ -307,6 +303,24 @@ class JobAnalysisServiceTest {
         }
 
         @Test
+        void existingRoadmapIsNotOverwrittenByNewAnalysis() throws Exception {
+            when(roadmapTaskRepository.countByEmail(EMAIL)).thenReturn(3L);
+            when(trainingProgressRepository.findByEmail(EMAIL)).thenReturn(Optional.empty());
+
+            try (MockedConstruction<RestTemplate> ignored = stubHttp(ResponseEntity.ok(
+                    chatCompletion("{\"matchScore\":70,\"roadmap\":[\"A\",\"B\"]}")))) {
+                service.analyze(request(EMAIL, "cv", "jd"));
+            }
+
+            verify(roadmapTaskRepository, never()).deleteByEmail(anyString());
+            verify(roadmapTaskRepository, never()).saveAll(any());
+            verify(roadmapTaskRepository, never()).save(any());
+            // the analysis itself is still persisted
+            verify(jobAnalysisSessionRepository).save(any());
+            verify(trainingProgressRepository).save(any());
+        }
+
+        @Test
         void baseUrlWithTrailingSlashIsNotDoubled() throws Exception {
             ReflectionTestUtils.setField(service, "baseUrl", BASE_URL + "/");
             try (MockedConstruction<RestTemplate> rt = stubHttp(ResponseEntity.ok(chatCompletion("{\"matchScore\":0.5}")))) {
@@ -321,7 +335,7 @@ class JobAnalysisServiceTest {
             when(trainingProgressRepository.findByEmail(EMAIL)).thenReturn(Optional.empty());
             try (MockedConstruction<RestTemplate> ignored = stubHttp(ResponseEntity.ok(chatCompletion("{\"matchScore\":75}")))) {
                 JobAnalysisResponse res = service.analyze(request(EMAIL, "cv", "jd"));
-                assertThat(res.getMatchScore()).isEqualTo(75.0);
+                assertThat(res.getMatchScore()).isEqualTo(75);
             }
             ArgumentCaptor<JobAnalysisSession> session = ArgumentCaptor.forClass(JobAnalysisSession.class);
             verify(jobAnalysisSessionRepository).save(session.capture());
@@ -333,7 +347,7 @@ class JobAnalysisServiceTest {
         void scoreAliasIsAcceptedAndMissingFieldsGetDefaults() throws Exception {
             try (MockedConstruction<RestTemplate> ignored = stubHttp(ResponseEntity.ok(chatCompletion("{\"score\":0.6}")))) {
                 JobAnalysisResponse res = service.analyze(request(null, "cv", "jd"));
-                assertThat(res.getMatchScore()).isEqualTo(0.6);
+                assertThat(res.getMatchScore()).isEqualTo(60);
                 assertThat(res.getStrengths()).isEmpty();
                 assertThat(res.getWeaknesses()).isEmpty();
                 assertThat(res.getMissingSkills()).isEmpty();
@@ -348,7 +362,8 @@ class JobAnalysisServiceTest {
         void missingScoreFallsBackToHeuristicScore() throws Exception {
             try (MockedConstruction<RestTemplate> ignored = stubHttp(ResponseEntity.ok(chatCompletion("{\"summary\":\"x\"}")))) {
                 JobAnalysisResponse res = service.analyze(request(null, "", "jd"));
-                assertThat(res.getMatchScore()).isEqualTo(0.3);
+                assertThat(res.getMatchScore()).isEqualTo(30);
+                assertThat(res.isFallback()).isFalse(); // AI answer, only the score is estimated
                 assertThat(res.getSummary()).isEqualTo("x");
             }
         }
@@ -381,7 +396,7 @@ class JobAnalysisServiceTest {
         void malformedJsonContentFallsBack() throws Exception {
             try (MockedConstruction<RestTemplate> ignored = stubHttp(ResponseEntity.ok(chatCompletion("Sorry, I cannot do that")))) {
                 JobAnalysisResponse res = service.analyze(request(null, "abcdefghij", "0123456789"));
-                assertThat(res.getMatchScore()).isCloseTo(0.9, within(1e-9));
+                assertThat(res.getMatchScore()).isEqualTo(90);
                 assertThat(res.getSummary()).startsWith("Lihtne fallback-analüüs");
             }
         }
@@ -401,7 +416,7 @@ class JobAnalysisServiceTest {
                 JobAnalysisResponse res = service.analyze(request(EMAIL, "cv", "jd"));
                 assertThat(res.getSummary()).startsWith("Lihtne fallback-analüüs");
             }
-            assertThat(savedRoadmapTasks()).hasSize(4);
+            verifyNoInteractions(roadmapTaskRepository); // FP-20: empty fallback roadmap
             verify(jobAnalysisSessionRepository).save(any());
             verify(trainingProgressRepository).save(any());
         }
@@ -415,14 +430,14 @@ class JobAnalysisServiceTest {
         }
 
         @Test
-        void nullBodyFallsBackButOnlyPersistsRoadmap() {
-            // Current behavior: this early-return branch skips session + training progress persistence.
+        void nullBodyFallsBackAndPersistsNothing() {
+            // Current behavior: this early-return branch skips session + training progress persistence;
+            // FP-20: the fallback roadmap is empty, so no roadmap tasks either.
             try (MockedConstruction<RestTemplate> ignored = stubHttp(ResponseEntity.ok().body(null))) {
                 JobAnalysisResponse res = service.analyze(request(EMAIL, "cv", "jd"));
                 assertThat(res.getSummary()).startsWith("Lihtne fallback-analüüs");
             }
-            assertThat(savedRoadmapTasks()).hasSize(4);
-            verifyNoInteractions(jobAnalysisSessionRepository, trainingProgressRepository);
+            verifyNoInteractions(roadmapTaskRepository, jobAnalysisSessionRepository, trainingProgressRepository);
         }
 
         @Test
@@ -439,7 +454,7 @@ class JobAnalysisServiceTest {
             when(trainingProgressRepository.findByEmail(EMAIL)).thenReturn(Optional.empty());
             try (MockedConstruction<RestTemplate> ignored = stubHttpThrowing(new ResourceAccessException("timeout"))) {
                 JobAnalysisResponse res = service.analyze(request(EMAIL, "cv", "jd"));
-                assertThat(res.getMatchScore()).isCloseTo(0.9, within(1e-9));
+                assertThat(res.getMatchScore()).isEqualTo(90);
                 assertThat(res.getSummary()).startsWith("Lihtne fallback-analüüs");
             }
             verify(jobAnalysisSessionRepository).save(any());

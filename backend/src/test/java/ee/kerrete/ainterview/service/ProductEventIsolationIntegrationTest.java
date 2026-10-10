@@ -1,5 +1,11 @@
 package ee.kerrete.ainterview.service;
 
+import org.springframework.web.client.RestTemplate;
+import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpEntity;
+import org.mockito.MockedConstruction;
 import ee.kerrete.ainterview.dto.JobAnalysisRequest;
 import ee.kerrete.ainterview.dto.JobAnalysisResponse;
 import ee.kerrete.ainterview.dto.RoadmapTaskDto;
@@ -25,6 +31,11 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.util.List;
 import java.util.UUID;
 
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mockConstruction;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -90,6 +101,23 @@ class ProductEventIsolationIntegrationTest {
         return req;
     }
 
+    /** FP-20: the no-key fallback has no roadmap, so plan creation runs on a stubbed AI answer (no network). */
+    static final String AI_TWO_STEP_ROADMAP = "{\"choices\":[{\"message\":{\"role\":\"assistant\",\"content\":"
+            + "\"{\\\"matchScore\\\":70,\\\"roadmap\\\":[\\\"S1\\\",\\\"S2\\\"]}\"}}]}";
+
+    static JobAnalysisResponse analyzeWithAi(JobAnalysisService service, JobAnalysisRequest request) {
+        ReflectionTestUtils.setField(service, "apiKey", "sk-test");
+        ReflectionTestUtils.setField(service, "baseUrl", "https://openai.invalid/v1");
+        ReflectionTestUtils.setField(service, "model", "m");
+        try (MockedConstruction<RestTemplate> ignored = mockConstruction(RestTemplate.class, (rt, ctx) ->
+                when(rt.exchange(anyString(), eq(HttpMethod.POST), any(HttpEntity.class), eq(String.class)))
+                        .thenReturn(ResponseEntity.ok(AI_TWO_STEP_ROADMAP)))) {
+            return service.analyze(request);
+        } finally {
+            ReflectionTestUtils.setField(service, "apiKey", "");
+        }
+    }
+
     List<String> eventTypes() {
         return productEventRepository.findByEmailOrderByCreatedAtAsc(email).stream()
                 .map(ProductEvent::getEventType).toList();
@@ -133,7 +161,7 @@ class ProductEventIsolationIntegrationTest {
     @Test
     void analyzeStillPersistsAndReturnsWhenEventWriteFails() {
         withBrokenProductEventTable(() -> {
-            JobAnalysisResponse response = jobAnalysisService.analyze(analysisRequest());
+            JobAnalysisResponse response = analyzeWithAi(jobAnalysisService, analysisRequest());
             assertThat(response).isNotNull();
             assertThat(response.getRoadmap()).isNotEmpty();
             assertThat(roadmapTaskRepository.countByEmail(email)).isEqualTo(response.getRoadmap().size());
@@ -155,11 +183,22 @@ class ProductEventIsolationIntegrationTest {
 
     @Test
     void analyzeWithoutSurroundingTransactionStillRecordsPlanGenerated() {
-        jobAnalysisService.analyze(analysisRequest());
+        analyzeWithAi(jobAnalysisService, analysisRequest());
 
         assertThat(eventTypes()).containsExactly("plan_generated");
         assertThat(productEventRepository.findByEmailOrderByCreatedAtAsc(email).get(0).getDetails())
                 .contains("\"source\":\"job_analysis\"");
+    }
+
+    @Test
+    void noKeyFallbackAnalysisRecordsNoPlanGenerated() {
+        // FP-20: empty fallback roadmap -> no plan, no event; the session is still saved
+        JobAnalysisResponse response = jobAnalysisService.analyze(analysisRequest());
+
+        assertThat(response.isFallback()).isTrue();
+        assertThat(roadmapTaskRepository.countByEmail(email)).isZero();
+        assertThat(jobAnalysisSessionRepository.findAll()).anyMatch(s -> email.equals(s.getEmail()));
+        assertThat(eventTypes()).isEmpty();
     }
 
     @Test

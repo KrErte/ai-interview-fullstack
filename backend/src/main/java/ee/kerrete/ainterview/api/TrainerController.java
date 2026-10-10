@@ -51,13 +51,8 @@ public class TrainerController {
             @RequestBody Map<String, String> body
     ) {
         String question = body.getOrDefault("question", "");
-        try {
-            String example = aiExampleAnswerService.generateExampleStarAnswer(question);
-            return ResponseEntity.ok(example);
-        } catch (Exception e) {
-            log.error("Failed to generate example STAR answer", e);
-            return ResponseEntity.status(500)
-                    .body("AI näidisvastuse genereerimine ebaõnnestus: " + e.getMessage());
-        }
+        // FP-20: no key / AI failure -> AiUnavailableException -> 503 {"error":"ai_unavailable"}
+        String example = aiExampleAnswerService.generateExampleStarAnswer(question);
+        return ResponseEntity.ok(example);
     }
 }

@@ -1,7 +1,9 @@
 package ee.kerrete.ainterview.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -10,6 +12,8 @@ import java.util.List;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SkillPlanResponse {
 
     /**
@@ -21,4 +25,11 @@ public class SkillPlanResponse {
      * Päevade kaupa jaotatud treeningplaan.
      */
     private List<SkillPlanDay> days;
+
+    /**
+     * true when this is the local template plan (no OpenAI key or the AI call failed) instead of an AI plan
+     * (FP-20, same flag as JobAnalysisResponse).
+     */
+    @Builder.Default
+    private boolean fallback = false;
 }

@@ -3,6 +3,8 @@ package ee.kerrete.ainterview.service;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.kerrete.ainterview.ai.AiUnavailableException;
+import ee.kerrete.ainterview.ai.OpenAiKey;
 import ee.kerrete.ainterview.config.OpenAiProperties;
 import ee.kerrete.ainterview.model.Question;
 import lombok.*;
@@ -36,9 +38,14 @@ public class OpenAiClient {
        PÕHI-MEETOD: madala taseme chat completion
        ======================================================================= */
 
+    /**
+     * @throws AiUnavailableException without an API key (no request is sent), or when the call fails or
+     *                                returns no content. Never returns error text as if it were an answer.
+     */
     private String callChat(List<ChatMessage> messages,
                             Integer maxTokens,
                             Double temperature) {
+        OpenAiKey.require(properties.getApiKey());
 
         String url = properties.getBaseUrl() + "/chat/completions";
 
@@ -62,14 +69,17 @@ public class OpenAiClient {
             if (response.getBody() == null ||
                     response.getBody().choices == null ||
                     response.getBody().choices.isEmpty() ||
-                    response.getBody().choices.get(0).message == null) {
-                return "AI ei tagastanud vastust.";
+                    response.getBody().choices.get(0).message == null ||
+                    response.getBody().choices.get(0).message.content == null ||
+                    response.getBody().choices.get(0).message.content.isBlank()) {
+                throw new AiUnavailableException("OpenAI returned no content");
             }
 
             return response.getBody().choices.get(0).message.content.trim();
+        } catch (AiUnavailableException e) {
+            throw e;
         } catch (Exception e) {
-            e.printStackTrace();
-            return "OpenAI päring ebaõnnestus: " + e.getMessage();
+            throw new AiUnavailableException("OpenAI request failed: " + e.getMessage(), e);
         }
     }
 

@@ -27,6 +27,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -54,7 +55,7 @@ class JobAnalysisControllerWebMvcTest {
 
     private static JobAnalysisResponse sampleResponse() {
         JobAnalysisResponse res = new JobAnalysisResponse();
-        res.setMatchScore(0.82);
+        res.setMatchScore(82);
         res.setStrengths(List.of("Java", "Spring"));
         res.setWeaknesses(List.of("Cloud"));
         res.setMissingSkills(List.of("Kubernetes"));
@@ -75,7 +76,8 @@ class JobAnalysisControllerWebMvcTest {
                                 {"email":"cand@example.com","cvText":"my cv","jobDescription":"the job"}
                                 """))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.matchScore").value(0.82))
+                .andExpect(jsonPath("$.matchScore").value(82))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("\"matchScore\":82,")))
                 .andExpect(jsonPath("$.strengths", contains("Java", "Spring")))
                 .andExpect(jsonPath("$.weaknesses", contains("Cloud")))
                 .andExpect(jsonPath("$.missingSkills", contains("Kubernetes")))
