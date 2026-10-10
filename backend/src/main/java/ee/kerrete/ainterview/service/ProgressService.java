@@ -18,7 +18,8 @@ public class ProgressService {
     private final TrainingTaskRepository trainingTaskRepository;
     private final TrainingProgressRepository trainingProgressRepository;
 
-    @Transactional(readOnly = true)
+    // Not read-only: saves the recalculated training_progress row (FP-26).
+    @Transactional
     public TrainingProgressDto getProgress(String email) {
         long totalTasks = trainingTaskRepository.countByEmail(email);
         long completedTasks = trainingTaskRepository.countByEmailAndCompletedIsTrue(email);
