@@ -8,6 +8,7 @@ import {
   roundPercent,
   toMatchPercent,
   cleanStrings,
+  cleanUniqueStrings,
   buildGaps,
   MISSING_SKILL_PREFIX
 } from './risk.service';
@@ -151,6 +152,22 @@ describe('cleanStrings', () => {
     expect(cleanStrings([' a ', '', '  ', null, 3, 'b'])).toEqual(['a', 'b']);
     expect(cleanStrings(null)).toEqual([]);
     expect(cleanStrings('x')).toEqual([]);
+  });
+});
+
+describe('cleanUniqueStrings', () => {
+  it("cleans and dedupes case/whitespace-insensitively: ['Java', 'java ', ''] -> ['Java']", () => {
+    expect(cleanUniqueStrings(['Java', 'java ', ''])).toEqual(['Java']);
+  });
+
+  it('keeps the first occurrence (trimmed, original casing) and collapses inner whitespace for the key', () => {
+    expect(cleanUniqueStrings(['  Spring Boot ', 'spring   boot', 'SPRING\tBOOT', 'Docker', 'docker'])).toEqual(['Spring Boot', 'Docker']);
+  });
+
+  it('tolerates null, non-arrays and non-string entries', () => {
+    expect(cleanUniqueStrings(null)).toEqual([]);
+    expect(cleanUniqueStrings('Java')).toEqual([]);
+    expect(cleanUniqueStrings(['Java', null, 42, 'JAVA'])).toEqual(['Java']);
   });
 });
 
@@ -403,6 +420,20 @@ describe('RiskService', () => {
       // weaknesses, missingSkills, gaps present -> 3 of 6
       expect(a.coverage).toBeCloseTo(50, 10);
       expect(a.roadmapPrecision).toBe('MEDIUM');
+    });
+
+    it('cleans and dedupes strengths and counts only the cleaned ones', () => {
+      const a = transform({ strengths: ['Java', 'java ', '', ' Angular', 'ANGULAR', '  '] });
+      expect(a.strengths).toEqual(['Java', 'Angular']);
+      expect(a.signalsCount).toBe(2);
+      expect(a.confidence).toBeCloseTo(0.6, 10);
+      expect(a.coverage).toBeCloseTo((1 / 6) * 100, 10);
+    });
+
+    it("maps ['Java', 'java ', ''] to ['Java'] with signalsCount 1", () => {
+      const a = transform({ strengths: ['Java', 'java ', ''] });
+      expect(a.strengths).toEqual(['Java']);
+      expect(a.signalsCount).toBe(1);
     });
 
     it('does not count blank strengths, roadmap steps or summary', () => {
