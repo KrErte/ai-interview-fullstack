@@ -66,7 +66,7 @@ class JobAnalysisControllerWebMvcTest {
 
     @Test
     @WithMockUser(username = "jwt-user@example.com", roles = "USER")
-    void analyzeReturnsJobAnalysisJson() throws Exception {
+    void analyzeReturnsJobAnalysisJsonAndUsesPrincipalEmail() throws Exception {
         when(jobAnalysisService.analyze(any(JobAnalysisRequest.class))).thenReturn(sampleResponse());
 
         mockMvc.perform(post("/api/job-analysis")
@@ -85,7 +85,8 @@ class JobAnalysisControllerWebMvcTest {
 
         ArgumentCaptor<JobAnalysisRequest> captor = ArgumentCaptor.forClass(JobAnalysisRequest.class);
         verify(jobAnalysisService).analyze(captor.capture());
-        assertThat(captor.getValue().getEmail()).isEqualTo("cand@example.com");
+        // FP-8: the authenticated principal wins over the email in the body
+        assertThat(captor.getValue().getEmail()).isEqualTo("jwt-user@example.com");
         assertThat(captor.getValue().getCvText()).isEqualTo("my cv");
         assertThat(captor.getValue().getJobDescription()).isEqualTo("the job");
         verify(jobAnalysisStatsService).recordAnalysis(any(JobAnalysisRequest.class), any(JobAnalysisResponse.class));

@@ -1,23 +1,29 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.*;
 import ee.kerrete.ainterview.service.RoadmapService;
 import ee.kerrete.ainterview.service.TrainerQuestionService;
 import ee.kerrete.ainterview.service.TrainingService;
-import jakarta.validation.Valid;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Treening-roadmapi REST API.
  *
- *  - GET  /api/training/progress?email=...
+ * The user is always the authenticated principal; emails in params/body are ignored.
+ *
+ *  - GET  /api/training/progress
  *  - POST /api/training/task        (uuendab ühe taski staatust + tagastab progressi)
  *  - GET  /api/training/next-question (lihtne random treeneri küsimus)
  */
@@ -31,6 +37,7 @@ public class TrainingProgressController {
     private final TrainingService trainingService;
     private final TrainerQuestionService trainerQuestionService;
     private final RoadmapService roadmapService;
+    private final Validator validator;
 
     /**
      * Tagastab kasutaja koondprogressi.
@@ -46,9 +53,11 @@ public class TrainingProgressController {
      */
     @PostMapping("/task")
     public ResponseEntity<TrainingProgressResponse> updateTask(
-            @Valid @RequestBody TrainingTaskRequest request
+            @RequestBody TrainingTaskRequest request
     ) {
+        // set the email from the principal first, then validate the rest of the request
         request.setEmail(resolveEmail(request.getEmail()));
+        validate(request);
         TrainingProgressResponse response = trainingService.updateTaskStatus(request);
         return ResponseEntity.ok(response);
     }
@@ -80,15 +89,21 @@ public class TrainingProgressController {
         return ResponseEntity.ok(q);
     }
 
-    private String resolveEmail(String incoming) {
-        if (incoming != null && !incoming.isBlank()) return incoming;
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.getPrincipal() instanceof String principal) {
-            return principal;
+    /**
+     * Ignores the client-supplied email and always returns the authenticated user's email.
+     */
+    private String resolveEmail(String ignoredIncoming) {
+        return CurrentUser.email();
+    }
+
+    private void validate(Object request) {
+        Set<ConstraintViolation<Object>> violations = validator.validate(request);
+        if (!violations.isEmpty()) {
+            String message = violations.stream()
+                    .map(v -> v.getPropertyPath() + " " + v.getMessage())
+                    .sorted()
+                    .collect(Collectors.joining(", "));
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message);
         }
-        if (auth != null && auth.getName() != null) {
-            return auth.getName();
-        }
-        throw new IllegalArgumentException("Email required");
     }
 }
