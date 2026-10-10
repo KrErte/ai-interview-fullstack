@@ -47,7 +47,8 @@ public class JobMatchService {
                     List.of("typescript", "react", "node", "sql", "ux", "testing"))
     );
 
-    @Transactional(readOnly = true)
+    // Not read-only: may create the profile and saves the last match to training_progress (FP-26).
+    @Transactional
     public List<JobMatchDto> match(JobMatchRequest request) {
         String email = resolveEmail(request);
         UserProfileDto profile = userProfileService.getProfile(email);

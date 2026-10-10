@@ -24,7 +24,8 @@ public class AuthService {
     private final JwtService jwtService;
 
     /**
-     * Registreeri uus kasutaja – vaikimisi roll CANDIDATE.
+     * Registers a new user. Self-registration always gets the CANDIDATE role (the existing default);
+     * a role can never be chosen by the client, so nobody can self-register as ADMIN.
      */
     public AuthResponse register(RegisterRequest request) {
 
@@ -36,7 +37,7 @@ public class AuthService {
 
         LocalDateTime now = LocalDateTime.now();
 
-        UserRole role = request.getRole() != null ? request.getRole() : UserRole.CANDIDATE;
+        UserRole role = UserRole.CANDIDATE;
 
         AppUser user = AppUser.builder()
                 .email(request.getEmail())

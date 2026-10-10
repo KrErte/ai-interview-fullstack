@@ -30,7 +30,8 @@ public class TrainingService {
      * VANA signatuur, mida kasutavad ProgressController ja TrainingProgressController:
      * trainingService.getProgress(email)
      */
-    @Transactional(readOnly = true)
+    // Not read-only: delegates to getTrainingProgress, which saves training_progress (FP-26).
+    @Transactional
     public TrainingProgressResponse getProgress(String email) {
         return getTrainingProgress(email);
     }
@@ -55,7 +56,8 @@ public class TrainingService {
      *  - trainingProgressPercent (0–100)
      *  - lastActivityAt = max(viimane treening-task, viimane Job Matcheri sessioon)
      */
-    @Transactional(readOnly = true)
+    // Not read-only: saves the recalculated training_progress row (FP-26).
+    @Transactional
     public TrainingProgressResponse getTrainingProgress(String email) {
         long totalTasksCount = trainingTaskRepository.countByEmail(email);
         long completedTasksCount = trainingTaskRepository.countByEmailAndCompletedIsTrue(email);
