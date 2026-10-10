@@ -19,7 +19,8 @@ public class UserProfileService {
     private final UserProfileRepository userProfileRepository;
     private final AppUserRepository appUserRepository;
 
-    @Transactional(readOnly = true)
+    // Not read-only: creates and saves an empty profile on first access (FP-26).
+    @Transactional
     public UserProfileDto getProfile(String email) {
         UserProfile profile = userProfileRepository.findByEmail(email)
                 .orElseGet(() -> createShellProfile(email));

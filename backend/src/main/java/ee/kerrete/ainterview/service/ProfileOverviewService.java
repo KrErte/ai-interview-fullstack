@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Teenus, mis annab profiili ülevaate.
  *
  * Loeb Job Matcheri ajaloo põhjal:
- *  - mitut analüüsi on kokku tehtud
+ *  - mitu analüüsi kasutaja on kokku teinud (ainult tema enda, FP-25)
  *  - mitu analüüsi antud emailiga
  *  - viimase analüüsi skoor ja kokkuvõte
  *  - viimase aktiivsuse aja
@@ -26,10 +26,12 @@ public class ProfileOverviewService {
 
     public ProfileOverviewResponse getOverview(String email) {
 
-        int totalAnalyses = Math.toIntExact(jobAnalysisSessionRepository.count());
+        // FP-25: totalAnalyses used to be the count of ALL users' analyses; it is now the user's own count
+        // (kept as a field for existing clients, same value as totalAnalysesForEmail).
         int totalAnalysesForEmail = email != null
                 ? Math.toIntExact(jobAnalysisSessionRepository.countByEmail(email))
                 : 0;
+        int totalAnalyses = totalAnalysesForEmail;
 
         JobAnalysisSession last =
                 email != null ? jobAnalysisSessionRepository.findTopByEmailOrderByCreatedAtDesc(email).orElse(null) : null;

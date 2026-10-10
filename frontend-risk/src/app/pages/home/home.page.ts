@@ -46,6 +46,13 @@ import { AuthService } from '../../services/auth.service';
           </a>
 
           <a
+            routerLink="/ai-test"
+            class="flex items-center gap-2 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 px-8 py-4 font-semibold text-emerald-300 transition-all hover:bg-emerald-500/20 hover:text-white"
+          >
+            Kui asendatav oled AI poolt?
+          </a>
+
+          <a
             *ngIf="!auth.isLoggedIn()"
             routerLink="/register"
             class="flex items-center gap-2 rounded-2xl border border-slate-700 bg-slate-800/50 px-8 py-4 font-semibold text-slate-300 transition-all hover:border-slate-600 hover:bg-slate-800 hover:text-white"

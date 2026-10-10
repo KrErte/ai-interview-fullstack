@@ -2,6 +2,7 @@ package ee.kerrete.ainterview.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.kerrete.ainterview.ai.OpenAiKey;
 import ee.kerrete.ainterview.dto.AdaptiveAnalysisRequest;
 import ee.kerrete.ainterview.dto.AdaptiveAnalysisResponse;
 import ee.kerrete.ainterview.dto.SoftSkillQuestionRequest;
@@ -32,7 +33,7 @@ public class SoftSkillQuestionService {
     private final AiAdaptiveService aiAdaptiveService;
     private final TrainingTaskRepository trainingTaskRepository;
 
-    @Value("${openai.api-key:${OPENAI_API_KEY:dummy-openai-key}}")
+    @Value("${openai.api-key:}")
     private String apiKey;
 
     @Value("${openai.base-url:https://api.openai.com/v1}")
@@ -143,6 +144,14 @@ public class SoftSkillQuestionService {
     // --- OpenAI järgmise küsimuse jaoks ---
 
     private SoftSkillQuestionResponse callOpenAiForNextQuestion(SoftSkillQuestionRequest request) {
+        if (!OpenAiKey.isConfigured(apiKey)) {
+            // FP-20: no outbound call without a key; use the built-in question bank (fallback=true)
+            return SoftSkillQuestionResponse.builder()
+                    .questionText(fallbackQuestion(request.getRoadmapKey()))
+                    .difficulty("medium")
+                    .fallback(true)
+                    .build();
+        }
         try {
             String url = chatCompletionsUrl();
 

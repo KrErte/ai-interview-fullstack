@@ -1,0 +1,54 @@
+# Lokaalne käivitus: docker compose up -d --build
+# Enne esimest käivitust: cp .env.example .env ja täida DB_PASSWORD, JWT_SECRET ja SEED_* (.env on gitignored).
+# Rakendus: http://localhost:4200  (AI test: http://localhost:4200/ai-test)
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ai
+      POSTGRES_USER: ai
+      # FP-28: no default; DB_PASSWORD from .env (same variable is passed to the backend below).
+      # Postgres applies it only when the pgdata-local volume is first created. An existing volume
+      # keeps its original password (ai123 for volumes created before FP-28): see .env.example.
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env (see .env.example)}
+    volumes:
+      - pgdata-local:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:postgresql://postgres:5432/ai
+      DB_USER: ai
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env (see .env.example)}
+      # FP-28: required (compose refuses to start without it); the backend refuses a key shorter than 32 bytes, a placeholder or the old built-in key.
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set in .env (see .env.example)}
+      FRONTEND_BASE_URL: http://localhost:4200
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      # Login users seeded at startup by ProdDataSeeder (FP-19/FP-22). Values come from the
+      # gitignored .env next to this file (template: .env.example). A user is created only when
+      # both its email and password are set; without .env nothing is seeded. Passwords are never logged.
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:-}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
+      SEED_DEMO_EMAIL: ${SEED_DEMO_EMAIL:-}
+      SEED_DEMO_PASSWORD: ${SEED_DEMO_PASSWORD:-}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend-risk:
+    build: ./frontend-risk
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata-local:

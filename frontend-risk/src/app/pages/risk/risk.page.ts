@@ -149,7 +149,6 @@ import { RiskAssessment } from '../../models/risk.model';
           <!-- Weaknesses Card -->
           <app-weaknesses-card
             [weaknesses]="assessment.weaknesses"
-            [coverage]="assessment.coverage"
           ></app-weaknesses-card>
         </div>
 

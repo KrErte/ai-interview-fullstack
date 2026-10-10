@@ -4,17 +4,12 @@ import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.LearningPlanDto;
 import ee.kerrete.ainterview.dto.SaveLearningPlanRequest;
 import ee.kerrete.ainterview.service.LearningPlanService;
-import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Learning plans of the authenticated user. The user is always taken from the auth principal.
@@ -31,8 +26,7 @@ public class LearningPlanController {
     /** POST /api/learning-plans: saves a plan for the authenticated user; any email in the body is ignored. */
     @PostMapping("/learning-plans")
     public ResponseEntity<Void> savePlan(@RequestBody SaveLearningPlanRequest request) {
-        request.setEmail(CurrentUser.email());
-        validate(request);
+        RequestValidation.withPrincipalEmail(validator, request, SaveLearningPlanRequest::setEmail);
         learningPlanService.savePlan(request);
         return ResponseEntity.ok().build();
     }
@@ -57,14 +51,4 @@ public class LearningPlanController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    private void validate(Object request) {
-        Set<ConstraintViolation<Object>> violations = validator.validate(request);
-        if (!violations.isEmpty()) {
-            String message = violations.stream()
-                    .map(v -> v.getPropertyPath() + " " + v.getMessage())
-                    .sorted()
-                    .collect(Collectors.joining(", "));
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message);
-        }
-    }
 }

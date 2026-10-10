@@ -1,11 +1,10 @@
 package ee.kerrete.ainterview.api;
 
+import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.dto.UserProfileDto;
 import ee.kerrete.ainterview.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,40 +13,18 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserProfileController {
 
+    // The user is always the authenticated principal (CurrentUser); an ?email= parameter sent by
+    // older clients is ignored.
+
     private final UserProfileService userProfileService;
 
     @GetMapping("/me")
-    public ResponseEntity<UserProfileDto> me(@RequestParam(value = "email", required = false) String email) {
-        String resolved = resolveEmail(email);
-        return ResponseEntity.ok(userProfileService.getProfile(resolved));
+    public ResponseEntity<UserProfileDto> me() {
+        return ResponseEntity.ok(userProfileService.getProfile(CurrentUser.email()));
     }
 
     @PutMapping("/me")
-    public ResponseEntity<UserProfileDto> save(@RequestParam(value = "email", required = false) String email,
-                                               @RequestBody UserProfileDto dto) {
-        String resolved = resolveEmail(email);
-        return ResponseEntity.ok(userProfileService.saveProfile(resolved, dto));
-    }
-
-    private String resolveEmail(String fallback) {
-        if (fallback != null && !fallback.isBlank()) {
-            return fallback;
-        }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof String principal) {
-            return principal;
-        }
-        if (authentication != null && authentication.getName() != null) {
-            return authentication.getName();
-        }
-        throw new IllegalArgumentException("Unable to resolve user email");
+    public ResponseEntity<UserProfileDto> save(@RequestBody UserProfileDto dto) {
+        return ResponseEntity.ok(userProfileService.saveProfile(CurrentUser.email(), dto));
     }
 }
-
-
-
-
-
-
-
-

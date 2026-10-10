@@ -1,0 +1,87 @@
+[
+  {
+    "id": "foundations",
+    "title": "1. Saa aru, mis AI on (ja mis mitte)",
+    "goal": "Tead, kuidas keelemudelid töötavad, kus nad eksivad ja mida neile ei tohi anda.",
+    "effortHours": 8,
+    "doneAtReadiness": 25,
+    "items": [
+      "Keelemudel ennustab järgmist sõna – ta ei 'tea', vaid genereerib. Sealt tulevad hallutsinatsioonid.",
+      "Kontekstiaken, tokenid, mudelite erinevus (kiire ja odav vs. tark ja aeglane).",
+      "Andmekaitse: mida tohib AI-sse kopeerida ja mida mitte (isikuandmed, ärisaladused, EL AI Act põhitõed).",
+      "Proovi sama ülesannet 2–3 eri tööriistaga ja võrdle tulemusi."
+    ],
+    "resources": [
+      { "title": "Elements of AI (ka eesti keeles, tasuta)", "url": "https://www.elementsofai.com/" },
+      { "title": "Anthropic: AI Fluency kursus", "url": "https://www.anthropic.com/learn" }
+    ]
+  },
+  {
+    "id": "daily",
+    "title": "2. AI igapäevatöö assistendina",
+    "goal": "Kasutad AI-d iga päev vähemalt ühes oma tööülesandes ja säästad nähtavalt aega.",
+    "effortHours": 12,
+    "doneAtReadiness": 45,
+    "items": [
+      "Vali 3 enda korduvat ülesannet (meilid, kokkuvõtted, dokumendid) ja tee neid 2 nädalat AI-ga.",
+      "Õpi andma konteksti: roll, eesmärk, sihtgrupp, näide, soovitud vorming.",
+      "Kontrolli alati fakte ja numbreid – sinu nimi jääb tulemuse alla.",
+      "Pea lühikest logi: mis töötas, mis mitte, kui palju aega säästsid."
+    ],
+    "resources": [
+      { "title": "Anthropic: Prompt engineering juhend", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" },
+      { "title": "OpenAI: Prompt engineering guide", "url": "https://platform.openai.com/docs/guides/prompt-engineering" }
+    ]
+  },
+  {
+    "id": "workflows",
+    "title": "3. Korduvkasutatavad töövood",
+    "goal": "Sul on oma promptide teek, projektid/kontekstifailid ja AI on töövoo loomulik osa.",
+    "effortHours": 16,
+    "doneAtReadiness": 65,
+    "items": [
+      "Ehita promptide teek oma tüüpülesannetele (mallid + head näited).",
+      "Kasuta projekte / custom GPT-sid / oma dokumente kontekstina (RAG põhiidee).",
+      "Mitme sammu töövood: uuri → kavanda → tee mustand → kriitika → paranda.",
+      "Multimodaalsus: pildid, tabelid, PDF-id, hääl – kus see sinu töös aitab?"
+    ],
+    "resources": [
+      { "title": "DeepLearning.AI lühikursused", "url": "https://www.deeplearning.ai/short-courses/" },
+      { "title": "Google: Prompting Essentials", "url": "https://grow.google/prompting-essentials/" }
+    ]
+  },
+  {
+    "id": "automation",
+    "title": "4. Automatiseerimine ja agendid",
+    "goal": "Oled automatiseerinud vähemalt ühe protsessi algusest lõpuni nii, et see töötab ka ilma sinuta.",
+    "effortHours": 30,
+    "doneAtReadiness": 85,
+    "items": [
+      "No-code: Zapier / Make / n8n + AI samm (nt meilide klassifitseerimine, aruannete koostamine).",
+      "AI agendid ja tööriistade kasutus (tool use, MCP) – mida agent teeb ja kuidas teda piirata.",
+      "Kvaliteedi mõõtmine: testjuhtumid ja 'evalid', mitte ainult 'tundub hea'.",
+      "Kulud, privaatsus ja turve: kes näeb andmeid, palju maksab üks käivitus."
+    ],
+    "resources": [
+      { "title": "n8n AI workflows dokumentatsioon", "url": "https://docs.n8n.io/advanced-ai/" },
+      { "title": "Anthropic: Building effective agents", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
+    ]
+  },
+  {
+    "id": "specialize",
+    "title": "5. Spetsialiseeru ja jaga",
+    "goal": "Oled oma meeskonnas või valdkonnas see inimene, kes teab, kuidas AI-d selles töös õigesti kasutada.",
+    "effortHours": 40,
+    "doneAtReadiness": 101,
+    "items": [
+      "Ühenda oma domeeniteadmine AI-ga: lahenda probleem, mida üldine AI ilma sinuta ei lahenda.",
+      "Dokumenteeri ja jaga: sisekoolitus, blogipostitus, LinkedIni postitus oma tulemustest.",
+      "Jälgi valdkonda: 1–2 usaldusväärset uudiskirja, mitte iga päeva hype'i.",
+      "Uuenda CV-d: konkreetsed AI-ga saavutatud tulemused numbritega."
+    ],
+    "resources": [
+      { "title": "fast.ai – Practical Deep Learning (kui tahad sügavamale)", "url": "https://course.fast.ai/" },
+      { "title": "Andrej Karpathy – Neural Networks: Zero to Hero", "url": "https://karpathy.ai/zero-to-hero.html" }
+    ]
+  }
+]

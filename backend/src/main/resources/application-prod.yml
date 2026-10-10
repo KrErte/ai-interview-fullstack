@@ -9,7 +9,9 @@ spring:
   datasource:
     url: ${DB_URL:jdbc:postgresql://postgres:5432/ai}
     username: ${DB_USER:ai}
-    password: ${DB_PASS:ai123}
+    # FP-28: no default password. DB_PASSWORD (or legacy DB_PASS) must be set; ProdDatabasePasswordGuard
+    # stops startup with a clear message otherwise.
+    password: ${DB_PASSWORD:${DB_PASS:}}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -22,6 +24,9 @@ spring:
         format_sql: false
 
   liquibase:
+    # FP-18: never run demo seed changesets (context "demo") in prod. Without an explicit
+    # value Liquibase would run changesets of every context.
+    contexts: prod
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
 
@@ -36,6 +41,20 @@ logging:
     org.hibernate.SQL: WARN
 
 app:
+  jwt:
+    # FP-28: required in prod, at least 32 bytes, not a placeholder; startup fails otherwise.
+    # Raw string (e.g. output of `openssl rand -base64 48`) or 'base64:<base64 bytes>'.
+    secret: ${JWT_SECRET:}
+  # FP-19: startup seeding (ProdDataSeeder). Nothing is hardcoded and passwords are never logged.
+  # A user is created only when both its email and password are set; leave them unset to seed nothing.
+  # Existing users keep their password (they are only re-enabled and given the expected role).
+  seed:
+    admin:
+      email: ${SEED_ADMIN_EMAIL:}        # admin user, role ADMIN
+      password: ${SEED_ADMIN_PASSWORD:}
+    demo:
+      email: ${SEED_DEMO_EMAIL:}         # demo user, role USER, plus demo profile/analyses/roadmap data
+      password: ${SEED_DEMO_PASSWORD:}
   cors:
     # Set from env FRONTEND_BASE_URL, e.g. https://your-domain.com
     allowed-origins: ${FRONTEND_BASE_URL:https://your-domain.com}

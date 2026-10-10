@@ -32,6 +32,47 @@ export function clampPercent(value: number): number {
   return Math.min(100, Math.max(0, value));
 }
 
+/**
+ * Rounds a percentage to an integer ONCE, after removing binary float noise.
+ *
+ * 0.285 * 100 is 28.499999999999996 in IEEE-754, so a bare Math.round() gives
+ * 28 instead of 29 (same for 0.145, 0.565, 0.575). toPrecision(12) snaps the
+ * product back to 28.5 first. Do not "fix" this by double rounding
+ * (Math.round(raw * 1000) / 10 and then Math.round again): that turns 0.6949
+ * (69.49) into 69.5 -> 70 and moves it into the wrong band.
+ */
+export function roundPercent(value: number): number {
+  return Math.round(Number(value.toPrecision(12)));
+}
+
+/**
+ * Converts a raw backend score into the integer 0-100 match percent, or null.
+ *
+ * Score-scale contract (confirmed by Backend): matchScore/fitScore in the
+ * /api/job-analysis response is NOT normalised.
+ *   - Fallback analyser: always a 0-1 fraction (in practice 0.3-0.9).
+ *   - OpenAI analyser: raw model output, either 0-1 or 0-100, and it can be
+ *     out of range (e.g. 1.5 or > 100).
+ * Frontend rule, mirroring the backend's normalizeScore:
+ *   pct = score <= 1 ? score * 100 : score, then round once, then clamp 0-100.
+ *   - exactly 1 is a fraction -> 100 (not 1%).
+ *   - values in (1, 2) are treated as a percent: 1.2 -> 1, 1.5 -> 2.
+ *   - 150 -> 100, -5 -> 0 (negatives are <= 1 so are x100, then clamped).
+ *   - 0 / "0" is a genuine 0% score, not "missing".
+ *   - numeric strings are accepted ("80" -> 80) via toFiniteNumber().
+ *   - null/undefined/NaN/Infinity, blank or non-numeric strings -> null
+ *     (no score; the snapshot card shows its empty state).
+ * Backend may later normalise to 0-100 on its side; this rule stays correct
+ * for that (any value > 1 passes through), except a true 1% would read as
+ * 100%, so revisit the "<= 1" branch if/when that change lands.
+ */
+export function toMatchPercent(score: unknown): number | null {
+  const raw = toFiniteNumber(score);
+  if (raw === null) return null;
+  const pct = raw <= 1 ? raw * 100 : raw;
+  return clampPercent(roundPercent(pct));
+}
+
 /** Prefix used for gap entries derived from the backend's missingSkills. */
 export const MISSING_SKILL_PREFIX = 'Missing skill: ';
 
@@ -40,8 +81,11 @@ function gapKey(text: string): string {
   return text.trim().replace(/\s+/g, ' ').toLowerCase();
 }
 
-/** Keeps only non-blank strings, trimmed. Tolerates null/undefined/non-array input. */
-function cleanStrings(list: unknown): string[] {
+/**
+ * Keeps only non-blank strings, trimmed. Tolerates null/undefined/non-array input.
+ * Shared by buildGaps() and the signals/coverage counts so they agree.
+ */
+export function cleanStrings(list: unknown): string[] {
   if (!Array.isArray(list)) return [];
   return list
     .filter((v): v is string => typeof v === 'string')
@@ -140,46 +184,43 @@ export class RiskService {
    * Transform backend job-analysis response to the job match model (RiskAssessment)
    */
   private transformToRiskAssessment(result: JobMatchResult): RiskAssessment {
-    // CV-to-job match score (higher = better match), normalised to 0-100.
-    // This is NOT a replaceability / risk score.
-    //
-    // Scale contract for the backend fitScore / matchScore (fitScore wins when
-    // both are usable):
-    //   - raw > 1  -> already on a 0-100 scale:  80   -> 80
-    //   - raw <= 1 -> a 0-1 fraction, x100:      0.85 -> 85
-    //   - raw === 1 exactly is a 0-1 fraction, so it means 100% (not 1%).
-    //   - 0 (or "0") is a genuine 0% score, not "missing".
-    // Both branches are rounded so the displayed number and the band label
-    // agree (e.g. 69.5 -> 70), then clamped to 0-100 (-5 -> 0, 150 -> 100).
-    //
-    // Numeric strings ("80", " 0.85 ") are accepted via toFiniteNumber().
-    // null/undefined/NaN/Infinity, empty or whitespace-only strings and
-    // non-numeric strings count as missing: matchPercent stays null and the
-    // snapshot card shows its empty state.
-    const rawScore = [result.fitScore, result.matchScore]
-      .map(toFiniteNumber)
-      .find((v): v is number => v !== null);
-    const matchPercent = rawScore === undefined
-      ? null
-      : clampPercent(rawScore > 1 ? Math.round(rawScore) : Math.round(rawScore * 100));
+    // CV-to-job match score (higher = better match), integer 0-100 or null.
+    // This is NOT a replaceability / risk score. fitScore wins when both
+    // fitScore and matchScore are usable. See toMatchPercent() for the full
+    // score-scale contract: the backend score is not normalised (fallback is a
+    // 0-1 fraction, OpenAI may send 0-1 or 0-100, even 1.5 or > 100), so
+    // pct = score <= 1 ? score * 100 : score, rounded once (float noise
+    // removed), clamped to 0-100; null/invalid means no score.
+    const matchPercent = [result.fitScore, result.matchScore]
+      .map(toMatchPercent)
+      .find((v): v is number => v !== null) ?? null;
 
-    // Calculate confidence based on available data signals
-    const signals = [
-      result.strengths?.length || 0,
-      result.weaknesses?.length || 0,
-      result.missingSkills?.length || 0,
-      result.gaps?.length || 0,
-      result.roadmap?.length || 0,
-      result.summary ? 1 : 0
-    ];
-    const signalsCount = signals.reduce((a, b) => a + b, 0);
+    // Gap entries exactly as shown in "Areas to Improve" (cleaned + deduped).
+    const gaps = buildGaps(result);
+    const strengths = cleanStrings(result.strengths);
+    const roadmapSteps = cleanStrings(result.roadmap);
+    const hasSummary = typeof result.summary === 'string' && result.summary.trim() !== '';
+
+    // "Based on N signals": counts the cleaned lists, so blanks/junk and
+    // duplicate gaps that buildGaps() drops are not counted. Weaknesses, gaps
+    // and missingSkills contribute buildGaps().length (not their raw lengths).
+    const signalsCount = strengths.length + gaps.length + roadmapSteps.length + (hasSummary ? 1 : 0);
 
     // Confidence based on signals (more signals = higher confidence)
     const confidence = Math.min(0.95, 0.5 + (signalsCount * 0.05));
 
-    // Coverage based on how many data points we have
-    const possibleSignals = 6;
-    const coverage = (signals.filter(s => s > 0).length / possibleSignals) * 100;
+    // Coverage: share of the 6 backend categories that hold at least one
+    // real (non-blank string) entry. A list of only blanks/junk is absent.
+    const categoriesPresent = [
+      strengths.length > 0,
+      cleanStrings(result.weaknesses).length > 0,
+      cleanStrings(result.missingSkills).length > 0,
+      cleanStrings(result.gaps).length > 0,
+      roadmapSteps.length > 0,
+      hasSummary
+    ];
+    const possibleSignals = categoriesPresent.length;
+    const coverage = (categoriesPresent.filter(Boolean).length / possibleSignals) * 100;
 
     // Determine roadmap precision based on coverage
     let roadmapPrecision: 'LOW' | 'MEDIUM' | 'HIGH' = 'LOW';
@@ -192,7 +233,7 @@ export class RiskService {
       signalsCount,
       coverage,
       strengths: result.strengths || [],
-      weaknesses: buildGaps(result),
+      weaknesses: gaps,
       roadmapAllowedByDepth: coverage >= 30,
       roadmapPrecision,
       summary: result.summary,

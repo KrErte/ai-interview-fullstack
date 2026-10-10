@@ -18,6 +18,11 @@ export const appRoutes: Routes = [
       import('./pages/login/register.page').then(m => m.RegisterPageComponent)
   },
   {
+    path: 'ai-test',
+    loadComponent: () =>
+      import('./pages/ai-check/ai-check.page').then(m => m.AiCheckPageComponent)
+  },
+  {
     path: 'risk',
     canActivate: [authGuard],
     loadComponent: () =>
