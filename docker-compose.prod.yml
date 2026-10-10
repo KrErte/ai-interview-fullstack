@@ -6,7 +6,8 @@ services:
     environment:
       POSTGRES_DB: ai
       POSTGRES_USER: ai
-      POSTGRES_PASSWORD: ai123
+      # FP-28: no default; set DB_PASSWORD in .env (same variable is passed to the backend below).
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env (see .env.example)}
     volumes:
       - ./data/db:/var/lib/postgresql/data
     healthcheck:
@@ -22,7 +23,9 @@ services:
       SPRING_PROFILES_ACTIVE: prod
       DB_URL: jdbc:postgresql://postgres:5432/ai
       DB_USER: ai
-      DB_PASS: ai123
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env (see .env.example)}
+      # FP-28: required in prod; the backend refuses to start if it is missing, short or a placeholder.
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set in .env (see .env.example)}
       FRONTEND_BASE_URL: https://YOUR_DOMAIN
       # Optional startup seeding (FP-19, see backend/src/main/resources/application-prod.yml).
       # Values come from the gitignored .env next to this file (template: .env.example).
