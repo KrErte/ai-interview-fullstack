@@ -31,7 +31,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
       <footer class="border-t border-slate-800/50 py-8 mt-12">
         <div class="mx-auto max-w-4xl px-6 text-center">
           <p class="text-sm text-slate-500">
-            Futureproof Job Match &middot; Powered by AI
+            Futureproof &middot; AI replaceability test
           </p>
         </div>
       </footer>

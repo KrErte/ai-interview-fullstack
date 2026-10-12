@@ -19,7 +19,7 @@ import { AuthService } from '../../services/auth.service';
           </div>
           <div class="hidden sm:block">
             <p class="text-lg font-semibold text-slate-100 group-hover:text-white transition-colors">Futureproof</p>
-            <p class="text-xs text-slate-500">Job Match</p>
+            <p class="text-xs text-slate-500">AI replaceability test</p>
           </div>
         </a>
 
@@ -29,10 +29,7 @@ import { AuthService } from '../../services/auth.service';
             Home
           </a>
           <a routerLink="/ai-test" routerLinkActive="active" class="nav-link">
-            AI test
-          </a>
-          <a routerLink="/risk" routerLinkActive="active" class="nav-link">
-            Job match
+            Take the test
           </a>
         </div>
 
