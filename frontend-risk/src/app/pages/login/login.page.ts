@@ -110,6 +110,7 @@ export class LoginPageComponent {
 
   login(): void {
     if (this.form.invalid) {
+      this.error = '';
       this.form.markAllAsTouched();
       return;
     }

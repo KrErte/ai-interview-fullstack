@@ -186,6 +186,9 @@ const BAND_STYLE: Record<RiskBand, { label: string; stroke: string; text: string
           <p class="text-sm font-medium text-emerald-400 mb-2">Isiklik kommentaar</p>
           <p class="text-slate-200 leading-relaxed whitespace-pre-line">{{ r.personalNote }}</p>
         </div>
+        <p *ngIf="!r.personalNote && personalNoteRequested" class="text-center text-sm text-slate-500">
+          AI isiklik kommentaar pole praegu saadaval. Ülejäänud tulemus on arvutatud tavapäraselt.
+        </p>
 
         <!-- Tasks -->
         <div class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-6">
@@ -286,7 +289,7 @@ const BAND_STYLE: Record<RiskBand, { label: string; stroke: string; text: string
           tähendab, et sinu ülesanded muutuvad, mitte et sinu töökoht kaob.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <div class="flex flex-col sm:flex-row gap-3 justify-center print:hidden">
           <button (click)="restart()" class="rounded-xl border border-slate-700 bg-slate-800/50 px-6 py-3 text-slate-200 hover:bg-slate-800">
             Tee test uuesti
           </button>
@@ -312,6 +315,7 @@ export class AiCheckPageComponent implements OnInit {
   questionIndex = 0;
   answers: Record<string, string> = {};
   personalize = false;
+  personalNoteRequested = false;
 
   result: AssessmentResult | null = null;
   lastResult: AssessmentResult | null = null;
@@ -365,8 +369,18 @@ export class AiCheckPageComponent implements OnInit {
   answer(questionId: string, optionId: string): void {
     this.answers = { ...this.answers, [questionId]: optionId };
     if (!this.isLastQuestion()) {
-      setTimeout(() => this.questionIndex++, 150);
+      // A double click schedules two advances; only the first may move on, or a question gets skipped.
+      const index = this.questionIndex;
+      setTimeout(() => {
+        if (this.questionIndex === index) {
+          this.questionIndex = index + 1;
+        }
+      }, 150);
     }
+  }
+
+  allAnswered(): boolean {
+    return this.questions.every(q => !!this.answers[q.id]);
   }
 
   back(): void {
@@ -381,12 +395,17 @@ export class AiCheckPageComponent implements OnInit {
     if (!this.professionId) {
       return;
     }
+    if (!this.allAnswered()) {
+      this.questionIndex = this.questions.findIndex(q => !this.answers[q.id]);
+      return;
+    }
     this.error = null;
     this.step = 'loading';
     this.api.assess({ professionId: this.professionId, answers: this.answers, personalize: this.personalize }).subscribe({
       next: result => {
         this.result = result;
         this.lastResult = result;
+        this.personalNoteRequested = this.personalize;
         this.api.saveLastResult(result);
         this.step = 'result';
         window.scrollTo({ top: 0 });
@@ -400,6 +419,7 @@ export class AiCheckPageComponent implements OnInit {
 
   showLastResult(): void {
     this.result = this.lastResult;
+    this.personalNoteRequested = false;
     this.step = 'result';
   }
 

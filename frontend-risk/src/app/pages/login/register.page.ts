@@ -115,6 +115,7 @@ export class RegisterPageComponent {
 
   register(): void {
     if (this.form.invalid) {
+      this.error = '';
       this.form.markAllAsTouched();
       return;
     }
@@ -132,7 +133,13 @@ export class RegisterPageComponent {
       },
       error: (err) => {
         this.loading = false;
-        this.error = err?.error?.message || 'Registration failed. Please try again.';
+        if (err?.status === 409) {
+          this.error = 'An account with this email already exists. Sign in instead.';
+        } else if (err?.status === 400) {
+          this.error = 'Please enter a valid email and a password of at least 6 characters.';
+        } else {
+          this.error = err?.error?.message || 'Registration failed. Please try again.';
+        }
       }
     });
   }
