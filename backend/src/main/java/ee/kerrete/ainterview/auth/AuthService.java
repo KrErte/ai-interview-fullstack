@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Objects;
 
 @Service
@@ -28,9 +29,10 @@ public class AuthService {
      * a role can never be chosen by the client, so nobody can self-register as ADMIN.
      */
     public AuthResponse register(RegisterRequest request) {
+        String email = normalizeEmail(request.getEmail());
 
         // Kontroll: kas sama emailiga kasutaja juba eksisteerib
-        appUserRepository.findByEmail(request.getEmail())
+        appUserRepository.findByEmail(email)
                 .ifPresent(u -> {
                     throw new ResponseStatusException(HttpStatus.CONFLICT, "User with this email already exists");
                 });
@@ -40,7 +42,7 @@ public class AuthService {
         UserRole role = UserRole.CANDIDATE;
 
         AppUser user = AppUser.builder()
-                .email(request.getEmail())
+                .email(email)
                 .fullName(request.getFullName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(role)
@@ -67,7 +69,10 @@ public class AuthService {
      */
     public AuthResponse login(LoginRequest request) {
 
-        AppUser user = appUserRepository.findByEmail(request.getEmail())
+        // Uued kontod on salvestatud väiketähtedega; vanad segatähtedega kontod leitakse täpse kirjapildi järgi.
+        String email = normalizeEmail(request.getEmail());
+        AppUser user = appUserRepository.findByEmail(email)
+                .or(() -> appUserRepository.findByEmail(request.getEmail().trim()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials"));
 
         // OLULINE: ära kodeeri uuesti, kasuta matches()
@@ -87,5 +92,12 @@ public class AuthService {
                 .fullName(user.getFullName())
                 .userRole(user.getRole())
                 .build();
+    }
+
+    /**
+     * E-post on tõstutundetu: "Demo@Example.com " ja "demo@example.com" on sama konto.
+     */
+    static String normalizeEmail(String email) {
+        return email.trim().toLowerCase(Locale.ROOT);
     }
 }
