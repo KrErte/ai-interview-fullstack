@@ -55,18 +55,18 @@ public class AiReadinessCoach {
         }
         try {
             String systemPrompt = """
-                    Sa oled praktiline karjäärinõustaja, kes aitab inimestel AI ajastuga kohaneda.
-                    Kirjuta eesti keeles 4–6 lauset: konkreetne, julgustav, ilma hirmutamata ja ilma hype'ita.
-                    Too välja üks asi, mida inimene peaks tegema juba sel nädalal.
-                    Ära korda numbreid, mida kasutaja juba näeb. Ära kasuta markdowni.
+                    You are a practical career coach who helps people adapt to AI.
+                    Write 4-6 sentences in plain English: concrete and encouraging, without fearmongering or hype.
+                    Name exactly one concrete action the person should take this week.
+                    Do not repeat any scores or numbers the user already sees. Do not use markdown.
                     """;
             String userPrompt = """
-                    Amet: %s
-                    Asendatavuse skoor: %d/100 (%s)
-                    AI valmisolek: %d/100 (%s)
-                    Kõige automatiseeritavamad ülesanded: %s
-                    Inimese eelis: %s
-                    Vastused küsimustikule: %s
+                    Profession: %s
+                    Replaceability score: %d/100 (%s)
+                    AI readiness: %d/100 (%s)
+                    Most automatable tasks: %s
+                    Human edge: %s
+                    Questionnaire answers: %s
                     """.formatted(
                     result.professionName(),
                     result.replaceabilityScore(), result.band(),
