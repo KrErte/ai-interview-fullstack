@@ -77,3 +77,32 @@ html {
 .nav-link.active {
   @apply text-emerald-400 bg-emerald-500/10;
 }
+
+/* Print / "Salvesta PDF": keep the dark theme colours, drop app chrome and the extra blank page */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    min-height: 0;
+  }
+
+  app-navbar,
+  footer {
+    display: none !important;
+  }
+
+  .min-h-screen {
+    min-height: 0 !important;
+  }
+
+  /* Small cards stay whole; the long roadmap cards may split across pages */
+  .rounded-2xl {
+    break-inside: avoid;
+  }
+
+  /* Page padding would otherwise spill a near-empty last page */
+  main > .py-12 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

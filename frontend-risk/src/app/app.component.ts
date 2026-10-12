@@ -15,7 +15,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
       <app-navbar *ngIf="showNavbar"></app-navbar>
 
       <!-- Main Content -->
-      <main class="relative">
+      <!-- overflow-hidden: the 800px glow below must not widen the page on phones -->
+      <main class="relative overflow-hidden">
         <!-- Subtle background gradient -->
         <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 pointer-events-none"></div>
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>

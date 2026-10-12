@@ -2,6 +2,7 @@ package ee.kerrete.ainterview.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.kerrete.ainterview.auth.dto.AuthResponse;
+import ee.kerrete.ainterview.auth.dto.LoginRequest;
 import ee.kerrete.ainterview.auth.dto.RegisterRequest;
 import ee.kerrete.ainterview.model.AppUser;
 import ee.kerrete.ainterview.model.UserRole;
@@ -82,6 +83,39 @@ class AuthServiceRegistrationTest {
         AppUser saved = registerAndCaptureSavedUser(
                 "{\"email\":\"new@example.com\",\"password\":\"secret\",\"role\":\"ADMIN\"}");
         assertThat(saved.getRole()).isNotEqualTo(UserRole.ADMIN).isEqualTo(UserRole.CANDIDATE);
+    }
+
+    @Test
+    void emailIsStoredLowercaseAndTrimmed() throws Exception {
+        AppUser saved = registerAndCaptureSavedUser("{\"email\":\" New@Example.COM \",\"password\":\"secret\"}");
+        assertThat(saved.getEmail()).isEqualTo("new@example.com");
+    }
+
+    @Test
+    void loginIgnoresEmailCase() {
+        AppUser user = AppUser.builder().email("new@example.com").password("hashed")
+                .role(UserRole.CANDIDATE).enabled(true).build();
+        when(appUserRepository.findByEmail("new@example.com")).thenReturn(Optional.of(user));
+        when(passwordEncoder.matches("secret", "hashed")).thenReturn(true);
+        when(jwtService.generateToken("new@example.com")).thenReturn("jwt");
+
+        AuthResponse res = authService.login(new LoginRequest("NEW@Example.com", "secret"));
+
+        assertThat(res.getToken()).isEqualTo("jwt");
+    }
+
+    @Test
+    void loginStillFindsLegacyMixedCaseAccount() {
+        AppUser legacy = AppUser.builder().email("Legacy@Example.com").password("hashed")
+                .role(UserRole.CANDIDATE).enabled(true).build();
+        when(appUserRepository.findByEmail("legacy@example.com")).thenReturn(Optional.empty());
+        when(appUserRepository.findByEmail("Legacy@Example.com")).thenReturn(Optional.of(legacy));
+        when(passwordEncoder.matches("secret", "hashed")).thenReturn(true);
+        when(jwtService.generateToken("Legacy@Example.com")).thenReturn("jwt");
+
+        AuthResponse res = authService.login(new LoginRequest("Legacy@Example.com", "secret"));
+
+        assertThat(res.getToken()).isEqualTo("jwt");
     }
 
     @Test

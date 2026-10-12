@@ -135,8 +135,8 @@ export interface JobMatchRequest {
 })
 export class RiskService {
   private readonly baseUrl = environment.apiBaseUrl;
+  // Read from storage every time (no in-memory copy) so AuthService can wipe it on logout.
   private readonly CV_KEY = 'risk_cv_text';
-  private cachedCvText: string | null = localStorage.getItem(this.CV_KEY);
 
   constructor(
     private http: HttpClient,
@@ -242,11 +242,10 @@ export class RiskService {
   }
 
   setCachedCv(text: string): void {
-    this.cachedCvText = text;
     localStorage.setItem(this.CV_KEY, text || '');
   }
 
   getCachedCv(): string {
-    return this.cachedCvText || '';
+    return localStorage.getItem(this.CV_KEY) || '';
   }
 }
