@@ -85,6 +85,10 @@ const SCALE = [
           In the spirit of the OpenAI/UPenn &ldquo;GPTs are GPTs&rdquo; and ILO exposure studies. A high score means those
           tasks will change, not that the job disappears.
         </p>
+        <p class="mt-4 text-[13px] leading-relaxed text-faint">
+          Sources: O*NET 29.3 (U.S. Department of Labor / ETA, CC BY 4.0), Anthropic Economic Index (CC BY),
+          Eloundou et al. (2024), <em>Science</em>.
+        </p>
       </div>
       <div class="lg:col-span-3 lg:text-right">
         <a routerLink="/ai-test" class="btn-ghost w-full sm:w-auto">

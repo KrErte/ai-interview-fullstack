@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {
   AssessmentRequest,
   AssessmentResult,
+  CategorySummary,
   ProfessionSummary,
   Question
 } from '../models/ai-readiness.model';
@@ -20,6 +21,19 @@ export class AiReadinessService {
 
   professions(): Observable<ProfessionSummary[]> {
     return this.http.get<ProfessionSummary[]>(`${this.baseUrl}/professions`);
+  }
+
+  /** Searches all ~900 professions by name and alternate title; an empty query with a category lists that group. */
+  searchProfessions(query: string, category: string | null, limit = 50): Observable<ProfessionSummary[]> {
+    let params = new HttpParams().set('q', query).set('limit', limit);
+    if (category) {
+      params = params.set('category', category);
+    }
+    return this.http.get<ProfessionSummary[]>(`${this.baseUrl}/professions/search`, { params });
+  }
+
+  categories(): Observable<CategorySummary[]> {
+    return this.http.get<CategorySummary[]>(`${this.baseUrl}/professions/categories`);
   }
 
   questions(): Observable<Question[]> {

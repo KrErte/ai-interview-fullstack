@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -37,6 +38,7 @@ public class AiReadinessCatalog {
     private final Map<String, Profession> professionsById;
     private final List<Question> questions;
     private final List<GeneralStage> generalRoadmap;
+    private final Map<String, String> groups;
 
     @Autowired
     public AiReadinessCatalog(ObjectMapper objectMapper) {
@@ -53,6 +55,15 @@ public class AiReadinessCatalog {
         Set<String> hidden = new HashSet<>();
         curated.forEach(p -> hidden.addAll(p.onetCodes()));
         List<Profession> visibleOnet = onet.stream().filter(p -> !hidden.contains(p.onetCode())).toList();
+        // The SOC major group is the first two digits of the code; hidden codes are not in the O*NET file,
+        // so a hand-written profession gets the group of any O*NET profession with the same prefix.
+        Map<String, String> groupByMajor = new HashMap<>();
+        onet.forEach(p -> groupByMajor.put(p.onetCode().substring(0, 2), p.category()));
+        this.groups = new HashMap<>();
+        visibleOnet.forEach(p -> groups.put(p.id(), p.category()));
+        curated.stream()
+                .filter(p -> !p.onetCodes().isEmpty())
+                .forEach(p -> groups.put(p.id(), groupByMajor.get(p.onetCodes().get(0).substring(0, 2))));
 
         this.featured = List.copyOf(curated);
         this.professions = Stream.concat(curated.stream(), visibleOnet.stream()).toList();
@@ -74,6 +85,14 @@ public class AiReadinessCatalog {
     /** Käsitsi kirjutatud ametid failis olevas järjekorras. */
     public List<Profession> featured() {
         return featured;
+    }
+
+    /**
+     * Ameti SOC peagrupp (O*NET ametil category, käsitsi kirjutatul esimese onetCodes koodi grupp);
+     * tühi, kui ametil gruppi pole (nt "other").
+     */
+    public Optional<String> group(Profession p) {
+        return Optional.ofNullable(groups.get(p.id()));
     }
 
     /** Kõik valitavad ametid: käsitsi kirjutatud ja nähtavad O*NET ametid. */
