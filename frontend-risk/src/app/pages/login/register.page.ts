@@ -129,7 +129,7 @@ export class RegisterPageComponent {
       password: this.form.value.password || ''
     }).subscribe({
       next: () => {
-        this.router.navigate(['/risk']);
+        this.router.navigate(['/ai-test']);
       },
       error: (err) => {
         this.loading = false;

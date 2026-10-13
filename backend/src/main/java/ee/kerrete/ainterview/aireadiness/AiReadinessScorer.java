@@ -138,27 +138,27 @@ public class AiReadinessScorer {
 
     private static String headline(RiskBand band) {
         return switch (band) {
-            case LOW -> "Sinu töö tuum jääb inimesele. AI on sulle eelkõige võimendi.";
-            case MODERATE -> "Osa sinu ülesandeid automatiseeritakse. Kes AI-d kasutab, saab sellest eelise.";
-            case HIGH -> "Suur osa sinu ülesandeid on AI-le jõukohased. Roll muutub, seega tasub kohe tegutseda.";
-            case VERY_HIGH -> "Sinu praegune ülesannete kogum on AI-le väga avatud. Plaani rolli nihutamist juba praegu.";
+            case LOW -> "The core of your work stays human. For you, AI is mainly an amplifier.";
+            case MODERATE -> "Some of your tasks will be automated. People who use AI will have the edge.";
+            case HIGH -> "Many of your tasks are within reach of AI. The role will change, so it pays to act now.";
+            case VERY_HIGH -> "Your current mix of tasks is highly exposed to AI. Start planning how your role will shift now.";
         };
     }
 
     private static String readinessLevel(int readiness) {
         if (readiness < 25) {
-            return "Algaja";
+            return "Beginner";
         }
         if (readiness < 45) {
-            return "Katsetaja";
+            return "Explorer";
         }
         if (readiness < 65) {
-            return "Igapäevane kasutaja";
+            return "Daily user";
         }
         if (readiness < 85) {
-            return "Edasijõudnu";
+            return "Advanced";
         }
-        return "Ehitaja";
+        return "Builder";
     }
 
     private static int clamp(int value, int min, int max) {

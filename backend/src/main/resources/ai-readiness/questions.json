@@ -1,120 +1,120 @@
 [
   {
     "id": "routine",
-    "text": "Kui suur osa sinu tööpäevast on korduv – samad sammud, mallid, sarnased dokumendid või päringud?",
-    "help": "Mida rohkem korduvat infotööd, seda lihtsam on seda automatiseerida.",
+    "text": "How much of your workday is repetitive – the same steps, templates, similar documents or requests?",
+    "help": "The more repetitive information work there is, the easier it is to automate.",
     "options": [
-      { "id": "lt20", "label": "Alla 20%", "risk": -6, "readiness": 0 },
+      { "id": "lt20", "label": "Under 20%", "risk": -6, "readiness": 0 },
       { "id": "20to50", "label": "20–50%", "risk": 0, "readiness": 0 },
       { "id": "50to80", "label": "50–80%", "risk": 6, "readiness": 0 },
-      { "id": "gt80", "label": "Üle 80%", "risk": 12, "readiness": 0 }
+      { "id": "gt80", "label": "Over 80%", "risk": 12, "readiness": 0 }
     ]
   },
   {
     "id": "people",
-    "text": "Kui suur osa sinu tööst on otsene suhtlus inimestega (kliendid, patsiendid, õpilased, meeskond)?",
-    "help": "Usaldus, empaatia ja läbirääkimised on AI jaoks kõige raskemad.",
+    "text": "How much of your work is direct contact with people (clients, patients, students, your team)?",
+    "help": "Trust, empathy and negotiation are the hardest things for AI.",
     "options": [
-      { "id": "little", "label": "Väga vähe", "risk": 6, "readiness": 0 },
-      { "id": "some", "label": "Mõnikord", "risk": 2, "readiness": 0 },
-      { "id": "lot", "label": "Suur osa päevast", "risk": -4, "readiness": 0 },
-      { "id": "core", "label": "See ongi minu töö tuum", "risk": -8, "readiness": 0 }
+      { "id": "little", "label": "Very little", "risk": 6, "readiness": 0 },
+      { "id": "some", "label": "Sometimes", "risk": 2, "readiness": 0 },
+      { "id": "lot", "label": "A large part of the day", "risk": -4, "readiness": 0 },
+      { "id": "core", "label": "It is the core of my job", "risk": -8, "readiness": 0 }
     ]
   },
   {
     "id": "physical",
-    "text": "Kas sinu töö nõuab füüsilist kohalolekut või käelist tegevust?",
-    "help": "Robootika areneb tunduvalt aeglasemalt kui keelemudelid.",
+    "text": "Does your work require being physically present or working with your hands?",
+    "help": "Robotics is advancing much more slowly than language models.",
     "options": [
-      { "id": "no", "label": "Ei, töötan arvutis", "risk": 3, "readiness": 0 },
-      { "id": "partly", "label": "Osaliselt", "risk": -3, "readiness": 0 },
-      { "id": "mostly", "label": "Suurem osa tööst on füüsiline", "risk": -10, "readiness": 0 }
+      { "id": "no", "label": "No, I work at a computer", "risk": 3, "readiness": 0 },
+      { "id": "partly", "label": "Partly", "risk": -3, "readiness": 0 },
+      { "id": "mostly", "label": "Most of my work is physical", "risk": -10, "readiness": 0 }
     ]
   },
   {
     "id": "judgment",
-    "text": "Kui tihti teed otsuseid ebaselges olukorras ja vastutad nende tagajärgede eest?",
-    "help": "Vastutust ei saa (veel) AI-le delegeerida.",
+    "text": "How often do you make decisions in unclear situations and take responsibility for the outcome?",
+    "help": "Accountability cannot be delegated to AI (yet).",
     "options": [
-      { "id": "rarely", "label": "Harva – järgin protsessi", "risk": 6, "readiness": 0 },
-      { "id": "sometimes", "label": "Vahel", "risk": 0, "readiness": 0 },
-      { "id": "often", "label": "Sageli", "risk": -5, "readiness": 0 },
-      { "id": "role", "label": "See on minu roll", "risk": -8, "readiness": 0 }
+      { "id": "rarely", "label": "Rarely – I follow a process", "risk": 6, "readiness": 0 },
+      { "id": "sometimes", "label": "Sometimes", "risk": 0, "readiness": 0 },
+      { "id": "often", "label": "Often", "risk": -5, "readiness": 0 },
+      { "id": "role", "label": "That is my role", "risk": -8, "readiness": 0 }
     ]
   },
   {
     "id": "experience",
-    "text": "Kui palju kogemust sul oma valdkonnas on?",
-    "help": "Algtaseme ülesanded automatiseeruvad esimesena – kogemus annab konteksti ja otsustusvõime.",
+    "text": "How much experience do you have in your field?",
+    "help": "Entry-level tasks get automated first – experience brings context and judgment.",
     "options": [
-      { "id": "lt2", "label": "Alla 2 aasta", "risk": 5, "readiness": 0 },
-      { "id": "2to5", "label": "2–5 aastat", "risk": 1, "readiness": 0 },
-      { "id": "5to10", "label": "5–10 aastat", "risk": -3, "readiness": 0 },
-      { "id": "gt10", "label": "Üle 10 aasta", "risk": -5, "readiness": 0 }
+      { "id": "lt2", "label": "Under 2 years", "risk": 5, "readiness": 0 },
+      { "id": "2to5", "label": "2–5 years", "risk": 1, "readiness": 0 },
+      { "id": "5to10", "label": "5–10 years", "risk": -3, "readiness": 0 },
+      { "id": "gt10", "label": "Over 10 years", "risk": -5, "readiness": 0 }
     ]
   },
   {
     "id": "domain",
-    "text": "Kas sul on teadmisi, mida internetist ei leia (sisemised protsessid, kliendisuhted, kohalik regulatsioon, eriline nišš)?",
-    "help": "Unikaalne kontekst on see, mida AI ei tea – ja mida saad AI-ga võimendada.",
+    "text": "Do you have knowledge that cannot be found online (internal processes, client relationships, local regulation, a special niche)?",
+    "help": "Unique context is what AI does not know – and what you can amplify with AI.",
     "options": [
-      { "id": "no", "label": "Mitte eriti", "risk": 4, "readiness": 0 },
-      { "id": "some", "label": "Mingil määral", "risk": 0, "readiness": 0 },
-      { "id": "yes", "label": "Jah, palju", "risk": -6, "readiness": 0 }
+      { "id": "no", "label": "Not really", "risk": 4, "readiness": 0 },
+      { "id": "some", "label": "To some extent", "risk": 0, "readiness": 0 },
+      { "id": "yes", "label": "Yes, a lot", "risk": -6, "readiness": 0 }
     ]
   },
   {
     "id": "ai_usage",
-    "text": "Kui tihti kasutad AI tööriistu (ChatGPT, Claude, Copilot, Gemini vms) oma töös?",
-    "help": "Inimene, kes AI-d kasutab, asendab kõige tõenäolisemalt selle, kes ei kasuta.",
+    "text": "How often do you use AI tools (ChatGPT, Claude, Copilot, Gemini or similar) in your work?",
+    "help": "A person who uses AI is the most likely to replace one who does not.",
     "options": [
-      { "id": "never", "label": "Mitte kunagi", "risk": 6, "readiness": 0 },
-      { "id": "tried", "label": "Olen proovinud", "risk": 3, "readiness": 10 },
-      { "id": "weekly", "label": "Iga nädal", "risk": 0, "readiness": 25 },
-      { "id": "daily", "label": "Iga päev", "risk": -3, "readiness": 40 }
+      { "id": "never", "label": "Never", "risk": 6, "readiness": 0 },
+      { "id": "tried", "label": "I have tried them", "risk": 3, "readiness": 10 },
+      { "id": "weekly", "label": "Every week", "risk": 0, "readiness": 25 },
+      { "id": "daily", "label": "Every day", "risk": -3, "readiness": 40 }
     ]
   },
   {
     "id": "ai_depth",
-    "text": "Mis kirjeldab kõige paremini sinu AI oskusi?",
-    "help": "Vali kõrgeim tase, mis sulle sobib.",
+    "text": "What best describes your AI skills?",
+    "help": "Pick the highest level that fits you.",
     "options": [
-      { "id": "none", "label": "Ma ei tea, millest alustada", "risk": 2, "readiness": 0 },
-      { "id": "chat", "label": "Küsin chatbotilt küsimusi", "risk": 0, "readiness": 10 },
-      { "id": "prompting", "label": "Annan konteksti, näiteid ja vormingu – saan stabiilselt häid tulemusi", "risk": -2, "readiness": 20 },
-      { "id": "builder", "label": "Olen ehitanud automatiseeringuid, agente või AI API-ga lahendusi", "risk": -5, "readiness": 35 }
+      { "id": "none", "label": "I don't know where to start", "risk": 2, "readiness": 0 },
+      { "id": "chat", "label": "I ask a chatbot questions", "risk": 0, "readiness": 10 },
+      { "id": "prompting", "label": "I give context, examples and a format – and get consistently good results", "risk": -2, "readiness": 20 },
+      { "id": "builder", "label": "I have built automations, agents or solutions on an AI API", "risk": -5, "readiness": 35 }
     ]
   },
   {
     "id": "learning",
-    "text": "Kui kiiresti võtad kasutusele uue tööriista või töövõtte?",
-    "help": "AI tööriistad muutuvad kuude, mitte aastate kaupa.",
+    "text": "How quickly do you adopt a new tool or way of working?",
+    "help": "AI tools change in months, not years.",
     "options": [
-      { "id": "slow", "label": "Pigem ootan, kuni teised on ära proovinud", "risk": 3, "readiness": 0 },
-      { "id": "normal", "label": "Kui vaja, õpin ära", "risk": 0, "readiness": 8 },
-      { "id": "fast", "label": "Katsetan uusi asju ise ja kiiresti", "risk": -3, "readiness": 15 }
+      { "id": "slow", "label": "I tend to wait until others have tried it", "risk": 3, "readiness": 0 },
+      { "id": "normal", "label": "I learn it when I need to", "risk": 0, "readiness": 8 },
+      { "id": "fast", "label": "I try new things myself, quickly", "risk": -3, "readiness": 15 }
     ]
   },
   {
     "id": "org",
-    "text": "Kas sinu tööandja või kliendid juba kasutavad AI-d tööprotsessides?",
-    "help": "Kui organisatsioon on juba liikumas, muutuvad rollid kiiremini – see on nii risk kui võimalus.",
+    "text": "Do your employer or clients already use AI in their work processes?",
+    "help": "When an organization is already moving, roles change faster – that is both a risk and an opportunity.",
     "options": [
-      { "id": "no", "label": "Ei", "risk": -2, "readiness": 0 },
-      { "id": "unknown", "label": "Ei tea", "risk": 0, "readiness": 0 },
-      { "id": "pilot", "label": "Katsetatakse", "risk": 2, "readiness": 5 },
-      { "id": "yes", "label": "Jah, aktiivselt", "risk": 4, "readiness": 10 }
+      { "id": "no", "label": "No", "risk": -2, "readiness": 0 },
+      { "id": "unknown", "label": "I don't know", "risk": 0, "readiness": 0 },
+      { "id": "pilot", "label": "They are piloting it", "risk": 2, "readiness": 5 },
+      { "id": "yes", "label": "Yes, actively", "risk": 4, "readiness": 10 }
     ]
   },
   {
     "id": "hours",
-    "text": "Mitu tundi nädalas saad realistlikult õppimisele panna?",
-    "help": "Selle järgi arvutame roadmapi ajakava.",
+    "text": "How many hours a week can you realistically spend on learning?",
+    "help": "We use this to estimate how long the learning path will take.",
     "options": [
-      { "id": "1", "label": "Kuni 1 tund", "risk": 0, "readiness": 0, "weeklyHours": 1 },
-      { "id": "3", "label": "1–3 tundi", "risk": 0, "readiness": 0, "weeklyHours": 3 },
-      { "id": "6", "label": "3–6 tundi", "risk": 0, "readiness": 0, "weeklyHours": 5 },
-      { "id": "10", "label": "Üle 6 tunni", "risk": 0, "readiness": 0, "weeklyHours": 8 }
+      { "id": "1", "label": "Up to 1 hour", "risk": 0, "readiness": 0, "weeklyHours": 1 },
+      { "id": "3", "label": "1–3 hours", "risk": 0, "readiness": 0, "weeklyHours": 3 },
+      { "id": "6", "label": "3–6 hours", "risk": 0, "readiness": 0, "weeklyHours": 5 },
+      { "id": "10", "label": "Over 6 hours", "risk": 0, "readiness": 0, "weeklyHours": 8 }
     ]
   }
 ]

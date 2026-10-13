@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -23,41 +22,26 @@ import { AuthService } from '../../services/auth.service';
 
         <!-- Title -->
         <h1 class="text-5xl sm:text-6xl font-bold text-slate-100 mb-6 leading-tight">
-          <span class="gradient-text">Futureproof</span><br/>
-          Your Career
+          How exposed is<br/>
+          <span class="gradient-text">your work to AI?</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="text-xl text-slate-400 mb-12 max-w-xl mx-auto leading-relaxed">
-          AI-powered job match analysis that helps you identify gaps,
-          leverage strengths, and build a personalized roadmap to success.
+          Pick your profession and answer 11 questions. See which of your typical tasks
+          AI can already do, and get a learning path for what to do about it. No account needed.
         </p>
 
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            [routerLink]="auth.isLoggedIn() ? '/risk' : '/login'"
+            routerLink="/ai-test"
             class="group flex items-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 px-8 py-4 font-semibold text-white shadow-xl shadow-emerald-500/25 transition-all hover:shadow-emerald-500/40 hover:scale-[1.02]"
           >
-            Get Started
+            Take the test
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
-          </a>
-
-          <a
-            routerLink="/ai-test"
-            class="flex items-center gap-2 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 px-8 py-4 font-semibold text-emerald-300 transition-all hover:bg-emerald-500/20 hover:text-white"
-          >
-            Kui asendatav oled AI poolt?
-          </a>
-
-          <a
-            *ngIf="!auth.isLoggedIn()"
-            routerLink="/register"
-            class="flex items-center gap-2 rounded-2xl border border-slate-700 bg-slate-800/50 px-8 py-4 font-semibold text-slate-300 transition-all hover:border-slate-600 hover:bg-slate-800 hover:text-white"
-          >
-            Create Account
           </a>
         </div>
       </div>
@@ -70,9 +54,9 @@ import { AuthService } from '../../services/auth.service';
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-slate-100 mb-2">Job Match Analysis</h3>
+          <h3 class="text-lg font-semibold text-slate-100 mb-2">Replaceability score</h3>
           <p class="text-slate-400 text-sm leading-relaxed">
-            See how well your CV matches a job with an AI-powered match score.
+            A 0–100 estimate of how much of your profession's typical work today's AI tools can take over, adjusted by your answers.
           </p>
         </div>
 
@@ -82,9 +66,9 @@ import { AuthService } from '../../services/auth.service';
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-slate-100 mb-2">Actionable Insights</h3>
+          <h3 class="text-lg font-semibold text-slate-100 mb-2">Task breakdown</h3>
           <p class="text-slate-400 text-sm leading-relaxed">
-            Understand your strengths and weaknesses with detailed, actionable feedback.
+            See each typical task in your profession, its share of the working week, and how automatable it is.
           </p>
         </div>
 
@@ -94,15 +78,13 @@ import { AuthService } from '../../services/auth.service';
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-slate-100 mb-2">Personal Roadmap</h3>
+          <h3 class="text-lg font-semibold text-slate-100 mb-2">Learning path</h3>
           <p class="text-slate-400 text-sm leading-relaxed">
-            Get a customized learning path to address gaps and accelerate your growth.
+            A general AI learning path that starts where you are, plus a starter plan with practice projects for your profession.
           </p>
         </div>
       </div>
     </div>
   `
 })
-export class HomePageComponent {
-  constructor(public auth: AuthService) {}
-}
+export class HomePageComponent {}

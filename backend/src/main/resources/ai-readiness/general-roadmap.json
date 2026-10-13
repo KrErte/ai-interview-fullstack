@@ -1,86 +1,86 @@
 [
   {
     "id": "foundations",
-    "title": "1. Saa aru, mis AI on (ja mis mitte)",
-    "goal": "Tead, kuidas keelemudelid töötavad, kus nad eksivad ja mida neile ei tohi anda.",
+    "title": "1. Understand what AI is (and what it is not)",
+    "goal": "You know how language models work, where they get things wrong, and what you must not give them.",
     "effortHours": 8,
     "doneAtReadiness": 25,
     "items": [
-      "Keelemudel ennustab järgmist sõna – ta ei 'tea', vaid genereerib. Sealt tulevad hallutsinatsioonid.",
-      "Kontekstiaken, tokenid, mudelite erinevus (kiire ja odav vs. tark ja aeglane).",
-      "Andmekaitse: mida tohib AI-sse kopeerida ja mida mitte (isikuandmed, ärisaladused, EL AI Act põhitõed).",
-      "Proovi sama ülesannet 2–3 eri tööriistaga ja võrdle tulemusi."
+      "A language model predicts the next word – it does not 'know', it generates. That is where hallucinations come from.",
+      "Context window, tokens, and how models differ (fast and cheap vs. smart and slow).",
+      "Data protection: what you may paste into AI and what you may not (personal data, trade secrets, EU AI Act basics).",
+      "Try the same task with 2–3 different tools and compare the results."
     ],
     "resources": [
-      { "title": "Elements of AI (ka eesti keeles, tasuta)", "url": "https://www.elementsofai.com/" },
-      { "title": "Anthropic: AI Fluency kursus", "url": "https://www.anthropic.com/learn" }
+      { "title": "Elements of AI (free, also available in Estonian)", "url": "https://www.elementsofai.com/" },
+      { "title": "Anthropic: AI Fluency course", "url": "https://www.anthropic.com/learn" }
     ]
   },
   {
     "id": "daily",
-    "title": "2. AI igapäevatöö assistendina",
-    "goal": "Kasutad AI-d iga päev vähemalt ühes oma tööülesandes ja säästad nähtavalt aega.",
+    "title": "2. AI as an everyday work assistant",
+    "goal": "You use AI every day for at least one of your work tasks and save visible time.",
     "effortHours": 12,
     "doneAtReadiness": 45,
     "items": [
-      "Vali 3 enda korduvat ülesannet (meilid, kokkuvõtted, dokumendid) ja tee neid 2 nädalat AI-ga.",
-      "Õpi andma konteksti: roll, eesmärk, sihtgrupp, näide, soovitud vorming.",
-      "Kontrolli alati fakte ja numbreid – sinu nimi jääb tulemuse alla.",
-      "Pea lühikest logi: mis töötas, mis mitte, kui palju aega säästsid."
+      "Pick 3 of your repetitive tasks (emails, summaries, documents) and do them with AI for 2 weeks.",
+      "Learn to give context: role, goal, audience, an example, the format you want.",
+      "Always check facts and numbers – your name is on the result.",
+      "Keep a short log: what worked, what did not, how much time you saved."
     ],
     "resources": [
-      { "title": "Anthropic: Prompt engineering juhend", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" },
+      { "title": "Anthropic: Prompt engineering guide", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" },
       { "title": "OpenAI: Prompt engineering guide", "url": "https://platform.openai.com/docs/guides/prompt-engineering" }
     ]
   },
   {
     "id": "workflows",
-    "title": "3. Korduvkasutatavad töövood",
-    "goal": "Sul on oma promptide teek, projektid/kontekstifailid ja AI on töövoo loomulik osa.",
+    "title": "3. Reusable workflows",
+    "goal": "You have your own prompt library and projects/context files, and AI is a natural part of your workflow.",
     "effortHours": 16,
     "doneAtReadiness": 65,
     "items": [
-      "Ehita promptide teek oma tüüpülesannetele (mallid + head näited).",
-      "Kasuta projekte / custom GPT-sid / oma dokumente kontekstina (RAG põhiidee).",
-      "Mitme sammu töövood: uuri → kavanda → tee mustand → kriitika → paranda.",
-      "Multimodaalsus: pildid, tabelid, PDF-id, hääl – kus see sinu töös aitab?"
+      "Build a prompt library for your typical tasks (templates + good examples).",
+      "Use projects / custom GPTs / your own documents as context (the basic idea of RAG).",
+      "Multi-step workflows: research → plan → draft → critique → revise.",
+      "Multimodality: images, spreadsheets, PDFs, voice – where does it help in your work?"
     ],
     "resources": [
-      { "title": "DeepLearning.AI lühikursused", "url": "https://www.deeplearning.ai/short-courses/" },
+      { "title": "DeepLearning.AI short courses", "url": "https://www.deeplearning.ai/short-courses/" },
       { "title": "Google: Prompting Essentials", "url": "https://grow.google/prompting-essentials/" }
     ]
   },
   {
     "id": "automation",
-    "title": "4. Automatiseerimine ja agendid",
-    "goal": "Oled automatiseerinud vähemalt ühe protsessi algusest lõpuni nii, et see töötab ka ilma sinuta.",
+    "title": "4. Automation and agents",
+    "goal": "You have automated at least one process end to end so that it runs without you.",
     "effortHours": 30,
     "doneAtReadiness": 85,
     "items": [
-      "No-code: Zapier / Make / n8n + AI samm (nt meilide klassifitseerimine, aruannete koostamine).",
-      "AI agendid ja tööriistade kasutus (tool use, MCP) – mida agent teeb ja kuidas teda piirata.",
-      "Kvaliteedi mõõtmine: testjuhtumid ja 'evalid', mitte ainult 'tundub hea'.",
-      "Kulud, privaatsus ja turve: kes näeb andmeid, palju maksab üks käivitus."
+      "No-code: Zapier / Make / n8n + an AI step (e.g. classifying emails, compiling reports).",
+      "AI agents and tool use (MCP) – what an agent does and how to limit it.",
+      "Measuring quality: test cases and 'evals', not just 'looks good'.",
+      "Cost, privacy and security: who sees the data, how much one run costs."
     ],
     "resources": [
-      { "title": "n8n AI workflows dokumentatsioon", "url": "https://docs.n8n.io/advanced-ai/" },
+      { "title": "n8n AI workflows documentation", "url": "https://docs.n8n.io/advanced-ai/" },
       { "title": "Anthropic: Building effective agents", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
     ]
   },
   {
     "id": "specialize",
-    "title": "5. Spetsialiseeru ja jaga",
-    "goal": "Oled oma meeskonnas või valdkonnas see inimene, kes teab, kuidas AI-d selles töös õigesti kasutada.",
+    "title": "5. Specialize and share",
+    "goal": "You are the person in your team or field who knows how to use AI properly in that work.",
     "effortHours": 40,
     "doneAtReadiness": 101,
     "items": [
-      "Ühenda oma domeeniteadmine AI-ga: lahenda probleem, mida üldine AI ilma sinuta ei lahenda.",
-      "Dokumenteeri ja jaga: sisekoolitus, blogipostitus, LinkedIni postitus oma tulemustest.",
-      "Jälgi valdkonda: 1–2 usaldusväärset uudiskirja, mitte iga päeva hype'i.",
-      "Uuenda CV-d: konkreetsed AI-ga saavutatud tulemused numbritega."
+      "Combine your domain knowledge with AI: solve a problem that general AI cannot solve without you.",
+      "Document and share: an internal training, a blog post, a LinkedIn post about your results.",
+      "Follow the field: 1–2 trustworthy newsletters, not the daily hype.",
+      "Update your CV: concrete results you achieved with AI, with numbers."
     ],
     "resources": [
-      { "title": "fast.ai – Practical Deep Learning (kui tahad sügavamale)", "url": "https://course.fast.ai/" },
+      { "title": "fast.ai – Practical Deep Learning (if you want to go deeper)", "url": "https://course.fast.ai/" },
       { "title": "Andrej Karpathy – Neural Networks: Zero to Hero", "url": "https://karpathy.ai/zero-to-hero.html" }
     ]
   }
