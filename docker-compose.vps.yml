@@ -1,0 +1,22 @@
+# Override for a shared VPS (other apps already use ports 80, 8080 and 8090 there).
+# Serves the app on FRONTEND_PORT and keeps the backend and database on the internal network only.
+#
+#   docker compose -p futureproof -f docker-compose.yml -f docker-compose.vps.yml up -d --build
+#
+# Needs a .env next to docker-compose.yml with DB_PASSWORD, JWT_SECRET, FRONTEND_PORT and
+# FRONTEND_BASE_URL (see deploy-vps.sh for first-time setup).
+services:
+  postgres:
+    restart: unless-stopped
+
+  backend:
+    # no public port: nginx in frontend-risk proxies /api and /auth to backend:8080
+    ports: !reset []
+    environment:
+      FRONTEND_BASE_URL: ${FRONTEND_BASE_URL:?FRONTEND_BASE_URL must be set in .env}
+    restart: unless-stopped
+
+  frontend-risk:
+    ports: !override
+      - "${FRONTEND_PORT:-8100}:80"
+    restart: unless-stopped
