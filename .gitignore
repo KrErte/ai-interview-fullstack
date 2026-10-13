@@ -12,3 +12,7 @@ frontend-risk/.angular/
 # Local secrets for docker compose (FP-19); copy .env.example to .env
 .env
 !.env.example
+
+# Locally installed agent skills (npx skills add ...), not part of the project
+.claude/skills/
+skills-lock.json
