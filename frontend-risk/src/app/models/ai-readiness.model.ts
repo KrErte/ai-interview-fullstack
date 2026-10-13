@@ -6,6 +6,11 @@ export interface ProfessionSummary {
   featured?: boolean;
 }
 
+/** Optional features this server has configured (the AI comment needs an LLM API key). */
+export interface Features {
+  aiComment: boolean;
+}
+
 /** SOC major group with the number of professions in it, for browsing. */
 export interface CategorySummary {
   name: string;

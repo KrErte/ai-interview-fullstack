@@ -28,6 +28,10 @@ public final class AssessmentModels {
     public record ProfessionSummary(String id, String name, String category, boolean featured) {
     }
 
+    /** Valikulised funktsioonid, mis sõltuvad serveri seadistusest (nt AI kommentaar vajab API võtit). */
+    public record Features(boolean aiComment) {
+    }
+
     /** SOC peagrupp ja selle ametite arv (ametite sirvimiseks). */
     public record CategorySummary(String name, int count) {
     }

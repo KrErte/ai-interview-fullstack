@@ -3,6 +3,7 @@ package ee.kerrete.ainterview.aireadiness;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentRequest;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentResult;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.CategorySummary;
+import ee.kerrete.ainterview.aireadiness.AssessmentModels.Features;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.ProfessionSummary;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
@@ -32,6 +33,11 @@ public class AiReadinessService {
     }
 
     static final int MAX_SEARCH_RESULTS = 50;
+
+    /** Mis valikulised funktsioonid on selles serveris kasutusel; frontend peidab ülejäänud. */
+    public Features features() {
+        return new Features(coach.isEnabled());
+    }
 
     /** Käsitsi kirjutatud ametid; O*NET ametid leiab search() kaudu. */
     public List<ProfessionSummary> professions() {
