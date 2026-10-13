@@ -2,84 +2,267 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Futureproof, night edition: near-black canvas, one electric lime accent, a chunky grotesk.
+ * Flat surfaces with a single border tone; no gradients, no glows.
+ */
 :root {
-  --bg-dark: #020617;
-  --bg-card: rgba(15, 23, 42, 0.6);
-  --border-subtle: rgba(51, 65, 85, 0.5);
+  --canvas: #0b0d12;
+  --surface: #13161e;
+  --surface-2: #1a1e28;
+  --line: #252a35;
+  --fg: #eef0f3;
+  --muted: #9aa2b1;
+  --faint: #626a7a;
+  --accent: #c6f432;
+  --on-accent: #0b0d12;
+
+  /* Risk bands, same thresholds as AiReadinessScorer.band(): <30, <50, <70, rest */
+  --band-low: #3ddc97;
+  --band-moderate: #ffd23f;
+  --band-high: #ff8c42;
+  --band-very-high: #ff4d6d;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  color-scheme: dark;
+}
+
+html {
+  background: var(--canvas);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  @apply bg-slate-950 text-slate-100 antialiased;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Inter", "Segoe UI", sans-serif;
+  @apply font-sans text-fg antialiased;
+  background: var(--canvas);
   min-height: 100vh;
+  min-height: 100dvh;
+  font-optical-sizing: auto;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
-/* Custom scrollbar for dark theme */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-slate-900;
-}
+@layer components {
+  .display {
+    @apply font-sans text-fg;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    text-wrap: balance;
+  }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded-full;
-}
+  /* Small mono labels: section markers, metadata, counters */
+  .kicker {
+    @apply font-mono text-[11px] uppercase text-muted;
+    letter-spacing: 0.12em;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-600;
-}
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
 
-/* Card hover effects */
-.card-hover {
-  @apply transition-all duration-300 ease-out;
-}
+  .card {
+    @apply rounded-2xl border border-line bg-surface;
+  }
 
-.card-hover:hover {
-  @apply border-slate-700 shadow-lg shadow-slate-900/50;
-  transform: translateY(-2px);
-}
+  /* Pill buttons. Press feedback on transform only. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-[15px] font-semibold select-none;
+    transition: transform 160ms var(--ease-out), background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    touch-action: manipulation;
+  }
+  .btn:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  .btn:disabled {
+    @apply cursor-not-allowed opacity-40;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-on-accent;
+  }
+  .btn-ghost {
+    @apply btn border border-line text-fg;
+  }
+  .btn .arrow {
+    transition: transform 200ms var(--ease-out);
+  }
 
-/* Gradient text */
-.gradient-text {
-  @apply bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent;
-}
+  .field {
+    @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-[16px] text-fg placeholder:text-faint outline-none;
+    transition: border-color 150ms ease;
+  }
+  .field:focus {
+    border-color: var(--accent);
+  }
 
-/* Progress bar animations */
-@keyframes progress-fill {
-  from {
-    width: 0%;
+  /* Answer option: pressable row with a letter key; selected gets the accent */
+  .option {
+    @apply border-line bg-transparent text-fg;
+    transition: transform 140ms var(--ease-out), background-color 150ms ease, border-color 150ms ease;
+    touch-action: manipulation;
+  }
+  .option:active {
+    transform: scale(0.985);
+  }
+  .option .option-key {
+    @apply border-line text-muted;
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+  .option.is-selected {
+    border-color: var(--accent);
+    background: rgba(198, 244, 50, 0.07);
+  }
+  .option.is-selected .option-key {
+    @apply bg-accent text-on-accent;
+    border-color: var(--accent);
+  }
+
+  /* Profession tile: arrow slides in on hover (pointer devices only, see below) */
+  .tile {
+    @apply rounded-xl border border-line bg-surface;
+    transition: transform 140ms var(--ease-out), border-color 150ms ease, background-color 150ms ease;
+    touch-action: manipulation;
+  }
+  .tile:active {
+    transform: scale(0.985);
+  }
+  .tile .tile-arrow {
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 150ms ease, transform 200ms var(--ease-out);
+  }
+
+  .link {
+    @apply underline decoration-1 underline-offset-[3px];
+    text-decoration-color: var(--line);
+    transition: text-decoration-color 150ms ease, color 150ms ease;
   }
 }
 
-.animate-progress {
-  animation: progress-fill 1s ease-out forwards;
+/* Hover only where a real pointer exists, so taps never leave a stuck hover state */
+@media (hover: hover) and (pointer: fine) {
+  .btn-accent:hover:not(:disabled) {
+    background: #d4ff52;
+  }
+  .btn-ghost:hover:not(:disabled) {
+    border-color: var(--muted);
+  }
+  .btn:hover:not(:disabled) .arrow {
+    transform: translateX(3px);
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+  .option:not(.is-selected):hover {
+    border-color: var(--faint);
+    background: var(--surface);
+  }
+  .tile:hover {
+    border-color: var(--faint);
+    background: var(--surface-2);
+  }
+  .tile:hover .tile-arrow {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-/* Subtle glow effect */
-.glow-emerald {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+/* Entrance: rare, once per view, so it can afford a stagger. Delay comes from --i. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.rise {
+  animation: rise 520ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
 }
 
-/* Navigation link styles */
-.nav-link {
-  @apply px-3 py-2 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-colors;
+/* Question swap: short, it happens eleven times in a row */
+@keyframes swap-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}
+.swap-in {
+  animation: swap-in 220ms var(--ease-out) both;
 }
 
-.nav-link.active {
-  @apply text-emerald-400 bg-emerald-500/10;
+/* Bars grow from the left on transform, never width */
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+.grow-x {
+  transform-origin: left center;
+  animation: grow-x 700ms var(--ease-out) both;
+  animation-delay: calc(120ms + var(--i, 0) * 45ms);
 }
 
-/* Print / "Salvesta PDF": keep the dark theme colours, drop app chrome and the extra blank page */
+@keyframes scan {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .swap-in {
+    animation: fade 200ms ease both;
+  }
+  .grow-x {
+    animation: none;
+  }
+  .btn,
+  .btn .arrow,
+  .option,
+  .tile {
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+}
+
+/* Print / "Save as PDF": swap to a light palette so the report prints on white paper */
 @media print {
+  @page {
+    margin: 14mm;
+  }
+
+  :root {
+    --canvas: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f3f4f6;
+    --line: #d9dce3;
+    --fg: #0b0d12;
+    --muted: #4b5262;
+    --faint: #7a8293;
+    --accent: #4d7c0f;
+    --on-accent: #ffffff;
+    color-scheme: light;
+  }
+
+  html,
   body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -87,22 +270,22 @@ html {
   }
 
   app-navbar,
-  footer {
+  footer.site-footer {
     display: none !important;
   }
 
-  .min-h-screen {
-    min-height: 0 !important;
+  .rise,
+  .swap-in,
+  .grow-x {
+    animation: none !important;
   }
 
-  /* Small cards stay whole; the long roadmap cards may split across pages */
-  .rounded-2xl {
+  .avoid-break {
     break-inside: avoid;
   }
 
-  /* Page padding would otherwise spill a near-empty last page */
-  main > .py-12 {
-    padding-top: 0;
-    padding-bottom: 0;
+  main > div {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 }
