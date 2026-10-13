@@ -55,6 +55,36 @@ O\*NET 29.3 is used, not the latest release, because the AEI task data is based 
 
 **`onet_alternate_titles.csv`**: `onetsoc_code`, `alternate_title`, `short_title` (empty when O\*NET has `n/a`). Used for search ("coder" → Software Developers).
 
+## Stage 2: automation scores
+
+Section 5 / O1 of the design doc. Every task gets `automation` (0..1) from three sources:
+
+| Source | File | Role |
+|---|---|---|
+| A: Claude rating | `out/ratings_llm.csv` from `rate_tasks.py` (`claude-opus-5`, effort `medium`, rubric `rubric.md`, Message Batches API) | Base score |
+| B: GPTs-are-GPTs human label | `.cache/full_labelset.tsv`, column `human_exposure_agg` (E0/E2/E1 → 0.15/0.55/0.80) | 50/50 anchor where present (99.8% of tasks) |
+| C: AEI `penetration` | `out/onet_tasks.csv` | `observed_use = penetration > 0`, and the review check. Not part of the score. |
+
+`blend.py` mixes A and B, then compares the resulting exposure with the 19 hand-written professions (`curated_onet_codes.json`). If the mean absolute difference is over 10 points, it applies one linear correction to all tasks.
+
+```bash
+pip install -r tools/onet-import/requirements.txt
+# ANTHROPIC_API_KEY must be set in the environment (never commit it)
+python tools/onet-import/rate_tasks.py submit --pilot    # 24 calibration occupations
+python tools/onet-import/rate_tasks.py collect --pilot   # writes .cache/pilot/ratings_llm.csv + usage.json
+python tools/onet-import/blend.py --preview              # B (+ pilot A), fills gaps, writes .cache/preview/
+python tools/onet-import/rate_tasks.py submit            # all 923 occupations
+python tools/onet-import/rate_tasks.py collect           # writes out/ratings_llm.csv + out/usage.json
+python tools/onet-import/blend.py                        # writes out/onet_automation.csv, review.csv, calibration.md
+```
+
+Outputs:
+- `onet_automation.csv`: `onetsoc_code, task_id, llm_score, b_label, blended, automation, observed_use`
+- `review.csv`: tasks with observed AI use but `automation < 0.3`, for manual review
+- `calibration.md`: hand-written vs O\*NET exposure per profession, and the correction applied
+
+Additional source: [GPTs-are-GPTs](https://github.com/openai/GPTs-are-GPTs) `data/full_labelset.tsv` at commit `0471612…`, MIT license. Cite as Eloundou, Manning, Mishkin, Rock (2024), *Science* 384(6702).
+
 ## Attribution
 
 Products using these files must show:

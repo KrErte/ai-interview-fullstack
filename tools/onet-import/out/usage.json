@@ -1,0 +1,15 @@
+{
+  "batch_id": "msgbatch_01XPQb3hwuGZpd43ZABpFRmL",
+  "model": "claude-opus-5",
+  "effort": "medium",
+  "requests": 923,
+  "failed": [],
+  "tasks_rated": 18796,
+  "input_tokens": 2043303,
+  "output_tokens": 323985,
+  "cost_usd": 9.16,
+  "retried": [
+    "17-3027_01",
+    "15-1254_00"
+  ]
+}
