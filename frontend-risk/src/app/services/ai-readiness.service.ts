@@ -6,6 +6,7 @@ import {
   AssessmentRequest,
   AssessmentResult,
   CategorySummary,
+  Features,
   ProfessionSummary,
   Question
 } from '../models/ai-readiness.model';
@@ -30,6 +31,10 @@ export class AiReadinessService {
       params = params.set('category', category);
     }
     return this.http.get<ProfessionSummary[]>(`${this.baseUrl}/professions/search`, { params });
+  }
+
+  features(): Observable<Features> {
+    return this.http.get<Features>(`${this.baseUrl}/features`);
   }
 
   categories(): Observable<CategorySummary[]> {

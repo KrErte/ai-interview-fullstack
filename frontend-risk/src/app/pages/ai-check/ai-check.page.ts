@@ -153,7 +153,7 @@ const SCALE = [
             </button>
           </div>
 
-          <label *ngIf="isLastQuestion()" class="mt-8 flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-muted">
+          <label *ngIf="isLastQuestion() && aiCommentAvailable" class="mt-8 flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-muted">
             <input type="checkbox" [(ngModel)]="personalize" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]" />
             <span>Add an AI-written comment. Your answers are sent to a language model without your name or email. The score does not depend on it.</span>
           </label>
@@ -413,6 +413,8 @@ export class AiCheckPageComponent implements OnInit {
   questionIndex = 0;
   answers: Record<string, string> = {};
   personalize = false;
+  /** Shown only when the server has an LLM key; otherwise the checkbox would promise a comment that never comes. */
+  aiCommentAvailable = false;
   personalNoteRequested = false;
 
   result: AssessmentResult | null = null;
@@ -427,9 +429,11 @@ export class AiCheckPageComponent implements OnInit {
       professions: this.api.professions(),
       questions: this.api.questions(),
       // browsing by field is optional; the test still works without it
-      categories: this.api.categories().pipe(catchError(() => of([] as CategorySummary[])))
+      categories: this.api.categories().pipe(catchError(() => of([] as CategorySummary[]))),
+      features: this.api.features().pipe(catchError(() => of({ aiComment: false })))
     }).subscribe({
-      next: ({ professions, questions, categories }) => {
+      next: ({ professions, questions, categories, features }) => {
+        this.aiCommentAvailable = features.aiComment;
         this.featured = professions;
         this.questions = questions;
         this.categories = categories;
@@ -544,11 +548,12 @@ export class AiCheckPageComponent implements OnInit {
     }
     this.error = null;
     this.step = 'loading';
-    this.api.assess({ professionId: this.professionId, answers: this.answers, personalize: this.personalize }).subscribe({
+    const personalize = this.personalize && this.aiCommentAvailable;
+    this.api.assess({ professionId: this.professionId, answers: this.answers, personalize }).subscribe({
       next: result => {
         this.result = result;
         this.lastResult = result;
-        this.personalNoteRequested = this.personalize;
+        this.personalNoteRequested = personalize;
         this.api.saveLastResult(result);
         this.showAllTasks = false;
         this.step = 'result';

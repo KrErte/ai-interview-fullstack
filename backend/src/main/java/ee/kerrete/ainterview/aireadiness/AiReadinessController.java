@@ -3,6 +3,7 @@ package ee.kerrete.ainterview.aireadiness;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentRequest;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentResult;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.CategorySummary;
+import ee.kerrete.ainterview.aireadiness.AssessmentModels.Features;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.ProfessionSummary;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
 import jakarta.validation.Valid;
@@ -46,6 +47,11 @@ public class AiReadinessController {
     @GetMapping("/professions/categories")
     public List<CategorySummary> professionCategories() {
         return service.categories();
+    }
+
+    @GetMapping("/features")
+    public Features features() {
+        return service.features();
     }
 
     @GetMapping("/questions")
