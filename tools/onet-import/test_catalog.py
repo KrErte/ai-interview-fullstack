@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 from build import SOC_MAJOR_GROUPS
-from catalog import TEMPLATES, build_catalog
+from catalog import TEMPLATES, build_aliases, build_catalog
 
 
 def write_csv(path, header, rows):
@@ -26,7 +26,7 @@ class BuildCatalogTest(unittest.TestCase):
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
-        out = Path(self.tmp.name)
+        out = self.out = Path(self.tmp.name)
         write_csv(out / 'onet_occupations.csv',
                   ['onetsoc_code', 'title', 'soc_major', 'soc_major_title', 'task_count', 'related_codes'],
                   [['15-1252.00', 'Software Developers', '15', 'Computer and Mathematical', '3',
@@ -84,6 +84,11 @@ class BuildCatalogTest(unittest.TestCase):
 
     def test_hidden_codes_excluded(self):
         self.assertNotIn('15-1253.00', self.by_code)
+
+    def test_aliases_carry_titles_of_hidden_occupations(self):
+        aliases = build_aliases(self.out, {'software-developer': ['15-1252.00', '15-1253.00'], 'other': []})
+        self.assertEqual(aliases, {'software-developer': ['Software Developers', 'Coder', 'Software Engineer',
+                                                          'Software QA Testers']})
 
     def test_sorted_by_name(self):
         self.assertEqual([p['name'] for p in self.catalog], ['Cooks, Restaurant', 'Software Developers'])

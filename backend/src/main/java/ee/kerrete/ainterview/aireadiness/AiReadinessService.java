@@ -41,7 +41,8 @@ public class AiReadinessService {
     /**
      * Otsib ameti nimest ja alternatiivnimetustest, tõstutundetult. Tühi päring tagastab käsitsi
      * kirjutatud ametid. Järjestus: täpne nimi, nime algus, täpne alternatiivnimetus, nime sõna
-     * algus, alternatiivnimetuse algus, nime sisaldus, alternatiivnimetuse sisaldus; viigi korral
+     * algus, alternatiivnimetuse algus, nime sisaldus, alternatiivnimetuse sisaldus, kõik päringu
+     * sõnad nimes, kõik päringu sõnad alternatiivnimetuses; viigi korral
      * käsitsi kirjutatud ees, siis tähestik.
      */
     public List<ProfessionSummary> search(String query, int limit) {
@@ -102,7 +103,27 @@ public class AiReadinessService {
         if (alternates.stream().anyMatch(a -> a.contains(q))) {
             return 6;
         }
+        // several words in any order, e.g. "family doctor" -> "Family Practice Medical Doctor"
+        List<String> queryWords = words(q);
+        if (queryWords.size() > 1) {
+            if (allWordsMatch(queryWords, name)) {
+                return 7;
+            }
+            if (alternates.stream().anyMatch(a -> allWordsMatch(queryWords, a))) {
+                return 8;
+            }
+        }
         return Integer.MAX_VALUE;
+    }
+
+    private static List<String> words(String text) {
+        return Arrays.stream(text.split("[^\\p{L}\\p{N}]+")).filter(w -> !w.isEmpty()).toList();
+    }
+
+    /** Every query word is the start of some word in the text. */
+    private static boolean allWordsMatch(List<String> queryWords, String text) {
+        List<String> textWords = words(text);
+        return queryWords.stream().allMatch(q -> textWords.stream().anyMatch(w -> w.startsWith(q)));
     }
 
     private ProfessionSummary summary(Profession p) {

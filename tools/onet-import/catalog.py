@@ -3,6 +3,8 @@
 Each O*NET occupation becomes a Profession in the same shape as the hand-written professions.json, plus
 onetCode, alternateTitles (search only) and tasks[].observedUse. Occupations already covered by a
 hand-written profession (its onetCodes) are left out.
+Also writes professions-aliases.json: for each hand-written profession, the titles of the O*NET
+occupations it hides, so search still finds it by them.
 Run: python tools/onet-import/catalog.py
 """
 import csv
@@ -15,6 +17,7 @@ RESOURCES = HERE.parent.parent / 'backend' / 'src' / 'main' / 'resources' / 'ai-
 TEMPLATES = HERE / 'templates.json'
 PROFESSIONS = RESOURCES / 'professions.json'
 TARGET = RESOURCES / 'professions-onet.json'
+ALIASES = RESOURCES / 'professions-aliases.json'
 
 
 def _rows(path):
@@ -60,12 +63,43 @@ def build_catalog(out_dir, templates, hidden_codes):
     return sorted(catalog, key=lambda p: p['name'])
 
 
+def build_aliases(out_dir, curated_codes):
+    """{hand-written id: titles of the O*NET occupations it hides}, so search still finds them.
+
+    Per code: the O*NET title, then its alternate titles; duplicates dropped, order kept.
+    Professions without onetCodes are left out.
+    """
+    out_dir = Path(out_dir)
+    titles = {o['onetsoc_code']: o['title'] for o in _rows(out_dir / 'onet_occupations.csv')}
+    alternates = {}
+    for a in _rows(out_dir / 'onet_alternate_titles.csv'):
+        alternates.setdefault(a['onetsoc_code'], []).append(a['alternate_title'])
+    aliases = {}
+    for pid, codes in curated_codes.items():
+        names = []
+        for code in codes:
+            for name in [titles[code]] + alternates.get(code, []):
+                if name not in names:
+                    names.append(name)
+        if names:
+            aliases[pid] = names
+    return aliases
+
+
+def curated_codes_from(professions_json):
+    return {p['id']: p.get('onetCodes', []) for p in json.loads(Path(professions_json).read_text(encoding='utf-8'))}
+
+
 def hidden_codes_from(professions_json):
-    return {c for p in json.loads(Path(professions_json).read_text(encoding='utf-8')) for c in p.get('onetCodes', [])}
+    return {c for codes in curated_codes_from(professions_json).values() for c in codes}
+
+
+def _write_json(path, data):
+    path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+    print(f'{path.name}: {len(data)} entries ({path.stat().st_size:,} bytes)')
 
 
 if __name__ == '__main__':
     templates = json.loads(TEMPLATES.read_text(encoding='utf-8'))
-    catalog = build_catalog(OUT, templates, hidden_codes_from(PROFESSIONS))
-    TARGET.write_text(json.dumps(catalog, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
-    print(f'{len(catalog)} professions -> {TARGET} ({TARGET.stat().st_size:,} bytes)')
+    _write_json(TARGET, build_catalog(OUT, templates, hidden_codes_from(PROFESSIONS)))
+    _write_json(ALIASES, build_aliases(OUT, curated_codes_from(PROFESSIONS)))

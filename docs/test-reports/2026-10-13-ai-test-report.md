@@ -16,7 +16,7 @@
 | Determinism | ✅ sama sisend annab sama tulemuse |
 | Valideerimine (vigased päringud) | ✅ kõik annavad 400 |
 | Jõudlus | ✅ mediaan 5,5 ms, p95 27 ms |
-| **Otsing: käsitsi tehtud ametite taha peidetud O\*NET-i nimed** | ❌ **viga, parandada enne laia kasutust** |
+| Otsing: käsitsi tehtud ametite taha peidetud O\*NET-i nimed | ✅ parandatud (vt punkt 6) |
 | Otsingu järjestus mõne päringu puhul | ⚠️ kosmeetiline |
 
 ## 1. Kõik ametid ilma vastusteta
@@ -121,6 +121,18 @@ Tundide valikud kasutavad vahemiku konservatiivset väärtust: „3–6 h“ arv
 | **family doctor** | (tühi) | ❌ |
 | coder | Medical Records Specialists, Computer Programmers | ⚠️ O\*NET-is on „Coder“ meditsiinikodeerija nimetus |
 
+> ✅ **Parandatud** (haru `fix/search-hidden-titles`). Käsitsi tehtud ametid saavad nüüd otsingunimedeks nende O\*NET-i ametite nimed, mida need peidavad (`professions-aliases.json`). Mitmesõnaline päring leiab ameti ka siis, kui sõnad on nimes teises järjekorras. Kordustest:
+>
+> | Päring | Esimene tulemus |
+> |---|---|
+> | registered nurse | Healthcare worker (doctor, nurse) |
+> | software engineer | Software developer |
+> | data scientist | Data analyst |
+> | family doctor | Healthcare worker (doctor, nurse) |
+> | doctor | Healthcare worker (doctor, nurse) (enne: Allergists and Immunologists) |
+>
+> Kogu API test korrati üle: 918 ametit ja 1 386 kombinatsiooni, 0 viga.
+
 ### ❌ Viga: peidetud O\*NET-i ametite nimed ei ole otsitavad
 
 **Põhjus:** 24 O\*NET-i ametit on peidetud, sest käsitsi tehtud amet katab need (nt *Registered Nurses* → „Healthcare worker“, *Data Scientists* → „Data analyst“, *Software Developers* → „Software developer“). Peitmisega kaovad ka nende nimed ja alternatiivnimetused (nt „Software Engineer“, „RN“). Käsitsi tehtud ametitel endal alternatiivnimetusi pole.
@@ -156,7 +168,7 @@ Backendi käivitus võtab 918 ametiga umbes 16 s (enne 13 s).
 
 ## Soovitused tähtsuse järjekorras
 
-1. **Paranda peidetud ametite otsing** (punkt 6). Väike muudatus, suur mõju.
+1. ~~Paranda peidetud ametite otsing (punkt 6).~~ Tehtud.
 2. Kaalu, kas ainult ülesannete järgi tulev skooride jaotus on toote jaoks sobiv: 2 / 918 on „Very high“ ilma vastusteta.
 3. Ühtlusta 400-vigade keha `{"error": ...}` kujule.
 4. Uuendustel ära taaskäivita backendi koos frontendiga, et vältida umbes 16 s katkestust („Could not load the test“).

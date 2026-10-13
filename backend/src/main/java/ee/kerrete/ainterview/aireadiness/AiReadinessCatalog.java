@@ -43,11 +43,27 @@ public class AiReadinessCatalog {
     @Autowired
     public AiReadinessCatalog(ObjectMapper objectMapper) {
         this(
-                read(objectMapper, "ai-readiness/professions.json", new TypeReference<>() { }),
+                withAliases(
+                        read(objectMapper, "ai-readiness/professions.json", new TypeReference<>() { }),
+                        read(objectMapper, "ai-readiness/professions-aliases.json", new TypeReference<>() { })),
                 read(objectMapper, "ai-readiness/professions-onet.json", new TypeReference<>() { }),
                 read(objectMapper, "ai-readiness/questions.json", new TypeReference<>() { }),
                 read(objectMapper, "ai-readiness/general-roadmap.json", new TypeReference<>() { })
         );
+    }
+
+    /**
+     * Annab käsitsi kirjutatud ametitele otsingunimedeks nende O*NET ametite nimed, mida need peidavad
+     * (professions-aliases.json), et nt "registered nurse" leiaks "Healthcare worker".
+     */
+    static List<Profession> withAliases(List<Profession> curated, Map<String, List<String>> aliases) {
+        return curated.stream()
+                .map(p -> aliases.containsKey(p.id())
+                        ? new Profession(p.id(), p.name(), p.category(), p.tasks(), p.humanEdge(), p.aiTools(),
+                                p.pivotRoles(), p.roadmap(), p.onetCode(), p.onetCodes(),
+                                Stream.concat(p.alternateTitles().stream(), aliases.get(p.id()).stream()).toList())
+                        : p)
+                .toList();
     }
 
     AiReadinessCatalog(List<Profession> curated, List<Profession> onet, List<Question> questions,
