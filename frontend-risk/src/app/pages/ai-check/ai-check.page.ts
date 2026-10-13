@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { forkJoin } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, of, switchMap } from 'rxjs';
 
 import { AiReadinessService } from '../../services/ai-readiness.service';
 import {
   AssessmentResult,
+  CategorySummary,
   ProfessionSummary,
   Question,
-  RiskBand
+  RiskBand,
+  TaskExposure
 } from '../../models/ai-readiness.model';
 
 type Step = 'profession' | 'questions' | 'loading' | 'result';
@@ -66,31 +69,54 @@ const SCALE = [
         <input
           id="prof-search"
           type="search"
-          [(ngModel)]="search"
-          placeholder="Search: accountant, nurse, developer…"
+          [ngModel]="search"
+          (ngModelChange)="onSearchChange($event)"
+          placeholder="Search 900+ professions…"
           autocomplete="off"
           class="field !rounded-2xl !py-4 !pl-14 !text-[18px]"
         />
       </div>
 
-      <p *ngIf="!loadingCatalog" class="kicker mt-6">{{ filteredProfessions().length }} professions</p>
+      <!-- Browse by field: one row that scrolls sideways on small screens -->
+      <div *ngIf="categories.length" class="no-scrollbar rise -mx-4 mt-5 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0" style="--i:4">
+        <div class="flex w-max gap-2 sm:w-auto sm:flex-wrap">
+          <button (click)="selectCategory(null)" class="chip" [class.is-active]="!category">All fields</button>
+          <button *ngFor="let c of categories" (click)="selectCategory(c.name)" class="chip" [class.is-active]="category === c.name">
+            {{ c.name }} <span class="num font-mono text-[11px] opacity-60">{{ c.count }}</span>
+          </button>
+        </div>
+      </div>
 
-      <div class="rise mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3" style="--i:4">
+      <p *ngIf="!loadingCatalog" class="kicker mt-6" aria-live="polite">
+        <ng-container *ngIf="searching">Searching…</ng-container>
+        <ng-container *ngIf="!searching && results === null">Popular professions</ng-container>
+        <ng-container *ngIf="!searching && results !== null">
+          {{ results.length }} {{ results.length === 1 ? 'profession' : 'professions' }}<ng-container *ngIf="category"> &middot; {{ category }}</ng-container>
+        </ng-container>
+      </p>
+
+      <div class="rise mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3" style="--i:5">
         <button
-          *ngFor="let p of filteredProfessions()"
+          *ngFor="let p of visibleProfessions()"
           (click)="selectProfession(p)"
           class="tile flex items-center justify-between gap-4 px-5 py-4 text-left"
         >
           <span class="min-w-0">
             <span class="block text-[17px] font-semibold leading-tight">{{ p.name }}</span>
-            <span class="kicker mt-1.5 block !text-faint">{{ p.category }}</span>
+            <span class="kicker mt-1.5 block truncate !text-faint">{{ p.category }}</span>
           </span>
           <span class="tile-arrow shrink-0 text-accent" aria-hidden="true">&rarr;</span>
         </button>
       </div>
-      <p *ngIf="!loadingCatalog && filteredProfessions().length === 0" class="mt-6 text-[15px] text-muted">
-        No match. Pick &ldquo;Other / I can&rsquo;t find my profession&rdquo;.
+      <p *ngIf="isTruncated()" class="mt-4 text-[14px] text-muted">
+        Showing {{ results?.length }} of {{ categoryCount() }}. Type to narrow it down.
       </p>
+      <div *ngIf="!searching && results !== null" class="mt-6 flex flex-wrap items-center gap-3 text-[15px] text-muted">
+        <span>{{ results.length === 0 ? 'No match.' : 'Not the right one?' }}</span>
+        <button *ngIf="otherProfession() as other" (click)="selectProfession(other)" class="btn-ghost !px-4 !py-2 !text-[14px]">
+          {{ other.name }}
+        </button>
+      </div>
       <p *ngIf="loadingCatalog" class="kicker mt-6">Loading…</p>
     </section>
 
@@ -232,10 +258,11 @@ const SCALE = [
           <div class="kicker hidden grid-cols-[minmax(0,1fr)_5rem_10rem_3rem] gap-4 border-b border-line pb-3 sm:grid">
             <span>Task</span><span class="text-right">Of week</span><span>Automatable</span><span></span>
           </div>
-          <div *ngFor="let t of r.tasks; let i = index"
+          <div *ngFor="let t of visibleTasks(r); let i = index"
                class="grid grid-cols-[minmax(0,1fr)_3rem] items-center gap-x-4 gap-y-2 border-b border-line py-4 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_5rem_10rem_3rem]">
             <p class="text-[15px] leading-snug">
               {{ t.name }}
+              <span *ngIf="t.observedUse" class="observed-pill" title="People already use AI for this task at work (Anthropic Economic Index, 2025 usage data).">AI already used</span>
               <span class="num ml-1 font-mono text-[12px] text-faint sm:hidden">{{ t.share }}% of week</span>
             </p>
             <span class="num hidden text-right font-mono text-[13px] text-muted sm:block">{{ t.share }}%</span>
@@ -244,6 +271,10 @@ const SCALE = [
             </div>
             <span class="num text-right font-mono text-[14px]">{{ t.automationPercent }}%</span>
           </div>
+          <button *ngIf="hiddenTasks(r) as more" (click)="showAllTasks = !showAllTasks"
+                  class="mt-4 text-[14px] font-medium text-accent hover:underline">
+            {{ showAllTasks ? 'Show fewer tasks' : '+ ' + more.count + ' more tasks (' + more.share + '% of the week)' }}
+          </button>
         </div>
       </section>
 
@@ -342,6 +373,11 @@ const SCALE = [
           at most ±30 points from your answers. It is a catalog model, not a labor-market forecast. A high score means
           those tasks will change, not that the job disappears.
         </p>
+        <p *ngIf="r.professionId.startsWith('onet-')" class="text-[13px] leading-relaxed text-muted lg:col-span-9 lg:col-start-4">
+          Sources: occupation and task data from O*NET 29.3, U.S. Department of Labor / ETA, CC BY 4.0. Task time shares
+          and observed AI use from the Anthropic Economic Index, CC BY. Human exposure labels from Eloundou et al. (2024),
+          <em>Science</em>. Automation estimates combine a Claude rating with those labels.
+        </p>
       </footer>
 
       <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-end print:hidden">
@@ -354,13 +390,25 @@ const SCALE = [
 export class AiCheckPageComponent implements OnInit {
   readonly scale = SCALE;
 
+  /** Tasks shown before "+ N more tasks"; O*NET professions have up to 40. */
+  readonly TOP_TASKS = 6;
+
   step: Step = 'profession';
-  professions: ProfessionSummary[] = [];
+  featured: ProfessionSummary[] = [];
+  categories: CategorySummary[] = [];
   questions: Question[] = [];
   loadingCatalog = true;
   error: string | null = null;
 
   search = '';
+  category: string | null = null;
+  /** Server results for the current search/category; null shows the featured (popular) list. */
+  results: ProfessionSummary[] | null = null;
+  searching = false;
+  selectedProfession: ProfessionSummary | null = null;
+  showAllTasks = false;
+  private readonly query$ = new Subject<{ q: string; category: string | null }>();
+
   professionId: string | null = null;
   questionIndex = 0;
   answers: Record<string, string> = {};
@@ -371,14 +419,20 @@ export class AiCheckPageComponent implements OnInit {
   lastResult: AssessmentResult | null = null;
   expanded: Record<string, boolean> = {};
 
-  constructor(private api: AiReadinessService) {}
+  constructor(private api: AiReadinessService, private destroyRef: DestroyRef) {}
 
   ngOnInit(): void {
     this.lastResult = this.api.loadLastResult();
-    forkJoin({ professions: this.api.professions(), questions: this.api.questions() }).subscribe({
-      next: ({ professions, questions }) => {
-        this.professions = professions;
+    forkJoin({
+      professions: this.api.professions(),
+      questions: this.api.questions(),
+      // browsing by field is optional; the test still works without it
+      categories: this.api.categories().pipe(catchError(() => of([] as CategorySummary[])))
+    }).subscribe({
+      next: ({ professions, questions, categories }) => {
+        this.featured = professions;
         this.questions = questions;
+        this.categories = categories;
         this.loadingCatalog = false;
       },
       error: () => {
@@ -386,27 +440,65 @@ export class AiCheckPageComponent implements OnInit {
         this.error = 'Could not load the test. Check that the backend is running.';
       }
     });
+
+    // switchMap drops a slower, older response, so results always match the latest input
+    this.query$.pipe(
+      debounceTime(150),
+      distinctUntilChanged((a, b) => a.q === b.q && a.category === b.category),
+      switchMap(({ q, category }) => !q && !category
+        ? of(null)
+        : this.api.searchProfessions(q, category).pipe(catchError(() => of([] as ProfessionSummary[])))),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(results => {
+      this.results = results;
+      this.searching = false;
+    });
   }
 
   get currentQuestion(): Question | null {
     return this.questions[this.questionIndex] ?? null;
   }
 
-  filteredProfessions(): ProfessionSummary[] {
-    const term = this.search.trim().toLowerCase();
-    if (!term) {
-      return this.professions;
-    }
-    return this.professions.filter(
-      p => p.name.toLowerCase().includes(term) || p.category.toLowerCase().includes(term) || p.id === 'other'
-    );
+  onSearchChange(value: string): void {
+    this.search = value;
+    this.runQuery();
+  }
+
+  selectCategory(name: string | null): void {
+    this.category = this.category === name ? null : name;
+    this.runQuery();
+  }
+
+  private runQuery(): void {
+    const q = this.search.trim();
+    this.searching = !!q || !!this.category;
+    this.query$.next({ q, category: this.category });
+  }
+
+  visibleProfessions(): ProfessionSummary[] {
+    return this.results ?? this.featured;
+  }
+
+  otherProfession(): ProfessionSummary | null {
+    return this.featured.find(p => p.id === 'other') ?? null;
+  }
+
+  categoryCount(): number {
+    return this.categories.find(c => c.name === this.category)?.count ?? 0;
+  }
+
+  /** The server returns at most 50; say so when a browsed field has more. */
+  isTruncated(): boolean {
+    return !this.searching && !this.search.trim() && !!this.category && !!this.results
+      && this.results.length < this.categoryCount();
   }
 
   selectedProfessionName(): string {
-    return this.professions.find(p => p.id === this.professionId)?.name ?? '';
+    return this.selectedProfession?.name ?? '';
   }
 
   selectProfession(p: ProfessionSummary): void {
+    this.selectedProfession = p;
     this.professionId = p.id;
     this.questionIndex = 0;
     this.step = 'questions';
@@ -458,6 +550,7 @@ export class AiCheckPageComponent implements OnInit {
         this.lastResult = result;
         this.personalNoteRequested = this.personalize;
         this.api.saveLastResult(result);
+        this.showAllTasks = false;
         this.step = 'result';
         window.scrollTo({ top: 0 });
       },
@@ -470,6 +563,7 @@ export class AiCheckPageComponent implements OnInit {
 
   showLastResult(): void {
     this.result = this.lastResult;
+    this.showAllTasks = false;
     this.personalNoteRequested = false;
     this.step = 'result';
   }
@@ -477,11 +571,39 @@ export class AiCheckPageComponent implements OnInit {
   restart(): void {
     this.answers = {};
     this.professionId = null;
+    this.selectedProfession = null;
+    this.search = '';
+    this.category = null;
+    this.results = null;
+    this.searching = false;
+    this.showAllTasks = false;
     this.questionIndex = 0;
     this.result = null;
     this.expanded = {};
     this.step = 'profession';
     window.scrollTo({ top: 0 });
+  }
+
+  /**
+   * The TOP_TASKS largest tasks by share, in the server's order (most automatable first);
+   * all tasks once expanded.
+   */
+  visibleTasks(r: AssessmentResult): TaskExposure[] {
+    if (this.showAllTasks || r.tasks.length <= this.TOP_TASKS) {
+      return r.tasks;
+    }
+    const top = new Set([...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS));
+    return r.tasks.filter(t => top.has(t));
+  }
+
+  /** Count and week share of the tasks hidden behind "+ N more tasks"; null when nothing is hidden. */
+  hiddenTasks(r: AssessmentResult): { count: number; share: number } | null {
+    if (r.tasks.length <= this.TOP_TASKS) {
+      return null;
+    }
+    const top = new Set([...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS));
+    const rest = r.tasks.filter(t => !top.has(t));
+    return { count: rest.length, share: rest.reduce((sum, t) => sum + t.share, 0) };
   }
 
   band(r: AssessmentResult) {

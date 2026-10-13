@@ -6,6 +6,12 @@ export interface ProfessionSummary {
   featured?: boolean;
 }
 
+/** SOC major group with the number of professions in it, for browsing. */
+export interface CategorySummary {
+  name: string;
+  count: number;
+}
+
 export interface QuestionOption {
   id: string;
   label: string;

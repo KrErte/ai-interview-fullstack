@@ -72,6 +72,36 @@ class AiReadinessSearchTest {
     }
 
     @Test
+    void categoriesHaveCounts() {
+        List<AssessmentModels.CategorySummary> categories = SERVICE.categories();
+        assertEquals(22, categories.size());
+        // every profession except "other" belongs to exactly one SOC group
+        assertEquals(CATALOG.professions().size() - 1,
+                categories.stream().mapToInt(AssessmentModels.CategorySummary::count).sum());
+        List<String> names = categories.stream().map(AssessmentModels.CategorySummary::name).toList();
+        assertEquals(names.stream().sorted().toList(), names);
+    }
+
+    @Test
+    void categoryFilterOnlyReturnsThatGroup() {
+        String group = "Food Preparation and Serving Related";
+        List<ProfessionSummary> results = SERVICE.search("cook", group, 50);
+        assertFalse(results.isEmpty());
+        assertTrue(results.stream().allMatch(p -> p.category().equals(group)), results.toString());
+        assertTrue(SERVICE.search("software", group, 50).isEmpty());
+    }
+
+    @Test
+    void emptyQueryWithCategoryListsGroupFeaturedFirst() {
+        List<ProfessionSummary> results = SERVICE.search("", "Computer and Mathematical", 50);
+        // hand-written professions in this SOC group first (alphabetical by name), then O*NET ones
+        List<String> featured = results.stream().takeWhile(ProfessionSummary::featured).map(ProfessionSummary::id).toList();
+        assertEquals(List.of("data-analyst", "devops-engineer", "software-developer", "qa-tester", "designer"), featured);
+        assertTrue(results.stream().skip(featured.size()).noneMatch(ProfessionSummary::featured));
+        assertTrue(results.size() > 10);
+    }
+
+    @Test
     void assessWorksForOnetProfessionAndRejectsHiddenOne() {
         AssessmentResult result = SERVICE.assess(new AssessmentRequest("onet-35-2014-00", Map.of(), false));
         assertEquals("Cooks, Restaurant", result.professionName());

@@ -2,6 +2,7 @@ package ee.kerrete.ainterview.aireadiness;
 
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentRequest;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentResult;
+import ee.kerrete.ainterview.aireadiness.AssessmentModels.CategorySummary;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.ProfessionSummary;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
 import jakarta.validation.Valid;
@@ -37,8 +38,14 @@ public class AiReadinessController {
 
     @GetMapping("/professions/search")
     public List<ProfessionSummary> searchProfessions(@RequestParam(name = "q", required = false) String query,
+                                                     @RequestParam(name = "category", required = false) String category,
                                                      @RequestParam(name = "limit", defaultValue = "20") int limit) {
-        return service.search(query, limit);
+        return service.search(query, category, limit);
+    }
+
+    @GetMapping("/professions/categories")
+    public List<CategorySummary> professionCategories() {
+        return service.categories();
     }
 
     @GetMapping("/questions")

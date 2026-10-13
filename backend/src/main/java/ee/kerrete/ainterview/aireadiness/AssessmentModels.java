@@ -28,6 +28,10 @@ public final class AssessmentModels {
     public record ProfessionSummary(String id, String name, String category, boolean featured) {
     }
 
+    /** SOC peagrupp ja selle ametite arv (ametite sirvimiseks). */
+    public record CategorySummary(String name, int count) {
+    }
+
     public enum RiskBand { LOW, MODERATE, HIGH, VERY_HIGH }
 
     public enum StageStatus { DONE, CURRENT, UPCOMING }

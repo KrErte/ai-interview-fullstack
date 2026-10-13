@@ -2,6 +2,7 @@ package ee.kerrete.ainterview.aireadiness;
 
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentRequest;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentResult;
+import ee.kerrete.ainterview.aireadiness.AssessmentModels.CategorySummary;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.ProfessionSummary;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,16 +45,23 @@ public class AiReadinessService {
      * käsitsi kirjutatud ees, siis tähestik.
      */
     public List<ProfessionSummary> search(String query, int limit) {
+        return search(query, null, limit);
+    }
+
+    /** Nagu search(query, limit), aga ainult ühe SOC peagrupi ametid; tühi päring loetleb kogu grupi. */
+    public List<ProfessionSummary> search(String query, String category, int limit) {
         int max = Math.max(1, Math.min(MAX_SEARCH_RESULTS, limit));
         String q = query == null ? "" : query.trim().toLowerCase(Locale.ROOT);
-        if (q.isEmpty()) {
+        boolean anyGroup = category == null || category.isBlank();
+        if (q.isEmpty() && anyGroup) {
             return professions().stream().limit(max).toList();
         }
         Set<String> featuredIds = catalog.featured().stream().map(Profession::id).collect(Collectors.toSet());
         record Hit(Profession profession, int rank, boolean featured) {
         }
         return catalog.professions().stream()
-                .map(p -> new Hit(p, rank(p, q), featuredIds.contains(p.id())))
+                .filter(p -> anyGroup || catalog.group(p).map(category::equals).orElse(false))
+                .map(p -> new Hit(p, q.isEmpty() ? 0 : rank(p, q), featuredIds.contains(p.id())))
                 .filter(h -> h.rank() < Integer.MAX_VALUE)
                 .sorted(Comparator.comparingInt(Hit::rank)
                         .thenComparing(h -> !h.featured())
@@ -60,6 +69,13 @@ public class AiReadinessService {
                 .limit(max)
                 .map(h -> summary(h.profession()))
                 .toList();
+    }
+
+    /** SOC peagrupid koos ametite arvuga, nime järgi; "other" ei kuulu ühtegi gruppi. */
+    public List<CategorySummary> categories() {
+        Map<String, Integer> counts = new TreeMap<>();
+        catalog.professions().forEach(p -> catalog.group(p).ifPresent(g -> counts.merge(g, 1, Integer::sum)));
+        return counts.entrySet().stream().map(e -> new CategorySummary(e.getKey(), e.getValue())).toList();
     }
 
     private static int rank(Profession p, String q) {
