@@ -16,3 +16,7 @@ frontend-risk/.angular/
 # Locally installed agent skills (npx skills add ...), not part of the project
 .claude/skills/
 skills-lock.json
+
+# Raw O*NET / AEI downloads for tools/onet-import (fetch.py re-downloads them)
+tools/onet-import/.cache/
+tools/onet-import/__pycache__/
