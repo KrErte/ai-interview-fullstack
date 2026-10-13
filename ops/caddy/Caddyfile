@@ -8,6 +8,12 @@
 	reverse_proxy 127.0.0.1:8100
 }
 
+# Umami analytics (ops/umami)
+umami.62-171-153-133.sslip.io {
+	encode gzip
+	reverse_proxy 127.0.0.1:3100
+}
+
 :80 {
 	reverse_proxy 127.0.0.1:8081
 }

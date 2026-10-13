@@ -5,6 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, of, switchMap } from 'rxjs';
 
 import { AiReadinessService } from '../../services/ai-readiness.service';
+import { AnalyticsService } from '../../services/analytics.service';
 import {
   AssessmentResult,
   CategorySummary,
@@ -421,7 +422,11 @@ export class AiCheckPageComponent implements OnInit {
   lastResult: AssessmentResult | null = null;
   expanded: Record<string, boolean> = {};
 
-  constructor(private api: AiReadinessService, private destroyRef: DestroyRef) {}
+  constructor(
+    private api: AiReadinessService,
+    private analytics: AnalyticsService,
+    private destroyRef: DestroyRef
+  ) {}
 
   ngOnInit(): void {
     this.lastResult = this.api.loadLastResult();
@@ -502,6 +507,7 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   selectProfession(p: ProfessionSummary): void {
+    this.analytics.track('test-start', { profession: p.id });
     this.selectedProfession = p;
     this.professionId = p.id;
     this.questionIndex = 0;
@@ -552,6 +558,7 @@ export class AiCheckPageComponent implements OnInit {
     this.api.assess({ professionId: this.professionId, answers: this.answers, personalize }).subscribe({
       next: result => {
         this.result = result;
+        this.analytics.track('test-complete', { profession: result.professionId, band: result.band });
         this.lastResult = result;
         this.personalNoteRequested = personalize;
         this.api.saveLastResult(result);

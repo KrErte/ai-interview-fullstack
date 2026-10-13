@@ -7,6 +7,7 @@ A shared Ubuntu 24.04 server. Other apps also run on it: **lumen** (`/opt/lumen`
 | What | Where | Ports |
 |---|---|---|
 | Shared reverse proxy (Caddy) | `/opt/caddy` (`ops/caddy`) | 80, 443 (public) |
+| Umami analytics | `/opt/umami` (`ops/umami`) | `127.0.0.1:3100` (HTTPS via Caddy) |
 | Futureproof (compose project `futureproof`) | `/opt/futureproof` (this repo) | frontend `127.0.0.1:8100`; backend and Postgres internal only |
 | lumen | `/opt/lumen` | `127.0.0.1:8081` (moved from `0.0.0.0:80`; backup of its compose file next to it) |
 | inventory-service | `/root/inventory-service-node` | 8090 (public), API `127.0.0.1:8080` |
@@ -20,6 +21,14 @@ A shared Ubuntu 24.04 server. Other apps also run on it: **lumen** (`/opt/lumen`
 2. Add the domain to `ops/caddy/Caddyfile`.
 3. Copy the file to `/opt/caddy/` and run `docker exec shared-caddy caddy reload --config /etc/caddy/Caddyfile`.
 4. Set `FRONTEND_BASE_URL` in `/opt/futureproof/.env`.
+
+## Analytics (Umami)
+
+- **Where:** `/opt/umami` (`ops/umami`), with its own Postgres. Served at `https://umami.62-171-153-133.sslip.io` (Caddy → `127.0.0.1:3100`). It is cookieless, so no cookie banner is needed.
+- **Login:** user `admin`; the password is in `/opt/umami/admin-password` (mode 600). The default password was changed at install.
+- **Tracking:** the script tag is in `frontend-risk/src/index.html` with `data-domains="62-171-153-133.sslip.io"`, so local development is not tracked. The website id is in `/opt/umami/website-id`.
+- **Custom events:** `test-start` (profession), `test-complete` (profession, band), `seo-cta` (profession, from the job pages).
+- **After a domain change:** update `data-domains` and the website's domain in Umami.
 
 ## Deploy
 

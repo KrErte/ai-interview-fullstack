@@ -9,7 +9,9 @@ services:
     container_name: shared-caddy
     network_mode: host
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      # mount the folder, not the single file: editors and scp replace the file (new inode),
+      # and a single-file bind mount would keep showing the old content to `caddy reload`
+      - ./:/etc/caddy:ro
       - caddy_data:/data
       - caddy_config:/config
     restart: unless-stopped
