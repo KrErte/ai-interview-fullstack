@@ -10,29 +10,21 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   imports: [CommonModule, RouterOutlet, NavbarComponent],
   template: `
-    <div class="min-h-screen bg-slate-950 text-slate-100">
-      <!-- Navbar -->
+    <div class="flex min-h-screen flex-col">
       <app-navbar *ngIf="showNavbar"></app-navbar>
 
-      <!-- Main Content -->
-      <!-- overflow-hidden: the 800px glow below must not widen the page on phones -->
-      <main class="relative overflow-hidden">
-        <!-- Subtle background gradient -->
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 pointer-events-none"></div>
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
-        <!-- Page content -->
-        <div class="relative mx-auto max-w-4xl px-6 py-12">
+      <main class="flex-1">
+        <div class="mx-auto max-w-[1680px] px-4 py-10 sm:px-10 sm:py-14 xl:px-16">
           <router-outlet></router-outlet>
         </div>
       </main>
 
-      <!-- Footer -->
-      <footer class="border-t border-slate-800/50 py-8 mt-12">
-        <div class="mx-auto max-w-4xl px-6 text-center">
-          <p class="text-sm text-slate-500">
-            Futureproof &middot; AI replaceability test
+      <footer class="site-footer border-t border-line">
+        <div class="mx-auto flex max-w-[1680px] flex-col gap-2 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-10 xl:px-16">
+          <p class="flex items-center gap-2 font-extrabold tracking-tight">
+            <span class="h-2 w-2 rounded-full bg-accent"></span>Futureproof
           </p>
+          <p class="kicker">AI replaceability test &middot; a catalog model, not a forecast</p>
         </div>
       </footer>
     </div>

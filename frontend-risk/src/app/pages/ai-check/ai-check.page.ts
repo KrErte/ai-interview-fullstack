@@ -13,296 +13,346 @@ import {
 
 type Step = 'profession' | 'questions' | 'loading' | 'result';
 
-const BAND_STYLE: Record<RiskBand, { label: string; stroke: string; text: string; chip: string }> = {
-  LOW: { label: 'Low', stroke: '#10b981', text: 'text-emerald-400', chip: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30' },
-  MODERATE: { label: 'Moderate', stroke: '#f59e0b', text: 'text-amber-400', chip: 'bg-amber-500/10 text-amber-300 border-amber-500/30' },
-  HIGH: { label: 'High', stroke: '#f97316', text: 'text-orange-400', chip: 'bg-orange-500/10 text-orange-300 border-orange-500/30' },
-  VERY_HIGH: { label: 'Very high', stroke: '#ef4444', text: 'text-rose-400', chip: 'bg-rose-500/10 text-rose-300 border-rose-500/30' }
+const BAND_STYLE: Record<RiskBand, { label: string; color: string }> = {
+  LOW: { label: 'Low', color: 'var(--band-low)' },
+  MODERATE: { label: 'Moderate', color: 'var(--band-moderate)' },
+  HIGH: { label: 'High', color: 'var(--band-high)' },
+  VERY_HIGH: { label: 'Very high', color: 'var(--band-very-high)' }
 };
+
+/** Same cut-offs as AiReadinessScorer.band(), drawn under the score. */
+const SCALE = [
+  { from: 0, to: 30, color: 'var(--band-low)' },
+  { from: 30, to: 50, color: 'var(--band-moderate)' },
+  { from: 50, to: 70, color: 'var(--band-high)' },
+  { from: 70, to: 100, color: 'var(--band-very-high)' }
+];
 
 @Component({
   selector: 'app-ai-check-page',
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="min-h-screen">
-      <!-- Header -->
-      <div class="text-center mb-10" *ngIf="step !== 'result'">
-        <p class="text-sm font-medium uppercase tracking-wider text-emerald-400 mb-3">AI replaceability test</p>
-        <h1 class="text-4xl font-bold text-slate-100 mb-4">
-          How exposed is your work to <span class="gradient-text">AI</span>?
-        </h1>
-        <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-          Answer {{ questions.length || 11 }} questions to see how exposed your profession's typical tasks are to
-          today's AI tools, plus a general AI learning path and a starter plan for your profession. No account needed.
-        </p>
-      </div>
+    <div *ngIf="error" class="mb-8 rounded-xl border border-band-very-high bg-surface px-4 py-3 text-[15px] text-band-very-high" role="alert">
+      {{ error }}
+    </div>
 
-      <div *ngIf="error" class="max-w-2xl mx-auto mb-6 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-rose-300 text-sm">
-        {{ error }}
-      </div>
+    <!-- STEP 1: profession -->
+    <section *ngIf="step === 'profession'">
+      <p class="kicker rise" style="--i:0">Step 1 of 2 &middot; Your profession</p>
+      <h1 class="display rise mt-5 text-[clamp(2.5rem,6.5vw,5.5rem)]" style="--i:1">What do you do for <span class="text-accent">work?</span></h1>
+      <p class="rise mt-5 max-w-xl text-[17px] leading-relaxed text-muted" style="--i:2">
+        Then {{ questions.length || 11 }} short questions about how you work. No account needed.
+      </p>
 
-      <!-- STEP 1: profession -->
-      <section *ngIf="step === 'profession'" class="max-w-3xl mx-auto">
-        <div *ngIf="lastResult" class="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-2xl border border-slate-800 bg-slate-900/50 px-5 py-4">
-          <p class="text-sm text-slate-300">
-            You have a saved result: <strong>{{ lastResult.professionName }}</strong>,
-            replaceability {{ lastResult.replaceabilityScore }}/100.
+      <div *ngIf="lastResult" class="card rise mt-10 flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between" style="--i:3">
+        <div class="flex items-center gap-4">
+          <span class="num font-mono text-2xl font-medium text-accent">{{ lastResult.replaceabilityScore }}</span>
+          <p class="text-[15px] text-muted">
+            Saved result
+            <span class="ml-1 font-semibold text-fg">{{ lastResult.professionName }}</span>
           </p>
-          <button (click)="showLastResult()" class="rounded-lg border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:bg-slate-800">
-            View result
-          </button>
         </div>
+        <button (click)="showLastResult()" class="btn-ghost self-start !py-2.5 sm:self-auto">
+          View result <span class="arrow" aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
 
-        <h2 class="text-xl font-semibold text-slate-100 mb-4">1. Pick your profession</h2>
+      <div class="rise relative mt-10" style="--i:3">
+        <label for="prof-search" class="sr-only">Search professions</label>
+        <svg class="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" /><path stroke-linecap="round" d="m20 20-3.5-3.5" />
+        </svg>
         <input
+          id="prof-search"
           type="search"
           [(ngModel)]="search"
-          placeholder="Search professions..."
-          class="w-full mb-5 rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3 text-slate-200 placeholder-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none"
+          placeholder="Search: accountant, nurse, developer…"
+          autocomplete="off"
+          class="field !rounded-2xl !py-4 !pl-14 !text-[18px]"
         />
-        <div class="grid sm:grid-cols-2 gap-3">
-          <button
-            *ngFor="let p of filteredProfessions()"
-            (click)="selectProfession(p)"
-            class="text-left rounded-2xl border px-5 py-4 transition-all card-hover"
-            [ngClass]="p.id === professionId
-              ? 'border-emerald-500/60 bg-emerald-500/10'
-              : 'border-slate-800 bg-slate-900/40 hover:border-slate-700'"
-          >
-            <p class="font-medium text-slate-100">{{ p.name }}</p>
-            <p class="text-xs text-slate-500 mt-1">{{ p.category }}</p>
-          </button>
-        </div>
-        <p *ngIf="!loadingCatalog && filteredProfessions().length === 0" class="text-slate-500 text-sm mt-4">
-          No match. Pick "Other / I can't find my profession".
+      </div>
+
+      <p *ngIf="!loadingCatalog" class="kicker mt-6">{{ filteredProfessions().length }} professions</p>
+
+      <div class="rise mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3" style="--i:4">
+        <button
+          *ngFor="let p of filteredProfessions()"
+          (click)="selectProfession(p)"
+          class="tile flex items-center justify-between gap-4 px-5 py-4 text-left"
+        >
+          <span class="min-w-0">
+            <span class="block text-[17px] font-semibold leading-tight">{{ p.name }}</span>
+            <span class="kicker mt-1.5 block !text-faint">{{ p.category }}</span>
+          </span>
+          <span class="tile-arrow shrink-0 text-accent" aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+      <p *ngIf="!loadingCatalog && filteredProfessions().length === 0" class="mt-6 text-[15px] text-muted">
+        No match. Pick &ldquo;Other / I can&rsquo;t find my profession&rdquo;.
+      </p>
+      <p *ngIf="loadingCatalog" class="kicker mt-6">Loading…</p>
+    </section>
+
+    <!-- STEP 2: questions -->
+    <section *ngIf="step === 'questions' && currentQuestion" class="mx-auto max-w-3xl">
+      <div class="flex items-center justify-between gap-4">
+        <p class="truncate text-[15px] font-semibold text-muted">{{ selectedProfessionName() }}</p>
+        <p class="num shrink-0 font-mono text-sm text-faint">
+          <span class="text-fg">{{ pad(questionIndex + 1) }}</span> / {{ pad(questions.length) }}
         </p>
-        <p *ngIf="loadingCatalog" class="text-slate-500 text-sm">Loading...</p>
-      </section>
+      </div>
+      <div class="mt-3 flex gap-1" aria-hidden="true">
+        <span *ngFor="let _ of questions; let i = index"
+              class="h-1.5 flex-1 rounded-full transition-colors duration-200"
+              [style.background]="i <= questionIndex ? 'var(--accent)' : 'var(--line)'"></span>
+      </div>
 
-      <!-- STEP 2: questions -->
-      <section *ngIf="step === 'questions' && currentQuestion as q" class="max-w-2xl mx-auto">
-        <div class="mb-6">
-          <div class="flex justify-between text-sm text-slate-400 mb-2">
-            <span>{{ selectedProfessionName() }}</span>
-            <span>{{ questionIndex + 1 }} / {{ questions.length }}</span>
-          </div>
-          <div class="h-2 rounded-full bg-slate-800 overflow-hidden">
-            <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-300"
-                 [style.width.%]="((questionIndex + 1) / questions.length) * 100"></div>
-          </div>
-        </div>
+      @for (q of [currentQuestion!]; track q.id) {
+        <div class="swap-in mt-12 sm:mt-16">
+          <h2 class="display text-[clamp(1.85rem,4.5vw,3rem)] !leading-[1.05]">{{ q.text }}</h2>
+          <p *ngIf="q.help" class="mt-4 max-w-2xl text-[16px] leading-relaxed text-muted">{{ q.help }}</p>
 
-        <div class="rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/80 to-slate-900/40 p-6 sm:p-8">
-          <h2 class="text-xl sm:text-2xl font-semibold text-slate-100 mb-2">{{ q.text }}</h2>
-          <p class="text-sm text-slate-500 mb-6">{{ q.help }}</p>
-          <div class="space-y-3">
+          <div class="mt-10 space-y-2.5" role="radiogroup" [attr.aria-label]="q.text">
             <button
-              *ngFor="let o of q.options"
+              *ngFor="let o of q.options; let i = index"
               (click)="answer(q.id, o.id)"
-              class="w-full text-left rounded-xl border px-5 py-4 transition-all"
-              [ngClass]="answers[q.id] === o.id
-                ? 'border-emerald-500/60 bg-emerald-500/10 text-slate-100'
-                : 'border-slate-700 bg-slate-800/40 text-slate-300 hover:border-slate-600 hover:bg-slate-800'"
+              role="radio"
+              [attr.aria-checked]="answers[q.id] === o.id"
+              class="option flex w-full items-center gap-4 rounded-xl border px-4 py-4 text-left text-[16px] leading-snug"
+              [class.is-selected]="answers[q.id] === o.id"
             >
-              {{ o.label }}
+              <span class="option-key flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border font-mono text-[12px]">{{ letter(i) }}</span>
+              <span>{{ o.label }}</span>
             </button>
           </div>
 
-          <label *ngIf="isLastQuestion()" class="mt-6 flex items-start gap-3 text-sm text-slate-400 cursor-pointer">
-            <input type="checkbox" [(ngModel)]="personalize" class="mt-1 accent-emerald-500" />
+          <label *ngIf="isLastQuestion()" class="mt-8 flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-muted">
+            <input type="checkbox" [(ngModel)]="personalize" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]" />
             <span>Add an AI-written comment. Your answers are sent to a language model without your name or email. The score does not depend on it.</span>
           </label>
 
-          <div class="mt-8 flex justify-between">
-            <button (click)="back()" class="rounded-lg px-4 py-2 text-sm text-slate-400 hover:text-slate-100">
-              ← Back
-            </button>
-            <button
-              *ngIf="isLastQuestion()"
-              (click)="submit()"
-              [disabled]="!answers[q.id]"
-              class="rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/25 disabled:opacity-50"
-            >
+          <div class="mt-10 flex items-center justify-between border-t border-line pt-6">
+            <button (click)="back()" class="text-[15px] text-muted transition-colors hover:text-fg">&larr; Back</button>
+            <button *ngIf="isLastQuestion()" (click)="submit()" [disabled]="!answers[q.id]" class="btn-accent">
               Show result
+              <span class="arrow" aria-hidden="true">&rarr;</span>
             </button>
           </div>
         </div>
-      </section>
+      }
+    </section>
 
-      <!-- STEP 3: loading -->
-      <section *ngIf="step === 'loading'" class="flex flex-col items-center py-20 text-slate-400">
-        <div class="h-12 w-12 rounded-full border-4 border-slate-700 border-t-emerald-500 animate-spin mb-4"></div>
-        Calculating your result...
-      </section>
+    <!-- STEP 3: loading -->
+    <section *ngIf="step === 'loading'" class="flex flex-col items-center py-32" aria-live="polite">
+      <p class="text-2xl font-bold tracking-tight">Calculating your result</p>
+      <div class="relative mt-6 h-1 w-56 overflow-hidden rounded-full bg-line">
+        <div class="absolute inset-y-0 left-0 w-1/3 rounded-full bg-accent" style="animation: scan 1.1s linear infinite"></div>
+      </div>
+    </section>
 
-      <!-- STEP 4: result -->
-      <section *ngIf="step === 'result' && result as r" class="space-y-8">
-        <div class="text-center">
-          <p class="text-sm font-medium uppercase tracking-wider text-slate-500 mb-2">{{ r.professionName }}</p>
-          <h1 class="text-3xl sm:text-4xl font-bold text-slate-100">Your result</h1>
+    <!-- STEP 4: result -->
+    <article *ngIf="step === 'result' && result as r" class="space-y-6">
+      <header class="rise pb-2" style="--i:0">
+        <p class="kicker">Exposure report</p>
+        <h1 class="display mt-3 text-[clamp(2rem,4.5vw,3.5rem)]">{{ r.professionName }}</h1>
+      </header>
+
+      <!-- Scores -->
+      <section class="grid gap-6 lg:grid-cols-12">
+        <div class="card rise p-6 sm:p-8 lg:col-span-7" style="--i:1">
+          <p class="kicker">Replaceability by AI</p>
+          <div class="mt-4 flex items-end gap-3">
+            <span class="num text-[clamp(6rem,16vw,10rem)] font-extrabold leading-[0.8] tracking-[-0.05em]"
+                  [style.color]="band(r).color">{{ r.replaceabilityScore }}</span>
+            <span class="mb-2 font-mono text-lg text-faint">/100</span>
+          </div>
+
+          <!-- Position on the scale -->
+          <div class="relative mt-10" aria-hidden="true">
+            <div class="flex h-2.5 gap-1">
+              <span *ngFor="let b of scale; let i = index" class="grow-x h-full basis-0 rounded-full"
+                    [style.--i]="i" [style.flex-grow]="b.to - b.from" [style.background]="b.color"></span>
+            </div>
+            <span class="absolute -top-2 h-[26px] w-1 -translate-x-1/2 rounded-full bg-fg ring-4 ring-surface"
+                  [style.left.%]="r.replaceabilityScore"></span>
+            <div class="num relative mt-2.5 h-4 font-mono text-[11px] text-faint">
+              <span class="absolute left-0">0</span>
+              <span *ngFor="let t of [30, 50, 70]" class="absolute -translate-x-1/2" [style.left.%]="t">{{ t }}</span>
+              <span class="absolute right-0">100</span>
+            </div>
+          </div>
+
+          <p class="mt-7 inline-flex items-center gap-2 rounded-full border px-3 py-1"
+             [style.border-color]="band(r).color" [style.color]="band(r).color">
+            <span class="h-1.5 w-1.5 rounded-full" [style.background]="band(r).color"></span>
+            <span class="kicker !text-current">{{ band(r).label }} exposure</span>
+          </p>
+          <p class="mt-4 max-w-xl text-[clamp(1.25rem,2.4vw,1.6rem)] font-semibold leading-snug tracking-tight">
+            {{ r.headline }}
+          </p>
+          <p class="num mt-4 font-mono text-[12px] text-faint">
+            Task exposure {{ r.taskExposureScore }} {{ r.personalAdjustment >= 0 ? '+' : '−' }} {{ abs(r.personalAdjustment) }} from your answers
+          </p>
         </div>
 
-        <!-- Scores -->
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-6 flex flex-col items-center text-center">
-            <p class="text-sm text-slate-400 mb-4">Replaceability by AI</p>
-            <svg viewBox="0 0 120 120" class="w-40 h-40">
-              <circle cx="60" cy="60" r="50" fill="none" stroke="#1e293b" stroke-width="12" />
-              <circle cx="60" cy="60" r="50" fill="none" stroke-width="12" stroke-linecap="round"
-                      [attr.stroke]="band(r).stroke"
-                      [attr.stroke-dasharray]="circumference"
-                      [attr.stroke-dashoffset]="circumference * (1 - r.replaceabilityScore / 100)"
-                      transform="rotate(-90 60 60)" />
-              <text x="60" y="66" text-anchor="middle" class="fill-slate-100" font-size="28" font-weight="700">
-                {{ r.replaceabilityScore }}
-              </text>
-            </svg>
-            <span class="mt-3 inline-block rounded-full border px-3 py-1 text-xs font-medium" [ngClass]="band(r).chip">
-              {{ band(r).label }}
+        <div class="card rise flex flex-col p-6 sm:p-8 lg:col-span-5" style="--i:2">
+          <p class="kicker">AI readiness</p>
+          <p class="mt-4 flex items-end gap-2">
+            <span class="num text-7xl font-extrabold leading-[0.85] tracking-[-0.04em]">{{ r.readinessScore }}</span>
+            <span class="mb-1 font-mono text-faint">/100</span>
+          </p>
+          <p class="mt-3 text-xl font-semibold text-accent">{{ r.readinessLevel }}</p>
+          <div class="mt-6 h-2.5 overflow-hidden rounded-full bg-line">
+            <div class="grow-x h-full rounded-full bg-accent" style="--i:4" [style.width.%]="r.readinessScore"></div>
+          </div>
+          <p class="mt-auto pt-6 text-[15px] leading-relaxed text-muted">
+            At your weekly pace, the remaining stages of the general learning path take about
+            <span class="font-semibold text-fg">{{ r.totalWeeks }} weeks</span>.
+          </p>
+        </div>
+      </section>
+
+      <section *ngIf="r.personalNote" class="card avoid-break border-l-4 !border-l-accent p-6 sm:p-8">
+        <p class="kicker !text-accent">AI comment</p>
+        <p class="mt-4 max-w-3xl whitespace-pre-line text-[clamp(1.1rem,2vw,1.3rem)] leading-relaxed">{{ r.personalNote }}</p>
+      </section>
+      <p *ngIf="!r.personalNote && personalNoteRequested" class="text-[14px] text-muted">
+        The AI comment is not available right now. The rest of the result does not depend on it.
+      </p>
+
+      <!-- Tasks -->
+      <section class="card grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
+        <div class="lg:col-span-4 lg:pr-6">
+          <p class="font-mono text-sm text-accent">02</p>
+          <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Which tasks AI can take on</h2>
+          <p class="mt-3 text-[15px] leading-relaxed text-muted">Typical tasks in this profession, their share of working time, and estimated automation with today's tools.</p>
+        </div>
+        <div class="lg:col-span-8">
+          <div class="kicker hidden grid-cols-[minmax(0,1fr)_5rem_10rem_3rem] gap-4 border-b border-line pb-3 sm:grid">
+            <span>Task</span><span class="text-right">Of week</span><span>Automatable</span><span></span>
+          </div>
+          <div *ngFor="let t of r.tasks; let i = index"
+               class="grid grid-cols-[minmax(0,1fr)_3rem] items-center gap-x-4 gap-y-2 border-b border-line py-4 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_5rem_10rem_3rem]">
+            <p class="text-[15px] leading-snug">
+              {{ t.name }}
+              <span class="num ml-1 font-mono text-[12px] text-faint sm:hidden">{{ t.share }}% of week</span>
+            </p>
+            <span class="num hidden text-right font-mono text-[13px] text-muted sm:block">{{ t.share }}%</span>
+            <div class="order-last col-span-2 h-2 overflow-hidden rounded-full bg-line sm:order-none sm:col-span-1">
+              <div class="grow-x h-full rounded-full" [style.--i]="i" [style.width.%]="t.automationPercent" [style.background]="taskColor(t.automationPercent)"></div>
+            </div>
+            <span class="num text-right font-mono text-[14px]">{{ t.automationPercent }}%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Edge / tools / roles -->
+      <section class="grid gap-6 sm:grid-cols-3">
+        <div class="card avoid-break p-6">
+          <p class="font-mono text-sm text-accent">03</p>
+          <h3 class="mt-3 text-2xl font-bold tracking-tight">Your human edge</h3>
+          <ul class="mt-4 space-y-3 text-[15px] leading-relaxed">
+            <li *ngFor="let h of r.humanEdge" class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>{{ h }}</span></li>
+          </ul>
+        </div>
+        <div class="card avoid-break p-6">
+          <p class="font-mono text-sm text-accent">04</p>
+          <h3 class="mt-3 text-2xl font-bold tracking-tight">Tools to try</h3>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span *ngFor="let tool of r.aiTools" class="rounded-full border border-line bg-surface-2 px-3 py-1.5 text-[13px]">{{ tool }}</span>
+          </div>
+        </div>
+        <div class="card avoid-break p-6">
+          <p class="font-mono text-sm text-accent">05</p>
+          <h3 class="mt-3 text-2xl font-bold tracking-tight">Related roles to consider</h3>
+          <ul class="mt-4 space-y-3 text-[15px] leading-relaxed">
+            <li *ngFor="let p of r.pivotRoles" class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>{{ p }}</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- General roadmap -->
+      <section class="card grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
+        <div class="lg:col-span-4 lg:pr-6">
+          <p class="font-mono text-sm text-accent">06</p>
+          <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">General AI learning path</h2>
+          <p class="mt-3 text-[15px] leading-relaxed text-muted">The same five stages for every profession. Your readiness sets where you start and your weekly hours set how long each stage takes. Stages you already cover are checked.</p>
+        </div>
+        <ol class="space-y-3 lg:col-span-8">
+          <li *ngFor="let s of r.generalRoadmap; let i = index"
+              class="avoid-break grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-4 rounded-xl border p-5"
+              [ngClass]="s.status === 'CURRENT' ? 'border-accent bg-surface-2' : 'border-line'">
+            <span class="flex h-11 w-11 items-center justify-center rounded-full font-mono text-sm font-medium"
+                  [ngClass]="s.status === 'DONE' ? 'bg-line text-muted' : s.status === 'CURRENT' ? 'bg-accent text-on-accent' : 'border border-line text-muted'">
+              {{ s.status === 'DONE' ? '✓' : pad(i + 1) }}
             </span>
-            <p class="mt-4 text-slate-300">{{ r.headline }}</p>
-            <p class="mt-3 text-xs text-slate-500">
-              Task exposure for this profession {{ r.taskExposureScore }}
-              {{ r.personalAdjustment >= 0 ? '+' : '−' }} {{ abs(r.personalAdjustment) }} from your answers
-            </p>
-          </div>
-
-          <div class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-6 flex flex-col">
-            <p class="text-sm text-slate-400 mb-4 text-center">AI readiness</p>
-            <p class="text-5xl font-bold text-center text-slate-100">{{ r.readinessScore }}<span class="text-xl text-slate-500">/100</span></p>
-            <p class="text-center mt-2 text-emerald-400 font-medium">{{ r.readinessLevel }}</p>
-            <div class="mt-6 h-3 rounded-full bg-slate-800 overflow-hidden">
-              <div class="h-full bg-gradient-to-r from-sky-500 to-emerald-400 animate-progress" [style.width.%]="r.readinessScore"></div>
-            </div>
-            <p class="mt-6 text-sm text-slate-400">
-              At your weekly pace, the remaining stages of the general learning path take about
-              <strong class="text-slate-200">{{ r.totalWeeks }} weeks</strong>.
-            </p>
-          </div>
-        </div>
-
-        <div *ngIf="r.personalNote" class="rounded-3xl border border-emerald-500/30 bg-emerald-500/5 p-6">
-          <p class="text-sm font-medium text-emerald-400 mb-2">AI comment</p>
-          <p class="text-slate-200 leading-relaxed whitespace-pre-line">{{ r.personalNote }}</p>
-        </div>
-        <p *ngIf="!r.personalNote && personalNoteRequested" class="text-center text-sm text-slate-500">
-          The AI comment is not available right now. The rest of the result does not depend on it.
-        </p>
-
-        <!-- Tasks -->
-        <div class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-6">
-          <h2 class="text-xl font-semibold text-slate-100 mb-1">Which tasks AI can take on</h2>
-          <p class="text-sm text-slate-500 mb-5">Typical tasks in this profession, their share of working time, and estimated automation with today's tools.</p>
-          <div class="space-y-4">
-            <div *ngFor="let t of r.tasks">
-              <div class="flex justify-between gap-4 text-sm mb-1">
-                <span class="text-slate-300">{{ t.name }} <span class="text-slate-500">· {{ t.share }}% of time</span></span>
-                <span class="text-slate-400 shrink-0">{{ t.automationPercent }}%</span>
+            <div class="pt-1.5">
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <h3 class="text-xl font-bold leading-tight tracking-tight" [class.text-muted]="s.status === 'DONE'">{{ stageTitle(s.title) }}</h3>
+                <span *ngIf="s.status === 'CURRENT'" class="rounded-full bg-accent px-2.5 py-0.5 text-[12px] font-semibold text-on-accent">Start here</span>
+                <span *ngIf="s.status !== 'DONE'" class="font-mono text-[12px] text-faint">~{{ s.weeks }} wk</span>
               </div>
-              <div class="h-2 rounded-full bg-slate-800 overflow-hidden">
-                <div class="h-full rounded-full"
-                     [ngClass]="t.automationPercent >= 70 ? 'bg-rose-500/80' : t.automationPercent >= 40 ? 'bg-amber-500/80' : 'bg-emerald-500/80'"
-                     [style.width.%]="t.automationPercent"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-6">
-            <h3 class="font-semibold text-slate-100 mb-3">Your human edge</h3>
-            <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
-              <li *ngFor="let h of r.humanEdge">{{ h }}</li>
-            </ul>
-          </div>
-          <div class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-6">
-            <h3 class="font-semibold text-slate-100 mb-3">Tools to try</h3>
-            <div class="flex flex-wrap gap-2">
-              <span *ngFor="let tool of r.aiTools" class="rounded-full border border-slate-700 bg-slate-800/60 px-3 py-1 text-xs text-slate-300">{{ tool }}</span>
-            </div>
-          </div>
-          <div class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-6">
-            <h3 class="font-semibold text-slate-100 mb-3">Related roles to consider</h3>
-            <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
-              <li *ngFor="let p of r.pivotRoles">{{ p }}</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- General roadmap -->
-        <div class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-6">
-          <h2 class="text-xl font-semibold text-slate-100 mb-1">General AI learning path</h2>
-          <p class="text-sm text-slate-500 mb-6">The same five stages for every profession. Your readiness sets where you start and your weekly hours set how long each stage takes. Stages you already cover are checked.</p>
-          <ol class="relative border-l border-slate-800 ml-3 space-y-8">
-            <li *ngFor="let s of r.generalRoadmap" class="ml-6">
-              <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold"
-                    [ngClass]="s.status === 'DONE' ? 'bg-emerald-500 text-white' : s.status === 'CURRENT' ? 'bg-sky-500 text-white ring-4 ring-sky-500/20' : 'bg-slate-800 text-slate-400'">
-                {{ s.status === 'DONE' ? '✓' : '' }}
-              </span>
-              <div class="flex flex-wrap items-center gap-2 mb-1">
-                <h3 class="font-semibold" [ngClass]="s.status === 'DONE' ? 'text-slate-500' : 'text-slate-100'">{{ s.title }}</h3>
-                <span *ngIf="s.status === 'CURRENT'" class="rounded-full bg-sky-500/10 border border-sky-500/30 px-2 py-0.5 text-xs text-sky-300">Start here</span>
-                <span *ngIf="s.status !== 'DONE'" class="text-xs text-slate-500">~{{ s.weeks }} wk</span>
-              </div>
-              <p class="text-sm text-slate-400 mb-3">{{ s.goal }}</p>
+              <p class="mt-2 text-[15px] leading-relaxed text-muted">{{ s.goal }}</p>
               <ng-container *ngIf="s.status !== 'DONE' || expanded[s.id]">
-                <ul class="space-y-1.5 text-sm text-slate-300 list-disc list-inside mb-3">
-                  <li *ngFor="let i of s.items">{{ i }}</li>
+                <ul class="mt-4 space-y-1.5 text-[15px] leading-relaxed">
+                  <li *ngFor="let it of s.items" class="flex gap-3"><span class="text-faint">&ndash;</span><span>{{ it }}</span></li>
                 </ul>
-                <div class="flex flex-wrap gap-2">
+                <div class="mt-4 flex flex-wrap gap-2">
                   <a *ngFor="let res of s.resources" [href]="res.url" target="_blank" rel="noopener"
-                     class="rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-emerald-300 hover:bg-slate-800">
-                    {{ res.title }} ↗
+                     class="rounded-full border border-line px-3 py-1.5 text-[13px] text-accent transition-colors hover:border-accent">
+                    {{ res.title }} &nearr;
                   </a>
                 </div>
               </ng-container>
-              <button *ngIf="s.status === 'DONE' && !expanded[s.id]" (click)="expanded[s.id] = true" class="text-xs text-slate-500 hover:text-slate-300">
+              <button *ngIf="s.status === 'DONE' && !expanded[s.id]" (click)="expanded[s.id] = true" class="link mt-3 text-[13px] text-muted">
                 Show content
               </button>
-            </li>
-          </ol>
-        </div>
+            </div>
+          </li>
+        </ol>
+      </section>
 
-        <!-- Profession roadmap -->
-        <div class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-6">
-          <h2 class="text-xl font-semibold text-slate-100 mb-1">Starter plan: {{ r.professionName }}</h2>
-          <p class="text-sm text-slate-500 mb-6">The same steps for everyone in this profession, with a practice project in each phase.</p>
-          <div class="grid md:grid-cols-3 gap-4">
-            <div *ngFor="let ph of r.professionRoadmap; let i = index" class="rounded-2xl border border-slate-800 bg-slate-950/40 p-5 flex flex-col">
-              <p class="text-xs text-slate-500 mb-1">Phase {{ i + 1 }}</p>
-              <h3 class="font-semibold text-slate-100 mb-3">{{ ph.title }}</h3>
-              <ul class="space-y-1.5 text-sm text-slate-300 list-disc list-inside mb-4 flex-1">
-                <li *ngFor="let it of ph.items">{{ it }}</li>
-              </ul>
-              <div class="rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-3 text-sm text-slate-300">
-                <span class="text-emerald-400 font-medium">Project:</span> {{ ph.project }}
-              </div>
+      <!-- Profession roadmap -->
+      <section class="card p-6 sm:p-8">
+        <p class="font-mono text-sm text-accent">07</p>
+        <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Starter plan: {{ r.professionName }}</h2>
+        <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">The same steps for everyone in this profession, with a practice project in each phase.</p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <div *ngFor="let ph of r.professionRoadmap; let i = index" class="avoid-break flex flex-col rounded-xl border border-line p-5">
+            <p class="kicker">Phase {{ i + 1 }}</p>
+            <h3 class="mt-2 text-xl font-bold leading-tight tracking-tight">{{ ph.title }}</h3>
+            <ul class="mt-4 flex-1 space-y-1.5 text-[15px] leading-relaxed">
+              <li *ngFor="let it of ph.items" class="flex gap-3"><span class="text-faint">&ndash;</span><span>{{ it }}</span></li>
+            </ul>
+            <div class="mt-6 rounded-xl bg-surface-2 p-4">
+              <p class="kicker !text-accent">Project</p>
+              <p class="mt-2 text-[15px] leading-relaxed">{{ ph.project }}</p>
             </div>
           </div>
         </div>
+      </section>
 
-        <p class="text-xs text-slate-500 leading-relaxed">
-          How the score works: the share of your profession's typical tasks multiplied by their estimated automation
+      <footer class="grid gap-4 pt-4 lg:grid-cols-12">
+        <p class="kicker lg:col-span-3">Method</p>
+        <p class="text-[13px] leading-relaxed text-muted lg:col-span-9">
+          The share of your profession's typical tasks multiplied by their estimated automation
           with today's AI tools (in the spirit of the OpenAI/UPenn "GPTs are GPTs" and ILO exposure studies), adjusted by
           at most ±30 points from your answers. It is a catalog model, not a labor-market forecast. A high score means
           those tasks will change, not that the job disappears.
         </p>
+      </footer>
 
-        <div class="flex flex-col sm:flex-row gap-3 justify-center print:hidden">
-          <button (click)="restart()" class="rounded-xl border border-slate-700 bg-slate-800/50 px-6 py-3 text-slate-200 hover:bg-slate-800">
-            Take the test again
-          </button>
-          <button (click)="print()" class="rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-semibold text-white">
-            Print / save as PDF
-          </button>
-        </div>
-      </section>
-    </div>
+      <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-end print:hidden">
+        <button (click)="restart()" class="btn-ghost">Take the test again</button>
+        <button (click)="print()" class="btn-accent">Print / save as PDF</button>
+      </div>
+    </article>
   `
 })
 export class AiCheckPageComponent implements OnInit {
-  readonly circumference = 2 * Math.PI * 50;
+  readonly scale = SCALE;
 
   step: Step = 'profession';
   professions: ProfessionSummary[] = [];
@@ -360,6 +410,7 @@ export class AiCheckPageComponent implements OnInit {
     this.professionId = p.id;
     this.questionIndex = 0;
     this.step = 'questions';
+    window.scrollTo({ top: 0 });
   }
 
   isLastQuestion(): boolean {
@@ -435,6 +486,27 @@ export class AiCheckPageComponent implements OnInit {
 
   band(r: AssessmentResult) {
     return BAND_STYLE[r.band];
+  }
+
+  /** Bar colour for one task, same 40/70 cut-offs the old design used. */
+  taskColor(automationPercent: number): string {
+    if (automationPercent >= 70) {
+      return 'var(--band-very-high)';
+    }
+    return automationPercent >= 40 ? 'var(--band-moderate)' : 'var(--band-low)';
+  }
+
+  /** Stage titles in the content carry their own "2. " prefix; the big numeral already shows it. */
+  stageTitle(title: string): string {
+    return title.replace(/^\d+\.\s*/, '');
+  }
+
+  letter(i: number): string {
+    return String.fromCharCode(65 + i);
+  }
+
+  pad(n: number): string {
+    return n < 10 ? '0' + n : String(n);
   }
 
   abs(n: number): number {

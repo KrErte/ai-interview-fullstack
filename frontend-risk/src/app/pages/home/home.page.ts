@@ -2,89 +2,114 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+/** Bands as in AiReadinessScorer.band(): the scale on this page shows the real cut-offs. */
+const SCALE = [
+  { label: 'Low', range: '0–29', from: 0, to: 30, color: 'var(--band-low)' },
+  { label: 'Moderate', range: '30–49', from: 30, to: 50, color: 'var(--band-moderate)' },
+  { label: 'High', range: '50–69', from: 50, to: 70, color: 'var(--band-high)' },
+  { label: 'Very high', range: '70–100', from: 70, to: 100, color: 'var(--band-very-high)' }
+];
+
 @Component({
   selector: 'app-home-page',
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div class="min-h-[80vh] flex flex-col items-center justify-center text-center px-4">
-      <!-- Hero Section -->
-      <div class="max-w-3xl mx-auto">
-        <!-- Logo Animation -->
-        <div class="relative mb-8">
-          <div class="absolute inset-0 bg-emerald-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
-          <div class="relative inline-flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-2xl shadow-emerald-500/30">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-        </div>
-
-        <!-- Title -->
-        <h1 class="text-5xl sm:text-6xl font-bold text-slate-100 mb-6 leading-tight">
-          How exposed is<br/>
-          <span class="gradient-text">your work to AI?</span>
-        </h1>
-
-        <!-- Subtitle -->
-        <p class="text-xl text-slate-400 mb-12 max-w-xl mx-auto leading-relaxed">
-          Pick your profession and answer 11 questions. See which of your typical tasks
-          AI can already do, and get a learning path for what to do about it. No account needed.
+    <!-- Hero -->
+    <section class="grid gap-10 pb-14 pt-4 lg:grid-cols-12 lg:gap-8 lg:pb-20 lg:pt-10">
+      <div class="lg:col-span-8">
+        <p class="rise inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5" style="--i:0">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+          <span class="kicker !text-fg">Free &middot; 11 questions &middot; No account</span>
         </p>
+        <h1 class="display rise mt-7 text-[clamp(3rem,8vw,9.5rem)]" style="--i:1">
+          How exposed is your work to <span class="text-accent">AI?</span>
+        </h1>
+      </div>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            routerLink="/ai-test"
-            class="group flex items-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 px-8 py-4 font-semibold text-white shadow-xl shadow-emerald-500/25 transition-all hover:shadow-emerald-500/40 hover:scale-[1.02]"
-          >
+      <div class="flex flex-col justify-end lg:col-span-4">
+        <p class="rise max-w-md text-[18px] leading-relaxed text-muted" style="--i:2">
+          Pick your profession and answer 11 questions. See which of your typical tasks AI can already do,
+          and get a learning path for what to do about it.
+        </p>
+        <div class="rise mt-8" style="--i:3">
+          <a routerLink="/ai-test" class="btn-accent w-full sm:w-auto">
             Take the test
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
+    </section>
 
-      <!-- Features Grid -->
-      <div class="grid md:grid-cols-3 gap-6 mt-20 max-w-4xl mx-auto w-full">
-        <div class="rounded-2xl border border-slate-800/50 bg-slate-900/40 p-6 text-left card-hover">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-100 mb-2">Replaceability score</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            A 0–100 estimate of how much of your profession's typical work today's AI tools can take over, adjusted by your answers.
-          </p>
-        </div>
+    <!-- The scale: uses the real band thresholds -->
+    <section class="card rise p-6 sm:p-8" style="--i:4" aria-labelledby="scale-title">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 id="scale-title" class="kicker !text-fg">The replaceability scale</h2>
+        <p class="kicker">0 = nothing automatable &middot; 100 = all of it</p>
+      </div>
 
-        <div class="rounded-2xl border border-slate-800/50 bg-slate-900/40 p-6 text-left card-hover">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-100 mb-2">Task breakdown</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            See each typical task in your profession, its share of the working week, and how automatable it is.
-          </p>
-        </div>
+      <div class="mt-6 flex h-14 gap-1 sm:h-20">
+        <div *ngFor="let b of scale; let i = index"
+             class="grow-x h-full basis-0 rounded-lg"
+             [style.--i]="i"
+             [style.flex-grow]="b.to - b.from"
+             [style.background]="b.color"></div>
+      </div>
 
-        <div class="rounded-2xl border border-slate-800/50 bg-slate-900/40 p-6 text-left card-hover">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-100 mb-2">Learning path</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            A general AI learning path that starts where you are, plus a starter plan with practice projects for your profession.
-          </p>
+      <div class="mt-3 flex gap-1">
+        <div *ngFor="let b of scale" [style.flex-grow]="b.to - b.from" class="min-w-0 basis-0">
+          <p class="truncate text-[15px] font-semibold sm:text-lg">{{ b.label }}</p>
+          <p class="num font-mono text-[11px] text-faint">{{ b.range }}</p>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- What you get -->
+    <section class="mt-6 grid gap-6 sm:grid-cols-3">
+      <article *ngFor="let f of features; let i = index" class="card rise p-6 sm:p-7" [style.--i]="5 + i">
+        <p class="font-mono text-sm text-accent">{{ '0' + (i + 1) }}</p>
+        <h3 class="mt-4 text-2xl font-bold tracking-tight">{{ f.title }}</h3>
+        <p class="mt-3 text-[15px] leading-relaxed text-muted">{{ f.body }}</p>
+      </article>
+    </section>
+
+    <!-- Method + closing CTA -->
+    <section class="mt-20 grid gap-8 border-t border-line pt-10 lg:mt-28 lg:grid-cols-12">
+      <p class="kicker lg:col-span-3">How the score works</p>
+      <div class="lg:col-span-6">
+        <p class="text-[clamp(1.35rem,2.4vw,1.85rem)] font-semibold leading-snug tracking-tight">
+          The share of your profession's typical tasks, multiplied by how much of each today's AI tools can do,
+          then adjusted by at most <span class="text-accent">&plusmn;30 points</span> from your answers.
+        </p>
+        <p class="mt-4 text-[15px] leading-relaxed text-muted">
+          In the spirit of the OpenAI/UPenn &ldquo;GPTs are GPTs&rdquo; and ILO exposure studies. A high score means those
+          tasks will change, not that the job disappears.
+        </p>
+      </div>
+      <div class="lg:col-span-3 lg:text-right">
+        <a routerLink="/ai-test" class="btn-ghost w-full sm:w-auto">
+          Start the test
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </section>
   `
 })
-export class HomePageComponent {}
+export class HomePageComponent {
+  readonly scale = SCALE;
+
+  readonly features = [
+    {
+      title: 'Replaceability score',
+      body: "A 0–100 estimate of how much of your profession's typical work today's AI tools can take over, adjusted by your answers."
+    },
+    {
+      title: 'Task breakdown',
+      body: 'Each typical task in your profession, its share of the working week, and how automatable it is.'
+    },
+    {
+      title: 'Learning path',
+      body: 'A general AI learning path that starts where you are, plus a starter plan with practice projects for your profession.'
+    }
+  ];
+}
