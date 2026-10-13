@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{jobs/layout :: head(title='Job not found - Futureproof', description='This job page does not exist.', canonical='/jobs')}"></head>
+<body>
+<header th:replace="~{jobs/layout :: header}"></header>
+<main>
+  <div class="wrap">
+    <p class="kicker">404</p>
+    <h1>We could not find that job.</h1>
+    <p class="lead">Browse all occupations or search for yours in the test.</p>
+    <a class="btn" href="/jobs">All jobs <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</main>
+<footer th:replace="~{jobs/layout :: footer(onet=false)}"></footer>
+</body>
+</html>

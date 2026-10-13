@@ -2,6 +2,7 @@ import { Component, DestroyRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, of, switchMap } from 'rxjs';
 
 import { AiReadinessService } from '../../services/ai-readiness.service';
@@ -425,6 +426,7 @@ export class AiCheckPageComponent implements OnInit {
   constructor(
     private api: AiReadinessService,
     private analytics: AnalyticsService,
+    private route: ActivatedRoute,
     private destroyRef: DestroyRef
   ) {}
 
@@ -443,6 +445,7 @@ export class AiCheckPageComponent implements OnInit {
         this.questions = questions;
         this.categories = categories;
         this.loadingCatalog = false;
+        this.preselectFromLink();
       },
       error: () => {
         this.loadingCatalog = false;
@@ -506,8 +509,20 @@ export class AiCheckPageComponent implements OnInit {
     return this.selectedProfession?.name ?? '';
   }
 
-  selectProfession(p: ProfessionSummary): void {
-    this.analytics.track('test-start', { profession: p.id });
+  /** /ai-test?profession=<id> (the button on a /jobs page) starts the test with that profession. */
+  private preselectFromLink(): void {
+    const id = this.route.snapshot.queryParamMap.get('profession');
+    if (!id) {
+      return;
+    }
+    this.api.profession(id).subscribe({
+      next: p => this.selectProfession(p, 'job-page'),
+      error: () => { /* unknown id: stay on the picker */ }
+    });
+  }
+
+  selectProfession(p: ProfessionSummary, source: 'picker' | 'job-page' = 'picker'): void {
+    this.analytics.track('test-start', { profession: p.id, source });
     this.selectedProfession = p;
     this.professionId = p.id;
     this.questionIndex = 0;

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:with="p=${page.profession()}, r=${page.result()}, score=${page.result().taskExposureScore()}">
+<head th:replace="~{jobs/layout :: head(title=${title}, description=${description}, canonical=${canonical})}"></head>
+<body>
+<header th:replace="~{jobs/layout :: header}"></header>
+
+<main>
+  <div class="wrap">
+    <p class="crumbs"><a href="/jobs">Jobs</a><span th:if="${page.group()}" th:text="' › ' + ${page.group()}"></span></p>
+    <p class="kicker" style="margin-top:20px">AI exposure report</p>
+    <h1 th:text="'Will AI replace ' + ${p.name()} + '?'">Will AI replace this job?</h1>
+    <p class="lead" th:text="${r.headline()}">Headline</p>
+
+    <div class="grid grid-2">
+      <section class="card">
+        <p class="kicker">Task exposure to today's AI</p>
+        <div style="margin-top:16px"><span class="score" th:style="'color:' + ${band.color}" th:text="${score}">50</span><span class="of">/100</span></div>
+        <div class="scale" aria-hidden="true">
+          <span style="flex:30;background:#3ddc97"></span><span style="flex:20;background:#ffd23f"></span>
+          <span style="flex:20;background:#ff8c42"></span><span style="flex:30;background:#ff4d6d"></span>
+          <span class="marker" th:style="'left:' + ${score} + '%'"></span>
+        </div>
+        <div class="ticks" aria-hidden="true"><span style="left:0;transform:none">0</span><span style="left:30%">30</span><span style="left:50%">50</span><span style="left:70%">70</span><span style="right:0;transform:none">100</span></div>
+        <p style="margin-top:18px"><span class="pill" th:style="'color:' + ${band.color} + ';border-color:' + ${band.color}" th:text="${band.label} + ' exposure'">Moderate exposure</span></p>
+        <p class="muted" style="font-size:15px">This is the occupation's typical task mix. Your own score can be up to 30 points higher or
+          lower depending on how you work: routine share, people contact, judgment and how much you already use AI.</p>
+        <a class="btn" th:href="@{/ai-test(profession=${p.id()})}" data-umami-event="seo-cta"
+           th:attr="data-umami-event-profession=${p.id()}">Get your personal score <span aria-hidden="true">&rarr;</span></a>
+      </section>
+
+      <section class="card">
+        <h2 th:text="'Will AI replace ' + ${p.name()} + '?'">Will AI replace this job?</h2>
+        <p class="muted" style="font-size:15px">
+          Not entirely. Today's AI tools can take on about [[${score}]]% of the typical work in this occupation, mostly:
+          [[${#strings.toLowerCase(page.topTasks()[0].name())}]]
+          <th:block th:if="${!p.humanEdge().isEmpty()}">The parts that stay human include: [[${#strings.listJoin(p.humanEdge(), '; ')}]].</th:block>
+        </p>
+        <p class="muted" style="font-size:15px">People who learn to use AI for the automatable parts keep the edge. The 3-phase plan below shows where to start.</p>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Which tasks AI can take on</h2>
+      <p class="muted" style="font-size:15px;margin-top:0">The largest tasks in this occupation, their share of the working week, and how much of each today's AI tools can do.</p>
+      <div class="task kicker" style="padding-bottom:8px"><span>Task</span><span class="share num">Of week</span><span>Automatable</span><span></span></div>
+      <div class="task" th:each="t : ${page.topTasks()}">
+        <span><span th:text="${t.name()}">Task</span><span class="observed" th:if="${t.observedUse()}" title="People already use AI for this task at work (Anthropic Economic Index, 2025)">AI already used</span></span>
+        <span class="share num muted" th:text="${t.share()} + '%'">20%</span>
+        <span class="bar"><i th:style="'width:' + ${t.automationPercent()} + '%;background:' + (${t.automationPercent() >= 70} ? '#ff4d6d' : (${t.automationPercent() >= 40} ? '#ffd23f' : '#3ddc97'))"></i></span>
+        <span class="num" th:text="${t.automationPercent()} + '%'">50%</span>
+      </div>
+      <p class="muted" style="font-size:14px" th:if="${page.moreTasks() > 0}"
+         th:text="'+ ' + ${page.moreTasks()} + ' more tasks (' + ${page.moreShare()} + '% of the week) in the full test.'"></p>
+    </section>
+
+    <div class="grid grid-3">
+      <section class="card">
+        <h3>Your human edge</h3>
+        <ul class="dots"><li th:each="h : ${p.humanEdge()}" th:text="${h}">Edge</li></ul>
+      </section>
+      <section class="card">
+        <h3>AI tools to try</h3>
+        <span class="chip" th:each="tool : ${p.aiTools()}" th:text="${tool}">Tool</span>
+      </section>
+      <section class="card">
+        <h3>Related roles</h3>
+        <ul class="dots">
+          <li th:each="rel : ${page.related()}">
+            <a th:if="${rel.slug()}" th:href="@{/jobs/{s}(s=${rel.slug()})}" th:text="${rel.name()}">Role</a>
+            <span th:unless="${rel.slug()}" th:text="${rel.name()}">Role</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>A 3-phase AI learning plan</h2>
+      <div class="grid grid-3">
+        <div class="phase" th:each="ph, s : ${p.roadmap()}">
+          <p class="kicker" th:text="'Phase ' + ${s.count}">Phase 1</p>
+          <h3 th:text="${ph.title()}">Title</h3>
+          <ul class="dots"><li th:each="it : ${ph.items()}" th:text="${it}">Item</li></ul>
+          <div class="project"><p class="kicker" style="color:var(--accent);margin:0 0 6px">Project</p><span th:text="${ph.project()}">Project</span></div>
+        </div>
+      </div>
+      <a class="btn" th:href="@{/ai-test(profession=${p.id()})}" data-umami-event="seo-cta"
+         th:attr="data-umami-event-profession=${p.id()}">Take the free 11-question test <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </div>
+</main>
+
+<footer th:replace="~{jobs/layout :: footer(onet=${p.onetCode() != null})}"></footer>
+</body>
+</html>

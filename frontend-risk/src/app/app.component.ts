@@ -24,7 +24,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
           <p class="flex items-center gap-2 font-extrabold tracking-tight">
             <span class="h-2 w-2 rounded-full bg-accent"></span>Futureproof
           </p>
-          <p class="kicker">AI replaceability test &middot; a catalog model, not a forecast</p>
+          <p class="kicker">
+            <a href="/jobs" class="hover:text-fg">All jobs</a> &middot; AI replaceability test &middot; a catalog model, not a forecast
+          </p>
         </div>
       </footer>
     </div>

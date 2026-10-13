@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -130,6 +131,11 @@ public class AiReadinessService {
     private static boolean allWordsMatch(List<String> queryWords, String text) {
         List<String> textWords = words(text);
         return queryWords.stream().allMatch(q -> textWords.stream().anyMatch(w -> w.startsWith(q)));
+    }
+
+    /** One profession by id (e.g. to preselect it from a job page); empty for unknown or hidden ids. */
+    public Optional<ProfessionSummary> summary(String id) {
+        return catalog.profession(id).map(this::summary);
     }
 
     private ProfessionSummary summary(Profession p) {

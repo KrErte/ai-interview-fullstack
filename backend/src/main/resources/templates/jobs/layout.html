@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Shared fragments for the public job pages (JobPageController). Same dark look as the app, no JS framework. -->
+<head th:fragment="head(title, description, canonical)">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="${title}">Futureproof</title>
+  <meta name="description" th:content="${description}">
+  <link rel="canonical" th:href="${canonical}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Futureproof">
+  <meta property="og:title" th:content="${title}">
+  <meta property="og:description" th:content="${description}">
+  <meta property="og:url" th:content="${canonical}">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script defer src="https://umami.62-171-153-133.sslip.io/script.js"
+          data-website-id="0ec85930-52d8-4018-a33c-d5671614974f"
+          data-domains="62-171-153-133.sslip.io"></script>
+  <style>
+    :root { --canvas:#0b0d12; --surface:#13161e; --surface-2:#1a1e28; --line:#252a35; --fg:#eef0f3; --muted:#9aa2b1;
+            --faint:#626a7a; --accent:#c6f432; --on-accent:#0b0d12; color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--canvas); color: var(--fg); }
+    body { font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    header.site { border-bottom: 1px solid var(--line); }
+    header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; padding-bottom: 16px; }
+    .logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; letter-spacing: -0.02em; text-decoration: none; font-size: 19px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); display: inline-block; }
+    nav.site a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: 14px; }
+    nav.site a:hover { color: var(--fg); }
+    main { padding: 40px 0 64px; }
+    .kicker { font: 500 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .crumbs { font-size: 13px; color: var(--faint); }
+    .crumbs a { color: var(--muted); text-decoration: none; }
+    h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.02; letter-spacing: -0.035em; margin: 14px 0 0; font-weight: 800; }
+    h2 { font-size: 1.6rem; letter-spacing: -0.02em; margin: 0 0 12px; line-height: 1.2; }
+    h3 { font-size: 1.15rem; margin: 0 0 8px; }
+    .lead { color: var(--muted); font-size: 18px; max-width: 760px; margin: 16px 0 0; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-top: 20px; }
+    .grid { display: grid; gap: 20px; }
+    @media (min-width: 900px) { .grid-2 { grid-template-columns: 7fr 5fr; } .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .score { font-weight: 800; font-size: clamp(4.5rem, 12vw, 7rem); line-height: .85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+    .of { font: 18px ui-monospace, monospace; color: var(--faint); margin-left: 8px; }
+    .scale { position: relative; display: flex; gap: 4px; height: 10px; margin: 28px 0 8px; }
+    .scale span { border-radius: 99px; }
+    .marker { position: absolute; top: -8px; width: 4px; height: 26px; border-radius: 4px; background: var(--fg); transform: translateX(-50%); box-shadow: 0 0 0 4px var(--surface); }
+    .ticks { position: relative; height: 16px; font: 11px ui-monospace, monospace; color: var(--faint); }
+    .ticks span { position: absolute; transform: translateX(-50%); }
+    .pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid; border-radius: 99px; padding: 3px 12px; font: 500 11px ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--on-accent); font-weight: 700; text-decoration: none; padding: 14px 24px; border-radius: 99px; margin-top: 20px; }
+    .btn:hover { background: #d4ff52; }
+    .task { display: grid; grid-template-columns: minmax(0,1fr) 4.5rem 9rem 3rem; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+    .task:last-child { border-bottom: 0; }
+    .bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+    .bar i { display: block; height: 100%; border-radius: 99px; }
+    .num { font: 13px ui-monospace, monospace; text-align: right; font-variant-numeric: tabular-nums; }
+    .muted { color: var(--muted); }
+    .observed { margin-left: 8px; border: 1px solid rgba(198,244,50,.45); color: var(--accent); border-radius: 99px; padding: 1px 8px; font: 10px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
+    @media (max-width: 640px) { .task { grid-template-columns: minmax(0,1fr) 3rem; } .task .share { display: none; } .task .bar { grid-column: 1 / -1; order: 3; } }
+    ul.dots { list-style: none; padding: 0; margin: 0; }
+    ul.dots li { position: relative; padding-left: 18px; margin: 10px 0; font-size: 15px; }
+    ul.dots li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    .chip { display: inline-block; border: 1px solid var(--line); background: var(--surface-2); border-radius: 99px; padding: 5px 12px; margin: 0 6px 8px 0; font-size: 13px; }
+    .phase { border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+    .project { background: var(--surface-2); border-radius: 12px; padding: 14px; margin-top: 14px; font-size: 15px; }
+    .jobs-list { columns: 1; column-gap: 28px; }
+    @media (min-width: 700px) { .jobs-list { columns: 2; } }
+    @media (min-width: 1000px) { .jobs-list { columns: 3; } }
+    .jobs-list a { display: block; padding: 5px 0; color: var(--fg); text-decoration: none; break-inside: avoid; font-size: 15px; }
+    .jobs-list a:hover { color: var(--accent); }
+    footer.site { border-top: 1px solid var(--line); padding: 28px 0 40px; font-size: 13px; color: var(--muted); }
+    footer.site p { margin: 6px 0; }
+  </style>
+</head>
+<body>
+
+<header th:fragment="header" class="site">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>Futureproof</a>
+    <nav class="site">
+      <a href="/jobs">All jobs</a>
+      <a href="/ai-test">Take the test</a>
+    </nav>
+  </div>
+</header>
+
+<footer th:fragment="footer(onet)" class="site">
+  <div class="wrap">
+    <p><strong>How the score works:</strong> the share of an occupation's typical tasks multiplied by how much of each today's
+      AI tools can do. It is a catalog model, not a labor-market forecast. A high score means those tasks will change, not that
+      the job disappears. Your personal score adds up to &plusmn;30 points from 11 questions about how you work.</p>
+    <p th:if="${onet}">Sources: occupation and task data from O*NET 29.3, U.S. Department of Labor / ETA, CC BY 4.0. Task time
+      shares and observed AI use from the Anthropic Economic Index, CC BY. Human exposure labels from Eloundou et al. (2024),
+      <em>Science</em>. Automation estimates combine a Claude rating with those labels.</p>
+    <p><a href="/">Futureproof</a> &middot; <a href="/jobs">All jobs</a> &middot; <a href="/ai-test">Take the test</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

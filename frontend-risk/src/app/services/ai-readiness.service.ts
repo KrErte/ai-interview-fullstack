@@ -33,6 +33,11 @@ export class AiReadinessService {
     return this.http.get<ProfessionSummary[]>(`${this.baseUrl}/professions/search`, { params });
   }
 
+  /** One profession by id, e.g. to preselect it when arriving from a /jobs page. 404 for unknown ids. */
+  profession(id: string): Observable<ProfessionSummary> {
+    return this.http.get<ProfessionSummary>(`${this.baseUrl}/professions/${encodeURIComponent(id)}`);
+  }
+
   features(): Observable<Features> {
     return this.http.get<Features>(`${this.baseUrl}/features`);
   }

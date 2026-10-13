@@ -81,6 +81,16 @@ class AiReadinessSearchTest {
     }
 
     @Test
+    void summaryOfOneProfession() {
+        ProfessionSummary cook = SERVICE.summary("onet-35-2014-00").orElseThrow();
+        assertEquals("Cooks, Restaurant", cook.name());
+        assertFalse(cook.featured());
+        assertTrue(SERVICE.summary("accountant").orElseThrow().featured());
+        assertTrue(SERVICE.summary("onet-15-1252-00").isEmpty(), "hidden O*NET duplicate");
+        assertTrue(SERVICE.summary("nope").isEmpty());
+    }
+
+    @Test
     void categoriesHaveCounts() {
         List<AssessmentModels.CategorySummary> categories = SERVICE.categories();
         assertEquals(22, categories.size());
