@@ -25,8 +25,13 @@ def _rows(path):
         return list(csv.DictReader(f))
 
 
-def build_catalog(out_dir, templates, hidden_codes):
-    """Professions for every O*NET occupation not in hidden_codes, sorted by name."""
+def build_catalog(out_dir, templates, hidden_codes, projects=None):
+    """Professions for every O*NET occupation not in hidden_codes, sorted by name.
+
+    projects: {code: [phase 1, 2, 3 sentence]} from write_projects.py; replaces the template's
+    project per phase for that occupation (spec O2). Others keep the template's project.
+    """
+    projects = projects or {}
     out_dir = Path(out_dir)
     occupations = _rows(out_dir / 'onet_occupations.csv')
     titles = {o['onetsoc_code']: o['title'] for o in occupations}
@@ -57,7 +62,8 @@ def build_catalog(out_dir, templates, hidden_codes):
             'humanEdge': [t['task_statement'] for t in edge[:3]],
             'aiTools': template['aiTools'],
             'pivotRoles': [titles[c] for c in occ['related_codes'].split(';') if c in titles][:3],
-            'roadmap': template['roadmap'],
+            'roadmap': [{**phase, 'project': projects[code][i]} if code in projects else phase
+                        for i, phase in enumerate(template['roadmap'])],
             'alternateTitles': alternates.get(code, []),
         })
     return sorted(catalog, key=lambda p: p['name'])
@@ -99,7 +105,18 @@ def _write_json(path, data):
     print(f'{path.name}: {len(data)} entries ({path.stat().st_size:,} bytes)')
 
 
+def projects_from(path):
+    """{code: [phase 1, 2, 3 project]} from write_projects.py output; empty when it does not exist."""
+    projects = {}
+    if Path(path).exists():
+        for r in _rows(path):
+            projects.setdefault(r['onetsoc_code'], ['', '', ''])[int(r['phase']) - 1] = r['project']
+    return {code: p for code, p in projects.items() if all(p)}
+
+
 if __name__ == '__main__':
     templates = json.loads(TEMPLATES.read_text(encoding='utf-8'))
-    _write_json(TARGET, build_catalog(OUT, templates, hidden_codes_from(PROFESSIONS)))
+    projects = projects_from(OUT / 'projects_llm.csv')
+    print(f'occupation-specific projects: {len(projects)}')
+    _write_json(TARGET, build_catalog(OUT, templates, hidden_codes_from(PROFESSIONS), projects))
     _write_json(ALIASES, build_aliases(OUT, curated_codes_from(PROFESSIONS)))
