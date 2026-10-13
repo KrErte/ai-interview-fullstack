@@ -35,6 +35,14 @@ class AiReadinessCatalogTest {
     }
 
     @Test
+    void handWrittenProfessionsCarryTheTitlesOfTheOccupationsTheyHide() {
+        Profession healthcare = CATALOG.profession("healthcare").orElseThrow();
+        assertTrue(healthcare.alternateTitles().contains("Registered Nurses"), healthcare.alternateTitles().toString());
+        assertTrue(healthcare.alternateTitles().contains("Family Medicine Physicians"));
+        assertTrue(CATALOG.profession("other").orElseThrow().alternateTitles().isEmpty());
+    }
+
+    @Test
     void onetProfessionIsAvailable() {
         Profession cook = CATALOG.profession("onet-35-2014-00").orElseThrow();
         assertEquals("Cooks, Restaurant", cook.name());

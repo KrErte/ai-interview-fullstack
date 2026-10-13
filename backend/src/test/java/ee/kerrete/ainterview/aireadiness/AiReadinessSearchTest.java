@@ -54,6 +54,15 @@ class AiReadinessSearchTest {
     }
 
     @Test
+    void namesOfHiddenOnetOccupationsFindTheHandWrittenProfession() {
+        // these O*NET occupations are hidden behind hand-written professions (their onetCodes)
+        assertEquals("healthcare", SERVICE.search("registered nurse", 5).get(0).id());
+        assertEquals("software-developer", SERVICE.search("software engineer", 5).get(0).id());
+        assertEquals("data-analyst", SERVICE.search("data scientist", 5).get(0).id());
+        assertEquals("healthcare", SERVICE.search("family doctor", 5).get(0).id());
+    }
+
+    @Test
     void caseInsensitive() {
         assertEquals(ids(SERVICE.search("nurse", 20)), ids(SERVICE.search("NURSE", 20)));
         assertFalse(SERVICE.search("nurse", 20).isEmpty());
