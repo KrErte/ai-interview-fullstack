@@ -9,10 +9,13 @@
 #   cd /opt/futureproof && cat > .env <<EOF
 #   DB_PASSWORD=$(openssl rand -hex 24)
 #   JWT_SECRET=$(openssl rand -hex 48)
-#   FRONTEND_PORT=8100
-#   FRONTEND_BASE_URL=http://62.171.153.133:8100
+#   FRONTEND_PORT=127.0.0.1:8100
+#   FRONTEND_BASE_URL=https://62-171-153-133.sslip.io
 #   EOF
 #   chmod 600 .env
+#
+# HTTPS: a shared Caddy (ops/caddy, installed at /opt/caddy) owns ports 80/443 and proxies
+# https://62-171-153-133.sslip.io to 127.0.0.1:8100; lumen moved to 127.0.0.1:8081 behind it.
 set -euo pipefail
 
 HOST="${1:-62.171.153.133}"

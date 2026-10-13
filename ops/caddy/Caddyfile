@@ -1,0 +1,13 @@
+# Shared reverse proxy for 62.171.153.133 (ports 80/443), installed at /opt/caddy on the server.
+# Futureproof gets automatic HTTPS (Let's Encrypt); every other host name, including the bare IP,
+# goes to lumen over HTTP. To add a real domain later, add it next to the sslip.io name below and
+# point its DNS A record to 62.171.153.133.
+
+62-171-153-133.sslip.io {
+	encode gzip
+	reverse_proxy 127.0.0.1:8100
+}
+
+:80 {
+	reverse_proxy 127.0.0.1:8081
+}

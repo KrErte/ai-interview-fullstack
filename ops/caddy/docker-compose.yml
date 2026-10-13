@@ -1,0 +1,19 @@
+# Shared reverse proxy (Caddy) for the VPS, installed at /opt/caddy.
+# host network, so it can reach apps bound to 127.0.0.1 (Futureproof :8100, lumen :8081).
+#
+#   cd /opt/caddy && docker compose up -d
+#   docker exec shared-caddy caddy reload --config /etc/caddy/Caddyfile   # after editing Caddyfile
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: shared-caddy
+    network_mode: host
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:

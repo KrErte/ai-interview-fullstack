@@ -1,0 +1,41 @@
+# VPS 62.171.153.133: how Futureproof runs
+
+A shared Ubuntu 24.04 server. Other apps also run on it: **lumen** (`/opt/lumen`) and **inventory-service** (`/root/inventory-service-node`, web on port 8090).
+
+## Layout
+
+| What | Where | Ports |
+|---|---|---|
+| Shared reverse proxy (Caddy) | `/opt/caddy` (`ops/caddy`) | 80, 443 (public) |
+| Futureproof (compose project `futureproof`) | `/opt/futureproof` (this repo) | frontend `127.0.0.1:8100`; backend and Postgres internal only |
+| lumen | `/opt/lumen` | `127.0.0.1:8081` (moved from `0.0.0.0:80`; backup of its compose file next to it) |
+| inventory-service | `/root/inventory-service-node` | 8090 (public), API `127.0.0.1:8080` |
+
+**Caddy routing:**
+- `https://62-171-153-133.sslip.io` → Futureproof. The Let's Encrypt certificate is renewed by Caddy, and http redirects to https.
+- Every other host name, including the bare IP → lumen over http.
+
+**Adding a real domain:**
+1. Point its DNS A record to 62.171.153.133.
+2. Add the domain to `ops/caddy/Caddyfile`.
+3. Copy the file to `/opt/caddy/` and run `docker exec shared-caddy caddy reload --config /etc/caddy/Caddyfile`.
+4. Set `FRONTEND_BASE_URL` in `/opt/futureproof/.env`.
+
+## Deploy
+
+```bash
+./deploy-vps.sh        # pulls main on the server and rebuilds the futureproof project
+```
+
+Secrets are only in `/opt/futureproof/.env` (mode 600): `DB_PASSWORD` and `JWT_SECRET` (generated on the server), plus `FRONTEND_PORT` and `FRONTEND_BASE_URL`. Optionally add `OPENAI_API_KEY`; the AI comment option then appears in the test.
+
+## Security
+
+- **SSH is key-only:** `/etc/ssh/sshd_config.d/00-futureproof-hardening.conf` sets `PasswordAuthentication no` and `PermitRootLogin prohibit-password`. Add more keys to `/root/.ssh/authorized_keys`. If no key works, use the provider's VNC console with the root password.
+- **Firewall (ufw):** incoming is denied except 22, 80, 443 and 8090. Ports that Docker publishes bypass ufw, so bind internal services to `127.0.0.1`, as Futureproof and lumen do.
+
+## Backups
+
+- **Nightly:** `/usr/local/bin/futureproof-backup.sh` (`ops/backup`) runs at 03:15 from `/etc/cron.d/futureproof-backup`. It writes `pg_dump`s to `/var/backups/futureproof` and keeps 14 days. The log is `/var/log/futureproof-backup.log`.
+- **Restore:** `gunzip -c FILE | docker exec -i futureproof-postgres-1 psql -U ai -d ai`. This was tested on 2026-10-13: all 11 tables restored into a throwaway database.
+- **Off-site:** the dumps stay on this server. Copy them off it for real disaster recovery.
