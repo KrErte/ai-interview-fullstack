@@ -96,7 +96,24 @@ python tools/onet-import/catalog.py
 - **Hidden duplicates:** occupations listed in a hand-written profession's `onetCodes` are left out (24 codes), so "Software developer" exists only once.
 - **`humanEdge`:** the 3 tasks with the largest `share × (1 − automation)`.
 - **`pivotRoles`:** the first 3 O\*NET "Primary-Short" related occupations.
-- **`aiTools` and `roadmap`:** from `templates.json`, one template per SOC major group (22). Per-occupation project sentences (spec O2) are a later step that needs an API key.
+- **`aiTools` and `roadmap`:** from `templates.json`, one template per SOC major group (22). Each phase's `project` is replaced by the occupation-specific sentence from `out/projects_llm.csv` (see below).
+
+## Occupation-specific projects (spec O2)
+
+`write_projects.py` asks Claude for one practice project per roadmap phase, based on the occupation's 5 largest tasks and the group template's phase. Each answer must have exactly one sentence per phase, 1–220 characters, or it is rejected.
+
+```bash
+python tools/onet-import/write_projects.py submit && python tools/onet-import/write_projects.py collect   # Batches API, half price, up to 24 h
+python tools/onet-import/write_projects.py direct --model claude-sonnet-5 --max-usd 4                    # parallel, list price, resumable, stops at the budget
+python tools/onet-import/catalog.py                                                                       # picks up out/projects_llm.csv
+```
+
+**What was run on 2026-10-13:**
+- An Opus 5 batch sat for about 95 minutes with nothing processed and was then cancelled. While it was cancelling, 898 of 899 requests still completed and were billed (about $3.6).
+- A direct run with Sonnet 5 wrote all 899 occupations in 6 minutes for $3.49.
+- `out/projects_llm.csv` combines them: Opus 5 for 853 occupations, and Sonnet 5 for the 46 whose Opus answer was over the 220-character limit or cancelled. The `model` column records which one wrote each sentence.
+
+Lesson: cancelling a batch does not stop requests that are already being processed. Check `request_counts` after the cancel completes.
 
 The backend loads both files. `GET /api/ai-readiness/professions` still returns only the hand-written professions. `GET /api/ai-readiness/professions/search?q=&limit=` searches all of them by name and alternate title.
 

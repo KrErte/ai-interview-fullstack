@@ -85,6 +85,16 @@ class BuildCatalogTest(unittest.TestCase):
     def test_hidden_codes_excluded(self):
         self.assertNotIn('15-1253.00', self.by_code)
 
+    def test_llm_projects_replace_template_projects_per_occupation(self):
+        catalog = build_catalog(self.out, self.templates, hidden_codes=set(),
+                                projects={'35-2014.00': ['Cook 1.', 'Cook 2.', 'Cook 3.']})
+        by_code = {p['onetCode']: p for p in catalog}
+        self.assertEqual([ph['project'] for ph in by_code['35-2014.00']['roadmap']], ['Cook 1.', 'Cook 2.', 'Cook 3.'])
+        self.assertEqual(by_code['35-2014.00']['roadmap'][0]['title'], 'Food phase 1')
+        # occupations without written projects keep the template's, and the template itself is not modified
+        self.assertEqual(by_code['15-1252.00']['roadmap'][0]['project'], 'IT project 1')
+        self.assertEqual(self.templates['35']['roadmap'][0]['project'], 'Food project 1')
+
     def test_aliases_carry_titles_of_hidden_occupations(self):
         aliases = build_aliases(self.out, {'software-developer': ['15-1252.00', '15-1253.00'], 'other': []})
         self.assertEqual(aliases, {'software-developer': ['Software Developers', 'Coder', 'Software Engineer',
