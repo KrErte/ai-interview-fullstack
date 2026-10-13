@@ -1,0 +1,42 @@
+# Umami (cookieless, self-hosted web analytics) for Futureproof, installed at /opt/umami on the VPS.
+# Served by the shared Caddy at https://umami.62-171-153-133.sslip.io -> 127.0.0.1:3100.
+#
+#   cd /opt/umami && docker compose up -d
+#
+# .env next to this file (mode 600, generated on the server): UMAMI_DB_PASSWORD, APP_SECRET.
+# The admin password is in /opt/umami/admin-password (mode 600), not in this repo.
+services:
+  umami:
+    # pinned by digest; bump deliberately after reading the Umami release notes
+    image: ghcr.io/umami-software/umami@sha256:85909afc45bdcda1917394594a087421fdbb05610fded0fa9f6fb861abb2f367
+    container_name: umami
+    ports:
+      - "127.0.0.1:3100:3000"
+    environment:
+      DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:?set in .env}@umami-db:5432/umami
+      APP_SECRET: ${APP_SECRET:?set in .env}
+      # no tracking of Umami's own UI
+      DISABLE_TELEMETRY: "1"
+    depends_on:
+      umami-db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  umami-db:
+    image: postgres:16-alpine
+    container_name: umami-db
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: ${UMAMI_DB_PASSWORD:?set in .env}
+    volumes:
+      - umami-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umami -d umami"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  umami-db:
