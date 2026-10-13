@@ -1,0 +1,10 @@
+{
+  "mode": "direct",
+  "model": "claude-sonnet-5",
+  "effort": "medium",
+  "input_tokens": 904281,
+  "output_tokens": 167757,
+  "cost_usd": 3.4859,
+  "failed": [],
+  "occupations_written": 899
+}

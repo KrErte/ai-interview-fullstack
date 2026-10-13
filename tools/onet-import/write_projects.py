@@ -10,6 +10,8 @@ hand-written profession are written.
     python tools/onet-import/write_projects.py submit           # all visible occupations -> out/
     python tools/onet-import/write_projects.py collect          # writes out/projects_llm.csv + projects_usage.json
     python tools/onet-import/write_projects.py retry            # re-writes occupations missing from the CSV
+    python tools/onet-import/write_projects.py direct --model claude-sonnet-5 --max-usd 4
+        # without the Batches API: parallel requests at list price, resumable, stops at the budget
 """
 import csv
 import json
@@ -22,6 +24,9 @@ from rate_tasks import EFFORT, MODEL, batch_cost
 
 MAX_PROJECT_CHARS = 220
 TOP_TASKS = 5
+# list prices per million tokens (no batch discount) for direct mode
+PRICES_LIST = {'claude-opus-5': {'input': 5.0, 'output': 25.0},
+               'claude-sonnet-5': {'input': 2.0, 'output': 10.0}}
 
 GUIDE = """You write practice projects for an AI learning plan. The plan has three phases for one occupation.
 For each phase, write ONE project the worker can do alone in 1-4 weeks with today's AI tools.
@@ -57,11 +62,17 @@ SCHEMA = {
 }
 
 
-def build_params(title, top_tasks, phases, guide):
+def list_cost(model, input_tokens, output_tokens):
+    """US dollars at list price; KeyError for a model without a known price."""
+    p = PRICES_LIST[model]
+    return (input_tokens * p['input'] + output_tokens * p['output']) / 1_000_000
+
+
+def build_params(title, top_tasks, phases, guide, model=MODEL):
     lines = [f'Occupation: {title}', '', 'Largest tasks:'] + [f'- {t}' for t in top_tasks] + ['', 'Phases:']
     lines += [f"Phase {i}: {ph['title']} ({'; '.join(ph['items'])})" for i, ph in enumerate(phases, start=1)]
     return {
-        'model': MODEL,
+        'model': model,
         'max_tokens': 16000,
         'system': [{'type': 'text', 'text': guide, 'cache_control': {'type': 'ephemeral'}}],
         'output_config': {'effort': EFFORT, 'format': {'type': 'json_schema', 'schema': SCHEMA}},
@@ -134,7 +145,8 @@ def _write(workdir, projects, usage):
             for phase, text in enumerate(projects[code], start=1):
                 writer.writerow([code, phase, text])
     usage['occupations_written'] = len(projects)
-    usage['cost_usd'] = round(batch_cost(usage['input_tokens'], usage['output_tokens']), 2)
+    if usage.get('mode') != 'direct':
+        usage['cost_usd'] = round(batch_cost(usage['input_tokens'], usage['output_tokens']), 2)
     (workdir / 'projects_usage.json').write_text(json.dumps(usage, indent=2), encoding='utf-8')
 
 
@@ -228,8 +240,88 @@ def retry(pilot, attempts=3):
     print(f"written: {usage['occupations_written']}, total cost: ${usage['cost_usd']}")
 
 
+def direct(pilot, model, max_usd, workers=8, attempts=3):
+    """Write missing occupations with parallel requests (no Batches API), at list price.
+
+    Resumable: keeps what projects_llm.csv already has and checkpoints every 25 occupations.
+    Stops starting new requests once the spent cost reaches max_usd.
+    """
+    import threading
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    import anthropic
+
+    list_cost(model, 0, 0)  # fail fast on a model without a known price
+    workdir = _workdir(pilot)
+    projects = {code: p for code, p in _read(workdir).items() if all(p)}
+    usage_path = workdir / 'projects_usage.json'
+    usage = json.loads(usage_path.read_text(encoding='utf-8')) if usage_path.exists() else {}
+    if usage.get('mode') != 'direct' or usage.get('model') != model:
+        usage = {'mode': 'direct', 'model': model, 'effort': EFFORT, 'input_tokens': 0, 'output_tokens': 0,
+                 'cost_usd': 0.0}
+    todo = [o for o in _occupations(pilot) if o[0] not in projects]
+    print(f'{len(projects)} already written, {len(todo)} to write with {model}, budget ${max_usd}', flush=True)
+    client = anthropic.Anthropic(max_retries=6)
+    lock = threading.Lock()
+    failures = []
+
+    def one(occupation):
+        code, title, top, phases = occupation
+        last_error = 'not started'
+        for _ in range(attempts):
+            with lock:
+                if usage['cost_usd'] >= max_usd:
+                    return code, None, 'budget reached'
+            try:
+                message = client.messages.create(**build_params(title, top, phases, GUIDE, model=model))
+            except anthropic.APIStatusError as e:
+                return code, None, f'HTTP {e.status_code}: {str(e.message)[:120]}'
+            tin, tout = _usage_tokens(message)
+            with lock:
+                usage['input_tokens'] += tin
+                usage['output_tokens'] += tout
+                usage['cost_usd'] = round(usage['cost_usd'] + list_cost(model, tin, tout), 4)
+            if message.stop_reason != 'end_turn':
+                last_error = f'stop_reason={message.stop_reason}'
+                continue
+            text = next((b.text for b in message.content if b.type == 'text'), '')
+            try:
+                return code, parse_projects(text), None
+            except (ValueError, KeyError, json.JSONDecodeError) as e:
+                last_error = str(e)[:120]
+        return code, None, last_error
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = [pool.submit(one, o) for o in todo]
+        for done, future in enumerate(as_completed(futures), start=1):
+            code, result, error = future.result()
+            with lock:
+                if result:
+                    projects[code] = result
+                else:
+                    failures.append((code, error))
+                if done % 25 == 0 or done == len(todo):
+                    usage['failed'] = failures
+                    _write(workdir, projects, usage)
+                    print(f"{done}/{len(todo)} done, written {len(projects)}, cost ${usage['cost_usd']:.2f}",
+                          flush=True)
+    usage['failed'] = failures
+    _write(workdir, projects, usage)
+    print(f"written: {len(projects)}, failed: {len(failures)}, cost: ${usage['cost_usd']:.2f}")
+    for code, error in failures[:20]:
+        print(f'  {code}: {error}')
+
+
+def _arg(name, default):
+    return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else default
+
+
 if __name__ == '__main__':
     commands = {'submit': submit, 'collect': collect, 'retry': retry}
-    if len(sys.argv) < 2 or sys.argv[1] not in commands:
+    command = sys.argv[1] if len(sys.argv) > 1 else ''
+    if command == 'direct':
+        direct('--pilot' in sys.argv, _arg('--model', 'claude-sonnet-5'), float(_arg('--max-usd', '4')))
+    elif command in commands:
+        commands[command]('--pilot' in sys.argv)
+    else:
         sys.exit(__doc__)
-    commands[sys.argv[1]]('--pilot' in sys.argv)

@@ -3,7 +3,7 @@ import json
 import unittest
 
 from rate_tasks import MODEL
-from write_projects import MAX_PROJECT_CHARS, build_params, parse_projects
+from write_projects import MAX_PROJECT_CHARS, PRICES_LIST, build_params, list_cost, parse_projects
 
 PHASES = [{'title': 'Automate the routine', 'items': ['a', 'b', 'c'], 'project': 'template 1'},
           {'title': 'Analysis and advice', 'items': ['d', 'e', 'f'], 'project': 'template 2'},
@@ -22,10 +22,27 @@ class BuildParamsTest(unittest.TestCase):
         self.assertIn('- Prepare tax returns.', content)
         self.assertIn('Phase 2: Analysis and advice (d; e; f)', content)
 
+    def test_model_can_be_chosen(self):
+        self.assertEqual(build_params('X', TASKS, PHASES, 'G', model='claude-sonnet-5')['model'], 'claude-sonnet-5')
+
     def test_schema_requires_three_phase_projects(self):
         schema = build_params('X', TASKS, PHASES, 'G')['output_config']['format']['schema']
         item = schema['properties']['projects']['items']
         self.assertEqual(sorted(item['required']), ['phase', 'project'])
+
+
+class ListCostTest(unittest.TestCase):
+
+    def test_list_prices(self):
+        self.assertEqual(PRICES_LIST['claude-sonnet-5'], {'input': 2.0, 'output': 10.0})
+        self.assertEqual(PRICES_LIST['claude-opus-5'], {'input': 5.0, 'output': 25.0})
+
+    def test_cost_for_sonnet(self):
+        self.assertAlmostEqual(list_cost('claude-sonnet-5', 1_000_000, 100_000), 2.0 + 1.0)
+
+    def test_unknown_model_raises(self):
+        with self.assertRaises(KeyError):
+            list_cost('claude-unknown', 1, 1)
 
 
 class ParseProjectsTest(unittest.TestCase):
