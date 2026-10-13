@@ -79,7 +79,7 @@ public class AiReadinessScorer {
 
         List<TaskExposure> tasks = profession.tasks().stream()
                 .sorted(Comparator.comparingDouble(ProfessionTask::automation).reversed())
-                .map(t -> new TaskExposure(t.name(), t.share(), (int) Math.round(t.automation() * 100)))
+                .map(t -> new TaskExposure(t.name(), t.share(), (int) Math.round(t.automation() * 100), t.observedUse()))
                 .toList();
 
         return new AssessmentResult(

@@ -1,0 +1,178 @@
+{
+  "11": {
+    "aiTools": ["ChatGPT / Claude for drafts and analysis", "Microsoft 365 Copilot or Google Gemini for Workspace", "Meeting assistants (e.g. Otter, Fireflies)"],
+    "roadmap": [
+      {"title": "AI for the admin load", "items": ["Meeting notes, summaries and follow-ups with AI.", "First drafts of reports, plans and emails.", "Spreadsheet analysis with AI (formulas, charts, explanations)."], "project": "Hand one recurring report or weekly update to AI and measure the hours saved."},
+      {"title": "Decisions with better input", "items": ["Use AI to research options and summarise sources, then check them.", "Scenario and risk analysis with AI as a sparring partner.", "Set team rules for what may and may not go into AI tools."], "project": "Prepare your next decision memo with an AI-assisted options analysis and note what changed."},
+      {"title": "Lead the change", "items": ["Map which team tasks AI can take over or speed up.", "Run a small pilot and measure time and quality.", "Plan training and new roles for your team."], "project": "Run a one-month AI pilot in one team process and present the results."}
+    ]
+  },
+  "13": {
+    "aiTools": ["Excel / Sheets with Copilot or Gemini", "ChatGPT / Claude for analysis and drafting", "AI document extraction (invoices, contracts, forms)"],
+    "roadmap": [
+      {"title": "Automate the routine", "items": ["AI for data entry, extraction and reconciliation.", "Formulas, pivot tables and checks written with AI.", "Standard emails and documents from templates."], "project": "Automate one monthly routine end to end and record the time saved."},
+      {"title": "Analysis and advice", "items": ["Forecasts and variance analysis with AI, checked against the source.", "Plain-language summaries of numbers for managers or clients.", "Research rules and regulations with AI, then verify in the original."], "project": "Produce a monthly 'what the numbers say' summary with AI for one stakeholder."},
+      {"title": "Process owner", "items": ["Map and automate a full process with no-code tools (Make, Zapier, Power Automate).", "Data quality, controls and audit trails for AI-assisted work.", "Turn saved time into higher-value advisory work."], "project": "Redesign one process with AI and controls, and document it for your team."}
+    ]
+  },
+  "15": {
+    "aiTools": ["Coding assistants (GitHub Copilot, Claude Code, Cursor)", "ChatGPT / Claude for design and debugging", "AI test and documentation generators"],
+    "roadmap": [
+      {"title": "Pair programming with AI", "items": ["Use a coding assistant for boilerplate, tests and refactoring.", "Give it context: project rules, examples, small steps.", "Review AI code like a colleague's pull request."], "project": "Ship one small feature with a coding assistant and note where it helped and where it failed."},
+      {"title": "AI in your systems", "items": ["Call an LLM API with structured output.", "Retrieval over your own documents or data.", "Evaluate quality, cost and latency before shipping."], "project": "Add one AI feature to an existing internal tool or service."},
+      {"title": "Production-grade AI", "items": ["Evals and regression tests for prompts.", "Security: prompt injection, data leaks, permissions.", "Monitoring and cost control."], "project": "Put an AI feature behind evals and monitoring, and write a one-page runbook."}
+    ]
+  },
+  "17": {
+    "aiTools": ["ChatGPT / Claude for calculations, specs and reports", "AI features in CAD/BIM tools", "Copilot for scripts (Python, MATLAB, Dynamo)"],
+    "roadmap": [
+      {"title": "AI for documentation", "items": ["Specifications, reports and change notes drafted with AI.", "Standards and regulations searched with AI, checked in the source.", "Meeting notes and RFIs summarised."], "project": "Draft one technical report with AI and track review time versus usual."},
+      {"title": "AI in design work", "items": ["Scripts and parametric design written with AI help.", "Option studies and quick estimates with AI as a sparring partner.", "Check AI outputs against calculations and codes."], "project": "Automate one repetitive design or calculation step with an AI-written script."},
+      {"title": "Engineering + AI", "items": ["Data from sensors, tests or simulations analysed with AI.", "Define where AI is not allowed (safety-critical sign-off).", "Share methods and templates with your team."], "project": "Build a small AI-assisted analysis workflow for test or field data."}
+    ]
+  },
+  "19": {
+    "aiTools": ["ChatGPT / Claude for literature and writing", "AI research tools (e.g. Elicit, Consensus, Semantic Scholar)", "Copilot for data analysis code (Python, R)"],
+    "roadmap": [
+      {"title": "Faster literature and writing", "items": ["Literature search and summaries with AI, always checked against the papers.", "Drafts of methods, reports and grant text.", "Reference management and formatting."], "project": "Do one literature review with AI tools and compare coverage with your usual method."},
+      {"title": "AI for data analysis", "items": ["Analysis code in Python or R written with AI help.", "Visualisation and statistics explained step by step.", "Reproducibility: version code and prompts."], "project": "Re-run an old analysis with AI-written code and document the differences."},
+      {"title": "AI as a research method", "items": ["Classification, extraction or modelling with AI on your data.", "Validate against human labels or ground truth.", "Ethics, data protection and disclosure of AI use."], "project": "Use AI for one step of a real study and write up how you validated it."}
+    ]
+  },
+  "21": {
+    "aiTools": ["ChatGPT / Claude for case notes and letters", "Transcription and summary tools", "AI translation for clients"],
+    "roadmap": [
+      {"title": "Less paperwork", "items": ["Case notes and reports drafted from your notes, never with identifying data in public tools.", "Letters and plain-language explanations.", "Resource lists and service information compiled with AI."], "project": "Cut the time on one recurring report with AI while following data-protection rules."},
+      {"title": "Better support materials", "items": ["Information sheets and guides in plain language.", "Translations for clients, checked by a person.", "Session plans and group activity materials."], "project": "Create a plain-language guide for clients with AI and test it with two people."},
+      {"title": "Responsible AI in the service", "items": ["Agree on rules for client data and AI tools.", "Spot where AI can free time for direct contact.", "Train colleagues on safe use."], "project": "Write a one-page AI use policy for your team and pilot it for a month."}
+    ]
+  },
+  "23": {
+    "aiTools": ["Legal AI tools (e.g. Harvey, Legora)", "ChatGPT / Claude for document analysis", "Contract review and comparison tools"],
+    "roadmap": [
+      {"title": "AI for documents", "items": ["Contract and document review with AI.", "Confidentiality: what may go into which tool.", "Always check citations and sources."], "project": "Build a contract review checklist and prompt, and test it on 10 contracts."},
+      {"title": "Research and drafting", "items": ["Legal research with AI, verified in official sources.", "First drafts of memos, letters and templates.", "Summaries of long case files."], "project": "Prepare one legal memo with AI and record the time and errors found."},
+      {"title": "Legal ops", "items": ["Document automation and templates.", "Knowledge management for your team or firm.", "Pricing services when AI changes the hours."], "project": "Automate one standard document end to end (e.g. an NDA) from intake to draft."}
+    ]
+  },
+  "25": {
+    "aiTools": ["ChatGPT / Claude for lesson materials", "AI quiz and feedback tools", "Presentation and image generators"],
+    "roadmap": [
+      {"title": "Materials and preparation", "items": ["Lesson plans, tasks and differentiated materials with AI.", "Quizzes and answer keys.", "Check facts and age-appropriateness yourself."], "project": "Prepare a full unit of lessons with AI and note the hours saved."},
+      {"title": "Feedback and assessment", "items": ["Rubrics and feedback drafts with AI.", "Spotting common mistakes across student work.", "Rules for student AI use and academic honesty."], "project": "Use AI to draft feedback for one assignment and compare with your own."},
+      {"title": "Teaching with AI", "items": ["Teach students to use AI critically.", "Assignments that work with AI, not against it.", "Share materials and practice with colleagues."], "project": "Design one assignment where students use AI and reflect on its limits."}
+    ]
+  },
+  "27": {
+    "aiTools": ["ChatGPT / Claude for writing and ideas", "Image and video generators (e.g. Midjourney, Adobe Firefly, Runway)", "Editing tools with AI (Adobe, CapCut, Descript)"],
+    "roadmap": [
+      {"title": "AI in your craft", "items": ["Ideas, drafts and variations with AI.", "Editing, retouching and transcription with AI features.", "Keep your own voice and style; AI is the assistant."], "project": "Make one piece of work with AI in the process and document what you kept and what you changed."},
+      {"title": "Faster production", "items": ["Templates and workflows for repeat work.", "Rights, licensing and disclosure of AI-generated material.", "Quality control before publishing."], "project": "Halve the production time of one recurring format with an AI workflow."},
+      {"title": "Creative direction", "items": ["Direct AI output toward a clear concept.", "Offer services built on taste and judgment.", "Build a portfolio that shows how you work with AI."], "project": "Pitch one client or project where you lead the concept and use AI for execution."}
+    ]
+  },
+  "29": {
+    "aiTools": ["Clinical documentation and transcription assistants", "ChatGPT / Claude for patient information (no patient data)", "Clinical decision support in your systems"],
+    "roadmap": [
+      {"title": "Less documentation time", "items": ["AI transcription and note drafting where your organisation allows it.", "Patient information leaflets in plain language.", "Never put identifiable patient data into public tools."], "project": "Measure documentation time for a week before and after using an approved AI tool."},
+      {"title": "Evidence and decision support", "items": ["Guideline and literature summaries with AI, checked in the source.", "Understand how decision-support tools reach their output.", "Know the limits and liability."], "project": "Compare an AI summary of one guideline with the original and list the differences."},
+      {"title": "AI in care processes", "items": ["Coordination, scheduling and handover with AI help.", "Take part in your organisation's AI projects.", "Teach colleagues safe use."], "project": "Propose one AI improvement for a care process and pilot it with your team."}
+    ]
+  },
+  "31": {
+    "aiTools": ["ChatGPT / Claude for instructions and plain-language explanations", "Scheduling and reminder apps with AI", "Translation apps"],
+    "roadmap": [
+      {"title": "AI for the paperwork", "items": ["Notes, checklists and reports drafted with AI.", "Instructions explained in plain language.", "Follow your workplace's rules on patient or client data."], "project": "Use AI to shorten one recurring piece of paperwork and track the time saved."},
+      {"title": "Communication", "items": ["Translation for clients or patients, checked by a person.", "Clear written instructions for families.", "Learning new procedures with AI as a tutor."], "project": "Create plain-language instructions for one routine task with AI and test them."},
+      {"title": "Grow your role", "items": ["Learn the digital and AI tools your employer uses.", "Look at training toward roles with more responsibility.", "Share tips with colleagues."], "project": "Pick one course or certificate that builds on your experience and start it."}
+    ]
+  },
+  "33": {
+    "aiTools": ["ChatGPT / Claude for reports and summaries", "Video analytics and alerting systems", "Transcription tools"],
+    "roadmap": [
+      {"title": "Faster reports", "items": ["Incident reports drafted from your notes with AI, checked by you.", "Summaries of long documents and procedures.", "Follow rules on personal and sensitive data."], "project": "Shorten your incident reporting time with an approved AI tool for one month."},
+      {"title": "Working with AI systems", "items": ["How video analytics and alerting systems work, and where they fail.", "False alarms and bias: when to trust and when to check.", "Clear handover between system alerts and human decisions."], "project": "Review one month of system alerts and document which were useful and which were noise."},
+      {"title": "Specialise", "items": ["Training in security technology or analysis.", "Procedures that combine AI tools with human judgment.", "Mentor newer colleagues."], "project": "Write a one-page procedure for using an AI tool safely in your unit."}
+    ]
+  },
+  "35": {
+    "aiTools": ["ChatGPT / Claude for recipes, menus and costing", "Inventory and ordering apps with forecasting", "Scheduling apps"],
+    "roadmap": [
+      {"title": "AI for planning", "items": ["Menus, recipe scaling and allergen lists with AI, checked by you.", "Food cost calculations.", "Shift and prep schedules."], "project": "Plan one week's menu and prep list with AI and compare the waste and cost."},
+      {"title": "Less waste, better ordering", "items": ["Use sales history to forecast demand.", "Ordering and stock lists generated from forecasts.", "Track what AI got wrong and adjust."], "project": "Cut food waste for a month using AI-assisted ordering and measure the result."},
+      {"title": "Grow toward running a kitchen", "items": ["Costing and pricing with AI.", "Supplier communication and documentation.", "Training material for new staff."], "project": "Create a training guide for a new team member with AI and test it."}
+    ]
+  },
+  "37": {
+    "aiTools": ["Scheduling and route apps", "ChatGPT / Claude for quotes and customer messages", "Photo-based reporting apps"],
+    "roadmap": [
+      {"title": "AI for the admin", "items": ["Quotes, invoices and customer messages with AI.", "Checklists and work reports.", "Scheduling and routes."], "project": "Write all quotes for a month with AI help and track the time saved."},
+      {"title": "Better service", "items": ["Clear service descriptions and price lists.", "Reviews and customer communication.", "Plan supplies and equipment."], "project": "Rewrite your service descriptions with AI and see if enquiries change."},
+      {"title": "Run or lead the work", "items": ["Plan work for a team.", "Learn the digital tools clients and employers expect.", "Look at supervisor or business-owner paths."], "project": "Set up a simple digital job-planning workflow for yourself or your team."}
+    ]
+  },
+  "39": {
+    "aiTools": ["Booking apps with reminders", "ChatGPT / Claude for social media and client messages", "Image tools for marketing"],
+    "roadmap": [
+      {"title": "AI for bookings and messages", "items": ["Booking reminders and client messages.", "Social media posts and photos with AI help.", "Price lists and service descriptions."], "project": "Plan a month of social media posts with AI and track bookings."},
+      {"title": "Better client experience", "items": ["Personalised follow-ups and care instructions.", "Collect and answer reviews.", "Learn new techniques with AI as a tutor."], "project": "Create aftercare instructions with AI and send them to every client for a month."},
+      {"title": "Grow the business", "items": ["Pricing and simple accounting with AI.", "Packages and loyalty offers.", "Training or managing others."], "project": "Design one new service package with AI and test it with ten clients."}
+    ]
+  },
+  "41": {
+    "aiTools": ["CRM with AI (e.g. HubSpot, Salesforce Einstein, Pipedrive)", "ChatGPT / Claude for emails and research", "Call recording and summary tools"],
+    "roadmap": [
+      {"title": "AI for the pipeline", "items": ["Prospect research and personalised emails with AI.", "Call summaries and CRM updates.", "Follow-up reminders and templates."], "project": "Run one outreach campaign with AI-personalised emails and compare reply rates."},
+      {"title": "Better conversations", "items": ["Prepare meetings with AI briefings.", "Objection handling and proposal drafts.", "Learn the product faster with AI."], "project": "Prepare your next five meetings with AI briefings and note the outcomes."},
+      {"title": "Trusted advisor", "items": ["Focus time on relationships and complex deals.", "Use data to find the right customers.", "Share what works with the team."], "project": "Build an AI-assisted account plan for your three biggest customers."}
+    ]
+  },
+  "43": {
+    "aiTools": ["Microsoft 365 Copilot or Google Gemini for Workspace", "ChatGPT / Claude for emails and documents", "Automation tools (Power Automate, Zapier, Make)"],
+    "roadmap": [
+      {"title": "Automate the routine", "items": ["Emails, letters and documents from templates with AI.", "Data entry and extraction from forms and PDFs.", "Spreadsheet work with AI help."], "project": "Automate your most repetitive weekly task and record the time saved."},
+      {"title": "Workflows across tools", "items": ["Connect email, forms and spreadsheets with no-code automations.", "Checks and controls on automated steps.", "Document how each workflow works."], "project": "Build one no-code workflow that removes a manual hand-off and run it for a month."},
+      {"title": "From doing to coordinating", "items": ["Become the person who maintains the team's automations.", "Train colleagues.", "Look at roles in operations, coordination or process improvement."], "project": "Map your team's admin processes and propose three AI improvements."}
+    ]
+  },
+  "45": {
+    "aiTools": ["Farm and fleet management apps", "ChatGPT / Claude for paperwork and subsidy applications", "Weather and yield forecasting tools"],
+    "roadmap": [
+      {"title": "AI for the paperwork", "items": ["Applications, reports and records with AI help.", "Rules and subsidy conditions explained, checked in the source.", "Planning calendars."], "project": "Prepare one application or report with AI and track the time saved."},
+      {"title": "Data on the land or water", "items": ["Use forecasts and sensor or satellite data for decisions.", "Record keeping that feeds the planning.", "Compare AI suggestions with your experience."], "project": "Use one data tool for a season and note where it helped your decisions."},
+      {"title": "Run it smarter", "items": ["Costs and margins with AI.", "Selling directly with better marketing.", "Learn the equipment and software of modern farming."], "project": "Build a simple cost and margin model with AI for one product."}
+    ]
+  },
+  "47": {
+    "aiTools": ["ChatGPT / Claude for quotes and documentation", "Estimating and project management apps", "Photo and voice reporting apps"],
+    "roadmap": [
+      {"title": "AI for quotes and paperwork", "items": ["Quotes, material lists and invoices with AI.", "Site reports from photos and voice notes.", "Standards and regulations explained, checked in the source."], "project": "Write all quotes for a month with AI help and track the time saved."},
+      {"title": "Better planning", "items": ["Schedules and material planning with AI.", "Customer communication and change orders.", "Safety checklists."], "project": "Plan one job end to end with AI and compare cost and time with the plan."},
+      {"title": "Lead the site or run the business", "items": ["Estimating and pricing with data.", "Digital tools clients and contractors expect.", "Foreman, estimator or own-business paths."], "project": "Build a reusable estimating template with AI for your most common job."}
+    ]
+  },
+  "49": {
+    "aiTools": ["ChatGPT / Claude for troubleshooting and manuals", "Diagnostic software with AI features", "Service and work-order apps"],
+    "roadmap": [
+      {"title": "AI as a troubleshooting partner", "items": ["Manuals and error codes explained with AI, checked against the manufacturer.", "Step-by-step diagnosis ideas.", "Work orders and service reports."], "project": "Use AI on your next ten fault diagnoses and note where it helped."},
+      {"title": "Less paperwork, better records", "items": ["Service reports from photos and voice notes.", "Parts lists and quotes.", "History of repairs to spot repeat faults."], "project": "Set up a simple repair log and use AI to find repeat faults after a month."},
+      {"title": "Specialise", "items": ["Diagnostics, electronics and connected equipment.", "Predictive maintenance basics.", "Train apprentices and colleagues."], "project": "Pick one specialist training in diagnostics or connected equipment and start it."}
+    ]
+  },
+  "51": {
+    "aiTools": ["Production and quality software with AI", "ChatGPT / Claude for instructions and reports", "Visual inspection systems"],
+    "roadmap": [
+      {"title": "AI for instructions and reports", "items": ["Work instructions and checklists in plain language.", "Shift reports and defect logs.", "Learn new machines and procedures with AI as a tutor."], "project": "Rewrite one work instruction with AI and test it with a new colleague."},
+      {"title": "Quality and data", "items": ["How visual inspection and quality systems work.", "Read production data and spot trends.", "Report problems with clear evidence."], "project": "Track one quality issue with data for a month and suggest a fix."},
+      {"title": "Toward technician or lead roles", "items": ["Automation, robotics and maintenance basics.", "Process improvement (lean, root cause).", "Lead a shift or a small team."], "project": "Start one training toward automation technician or shift lead."}
+    ]
+  },
+  "53": {
+    "aiTools": ["Route and fleet apps", "Warehouse and logistics systems", "ChatGPT / Claude for reports and messages"],
+    "roadmap": [
+      {"title": "AI for planning and reports", "items": ["Routes, schedules and loads with planning apps.", "Delivery reports and customer messages.", "Rules and documents explained, checked in the source."], "project": "Use a planning tool for a month and compare time, fuel or errors."},
+      {"title": "Work with automated systems", "items": ["How warehouse and fleet systems make decisions.", "Exceptions: when to override the system.", "Safety with automated vehicles and robots."], "project": "Document the ten most common exceptions in your work and how to handle them."},
+      {"title": "Move toward coordination", "items": ["Dispatching, planning or logistics coordination.", "Data and spreadsheets with AI help.", "Licences and certificates for new equipment."], "project": "Start one training toward a dispatcher, planner or logistics coordinator role."}
+    ]
+  }
+}

@@ -17,7 +17,6 @@ CALIBRATION_THRESHOLD = 10.0
 REVIEW_BELOW = 0.3
 
 DEFAULT_LABELS = CACHE / 'full_labelset.tsv'
-DEFAULT_CURATED = HERE / 'curated_onet_codes.json'
 DEFAULT_PROFESSIONS = HERE.parent.parent / 'backend' / 'src' / 'main' / 'resources' / 'ai-readiness' / 'professions.json'
 
 csv.field_size_limit(2**31 - 1)
@@ -69,7 +68,7 @@ def _write_csv(path, header, rows):
         writer.writerows(rows)
 
 
-def run(out_dir, ratings_csv, labels_tsv, curated_json, professions_json, fill_missing=False, tasks_csv=None):
+def run(out_dir, ratings_csv, labels_tsv, professions_json, fill_missing=False, tasks_csv=None):
     """Write onet_automation.csv, review.csv and calibration.md into out_dir.
 
     fill_missing (preview/pilot only): a task with no score gets its occupation's mean instead of raising.
@@ -99,11 +98,14 @@ def run(out_dir, ratings_csv, labels_tsv, curated_json, professions_json, fill_m
         by_occ.setdefault(t['onetsoc_code'], []).append((int(t['share_pct']), blended[t['task_id']]))
     exposure = {code: occupation_exposure(items) for code, items in by_occ.items()}
 
-    curated_tasks = {p['id']: p['tasks'] for p in json.loads(Path(professions_json).read_text(encoding='utf-8'))}
+    # hand-written professions carry their O*NET counterparts in onetCodes
     report_rows, pairs = [], []
-    for pid, codes in json.loads(Path(curated_json).read_text(encoding='utf-8')).items():
+    for p in json.loads(Path(professions_json).read_text(encoding='utf-8')):
+        pid, codes = p['id'], p.get('onetCodes')
+        if not codes:
+            continue
         onet = sum(exposure[c] for c in codes) / len(codes)
-        curated = occupation_exposure((t['share'], t['automation']) for t in curated_tasks[pid])
+        curated = occupation_exposure((t['share'], t['automation']) for t in p['tasks'])
         pairs.append((onet, curated))
         report_rows.append((pid, codes, curated, onet))
     a, b, mad = fit_calibration(pairs)
@@ -149,7 +151,7 @@ if __name__ == '__main__':
     preview = '--preview' in sys.argv
     ratings = (CACHE / 'pilot' / 'ratings_llm.csv') if preview else (OUT / 'ratings_llm.csv')
     target = CACHE / 'preview' if preview else OUT
-    stats = run(target, ratings if ratings.exists() else None, DEFAULT_LABELS, DEFAULT_CURATED, DEFAULT_PROFESSIONS,
+    stats = run(target, ratings if ratings.exists() else None, DEFAULT_LABELS, DEFAULT_PROFESSIONS,
                 fill_missing=preview, tasks_csv=OUT / 'onet_tasks.csv')
     print(f'written to {target}')
     for key, value in stats.items():

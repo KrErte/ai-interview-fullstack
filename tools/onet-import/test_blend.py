@@ -77,11 +77,9 @@ class RunTest(unittest.TestCase):
         self.labels.write_text('\tO*NET-SOC Code\tTask ID\thuman_exposure_agg\n'
                                '0\t15-1252.00\t1.0\tE1\n0\t15-1252.00\t2.0\tE0\n0\t47-2111.00\t3.0\tE0\n',
                                encoding='utf-8')
-        self.curated = root / 'curated.json'
-        self.curated.write_text(json.dumps({'software-developer': ['15-1252.00']}), encoding='utf-8')
         self.professions = root / 'professions.json'
         self.professions.write_text(json.dumps([{'id': 'software-developer', 'name': 'Software developer',
-                                                 'tasks': [{'share': 100, 'automation': 0.54}]}]),
+                                                 'onetCodes': ['15-1252.00'], 'tasks': [{'share': 100, 'automation': 0.54}]}]),
                                     encoding='utf-8')
 
     def tearDown(self):
@@ -92,7 +90,7 @@ class RunTest(unittest.TestCase):
             return list(csv.DictReader(f))
 
     def test_b_only_run_writes_automation_and_flags(self):
-        stats = run(self.out, None, self.labels, self.curated, self.professions)
+        stats = run(self.out, None, self.labels, self.professions)
         auto = {r['task_id']: r for r in self.rows('onet_automation.csv')}
         self.assertEqual(auto['1']['b_label'], 'E1')
         self.assertEqual(auto['1']['llm_score'], '')
@@ -107,7 +105,7 @@ class RunTest(unittest.TestCase):
     def test_llm_ratings_are_blended(self):
         ratings = self.out / 'ratings_llm.csv'
         write_csv(ratings, ['task_id', 'llm_score'], [['1', '0.6'], ['2', '0.2'], ['3', '0.1']])
-        run(self.out, ratings, self.labels, self.curated, self.professions)
+        run(self.out, ratings, self.labels, self.professions)
         auto = {r['task_id']: r for r in self.rows('onet_automation.csv')}
         self.assertAlmostEqual(float(auto['1']['blended']), 0.5 * 0.6 + 0.5 * 0.80)
 
@@ -120,9 +118,9 @@ class RunTest(unittest.TestCase):
         write_csv(ratings, ['task_id', 'llm_score'], [['1', '0.0'], ['2', '0.2'], ['3', '0.1']])
         # dev exposure = 60*0.075 + 40*0.175 = 11.5; match it so calibration stays the identity
         self.professions.write_text(json.dumps([{'id': 'software-developer', 'name': 'Software developer',
-                                                 'tasks': [{'share': 100, 'automation': 0.115}]}]),
+                                                 'onetCodes': ['15-1252.00'], 'tasks': [{'share': 100, 'automation': 0.115}]}]),
                                     encoding='utf-8')
-        stats = run(self.out, ratings, self.labels, self.curated, self.professions)
+        stats = run(self.out, ratings, self.labels, self.professions)
         self.assertEqual(stats['calibration'], (1.0, 0.0))
         review = self.rows('review.csv')
         self.assertEqual([r['task_id'] for r in review], ['1'])
@@ -131,7 +129,7 @@ class RunTest(unittest.TestCase):
     def test_preview_fills_missing_with_occupation_mean(self):
         self.labels.write_text('\tO*NET-SOC Code\tTask ID\thuman_exposure_agg\n'
                                '0\t15-1252.00\t1.0\tE1\n0\t47-2111.00\t3.0\tE0\n', encoding='utf-8')
-        stats = run(self.out, None, self.labels, self.curated, self.professions, fill_missing=True)
+        stats = run(self.out, None, self.labels, self.professions, fill_missing=True)
         auto = {r['task_id']: r for r in self.rows('onet_automation.csv')}
         self.assertAlmostEqual(float(auto['2']['blended']), 0.80)
         self.assertEqual(stats['filled'], 1)
@@ -140,7 +138,7 @@ class RunTest(unittest.TestCase):
         self.labels.write_text('\tO*NET-SOC Code\tTask ID\thuman_exposure_agg\n0\t15-1252.00\t1.0\tE1\n',
                                encoding='utf-8')
         with self.assertRaises(ValueError):
-            run(self.out, None, self.labels, self.curated, self.professions)
+            run(self.out, None, self.labels, self.professions)
 
 
 if __name__ == '__main__':
