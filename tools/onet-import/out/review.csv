@@ -1,0 +1,128 @@
+onetsoc_code,task_id,task_statement,automation,penetration
+11-3013.01,21298,"Identify, investigate, or resolve security breaches.",0.225,0.9764
+11-3031.00,21313,Recruit staff members.,0.275,0.9241
+11-3031.03,15676,Select or direct the execution of trades.,0.225,1.0
+11-3071.00,21348,"Monitor operations to ensure that staff members comply with administrative policies and procedures, safety rules, union contracts, environmental policies, or government regulations.",0.25,0.9962
+11-9021.00,3315,"Plan, organize, or direct activities concerned with the construction or maintenance of structures, facilities, or systems.",0.225,0.9021
+11-9031.00,5200,"Plan, direct, and monitor instructional methods and content of educational, vocational, or student activity programs.",0.275,0.7239
+11-9081.00,1114,"Show, rent, or assign accommodations.",0.175,0.9756
+11-9121.00,7214,Conduct own research in field of expertise.,0.275,0.9486
+11-9141.00,7224,"Manage and oversee operations, maintenance, administration, and improvement of commercial, industrial, or residential properties.",0.2,0.7184
+11-9151.00,1130,Evaluate the work of staff and volunteers to ensure that programs are of appropriate quality and that resources are used effectively.,0.225,0.831
+11-9179.02,17603,Assess employee performance and suggest ways to improve work.,0.225,0.7239
+13-1071.00,18862,"Interview job applicants to obtain information on work history, training, education, or job skills.",0.175,0.978
+13-1081.00,8933,Develop an understanding of customers' needs and take actions to ensure that such needs are met.,0.225,1.0
+13-1082.00,21468,"Identify, review, or select vendors or consultants to meet project needs.",0.275,0.9014
+13-1121.00,1210,"Monitor event activities to ensure compliance with applicable regulations and laws, satisfaction of participants, and resolution of any problems that arise.",0.125,0.9249
+13-1199.07,21503,Test security measures for final acceptance and implement or provide procedures for ongoing monitoring and evaluation of the measures.,0.2,1.0
+13-2054.00,21631,"Recommend investments and investment timing to companies, investment firm staff, or the public.",0.25,1.0
+15-1241.01,20366,"Instruct in use of voice, video, and data communications systems.",0.275,0.7015
+15-1299.02,21732,"Confer with users to analyze, configure, or troubleshoot applications.",0.225,0.9569
+15-1299.08,14678,"Perform ongoing hardware and software maintenance operations, including installing or upgrading hardware or software.",0.2,0.9842
+15-1299.09,16160,"Identify, review, or select vendors or consultants to meet project needs.",0.25,0.9014
+15-2041.01,16260,Collect data through surveys or experimentation.,0.15,1.0
+17-2051.01,16315,Investigate or test specific construction project materials to determine compliance to specifications or standards.,0.125,0.8844
+17-2071.00,1365,"Conduct field surveys or study maps, graphs, diagrams, or other data to identify and correct power system problems.",0.2,0.8568
+17-2141.00,20740,Solicit new business.,0.2,0.9709
+19-1022.00,3675,"Examine physiological, morphological, and cultural characteristics, using microscope, to identify and classify microorganisms in human, water, and food specimens.",0.2,0.9002
+19-1029.04,176,"Study aquatic plants and animals and environmental conditions affecting them, such as radioactivity or pollution.",0.225,0.7826
+19-2011.00,7524,"Study celestial phenomena, using a variety of ground-based and space-borne telescopes and scientific instruments.",0.225,1.0
+19-2032.00,20213,"Perform experiments and computer modeling to study the nature, structure, and physical and chemical properties of metals and their alloys, and their responses to applied forces.",0.275,0.8242
+19-3094.00,5515,Teach political science.,0.15,1.0
+19-4013.00,7583,"Examine chemical or biological samples to identify cell structures or to locate bacteria or extraneous material, using a microscope.",0.15,0.9782
+19-4031.00,1536,"Set up and conduct chemical experiments, tests, and analyses, using techniques such as chromatography, spectroscopy, physical or chemical separation techniques, or microscopy.",0.15,0.9124
+19-4031.00,1539,Provide technical support or assistance to chemists or engineers.,0.275,0.756
+19-4042.00,1567,"Examine and analyze material for presence and concentration of contaminants, such as asbestos, using variety of microscopes.",0.15,1.0
+19-4043.00,22262,"Test and analyze samples to determine their content and characteristics, using laboratory apparatus or testing equipment.",0.2,0.9949
+21-1012.00,5619,Teach classes and present self-help or information sessions on subjects related to education and career planning.,0.275,0.7474
+23-1021.00,7627,"Determine existence and amount of liability according to current laws, administrative and judicial precedents, and available evidence.",0.275,0.792
+23-1022.00,12994,"Use mediation techniques to facilitate communication between disputants, to further parties' understanding of different perspectives, and to guide parties toward mutual agreement.",0.125,0.781
+23-1022.00,20238,"Apply relevant laws, regulations, policies, or precedents to reach conclusions.",0.275,0.86
+25-1011.00,5675,"Participate in student recruitment, registration, and placement activities.",0.2,0.888
+25-1021.00,5697,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1022.00,5711,"Prepare and deliver lectures to undergraduate or graduate students on topics such as linear algebra, differential equations, and discrete mathematics.",0.175,0.7239
+25-1022.00,5722,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1031.00,5746,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1032.00,5753,"Prepare and deliver lectures to undergraduate or graduate students on topics such as mechanics, hydraulics, and robotics.",0.25,0.8268
+25-1032.00,5769,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1041.00,5791,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1042.00,5815,"Participate in student recruitment, registration, and placement activities.",0.2,0.888
+25-1043.00,5838,"Participate in student recruitment, registration, and placement activities.",0.225,0.888
+25-1051.00,5849,"Prepare and deliver lectures to undergraduate or graduate students on topics such as structural geology, micrometeorology, and atmospheric thermodynamics.",0.275,0.7239
+25-1052.00,5868,"Prepare and deliver lectures to undergraduate or graduate students on topics such as organic chemistry, analytical chemistry, and chemical separation.",0.275,1.0
+25-1052.00,5885,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1053.00,5909,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1054.00,5916,"Prepare and deliver lectures to undergraduate or graduate students on topics such as quantum mechanics, particle physics, and optics.",0.225,0.9345
+25-1054.00,5930,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1061.00,5940,"Prepare and deliver lectures to undergraduate or graduate students on topics such as research methods, urban anthropology, and language and culture.",0.2,0.7239
+25-1061.00,5957,"Participate in student recruitment, registration, and placement activities.",0.2,0.888
+25-1062.00,5979,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1063.00,6000,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1065.00,6047,"Participate in student recruitment, registration, and placement activities.",0.2,0.888
+25-1066.00,6053,"Prepare and deliver lectures to undergraduate or graduate students on topics such as abnormal psychology, cognitive processes, and work motivation.",0.275,0.8395
+25-1066.00,6069,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1067.00,6091,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1071.00,6113,"Participate in student recruitment, registration, and placement activities.",0.2,0.888
+25-1072.00,6137,"Participate in student recruitment, registration, and placement activities.",0.2,0.888
+25-1081.00,6162,"Participate in student recruitment, registration, and placement activities.",0.225,0.888
+25-1082.00,6187,"Participate in student recruitment, registration, and placement activities.",0.2,0.888
+25-1082.00,20088,"Keep abreast of developments in the field by reading current literature, talking with colleagues, giving presentations at conferences, and serving on committees in professional associations.",0.25,0.7239
+25-1111.00,6210,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1112.00,6231,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-1125.00,6372,"Participate in student recruitment, registration, and placement activities.",0.175,0.888
+25-2021.00,6564,Organize and label materials and display students' work.,0.15,0.9044
+25-2022.00,6600,Organize and label materials and display students' work.,0.15,0.9044
+25-2022.00,18638,"Assist students who need extra help, such as by tutoring and preparing and implementing remedial programs.",0.25,1.0
+25-2023.00,6619,"Observe and evaluate students' performance, behavior, social development, and physical health.",0.175,0.9429
+25-2032.00,6675,"Observe and evaluate students' performance, behavior, social development, and physical health.",0.2,0.9429
+25-2051.00,19076,"Observe and evaluate students' performance, behavior, social development, and physical health.",0.2,0.9429
+25-2055.00,22346,"Observe and evaluate students' performance, behavior, social development, and physical health.",0.2,0.9429
+25-2057.00,6781,Provide additional instruction in vocational areas.,0.225,0.8352
+25-2058.00,6807,Provide additional instruction in vocational areas.,0.175,0.8352
+25-3031.00,22398,Operate equipment such as computers or audio-visual aids to supplement presentations.,0.225,0.7239
+25-3041.00,17037,"Provide private instruction to individual or small groups of students to improve academic performance, improve occupational skills, or prepare for academic or occupational tests.",0.2,0.9154
+25-9042.00,22481,Tutor and assist children individually or in small groups to help them master assignments and to reinforce learning concepts presented by teachers.,0.175,0.9798
+25-9043.00,22512,Tutor and assist children individually or in small groups to help them master assignments and to reinforce learning concepts presented by teachers.,0.175,0.9798
+27-1013.00,10989,"Use materials such as pens and ink, watercolors, charcoal, oil, or computer software to create artwork.",0.25,0.9751
+27-2012.00,22518,"Coordinate the activities of writers, directors, managers, and other personnel throughout the production process.",0.175,1.0
+27-2032.00,11036,"Develop ideas for creating dances, keeping notes and sketches to record influences.",0.275,0.9293
+27-3031.00,1772,Coach client representatives in effective communication with the public or with employees.,0.225,0.6668
+29-1031.00,317,"Counsel individuals and groups on basic rules of good nutrition, healthy eating habits, and nutrition monitoring to improve their quality of life.",0.225,0.8254
+29-1122.01,17338,"Provide consultation, support, or education to groups such as parents and teachers.",0.275,0.7871
+29-1141.04,20420,Teach patient education programs that include information required to make informed health care and treatment decisions.,0.175,0.7671
+29-1222.00,17194,Examine microscopic samples to identify diseases or other abnormalities.,0.25,0.9234
+29-2011.01,17386,"Recognize and report abnormalities in the color, size, shape, composition, or pattern of cells.",0.275,0.7239
+29-2011.02,17395,"Examine cell samples to detect abnormalities in the color, shape, or size of cellular components and patterns.",0.275,0.9503
+29-2011.02,17400,Examine specimens to detect abnormal hormone conditions.,0.225,0.9676
+29-2011.04,22783,"Identify tissue structures or cell components to be used in the diagnosis, prevention, or treatment of diseases.",0.275,0.9568
+29-2034.00,22811,Take thorough and accurate patient medical histories.,0.275,0.7239
+29-2035.00,19236,Take brief medical histories from patients.,0.275,0.7239
+33-1011.00,9431,"Maintain knowledge of, comply with, and enforce all institutional policies, rules, procedures, and regulations.",0.25,0.9769
+33-3021.06,17548,"Gather intelligence information by field observation, confidential information sources, or public records.",0.15,1.0
+37-1011.00,9532,"Screen job applicants, and hire new employees.",0.25,0.9682
+37-1012.00,11204,"Monitor project activities to ensure that instructions are followed, deadlines are met, and schedules are maintained.",0.225,0.9885
+39-6012.00,20262,"Plan special events, parties, or meetings, which may include booking musicians or celebrities.",0.275,0.8757
+41-1011.00,668,Instruct staff on how to handle difficult and complicated sales.,0.25,0.7846
+41-1012.00,9670,"Examine merchandise to ensure correct pricing and display, and that it functions as advertised.",0.125,0.994
+41-2031.00,700,"Recommend, select, and help locate or obtain merchandise based on customer needs and desires.",0.225,0.9936
+41-2031.00,703,"Ticket, arrange, and display merchandise to promote sales.",0.125,1.0
+41-3021.00,722,"Interview prospective clients to obtain data about their financial resources and needs, the physical condition of the person or property to be insured, and to discuss any existing coverage.",0.2,0.9861
+41-3031.00,23196,"Buy or sell stocks, bonds, commodity futures, foreign currencies, or other securities on behalf of investment dealers.",0.25,1.0
+41-3031.00,23202,"Sell services or equipment, such as trusts, investments, or check processing services.",0.2,0.9323
+41-3041.00,738,"Converse with customer to determine destination, mode of transportation, travel dates, financial considerations, and accommodations required.",0.225,1.0
+41-3091.00,23225,Consult with clients after sales or contract signings to resolve problems and provide ongoing support.,0.25,0.7239
+41-3091.00,23226,Contact prospective or existing customers to discuss how services can meet their needs.,0.225,0.7239
+41-4011.00,11240,Negotiate prices or terms of sales or service agreements.,0.15,0.9664
+41-4011.00,20609,Contact new or existing customers to discuss how specific products or services can meet their needs.,0.225,0.9868
+41-9021.00,4612,Rent properties or manage rental properties.,0.25,0.8813
+41-9022.00,2442,Interview clients to determine what kinds of properties they are seeking.,0.2,0.9917
+41-9022.00,2445,"Act as an intermediary in negotiations between buyers and sellers, generally representing one or the other.",0.15,0.926
+43-1011.00,9705,Provide employees with guidance in handling difficult or complex problems or in resolving escalated complaints or disputes.,0.225,0.685
+43-9061.00,844,"Troubleshoot problems involving office equipment, such as computer hardware and software.",0.25,0.8875
+47-1011.00,11424,"Read specifications, such as blueprints, to determine construction requirements or to plan procedures.",0.25,1.0
+47-2061.00,11456,"Read plans, instructions, or specifications to determine work activities.",0.275,0.9461
+49-1011.00,2915,"Examine objects, systems, or facilities and analyze information to determine needed installations, services, or repairs.",0.175,1.0
+51-1011.00,21207,Evaluate employee performance.,0.225,0.7239
+51-8013.00,23612,"Analyze the layout, instrumentation, or function of electrical generation or transmission facilities.",0.275,0.7984
+53-1042.00,8582,"Participate in the hiring process by reviewing credentials, conducting interviews, or making hiring decisions or recommendations.",0.225,0.8762
+53-3031.00,3155,Listen to and resolve customers' complaints regarding products or services.,0.2,0.9827

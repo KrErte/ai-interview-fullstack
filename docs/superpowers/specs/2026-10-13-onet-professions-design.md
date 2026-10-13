@@ -128,12 +128,20 @@ LLM-i projektilaused (write_projects.py) ────────────►
 Iga allikas katab teise nõrkust. Igal on oma roll:
 
 1. **A – LLM-hinnang (alus).** Iga O\*NET-i ülesanne saab hinnangu 0..1 fikseeritud rubriigi järgi (`tools/onet-import/rubric.md`). Küsimus on: „Mis osa sellest ülesandest suudavad tänased AI tööriistad teha nii, et inimene ainult suunab ja kontrollib?“ Rubriigis on ankrunäited meie käsitsi tehtud ametite ülesannetest. Hinnatakse ühekordse partiina (Anthropic API). Tulemus läheb faili `ratings_llm.csv` ja see commititakse.
-2. **B – GPTs are GPTs (ankur, valikuline).** Kui Eloundou et al. ülesannete sildid on alla laaditavad ja litsents lubab, teisendame sildid numbriks: E0 → 0,15, E2 → 0,55, E1 → 0,80. Neil ülesannetel on `automation = 0,5 × A + 0,5 × B`. Kui B-d ei saa kasutada, jääb `automation = A` ja dokumenti kirjutatakse põhjus. **Ülejäänud plaan ei sõltu B-st.**
+2. **B – GPTs are GPTs (ankur).** Kui Eloundou et al. ülesannete sildid on alla laaditavad ja litsents lubab, teisendame sildid numbriks: E0 → 0,15, E2 → 0,55, E1 → 0,80. Neil ülesannetel on `automation = 0,5 × A + 0,5 × B`. Kui B-d ei saa kasutada, jääb `automation = A` ja dokumenti kirjutatakse põhjus. **Ülejäänud plaan ei sõltu B-st.**
+   - *Kontrollitud 2026-10-13:* allikas on `github.com/openai/GPTs-are-GPTs`, fail `data/full_labelset.tsv`, commit `0471612fef3cc22b74fb884d27bff9dbd3770582`, **MIT litsents**. Fail sisaldab 19 265 ülesannet, millest **18 751 / 18 796 (99,8%)** on meie ülesanded. 892 ametit on täielikult kaetud, 31 osaliselt ja ükski pole katmata.
+   - Kasutame veergu **`human_exposure_agg`** (inimhindajad: E0 9 886, E1 2 820, E2 6 045), mitte `gpt4_exposure`. Nii on ankur meie LLM-ist sõltumatu.
+   - Viide: Eloundou, Manning, Mishkin, Rock (2024), „GPTs are GPTs: Labor market impact potential of LLMs“, *Science* 384(6702).
+   - *Teostus:* `claude-opus-5`, effort `medium`, üks päring ameti kohta (mudel näeb ülesannet ameti kontekstis), Message Batches API, struktureeritud JSON väljund ja valideerimine (iga ülesanne täpselt korra, väärtus 0..1).
+   - *Piloot 2026-10-13* (24 kalibreerimisametit, 526 ülesannet): 0 viga, kulu $0,25. Keskmine erinevus käsitsi tehtud ametitest: ainult B 6,0 punkti, A+B 4,5 punkti, korrektsiooni pole vaja. Kooskõla B-ga: A keskmine E0 → 0,20, E2 → 0,49, E1 → 0,56 (Pearson 0,58). Kooskõla C-ga: kasutatud ülesannete A keskmine on 0,58, ülejäänutel 0,38. Täiskäivitus (923 ametit) kasutaja kinnitusel, hinnanguliselt umbes $10.
+   - *Täiskäivitus 2026-10-13* (batch `msgbatch_01XPQb3hwuGZpd43ZABpFRmL`): 921 / 923 ametit õnnestusid esimesel korral. Kahe ameti vastuses oli ülesande ID-l koma (`'16597,'`), valideerimine lükkas need tagasi ja `rate_tasks.py retry` hindas need uuesti. Hinnatud on kõik 18 796 ülesannet. Kulu $9,16 (koos piloodiga umbes $9,42).
+   - *Lõplik tulemus:* keskmine erinevus käsitsi tehtud ametitest **4,4 punkti**, korrektsiooni ei rakendatud. Ülesannete eksponeeritus 923 ameti lõikes: min 8, mediaan 33, max 74. Ainult ülesannete järgi, enne isiklikke vastuseid (±30): LOW 424, MODERATE 349, HIGH 149, VERY_HIGH 1. `review.csv` sisaldab 127 ülesannet.
 3. **Kalibreerimine.** Pärast A+B segamist kontrollitakse käsitsi tehtud 19 ameti vasteid (4.3). Kui keskmine erinevus on üle 10 punkti, rakendatakse kõigile hinnangutele üks lineaarne korrektsioon `a × x + b`, mis sobitatakse nende 19 vaste järgi. Korrektsiooni kordajad trükitakse aruandesse.
 4. **C – AEI `penetration` (kontroll ja märgis, mitte valemi osa).**
-   - *Esimene samm:* kontrolli AEI labor-market väljalaske dokumentatsioonist, mida `penetration` täpselt mõõdab (93% on 0) ja kirjuta definitsioon siia.
-   - *Kontroll:* kui `penetration` on kõrge, aga lõplik `automation` on alla 0,3, läheb ülesanne faili `review.csv` ülevaatamiseks.
-   - *Märgis:* `observedUse = penetration ≥ lävi`. Lävi valitakse pärast definitsiooni kontrolli ja kirjutatakse siia.
+   - *Definitsioon (kontrollitud 2026-10-13, Anthropic „Labor market impacts of AI“):* ülesanne loetakse kaetuks, kui see on teoreetiliselt LLM-iga tehtav (Eloundou β ≥ 0,5) **ja** seda on Claude'i liikluses tööalaselt piisavalt kasutatud (andmed augustist ja novembrist 2025). Väärtus on automatiseeritud kasutuse kaal: täisautomaatne 1, abistav 0,5. Failis on 1354 ülesandel väärtus vahemikus 0,5–1,0, kõigil teistel 0.
+   - *Kontroll:* kui `penetration > 0`, aga lõplik `automation` on alla 0,3, läheb ülesanne faili `review.csv` ülevaatamiseks.
+   - *Märgis:* `observedUse = penetration > 0`, ehk ülesannet tehakse juba päriselt AI-ga. Eraldi lävi ei ole vaja, sest väärtused on kas 0 või vähemalt 0,5.
+   - Kooskõla B-ga: kasutatud ülesannetest on ainult 4 / 1721 sellised, kus Eloundou β < 0,5.
 
 ### O2 – Tööriistad ja stardiplaan: mall ja LLM-i projektilause
 
