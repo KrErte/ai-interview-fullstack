@@ -7,9 +7,14 @@ import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class AiReadinessService {
@@ -24,10 +29,68 @@ public class AiReadinessService {
         this.coach = coach;
     }
 
+    static final int MAX_SEARCH_RESULTS = 50;
+
+    /** Käsitsi kirjutatud ametid; O*NET ametid leiab search() kaudu. */
     public List<ProfessionSummary> professions() {
+        return catalog.featured().stream().map(this::summary).toList();
+    }
+
+    /**
+     * Otsib ameti nimest ja alternatiivnimetustest, tõstutundetult. Tühi päring tagastab käsitsi
+     * kirjutatud ametid. Järjestus: täpne nimi, nime algus, täpne alternatiivnimetus, nime sõna
+     * algus, alternatiivnimetuse algus, nime sisaldus, alternatiivnimetuse sisaldus; viigi korral
+     * käsitsi kirjutatud ees, siis tähestik.
+     */
+    public List<ProfessionSummary> search(String query, int limit) {
+        int max = Math.max(1, Math.min(MAX_SEARCH_RESULTS, limit));
+        String q = query == null ? "" : query.trim().toLowerCase(Locale.ROOT);
+        if (q.isEmpty()) {
+            return professions().stream().limit(max).toList();
+        }
+        Set<String> featuredIds = catalog.featured().stream().map(Profession::id).collect(Collectors.toSet());
+        record Hit(Profession profession, int rank, boolean featured) {
+        }
         return catalog.professions().stream()
-                .map(p -> new ProfessionSummary(p.id(), p.name(), p.category()))
+                .map(p -> new Hit(p, rank(p, q), featuredIds.contains(p.id())))
+                .filter(h -> h.rank() < Integer.MAX_VALUE)
+                .sorted(Comparator.comparingInt(Hit::rank)
+                        .thenComparing(h -> !h.featured())
+                        .thenComparing(h -> h.profession().name()))
+                .limit(max)
+                .map(h -> summary(h.profession()))
                 .toList();
+    }
+
+    private static int rank(Profession p, String q) {
+        String name = p.name().toLowerCase(Locale.ROOT);
+        List<String> alternates = p.alternateTitles().stream().map(a -> a.toLowerCase(Locale.ROOT)).toList();
+        if (name.equals(q)) {
+            return 0;
+        }
+        if (name.startsWith(q)) {
+            return 1;
+        }
+        if (alternates.contains(q)) {
+            return 2;
+        }
+        if (Arrays.stream(name.split("[^\\p{L}\\p{N}]+")).anyMatch(w -> w.startsWith(q))) {
+            return 3;
+        }
+        if (alternates.stream().anyMatch(a -> a.startsWith(q))) {
+            return 4;
+        }
+        if (name.contains(q)) {
+            return 5;
+        }
+        if (alternates.stream().anyMatch(a -> a.contains(q))) {
+            return 6;
+        }
+        return Integer.MAX_VALUE;
+    }
+
+    private ProfessionSummary summary(Profession p) {
+        return new ProfessionSummary(p.id(), p.name(), p.category(), p.onetCode() == null);
     }
 
     public List<Question> questions() {

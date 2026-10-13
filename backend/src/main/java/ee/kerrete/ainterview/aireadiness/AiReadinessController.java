@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -32,6 +33,12 @@ public class AiReadinessController {
     @GetMapping("/professions")
     public List<ProfessionSummary> professions() {
         return service.professions();
+    }
+
+    @GetMapping("/professions/search")
+    public List<ProfessionSummary> searchProfessions(@RequestParam(name = "q", required = false) String query,
+                                                     @RequestParam(name = "limit", defaultValue = "20") int limit) {
+        return service.search(query, limit);
     }
 
     @GetMapping("/questions")

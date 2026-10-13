@@ -65,7 +65,7 @@ Section 5 / O1 of the design doc. Every task gets `automation` (0..1) from three
 | B: GPTs-are-GPTs human label | `.cache/full_labelset.tsv`, column `human_exposure_agg` (E0/E2/E1 → 0.15/0.55/0.80) | 50/50 anchor where present (99.8% of tasks) |
 | C: AEI `penetration` | `out/onet_tasks.csv` | `observed_use = penetration > 0`, and the review check. Not part of the score. |
 
-`blend.py` mixes A and B, then compares the resulting exposure with the 19 hand-written professions (`curated_onet_codes.json`). If the mean absolute difference is over 10 points, it applies one linear correction to all tasks.
+`blend.py` mixes A and B, then compares the resulting exposure with the 19 hand-written professions (their `onetCodes` in `professions.json`). If the mean absolute difference is over 10 points, it applies one linear correction to all tasks.
 
 ```bash
 pip install -r tools/onet-import/requirements.txt
@@ -84,6 +84,21 @@ Outputs:
 - `calibration.md`: hand-written vs O\*NET exposure per profession, and the correction applied
 
 Additional source: [GPTs-are-GPTs](https://github.com/openai/GPTs-are-GPTs) `data/full_labelset.tsv` at commit `0471612…`, MIT license. Cite as Eloundou, Manning, Mishkin, Rock (2024), *Science* 384(6702).
+
+## Stage 3: catalog for the backend
+
+`catalog.py` writes `backend/src/main/resources/ai-readiness/professions-onet.json`: one profession per O\*NET occupation (899), in the same shape as the hand-written `professions.json`, plus `onetCode`, `alternateTitles` (search only) and `tasks[].observedUse`.
+
+```bash
+python tools/onet-import/catalog.py
+```
+
+- **Hidden duplicates:** occupations listed in a hand-written profession's `onetCodes` are left out (24 codes), so "Software developer" exists only once.
+- **`humanEdge`:** the 3 tasks with the largest `share × (1 − automation)`.
+- **`pivotRoles`:** the first 3 O\*NET "Primary-Short" related occupations.
+- **`aiTools` and `roadmap`:** from `templates.json`, one template per SOC major group (22). Per-occupation project sentences (spec O2) are a later step that needs an API key.
+
+The backend loads both files. `GET /api/ai-readiness/professions` still returns only the hand-written professions. `GET /api/ai-readiness/professions/search?q=&limit=` searches all of them by name and alternate title.
 
 ## Attribution
 

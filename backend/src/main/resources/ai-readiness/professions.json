@@ -3,6 +3,7 @@
     "id": "software-developer",
     "name": "Software developer",
     "category": "IT",
+    "onetCodes": ["15-1252.00"],
     "tasks": [
       { "name": "Writing routine code (CRUD, boilerplate, integrations)", "share": 25, "automation": 0.8 },
       { "name": "Debugging and code review", "share": 15, "automation": 0.55 },
@@ -53,6 +54,7 @@
     "id": "qa-tester",
     "name": "Tester / QA",
     "category": "IT",
+    "onetCodes": ["15-1253.00"],
     "tasks": [
       { "name": "Running manual tests", "share": 30, "automation": 0.8 },
       { "name": "Writing test cases", "share": 20, "automation": 0.75 },
@@ -101,6 +103,7 @@
     "id": "data-analyst",
     "name": "Data analyst",
     "category": "IT",
+    "onetCodes": ["15-2051.01", "15-2051.00"],
     "tasks": [
       { "name": "Cleaning and preparing data", "share": 25, "automation": 0.8 },
       { "name": "Reports and dashboards", "share": 25, "automation": 0.75 },
@@ -149,6 +152,7 @@
     "id": "devops-engineer",
     "name": "DevOps / cloud engineer",
     "category": "IT",
+    "onetCodes": ["15-1244.00", "15-1241.00"],
     "tasks": [
       { "name": "IaC and configuration scripts (Terraform, Helm, YAML)", "share": 25, "automation": 0.65 },
       { "name": "Maintaining CI/CD pipelines", "share": 20, "automation": 0.55 },
@@ -198,6 +202,7 @@
     "id": "designer",
     "name": "UX/UI designer",
     "category": "Creative",
+    "onetCodes": ["15-1255.00"],
     "tasks": [
       { "name": "Wireframes and mockups", "share": 25, "automation": 0.65 },
       { "name": "Visual assets and illustrations", "share": 15, "automation": 0.8 },
@@ -247,6 +252,7 @@
     "id": "marketing",
     "name": "Marketing specialist",
     "category": "Business",
+    "onetCodes": ["13-1161.00"],
     "tasks": [
       { "name": "Creating content (posts, banners, copy)", "share": 25, "automation": 0.8 },
       { "name": "Campaign analytics", "share": 20, "automation": 0.7 },
@@ -295,6 +301,7 @@
     "id": "copywriter",
     "name": "Copywriter / content creator",
     "category": "Creative",
+    "onetCodes": ["27-3043.00"],
     "tasks": [
       { "name": "Writing first drafts", "share": 40, "automation": 0.85 },
       { "name": "Editing and proofreading", "share": 20, "automation": 0.85 },
@@ -343,6 +350,7 @@
     "id": "customer-support",
     "name": "Customer support agent",
     "category": "Service",
+    "onetCodes": ["43-4051.00"],
     "tasks": [
       { "name": "Answering standard questions", "share": 40, "automation": 0.9 },
       { "name": "Routing and documenting requests", "share": 20, "automation": 0.85 },
@@ -390,6 +398,7 @@
     "id": "sales",
     "name": "Sales representative",
     "category": "Business",
+    "onetCodes": ["41-4012.00", "41-3091.00"],
     "tasks": [
       { "name": "Finding and researching prospects", "share": 20, "automation": 0.75 },
       { "name": "Outreach emails and follow-ups", "share": 15, "automation": 0.8 },
@@ -438,6 +447,7 @@
     "id": "accountant",
     "name": "Accountant",
     "category": "Finance",
+    "onetCodes": ["13-2011.00"],
     "tasks": [
       { "name": "Bookkeeping entries and invoice processing", "share": 30, "automation": 0.9 },
       { "name": "Reconciling bank statements and accounts", "share": 20, "automation": 0.8 },
@@ -486,6 +496,7 @@
     "id": "lawyer",
     "name": "Lawyer",
     "category": "Law",
+    "onetCodes": ["23-1011.00"],
     "tasks": [
       { "name": "Document review (due diligence)", "share": 25, "automation": 0.75 },
       { "name": "Drafting contracts", "share": 20, "automation": 0.65 },
@@ -534,6 +545,7 @@
     "id": "hr-recruiter",
     "name": "HR specialist / recruiter",
     "category": "Business",
+    "onetCodes": ["13-1071.00"],
     "tasks": [
       { "name": "Screening CVs", "share": 25, "automation": 0.8 },
       { "name": "Job ads and correspondence", "share": 15, "automation": 0.8 },
@@ -582,6 +594,7 @@
     "id": "project-manager",
     "name": "Project manager",
     "category": "Business",
+    "onetCodes": ["13-1082.00"],
     "tasks": [
       { "name": "Status reports", "share": 20, "automation": 0.8 },
       { "name": "Schedules and planning", "share": 20, "automation": 0.6 },
@@ -631,6 +644,7 @@
     "id": "teacher",
     "name": "Teacher / trainer",
     "category": "Education",
+    "onetCodes": ["25-2031.00"],
     "tasks": [
       { "name": "Preparing lessons and materials", "share": 25, "automation": 0.7 },
       { "name": "Grading and feedback", "share": 15, "automation": 0.7 },
@@ -679,6 +693,7 @@
     "id": "healthcare",
     "name": "Healthcare worker (doctor, nurse)",
     "category": "Health",
+    "onetCodes": ["29-1141.00", "29-1215.00"],
     "tasks": [
       { "name": "Documentation", "share": 25, "automation": 0.75 },
       { "name": "Diagnosis and decision support", "share": 15, "automation": 0.45 },
@@ -727,6 +742,7 @@
     "id": "translator",
     "name": "Translator",
     "category": "Creative",
+    "onetCodes": ["27-3091.00"],
     "tasks": [
       { "name": "First-draft translation", "share": 50, "automation": 0.9 },
       { "name": "Post-editing and quality control", "share": 20, "automation": 0.6 },
@@ -775,6 +791,7 @@
     "id": "skilled-trades",
     "name": "Skilled trades (electrician, builder, mechanic)",
     "category": "Trades",
+    "onetCodes": ["47-2111.00", "47-2031.00", "49-3023.00"],
     "tasks": [
       { "name": "Physical installation and repair", "share": 55, "automation": 0.05 },
       { "name": "Diagnosing faults on site", "share": 15, "automation": 0.2 },
@@ -823,6 +840,7 @@
     "id": "manager",
     "name": "Manager / entrepreneur",
     "category": "Management",
+    "onetCodes": ["11-1021.00"],
     "tasks": [
       { "name": "Strategy", "share": 20, "automation": 0.2 },
       { "name": "Managing people", "share": 25, "automation": 0.1 },

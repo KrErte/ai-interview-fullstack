@@ -23,7 +23,7 @@ EFFORT = 'medium'
 PRICES_BATCH = {'input': 2.50, 'output': 12.50}
 
 RUBRIC = HERE / 'rubric.md'
-CURATED = HERE / 'curated_onet_codes.json'
+PROFESSIONS = HERE.parent.parent / 'backend' / 'src' / 'main' / 'resources' / 'ai-readiness' / 'professions.json'
 
 SCHEMA = {
     'type': 'object',
@@ -89,7 +89,7 @@ def _occupations(pilot):
             tasks.setdefault(r['onetsoc_code'], []).append((r['task_id'], r['task_statement'], r['share_pct']))
     codes = sorted(titles)
     if pilot:
-        wanted = {c for cs in json.loads(CURATED.read_text(encoding='utf-8')).values() for c in cs}
+        wanted = {c for p in json.loads(PROFESSIONS.read_text(encoding='utf-8')) for c in p.get('onetCodes', [])}
         codes = [c for c in codes if c in wanted]
     return [(c, titles[c], tasks[c]) for c in codes]
 

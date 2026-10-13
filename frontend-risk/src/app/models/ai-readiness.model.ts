@@ -2,6 +2,8 @@ export interface ProfessionSummary {
   id: string;
   name: string;
   category: string;
+  /** Hand-written profession (shown without search); O*NET professions come from search. */
+  featured?: boolean;
 }
 
 export interface QuestionOption {
@@ -23,6 +25,8 @@ export interface TaskExposure {
   name: string;
   share: number;
   automationPercent: number;
+  /** AI is already used for this task in practice (Anthropic Economic Index). */
+  observedUse?: boolean;
 }
 
 export interface Resource {

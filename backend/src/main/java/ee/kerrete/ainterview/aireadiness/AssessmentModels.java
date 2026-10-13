@@ -24,14 +24,15 @@ public final class AssessmentModels {
     ) {
     }
 
-    public record ProfessionSummary(String id, String name, String category) {
+    /** featured: käsitsi kirjutatud amet (näidatakse ilma otsinguta). */
+    public record ProfessionSummary(String id, String name, String category, boolean featured) {
     }
 
     public enum RiskBand { LOW, MODERATE, HIGH, VERY_HIGH }
 
     public enum StageStatus { DONE, CURRENT, UPCOMING }
 
-    public record TaskExposure(String name, int share, int automationPercent) {
+    public record TaskExposure(String name, int share, int automationPercent, boolean observedUse) {
     }
 
     public record GeneralStageResult(
