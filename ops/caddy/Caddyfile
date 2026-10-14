@@ -1,11 +1,15 @@
 # Shared reverse proxy for 62.171.153.133 (ports 80/443), installed at /opt/caddy on the server.
-# Futureproof gets automatic HTTPS (Let's Encrypt); every other host name, including the bare IP,
-# goes to lumen over HTTP. To add a real domain later, add it next to the sslip.io name below and
-# point its DNS A record to 62.171.153.133.
+# Futureproof is served at https://careerrisk.ee with automatic HTTPS (Let's Encrypt). www and the old
+# sslip.io name redirect there permanently, so search engines see one address. Every other host name,
+# including the bare IP, goes to lumen over HTTP.
 
-62-171-153-133.sslip.io {
+careerrisk.ee {
 	encode gzip
 	reverse_proxy 127.0.0.1:8100
+}
+
+www.careerrisk.ee, 62-171-153-133.sslip.io {
+	redir https://careerrisk.ee{uri} permanent
 }
 
 # Umami analytics (ops/umami)
