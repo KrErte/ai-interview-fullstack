@@ -37,6 +37,7 @@ public class JobPages {
     private final Map<String, String> slugById = new HashMap<>();
     private final Map<String, Profession> bySlug = new HashMap<>();
     private final Map<String, Profession> byName = new HashMap<>();
+    private final Map<String, String> redirects = new HashMap<>();
 
     /** Lehe andmed: neutraalne skoor (ilma vastusteta), suurimad ülesanded ja lingitavad seotud ametid. */
     public record JobPage(Profession profession, String slug, AssessmentResult result, List<TaskExposure> topTasks,
@@ -63,6 +64,12 @@ public class JobPages {
             bySlug.put(slug, p);
             byName.putIfAbsent(p.name().toLowerCase(Locale.ROOT), p);
         }
+        catalog.hiddenTitles().forEach((title, id) -> {
+            String slug = slugify(title);
+            if (!bySlug.containsKey(slug) && slugById.containsKey(id)) {
+                redirects.putIfAbsent(slug, slugById.get(id));
+            }
+        });
     }
 
     static String slugify(String text) {
@@ -77,6 +84,14 @@ public class JobPages {
 
     public Optional<Profession> bySlug(String slug) {
         return Optional.ofNullable(bySlug.get(slug));
+    }
+
+    /**
+     * Peidetud O*NET ameti slug (nt "software-developers") annab selle käsitsi kirjutatud ameti slug'i,
+     * mis ameti peidab ("software-developer"); lehega slug'id ei suuna kunagi ümber.
+     */
+    public Optional<String> redirect(String slug) {
+        return Optional.ofNullable(redirects.get(slug));
     }
 
     public String slugOf(String professionId) {

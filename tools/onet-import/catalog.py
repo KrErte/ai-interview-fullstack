@@ -4,7 +4,8 @@ Each O*NET occupation becomes a Profession in the same shape as the hand-written
 onetCode, alternateTitles (search only) and tasks[].observedUse. Occupations already covered by a
 hand-written profession (its onetCodes) are left out.
 Also writes professions-aliases.json: for each hand-written profession, the titles of the O*NET
-occupations it hides, so search still finds it by them.
+occupations it hides, so search still finds it by them, and professions-hidden.json: each hidden
+occupation's title and the hand-written profession whose page its /jobs URL redirects to.
 Run: python tools/onet-import/catalog.py
 """
 import csv
@@ -18,6 +19,7 @@ TEMPLATES = HERE / 'templates.json'
 PROFESSIONS = RESOURCES / 'professions.json'
 TARGET = RESOURCES / 'professions-onet.json'
 ALIASES = RESOURCES / 'professions-aliases.json'
+HIDDEN = RESOURCES / 'professions-hidden.json'
 
 
 def _rows(path):
@@ -92,6 +94,16 @@ def build_aliases(out_dir, curated_codes):
     return aliases
 
 
+def build_hidden(out_dir, curated_codes):
+    """{O*NET title of a hidden occupation: hand-written id that hides it}, sorted by title.
+
+    The backend redirects /jobs/<slug of that title> to the hand-written profession's page.
+    """
+    titles = {o['onetsoc_code']: o['title'] for o in _rows(Path(out_dir) / 'onet_occupations.csv')}
+    hidden = {titles[code]: pid for pid, codes in curated_codes.items() for code in codes}
+    return dict(sorted(hidden.items()))
+
+
 def curated_codes_from(professions_json):
     return {p['id']: p.get('onetCodes', []) for p in json.loads(Path(professions_json).read_text(encoding='utf-8'))}
 
@@ -120,3 +132,4 @@ if __name__ == '__main__':
     print(f'occupation-specific projects: {len(projects)}')
     _write_json(TARGET, build_catalog(OUT, templates, hidden_codes_from(PROFESSIONS), projects))
     _write_json(ALIASES, build_aliases(OUT, curated_codes_from(PROFESSIONS)))
+    _write_json(HIDDEN, build_hidden(OUT, curated_codes_from(PROFESSIONS)))

@@ -2,6 +2,7 @@ package ee.kerrete.ainterview.aireadiness;
 
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.RiskBand;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.View;
 import org.springframework.web.util.HtmlUtils;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Avalikud, serveris renderdatud SEO-lehed: /jobs (indeks), /jobs/{slug} (amet), sitemap.xml, robots.txt.
@@ -51,8 +54,15 @@ public class JobPageController {
     }
 
     @GetMapping("/jobs/{slug}")
-    public String job(@PathVariable String slug, Model model, HttpServletResponse response) {
+    public String job(@PathVariable String slug, Model model, HttpServletRequest request, HttpServletResponse response) {
         Profession profession = pages.bySlug(slug).orElse(null);
+        Optional<String> target = profession == null ? pages.redirect(slug) : Optional.empty();
+        if (target.isPresent()) {
+            // Peidetud O*NET ameti nimi (nt "software-developers") -> seda katva käsitsi kirjutatud ameti leht
+            request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.MOVED_PERMANENTLY);
+            response.setHeader("Cache-Control", CACHE);
+            return "redirect:" + pages.url("/jobs/" + target.get());
+        }
         if (profession == null) {
             response.setStatus(HttpStatus.NOT_FOUND.value());
             return "jobs/not-found";

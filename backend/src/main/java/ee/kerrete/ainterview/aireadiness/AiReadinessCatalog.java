@@ -39,6 +39,7 @@ public class AiReadinessCatalog {
     private final List<Question> questions;
     private final List<GeneralStage> generalRoadmap;
     private final Map<String, String> groups;
+    private final Map<String, String> hiddenTitles;
 
     @Autowired
     public AiReadinessCatalog(ObjectMapper objectMapper) {
@@ -48,7 +49,8 @@ public class AiReadinessCatalog {
                         read(objectMapper, "ai-readiness/professions-aliases.json", new TypeReference<>() { })),
                 read(objectMapper, "ai-readiness/professions-onet.json", new TypeReference<>() { }),
                 read(objectMapper, "ai-readiness/questions.json", new TypeReference<>() { }),
-                read(objectMapper, "ai-readiness/general-roadmap.json", new TypeReference<>() { })
+                read(objectMapper, "ai-readiness/general-roadmap.json", new TypeReference<>() { }),
+                read(objectMapper, "ai-readiness/professions-hidden.json", new TypeReference<>() { })
         );
     }
 
@@ -67,7 +69,7 @@ public class AiReadinessCatalog {
     }
 
     AiReadinessCatalog(List<Profession> curated, List<Profession> onet, List<Question> questions,
-                       List<GeneralStage> generalRoadmap) {
+                       List<GeneralStage> generalRoadmap, Map<String, String> hiddenTitles) {
         Set<String> hidden = new HashSet<>();
         curated.forEach(p -> hidden.addAll(p.onetCodes()));
         List<Profession> visibleOnet = onet.stream().filter(p -> !hidden.contains(p.onetCode())).toList();
@@ -96,6 +98,22 @@ public class AiReadinessCatalog {
                 throw new IllegalStateException("Duplicate O*NET code: " + p.onetCode());
             }
         }
+        Set<String> curatedIds = new HashSet<>();
+        curated.forEach(p -> curatedIds.add(p.id()));
+        hiddenTitles.forEach((title, id) -> {
+            if (!curatedIds.contains(id)) {
+                throw new IllegalStateException("Hidden O*NET title '" + title + "' points to unknown profession: " + id);
+            }
+        });
+        this.hiddenTitles = Map.copyOf(hiddenTitles);
+    }
+
+    /**
+     * Peidetud O*NET ametite nimed (professions-hidden.json) ja käsitsi kirjutatud amet, mis need peidab;
+     * /jobs/{nime slug} suunatakse selle ameti lehele.
+     */
+    public Map<String, String> hiddenTitles() {
+        return hiddenTitles;
     }
 
     /** Käsitsi kirjutatud ametid failis olevas järjekorras. */

@@ -6,10 +6,13 @@ import ee.kerrete.ainterview.aireadiness.CatalogModels.ProfessionTask;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AiReadinessCatalogTest {
@@ -32,6 +35,18 @@ class AiReadinessCatalogTest {
         CATALOG.featured().forEach(p -> hidden.addAll(p.onetCodes() == null ? Set.of() : p.onetCodes()));
         assertFalse(hidden.isEmpty());
         CATALOG.professions().forEach(p -> assertFalse(p.onetCode() != null && hidden.contains(p.onetCode()), p.id()));
+    }
+
+    @Test
+    void hiddenTitlesPointToHandWrittenProfessions() {
+        assertEquals("software-developer", CATALOG.hiddenTitles().get("Software Developers"));
+        CATALOG.hiddenTitles().values().forEach(id -> assertTrue(CATALOG.profession(id).isPresent(), id));
+    }
+
+    @Test
+    void hiddenTitleWithUnknownProfessionFailsAtStartup() {
+        assertThrows(IllegalStateException.class,
+                () -> new AiReadinessCatalog(List.of(), List.of(), List.of(), List.of(), Map.of("Lawyers", "nope")));
     }
 
     @Test

@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 from build import SOC_MAJOR_GROUPS
-from catalog import TEMPLATES, build_aliases, build_catalog
+from catalog import TEMPLATES, build_aliases, build_catalog, build_hidden
 
 
 def write_csv(path, header, rows):
@@ -99,6 +99,11 @@ class BuildCatalogTest(unittest.TestCase):
         aliases = build_aliases(self.out, {'software-developer': ['15-1252.00', '15-1253.00'], 'other': []})
         self.assertEqual(aliases, {'software-developer': ['Software Developers', 'Coder', 'Software Engineer',
                                                           'Software QA Testers']})
+
+    def test_hidden_maps_each_hidden_occupation_title_to_its_profession(self):
+        hidden = build_hidden(self.out, {'software-developer': ['15-1252.00', '15-1253.00'], 'other': []})
+        self.assertEqual(hidden, {'Software Developers': 'software-developer',
+                                  'Software QA Testers': 'software-developer'})
 
     def test_sorted_by_name(self):
         self.assertEqual([p['name'] for p in self.catalog], ['Cooks, Restaurant', 'Software Developers'])
