@@ -1,0 +1,42 @@
+/* Long-form text for /privacy and /terms, on top of the global dark theme. */
+.legal h2 {
+  margin-top: 2.75rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.legal h3 {
+  margin-top: 1.75rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.legal p,
+.legal li {
+  margin-top: 0.75rem;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--muted, #9aa2b1);
+}
+
+.legal strong {
+  color: var(--fg, #eef0f3);
+}
+
+.legal ul {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.legal li::marker {
+  color: var(--accent, #c6f432);
+}
+
+.legal a {
+  color: var(--accent, #c6f432);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
