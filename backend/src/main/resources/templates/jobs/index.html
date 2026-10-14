@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{jobs/layout :: head(title=${title}, description=${description}, canonical=${canonical})}"></head>
+<body>
+<header th:replace="~{jobs/layout :: header}"></header>
+
+<main>
+  <div class="wrap">
+    <p class="kicker">All occupations</p>
+    <h1>Will AI replace your job?</h1>
+    <p class="lead">AI exposure for [[${count}]] occupations: which tasks today's AI can take on, what stays human, and how to adapt. Pick yours, or take the 11-question test for a personal score.</p>
+    <a class="btn" href="/ai-test" data-umami-event="seo-cta" data-umami-event-profession="index">Take the test <span aria-hidden="true">&rarr;</span></a>
+
+    <section class="card" th:each="g : ${groups}">
+      <h2 th:text="${g.key}">Group</h2>
+      <div class="jobs-list">
+        <a th:each="p : ${g.value}" th:href="@{/jobs/{s}(s=${slugs.get(p.id())})}" th:text="${p.name()}">Job</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer th:replace="~{jobs/layout :: footer(onet=true)}"></footer>
+</body>
+</html>

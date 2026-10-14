@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,11 @@ public class AiReadinessController {
                                                      @RequestParam(name = "category", required = false) String category,
                                                      @RequestParam(name = "limit", defaultValue = "20") int limit) {
         return service.search(query, category, limit);
+    }
+
+    @GetMapping("/professions/{id}")
+    public ResponseEntity<ProfessionSummary> profession(@PathVariable String id) {
+        return ResponseEntity.of(service.summary(id));
     }
 
     @GetMapping("/professions/categories")

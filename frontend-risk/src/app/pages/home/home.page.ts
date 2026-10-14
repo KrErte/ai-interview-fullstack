@@ -37,6 +37,10 @@ const SCALE = [
             Take the test
             <span class="arrow" aria-hidden="true">&rarr;</span>
           </a>
+          <!-- plain href: /jobs pages are rendered by the backend, not by Angular -->
+          <a href="/jobs" class="mt-4 block text-[15px] text-muted underline-offset-4 hover:text-fg hover:underline sm:ml-4 sm:mt-0 sm:inline">
+            Browse 900+ jobs
+          </a>
         </div>
       </div>
     </section>
