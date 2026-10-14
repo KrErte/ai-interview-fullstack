@@ -56,6 +56,13 @@ class JobPageWebMvcTest {
     }
 
     @Test
+    void hiddenOnetTitleIsPermanentlyRedirectedToTheHandWrittenPage() throws Exception {
+        mvc.perform(get("/jobs/software-developers"))
+                .andExpect(status().isMovedPermanently())
+                .andExpect(header().string("Location", "https://futureproof.example/jobs/software-developer"));
+    }
+
+    @Test
     void unknownJobIs404Html() throws Exception {
         mvc.perform(get("/jobs/no-such-job"))
                 .andExpect(status().isNotFound())

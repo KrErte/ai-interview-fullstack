@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,6 +49,25 @@ class JobPagesTest {
         assertEquals(22, groups.size());
         assertEquals(PAGES.all().size(), groups.values().stream().mapToInt(List::size).sum());
         assertEquals(groups.keySet().stream().sorted().toList(), List.copyOf(groups.keySet()));
+    }
+
+    @Test
+    void hiddenOnetTitlesRedirectToTheHandWrittenPage() {
+        assertEquals(Optional.of("software-developer"), PAGES.redirect("software-developers"));
+        assertEquals(Optional.of("healthcare"), PAGES.redirect("registered-nurses"));
+        assertEquals(24, CATALOG.hiddenTitles().size());
+        CATALOG.hiddenTitles().keySet().forEach(title -> {
+            String slug = JobPages.slugify(title);
+            assertTrue(PAGES.bySlug(slug).isEmpty(), slug);
+            assertTrue(PAGES.bySlug(PAGES.redirect(slug).orElseThrow()).isPresent(), slug);
+        });
+    }
+
+    @Test
+    void pagesAndUnknownSlugsAreNotRedirected() {
+        assertTrue(PAGES.redirect("accountant").isEmpty());
+        assertTrue(PAGES.redirect("cooks-restaurant").isEmpty());
+        assertTrue(PAGES.redirect("no-such-job").isEmpty());
     }
 
     @Test
