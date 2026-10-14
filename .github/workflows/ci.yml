@@ -44,10 +44,15 @@ jobs:
           name: backend-build
           path: backend/build/libs/*.jar
 
+  # The live frontend is frontend-risk (the old frontend/ is not deployed). Same Node and build
+  # command as frontend-risk/Dockerfile, plus the Karma unit tests in headless Chrome.
   frontend:
-    name: Build Frontend (Angular)
+    name: Build & Test Frontend (frontend-risk)
     runs-on: ubuntu-latest
-    needs: backend
+
+    defaults:
+      run:
+        working-directory: ./frontend-risk
 
     steps:
       - name: Checkout repository
@@ -57,27 +62,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Cache node modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            frontend/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          cache: npm
+          cache-dependency-path: frontend-risk/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./frontend
         run: npm ci
 
-      - name: Build Angular app
-        working-directory: ./frontend
-        run: npm run build --if-present
+      - name: Unit tests (headless Chrome)
+        run: npm run test:ci
+
+      - name: Production build
+        run: npm run build:prod
 
       - name: Upload frontend artifact
         uses: actions/upload-artifact@v4
         with:
-          name: frontend-build
-          path: frontend/dist
+          name: frontend-risk-build
+          path: frontend-risk/dist/frontend-risk/browser
 
