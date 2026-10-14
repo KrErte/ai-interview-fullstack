@@ -41,6 +41,11 @@ import { AuthService } from '../../services/auth.service';
           <span *ngIf="loading">Creating account…</span>
           <span *ngIf="!loading" class="arrow" aria-hidden="true">&rarr;</span>
         </button>
+
+        <p class="text-center text-[13px] leading-relaxed text-faint">
+          By creating an account you agree to the <a routerLink="/terms" class="underline hover:text-fg">terms of use</a>
+          and confirm you have read the <a routerLink="/privacy" class="underline hover:text-fg">privacy policy</a>.
+        </p>
       </form>
 
       <p class="rise mt-6 text-center text-[14px] text-muted" style="--i:4">

@@ -2,7 +2,7 @@ import { Component, DestroyRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, of, switchMap } from 'rxjs';
 
 import { AiReadinessService } from '../../services/ai-readiness.service';
@@ -36,7 +36,7 @@ const SCALE = [
 @Component({
   selector: 'app-ai-check-page',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   template: `
     <div *ngIf="error" class="mb-8 rounded-xl border border-band-very-high bg-surface px-4 py-3 text-[15px] text-band-very-high" role="alert">
       {{ error }}
@@ -157,7 +157,7 @@ const SCALE = [
 
           <label *ngIf="isLastQuestion() && aiCommentAvailable" class="mt-8 flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-muted">
             <input type="checkbox" [(ngModel)]="personalize" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]" />
-            <span>Add an AI-written comment. Your answers are sent to a language model without your name or email. The score does not depend on it.</span>
+            <span>Add an AI-written comment. Your answers are sent to a language model (OpenAI) without your name or email. The score does not depend on it. <a routerLink="/privacy" class="underline hover:text-fg">Privacy</a></span>
           </label>
 
           <div class="mt-10 flex items-center justify-between border-t border-line pt-6">

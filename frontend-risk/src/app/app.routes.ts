@@ -23,6 +23,18 @@ export const appRoutes: Routes = [
       import('./pages/ai-check/ai-check.page').then(m => m.AiCheckPageComponent)
   },
   {
+    path: 'privacy',
+    title: 'Privacy policy – Futureproof',
+    loadComponent: () =>
+      import('./pages/legal/privacy.page').then(m => m.PrivacyPageComponent)
+  },
+  {
+    path: 'terms',
+    title: 'Terms of use – Futureproof',
+    loadComponent: () =>
+      import('./pages/legal/terms.page').then(m => m.TermsPageComponent)
+  },
+  {
     path: 'risk',
     canActivate: [authGuard],
     loadComponent: () =>

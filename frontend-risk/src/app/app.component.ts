@@ -1,6 +1,6 @@
 import { Component, DestroyRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -8,7 +8,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, NavbarComponent],
   template: `
     <div class="flex min-h-screen flex-col">
       <app-navbar *ngIf="showNavbar"></app-navbar>
@@ -26,6 +26,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
           </p>
           <p class="kicker">
             <a href="/jobs" class="hover:text-fg">All jobs</a> &middot; AI replaceability test &middot; a catalog model, not a forecast
+            &middot; <a routerLink="/privacy" class="hover:text-fg">Privacy</a> &middot; <a routerLink="/terms" class="hover:text-fg">Terms</a>
           </p>
         </div>
       </footer>

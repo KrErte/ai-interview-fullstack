@@ -5,11 +5,22 @@
 #
 # Needs a .env next to docker-compose.yml with DB_PASSWORD, JWT_SECRET, FRONTEND_PORT and
 # FRONTEND_BASE_URL (see deploy-vps.sh for first-time setup).
+#
+# Logs hold IP addresses (nginx access log), so they are size-limited and rotated; the privacy policy
+# (frontend-risk/src/app/pages/legal/privacy.page.ts) relies on this.
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   postgres:
     restart: unless-stopped
+    logging: *logging
 
   backend:
+    logging: *logging
     # no public port: nginx in frontend-risk proxies /api and /auth to backend:8080
     ports: !reset []
     environment:
@@ -17,6 +28,7 @@ services:
     restart: unless-stopped
 
   frontend-risk:
+    logging: *logging
     ports: !override
       - "${FRONTEND_PORT:-8100}:80"
     restart: unless-stopped
