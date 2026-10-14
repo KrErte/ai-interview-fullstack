@@ -13,20 +13,26 @@ A shared Ubuntu 24.04 server. Other apps also run on it: **lumen** (`/opt/lumen`
 | inventory-service | `/root/inventory-service-node` | 8090 (public), API `127.0.0.1:8080` |
 
 **Caddy routing:**
-- `https://62-171-153-133.sslip.io` → Futureproof. The Let's Encrypt certificate is renewed by Caddy, and http redirects to https.
+- `https://careerrisk.ee` → Futureproof. The Let's Encrypt certificate is renewed by Caddy, and http redirects to https.
+- `www.careerrisk.ee` and the old `62-171-153-133.sslip.io` → 301 to `https://careerrisk.ee`, path kept.
 - Every other host name, including the bare IP → lumen over http.
 
-**Adding a real domain:**
+**Domain:** `careerrisk.ee`, DNS at Zone.ee. The A record of `careerrisk.ee` points to 62.171.153.133, and
+`www` is a CNAME to it.
+
+**Changing the domain:**
 1. Point its DNS A record to 62.171.153.133.
 2. Add the domain to `ops/caddy/Caddyfile`.
 3. Copy the file to `/opt/caddy/` and run `docker exec shared-caddy caddy reload --config /etc/caddy/Caddyfile`.
-4. Set `FRONTEND_BASE_URL` in `/opt/futureproof/.env`.
+4. Set `FRONTEND_BASE_URL` in `/opt/futureproof/.env`. It is also the only CORS origin in prod, so change it
+   together with the domain, then run `./deploy-vps.sh`.
+5. Update `data-domains` for Umami (see below).
 
 ## Analytics (Umami)
 
 - **Where:** `/opt/umami` (`ops/umami`), with its own Postgres. Served at `https://umami.62-171-153-133.sslip.io` (Caddy → `127.0.0.1:3100`). It is cookieless, so no cookie banner is needed.
 - **Login:** user `admin`; the password is in `/opt/umami/admin-password` (mode 600). The default password was changed at install.
-- **Tracking:** the script tag is in `frontend-risk/src/index.html` with `data-domains="62-171-153-133.sslip.io"`, so local development is not tracked. The website id is in `/opt/umami/website-id`.
+- **Tracking:** the script tag is in `frontend-risk/src/index.html` and `backend/src/main/resources/templates/jobs/layout.html` with `data-domains="careerrisk.ee"`, so local development is not tracked. The website id is in `/opt/umami/website-id`.
 - **Custom events:** `test-start` (profession), `test-complete` (profession, band), `seo-cta` (profession, from the job pages).
 - **After a domain change:** update `data-domains` and the website's domain in Umami.
 
