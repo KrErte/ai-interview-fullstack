@@ -87,7 +87,7 @@ public class JobPageController {
         response.setHeader("Cache-Control", CACHE);
         StringBuilder xml = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
                 .append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n");
-        for (String path : new String[]{"/", "/ai-test", "/jobs"}) {
+        for (String path : new String[]{"/", "/ai-test", "/why", "/jobs"}) {
             appendUrl(xml, path);
         }
         pages.all().forEach(p -> appendUrl(xml, "/jobs/" + pages.slugOf(p.id())));
