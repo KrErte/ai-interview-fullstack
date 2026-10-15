@@ -251,6 +251,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "11-2032.00": {
+  "roadmap": [
+   {
+    "title": "AI for releases, speeches and monitoring",
+    "items": [
+     "Have your team draft press releases, speeches and web content with AI, and review tone, facts and risk before anything goes out.",
+     "Use AI media and social monitoring to track coverage, sentiment and emerging issues, and read the key pieces yourself.",
+     "Prepare executive briefings on social, economic and political trends with AI research, verified by your team."
+    ],
+    "project": "Set up AI media monitoring with a weekly issues brief for leadership, and ask after a month which issues it surfaced early."
+   },
+   {
+    "title": "Strategy, crisis and AI policy",
+    "items": [
+     "Build communication plans for each audience with AI-assisted research, and test key messages with real people.",
+     "Prepare crisis playbooks and run drills, including scenarios such as deepfakes of your executives.",
+     "Set the company's rules for AI-generated content, disclosure and approval in all communications."
+    ],
+    "project": "Run a crisis drill on a deepfake or AI-generated rumour scenario and update your playbook with what you learned."
+   },
+   {
+    "title": "Lead relationships and the team",
+    "items": [
+     "Build and use relationships with journalists, officials and community leaders; they matter most in a crisis.",
+     "Lead and develop PR staff as drafting shifts to AI and judgement becomes the job.",
+     "Grow toward communications director, or look at related roles: advertising manager or PR consultant."
+    ],
+    "project": "Meet ten key journalists or stakeholders in a quarter and record how each relationship helped your work."
+   }
+  ],
+  "aiTools": [
+   "Media and social monitoring with AI",
+   "ChatGPT or Claude for drafts and research",
+   "Crisis communication tools"
+  ],
+  "humanEdge": [
+   "Relationships with journalists and officials",
+   "Judgement in the middle of a crisis",
+   "Knowing what not to say in public"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "11-2033.00": {
+  "roadmap": [
+   {
+    "title": "AI for grant applications and donor research",
+    "items": [
+     "Draft grant applications with AI from your project data, and check every requirement in the funder's rules.",
+     "Use AI to summarise public information about potential donors and foundations, respecting privacy rules.",
+     "Write donor updates and thank-you letters with AI, then personalise each one with what you know about the donor."
+    ],
+    "project": "Prepare three grant applications with AI drafting, and compare preparation time and success rate with your last three."
+   },
+   {
+    "title": "Run fundraising on data, not guesswork",
+    "items": [
+     "Use your donor database to segment donors by interest and giving history, and schedule follow-ups automatically.",
+     "Build templates for campaign plans, event budgets and board reports that your team reuses every season.",
+     "Track the results of each campaign and event in one dashboard, including the cost of every amount raised."
+    ],
+    "project": "Segment your donor list with AI help and send tailored appeals to three segments, comparing response rates."
+   },
+   {
+    "title": "Relationships and the personal ask",
+    "items": [
+     "Meet major donors and community leaders in person; trust is what raises the money.",
+     "Lead and motivate fundraising staff and volunteers, especially through hard campaigns.",
+     "Grow toward development director, or look at related roles: fundraiser or public relations manager."
+    ],
+    "project": "Use the time saved on writing for 10 personal meetings with major donors, and record pledges and next steps from each."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for grant drafts and letters",
+   "Donor management software with AI features",
+   "Microsoft 365 Copilot for reports"
+  ],
+  "humanEdge": [
+   "Building relationships with major donors",
+   "Making the personal ask face to face",
+   "Leading staff and volunteers through campaigns"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "11-3012.00": {
   "roadmap": [
    {
@@ -290,6 +374,90 @@
    "Training and supporting staff through change",
    "Agreeing goals with other department leaders",
    "Keeping services running when something breaks"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "11-3013.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports, budgets and contracts",
+    "items": [
+     "Draft maintenance reports and schedules with AI from your work-order data, and check the totals before they go to management.",
+     "Use AI to compare contractor quotes and summarise contract terms, then read the clauses on price changes and liability.",
+     "Plan budgets with AI-assisted spreadsheets and check every assumption against last year's actual costs."
+    ],
+    "project": "Produce your monthly facilities report with AI from existing data for three months and measure the time saved."
+   },
+   {
+    "title": "Predictive maintenance and smart buildings",
+    "items": [
+     "Use building management and sensor data to spot failing equipment early, and confirm with a technician before acting.",
+     "Move work orders into a CMMS that schedules preventive maintenance automatically.",
+     "Track energy use and find savings with AI analysis of meter and building management data."
+    ],
+    "project": "Analyse 12 months of energy or maintenance data with AI, find one saving, implement it, and measure the result."
+   },
+   {
+    "title": "On-site leadership and safety",
+    "items": [
+     "Walk the site regularly: inspections, safety checks and contractor supervision need you there in person.",
+     "Lead renovation projects with architects, engineers and the people who use the building.",
+     "Grow toward operations or property management, or look at related roles: administrative services manager."
+    ],
+    "project": "Run a safety walk-through with an AI-prepared checklist, then add three items the checklist missed."
+   }
+  ],
+  "aiTools": [
+   "Computerised maintenance management software (CMMS)",
+   "Building management and energy monitoring systems",
+   "ChatGPT or Claude for reports and contract summaries"
+  ],
+  "humanEdge": [
+   "Keeping the building safe and working day to day",
+   "Supervising contractors on site",
+   "Making quick decisions when systems fail"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "11-3013.01": {
+  "roadmap": [
+   {
+    "title": "AI for incident reports and policies",
+    "items": [
+     "Draft incident reports, policies and procedures with AI, then check the facts and legal requirements yourself.",
+     "Use AI to summarise security alerts and threat reports into short daily briefs for leadership.",
+     "Prepare risk assessments with AI templates, and add the on-site knowledge no template has."
+    ],
+    "project": "Rewrite your security procedures with AI help, have them reviewed by staff, and track incidents and questions for three months."
+   },
+   {
+    "title": "Smarter monitoring with fewer false alarms",
+    "items": [
+     "Learn how AI video analytics and access-control alerts work, and where they give false alarms.",
+     "Set clear rules for privacy and data protection in surveillance, agreed with legal and HR.",
+     "Build incident response plans and run drills, including scenarios that combine cyber and physical threats."
+    ],
+    "project": "Review a month of AI video or access alerts, measure false alarms, and tune the settings with your vendor."
+   },
+   {
+    "title": "Lead people on the ground",
+    "items": [
+     "Lead and train security staff; their judgement on site matters more than any camera.",
+     "Handle investigations and difficult situations with people yourself, fairly and calmly.",
+     "Grow toward head of security or risk manager, or look at related roles: security management specialist."
+    ],
+    "project": "Run a scenario drill with your team, debrief it, and update one procedure based on what you learned."
+   }
+  ],
+  "aiTools": [
+   "AI video analytics and access-control systems",
+   "ChatGPT or Claude for reports and procedures",
+   "Incident management software"
+  ],
+  "humanEdge": [
+   "Leading security staff in tense situations",
+   "Investigating incidents and judging people",
+   "Balancing safety with privacy"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -374,6 +542,48 @@
    "Advising leaders on financial and credit decisions",
    "Leading and developing a finance team",
    "Building relationships with banks and business clients"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "11-3031.01": {
+  "roadmap": [
+   {
+    "title": "AI for statements, forecasts and analysis",
+    "items": [
+     "Prepare financial statements, forecasts and regulatory reports with AI-assisted close tools, and reconcile every figure.",
+     "Use AI to analyse past and expected operations for cost overruns and opportunities, and check the drivers with managers.",
+     "Summarise new accounting standards and regulations with AI, and confirm the requirements in the official text."
+    ],
+    "project": "Prepare one quarterly forecast with AI-assisted analysis and compare its accuracy with your previous method when actuals arrive."
+   },
+   {
+    "title": "A faster close with strong controls",
+    "items": [
+     "Automate reconciliations, accruals and disbursement approvals where your system allows, with clear review steps.",
+     "Use AI to flag anomalies, duplicate payments and policy breaches before an audit finds them.",
+     "Document controls for every AI-assisted step so auditors can follow and test them."
+    ],
+    "project": "Cut one day from the monthly close by automating two steps, and document the controls for your auditors."
+   },
+   {
+    "title": "Advise and lead the finance team",
+    "items": [
+     "Advise management on financial objectives, cash and risk, where your judgement carries the weight.",
+     "Lead and develop finance staff as routine work is automated, moving them toward analysis and business partnering.",
+     "Grow toward CFO, or look at related roles: financial examiner or audit director."
+    ],
+    "project": "Coach two team members on AI-assisted analysis for a quarter and agree how their roles move toward business partnering."
+   }
+  ],
+  "aiTools": [
+   "Financial close software with AI",
+   "Microsoft 365 Copilot in Excel",
+   "ChatGPT or Claude for standards summaries"
+  ],
+  "humanEdge": [
+   "Owning compliance and financial controls",
+   "Advising management on strategy and risk",
+   "Leading and developing finance staff"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -1721,6 +1931,132 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "17-2071.00": {
+  "roadmap": [
+   {
+    "title": "AI for calculations, drawings and reports",
+    "items": [
+     "Use AI coding help for load, cable and fault calculations in Python or spreadsheets, and verify results against standards.",
+     "Draft reports and specifications with AI from your data, and check every value and code reference.",
+     "Use automation in your electrical CAD tools for schematics, panel schedules and bills of materials."
+    ],
+    "project": "Script one repetitive calculation, verify it on three past projects, and measure the time it saves on the next one."
+   },
+   {
+    "title": "Grids, storage and smart systems",
+    "items": [
+     "Learn the design of solar, battery storage and EV charging systems, where demand is growing.",
+     "Use simulation tools for power flow and protection studies, and validate them with field data.",
+     "Learn how AI data centres and electrification change load and grid requirements."
+    ],
+    "project": "Design one solar, storage or EV charging system with simulation tools and review it with an experienced engineer."
+   },
+   {
+    "title": "Grow responsibility and leadership",
+    "items": [
+     "Inspect installations and sign off designs; safety responsibility stays with you.",
+     "Supervise and train project team members, and lead coordination with other trades.",
+     "Grow toward lead or chartered engineer, or look at related roles: electronics engineer or project manager."
+    ],
+    "project": "Lead the electrical design of one small project end to end, including the site inspection, and document lessons learned."
+   }
+  ],
+  "aiTools": [
+   "Electrical CAD with automation",
+   "Power system simulation software",
+   "AI coding assistant for calculations"
+  ],
+  "humanEdge": [
+   "Taking responsibility for electrical safety",
+   "Inspecting installations on site",
+   "Coordinating teams and trades"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "17-2081.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports, permits and data",
+    "items": [
+     "Draft investigation and recommendation reports with AI from your field data, and check every number, map and regulation cited.",
+     "Use AI to summarise regulations and permit conditions for a site, and confirm them in the official text before advising a client.",
+     "Clean and analyse monitoring data with AI coding help, and review every result that exceeds a limit yourself."
+    ],
+    "project": "Draft one site investigation report with AI help, trace every figure to its source, and compare time and review comments with a past report."
+   },
+   {
+    "title": "Modelling and remediation design",
+    "items": [
+     "Use modelling tools for groundwater, air dispersion or treatment design, and validate them with field measurements.",
+     "Use GIS and remote sensing to assess land use impacts across larger areas.",
+     "Keep permits, plans and SOPs current with a tracker that warns before deadlines."
+    ],
+    "project": "Model one remediation or treatment option with AI-assisted analysis and compare its prediction with monitoring results after installation."
+   },
+   {
+    "title": "Fieldwork, coordination and judgement",
+    "items": [
+     "Inspect facilities and sites in person; what you find there often changes the design.",
+     "Coordinate scientists, lawyers and planners on complex projects, and explain the trade-offs to clients.",
+     "Grow toward project or program manager, or look at related roles: water engineer or environmental scientist."
+    ],
+    "project": "Lead one inspection with an AI-prepared checklist and record the findings that changed your recommendation."
+   }
+  ],
+  "aiTools": [
+   "Environmental modelling software",
+   "GIS and remote sensing tools",
+   "AI coding assistant for monitoring data"
+  ],
+  "humanEdge": [
+   "Inspecting sites and facilities in person",
+   "Taking responsibility for designs and permits",
+   "Coordinating many specialists on one project"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "17-2112.00": {
+  "roadmap": [
+   {
+    "title": "AI for data, costs and standards",
+    "items": [
+     "Analyse production, quality and time data with AI-assisted spreadsheets or Python to find bottlenecks and waste.",
+     "Estimate production costs and savings with AI help, and check every assumption with finance and the floor.",
+     "Draft work standards, layouts and process sheets with AI, and validate them by observing the real process."
+    ],
+    "project": "Analyse one line's data with AI help, find the bottleneck, fix it with the team, and measure output after a month."
+   },
+   {
+    "title": "Simulation and automation decisions",
+    "items": [
+     "Use simulation to test layouts, staffing and automation before spending money.",
+     "Evaluate robots, cobots and vision systems with clear payback and safety cases.",
+     "Build dashboards that operators and managers actually use every day."
+    ],
+    "project": "Simulate one layout or automation change, implement it, and compare the real results with the model."
+   },
+   {
+    "title": "Change that sticks on the floor",
+    "items": [
+     "Spend time on the floor with operators; the best improvements come from the people doing the work.",
+     "Get better at persuading managers and teams to change how they work.",
+     "Grow toward operations excellence or plant management, or look at related roles: manufacturing engineer."
+    ],
+    "project": "Run a kaizen event with operators using AI-prepared data and record which improvements are still in place three months later."
+   }
+  ],
+  "aiTools": [
+   "Simulation software (e.g. FlexSim, AnyLogic)",
+   "AI coding assistant for data analysis",
+   "Production dashboards"
+  ],
+  "humanEdge": [
+   "Learning from operators on the floor",
+   "Persuading teams to change how they work",
+   "Seeing waste others overlook"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "17-2141.00": {
   "roadmap": [
    {
@@ -1760,6 +2096,48 @@
    "Diagnosing why a real machine fails",
    "Working with technicians on the shop floor",
    "Making safe design trade-offs and signing them off"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "17-3011.00": {
+  "roadmap": [
+   {
+    "title": "AI and automation in drafting",
+    "items": [
+     "Learn the automation in your CAD/BIM software for repetitive drawings, schedules and annotations, and check every output.",
+     "Use AI to read building codes and site requirements, and confirm each rule in the official document.",
+     "Turn sketches and engineering calculations into drawings faster with templates and component libraries."
+    ],
+    "project": "Automate one repetitive drawing set, such as door schedules or sections, and measure the hours saved on the next project."
+   },
+   {
+    "title": "From drafting to BIM coordination",
+    "items": [
+     "Move from 2D drafting to BIM models, which is where most of the work is going.",
+     "Run clash detection between structural, electrical and mechanical models and report conflicts early.",
+     "Use point clouds and scans of existing buildings to draw what is really there."
+    ],
+    "project": "Run clash detection on one project and record the conflicts found before construction and their estimated cost."
+   },
+   {
+    "title": "Grow beyond drafting",
+    "items": [
+     "Visit sites to take measurements and see how your drawings become buildings.",
+     "Learn the design and code knowledge that turns you into a technologist, not just a drafter.",
+     "Grow toward BIM coordinator or architectural technologist, or look at related roles: civil engineering technician."
+    ],
+    "project": "Take a BIM coordination course and act as the coordinator on one small project from start to finish."
+   }
+  ],
+  "aiTools": [
+   "CAD/BIM software with automation (Revit, AutoCAD)",
+   "Clash detection tools",
+   "Laser scanning and point clouds"
+  ],
+  "humanEdge": [
+   "Measuring and understanding real sites",
+   "Coordinating drawings across disciplines",
+   "Catching design errors before they are built"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -4199,6 +4577,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "37-2012.00": {
+  "roadmap": [
+   {
+    "title": "Use housekeeping apps and robots well",
+    "items": [
+     "Use your hotel's housekeeping app to see room status, priorities and guest requests, and update each room as you finish.",
+     "Learn to use robot vacuums where provided, and spend your time on bathrooms, beds and details they cannot do.",
+     "Report maintenance problems and lost items through the app with photos, so they are fixed or returned quickly."
+    ],
+    "project": "Track the minutes per room you save for a month by using the housekeeping app instead of paper lists, and where the time went."
+   },
+   {
+    "title": "Work faster and safer",
+    "items": [
+     "Learn the right chemicals and methods for each surface, and keep your cart stocked in the same order every day.",
+     "Ask an AI assistant for stain removal methods for different fabrics, and test each one on a hidden spot first.",
+     "Learn safe lifting and bed-making techniques to protect your back over a long career."
+    ],
+    "project": "Take a stain removal and chemical safety course and use two new techniques for a month, noting the results."
+   },
+   {
+    "title": "Grow toward housekeeping supervision",
+    "items": [
+     "Keep raising your standard for the details guests notice: smells, hair and dust on high surfaces.",
+     "Learn to inspect rooms the way a supervisor does, and help train new staff on your floor.",
+     "Grow toward housekeeping supervisor or executive housekeeper, or look at related roles: laundry supervisor."
+    ],
+    "project": "Shadow a housekeeping supervisor for five room inspections, then inspect rooms yourself for a week under supervision."
+   }
+  ],
+  "aiTools": [
+   "Hotel housekeeping app with room status",
+   "Robot vacuums",
+   "ChatGPT or Claude for stain and fabric care"
+  ],
+  "humanEdge": [
+   "Attention to the details guests notice",
+   "Working fast without cutting corners",
+   "Discretion in guests' private spaces"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "37-3011.00": {
+  "roadmap": [
+   {
+    "title": "Use the tech reaching grounds work",
+    "items": [
+     "Learn to set up and maintain robotic mowers where your employer uses them, and handle the edges and slopes they cannot.",
+     "Use plant identification apps to recognise weeds, pests and diseases, and confirm before treating anything.",
+     "Use smart irrigation controllers and weather data to water only when plants actually need it."
+    ],
+    "project": "Track water use for one site for a month after switching to weather-based irrigation and compare it with the month before."
+   },
+   {
+    "title": "Plan jobs and look after equipment",
+    "items": [
+     "Use job scheduling and route apps to plan the day's sites and keep a record of what was done.",
+     "Keep maintenance logs for mowers, trimmers and chainsaws so breakdowns do not stop a job.",
+     "Learn safe use of chainsaws, pesticides and heavy equipment, with the certificates your area requires."
+    ],
+    "project": "Keep a maintenance log for your equipment for a season and count the breakdowns compared with last year."
+   },
+   {
+    "title": "Grow plant knowledge and responsibility",
+    "items": [
+     "Build your knowledge of plants, soils and pruning; it is what clients pay for and machines lack.",
+     "Learn to talk with clients about what their garden needs and to quote small jobs.",
+     "Grow toward crew leader, landscape designer or tree specialist, or look at related roles: arborist."
+    ],
+    "project": "Take a pruning or plant care course, then offer a seasonal care plan to three clients and track how many accept it."
+   }
+  ],
+  "aiTools": [
+   "Robotic mowers",
+   "Plant identification apps (e.g. PictureThis)",
+   "Smart irrigation controllers"
+  ],
+  "humanEdge": [
+   "Knowing plants, soils and pruning",
+   "Safe use of heavy and sharp equipment",
+   "Working outdoors in all conditions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "39-5012.00": {
   "roadmap": [
    {
@@ -4325,6 +4787,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "41-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for schedules, stock and sales data",
+    "items": [
+     "Build staff schedules with your store's workforce tool from footfall and sales forecasts, then adjust for people's lives.",
+     "Use the store system's stock alerts and AI reorder suggestions, and check the shelves before trusting the numbers.",
+     "Read daily sales dashboards with AI summaries, and decide which product or display needs attention today."
+    ],
+    "project": "Use forecast-based scheduling for a month and compare queue complaints and labour hours with the month before."
+   },
+   {
+    "title": "Train the team on the store's new tech",
+    "items": [
+     "Teach staff the handheld devices, price checkers and self-checkout troubleshooting so customers are not left waiting.",
+     "Write short how-to guides for common tasks with AI help, and test them with your newest staff member.",
+     "Use the store's customer feedback and reviews to find one service problem a month to fix."
+    ],
+    "project": "Write five one-page guides for common store tasks with AI help, train new staff with them, and track their questions in the first week."
+   },
+   {
+    "title": "Lead people on the shop floor",
+    "items": [
+     "Get better at coaching staff on the floor in the moment, not only in formal reviews.",
+     "Handle the hardest complaints yourself and show staff how you do it.",
+     "Grow toward store or area manager, or look at related roles: office supervisor or visual merchandising lead."
+    ],
+    "project": "Run a five-minute coaching huddle before each shift for a month and track customer feedback and sales per hour."
+   }
+  ],
+  "aiTools": [
+   "Workforce scheduling with sales forecasts",
+   "Store inventory system with AI reorder suggestions",
+   "Sales dashboards with AI summaries"
+  ],
+  "humanEdge": [
+   "Coaching staff on the shop floor",
+   "Handling the hardest customer complaints",
+   "Keeping the store running on a busy day"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "41-2011.00": {
   "roadmap": [
    {
@@ -4409,6 +4913,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "41-3011.00": {
+  "roadmap": [
+   {
+    "title": "AI for prospecting, proposals and paperwork",
+    "items": [
+     "Research prospects with AI, including their products, past campaigns and competitors, and verify key facts before you call.",
+     "Draft proposals, media kits and contracts with AI from your rate cards, and check every price and date.",
+     "Let your CRM log calls, emails and follow-ups automatically, so account history is complete."
+    ],
+    "project": "Prepare ten prospect briefs and proposals with AI help, track time spent and meetings booked, and compare with your last ten."
+   },
+   {
+    "title": "Sell results, not space",
+    "items": [
+     "Learn how programmatic and AI-driven ad buying works, so you can explain where your offer fits.",
+     "Use campaign data to show clients what worked, and suggest changes before renewal time.",
+     "Build cost estimates and scenarios with AI-assisted spreadsheets that clients can compare easily."
+    ],
+    "project": "Prepare data-based results reviews for five existing clients before renewal and track how many renew or increase spend."
+   },
+   {
+    "title": "Grow relationships and advice",
+    "items": [
+     "Get better at understanding a client's business so your recommendation solves their real problem.",
+     "Build relationships at trade shows and events; trust is what keeps accounts year after year.",
+     "Grow toward account manager or advertising manager, or look at related roles: marketing manager."
+    ],
+    "project": "Hold strategy conversations with five key clients about their goals for next year and turn two of them into new proposals."
+   }
+  ],
+  "aiTools": [
+   "CRM with AI activity capture",
+   "ChatGPT or Claude for prospect research and proposals",
+   "Campaign reporting dashboards"
+  ],
+  "humanEdge": [
+   "Understanding a client's real business problem",
+   "Building long-term client relationships",
+   "Negotiating deals face to face"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "41-3021.00": {
   "roadmap": [
    {
@@ -4448,6 +4994,90 @@
    "Understanding a client's real risks in a conversation",
    "Being there for the client when a claim happens",
    "Building a network of trusted clients"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-3031.00": {
+  "roadmap": [
+   {
+    "title": "AI for market monitoring and client updates",
+    "items": [
+     "Use AI summaries of market news, filings and positions to prepare for the day, and check prices and facts at the source.",
+     "Draft client updates and trade confirmations with your firm's approved tools, following compliance rules.",
+     "Prepare proposals and financial plans with planning software, and check the assumptions behind every projection."
+    ],
+    "project": "Prepare client market updates with approved AI help for a month and measure time saved and compliance comments."
+   },
+   {
+    "title": "Compliance and suitability first",
+    "items": [
+     "Learn your regulator's and firm's rules for AI in advice and communication, including record keeping.",
+     "Document why each recommendation suits the client, especially when a tool suggested it.",
+     "Track how clients respond to different types of advice so your recommendations improve over time."
+    ],
+    "project": "Review ten recent recommendations for suitability documentation with your compliance team and fix the gaps."
+   },
+   {
+    "title": "Grow trust and judgement",
+    "items": [
+     "Get better at the client interview: goals, risk tolerance and the fears that drive decisions.",
+     "Keep clients calm and informed when markets fall, which is when they decide whether to stay.",
+     "Grow toward wealth or portfolio management, or look at related roles: financial and investment analyst."
+    ],
+    "project": "Call every client within a day of the next big market drop and record how many stayed on plan."
+   }
+  ],
+  "aiTools": [
+   "Market data platform with AI summaries",
+   "Firm-approved AI for client communication",
+   "Financial planning software"
+  ],
+  "humanEdge": [
+   "Understanding clients' goals and fears",
+   "Keeping clients calm in market drops",
+   "Judgement on what suits each client"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-3041.00": {
+  "roadmap": [
+   {
+    "title": "AI for itineraries, quotes and travel information",
+    "items": [
+     "Draft itineraries and package options with AI from the client's wishes, then check every flight, hotel and transfer yourself.",
+     "Prepare destination notes on customs, visas and health rules with AI, and confirm them on official sites.",
+     "Use your booking platform's tools for price comparison and quotes, and explain the trade-offs to the client."
+    ],
+    "project": "Plan five trips with AI-drafted itineraries, check each one, and compare planning time and client changes with your usual process."
+   },
+   {
+    "title": "Be worth more than a booking site",
+    "items": [
+     "Specialise in trips that are hard to book alone: multi-country, group, accessible or special-occasion travel.",
+     "Track the problems clients had on past trips and build them into your planning checklist.",
+     "Keep client passport and payment data in your secure booking system, never in public AI tools."
+    ],
+    "project": "Choose one specialty, build a package for it with AI-assisted research, and sell it to five clients."
+   },
+   {
+    "title": "Grow service when things go wrong",
+    "items": [
+     "Get better at rescuing trips when flights are cancelled or plans fall apart; that is when clients value you most.",
+     "Build relationships with suppliers and local guides who give your clients better experiences.",
+     "Grow toward specialist travel consultant or tour operator, or look at related roles: travel guide."
+    ],
+    "project": "Write a playbook for the five most common travel disruptions and use it for every client issue for three months."
+   }
+  ],
+  "aiTools": [
+   "Travel booking platform (GDS or agency tools)",
+   "ChatGPT or Claude for itineraries and destination notes",
+   "CRM for client preferences"
+  ],
+  "humanEdge": [
+   "Rescuing trips when plans fall apart",
+   "Knowing what a traveller will really enjoy",
+   "Relationships with suppliers and local guides"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -4532,6 +5162,48 @@
    "Negotiating between a buyer and a seller",
    "Reading what a client really wants from a home",
    "Knowing the neighbourhood beyond the data"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-9031.00": {
+  "roadmap": [
+   {
+    "title": "AI for proposals and technical answers",
+    "items": [
+     "Draft RFP responses and proposals with AI from your past answers and product docs, and check every technical claim.",
+     "Use AI to research prospects' systems and requirements before discovery calls, and verify what matters.",
+     "Build product configurations and quotes with your CPQ tool, and test the edge cases yourself."
+    ],
+    "project": "Answer one large RFP with AI drafting from your answer library, and compare hours spent and win rate with past RFPs."
+   },
+   {
+    "title": "Demos and technical support at scale",
+    "items": [
+     "Build demo environments and scripts that show the customer's own use case, prepared with AI help.",
+     "Create a searchable answer library for common technical questions so the sales team can help themselves.",
+     "Learn how your customers use AI, so you can explain integrations and risks credibly."
+    ],
+    "project": "Build a searchable answer library of 50 common technical questions and track how many questions sales no longer escalate to you."
+   },
+   {
+    "title": "Grow technical trust and deal leadership",
+    "items": [
+     "Visit customers and see their real environment; the requirements that sink deals are rarely in the RFP.",
+     "Get better at explaining complex products to non-technical buyers without overpromising.",
+     "Grow toward solutions architect or sales leadership, or look at related roles: engineering manager."
+    ],
+    "project": "Run on-site discovery for three complex deals and record the requirements you found that were not in the brief."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for RFP and proposal drafts",
+   "CPQ configuration and quoting tools",
+   "Demo and answer-library platforms"
+  ],
+  "humanEdge": [
+   "Seeing the customer's real environment",
+   "Explaining complex products honestly",
+   "Earning engineers' trust on both sides"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -5291,6 +5963,426 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "47-2061.00": {
+  "roadmap": [
+   {
+    "title": "Use the site's digital tools",
+    "items": [
+     "Use the site's app for daily tasks, safety briefings, hours and material requests, so nothing depends on paper.",
+     "Read plans and instructions on a tablet, and ask AI to explain unfamiliar terms or symbols before checking with your foreman.",
+     "Photograph and report hazards, damage or missing materials through the app as soon as you see them."
+    ],
+    "project": "Report every hazard or missing material through the site app for a month and count how many were fixed within a day."
+   },
+   {
+    "title": "Safety and new equipment on site",
+    "items": [
+     "Learn the safety rules for trenches, scaffolding and traffic zones well enough to stop unsafe work.",
+     "Get trained on equipment such as laser levels, compact excavators or concrete tools that make you more versatile.",
+     "Learn how drones, scanners and site robots are used on your projects, and what they need from the crew."
+    ],
+    "project": "Earn one equipment or safety certificate, such as a compact excavator or scaffolding card, and use it on site within a month."
+   },
+   {
+    "title": "Grow toward a skilled trade",
+    "items": [
+     "Pick up skills from the craft workers you assist: concrete, formwork, masonry or pipework.",
+     "Get reliable at reading plans and setting out work, which leads to more responsibility on site.",
+     "Grow toward a trade apprenticeship, equipment operator or foreman, or look at related roles: concrete finisher."
+    ],
+    "project": "Ask to assist one trade for a month, learn three core tasks, and talk with the foreman about an apprenticeship."
+   }
+  ],
+  "aiTools": [
+   "Site management app for tasks, hours and safety",
+   "Tablet plans with AI explanations",
+   "Laser levels and compact equipment"
+  ],
+  "humanEdge": [
+   "Hard physical work done safely",
+   "Spotting hazards on a busy site",
+   "Helping craft workers at the right moment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2141.00": {
+  "roadmap": [
+   {
+    "title": "Faster quotes and colour choices",
+    "items": [
+     "Measure rooms with a laser measure or app and let it calculate paint, materials and price for your quote.",
+     "Use colour visualiser apps to show customers how colours look in their room before you start.",
+     "Write quotes, invoices and job reports with a trade app or AI help, checking every price before sending."
+    ],
+    "project": "Quote ten jobs with a measuring app and quote template, and compare quoting time and accepted quotes with before."
+   },
+   {
+    "title": "Better finishes and safer work",
+    "items": [
+     "Ask AI to explain coatings, primers and surface preparation for unusual surfaces, then check the manufacturer's data sheet.",
+     "Learn the low-VOC and specialist coatings customers ask for, and how to apply them well.",
+     "Follow safety rules for ladders, scaffolds and old lead paint, and use the right protective equipment."
+    ],
+    "project": "Learn one specialist finish, such as lime plaster or epoxy floors, and complete two paid jobs with it."
+   },
+   {
+    "title": "Grow your craft and your customers",
+    "items": [
+     "Keep improving preparation and finishing, which decide the quality customers see for years.",
+     "Get better at advising customers on colour and finish, and at keeping their home clean while you work.",
+     "Grow toward decorating specialist or painting contractor, or look at related roles: plasterer."
+    ],
+    "project": "Ask your next ten customers for a review and photo permission, and build a portfolio page of your best work."
+   }
+  ],
+  "aiTools": [
+   "Laser measure and quoting app",
+   "Colour visualiser apps",
+   "ChatGPT or Claude for coatings questions"
+  ],
+  "humanEdge": [
+   "Careful preparation and a clean finish",
+   "Advising customers on colour and finish",
+   "Working neatly in people's homes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2152.00": {
+  "roadmap": [
+   {
+    "title": "Use digital tools for quotes and jobs",
+    "items": [
+     "Write quotes, invoices and job reports with a trade app or AI help, and check prices and materials before sending.",
+     "Use pipe-sizing and layout apps to plan installations, and check results against code and site conditions.",
+     "Ask AI to explain unfamiliar fixtures, manufacturer instructions or code rules, and confirm in the official document."
+    ],
+    "project": "Switch quotes and job reports to a trade app for a month and measure admin hours and how fast customers accept quotes."
+   },
+   {
+    "title": "Diagnose with modern tools",
+    "items": [
+     "Use drain cameras, leak detectors and thermal imaging to find problems before opening walls.",
+     "Learn heat pumps, smart water heaters and leak-sensing valves that customers increasingly ask for.",
+     "Keep job photos and notes in the app so you can show customers what you found and fixed."
+    ],
+    "project": "Use a drain camera or leak detector on ten jobs and record how much demolition and time it saved."
+   },
+   {
+    "title": "Grow your craft and your business",
+    "items": [
+     "Keep building hands-on skills in installation and repair, the core work no machine does for you.",
+     "Get better at explaining problems and options to customers in plain words.",
+     "Grow toward master plumber, contractor or heat pump specialist, or look at related roles: pipefitter."
+    ],
+    "project": "Complete a heat pump or water treatment course and do your first three installations with a certified colleague."
+   }
+  ],
+  "aiTools": [
+   "Trade job management app (quotes, invoices, reports)",
+   "Drain cameras and leak detectors",
+   "ChatGPT or Claude for code and manual questions"
+  ],
+  "humanEdge": [
+   "Hands-on installation and repair in tight spaces",
+   "Diagnosing problems hidden in walls",
+   "Explaining options honestly to customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9021.00": {
+  "roadmap": [
+   {
+    "title": "Diagnose and document with digital tools",
+    "items": [
+     "Use smart gauges and diagnostic apps that read pressures, temperatures and fault codes, and verify the readings yourself.",
+     "Ask AI to explain unfamiliar equipment and error codes, and confirm in the manufacturer's service documentation.",
+     "Record work orders, parts and faults in the field service app with photos, so history is ready on the next visit."
+    ],
+    "project": "Use smart gauges and app-based records on 20 service calls and compare diagnosis time and repeat visits with before."
+   },
+   {
+    "title": "Heat pumps, controls and efficiency",
+    "items": [
+     "Learn heat pump installation and service, where demand is growing fast.",
+     "Learn smart thermostats and building controls, and how to set them up so customers save energy.",
+     "Explain options and running costs to customers with clear comparisons you prepare with AI help."
+    ],
+    "project": "Complete a heat pump certification and install or service five heat pumps with a certified colleague."
+   },
+   {
+    "title": "Grow expertise and customer trust",
+    "items": [
+     "Get better at diagnosing the difficult faults that apps cannot explain.",
+     "Build trust with customers by explaining problems honestly and keeping work areas clean.",
+     "Grow toward lead technician, commercial HVAC or contractor, or look at related roles: building engineer."
+    ],
+    "project": "Write a short troubleshooting guide for the three faults you see most and share it with your team."
+   }
+  ],
+  "aiTools": [
+   "Smart gauges and diagnostic apps",
+   "Field service management app",
+   "ChatGPT or Claude for manuals and error codes"
+  ],
+  "humanEdge": [
+   "Diagnosing difficult faults on site",
+   "Safe work with refrigerants and electricity",
+   "Explaining repairs honestly to customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9071.00": {
+  "roadmap": [
+   {
+    "title": "Work orders and manuals made easier",
+    "items": [
+     "Use your maintenance app (CMMS) for work orders, parts and history, and close each job with what you found and did.",
+     "Ask AI to explain manuals, wiring diagrams or error codes in plain steps, and confirm with the manufacturer's document.",
+     "Photograph problems and repairs so the next person knows exactly what was done."
+    ],
+    "project": "Close every work order in the maintenance app with notes and photos for a month and ask your supervisor what improved."
+   },
+   {
+    "title": "Preventive and predictive maintenance",
+    "items": [
+     "Follow preventive schedules in the CMMS, and suggest changes when equipment fails between checks.",
+     "Learn how vibration and temperature sensors warn about failures before they happen.",
+     "Learn the basics of building automation and smart controls that are spreading in buildings."
+    ],
+    "project": "Track breakdowns for one type of equipment for three months and propose one change to its preventive schedule."
+   },
+   {
+    "title": "Grow skills across trades",
+    "items": [
+     "Build skills in electrical, plumbing and HVAC basics, so you can fix more without calling contractors.",
+     "Get better at diagnosing problems methodically, which separates good technicians from parts swappers.",
+     "Grow toward maintenance supervisor or specialist technician, or look at related roles: millwright."
+    ],
+    "project": "Complete one electrical or HVAC course and take over that type of job on your site for a month."
+   }
+  ],
+  "aiTools": [
+   "Maintenance management software (CMMS)",
+   "ChatGPT or Claude for manuals and error codes",
+   "Sensors for equipment monitoring"
+  ],
+  "humanEdge": [
+   "Hands-on repair across many trades",
+   "Methodical diagnosis of faults",
+   "Keeping buildings and equipment running"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for schedules, reports and records",
+    "items": [
+     "Read production dashboards and AI summaries of output, scrap and downtime at the start of each shift.",
+     "Plan schedules and assignments with the planning system's suggestions, then adjust for skills and absences.",
+     "Write shift reports with templates or AI help from your notes, and check the numbers against the system."
+    ],
+    "project": "Use dashboard summaries and a shift report template for a month and measure time spent on reports and issues caught early."
+   },
+   {
+    "title": "Quality and safety with data",
+    "items": [
+     "Use defect and downtime data to pick one problem a month to solve with your team.",
+     "Learn how vision inspection or sensors on your lines work, and what operators need to do when they alarm.",
+     "Write clear work instructions with AI help and test them with the operators who use them."
+    ],
+    "project": "Lead one problem-solving project on the top downtime cause and measure the change after a month."
+   },
+   {
+    "title": "Lead the production floor",
+    "items": [
+     "Get better at handling conflicts, complaints and performance problems fairly.",
+     "Coach operators through new technology so they feel confident, not threatened.",
+     "Grow toward production manager or continuous improvement lead, or look at related roles: maintenance supervisor."
+    ],
+    "project": "Hold monthly one-to-ones with each operator for a quarter and track turnover and improvement suggestions received."
+   }
+  ],
+  "aiTools": [
+   "Production dashboards (MES)",
+   "Planning and scheduling system",
+   "ChatGPT or Claude for reports and work instructions"
+  ],
+  "humanEdge": [
+   "Leading operators through change",
+   "Handling conflicts and grievances fairly",
+   "Seeing problems on the floor first"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4121.00": {
+  "roadmap": [
+   {
+    "title": "Use digital tools around the weld",
+    "items": [
+     "Read drawings and welding procedure specs on a tablet, and ask AI to explain symbols or standards you are unsure of.",
+     "Record weld parameters, inspections and rework in the shop's system so quality problems can be traced.",
+     "Practise with welding simulators or augmented-reality trainers to learn new positions and processes faster."
+    ],
+    "project": "Practise one new position or process on a simulator for a month and pass the shop's test for it."
+   },
+   {
+    "title": "Work alongside welding robots",
+    "items": [
+     "Learn to set up, program and monitor welding robots or cobots for repeat jobs.",
+     "Focus your manual skill on the hard welds: overhead, tight access, repairs and special alloys.",
+     "Learn inspection methods, such as visual and non-destructive testing, to check your own work."
+    ],
+    "project": "Complete a cobot welding course and set up one repeat job on the cobot, comparing time and quality with manual welding."
+   },
+   {
+    "title": "Grow certifications and responsibility",
+    "items": [
+     "Earn certifications in more processes and materials, such as TIG on stainless steel or aluminium.",
+     "Learn to plan jobs, read complex drawings and guide less experienced welders.",
+     "Grow toward welding inspector, supervisor or robot programmer, or look at related roles: fabricator or boilermaker."
+    ],
+    "project": "Earn one new welding certification, such as TIG on stainless steel, and take on paid jobs that need it within three months."
+   }
+  ],
+  "aiTools": [
+   "Welding simulators and AR trainers",
+   "Welding robots and cobots",
+   "Tablets with drawings and AI explanations"
+  ],
+  "humanEdge": [
+   "Skilled welding in hard positions",
+   "Reading metal and heat as you weld",
+   "Judging weld quality by eye"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9061.00": {
+  "roadmap": [
+   {
+    "title": "Digital measurement and records",
+    "items": [
+     "Use digital gauges that record results straight into the quality system, and check that the readings make sense.",
+     "Write inspection reports with templates or AI help from your data, keeping your findings clear and specific.",
+     "Analyse test data with spreadsheets or AI help to spot trends before parts go out of tolerance."
+    ],
+    "project": "Switch one inspection to digital gauges and automatic records for a month and compare recording errors and time with before."
+   },
+   {
+    "title": "Work with vision inspection systems",
+    "items": [
+     "Learn how camera and AI vision inspection works on your line, and check the parts it rejects or passes in doubt.",
+     "Feed back false rejects and missed defects so the system can be retrained.",
+     "Learn statistical process control charts and what they tell you about the process."
+    ],
+    "project": "Review 100 parts the vision system rejected, record how many were truly defective, and share the results with engineering."
+   },
+   {
+    "title": "Grow quality expertise",
+    "items": [
+     "Keep sharpening judgement on defects that are hard to measure, such as finish, colour or feel.",
+     "Learn quality standards and auditing so you can explain exactly why a part fails.",
+     "Grow toward quality technician, auditor or quality engineer, or look at related roles: calibration technician."
+    ],
+    "project": "Complete a course on quality standards or SPC and lead one root-cause investigation with engineering."
+   }
+  ],
+  "aiTools": [
+   "Digital gauges linked to the quality system",
+   "AI vision inspection systems",
+   "SPC software or spreadsheets"
+  ],
+  "humanEdge": [
+   "Judging defects that are hard to measure",
+   "Careful, consistent inspection",
+   "Explaining why a part fails"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-2011.00": {
+  "roadmap": [
+   {
+    "title": "Use the digital flight deck and planning tools",
+    "items": [
+     "Use electronic flight bags and planning tools for performance, weather and charts, and cross-check the critical numbers.",
+     "Read AI weather and turbulence forecasts in briefing tools, and decide routes and fuel with your own judgement.",
+     "Keep manuals and notices organised on the tablet so you find answers fast in an abnormal situation."
+    ],
+    "project": "Compare forecast and actual turbulence and fuel burn on 20 flights and note where the planning tools were most and least accurate."
+   },
+   {
+    "title": "Automation without complacency",
+    "items": [
+     "Practise manual flying and handling automation failures in the simulator, beyond the minimum required.",
+     "Study how automation surprises happen and the briefings that prevent them.",
+     "Use the safety reporting system and report events honestly, so the airline learns from them."
+    ],
+    "project": "Ask for extra simulator time on manual flying and automation failures and track your proficiency scores over two sessions."
+   },
+   {
+    "title": "Grow crew leadership",
+    "items": [
+     "Get better at crew resource management: clear communication and shared decisions under pressure.",
+     "Mentor first officers on judgement, not just procedures.",
+     "Grow toward captain, training captain or safety roles, or look at related roles: flight instructor or air traffic controller."
+    ],
+    "project": "Volunteer for one safety or training project in your airline and present one lesson learned to colleagues."
+   }
+  ],
+  "aiTools": [
+   "Electronic flight bag (EFB)",
+   "AI weather and turbulence forecasting tools",
+   "Flight planning and performance software"
+  ],
+  "humanEdge": [
+   "Flying the aircraft when automation fails",
+   "Making safe decisions under pressure",
+   "Leading a crew in an emergency"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-2031.00": {
+  "roadmap": [
+   {
+    "title": "Use the cabin crew apps well",
+    "items": [
+     "Use your crew tablet or app for passenger lists, special meals and service notes, and update it as you go.",
+     "Report cabin defects and incidents through the app with photos, so maintenance and safety teams act quickly.",
+     "Use translation apps for passengers who speak another language, and check the meaning with gestures and calm."
+    ],
+    "project": "Report every cabin defect through the crew app for a month and count how many were fixed before your next flight on that aircraft."
+   },
+   {
+    "title": "Safety and passenger care skills",
+    "items": [
+     "Keep safety procedures, first aid and emergency equipment knowledge sharp beyond the yearly check.",
+     "Learn de-escalation for disruptive passengers, a growing part of the job.",
+     "Learn how to support passengers with disabilities, anxiety or medical needs."
+    ],
+    "project": "Take a de-escalation or medical emergency course and use it on your flights for a month, noting situations you handled better."
+   },
+   {
+    "title": "Grow toward lead cabin roles",
+    "items": [
+     "Get better at reading the cabin and spotting trouble before it starts.",
+     "Build skills as purser or lead, coordinating the crew and the service.",
+     "Grow toward purser, trainer or crew scheduling, or look at related roles: passenger attendant or ground operations."
+    ],
+    "project": "Apply for a purser or lead role, and shadow a purser on five flights to learn the duties before your first lead flight."
+   }
+  ],
+  "aiTools": [
+   "Cabin crew tablet or app",
+   "Translation apps",
+   "Digital defect and incident reporting"
+  ],
+  "humanEdge": [
+   "Keeping passengers safe in an emergency",
+   "Calming disruptive or anxious passengers",
+   "Reading the mood of a full cabin"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "53-3032.00": {
   "roadmap": [
    {
@@ -5330,6 +6422,174 @@
    "Driving safely in bad weather and heavy traffic",
    "Securing cargo and checking the truck",
    "Handling customers and problems at delivery"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-3033.00": {
+  "roadmap": [
+   {
+    "title": "Use the delivery apps well",
+    "items": [
+     "Use your route app with live traffic and delivery windows, and tell dispatch when the plan does not fit reality.",
+     "Scan parcels and capture signatures and photos in the delivery app so every delivery is proven.",
+     "Do your vehicle checks in the app and report defects before you leave, not after something breaks."
+    ],
+    "project": "Track failed or disputed deliveries for a month and what changed after taking a photo at every drop."
+   },
+   {
+    "title": "Safer and smarter driving",
+    "items": [
+     "Learn the driver-assist and telematics systems in your van, and what the safety scores say about your driving.",
+     "Plan the loading order with the route so you never dig for parcels at a stop.",
+     "Learn the rules and handling of electric vans, which many fleets are switching to."
+    ],
+    "project": "Use your telematics score to improve one driving habit for a month and record the change in score and fuel or charge use."
+   },
+   {
+    "title": "Grow customer service and next steps",
+    "items": [
+     "Get better at the moments customers remember: being friendly, careful and solving problems at the door.",
+     "Earn a licence for larger vehicles or special loads to widen your options.",
+     "Grow toward heavy truck driver, dispatcher or driver trainer, or look at related roles: driver-sales worker."
+    ],
+    "project": "Start training for a heavier licence class or a specialist load certificate and complete it within three months."
+   }
+  ],
+  "aiTools": [
+   "Delivery and route apps with live traffic",
+   "Telematics and driver-assist systems",
+   "Handheld scanners for proof of delivery"
+  ],
+  "humanEdge": [
+   "Safe driving in busy city traffic",
+   "Careful handling of customers' goods",
+   "Friendly service at the door"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-3052.00": {
+  "roadmap": [
+   {
+    "title": "Use the bus's systems well",
+    "items": [
+     "Learn your bus's driver-assist, camera and ticketing systems so you can fix simple problems without delaying the route.",
+     "Use the route and dispatch app for diversions, delays and messages, and report incidents through it with clear details.",
+     "Do pre-trip inspections with the digital checklist and report defects before leaving the depot."
+    ],
+    "project": "Report every defect and incident through the app for a month and ask your depot manager which reports were acted on fastest."
+   },
+   {
+    "title": "Safer driving and new vehicles",
+    "items": [
+     "Use telematics feedback on braking, acceleration and cornering to make journeys smoother for passengers.",
+     "Learn to drive and charge electric buses efficiently, since many fleets are switching to them.",
+     "Learn how to help passengers using apps for tickets and real-time information."
+    ],
+    "project": "Use telematics feedback for a month to improve smoothness and record the change in your score and passenger complaints."
+   },
+   {
+    "title": "Grow passenger care and responsibility",
+    "items": [
+     "Get better at helping older and disabled passengers and at calming conflicts on board.",
+     "Train in first aid and incident handling so you can act until help arrives.",
+     "Grow toward driver trainer, route supervisor or dispatcher, or look at related roles: shuttle or coach driver."
+    ],
+    "project": "Complete a first aid and conflict handling course and use the techniques on your routes for a month."
+   }
+  ],
+  "aiTools": [
+   "Driver-assist and camera systems",
+   "Route and dispatch app",
+   "Telematics driving feedback"
+  ],
+  "humanEdge": [
+   "Safe, smooth driving in heavy traffic",
+   "Helping older and disabled passengers",
+   "Calming conflicts on board"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7051.00": {
+  "roadmap": [
+   {
+    "title": "Work with the warehouse system on your truck",
+    "items": [
+     "Use the truck-mounted terminal or scanner for tasks, locations and confirmations, and report any location that does not match.",
+     "Do your pre-shift truck checks in the app, and stop the truck when a safety item fails.",
+     "Learn your site's telematics, speed limits and impact sensors, and what they record about your driving."
+    ],
+    "project": "Do every pre-shift check in the app for a month and count the defects you reported that were fixed before they caused a stop."
+   },
+   {
+    "title": "Share the floor with automation",
+    "items": [
+     "Learn how automated guided vehicles and autonomous forklifts move on your site, and the rules for working near them.",
+     "Learn to take over or recover when an automated vehicle stops, where your site allows it.",
+     "Get trained on more equipment, such as reach trucks, order pickers or telehandlers."
+    ],
+    "project": "Get certified on one additional type of lifting equipment and use it on your shifts within a month."
+   },
+   {
+    "title": "Grow responsibility and safety leadership",
+    "items": [
+     "Become the person new operators learn from: safe habits, smooth driving and careful stacking.",
+     "Learn inventory control and how stock errors happen, so you can help fix them.",
+     "Grow toward trainer, warehouse lead or inventory controller, or look at related roles: crane or hoist operator."
+    ],
+    "project": "Train one new operator under supervision for two weeks and check their safety score and accuracy at the end."
+   }
+  ],
+  "aiTools": [
+   "Truck-mounted terminals and scanners",
+   "Forklift telematics and impact sensors",
+   "Automated guided vehicles on site"
+  ],
+  "humanEdge": [
+   "Precise, safe handling of heavy loads",
+   "Reading a busy warehouse floor",
+   "Training new operators in safe habits"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7062.00": {
+  "roadmap": [
+   {
+    "title": "Work with warehouse scanners and systems",
+    "items": [
+     "Use handheld scanners and the warehouse system to pick, move and record goods, and report every mismatch you find.",
+     "Follow pick routes and task lists on your device, and tell your lead when the system sends you somewhere that makes no sense.",
+     "Record damaged goods and short shipments with photos in the system, so claims and recounts are quick."
+    ],
+    "project": "Record every damaged or mismatched item with photos for a month and ask your supervisor how many claims it sped up."
+   },
+   {
+    "title": "Work alongside robots and automation",
+    "items": [
+     "Learn how warehouse robots, conveyors and automated storage work where you are, and the safety zones around them.",
+     "Learn to restart, unjam or report robot and conveyor faults safely, which makes you the person the shift relies on.",
+     "Learn safe lifting, strapping and load securing so you protect yourself and the goods."
+    ],
+    "project": "Complete your site's training on its robots or conveyors and handle the first-line fixes on your shift for a month."
+   },
+   {
+    "title": "Grow toward equipment and lead roles",
+    "items": [
+     "Earn certificates for forklifts, reach trucks or other equipment to widen what you can do.",
+     "Learn the warehouse system well enough to help new colleagues and solve stock problems.",
+     "Grow toward equipment operator, inventory controller or team lead, or look at related roles: packer or machine feeder."
+    ],
+    "project": "Earn a forklift or reach truck certificate and work at least one shift a week on it for a month."
+   }
+  ],
+  "aiTools": [
+   "Handheld scanners and warehouse system",
+   "Warehouse robots and conveyors",
+   "Mobile task and pick-route apps"
+  ],
+  "humanEdge": [
+   "Safe lifting and handling of heavy goods",
+   "Spotting damage and mistakes in shipments",
+   "Keeping up with a fast pace safely"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  }
