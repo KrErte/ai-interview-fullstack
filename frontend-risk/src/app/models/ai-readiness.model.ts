@@ -67,6 +67,12 @@ export interface AssessmentRequest {
   personalize: boolean;
 }
 
+/** The answers behind the last saved result, kept so it can be recalculated with the current catalog. */
+export interface SavedAnswers {
+  professionId: string;
+  answers: Record<string, string>;
+}
+
 export interface AssessmentResult {
   professionId: string;
   professionName: string;

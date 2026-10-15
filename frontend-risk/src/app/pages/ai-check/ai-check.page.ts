@@ -184,6 +184,10 @@ const SCALE = [
       <header class="rise pb-2" style="--i:0">
         <p class="kicker">Exposure report</p>
         <h1 class="display mt-3 text-[clamp(2rem,4.5vw,3.5rem)]">{{ r.professionName }}</h1>
+        <p *ngIf="savedResultOutdated" class="mt-4 flex flex-wrap items-center gap-3 text-[15px] text-muted print:hidden">
+          This result was saved before the plans were updated.
+          <button (click)="restart()" class="link text-accent">Take the test again for the latest plan</button>
+        </p>
       </header>
 
       <!-- Scores -->
@@ -418,6 +422,8 @@ export class AiCheckPageComponent implements OnInit {
   /** Shown only when the server has an LLM key; otherwise the checkbox would promise a comment that never comes. */
   aiCommentAvailable = false;
   personalNoteRequested = false;
+  /** The open result was saved without its answers, so it may show an older plan. */
+  savedResultOutdated = false;
 
   result: AssessmentResult | null = null;
   lastResult: AssessmentResult | null = null;
@@ -576,7 +582,8 @@ export class AiCheckPageComponent implements OnInit {
         this.analytics.track('test-complete', { profession: result.professionId, band: result.band });
         this.lastResult = result;
         this.personalNoteRequested = personalize;
-        this.api.saveLastResult(result);
+        this.savedResultOutdated = false;
+        this.api.saveLastResult(result, this.answers);
         this.showAllTasks = false;
         this.step = 'result';
         window.scrollTo({ top: 0 });
@@ -588,11 +595,37 @@ export class AiCheckPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Shows the saved result at once, then recalculates it from the saved answers so the tasks and
+   * roadmaps match today's catalog. The AI comment is kept, not requested again. Results saved
+   * before answers were stored cannot be recalculated; those get a hint to retake the test.
+   */
   showLastResult(): void {
-    this.result = this.lastResult;
+    const saved = this.lastResult;
+    if (!saved) {
+      return;
+    }
+    this.result = saved;
     this.showAllTasks = false;
     this.personalNoteRequested = false;
     this.step = 'result';
+    const stored = this.api.loadLastAnswers();
+    this.savedResultOutdated = !stored || stored.professionId !== saved.professionId;
+    if (this.savedResultOutdated || !stored) {
+      return;
+    }
+    this.api.assess({ professionId: stored.professionId, answers: stored.answers, personalize: false }).subscribe({
+      next: fresh => {
+        const refreshed = { ...fresh, personalNote: saved.personalNote };
+        this.api.saveLastResult(refreshed, stored.answers);
+        this.lastResult = refreshed;
+        // the user may have left the result while the request was running
+        if (this.result === saved) {
+          this.result = refreshed;
+        }
+      },
+      error: () => { /* keep showing the saved result */ }
+    });
   }
 
   restart(): void {
@@ -606,6 +639,9 @@ export class AiCheckPageComponent implements OnInit {
     this.showAllTasks = false;
     this.questionIndex = 0;
     this.result = null;
+    this.personalize = false;
+    this.personalNoteRequested = false;
+    this.savedResultOutdated = false;
     this.expanded = {};
     this.step = 'profession';
     window.scrollTo({ top: 0 });
