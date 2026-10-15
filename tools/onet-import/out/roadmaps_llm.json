@@ -11129,6 +11129,1434 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "25-1021.00": {
+  "roadmap": [
+   {
+    "title": "AI for programming courses and autograding",
+    "items": [
+     "Generate programming exercises, test cases and explanations with AI, and run every solution before giving it to students.",
+     "Use autograders with AI-written feedback hints for code, and review borderline submissions yourself.",
+     "Draft research papers and grant text with AI help, keeping algorithms, results and claims your own."
+    ],
+    "project": "Build one assignment set with AI-generated tests and hints, run it for a term and compare student questions and pass rates."
+   },
+   {
+    "title": "Teaching with AI coding assistants",
+    "items": [
+     "Redesign courses for a world with AI coding assistants: teach reading, testing and debugging code, not only writing it.",
+     "Use oral code walkthroughs and in-class tasks to check that students understand the code they submit.",
+     "Update the curriculum with machine learning, AI safety and responsible AI topics, reviewed each year."
+    ],
+    "project": "Add short oral code reviews to one course's assessments and compare them with written grades to see what they reveal."
+   },
+   {
+    "title": "Mentoring programmers and research leadership",
+    "items": [
+     "Explain hard concepts live and adapt when students are lost; good teaching reads the room.",
+     "Mentor students on projects, careers and research, especially as entry-level coding jobs change.",
+     "Lead research that asks questions industry is not asking, and train students to do it well."
+    ],
+    "project": "Hold career sessions with alumni on how AI changed their first jobs, and adjust your course advice from what you hear."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistants such as GitHub Copilot",
+   "Autograding platforms",
+   "ChatGPT or Claude for exercises and explanations"
+  ],
+  "humanEdge": [
+   "Explaining hard ideas when students are lost",
+   "Mentoring students through a changing job market",
+   "Leading original research with students"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1022.00": {
+  "roadmap": [
+   {
+    "title": "AI for problem sets and solution checking",
+    "items": [
+     "Generate problem variations and worked solutions with AI, and check every solution by hand before use.",
+     "Use AI to draft hints and feedback for common mistakes, then edit them so they guide without giving answers away.",
+     "Typeset notes and exams faster with AI help in LaTeX, and proofread the mathematics yourself."
+    ],
+    "project": "Create one problem set with AI-generated variations, solve each yourself and record how many AI solutions were wrong."
+   },
+   {
+    "title": "Assessment when AI can solve the homework",
+    "items": [
+     "Redesign assessment for AI that solves standard problems: more explaining, proving and in-class work.",
+     "Teach students to check AI answers critically, finding the errors in confident but wrong solutions.",
+     "Introduce proof assistants or computer algebra where they help understanding, not replace it."
+    ],
+    "project": "Give students an AI-written proof with a hidden error, have them find and explain it, and record how many succeed."
+   },
+   {
+    "title": "Live explanation and student support",
+    "items": [
+     "Lead live problem solving and discussion, where students see how a mathematician really thinks.",
+     "Hold office hours that rebuild confidence for struggling students, step by step.",
+     "Work with colleagues on curriculum and research, sharing what works with AI in math teaching."
+    ],
+    "project": "Track office hour questions for a term, find the three most common gaps and add short videos or notes for them."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for problem variations",
+   "Computer algebra such as Wolfram or SageMath",
+   "Proof assistants such as Lean"
+  ],
+  "humanEdge": [
+   "Showing how mathematicians really think",
+   "Rebuilding confidence in struggling students",
+   "Spotting errors in confident wrong answers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1031.00": {
+  "roadmap": [
+   {
+    "title": "AI for studio briefs and design research",
+    "items": [
+     "Write studio briefs, readings and precedent studies with AI help, and check every building fact and source.",
+     "Show students AI image tools for early concepts, and teach how to judge and develop them, not just generate them.",
+     "Draft research papers and grant text with AI, keeping arguments and design analysis your own."
+    ],
+    "project": "Run one studio exercise where students use AI for concepts, then develop them by hand, and compare results with past years."
+   },
+   {
+    "title": "Computational design and fair critique",
+    "items": [
+     "Teach parametric and generative design tools alongside sketching, so students learn both.",
+     "Agree studio rules on AI use, credit and originality, and apply them consistently in reviews.",
+     "Use rubrics that reward design thinking and process, not only polished images."
+    ],
+    "project": "Write a studio AI policy with colleagues and students, use it for a term and review what worked at the final critique."
+   },
+   {
+    "title": "Studio teaching and design judgement",
+    "items": [
+     "Give live desk critiques that push students' thinking; this is the heart of design teaching.",
+     "Supervise internships and research, linking studio work to how buildings are really made.",
+     "Judge designs on space, light, use and context, and teach students to judge them too."
+    ],
+    "project": "Hold five desk critiques where students explain their AI-assisted choices, and record which questions changed their designs."
+   }
+  ],
+  "aiTools": [
+   "AI image tools such as Midjourney",
+   "Parametric design tools such as Grasshopper",
+   "ChatGPT or Claude for briefs and readings"
+  ],
+  "humanEdge": [
+   "Live desk critiques that push thinking",
+   "Judging designs on space, light and use",
+   "Linking studio work to real building"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1032.00": {
+  "roadmap": [
+   {
+    "title": "AI for research, grants and course materials",
+    "items": [
+     "Draft grant proposals and papers with AI help, keeping the engineering ideas, data and claims your own.",
+     "Generate homework problems and worked solutions with AI, and check every calculation and unit yourself.",
+     "Use AI coding assistants in research code, and teach your research students to test it properly."
+    ],
+    "project": "Write one grant proposal with AI help for structure, log the time saved and ask a colleague to review the technical case."
+   },
+   {
+    "title": "Engineering judgement in an AI world",
+    "items": [
+     "Teach students to check AI-generated calculations and designs against first principles and codes.",
+     "Add AI tools used in industry, such as generative design and simulation, to lab and project work.",
+     "Redesign assessment toward design projects, lab work and oral defence of decisions."
+    ],
+    "project": "Add a check-the-AI task to one course where students find the errors in an AI-made design calculation."
+   },
+   {
+    "title": "Labs, projects and research mentoring",
+    "items": [
+     "Supervise labs and projects where students build and test real things; hands-on failure teaches judgement.",
+     "Mentor research students through experiments, papers and early career choices.",
+     "Bring safety, ethics and professional responsibility into every engineering course."
+    ],
+    "project": "Run one design-build-test project with industry partners and record what students learned from real failures."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistants for research code",
+   "Simulation and generative design tools",
+   "ChatGPT or Claude for proposals and problems"
+  ],
+  "humanEdge": [
+   "Teaching judgement through hands-on labs",
+   "Mentoring research students through careers",
+   "Teaching safety and professional ethics"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1041.00": {
+  "roadmap": [
+   {
+    "title": "AI for research writing and course materials",
+    "items": [
+     "Draft papers and grant proposals with AI help, keeping trial data, methods and conclusions your own.",
+     "Create course materials on crops, soils and genetics with AI, and check facts against current research.",
+     "Analyse field trial data with AI coding help in R, and teach students to check models and assumptions."
+    ],
+    "project": "Prepare one course module with AI-drafted materials, check every fact with a colleague and record prep time saved."
+   },
+   {
+    "title": "Digital agriculture in the curriculum",
+    "items": [
+     "Teach precision agriculture, sensors and AI crop tools with real farm data and equipment.",
+     "Use satellite and drone data in labs, so students practise the tools farmers now use.",
+     "Set course rules for AI use in reports and data analysis, with disclosure and checks."
+    ],
+    "project": "Build one lab with real farm sensor data where students compare AI crop advice with field observations."
+   },
+   {
+    "title": "Field teaching and farmer links",
+    "items": [
+     "Supervise lab and field work, teaching students to read crops, soils and animals directly.",
+     "Mentor students on careers in farming, research and agribusiness as technology changes the sector.",
+     "Keep close links with farmers and extension services, so teaching and research stay practical."
+    ],
+    "project": "Organise one farm visit where students test a digital tool against what the farmer sees, and discuss the gaps."
+   }
+  ],
+  "aiTools": [
+   "Statistical software with AI coding help",
+   "Precision agriculture platforms",
+   "ChatGPT or Claude for papers and materials"
+  ],
+  "humanEdge": [
+   "Teaching students to read crops and soils",
+   "Mentoring students for farm and research careers",
+   "Keeping research practical with farmers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1042.00": {
+  "roadmap": [
+   {
+    "title": "AI for lab materials, lectures and grading",
+    "items": [
+     "Prepare lab manuals and course materials with AI, and test every protocol before students use it.",
+     "Use AI-assisted rubrics for lab reports, and give the final feedback and grade yourself.",
+     "Draft papers and grants with AI help, keeping data, figures and conclusions your own."
+    ],
+    "project": "Rewrite one lab manual with AI help, test it with teaching assistants and count student questions in the first lab."
+   },
+   {
+    "title": "Modern biology tools in teaching",
+    "items": [
+     "Teach tools like AlphaFold, sequence analysis and image AI in labs, with their limits.",
+     "Redesign assessments toward data interpretation and experimental design, which AI cannot fake well.",
+     "Teach students to check AI answers in biology against primary literature."
+    ],
+    "project": "Add one lab where students predict a protein structure with AlphaFold and compare it with experimental data."
+   },
+   {
+    "title": "Lab supervision and research mentoring",
+    "items": [
+     "Supervise students at the bench; technique and safety are learned under watchful eyes.",
+     "Lead discussions on research papers that teach students to question methods and claims.",
+     "Mentor undergraduates and graduate students in research, careers and scientific honesty."
+    ],
+    "project": "Run a journal club where students critique one AI-assisted study's methods, and record what they learned to look for."
+   }
+  ],
+  "aiTools": [
+   "AlphaFold and bioinformatics tools",
+   "Learning management system with rubrics",
+   "ChatGPT or Claude for lab materials"
+  ],
+  "humanEdge": [
+   "Teaching bench technique and safety",
+   "Leading critical paper discussions",
+   "Mentoring students in honest science"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1043.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and forestry course materials",
+    "items": [
+     "Draft papers and grant proposals with AI help, keeping field data and conclusions your own.",
+     "Create materials on forest policy, pathology and mapping with AI, and check facts against current sources.",
+     "Use AI coding help for forest inventory and growth analyses, and teach students to validate results."
+    ],
+    "project": "Write one grant proposal with AI help for structure and literature, and ask a colleague to judge the science."
+   },
+   {
+    "title": "Remote sensing and AI in forestry teaching",
+    "items": [
+     "Teach lidar, satellite and drone methods for forest inventory with real data from local forests.",
+     "Show students AI tools for species ID and pest detection, and how to check them in the field.",
+     "Set course rules for AI in reports and maps, with disclosure and field checks."
+    ],
+    "project": "Build one lab where students compare a lidar timber estimate with their own plot measurements and explain the gaps."
+   },
+   {
+    "title": "Field teaching and stakeholder skills",
+    "items": [
+     "Lead field work where students measure, identify and judge forests on foot.",
+     "Teach students to work with landowners, communities and agencies on forest decisions.",
+     "Supervise research and internships, connecting students with forest managers."
+    ],
+    "project": "Organise a field exercise where students present a management option to a real landowner and record the feedback."
+   }
+  ],
+  "aiTools": [
+   "Lidar and remote sensing software",
+   "AI species and pest ID apps",
+   "ChatGPT or Claude for papers and materials"
+  ],
+  "humanEdge": [
+   "Teaching forest judgement on foot",
+   "Training students to work with landowners",
+   "Connecting students with forest managers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1051.00": {
+  "roadmap": [
+   {
+    "title": "AI for research writing and data-rich courses",
+    "items": [
+     "Draft papers and proposals with AI help, keeping data, models and conclusions your own.",
+     "Build course exercises with real climate, ocean or geology data, using AI coding help for the scripts.",
+     "Prepare lecture notes and figures with AI, and check every value and explanation."
+    ],
+    "project": "Create one data exercise with AI-written starter code and real observations, and record how students used and fixed it."
+   },
+   {
+    "title": "AI models in earth science teaching",
+    "items": [
+     "Teach how AI weather and climate models work, how they are tested and where they fail.",
+     "Redesign assessments around data interpretation and field reports that AI cannot write from nothing.",
+     "Set course rules for AI in coding and writing, with disclosure and checks on results."
+    ],
+    "project": "Run a class comparison of an AI weather model and a physics model against observations, and discuss the results."
+   },
+   {
+    "title": "Field trips, labs and research supervision",
+    "items": [
+     "Lead field and lab work where students observe rocks, oceans or skies directly.",
+     "Supervise research students through data collection, analysis and writing.",
+     "Work with colleagues to share data, methods and teaching ideas across fields."
+    ],
+    "project": "Lead one field trip where students record observations, then compare them with remote data and models in class."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistants for Python data work",
+   "AI weather and climate model outputs",
+   "ChatGPT or Claude for papers and notes"
+  ],
+  "humanEdge": [
+   "Leading field trips and observation",
+   "Supervising student research projects",
+   "Sharing methods across disciplines"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1052.00": {
+  "roadmap": [
+   {
+    "title": "AI for chemistry problems and lab prep",
+    "items": [
+     "Generate practice problems on reactions, mechanisms and calculations with AI, and solve each one yourself before use.",
+     "Write lab safety briefings and pre-lab quizzes with AI, and check every hazard and quantity against safety data sheets.",
+     "Draft grant proposals and papers with AI help for structure, keeping chemistry, data and claims your own."
+    ],
+    "project": "Create pre-lab quizzes with AI for one course, check every answer and compare lab accidents and errors with last term."
+   },
+   {
+    "title": "Teaching chemistry with AI and simulation",
+    "items": [
+     "Use molecular modelling and simulation tools in class so students see structures and reactions, not only formulas.",
+     "Show students where AI chemistry answers go wrong, such as invented mechanisms, and how to check them.",
+     "Grade lab reports with clear rubrics and AI-assisted first checks, then give the final grade yourself."
+    ],
+    "project": "Collect ten AI answers to exam-style chemistry questions, have students find the errors and discuss them in class."
+   },
+   {
+    "title": "Lab supervision and research training",
+    "items": [
+     "Supervise students in the lab, teaching safe technique and good habits that last a career.",
+     "Train research students to plan experiments, keep honest notebooks and question odd results.",
+     "Hold office hours that help students understand concepts, not just get answers."
+    ],
+    "project": "Observe lab technique in one section for a week, list the three most common unsafe habits and teach them directly."
+   }
+  ],
+  "aiTools": [
+   "Molecular modelling software",
+   "ChatGPT or Claude for problems and quizzes",
+   "Electronic lab notebooks for research"
+  ],
+  "humanEdge": [
+   "Teaching safe lab technique for life",
+   "Training honest research habits",
+   "Helping students grasp concepts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1053.00": {
+  "roadmap": [
+   {
+    "title": "AI for environmental courses and research",
+    "items": [
+     "Build case studies on pollution, waste and toxicology with AI, and check every figure against official sources.",
+     "Write grant proposals on pollution or toxicology research with AI help for structure, and check every cited study yourself.",
+     "Grade lab and field reports with AI-assisted rubrics, and give final feedback and grades yourself."
+    ],
+    "project": "Write three local case studies with AI help, verify each with public records and use them in class for one term."
+   },
+   {
+    "title": "Environmental data skills for students",
+    "items": [
+     "Teach students to analyse monitoring and satellite data with AI coding help, and to check results.",
+     "Show how AI is used in environmental monitoring and compliance, including its limits.",
+     "Set course rules for AI in reports, with disclosure and checks against field data."
+    ],
+    "project": "Build one data lab with real local monitoring data, where students analyse it with AI help and verify one finding in the field."
+   },
+   {
+    "title": "Field work and community projects",
+    "items": [
+     "Supervise field sampling and lab work, teaching students safe and careful methods.",
+     "Link student projects with local agencies and companies on real environmental problems.",
+     "Mentor students on careers in environmental work, from consulting to public agencies and research."
+    ],
+    "project": "Run one student project for a local agency, present results to them and record what they used."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistants for data analysis",
+   "Environmental data portals and GIS",
+   "ChatGPT or Claude for case studies"
+  ],
+  "humanEdge": [
+   "Teaching careful field sampling",
+   "Connecting students with real projects",
+   "Mentoring students for environmental careers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1054.00": {
+  "roadmap": [
+   {
+    "title": "AI for physics problems and lecture demos",
+    "items": [
+     "Create problem sets and solutions on mechanics, optics or quantum topics with AI, and check every step and unit.",
+     "Write simulation code for lecture demos with AI coding help, and test that the physics behaves correctly.",
+     "Draft research papers and proposals with AI help, keeping results and interpretation your own."
+    ],
+    "project": "Build three interactive simulations for lectures with AI coding help, test them and ask students which ones helped."
+   },
+   {
+    "title": "Assessment and AI in physics learning",
+    "items": [
+     "Shift assessment toward explaining reasoning and estimating, which shows understanding AI cannot provide.",
+     "Teach students to check AI physics answers with units, limits and order-of-magnitude estimates.",
+     "Mark lab reports faster with AI-assisted checks on units and error analysis, and write the final feedback yourself."
+    ],
+    "project": "Add estimation and explain-your-reasoning questions to one exam, and compare them with standard problem scores."
+   },
+   {
+    "title": "Labs, demonstrations and mentoring",
+    "items": [
+     "Supervise lab work where students handle real equipment and messy data.",
+     "Lead live demonstrations and discussions that spark curiosity about how the world works.",
+     "Mentor research students and teaching assistants in physics and careers."
+    ],
+    "project": "Run one open-ended lab where students design their own measurement, and record how their reasoning improved."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for simulations",
+   "Simulation tools such as PhET",
+   "ChatGPT or Claude for problem sets"
+  ],
+  "humanEdge": [
+   "Live demonstrations that spark curiosity",
+   "Supervising labs with real equipment",
+   "Mentoring young physicists and assistants"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1061.00": {
+  "roadmap": [
+   {
+    "title": "AI for readings, transcripts and research writing",
+    "items": [
+     "Build reading lists and course materials with AI search, and read every source before assigning it.",
+     "Transcribe and translate field interviews with AI for research, checking meaning with speakers.",
+     "Draft papers and conference talks with AI help, keeping ethnographic insight and claims your own."
+    ],
+    "project": "Transcribe one set of field recordings with AI, check them with a speaker and record the errors that changed meaning."
+   },
+   {
+    "title": "Methods teaching and research ethics",
+    "items": [
+     "Teach digital methods such as GIS, 3D recording and text analysis, alongside fieldwork.",
+     "Teach research ethics for AI tools: consent, community data rights and anonymisation.",
+     "Set course rules for AI in essays and field reports, with clear disclosure of how it was used."
+    ],
+    "project": "Write an AI-use and data ethics guide for student fieldwork with colleagues and community partners, and test it for a term."
+   },
+   {
+    "title": "Discussion, fieldwork and mentoring",
+    "items": [
+     "Lead classroom discussions on culture and power that need trust and careful moderation.",
+     "Supervise student fieldwork and excavation, teaching respect for people and places.",
+     "Mentor students in research and careers, including work outside universities."
+    ],
+    "project": "Hold one class debate on a contested topic with ground rules, and gather student feedback on how safe and useful it felt."
+   }
+  ],
+  "aiTools": [
+   "AI transcription and translation tools",
+   "Qualitative analysis software",
+   "ChatGPT or Claude for course materials"
+  ],
+  "humanEdge": [
+   "Moderating sensitive discussions with trust",
+   "Teaching respect for people in fieldwork",
+   "Mentoring students beyond academia"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1062.00": {
+  "roadmap": [
+   {
+    "title": "AI for course materials and research",
+    "items": [
+     "Build reading lists from diverse voices with AI search, and check that each source is real and fairly represented.",
+     "Prepare lecture materials and discussion questions with AI, and edit them for nuance and accuracy.",
+     "Draft papers with AI help for structure, keeping arguments and interpretations your own."
+    ],
+    "project": "Build one course reading list with AI help, check every source and record how many suggestions were wrong or one-sided."
+   },
+   {
+    "title": "Teaching about AI bias and representation",
+    "items": [
+     "Teach how AI systems reflect bias in race, gender and culture, using real examples students can test.",
+     "Redesign essays toward personal analysis, local sources and oral defence that AI cannot do for students.",
+     "Set course rules for AI use in writing, asking students to disclose it and reflect on what it got wrong."
+    ],
+    "project": "Have students test one AI tool for bias on a topic from your course and present their findings in class."
+   },
+   {
+    "title": "Discussion, care and mentoring",
+    "items": [
+     "Facilitate discussions on race, gender and identity with care, so different views are heard respectfully.",
+     "Support students facing difficult personal topics, and know when to refer them to services.",
+     "Serve on committees that shape inclusive policies, bringing evidence from your teaching and research."
+    ],
+    "project": "Agree discussion ground rules with one class, use them for a term and collect feedback on how respected students felt."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for course materials",
+   "AI research tools for literature",
+   "Learning management system"
+  ],
+  "humanEdge": [
+   "Facilitating hard discussions with care",
+   "Supporting students on personal topics",
+   "Shaping inclusive campus policies"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1063.00": {
+  "roadmap": [
+   {
+    "title": "AI for economics problems and data exercises",
+    "items": [
+     "Generate problem sets on price theory and macro with AI, and solve every one yourself before use.",
+     "Create data exercises with real economic data and AI-written starter code in R or Python.",
+     "Draft research papers with AI help, keeping identification, data and conclusions your own."
+    ],
+    "project": "Build one data exercise with real data and AI starter code, run it with students and record where they got stuck."
+   },
+   {
+    "title": "Teaching econometrics and AI critically",
+    "items": [
+     "Teach students to use AI coding help for econometrics while checking every model and result.",
+     "Discuss AI's effects on labour markets and productivity with evidence, not hype.",
+     "Redesign exams toward interpreting results and explaining policy trade-offs."
+    ],
+    "project": "Teach one session on AI and jobs using current research, and have students write a short evidence-based brief."
+   },
+   {
+    "title": "Lectures, debates and department work",
+    "items": [
+     "Lead lectures and debates that connect economic theory to current events students care about.",
+     "Advise students in office hours on courses, research and careers.",
+     "Take on department leadership and committee work that shapes teaching quality."
+    ],
+    "project": "Hold one debate on a current policy with students defending assigned sides, and grade the use of evidence."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for R or Python",
+   "Economic data such as FRED or Eurostat",
+   "ChatGPT or Claude for problem sets"
+  ],
+  "humanEdge": [
+   "Connecting theory to current events",
+   "Teaching students evidence over hype",
+   "Leading department teaching quality"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1064.00": {
+  "roadmap": [
+   {
+    "title": "AI for lectures, maps and research writing",
+    "items": [
+     "Prepare lectures on urbanisation, environment and culture with AI help, and check every fact and map.",
+     "Create GIS exercises with AI-written starter scripts and real local data.",
+     "Draft papers with AI help for structure, keeping spatial analysis and conclusions your own."
+    ],
+    "project": "Build one GIS exercise with real local data and AI starter scripts, and record which steps students found hardest."
+   },
+   {
+    "title": "Spatial thinking with AI tools",
+    "items": [
+     "Teach students to question AI-made maps and imagery, checking sources, projections and dates.",
+     "Use satellite and AI land cover products in class, and compare them with field observations.",
+     "Set course rules for AI in essays and maps, with disclosure and a note on what the student checked."
+    ],
+    "project": "Have students compare an AI land cover map with their own field check of one area and report the errors."
+   },
+   {
+    "title": "Fieldwork, discussion and supervision",
+    "items": [
+     "Lead field trips where students observe places and talk with people who live there.",
+     "Facilitate discussions on cities, migration and environment, connecting to students' own places.",
+     "Supervise student research and teaching assistants with clear feedback."
+    ],
+    "project": "Lead one local field trip with an observation task, and compare students' field notes with what data alone showed."
+   }
+  ],
+  "aiTools": [
+   "GIS software such as QGIS",
+   "Satellite land cover products",
+   "ChatGPT or Claude for lecture prep"
+  ],
+  "humanEdge": [
+   "Leading field trips into real places",
+   "Connecting topics to students' own places",
+   "Supervising student research with feedback"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1065.00": {
+  "roadmap": [
+   {
+    "title": "AI for readings, cases and research",
+    "items": [
+     "Build reading lists and cases on political thought and international relations with AI, and check every source.",
+     "Prepare simulations of negotiations or elections with AI help for roles and scenarios.",
+     "Draft research papers with AI help, keeping arguments and evidence your own."
+    ],
+    "project": "Run one negotiation simulation with AI-prepared roles, and ask students what they learned about real politics."
+   },
+   {
+    "title": "Teaching about AI, democracy and evidence",
+    "items": [
+     "Teach how AI affects elections, disinformation and public services, with real cases.",
+     "Redesign essays toward argument and evidence that students defend in class.",
+     "Set course rules for AI in writing, with disclosure and short oral follow-ups on key arguments."
+    ],
+    "project": "Have students analyse one AI-generated political claim, trace its sources and present how they checked it."
+   },
+   {
+    "title": "Civil debate and mentoring",
+    "items": [
+     "Moderate debates across political views, keeping discussion civil and evidence-based.",
+     "Advise students on research, careers and civic involvement, including work in public service.",
+     "Revise curricula with colleagues to keep pace with political and technological change."
+    ],
+    "project": "Hold a structured debate with ground rules on a divisive issue and collect feedback on how fair it felt to students."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for cases and simulations",
+   "AI research tools for literature",
+   "Learning management system"
+  ],
+  "humanEdge": [
+   "Keeping political debates civil",
+   "Mentoring students for civic life",
+   "Updating curricula with colleagues"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1066.00": {
+  "roadmap": [
+   {
+    "title": "AI for psychology courses and research analysis",
+    "items": [
+     "Build lecture examples and quiz questions on cognition, development and abnormal psychology with AI, checking each against textbooks.",
+     "Analyse study data with AI coding help in R or SPSS syntax, and have a colleague check the models before publishing.",
+     "Use AI search to map the literature for a new study, then read and judge the key papers yourself."
+    ],
+    "project": "Write one quiz bank with AI help for a course, check every item and compare student results with last year's quizzes."
+   },
+   {
+    "title": "Teaching how AI meets the mind",
+    "items": [
+     "Teach how people trust and over-trust AI, and what psychology says about human-AI interaction.",
+     "Teach research methods with AI tools, including their risks for p-hacking and fabricated sources.",
+     "Shift assessment toward designing and critiquing studies, which shows real understanding."
+    ],
+    "project": "Have students design a small study on how people judge AI advice, and review their designs for ethics and method."
+   },
+   {
+    "title": "Discussion, supervision and student wellbeing",
+    "items": [
+     "Lead discussions on mental health topics with care, aware that some students live with these issues.",
+     "Supervise research and internships, teaching ethics and respect for participants.",
+     "Advise students on paths in psychology, including clinical, research and applied careers."
+    ],
+    "project": "Hold one session on psychology careers with alumni in different roles, and collect what students want to learn next."
+   }
+  ],
+  "aiTools": [
+   "AI research tools such as Elicit",
+   "Statistical software with AI coding help",
+   "ChatGPT or Claude for quiz items"
+  ],
+  "humanEdge": [
+   "Discussing mental health topics with care",
+   "Teaching ethics with research participants",
+   "Advising students on psychology careers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1067.00": {
+  "roadmap": [
+   {
+    "title": "AI for course materials and qualitative research",
+    "items": [
+     "Prepare lectures on inequality, work and social relations with AI, and check each statistic against official data.",
+     "Code interview data for your research with AI-assisted qualitative tools, and check themes against the transcripts.",
+     "Write exam questions that test sociological reasoning with AI help, and review each for fairness."
+    ],
+    "project": "Update one lecture series with current official statistics found with AI help, and check every figure at the source."
+   },
+   {
+    "title": "Teaching sociology of AI and methods",
+    "items": [
+     "Teach how AI changes work, surveillance and inequality, with studies students can discuss.",
+     "Teach survey and interview methods with AI tools, and their limits for understanding people.",
+     "Ask students to apply theory to their own observations, which AI cannot supply."
+    ],
+    "project": "Have students observe one workplace or public space, connect it to theory and compare their notes with an AI summary."
+   },
+   {
+    "title": "Discussion and student support",
+    "items": [
+     "Moderate discussions on class, race and gender with fairness, so students learn from each other.",
+     "Advise sociology students on research ideas and on careers in policy, research and community work.",
+     "Serve on committees and bring evidence about students' lives into decisions."
+    ],
+    "project": "Run one discussion with agreed ground rules on a contested topic and collect feedback on what students learned."
+   }
+  ],
+  "aiTools": [
+   "Qualitative analysis software with AI coding",
+   "Official statistics portals",
+   "ChatGPT or Claude for lecture prep"
+  ],
+  "humanEdge": [
+   "Moderating fair discussions on inequality",
+   "Linking theory to students' own lives",
+   "Bringing student evidence to committees"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1071.00": {
+  "roadmap": [
+   {
+    "title": "AI for health courses and research",
+    "items": [
+     "Build case studies on public health and health promotion with AI, and check every clinical fact against guidelines.",
+     "Use AI tools to screen literature for systematic reviews, with two humans checking inclusion decisions.",
+     "Prepare grant applications with AI help for structure, and make sure every claim has evidence."
+    ],
+    "project": "Run one literature screen with an AI tool beside a manual screen, and compare which studies each found."
+   },
+   {
+    "title": "AI in health care education",
+    "items": [
+     "Teach how AI is used in health care, from diagnosis support to scheduling, with its risks.",
+     "Teach students to protect patient data when using AI, with clear rules and examples.",
+     "Redesign assessment toward case reasoning and practical skills, assessed in person."
+    ],
+    "project": "Add one session on AI in health care with a clinician guest, and have students analyse a real AI tool's evidence."
+   },
+   {
+    "title": "Clinical mentoring and teamwork",
+    "items": [
+     "Supervise internships and research, linking classroom learning with real health settings.",
+     "Mentor students on careers in public health and clinical fields, including new roles in digital health.",
+     "Work with colleagues across disciplines on curriculum that prepares students for team-based care."
+    ],
+    "project": "Review internship feedback from placement sites with colleagues and change one course to fill the main gap."
+   }
+  ],
+  "aiTools": [
+   "AI literature screening tools",
+   "ChatGPT or Claude for case studies",
+   "Learning management system"
+  ],
+  "humanEdge": [
+   "Linking classroom and real health settings",
+   "Mentoring students for health careers",
+   "Building team-based care curricula"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1072.00": {
+  "roadmap": [
+   {
+    "title": "AI for nursing course materials and simulations",
+    "items": [
+     "Create case scenarios and NCLEX-style practice questions with AI, and check every drug and dose against references.",
+     "Write simulation lab scripts with AI for deteriorating patients, and test them with colleagues before class.",
+     "Prepare care plan templates and pharmacology study guides with AI, checked against current guidelines."
+    ],
+    "project": "Build ten practice cases with AI help, check every clinical detail with a colleague and track student scores for a term."
+   },
+   {
+    "title": "AI and documentation in clinical practice",
+    "items": [
+     "Teach students how AI documentation and early-warning tools work in hospitals, and when to question them.",
+     "Teach patient privacy rules for AI tools, with examples of what must never go into public chatbots.",
+     "Grade care plans and reflections with clear rubrics, and give personal feedback on clinical reasoning."
+    ],
+    "project": "Run one simulation where an AI alert is wrong, and debrief how students noticed and acted on it."
+   },
+   {
+    "title": "Clinical teaching at the bedside",
+    "items": [
+     "Supervise students on clinical units, demonstrating safe care and stepping in when needed.",
+     "Teach communication with patients and families through role play and real practice.",
+     "Debrief students after hard clinical days, supporting their wellbeing and judgement."
+    ],
+    "project": "Hold a structured debrief after each clinical day for a month and record what students said helped them most."
+   }
+  ],
+  "aiTools": [
+   "Simulation lab software and manikins",
+   "ChatGPT or Claude for cases and questions",
+   "Clinical reference apps for drug checks"
+  ],
+  "humanEdge": [
+   "Demonstrating safe care at the bedside",
+   "Teaching communication with patients",
+   "Debriefing students after hard days"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1081.00": {
+  "roadmap": [
+   {
+    "title": "AI for teacher education materials",
+    "items": [
+     "Prepare course materials on reading instruction and child development with AI, checking research claims at the source.",
+     "Model AI lesson planning for future teachers, showing how to adapt plans to real classes.",
+     "Give feedback on lesson plans with AI-assisted rubrics, and add your own coaching comments."
+    ],
+    "project": "Show students how you plan one lesson with AI and then adapt it, and have them do the same for a real class."
+   },
+   {
+    "title": "Preparing teachers for AI in schools",
+    "items": [
+     "Teach future teachers how to set AI rules for pupils, design AI-resistant tasks and teach AI literacy.",
+     "Research how AI tools affect learning in schools, with partner teachers and real classrooms.",
+     "Update the curriculum each year as school AI policies and tools change."
+    ],
+    "project": "Partner with two schools to observe how teachers use AI, and add one real case to your course."
+   },
+   {
+    "title": "Fieldwork supervision and mentoring",
+    "items": [
+     "Observe student teachers in classrooms and give honest, practical feedback on their teaching.",
+     "Lead discussions on classroom dilemmas where there is no single right answer.",
+     "Mentor future teachers on careers and on staying in the profession through hard first years."
+    ],
+    "project": "Observe five student teachers twice each, record their progress on one skill and share the patterns with colleagues."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for course materials",
+   "AI lesson planning tools",
+   "Learning management system with rubrics"
+  ],
+  "humanEdge": [
+   "Observing and coaching student teachers",
+   "Discussing real classroom dilemmas openly",
+   "Mentoring teachers through first years"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1082.00": {
+  "roadmap": [
+   {
+    "title": "AI for indexing, metadata and course design",
+    "items": [
+     "Show students how AI generates metadata and subject headings, and have them correct its errors.",
+     "Prepare online course modules with AI help for structure, checking every standard and example.",
+     "Use AI research tools to map the literature on information science, and judge the sources yourself."
+    ],
+    "project": "Have students catalogue 20 items with AI help and by hand, compare the records and discuss the errors."
+   },
+   {
+    "title": "AI literacy and information ethics",
+    "items": [
+     "Teach AI literacy: how chatbots find and invent sources, and how librarians help users check them.",
+     "Teach privacy, copyright and bias issues in AI search and collections.",
+     "Redesign assessments around real reference and collection tasks with community partners."
+    ],
+    "project": "Build one AI literacy workshop with students and run it for a public or school library audience."
+   },
+   {
+    "title": "Online teaching and professional community",
+    "items": [
+     "Lead online and in-person discussions that keep distance students engaged and connected.",
+     "Mentor students on library careers as AI changes reference and cataloguing work.",
+     "Stay active in professional associations and bring current practice into class."
+    ],
+    "project": "Interview three working librarians about AI in their jobs and update one course unit with what they say."
+   }
+  ],
+  "aiTools": [
+   "AI metadata and cataloguing tools",
+   "Learning management system for online courses",
+   "AI research tools for literature"
+  ],
+  "humanEdge": [
+   "Engaging distance students online",
+   "Mentoring students for changing library careers",
+   "Bringing current practice into class"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1111.00": {
+  "roadmap": [
+   {
+    "title": "AI for case studies and course materials",
+    "items": [
+     "Build case studies on investigations and criminal law with AI, and check every legal point against current law.",
+     "Prepare exam questions and scenarios with AI help, and review each for accuracy and fairness.",
+     "Draft research papers on policing and justice with AI help, checking every source and statistic."
+    ],
+    "project": "Write five scenario-based exam questions with AI help, check them with a practitioner and use them in one exam."
+   },
+   {
+    "title": "AI in policing and justice",
+    "items": [
+     "Teach how AI is used in policing and courts, such as facial recognition and risk scores, and the debates around them.",
+     "Teach students to spot deepfakes and AI-altered evidence, and why authenticity checks matter.",
+     "Redesign assessment toward scenario reasoning and oral defence of decisions."
+    ],
+    "project": "Run one class on facial recognition with a case study, and have students write a policy recommendation with evidence."
+   },
+   {
+    "title": "Discussion, ethics and practitioner links",
+    "items": [
+     "Lead discussions on use of force, bias and rights with care, keeping them respectful.",
+     "Bring practitioners into class, and keep your own links with police and courts current.",
+     "Advise students on careers in policing, corrections and the courts, including how technology is changing them."
+    ],
+    "project": "Invite two practitioners to discuss one ethical dilemma, and have students write how they would act and why."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for cases and exam questions",
+   "Legal research databases",
+   "Learning management system"
+  ],
+  "humanEdge": [
+   "Leading respectful debates on policing",
+   "Linking students with practitioners",
+   "Teaching ethics through real dilemmas"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1112.00": {
+  "roadmap": [
+   {
+    "title": "AI for legal scholarship and teaching prep",
+    "items": [
+     "Use legal research tools with AI to find cases and scholarship, and read every authority you cite.",
+     "Draft articles and course materials with AI help for structure, keeping legal analysis and arguments your own.",
+     "Track new legislation and decisions in your field with AI alerts, and confirm in the official text."
+    ],
+    "project": "Write one article section with AI help, check every citation and record how many AI-suggested sources were wrong."
+   },
+   {
+    "title": "Teaching law in the age of AI",
+    "items": [
+     "Teach students to use legal AI tools well, including checking for invented cases and confidentiality.",
+     "Redesign exams toward legal reasoning, client advice and oral argument.",
+     "Add AI law topics to the curriculum, such as liability, data protection and the EU AI Act."
+    ],
+    "project": "Run one exercise where students check an AI-written memo for errors and invented citations, and grade their findings."
+   },
+   {
+    "title": "Socratic teaching and mentoring",
+    "items": [
+     "Lead Socratic discussions that train students to think under questioning.",
+     "Mentor students on legal careers as AI changes the work junior lawyers used to learn on.",
+     "Shape curriculum and faculty policy on AI use with colleagues, balancing skills training with academic honesty."
+    ],
+    "project": "Hold career sessions with practising lawyers about AI in their firms, and adjust your skills courses from what you hear."
+   }
+  ],
+  "aiTools": [
+   "Legal research platforms with AI",
+   "ChatGPT or Claude for drafts",
+   "Legislative tracking and alert services"
+  ],
+  "humanEdge": [
+   "Socratic teaching that builds reasoning",
+   "Mentoring students for a changing profession",
+   "Shaping faculty policy on AI"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1113.00": {
+  "roadmap": [
+   {
+    "title": "AI for social work cases and research",
+    "items": [
+     "Write teaching cases on families, child welfare and mental health with AI, using fictional details only.",
+     "Use AI-assisted qualitative tools for your research data, with ethics approval and anonymised data.",
+     "Mark essays and case analyses with clear rubrics, and give personal feedback on practice reasoning."
+    ],
+    "project": "Write five fictional teaching cases with AI help, review them with a practitioner for realism and use them in one course."
+   },
+   {
+    "title": "Preparing social workers for AI",
+    "items": [
+     "Teach how AI is used in social services, such as risk scoring in child welfare, and its ethical problems.",
+     "Teach confidentiality rules for AI tools, using real dilemmas from practice.",
+     "Redesign assessment toward role play, case conferences and reflective practice."
+    ],
+    "project": "Run one class debate on a real AI risk-scoring system in social services, and have students write an ethics brief."
+   },
+   {
+    "title": "Field education and department leadership",
+    "items": [
+     "Supervise field placements, linking students' practice with theory and values.",
+     "Moderate discussions on trauma, poverty and discrimination with care for students' own experiences.",
+     "Lead department work and committees that keep the program connected to practice."
+    ],
+    "project": "Meet five field supervisors, collect their views on what graduates lack, and change one course in response."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for fictional teaching cases",
+   "Qualitative analysis software",
+   "Learning management system"
+  ],
+  "humanEdge": [
+   "Supervising students in field placements",
+   "Discussing trauma and poverty with care",
+   "Keeping teaching close to practice"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1121.00": {
+  "roadmap": [
+   {
+    "title": "AI for course materials and practice tools",
+    "items": [
+     "Prepare lecture notes on art history, music theory or acting with AI, and check every date, work and quote.",
+     "Use AI ear-training, accompaniment or reference tools as practice aids, chosen to support students' own skills.",
+     "Write programme notes, syllabi and audition guides with AI help, edited in your own voice."
+    ],
+    "project": "Introduce one AI practice tool in a course for a term, and compare students' progress on one skill with the previous term."
+   },
+   {
+    "title": "Generative AI and creative ethics",
+    "items": [
+     "Teach how generative AI makes images, music and scripts, and the copyright and credit questions it raises.",
+     "Set clear studio rules on AI use in creative work, and assess process as well as result.",
+     "Help students build a personal voice that stands out from generic AI output."
+    ],
+    "project": "Run one project where students compare their own work with AI output on the same brief, and discuss what makes theirs distinct."
+   },
+   {
+    "title": "Demonstration, rehearsal and critique",
+    "items": [
+     "Demonstrate techniques live and correct students hands-on; craft is passed on in person.",
+     "Direct rehearsals and performances, building ensembles that trust each other.",
+     "Give honest, caring critique that helps students grow without crushing their confidence."
+    ],
+    "project": "Hold one critique session where each student gets written and spoken feedback, and ask them which feedback they used."
+   }
+  ],
+  "aiTools": [
+   "AI music and ear-training apps",
+   "Generative image and music tools for teaching",
+   "ChatGPT or Claude for notes and syllabi"
+  ],
+  "humanEdge": [
+   "Demonstrating craft live in the studio",
+   "Directing ensembles that trust each other",
+   "Giving honest, caring critique"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1122.00": {
+  "roadmap": [
+   {
+    "title": "AI for media courses and feedback",
+    "items": [
+     "Prepare lectures on media, rhetoric and public speaking with AI, and check every example and source.",
+     "Give feedback on speeches with AI tools that time pace and filler words, and add your coaching on content and presence.",
+     "Grade papers with clear rubrics and AI-assisted first reads, and write the final judgement yourself."
+    ],
+    "project": "Use an AI speech feedback tool with one class for a term and compare students' first and last speeches with your own scoring."
+   },
+   {
+    "title": "Media literacy for an AI world",
+    "items": [
+     "Teach how AI shapes news, ads and social feeds, and how to spot synthetic media.",
+     "Redesign assignments toward live speaking, interviews and analysis of real media.",
+     "Update the curriculum with AI tools now used in journalism, PR and marketing."
+    ],
+    "project": "Have students track one news story across outlets, find any AI-generated content and present how they verified it."
+   },
+   {
+    "title": "Speaking, discussion and mentoring",
+    "items": [
+     "Coach students to speak with confidence in front of real audiences, step by step.",
+     "Moderate discussions on media and society where students disagree respectfully.",
+     "Advise students on careers in media, PR and communication as AI changes the field."
+    ],
+    "project": "Organise one public speaking event with real audiences and record how students rate their confidence before and after."
+   }
+  ],
+  "aiTools": [
+   "AI speech feedback tools",
+   "ChatGPT or Claude for lecture prep",
+   "Media verification tools for images and video"
+  ],
+  "humanEdge": [
+   "Coaching students to speak with confidence",
+   "Moderating respectful media debates",
+   "Advising on changing media careers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1123.00": {
+  "roadmap": [
+   {
+    "title": "AI for literature courses and writing feedback",
+    "items": [
+     "Prepare lectures on poetry, novels and translation with AI help, and check every quotation against the text.",
+     "Give drafts AI-assisted feedback on structure and grammar, and keep feedback on ideas and voice your own.",
+     "Build online course modules with AI help, and test them with students for clarity."
+    ],
+    "project": "Use AI first-pass feedback on drafts in one course, add your own comments, and compare revision quality with last year."
+   },
+   {
+    "title": "Teaching writing when AI can write",
+    "items": [
+     "Redesign writing assignments around process: notes, drafts, reflection and in-class writing.",
+     "Teach students to critique AI-written texts, finding clichés, errors and missing voice.",
+     "Agree a clear course policy on AI in writing, explained with examples of allowed and forbidden use."
+    ],
+    "project": "Have students revise an AI-written essay into their own, annotating every change, and assess the reasoning in their notes."
+   },
+   {
+    "title": "Close reading, discussion and voice",
+    "items": [
+     "Lead close-reading discussions where students find meaning together, guided by your questions.",
+     "Teach writing in small groups and conferences, helping each student find their own voice.",
+     "Mentor students on careers in writing, teaching and publishing as AI changes them."
+    ],
+    "project": "Hold one-to-one writing conferences with every student once in a term and record the changes they made afterwards."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for lecture prep",
+   "AI writing feedback tools",
+   "Learning management system for online courses"
+  ],
+  "humanEdge": [
+   "Guiding close reading in discussion",
+   "Helping students find their own voice",
+   "Mentoring writers through change"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1124.00": {
+  "roadmap": [
+   {
+    "title": "AI for language practice and materials",
+    "items": [
+     "Create graded readings, dialogues and exercises with AI at each level, and check grammar and culture yourself.",
+     "Use AI conversation partners for extra speaking practice, with tasks you design and review.",
+     "Keep attendance, grades and records in the learning system, with automatic summaries for advising."
+    ],
+    "project": "Create graded readings for one level with AI help, check each with a native speaker and track reading scores for a term."
+   },
+   {
+    "title": "Translation tools and honest assessment",
+    "items": [
+     "Teach when machine translation helps and where it fails, with examples from your languages.",
+     "Redesign assessment toward speaking, live writing and interpretation, which translation tools cannot fake.",
+     "Set course rules for translation and AI tools, with examples of allowed and banned use."
+    ],
+    "project": "Have students compare machine translations of one literary text with their own, and discuss what the machine missed."
+   },
+   {
+    "title": "Conversation, culture and discussion",
+    "items": [
+     "Lead live conversation in the language, correcting and encouraging students in real time.",
+     "Teach culture through stories, film and your own experience, beyond what textbooks say.",
+     "Moderate literature discussions in the target language, so students practise thinking in it."
+    ],
+    "project": "Run a weekly conversation hour for a term and record how students' speaking confidence changes."
+   }
+  ],
+  "aiTools": [
+   "AI conversation practice apps",
+   "Machine translation such as DeepL",
+   "ChatGPT or Claude for graded readings"
+  ],
+  "humanEdge": [
+   "Leading live conversation in the language",
+   "Teaching culture from lived experience",
+   "Encouraging nervous students to speak"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1125.00": {
+  "roadmap": [
+   {
+    "title": "AI for lectures, sources and grading",
+    "items": [
+     "Prepare lectures with AI help for structure, and check every date, name and claim in reliable sources.",
+     "Find primary sources for classes in digitised archives with AI search, and read each before assigning it.",
+     "Grade essays with clear rubrics and AI-assisted first reads, and write comments on argument yourself."
+    ],
+    "project": "Build one source pack of digitised primary documents with AI search help, and use it in class for a term."
+   },
+   {
+    "title": "Teaching history against AI errors",
+    "items": [
+     "Teach students to check AI history answers against sources, finding invented facts and quotes.",
+     "Redesign essays around primary source analysis and in-class writing that AI cannot fake.",
+     "Teach how images and documents can be faked with AI, and how historians test authenticity."
+    ],
+    "project": "Give students an AI-written history answer with errors, have them check it against sources and present the corrections."
+   },
+   {
+    "title": "Debate, interpretation and mentoring",
+    "items": [
+     "Lead discussions where students weigh conflicting interpretations of the past.",
+     "Make the past vivid with stories, places and objects, in ways a summary cannot.",
+     "Supervise student research and advise on careers in history and beyond."
+    ],
+    "project": "Lead one class visit to a museum or archive, and have students write what the objects showed that texts did not."
+   }
+  ],
+  "aiTools": [
+   "Digitised archive search tools",
+   "ChatGPT or Claude for lecture structure",
+   "Learning management system with rubrics"
+  ],
+  "humanEdge": [
+   "Guiding debate on conflicting interpretations",
+   "Making the past vivid for students",
+   "Supervising student research in archives"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1126.00": {
+  "roadmap": [
+   {
+    "title": "AI for readings, lectures and writing",
+    "items": [
+     "Prepare lectures on ethics, logic and religious thought with AI help, and check every quote and attribution.",
+     "Draft articles and books with AI help for structure and references, keeping arguments and insights your own.",
+     "Create logic exercises and practice problems with AI, and solve every one yourself."
+    ],
+    "project": "Write one article section with AI help for structure, check every reference and record what the AI got wrong."
+   },
+   {
+    "title": "Ethics of AI and honest assessment",
+    "items": [
+     "Teach the ethics of AI: responsibility, fairness, consciousness and the effects on work and faith.",
+     "Redesign assessment toward live argument, oral exams and responses to objections.",
+     "Use AI as a sparring partner in class, and have students find the flaws in its arguments."
+    ],
+    "project": "Run one class where students debate an AI's argument on an ethical question and grade how well they find its flaws."
+   },
+   {
+    "title": "Socratic dialogue and community teaching",
+    "items": [
+     "Lead discussions that question assumptions, so students learn to think rather than repeat.",
+     "Teach community audiences about ethics and religion with respect for different beliefs.",
+     "Mentor students in philosophy and religious studies on careers and life questions."
+    ],
+    "project": "Hold one public lecture on AI and ethics for the community and collect the questions people asked."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude as a debate partner",
+   "AI research tools for literature",
+   "Learning management system"
+  ],
+  "humanEdge": [
+   "Questioning assumptions in dialogue",
+   "Teaching across different beliefs",
+   "Mentoring students on life questions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1192.00": {
+  "roadmap": [
+   {
+    "title": "AI for nutrition, food and child care courses",
+    "items": [
+     "Prepare lectures on nutrition, food science and child development with AI, and check facts against current guidelines.",
+     "Build meal planning and budgeting exercises with AI, and check nutrient values in official databases.",
+     "Grade lab work and projects with clear rubrics, adding your own feedback on technique."
+    ],
+    "project": "Create one meal-planning exercise with AI help, check every nutrient value and compare student results with last year."
+   },
+   {
+    "title": "Teaching consumers to use AI wisely",
+    "items": [
+     "Teach students how AI diet, budgeting and parenting apps work, and how to judge their advice.",
+     "Redesign assessment toward practical labs and real family case work.",
+     "Update curricula with research on nutrition, finance and child care each year."
+    ],
+    "project": "Have students test three AI nutrition or budgeting apps against official guidance and present which ones to trust."
+   },
+   {
+    "title": "Hands-on labs and advising",
+    "items": [
+     "Supervise food and child care labs, teaching safe and careful practice.",
+     "Lead discussions on family, money and health with respect for students' backgrounds.",
+     "Advise students on careers in dietetics, education and family services."
+    ],
+    "project": "Invite three graduates working in different family and consumer fields to talk about their work and AI tools they use."
+   }
+  ],
+  "aiTools": [
+   "Nutrition analysis software",
+   "ChatGPT or Claude for course materials",
+   "Learning management system with rubrics"
+  ],
+  "humanEdge": [
+   "Supervising hands-on food and child labs",
+   "Respecting students' family backgrounds",
+   "Advising on family service careers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1193.00": {
+  "roadmap": [
+   {
+    "title": "AI for exercise science courses and research",
+    "items": [
+     "Prepare lectures on anatomy, conditioning and therapeutic recreation with AI, and check facts against current research.",
+     "Build training-plan case studies with AI for different clients, and review every load and progression yourself.",
+     "Analyse fitness and research data with AI coding help, and check results with a colleague."
+    ],
+    "project": "Write five client case studies with AI help, check each plan with a certified coach and use them in one course."
+   },
+   {
+    "title": "Wearables, apps and AI coaching",
+    "items": [
+     "Teach how wearables and AI coaching apps measure and advise, and where their data and advice go wrong.",
+     "Redesign assessment toward practical coaching sessions with real people, observed and graded live.",
+     "Update the curriculum with current evidence on exercise, recovery and inclusive recreation."
+    ],
+    "project": "Have students compare an AI coaching app's plan with their own for one volunteer and present the differences."
+   },
+   {
+    "title": "Practical teaching and mentoring",
+    "items": [
+     "Demonstrate exercises and correct technique hands-on, keeping students and clients safe.",
+     "Lead discussions on motivation, inclusion and health behaviour with real examples.",
+     "Advise students on careers in coaching, therapeutic recreation and health promotion."
+    ],
+    "project": "Run one practical session where students coach real clients under your watch, and record the corrections you gave."
+   }
+  ],
+  "aiTools": [
+   "Wearables and AI coaching apps for teaching",
+   "ChatGPT or Claude for case studies",
+   "Statistical software with AI coding help"
+  ],
+  "humanEdge": [
+   "Correcting exercise technique hands-on",
+   "Teaching motivation and inclusion",
+   "Advising students on coaching careers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1194.00": {
+  "roadmap": [
+   {
+    "title": "AI for trade course materials and records",
+    "items": [
+     "Create visual aids, step-by-step guides and quizzes for your trade with AI, and check every procedure and safety rule.",
+     "Keep grades, attendance and training logs in a digital system that builds reports automatically.",
+     "Update the curriculum with AI-summarised industry standards, confirmed in the official documents."
+    ],
+    "project": "Build one module of visual step guides with AI help, test them in the workshop and count the questions students still ask."
+   },
+   {
+    "title": "Industry tools and skills tests",
+    "items": [
+     "Bring the digital and AI tools now used in your trade, such as diagnostic or design software, into training.",
+     "Design practical performance tests with clear criteria, so skills are judged consistently.",
+     "Use video of students' work to give feedback and track progress over the course."
+    ],
+    "project": "Introduce one industry diagnostic or design tool into a course and ask two employers whether graduates now use it well."
+   },
+   {
+    "title": "Workshop safety and coaching",
+    "items": [
+     "Supervise tools and equipment closely, so every student works safely.",
+     "Give one-to-one coaching to students who struggle, showing them the skill again until it clicks.",
+     "Run on-the-job training with employers and place students where they will learn well."
+    ],
+    "project": "Track one-to-one coaching sessions for a term and record how the coached students' practical test results changed."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for step guides and quizzes",
+   "Industry diagnostic or design software",
+   "Video tools for feedback on practical work"
+  ],
+  "humanEdge": [
+   "Keeping every student safe with tools",
+   "Coaching a skill until it clicks",
+   "Placing students with good employers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "25-2011.00": {
   "roadmap": [
    {
@@ -11168,6 +12596,48 @@
    "Comforting and caring for young children",
    "Helping children learn to share and manage feelings",
    "Building trust with parents"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2012.00": {
+  "roadmap": [
+   {
+    "title": "AI for planning, materials and parent notes",
+    "items": [
+     "Plan themes and activities for numbers, letters and social skills with AI, and adapt them to your class.",
+     "Make picture cards, songs and simple stories with AI tools, checked for accuracy and suitability.",
+     "Write parent newsletters and notes with AI help, without children's names or personal details in public tools."
+    ],
+    "project": "Plan one month of activities with AI help, adapt them to your class and record the planning time saved for play preparation."
+   },
+   {
+    "title": "Records and observation notes",
+    "items": [
+     "Keep development notes and reports in the school's approved system, with templates that save time.",
+     "Use photos and short notes during play to document progress, following privacy rules.",
+     "Learn which educational apps and AI toys are in children's homes, and give parents simple advice."
+    ],
+    "project": "Write a one-page guide for parents on screens, apps and AI toys with AI help, and ask five parents if it was useful."
+   },
+   {
+    "title": "Play, care and classroom community",
+    "items": [
+     "Read aloud, play and sing with children; warm relationships are how young children learn.",
+     "Teach rules and social skills patiently, helping children handle feelings and conflicts.",
+     "Notice each child's development and needs, and talk with parents early when something worries you."
+    ],
+    "project": "Observe three children closely for a week each, share what you saw with their parents and agree one step together."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for activity ideas",
+   "AI tools for picture cards and stories",
+   "School-approved record systems"
+  ],
+  "humanEdge": [
+   "Warm relationships with young children",
+   "Teaching social skills patiently",
+   "Noticing each child's needs early"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -11255,6 +12725,468 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "25-2023.00": {
+  "roadmap": [
+   {
+    "title": "AI for hands-on lessons and grading",
+    "items": [
+     "Plan hands-on projects in technology, design or consumer skills with AI, and check every step for safety.",
+     "Grade worksheets and quizzes with AI-assisted tools, and give feedback on projects yourself.",
+     "Adapt instructions for different reading levels and languages with AI, so every student can follow."
+    ],
+    "project": "Plan one hands-on unit with AI help, adapt it for three reading levels and compare completion rates with last year."
+   },
+   {
+    "title": "Exploring AI and careers with young teens",
+    "items": [
+     "Teach basic AI literacy: what AI tools can do, where they make mistakes and how to use them honestly.",
+     "Show students how real jobs use digital and AI tools, with simple projects they can try.",
+     "Set clear class rules for AI use in projects, and explain them with examples."
+    ],
+    "project": "Run one project where students use an AI tool, find a mistake it made and explain how they fixed it."
+   },
+   {
+    "title": "Safe workshops and engaged students",
+    "items": [
+     "Teach and watch the safe use of tools and equipment in every lesson, without exceptions.",
+     "Keep a calm, fair classroom where curious young teens can try, fail and try again.",
+     "Spark interest in careers by connecting projects to local jobs and visitors."
+    ],
+    "project": "Invite two local workers to show how they use tools and AI, and have students write which job interests them and why."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for lesson plans",
+   "AI grading tools for quizzes",
+   "Simple design and coding tools for teens"
+  ],
+  "humanEdge": [
+   "Keeping young teens safe with tools",
+   "A calm, fair classroom for trying again",
+   "Sparking interest in real careers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2032.00": {
+  "roadmap": [
+   {
+    "title": "AI for vocational lessons and assessments",
+    "items": [
+     "Build lessons and practice tasks for your occupational field with AI, and check every procedure against industry standards.",
+     "Grade written tests with AI-assisted tools, and judge practical skills yourself in the workshop.",
+     "Prepare visual instructions and videos with AI help for complex tasks, tested with students first."
+    ],
+    "project": "Create visual instructions with AI for one complex task, test them with students and compare errors with the old handout."
+   },
+   {
+    "title": "Industry certification and AI tools",
+    "items": [
+     "Align courses with industry certifications, using AI to map standards to your lessons, checked by hand.",
+     "Teach the AI and digital tools used in the trade, such as diagnostics, CAD or point-of-sale systems.",
+     "Track student skills against a checklist, so progress toward certification is clear to students and parents."
+    ],
+    "project": "Map one certification's standards to your lessons with AI help, find the gaps and fill one of them this term."
+   },
+   {
+    "title": "Workshop supervision and employer links",
+    "items": [
+     "Supervise equipment and materials closely, teaching safe habits that last into work.",
+     "Observe each student's practical work and coach them on technique and attitude.",
+     "Build links with local employers for visits, internships and job offers."
+    ],
+    "project": "Arrange internships or job shadowing for five students with local employers and collect employer feedback afterwards."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for lessons and visuals",
+   "Industry tools such as CAD or diagnostics",
+   "Skills tracking checklists"
+  ],
+  "humanEdge": [
+   "Teaching safe habits for working life",
+   "Coaching technique and attitude",
+   "Linking students with local employers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2051.00": {
+  "roadmap": [
+   {
+    "title": "AI for materials, visuals and plan drafts",
+    "items": [
+     "Make visual schedules, picture cards and social stories with AI tools, adapted to each child's needs.",
+     "Draft IEP goal wording with AI from your own observations, using no names, and finalise it with the team.",
+     "Prepare activity ideas for sensory, motor and language skills with AI, and choose what fits each child."
+    ],
+    "project": "Create visual schedules and social stories with AI help for three children and record changes in transitions over a month."
+   },
+   {
+    "title": "Progress records and assistive tools",
+    "items": [
+     "Record progress on IEP goals with simple data sheets or apps, so trends are clear at review meetings.",
+     "Learn assistive communication tools, such as picture-based or speech-generating apps, for non-verbal children.",
+     "Keep records in the approved system only, and protect children's privacy in every tool."
+    ],
+    "project": "Track one goal per child with a simple data sheet for six weeks and use the graphs in the next parent meeting."
+   },
+   {
+    "title": "Care, connection and family partnership",
+    "items": [
+     "Comfort and connect with children through touch, gestures and play, especially those who do not speak.",
+     "Teach behaviour and self-care patiently, with consistent routines and positive reinforcement.",
+     "Work closely with parents and therapists, sharing small wins and agreeing next steps."
+    ],
+    "project": "Hold short monthly check-ins with each family for a term, and record the strategies you agreed and their results."
+   }
+  ],
+  "aiTools": [
+   "AI tools for visual schedules and social stories",
+   "Assistive communication apps",
+   "Approved student record systems"
+  ],
+  "humanEdge": [
+   "Connecting with children who do not speak",
+   "Patient, consistent care routines",
+   "Partnering with families and therapists"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2055.00": {
+  "roadmap": [
+   {
+    "title": "AI for adapted lessons and IEP paperwork",
+    "items": [
+     "Adapt kindergarten lessons with AI into multisensory, step-by-step versions, then fit them to each child.",
+     "Draft IEP reports and objectives from your notes with approved tools, without names in public AI.",
+     "Create phonics and number practice games with AI tools, checked for accuracy and level."
+    ],
+    "project": "Adapt one month of kindergarten lessons with AI help for your students and record the planning time saved."
+   },
+   {
+    "title": "Data on goals and behaviour support",
+    "items": [
+     "Collect simple data on behaviour and learning goals, and review it weekly to adjust strategies.",
+     "Use visual and audio supports, such as text-to-speech and picture prompts, during lessons.",
+     "Coordinate with the general kindergarten teacher using shared plans and notes."
+    ],
+    "project": "Track one behaviour goal for three children with a daily tally for a month and adjust the plan with the team."
+   },
+   {
+    "title": "Patient teaching and teamwork",
+    "items": [
+     "Teach through repetition, play and encouragement, adjusting minute by minute to each child.",
+     "Keep a calm, structured classroom where rules and routines help children feel safe.",
+     "Plan IEPs with parents, testers and social workers, keeping the child's strengths in view."
+    ],
+    "project": "Hold IEP meetings that start with each child's strengths, and ask parents afterwards how the meeting felt."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for lesson adaptations",
+   "Text-to-speech and picture prompt tools",
+   "Approved IEP and record systems"
+  ],
+  "humanEdge": [
+   "Adjusting teaching minute by minute",
+   "Calm routines that help children feel safe",
+   "Planning with families around strengths"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2056.00": {
+  "roadmap": [
+   {
+    "title": "AI for differentiated lessons and IEPs",
+    "items": [
+     "Create differentiated versions of reading and math tasks with AI at several levels, and check each for accuracy.",
+     "Draft IEP progress reports from your data with approved tools, without student names in public AI.",
+     "Plan daily living skills lessons, such as hygiene or cooking steps, with AI-made visual guides."
+    ],
+    "project": "Create three levels of one week's reading tasks with AI help and track which students moved up a level over a month."
+   },
+   {
+    "title": "Assistive technology and progress data",
+    "items": [
+     "Use assistive tools such as text-to-speech, speech-to-text and AI reading supports to increase independence.",
+     "Track IEP goal data in simple charts, so decisions at meetings rest on evidence.",
+     "Plan inclusion lessons with general education teachers using shared templates."
+    ],
+    "project": "Introduce one assistive AI tool for two students and record the change in independent work over six weeks."
+   },
+   {
+    "title": "Individual teaching and team advocacy",
+    "items": [
+     "Teach students one-to-one and in small groups with multisensory methods and lots of encouragement.",
+     "Teach daily living skills hands-on, building confidence for independent life.",
+     "Speak up for each student in IEP meetings, and help parents understand their options."
+    ],
+    "project": "Prepare each student's IEP meeting with a one-page strengths and progress summary, and ask parents what helped."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for differentiated tasks",
+   "Assistive tools such as text-to-speech",
+   "Approved IEP and data systems"
+  ],
+  "humanEdge": [
+   "Multisensory teaching with encouragement",
+   "Building independence through life skills",
+   "Speaking up for students in IEP meetings"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2057.00": {
+  "roadmap": [
+   {
+    "title": "AI for modified subject lessons and IEP drafts",
+    "items": [
+     "Modify English, math and social studies lessons with AI into simpler text, visuals and guided notes, checked for accuracy.",
+     "Draft IEP sections from your assessment data with approved tools, keeping student names out of public AI.",
+     "Prepare reports for parents and staff with AI help from your records, and check every fact and score."
+    ],
+    "project": "Modify one unit of a subject course with AI help for your students and compare quiz results with the unmodified version last year."
+   },
+   {
+    "title": "Instructional technology and progress tracking",
+    "items": [
+     "Use read-aloud, dictation and AI tutoring tools that help students work at grade-level content.",
+     "Track IEP goal progress with simple charts that students can see and discuss.",
+     "Plan co-taught lessons with subject teachers using shared templates and accommodations lists."
+    ],
+    "project": "Introduce dictation or read-aloud tools for three students and record changes in completed assignments over six weeks."
+   },
+   {
+    "title": "Teaching teens and building trust",
+    "items": [
+     "Keep teens engaged with discussion and demonstrations, adapting in the moment to attention and mood.",
+     "Set clear, fair rules and help students manage behaviour without public shaming.",
+     "Work with parents, testers and social workers to agree plans that students also understand."
+    ],
+    "project": "Hold student-led IEP meetings where each student presents one goal, and ask them afterwards how it felt."
+   }
+  ],
+  "aiTools": [
+   "AI tools for simplified texts and guided notes",
+   "Read-aloud and dictation tools",
+   "Approved IEP systems"
+  ],
+  "humanEdge": [
+   "Keeping teens engaged in the moment",
+   "Fair behaviour support without shaming",
+   "Including students in their own plans"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2058.00": {
+  "roadmap": [
+   {
+    "title": "AI for adapted coursework and reports",
+    "items": [
+     "Adapt high school texts and assignments with AI into accessible versions, keeping the same learning goals.",
+     "Write progress reports and records from your data with approved tools, protecting student privacy.",
+     "Plan transition lessons on work, money and independent living with AI-made materials, checked for accuracy."
+    ],
+    "project": "Adapt one subject unit with AI help for your students, and compare their assignment completion with the previous unit."
+   },
+   {
+    "title": "Transition planning and self-advocacy tools",
+    "items": [
+     "Use AI job search and skills tools with students to explore realistic work and study options after school.",
+     "Teach students to use assistive and AI tools themselves, so they can advocate for their own needs.",
+     "Track behaviour and goal data in simple charts, and review them with students."
+    ],
+    "project": "Build a transition portfolio with each student using AI job and skills tools, and review it with their families."
+   },
+   {
+    "title": "Behaviour support and life after school",
+    "items": [
+     "Teach social skills and behaviour with consistent, respectful support that teens accept.",
+     "Observe each student closely and adjust strategies to their strengths and struggles.",
+     "Work with families, employers and agencies to plan each student's life after school."
+    ],
+    "project": "Arrange one work experience placement for three students with local employers and record what each learned."
+   }
+  ],
+  "aiTools": [
+   "AI tools for accessible texts",
+   "AI job search and skills tools",
+   "Approved student record systems"
+  ],
+  "humanEdge": [
+   "Respectful behaviour support for teens",
+   "Teaching students to advocate for themselves",
+   "Planning life after school with families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2059.01": {
+  "roadmap": [
+   {
+    "title": "AI for adapted lesson plans and IEP goals",
+    "items": [
+     "Draft adapted PE lesson plans from IEP goals with AI help, then adjust them to each student's real abilities.",
+     "Write IEP physical goals and progress notes with approved tools, keeping names out of public AI.",
+     "Create visual task cards and video demonstrations for skills with AI help, tested with students."
+    ],
+    "project": "Create visual task cards for five motor skills with AI help and record how many students did the skills independently."
+   },
+   {
+    "title": "Assessing motor progress and inclusion",
+    "items": [
+     "Track motor skill progress with simple video and checklists, shared with families and teams.",
+     "Use adaptive equipment and apps that make games accessible to students with different needs.",
+     "Plan inclusive activities with general PE teachers, so all students can join the same lesson."
+    ],
+    "project": "Co-plan one inclusive unit with a general PE teacher and record how many students with disabilities took part fully."
+   },
+   {
+    "title": "Movement, safety and encouragement",
+    "items": [
+     "Teach movement hands-on, adapting each activity in the moment to what the student can do.",
+     "Keep sessions safe and orderly for students with very different physical and behavioural needs.",
+     "Encourage every student with positive feedback, building joy in movement."
+    ],
+    "project": "Ask students and parents what activities they enjoy most, and build one new unit around their answers."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for adapted lesson plans",
+   "Video and checklist tools for motor assessment",
+   "Approved IEP systems"
+  ],
+  "humanEdge": [
+   "Adapting movement in the moment",
+   "Keeping mixed-needs sessions safe",
+   "Building every student's joy in movement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-3011.00": {
+  "roadmap": [
+   {
+    "title": "AI for adult lessons and practice materials",
+    "items": [
+     "Create reading, writing and life-skills materials at several levels with AI, using adult topics like work and housing.",
+     "Make vocabulary lists, dialogues and practice tests in learners' languages with AI, checked by a native speaker.",
+     "Keep attendance and progress records in the learning system, with reports built automatically."
+    ],
+    "project": "Create one unit of adult-level reading materials at three levels with AI help and track learners' scores for a month."
+   },
+   {
+    "title": "Digital literacy and AI practice partners",
+    "items": [
+     "Teach learners digital and AI literacy: online forms, job sites and how to check AI answers.",
+     "Use AI conversation and pronunciation apps for extra practice between classes.",
+     "Set clear goals for each learner and review progress with simple tests every few weeks."
+    ],
+    "project": "Teach one digital skills module on job applications with AI tools, and record how many learners applied for jobs afterwards."
+   },
+   {
+    "title": "Adult learners, confidence and life goals",
+    "items": [
+     "Build trust with adults who had bad school experiences, and make class a safe place to try.",
+     "Adapt teaching to each learner's goals, such as a job, a citizenship test or helping their children.",
+     "Connect learners with services, jobs and further study when they are ready."
+    ],
+    "project": "Interview each learner about their goal at the start of a term, and record at the end what progress they made toward it."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for levelled materials",
+   "AI conversation and pronunciation apps",
+   "Learning management system"
+  ],
+  "humanEdge": [
+   "Building trust with adult learners",
+   "Teaching toward each learner's life goal",
+   "Connecting learners with next steps"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-3021.00": {
+  "roadmap": [
+   {
+    "title": "AI for lesson plans, marketing and admin",
+    "items": [
+     "Write course outlines and lesson plans for your workshops with AI, and adapt them to your own style.",
+     "Create class descriptions, social posts and newsletters with AI to fill workshops, edited in your voice.",
+     "Handle bookings, payments and reminders with online tools, so admin takes less of your evenings."
+    ],
+    "project": "Rewrite your class descriptions with AI help, post them for a month and compare sign-ups with the month before."
+   },
+   {
+    "title": "Online classes and practice resources",
+    "items": [
+     "Record short demonstration videos for practice at home, and add AI-made captions you check.",
+     "Offer online or hybrid classes with simple tools, so more learners can join.",
+     "Create practice sheets and progress trackers for learners with AI help."
+    ],
+    "project": "Record five short demonstration videos with checked captions and ask learners how much they practised at home."
+   },
+   {
+    "title": "Live teaching and personal encouragement",
+    "items": [
+     "Demonstrate skills like cooking, dance or photography live, and correct learners on the spot.",
+     "Encourage learners to keep going through hard parts, celebrating real progress.",
+     "Build a warm community around your classes, so learners come back and bring friends."
+    ],
+    "project": "Hold an end-of-course showcase where learners present their work to friends and family, and collect their feedback."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for outlines and posts",
+   "Online booking and payment tools",
+   "Video editing with automatic captions"
+  ],
+  "humanEdge": [
+   "Demonstrating and correcting skills live",
+   "Encouraging learners through hard parts",
+   "Building a warm class community"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-3031.00": {
+  "roadmap": [
+   {
+    "title": "AI for quick lesson prep and backup activities",
+    "items": [
+     "Use AI to get a quick overview of an unfamiliar topic in the lesson plan, and check key facts before class.",
+     "Keep a set of AI-made backup activities for each age group, ready when plans are missing or finish early.",
+     "Grade simple quizzes with answer keys or AI help, and leave clear notes for the regular teacher."
+    ],
+    "project": "Build a folder of backup activities with AI help for three age groups and record how often you used them in a month."
+   },
+   {
+    "title": "Smooth handovers and classroom tech",
+    "items": [
+     "Use a standard handover note template for every class, so regular teachers know what happened.",
+     "Learn the common classroom tech, such as smartboards and learning platforms, before you need it.",
+     "Keep your own records of schools, classes and notes, so returning to a class is easier."
+    ],
+    "project": "Use one handover template for a month and ask three regular teachers whether it told them what they needed."
+   },
+   {
+    "title": "Classroom management and quick rapport",
+    "items": [
+     "Build quick rapport with new classes and keep order calmly, without the regular teacher's history.",
+     "Answer students' questions honestly, and help individuals who are stuck.",
+     "Supervise recess, lunch and trips with constant attention to safety."
+    ],
+    "project": "Try one rapport-building opening with every new class for a month and note which classes settled fastest."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for quick topic overviews",
+   "AI tools for backup activities",
+   "School learning platforms"
+  ],
+  "humanEdge": [
+   "Building quick rapport with new classes",
+   "Keeping order calmly in any class",
+   "Supervising children safely outside class"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "25-3041.00": {
   "roadmap": [
    {
@@ -11294,6 +13226,132 @@
    "Finding out why a student is stuck",
    "Motivating students and building confidence",
    "Explaining the same idea in many ways"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-4011.00": {
+  "roadmap": [
+   {
+    "title": "AI for descriptions, transcription and reference",
+    "items": [
+     "Draft finding aids and item descriptions with AI from scans and notes, and check names, dates and context yourself.",
+     "Transcribe handwritten and typed records with AI recognition tools, and spot-check every batch.",
+     "Answer routine reference questions with AI-drafted replies from your catalogue, reviewed before sending."
+    ],
+    "project": "Describe one unprocessed collection with AI-drafted descriptions, check them all and record time saved and errors fixed."
+   },
+   {
+    "title": "Digital preservation and AI search",
+    "items": [
+     "Plan digital preservation with file formats, checksums and backups that will last decades.",
+     "Make collections searchable with AI-generated metadata, while protecting personal and sensitive records.",
+     "Learn how to keep born-digital records, such as email and social media, authentic and usable."
+    ],
+    "project": "Run AI metadata on one digitised collection, review a sample and measure how search results improve for users."
+   },
+   {
+    "title": "Appraisal, authenticity and outreach",
+    "items": [
+     "Appraise what to keep and authenticate documents; judging value and evidence is the archivist's core skill.",
+     "Handle fragile originals with care, and guide staff and volunteers in good practice.",
+     "Run tours, workshops and school visits that bring collections to life."
+    ],
+    "project": "Hold one workshop where visitors work with original documents, and collect feedback on what they found most interesting."
+   }
+  ],
+  "aiTools": [
+   "Handwriting and text recognition tools",
+   "AI metadata tools for collections",
+   "Archival management systems"
+  ],
+  "humanEdge": [
+   "Appraising what records to keep",
+   "Authenticating documents and evidence",
+   "Handling fragile originals with care"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-4012.00": {
+  "roadmap": [
+   {
+    "title": "AI for exhibit texts, grants and records",
+    "items": [
+     "Draft exhibition labels, catalogue texts and press materials with AI, and check every fact with your research.",
+     "Write grant proposals and reports with AI help for structure, keeping the curatorial vision your own.",
+     "Improve catalogue records with AI-suggested keywords and descriptions, reviewed by staff."
+    ],
+    "project": "Draft labels for one exhibition with AI help, check each against research and test them with ten visitors."
+   },
+   {
+    "title": "Digital collections and visitor data",
+    "items": [
+     "Put collections online with good images and metadata, so researchers and the public can find them.",
+     "Use visitor feedback and data to see which displays work, and adjust exhibits.",
+     "Learn the authenticity and copyright issues of AI-generated art and digital works."
+    ],
+    "project": "Collect visitor feedback on one gallery for a month, change two displays and compare responses afterwards."
+   },
+   {
+    "title": "Collections judgement and relationships",
+    "items": [
+     "Examine and authenticate objects with experts and tests; judging what is real and important is your craft.",
+     "Negotiate loans, purchases and gifts with collectors and institutions, building long-term trust.",
+     "Train staff and volunteers, and lead tours that spark curiosity about the collection."
+    ],
+    "project": "Lead one new tour built on visitor questions you collected, and record how long visitors stayed and what they asked."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for labels and grants",
+   "Collections management systems",
+   "Online collection platforms"
+  ],
+  "humanEdge": [
+   "Authenticating objects with experts",
+   "Negotiating loans and gifts with trust",
+   "Leading tours that spark curiosity"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-4013.00": {
+  "roadmap": [
+   {
+    "title": "AI for collection records and condition reports",
+    "items": [
+     "Enter and clean collection records faster with AI-suggested descriptions and keywords, reviewed before saving.",
+     "Draft condition and treatment reports with AI from your notes and photos, and check every observation yourself.",
+     "Search conservation literature with AI for treatment options, then confirm methods with published standards."
+    ],
+    "project": "Clean 200 collection records with AI-suggested descriptions, check each and record the time saved and errors caught."
+   },
+   {
+    "title": "Imaging, monitoring and inventory",
+    "items": [
+     "Use high-resolution and multispectral imaging to document objects before and after treatment.",
+     "Monitor temperature, humidity and light in galleries and stores with sensors and alerts.",
+     "Track inventory and object movements with barcodes, so every loan and move is recorded."
+    ],
+    "project": "Set up sensor alerts in one storage room, record every out-of-range event for three months and fix the main cause."
+   },
+   {
+    "title": "Hands-on conservation and installation",
+    "items": [
+     "Clean, repair and restore objects by hand, choosing the safest method for each material.",
+     "Install and pack artifacts safely, with care that protects irreplaceable objects.",
+     "Decide whether an object needs treatment at all; sometimes the best choice is to leave it alone."
+    ],
+    "project": "Document one full treatment with photos and notes from start to finish, and present it to colleagues as a teaching case."
+   }
+  ],
+  "aiTools": [
+   "Collections management systems with AI suggestions",
+   "Multispectral imaging tools",
+   "Environmental monitoring sensors"
+  ],
+  "humanEdge": [
+   "Restoring fragile objects by hand",
+   "Handling irreplaceable artifacts safely",
+   "Deciding when not to treat an object"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -11339,6 +13397,132 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "25-4031.00": {
+  "roadmap": [
+   {
+    "title": "AI for cataloguing and patron questions",
+    "items": [
+     "Use copy cataloguing and AI-suggested metadata to process new items faster, checking each record.",
+     "Answer routine questions with AI-drafted FAQ answers for the website, checked by a librarian.",
+     "Search databases and catalogues with AI-assisted tools for patrons, and show them how to check sources."
+    ],
+    "project": "Process one month of new items with AI-suggested metadata, check every record and count corrections and time saved."
+   },
+   {
+    "title": "Self-service and digital help",
+    "items": [
+     "Help patrons use self-checkout, e-books and online services, with simple printed guides.",
+     "Run short drop-in sessions on phones, online forms and AI chatbots for patrons who ask.",
+     "Keep patron records accurate and private, following library rules on personal data."
+    ],
+    "project": "Run four drop-in sessions on everyday digital and AI tools and record the questions patrons brought."
+   },
+   {
+    "title": "Patron help and team support",
+    "items": [
+     "Help patrons in person with patience, especially those new to computers or the language.",
+     "Support teachers and students with materials for projects, finding what fits their level.",
+     "Train volunteers and student assistants, and schedule their work fairly."
+    ],
+    "project": "Write a one-page guide for volunteers on helping patrons with technology, and test it with two new volunteers."
+   }
+  ],
+  "aiTools": [
+   "Library management systems",
+   "AI metadata suggestions for cataloguing",
+   "ChatGPT or Claude for FAQ drafts"
+  ],
+  "humanEdge": [
+   "Patient help for patrons new to technology",
+   "Finding the right material for each learner",
+   "Training and scheduling volunteers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-9021.00": {
+  "roadmap": [
+   {
+    "title": "AI for farmer questions and leaflets",
+    "items": [
+     "Research farmers' questions with AI search, and confirm answers in extension research and official guidance.",
+     "Create leaflets and visual aids on feeding, crops and budgets with AI, in plain language checked by experts.",
+     "Keep visit records and advice outcomes in a simple database that builds program reports."
+    ],
+    "project": "Answer one month of farmer questions with AI-assisted research, check each answer and record the time saved for visits."
+   },
+   {
+    "title": "Digital farm tools and program data",
+    "items": [
+     "Show farmers practical digital tools, such as farm records apps, weather services and AI crop ID.",
+     "Use simple surveys to learn what farmers and families need, and plan programs from the results.",
+     "Track the effects of your advice with follow-up questions, so you know what really helps."
+    ],
+    "project": "Survey 30 farmers about their needs with a simple form, analyse it with AI help and plan next year's program from it."
+   },
+   {
+    "title": "Farm visits and community programs",
+    "items": [
+     "Visit farms regularly and diagnose problems on site, side by side with the farmer.",
+     "Teach classes and demonstrations that farmers and families find practical.",
+     "Run community activities and youth clubs that build skills and connections."
+    ],
+    "project": "Hold one on-farm demonstration of a digital tool and record how many farmers used it a month later."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for research and leaflets",
+   "Farm records and weather apps",
+   "Simple survey tools"
+  ],
+  "humanEdge": [
+   "Diagnosing problems on the farm",
+   "Practical teaching farmers trust",
+   "Running youth and community programs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-9031.00": {
+  "roadmap": [
+   {
+    "title": "AI for curriculum materials and analysis",
+    "items": [
+     "Draft lesson plans, handouts and assessments with AI aligned to standards, and review them with teachers.",
+     "Edit instructional materials with AI help for clarity and reading level, keeping content accuracy checked.",
+     "Analyse test and course data with AI-assisted tools to see which units and materials work."
+    ],
+    "project": "Draft one unit's materials with AI help, pilot them with two teachers and compare results with the old materials."
+   },
+   {
+    "title": "AI policy and teacher training",
+    "items": [
+     "Write school guidance on AI for teachers and students, with clear examples of good and bad use.",
+     "Design training on AI tools for teachers, built on real lessons from your schools.",
+     "Evaluate AI tutoring and learning products before purchase, using evidence and pilots."
+    ],
+    "project": "Pilot one AI learning tool with three teachers for a term and write a recommendation based on results and teacher views."
+   },
+   {
+    "title": "Coaching teachers and leading change",
+    "items": [
+     "Observe lessons and coach teachers with specific, respectful feedback they can use the next day.",
+     "Lead workshops where teachers try new methods and share what works.",
+     "Bring teachers, leaders and parents together around curriculum changes."
+    ],
+    "project": "Coach three teachers through one change in practice over a term, and record what changed in their classrooms."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for materials and edits",
+   "Learning analytics dashboards",
+   "AI tutoring tools under evaluation"
+  ],
+  "humanEdge": [
+   "Coaching teachers with respect",
+   "Leading workshops teachers value",
+   "Building support for curriculum change"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "25-9042.00": {
   "roadmap": [
    {
@@ -11381,6 +13565,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "25-9043.00": {
+  "roadmap": [
+   {
+    "title": "AI for practice materials and data notes",
+    "items": [
+     "Prepare extra practice sheets and visual aids with AI for the lessons the teacher plans, checked with the teacher.",
+     "Record behaviour and progress data on a simple form or app during the day, as the teacher asks.",
+     "Use text-to-speech and picture tools to help students follow lessons on their own."
+    ],
+    "project": "Make visual aids with AI help for one student's daily routine and record how often they needed prompting over a month."
+   },
+   {
+    "title": "Assistive technology and consistent support",
+    "items": [
+     "Learn the assistive devices and apps each student uses, so you can set them up and fix problems.",
+     "Follow behaviour plans exactly as written, so students get the same support from every adult.",
+     "Keep students' information private and use only school-approved tools."
+    ],
+    "project": "Write a quick-reference card for each student's assistive tools, check it with the teacher and use it for a month."
+   },
+   {
+    "title": "Care, patience and daily living skills",
+    "items": [
+     "Support students one-to-one with patience, noticing small signs of stress or progress.",
+     "Teach daily living skills hands-on, such as hygiene and eating, with dignity.",
+     "Keep students safe in class, halls, yards and on buses, watching for students who wander or are upset."
+    ],
+    "project": "Keep a short daily note of one student's wins for a month and share it with the teacher and family."
+   }
+  ],
+  "aiTools": [
+   "AI tools for visual aids",
+   "Assistive apps such as text-to-speech",
+   "School-approved data forms"
+  ],
+  "humanEdge": [
+   "Patient one-to-one support all day",
+   "Teaching life skills with dignity",
+   "Keeping students safe in and out of class"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-9044.00": {
+  "roadmap": [
+   {
+    "title": "AI for grading support and section materials",
+    "items": [
+     "Grade with clear rubrics and AI-assisted first checks, and give the final mark and comments yourself.",
+     "Prepare section worksheets, answer keys and review notes with AI, and solve every problem first.",
+     "Answer common procedure questions with an AI-drafted FAQ on the course site, approved by the instructor."
+    ],
+    "project": "Grade one assignment with rubric and AI-assisted checks, record time per paper and compare consistency with a fellow TA."
+   },
+   {
+    "title": "Teaching skills and fair AI rules",
+    "items": [
+     "Learn the course's AI policy well and explain it to students with examples.",
+     "Spot signs of unacknowledged AI use fairly, and refer cases to the instructor instead of accusing.",
+     "Use short polls and exit tickets to see what students did not understand in section."
+    ],
+    "project": "Use exit tickets in every section for a month and adjust the next section to the most common confusion."
+   },
+   {
+    "title": "Sections, office hours and mentoring",
+    "items": [
+     "Lead discussion and lab sections that get every student talking or doing.",
+     "Tutor struggling students in office hours, finding where their understanding breaks.",
+     "Learn teaching from the instructor's lectures and feedback, building your own style."
+    ],
+    "project": "Ask your supervising instructor to observe one section and give feedback, then change one thing and ask again."
+   }
+  ],
+  "aiTools": [
+   "Learning management system with rubrics",
+   "ChatGPT or Claude for worksheets",
+   "Polling and exit ticket tools"
+  ],
+  "humanEdge": [
+   "Getting every student talking in section",
+   "Finding where understanding breaks",
+   "Handling AI misuse cases fairly"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "27-1011.00": {
   "roadmap": [
    {
@@ -11420,6 +13688,258 @@
    "Owning the creative idea and defending it",
    "Directing designers toward one clear vision",
    "Reading what a client wants beyond the brief"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1012.00": {
+  "roadmap": [
+   {
+    "title": "AI for selling, pricing and product listings",
+    "items": [
+     "Write product descriptions, social posts and shop listings with AI, and edit them so your voice and story come through.",
+     "Photograph work well and use AI editing tools for backgrounds and lighting, keeping colours true to the object.",
+     "Work out prices with a spreadsheet that counts materials, hours and fees, built with AI help."
+    ],
+    "project": "Rewrite ten shop listings with AI help and better photos, and compare views and sales for the next two months."
+   },
+   {
+    "title": "Design ideas and protecting your work",
+    "items": [
+     "Use AI image tools to explore ideas for shapes, patterns and colour, then design the piece yourself.",
+     "Learn how to protect your designs and images online, and what copying by AI tools means for your work.",
+     "Track sales by product and event, so you know what to make more of."
+    ],
+    "project": "Track sales by product for three months, find your best and worst sellers and change your next production plan."
+   },
+   {
+    "title": "Handmade skill and customer connection",
+    "items": [
+     "Make objects by hand with skill and care; handmade quality is what buyers pay extra for.",
+     "Meet customers at shows and in your studio, and tell the story behind each piece.",
+     "Choose materials by feel and experience, matching strength, colour and texture to the design."
+    ],
+    "project": "Take custom orders from five customers, record what they valued most and use it in your marketing."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for listings and posts",
+   "AI photo editing tools",
+   "Online shop platforms such as Etsy"
+  ],
+  "humanEdge": [
+   "Skilled handmade work buyers pay for",
+   "Telling the story behind each piece",
+   "Choosing materials by feel and experience"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1013.00": {
+  "roadmap": [
+   {
+    "title": "AI for marketing, research and client work",
+    "items": [
+     "Write artist statements, grant applications and social posts with AI help, and keep them in your own voice.",
+     "Research references, art history and market trends with AI search, and check sources before relying on them.",
+     "Prepare client briefs, quotes and contracts with AI templates, including clear terms on AI use and rights."
+    ],
+    "project": "Rewrite your artist statement and portfolio texts with AI help, ask two curators for feedback and track gallery replies."
+   },
+   {
+    "title": "AI in the studio on your own terms",
+    "items": [
+     "Decide where AI image tools fit your process, such as thumbnails or references, and where they never do.",
+     "Protect your work online from scraping with available tools, and know your rights on AI training.",
+     "Use digital painting and 3D tools to speed up revisions for illustration clients."
+    ],
+    "project": "Write your own AI policy for clients, covering what you use and do not use, and add it to your website and contracts."
+   },
+   {
+    "title": "Personal vision and live practice",
+    "items": [
+     "Develop a personal style and vision that buyers recognise; that is what AI imitations lack.",
+     "Work materials by hand, from paint to stone, where skill and accident shape the result.",
+     "Teach techniques to children and adults in classes and workshops, a steady income beside your own work."
+    ],
+    "project": "Create a small series in a new direction for three months and show it to collectors or a gallery for feedback."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for statements and grants",
+   "Digital painting software such as Procreate",
+   "Tools against AI scraping such as Glaze"
+  ],
+  "humanEdge": [
+   "A personal style buyers recognise",
+   "Working paint, clay or stone by hand",
+   "Teaching art to children and adults"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1014.00": {
+  "roadmap": [
+   {
+    "title": "AI tools in the animation pipeline",
+    "items": [
+     "Use AI features for rotoscoping, cleanup and in-betweening to cut repetitive work, and check every frame that matters.",
+     "Generate quick concept variations and mood frames with AI image tools, then design final assets yourself.",
+     "Write scripts for repetitive tasks in Blender, Maya or Houdini with an AI coding assistant, tested on a copy."
+    ],
+    "project": "Use AI rotoscoping or cleanup on one shot, compare the hours with your usual method and note where you had to fix it."
+   },
+   {
+    "title": "Faster pipelines and rights-safe assets",
+    "items": [
+     "Build pipeline tools and templates for renders, naming and versioning, so teams spend time on art.",
+     "Learn which AI tools are trained on licensed data and what clients and studios allow, before using them.",
+     "Use AI upscaling and denoising for renders, and check results for artefacts at full resolution."
+    ],
+    "project": "Write a short AI-use guide for your team covering approved tools, client rules and credit, and review it after one project."
+   },
+   {
+    "title": "Storytelling, motion and direction",
+    "items": [
+     "Bring characters to life through timing, weight and performance, which tools do not understand.",
+     "Plan storyboards and key scenes with directors, translating story into motion.",
+     "Lead and review other artists' work, giving clear notes that improve shots fast."
+    ],
+    "project": "Animate one short character moment by hand-keyed performance and show it beside an AI-assisted version to your team."
+   }
+  ],
+  "aiTools": [
+   "AI rotoscoping and cleanup tools",
+   "Blender, Maya or Houdini with AI scripting help",
+   "AI upscaling and denoising tools"
+  ],
+  "humanEdge": [
+   "Bringing characters to life with timing",
+   "Turning story into motion with directors",
+   "Giving clear notes to other artists"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1021.00": {
+  "roadmap": [
+   {
+    "title": "AI for concepts, renderings and research",
+    "items": [
+     "Generate early concept sketches and renderings with AI image tools, then develop the strongest ideas by hand and in CAD.",
+     "Research competing products, materials and trends with AI summaries, and check claims with real samples.",
+     "Prepare design presentations and reports with AI help, keeping your design reasoning clear."
+    ],
+    "project": "Explore one brief with AI concept images for a day, then develop three concepts in CAD and record which AI ideas survived."
+   },
+   {
+    "title": "Generative design and manufacturing data",
+    "items": [
+     "Use generative design and simulation in CAD to test shapes for strength, weight and material use.",
+     "Estimate costs and production requirements with AI-assisted spreadsheets, checked with suppliers.",
+     "Keep a library of approved materials, finishes and components to speed up new projects."
+    ],
+    "project": "Run generative design on one part, review options with engineering and compare weight, cost and look with your design."
+   },
+   {
+    "title": "User insight, models and teamwork",
+    "items": [
+     "Test models and prototypes with real users; how a product feels in the hand decides success.",
+     "Work with engineering, marketing and production to balance looks, cost and manufacturability.",
+     "Present designs to clients and committees, and defend the choices that matter."
+    ],
+    "project": "Test three prototypes with five users each, record what they struggled with and change the design before tooling."
+   }
+  ],
+  "aiTools": [
+   "AI image tools such as Vizcom or Midjourney",
+   "CAD with generative design such as Fusion",
+   "ChatGPT or Claude for research and decks"
+  ],
+  "humanEdge": [
+   "Testing products in users' hands",
+   "Balancing looks, cost and manufacturing",
+   "Defending design choices to clients"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1022.00": {
+  "roadmap": [
+   {
+    "title": "AI for sketches, trends and tech packs",
+    "items": [
+     "Explore silhouettes, prints and colourways with AI image tools, then refine designs in your own sketches.",
+     "Summarise trend reports, sales data and customer reviews with AI before planning a collection.",
+     "Draft tech packs and specifications with AI help from your sketches, and check every measurement and material."
+    ],
+    "project": "Plan one capsule collection with AI trend summaries and concept images, and record which ideas you kept and why."
+   },
+   {
+    "title": "3D samples and data-driven planning",
+    "items": [
+     "Use 3D design tools such as CLO to test fit and drape before cutting physical samples.",
+     "Track which styles, sizes and colours sell, and plan quantities to cut overproduction.",
+     "Learn the copyright and ethics issues of AI-generated designs, including copying other designers."
+    ],
+    "project": "Make three samples in 3D first, compare them with the physical samples and count the sample rounds saved."
+   },
+   {
+    "title": "Fittings, fabrics and the workroom",
+    "items": [
+     "Fit garments on real bodies and adjust them by eye and hand; fit is learned in the fitting room.",
+     "Choose fabrics by touch, drape and quality, and work closely with suppliers.",
+     "Lead pattern makers and sewers, and design custom pieces with clients."
+    ],
+    "project": "Hold fittings for one garment with three different body types and record the changes that the 3D sample missed."
+   }
+  ],
+  "aiTools": [
+   "AI image tools for fashion concepts",
+   "3D design software such as CLO",
+   "ChatGPT or Claude for tech packs and trends"
+  ],
+  "humanEdge": [
+   "Fitting garments on real bodies",
+   "Choosing fabrics by touch and drape",
+   "Leading pattern makers and sewers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1023.00": {
+  "roadmap": [
+   {
+    "title": "AI for orders, quotes and shop admin",
+    "items": [
+     "Answer order enquiries and write quotes with AI-drafted replies, adding your own suggestions for each event.",
+     "Keep sales, orders and payments in a shop system that tracks busy days and best sellers.",
+     "Write product descriptions and social posts with AI, using your own photos of real arrangements."
+    ],
+    "project": "Use AI-drafted replies for order enquiries for a month and compare response time and bookings with the month before."
+   },
+   {
+    "title": "Stock planning and design ideas",
+    "items": [
+     "Plan flower orders from past sales and upcoming events, so less stock wilts unsold.",
+     "Use AI image tools to show clients rough ideas, and say clearly the real arrangement will differ.",
+     "Track waste by flower type each week and adjust orders with your wholesalers."
+    ],
+    "project": "Track flower waste for two months, change your ordering for the worst three items and measure the savings."
+   },
+   {
+    "title": "Hands-on design and client care",
+    "items": [
+     "Arrange flowers by hand with an eye for colour, form and freshness; this craft is your value.",
+     "Listen to clients planning weddings and funerals with care, and design for the moment.",
+     "Condition and care for flowers so arrangements last, using what you know of each variety."
+    ],
+    "project": "Create one signature arrangement series for the season and track which designs clients reorder."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for replies and posts",
+   "Florist shop and order software",
+   "AI image tools for mood boards"
+  ],
+  "humanEdge": [
+   "Arranging flowers with a trained eye",
+   "Listening to clients at emotional moments",
+   "Keeping flowers fresh and long-lasting"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -11504,6 +14024,174 @@
    "Understanding how people live and work in a space",
    "Coordinating trades on site",
    "Taste and material judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1026.00": {
+  "roadmap": [
+   {
+    "title": "AI for display plans and signage",
+    "items": [
+     "Sketch display and window ideas with AI image tools for managers to approve, then build the real thing.",
+     "Write signage and product cards with AI help, and check prices and claims with the store.",
+     "Plan display changes for promotions with a shared calendar and checklists."
+    ],
+    "project": "Show managers AI-sketched options for one window, build the chosen one and compare foot traffic with the last display."
+   },
+   {
+    "title": "Sales data and display testing",
+    "items": [
+     "Use sales data by product and location to see which displays sell, and move what does not.",
+     "Photograph every display with notes, so good setups can be repeated across stores.",
+     "Keep an inventory of props and mannequins with photos, so you know what you have."
+    ],
+    "project": "Track sales for two products before and after a display change and share the results with the buyer."
+   },
+   {
+    "title": "Building, styling and teamwork",
+    "items": [
+     "Build and style displays by hand with tools, fabric and light; the eye for detail is yours.",
+     "Dress mannequins and arrange products so they look attractive and stay safe for shoppers.",
+     "Work with managers, buyers and staff to place displays where they work best."
+    ],
+    "project": "Build one display from start to finish with photos of each step, and use it to train a new colleague."
+   }
+  ],
+  "aiTools": [
+   "AI image tools for display sketches",
+   "ChatGPT or Claude for signage",
+   "Store sales reports by product"
+  ],
+  "humanEdge": [
+   "A trained eye for detail in styling",
+   "Building displays safely by hand",
+   "Working with buyers and managers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1027.00": {
+  "roadmap": [
+   {
+    "title": "AI for research, renderings and estimates",
+    "items": [
+     "Research period architecture and styles with AI search, and confirm details with experts and sources.",
+     "Create quick concept renderings with AI image tools, then develop scale drawings and models yourself.",
+     "Estimate materials, construction and rental costs with AI-assisted spreadsheets, checked with builders."
+    ],
+    "project": "Research one period setting with AI help, check five details with an expert and record which AI claims were wrong."
+   },
+   {
+    "title": "3D models and virtual walkthroughs",
+    "items": [
+     "Model sets and exhibits in 3D for virtual walkthroughs with directors and clients before building.",
+     "Coordinate lighting and sound plans in the shared 3D model, so clashes are found early.",
+     "Keep a library of reusable set pieces, props and materials with costs."
+    ],
+    "project": "Do a virtual walkthrough of one design with the director and crew and count the changes made before construction."
+   },
+   {
+    "title": "Construction, rehearsals and collaboration",
+    "items": [
+     "Direct construction and decoration on site, solving problems as sets go up.",
+     "Attend rehearsals and production meetings, adapting sets to how actors and visitors use them.",
+     "Read scripts and themes for meaning, and design spaces that tell the story."
+    ],
+    "project": "Track every change during one build, note what the drawings missed and update your drawing standards."
+   }
+  ],
+  "aiTools": [
+   "AI image tools for concept renderings",
+   "3D modelling software such as SketchUp or Vectorworks",
+   "ChatGPT or Claude for research"
+  ],
+  "humanEdge": [
+   "Solving problems as sets go up",
+   "Designing spaces that tell a story",
+   "Adapting sets to how people use them"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI for line learning, self-tapes and admin",
+    "items": [
+     "Use AI line-reading apps to run scenes and learn lines faster, then rehearse with real partners.",
+     "Improve self-tapes with good light, sound and simple editing tools, and keep the performance yours.",
+     "Track auditions, agents and bookings in one simple system with reminders."
+    ],
+    "project": "Learn lines for three auditions with an AI scene partner app and record how much faster you were off-book."
+   },
+   {
+    "title": "Protecting your face and voice",
+    "items": [
+     "Read contracts for clauses on digital replicas, voice cloning and AI training, and get advice before signing.",
+     "Learn your union's or industry's rules on AI use of performers, and what consent and payment they require.",
+     "Keep a record of where your voice and image are used, and act if you find unauthorised copies."
+    ],
+    "project": "Review your current and past contracts for AI and digital replica clauses with an agent or union adviser."
+   },
+   {
+    "title": "Craft, presence and ensemble",
+    "items": [
+     "Build your craft in voice, movement and emotion; live presence is what audiences come for.",
+     "Work with directors and fellow actors to find the truth of each scene.",
+     "Take classes, auditions and stage work regularly to keep growing as a performer."
+    ],
+    "project": "Take one class or workshop in a skill you lack, such as stage combat or accents, and use it in your next audition."
+   }
+  ],
+  "aiTools": [
+   "AI line-learning and scene partner apps",
+   "Self-tape lighting, sound and editing tools",
+   "Audition tracking apps"
+  ],
+  "humanEdge": [
+   "Live presence audiences come for",
+   "Finding the truth of a scene with others",
+   "Emotional range in voice and body"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2012.00": {
+  "roadmap": [
+   {
+    "title": "AI for script breakdowns, schedules and budgets",
+    "items": [
+     "Break down scripts into scenes, cast, props and locations with AI tools, and check every item with department heads.",
+     "Draft schedules and budgets with AI-assisted production software, and test them against real constraints.",
+     "Create pitch decks, mood reels and storyboards with AI help, labelled clearly as concepts."
+    ],
+    "project": "Break down one script with an AI tool, check it with your assistant director and record errors and time saved."
+   },
+   {
+    "title": "Previs, rights and AI in production",
+    "items": [
+     "Use previsualisation and virtual production tools to plan shots and cut costly reshoots.",
+     "Set rules for AI in your productions: voices, likeness, music and writing, with consent and credit.",
+     "Review dailies and edits against broadcast and production standards with clear checklists."
+    ],
+    "project": "Write an AI policy for your next production covering performers, writers and music, and agree it with your team and unions."
+   },
+   {
+    "title": "Directing people and holding the vision",
+    "items": [
+     "Direct actors so scenes come alive in few takes; that needs trust and clear communication.",
+     "Lead crews through long, pressured days, keeping safety, morale and the schedule together.",
+     "Hold the creative vision while making hard trade-offs on time and money."
+    ],
+    "project": "Hold a short debrief with department heads after each shoot week and record the changes that saved time or money."
+   }
+  ],
+  "aiTools": [
+   "AI script breakdown and scheduling software",
+   "Previsualisation and virtual production tools",
+   "AI tools for pitch decks and storyboards"
+  ],
+  "humanEdge": [
+   "Directing actors to life in few takes",
+   "Leading crews through pressured days",
+   "Holding the creative vision under constraints"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
