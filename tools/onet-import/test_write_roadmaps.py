@@ -9,11 +9,20 @@ from write_roadmaps import (MAX_EDGE_CHARS, MAX_ITEM_CHARS, MAX_TITLE_CHARS, PIL
 TASKS = [('Prepare tax returns.', 40, 0.7), ('Meet clients.', 30, 0.15)]
 
 
+TOOLS = ['Tax software with AI capture', 'ChatGPT or Claude for letters', 'Spreadsheet with AI formulas']
+EDGES = ['Explaining a tax decision to a worried client', 'Spotting a deduction the papers do not show',
+         'Signing the return and answering for it']
+
+
+def phase(i):
+    return {'title': f'Phase {i}: start where AI helps with returns',
+            'items': [f'Step {i}.{j}: draft routine client letters with AI, then check every figure yourself.'
+                      for j in (1, 2, 3)],
+            'project': f'Project {i}: prepare 20 simple returns with AI capture and compare the hours with last season.'}
+
+
 def answer(**changes):
-    data = {'phases': [{'title': f'Phase {i}', 'items': ['a', 'b', 'c'], 'project': f'Project {i}.'}
-                       for i in (1, 2, 3)],
-            'aiTools': ['Tool 1', 'Tool 2', 'Tool 3'],
-            'humanEdge': ['Edge 1', 'Edge 2', 'Edge 3']}
+    data = {'phases': [phase(i) for i in (1, 2, 3)], 'aiTools': TOOLS, 'humanEdge': EDGES}
     data.update(changes)
     return json.dumps(data)
 
@@ -39,10 +48,17 @@ class BuildParamsTest(unittest.TestCase):
 class ParseRoadmapTest(unittest.TestCase):
 
     def test_valid_answer_is_trimmed(self):
-        parsed = parse_roadmap(answer(aiTools=[' Tool 1 ', 'Tool 2', 'Tool 3']))
+        parsed = parse_roadmap(answer(aiTools=['  ' + TOOLS[0] + ' ', TOOLS[1], TOOLS[2]]))
         self.assertEqual(len(parsed['roadmap']), 3)
-        self.assertEqual(parsed['roadmap'][0], {'title': 'Phase 1', 'items': ['a', 'b', 'c'], 'project': 'Project 1.'})
-        self.assertEqual(parsed['aiTools'][0], 'Tool 1')
+        self.assertEqual(parsed['roadmap'][0], phase(1))
+        self.assertEqual(parsed['aiTools'], TOOLS)
+        self.assertEqual(parsed['humanEdge'], EDGES)
+
+    def test_thin_answer_is_rejected_by_the_quality_gate(self):
+        thin = [{'title': 'Teaching', 'items': ['Set rules.', 'Advise students.', 'Track progress.'],
+                 'project': 'Mentor students.'} for _ in (1, 2, 3)]
+        with self.assertRaisesRegex(ValueError, 'too thin'):
+            parse_roadmap(answer(phases=thin))
 
     def test_wrong_phase_count_raises(self):
         with self.assertRaisesRegex(ValueError, '3 phases'):

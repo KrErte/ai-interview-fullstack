@@ -4,7 +4,8 @@ write_projects.py (O2) replaced only the project sentence. Phase titles and item
 22 SOC-group templates, so an actuary got the IT template's "Pair programming with AI" and a pharmacist
 the same phases as a dental hygienist. Here Claude writes, from the occupation's own tasks and their
 automation ratings: three phases (title, three items, project), three AI tools and three human-edge
-strengths. catalog.py prefers this over the template and the O2 project.
+strengths. catalog.py prefers this over the template and the O2 project. Answers must also pass the
+quality gate in roadmap_quality.py, so a thin roadmap is retried instead of saved.
 
     python tools/onet-import/write_roadmaps.py direct --pilot --max-usd 4   # the PILOT occupations
     python tools/onet-import/write_roadmaps.py direct --max-usd 80          # every visible occupation
@@ -19,6 +20,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from build import OUT
 from catalog import PROFESSIONS, hidden_codes_from
 from rate_tasks import EFFORT, MODEL
+from roadmap_quality import quality_problems
 from write_projects import MAX_PROJECT_CHARS, _rows, _usage_tokens, list_cost
 
 TARGET = OUT / 'roadmaps_llm.json'
@@ -79,23 +81,23 @@ Write three phases, in this order:
    toward one of the related occupations given.
 
 For each phase:
-- title: at most 60 characters, specific to this occupation (not "Phase 1", not generic office words).
-- items: exactly 3, each at most 160 characters. Each names a real task of this occupation and what to
-  do with AI or without it. Concrete actions, not topics.
-- project: one sentence, at most 200 characters, imperative mood. Something the worker can do alone in
+- title: 20-60 characters, specific to this occupation (not "Phase 1", not generic office words).
+- items: exactly 3, each 60-160 characters. Each names a real task of this occupation and what to
+  do with AI or without it. Concrete actions, not topics: "Set rules." is a topic.
+- project: one sentence, 90-200 characters, imperative mood. Something the worker can do alone in
   1-4 weeks with today's tools, measurable where possible (a count, time saved, before/after).
 
 Also write:
-- aiTools: exactly 3, each at most 80 characters. Tools or tool types this occupation would really use.
+- aiTools: exactly 3, each 15-80 characters. Tools or tool types this occupation would really use.
   Prefer well-known general products or plain categories; do not invent product names. No coding tools
   unless the occupation writes code.
-- humanEdge: exactly 3, each at most 120 characters. What this worker does that AI cannot take over,
+- humanEdge: exactly 3, each 30-120 characters. What this worker does that AI cannot take over,
   drawn from the low-automation tasks, written as a short strength ("Calming an upset client and
   finding a fix they accept"), not copied from the task list.
 
 Ground rules: no client, patient or personal data in public AI tools; decisions that need a licence or
 signature stay with the person; no salary figures and no predictions that the job will disappear.
-Plain English, no hype."""
+No filler such as "X stays human": name the skill to grow and how. Plain English, no hype."""
 
 SCHEMA = {
     'type': 'object',
@@ -147,7 +149,8 @@ def _texts(values, count, limit, what):
 
 
 def parse_roadmap(text):
-    """{'roadmap': 3 phases, 'aiTools': 3, 'humanEdge': 3}; raises ValueError on a wrong count or length."""
+    """{'roadmap': 3 phases, 'aiTools': 3, 'humanEdge': 3}; raises ValueError on a wrong count or length,
+    or when the roadmap fails the quality gate (too thin to publish)."""
     data = json.loads(text)
     phases = data['phases']
     if len(phases) != 3:
@@ -156,9 +159,13 @@ def parse_roadmap(text):
                 'items': _texts(p['items'], 3, MAX_ITEM_CHARS, 'items'),
                 'project': _texts([p['project']], 1, MAX_PROJECT_CHARS, 'project')[0]}
                for p in phases]
-    return {'roadmap': roadmap,
-            'aiTools': _texts(data['aiTools'], 3, MAX_TOOL_CHARS, 'aiTools'),
-            'humanEdge': _texts(data['humanEdge'], 3, MAX_EDGE_CHARS, 'humanEdge')}
+    entry = {'roadmap': roadmap,
+             'aiTools': _texts(data['aiTools'], 3, MAX_TOOL_CHARS, 'aiTools'),
+             'humanEdge': _texts(data['humanEdge'], 3, MAX_EDGE_CHARS, 'humanEdge')}
+    problems = quality_problems(entry)
+    if problems:
+        raise ValueError('too thin: ' + '; '.join(problems[:3]))
+    return entry
 
 
 def _occupations(codes=None):

@@ -128,6 +128,8 @@ python tools/onet-import/catalog.py                                     # picks 
 
 The 30 pilot roadmaps (2026-10-15) were written in a Claude Code session (Opus 5.5) from the same prompts and `GUIDE`, and checked with `parse_roadmap`; their `model` field says so. The rest can come from the API run above or the same way.
 
+**Quality gate (`roadmap_quality.py`).** A first bulk run in the same session drifted: the average item went from 84 characters in the pilot to 34 ("Set rules.", "Advise students."), which is the generic-template problem O3 exists to fix. The gate is calibrated on the pilot (shortest item 48 characters, project 99, title 23) and rejects items under 45 characters or averaging under 65, projects under 90, titles under 20, short tools and human-edge strengths, filler such as "stays human", and the same item twice. `parse_roadmap` applies it, so the API run retries thin answers, and `catalog.py` ignores any roadmap that fails it. 380 thin entries from that run were dropped, not published.
+
 `catalog.py` uses `out/roadmaps_llm.json` where it has an occupation and falls back to the template plus the O2 project elsewhere. The file is resumable: a later run without `--pilot` writes only the missing occupations.
 
 ## Attribution

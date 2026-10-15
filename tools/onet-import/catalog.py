@@ -13,6 +13,7 @@ import json
 from pathlib import Path
 
 from build import HERE, OUT
+from roadmap_quality import quality_problems
 
 RESOURCES = HERE.parent.parent / 'backend' / 'src' / 'main' / 'resources' / 'ai-readiness'
 TEMPLATES = HERE / 'templates.json'
@@ -34,9 +35,11 @@ def build_catalog(out_dir, templates, hidden_codes, projects=None, roadmaps=None
     project per phase for that occupation (spec O2). Others keep the template's project.
     roadmaps: {code: {'roadmap', 'aiTools', 'humanEdge'}} from write_roadmaps.py (spec O3); when present
     for an occupation they replace the template, the O2 projects and the task-statement humanEdge.
+    Roadmaps that fail the quality gate (roadmap_quality.py) are ignored, so a thin one never replaces
+    the template.
     """
     projects = projects or {}
-    roadmaps = roadmaps or {}
+    roadmaps = {code: r for code, r in (roadmaps or {}).items() if not quality_problems(r)}
     out_dir = Path(out_dir)
     occupations = _rows(out_dir / 'onet_occupations.csv')
     titles = {o['onetsoc_code']: o['title'] for o in occupations}
@@ -136,7 +139,9 @@ if __name__ == '__main__':
     projects = projects_from(OUT / 'projects_llm.csv')
     roadmaps_path = OUT / 'roadmaps_llm.json'
     roadmaps = json.loads(roadmaps_path.read_text(encoding='utf-8')) if roadmaps_path.exists() else {}
-    print(f'occupation-specific projects: {len(projects)}, whole roadmaps: {len(roadmaps)}')
+    thin = sum(1 for r in roadmaps.values() if quality_problems(r))
+    print(f'occupation-specific projects: {len(projects)}, whole roadmaps: {len(roadmaps) - thin}'
+          f' ({thin} below the quality gate, ignored)')
     _write_json(TARGET, build_catalog(OUT, templates, hidden_codes_from(PROFESSIONS), projects, roadmaps))
     _write_json(ALIASES, build_aliases(OUT, curated_codes_from(PROFESSIONS)))
     _write_json(HIDDEN, build_hidden(OUT, curated_codes_from(PROFESSIONS)))
