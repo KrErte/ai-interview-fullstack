@@ -17597,6 +17597,300 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "29-2011.02": {
+  "roadmap": [
+   {
+    "title": "AI-assisted screening of cell samples",
+    "items": [
+     "Use AI-assisted Pap and cytology screening systems to point to suspicious cells, and review every slide they flag.",
+     "Verify patient and specimen details with barcode systems before screening, so samples are never mixed up.",
+     "Pass clinical data and findings to pathologists in structured forms, so reports are complete."
+    ],
+    "project": "Compare an AI-assisted screening system's flags with your full review on 100 slides and record what it missed or over-called."
+   },
+   {
+    "title": "Quality control and digital cytology",
+    "items": [
+     "Track your screening accuracy against pathologist reviews, and study the cases you missed.",
+     "Learn digital slide scanning and remote review, and its limits for cytology samples.",
+     "Keep specimen quality and lab safety records current, with alerts for overdue checks."
+    ],
+    "project": "Review your missed or changed cases for three months with a pathologist and list the cell features to watch more closely."
+   },
+   {
+    "title": "Microscope skill and patient safety",
+    "items": [
+     "Examine cells under the microscope with trained eyes; subtle changes in shape and colour decide diagnoses.",
+     "Help collect fine needle aspirations at the bedside, judging sample adequacy on the spot.",
+     "Send every doubtful case to the pathologist; patient safety comes before speed."
+    ],
+    "project": "Track sample adequacy at bedside FNA collections for two months and agree changes with the clinicians to reduce repeats."
+   }
+  ],
+  "aiTools": [
+   "AI-assisted cytology screening systems",
+   "Digital slide scanners",
+   "Barcode specimen tracking"
+  ],
+  "humanEdge": [
+   "Trained eyes for subtle cell changes",
+   "Judging sample adequacy at the bedside",
+   "Escalating every doubtful case"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2011.04": {
+  "roadmap": [
+   {
+    "title": "AI for slide QC and lab records",
+    "items": [
+     "Use digital slide scanners with automatic quality checks for folds, blur and staining, and fix problems at the source.",
+     "Keep maintenance and instrument performance records in a digital system with reminders and audit trails.",
+     "Prepare slide distribution lists and requisitions with the lab system, checking each case."
+    ],
+    "project": "Track slide quality problems found by automatic scanner checks for a month and fix the most common cause."
+   },
+   {
+    "title": "Advanced staining and digital pathology",
+    "items": [
+     "Run immunohistochemistry and special stains with validated protocols and controls.",
+     "Prepare slides for AI digital pathology tools, where section and stain quality affect the results.",
+     "Troubleshoot tissue processors, stainers and microtomes with manuals and AI help, then test the fix."
+    ],
+    "project": "Optimise one immunohistochemistry stain with controls, document the protocol and train a colleague on it."
+   },
+   {
+    "title": "Precise technique and teamwork",
+    "items": [
+     "Cut, embed and stain tissue with precision; a poor section can hide a diagnosis.",
+     "Check slides under the microscope before they go to pathologists, and redo any that fall short.",
+     "Work with pathologists on difficult or rare specimens, adapting methods when needed."
+    ],
+    "project": "Ask pathologists for feedback on slide quality for a month and fix the top two issues they raise."
+   }
+  ],
+  "aiTools": [
+   "Digital slide scanners with QC checks",
+   "Automated stainers and immunostainers",
+   "Laboratory information systems"
+  ],
+  "humanEdge": [
+   "Precise sectioning and staining by hand",
+   "Checking slides before pathologists",
+   "Adapting methods for rare specimens"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2012.00": {
+  "roadmap": [
+   {
+    "title": "AI for analysers, results and reports",
+    "items": [
+     "Run automated analysers with autoverification rules, and review every result the rules hold back.",
+     "Use digital cell morphology systems for blood smears, and check flagged cells yourself.",
+     "Prepare result reports and charts in the lab system, and call critical values to clinicians at once."
+    ],
+    "project": "Review a month of results held back by autoverification and propose one rule change with your supervisor."
+   },
+   {
+    "title": "Quality control and microbiology tools",
+    "items": [
+     "Track quality control results with charts and rules, and act on trends before patients are affected.",
+     "Learn automated microbiology identification, such as MALDI-TOF, and its limits.",
+     "Keep equipment maintenance and calibration records complete for accreditation."
+    ],
+    "project": "Review three months of QC data for one analyser, find any drift and fix its cause with the team."
+   },
+   {
+    "title": "Specimens, transfusion and safety",
+    "items": [
+     "Collect blood samples safely and kindly, especially from anxious or difficult patients.",
+     "Run transfusion tests with strict identity checks; mistakes here can kill.",
+     "Supervise and teach new technicians and assistants in safe lab practice."
+    ],
+    "project": "Audit transfusion sample labelling for a month, find any near misses and agree one fix with the ward teams."
+   }
+  ],
+  "aiTools": [
+   "Automated analysers with autoverification",
+   "Digital cell morphology systems",
+   "Laboratory information systems"
+  ],
+  "humanEdge": [
+   "Safe, kind blood collection from patients",
+   "Strict identity checks in transfusion",
+   "Teaching new staff safe lab practice"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2012.01": {
+  "roadmap": [
+   {
+    "title": "AI for tracking blocks, slides and archives",
+    "items": [
+     "Track blocks and slides with barcodes from grossing to archive, so nothing is lost or mixed up.",
+     "Use the lab system to log processing runs and archive material, with search instead of paper lists.",
+     "Ask AI to explain equipment error codes, then follow the manufacturer's steps to fix them."
+    ],
+    "project": "Introduce barcode tracking for one bench and record mix-ups and search time for a month before and after."
+   },
+   {
+    "title": "Automated processing and frozen sections",
+    "items": [
+     "Run automated tissue processors and stainers with checks at each step of the run.",
+     "Prepare frozen sections quickly and well for surgeons waiting in theatre.",
+     "Keep equipment clean and maintained on schedule, with records for each instrument."
+    ],
+    "project": "Time your frozen section turnaround for a month, find the slowest step and practise to cut it."
+   },
+   {
+    "title": "Microtome skill and careful hands",
+    "items": [
+     "Cut thin, even sections with the microtome; this hand skill takes years to master.",
+     "Embed and mount tissue carefully, so orientation and quality help the pathologist.",
+     "Spot problems with tissue or stains early, before slides reach the microscope."
+    ],
+    "project": "Ask a pathologist to rate your slide orientation and quality for a month and practise the weakest area."
+   }
+  ],
+  "aiTools": [
+   "Barcode specimen tracking",
+   "Automated tissue processors and stainers",
+   "Laboratory information systems"
+  ],
+  "humanEdge": [
+   "Cutting thin, even sections by hand",
+   "Careful embedding and orientation",
+   "Fast frozen sections for surgery"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2031.00": {
+  "roadmap": [
+   {
+    "title": "AI for ECG reading support and records",
+    "items": [
+     "Use ECG machines with automatic interpretation, and flag every abnormal or doubtful trace for the physician.",
+     "Record patient details, histories and results in the cardiology system, checking automatic entries.",
+     "Schedule tests and order supplies with automated systems, freeing time for patients."
+    ],
+    "project": "Track how often automatic ECG reads were changed by physicians for a month and share the patterns with your team."
+   },
+   {
+    "title": "Echo, monitoring and AI tools",
+    "items": [
+     "Learn AI-assisted echo tools that guide image capture and measure function, and check their measurements.",
+     "Set up and review ambulatory and remote heart monitoring, escalating serious events quickly.",
+     "Maintain and test cardiology equipment on schedule, with records for each device."
+    ],
+    "project": "Compare AI-assisted echo measurements with your manual ones on 30 studies and record the differences."
+   },
+   {
+    "title": "Patient care during tests and procedures",
+    "items": [
+     "Explain tests and calm anxious patients, so stress tests and echoes go smoothly.",
+     "Watch patients closely during stress tests and procedures, and alert physicians to changes at once.",
+     "Assist physicians in catheter labs with pacemakers and angioplasty, working fast and sterile."
+    ],
+    "project": "Write a short patient explanation for stress tests with AI help, use it for a month and ask patients if it helped."
+   }
+  ],
+  "aiTools": [
+   "ECG machines with automatic interpretation",
+   "AI-assisted echocardiography tools",
+   "Remote heart monitoring platforms"
+  ],
+  "humanEdge": [
+   "Calming patients during cardiac tests",
+   "Spotting danger during stress tests",
+   "Fast, sterile work in the cath lab"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2032.00": {
+  "roadmap": [
+   {
+    "title": "AI-guided scanning and reporting",
+    "items": [
+     "Use AI scanning guidance and automatic measurements where available, and check every measurement on screen.",
+     "Prepare technical summaries for physicians with templates, and flag urgent findings by phone.",
+     "Record patient histories and prior results before scanning, so you know what to look for."
+    ],
+    "project": "Compare automatic measurements with your manual ones on 30 scans and record where you had to correct them."
+   },
+   {
+    "title": "Image quality and ergonomics",
+    "items": [
+     "Review image quality with peers and protocols, so studies are complete and consistent.",
+     "Learn how AI tools that read ultrasound images are tested, and their limits on difficult patients.",
+     "Set up your workstation and scanning posture to prevent shoulder and wrist injuries."
+    ],
+    "project": "Hold monthly peer reviews of image quality for one exam type and track how many studies needed repeats."
+   },
+   {
+    "title": "Scanning skill and patient care",
+    "items": [
+     "Scan with skilled hands, adjusting angle and pressure to find what the image must show.",
+     "Decide which images matter and spot abnormal areas while scanning.",
+     "Care for patients during exams, including pregnant women, children and very ill patients."
+    ],
+    "project": "Practise one difficult scan type with a mentor for a month and record your image quality scores before and after."
+   }
+  ],
+  "aiTools": [
+   "Ultrasound systems with AI guidance",
+   "Automatic measurement tools",
+   "Reporting templates in PACS"
+  ],
+  "humanEdge": [
+   "Skilled hands that find the right image",
+   "Spotting abnormal areas while scanning",
+   "Caring for patients during exams"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2033.00": {
+  "roadmap": [
+   {
+    "title": "AI for dose records and image processing",
+    "items": [
+     "Calculate and record doses in the department system with automatic checks, and verify every dose before giving it.",
+     "Use AI-assisted reconstruction and processing for scans, and check images for artefacts.",
+     "Record and process results in templates, ready for physician review."
+    ],
+    "project": "Audit dose records for one month against prescriptions and record any discrepancies the checks caught."
+   },
+   {
+    "title": "Quality control and new imaging",
+    "items": [
+     "Run daily camera quality checks and track trends to catch problems early.",
+     "Learn PET/CT and new theranostic treatments, including their safety rules.",
+     "Keep radioactive material logs complete and ready for inspection."
+    ],
+    "project": "Track daily camera QC results for three months, spot any drift and review it with the physicist."
+   },
+   {
+    "title": "Radiation safety and patient care",
+    "items": [
+     "Prepare and give radiopharmaceuticals with strict safety to protect patients and staff.",
+     "Explain procedures and safety precautions to patients and families in plain words.",
+     "Position patients carefully and keep them still and comfortable during long scans."
+    ],
+    "project": "Write plain-language preparation guides for three scans with AI help and track how many scans were delayed by poor preparation."
+   }
+  ],
+  "aiTools": [
+   "Nuclear medicine dose management software",
+   "AI-assisted image reconstruction",
+   "Camera QC and trending tools"
+  ],
+  "humanEdge": [
+   "Strict radiation safety with every dose",
+   "Explaining safety precautions plainly",
+   "Keeping patients comfortable in long scans"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "29-2034.00": {
   "roadmap": [
    {
@@ -17636,6 +17930,90 @@
    "Positioning patients precisely and safely",
    "Calming patients during scans",
    "Judging when an image must be repeated"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2035.00": {
+  "roadmap": [
+   {
+    "title": "AI for safety screening and protocols",
+    "items": [
+     "Use electronic safety screening forms before scans, and confirm every implant and risk in person.",
+     "Use AI-based reconstruction and faster sequences where approved, and check image quality on every series.",
+     "Write procedure notes for radiologists with templates, noting motion or problems."
+    ],
+    "project": "Track scan times and repeat sequences for one exam type before and after AI-accelerated protocols are introduced."
+   },
+   {
+    "title": "Protocols, quality and implant safety",
+    "items": [
+     "Keep protocols standardised across scanners, so images are consistent for radiologists.",
+     "Check implant safety with official databases and manufacturer information before every scan.",
+     "Review image quality with radiologists and fix common causes of repeats."
+    ],
+    "project": "Review a month of repeated sequences with a radiologist, group them by cause and fix the most common one."
+   },
+   {
+    "title": "Safety, comfort and anxious patients",
+    "items": [
+     "Keep the MRI room safe from metal objects; your vigilance prevents serious accidents.",
+     "Calm patients with claustrophobia or fear, so they can complete the scan.",
+     "Position patients and coils carefully for the best images, padding for comfort and stillness."
+    ],
+    "project": "Try one calming routine for anxious patients for a month and record how many scans were completed without sedation."
+   }
+  ],
+  "aiTools": [
+   "Electronic MRI safety screening forms",
+   "AI-accelerated reconstruction",
+   "Implant safety databases"
+  ],
+  "humanEdge": [
+   "Vigilance against metal in the scanner room",
+   "Calming claustrophobic patients",
+   "Careful positioning for clear images"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2036.00": {
+  "roadmap": [
+   {
+    "title": "AI contouring and automated planning",
+    "items": [
+     "Use AI auto-contouring for organs at risk, and review and edit every contour slice by slice.",
+     "Start plans with knowledge-based or automated planning, then refine beams and constraints yourself.",
+     "Verify dose calculations with independent check software, and record results in the patient record."
+    ],
+    "project": "Edit AI contours for 20 patients, record the time saved and the corrections you made by organ."
+   },
+   {
+    "title": "Plan quality and adaptive therapy",
+    "items": [
+     "Compare plan quality metrics against your clinic's past plans to find room for improvement.",
+     "Learn adaptive radiotherapy workflows, where plans change during treatment based on new images.",
+     "Document planning templates and constraints for common sites, agreed with physicians and physicists."
+    ],
+    "project": "Benchmark ten automated plans against your manual plans for one site and present the dose differences to the team."
+   },
+   {
+    "title": "Planning judgement and team consultation",
+    "items": [
+     "Balance tumour coverage against organ sparing in hard cases where no template fits.",
+     "Plan brachytherapy and special techniques carefully with the oncology team.",
+     "Explain planning trade-offs to radiation oncologists so they can choose with confidence."
+    ],
+    "project": "Present three difficult plans at a team meeting, explaining the trade-offs you made and collecting the physicians' views."
+   }
+  ],
+  "aiTools": [
+   "AI auto-contouring software",
+   "Knowledge-based treatment planning",
+   "Independent dose calculation checks"
+  ],
+  "humanEdge": [
+   "Balancing coverage and organ sparing",
+   "Planning special techniques with care",
+   "Explaining trade-offs to oncologists"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -17723,6 +18101,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "29-2051.00": {
+  "roadmap": [
+   {
+    "title": "AI for menus, recipes and nutrition analysis",
+    "items": [
+     "Analyse menus and recipes with nutrition software, and check values against the patient's diet order.",
+     "Plan menus for special diets with AI ideas, then check them against guidelines and the dietitian's plan.",
+     "Research food and nutrition questions for the dietitian with AI search, and cite the sources you checked."
+    ],
+    "project": "Standardise five recipes with nutrition software and AI help, check every value and compare cost and portion accuracy."
+   },
+   {
+    "title": "Intake monitoring and food service data",
+    "items": [
+     "Record patient intake and weight in the electronic record, and flag changes to the dietitian.",
+     "Track food costs and waste with simple reports, and suggest savings to the supervisor.",
+     "Build work schedules with scheduling tools, checked for fairness and coverage."
+    ],
+    "project": "Track plate waste on one ward for a month, find the most-wasted dishes and propose menu changes with the dietitian."
+   },
+   {
+    "title": "Patient contact and kitchen teamwork",
+    "items": [
+     "Talk with patients about food they can and will eat, and encourage them kindly.",
+     "Supervise food production and service so meals are safe, on time and right for each diet.",
+     "Bring observations to care team meetings, where your view of eating habits helps."
+    ],
+    "project": "Interview ten patients on special diets about what they will eat, and work with the kitchen on two changes."
+   }
+  ],
+  "aiTools": [
+   "Nutrition analysis software",
+   "ChatGPT or Claude for menu ideas",
+   "Food service management systems"
+  ],
+  "humanEdge": [
+   "Encouraging patients to eat well",
+   "Keeping every diet safe in service",
+   "Sharing eating observations with the team"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "29-2052.00": {
   "roadmap": [
    {
@@ -17762,6 +18182,174 @@
    "Spotting a prescription that looks wrong",
    "Helping worried customers at the counter",
    "Careful, accurate dispensing"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2053.00": {
+  "roadmap": [
+   {
+    "title": "AI for observation records and vital signs",
+    "items": [
+     "Record observations and vital signs in the electronic record during the shift, not from memory at the end.",
+     "Use behaviour tracking templates that show patterns over days, and share them with the care team.",
+     "Prepare simple wellness and coping guides with AI, checked by nurses or psychologists."
+    ],
+    "project": "Track one patient's behaviour with a structured template for a month and discuss the patterns with the care team."
+   },
+   {
+    "title": "Consistent care and safety routines",
+    "items": [
+     "Follow care plans and medication rules exactly, and report any concern straight away.",
+     "Learn de-escalation methods well, so physical restraint is a rare last resort.",
+     "Keep patients' information private and use only approved systems."
+    ],
+    "project": "Practise de-escalation scenarios with colleagues monthly and record how many incidents needed restraint over three months."
+   },
+   {
+    "title": "Relationships, encouragement and calm",
+    "items": [
+     "Build trust with patients through daily conversation, patience and respect.",
+     "Encourage patients to join activities and build skills for independence.",
+     "Stay calm in tense moments and protect patients and staff from harm."
+    ],
+    "project": "Lead one social or skills group each week for a month and record attendance and patients' feedback."
+   }
+  ],
+  "aiTools": [
+   "Electronic health records",
+   "Behaviour tracking templates",
+   "ChatGPT or Claude for wellness guides"
+  ],
+  "humanEdge": [
+   "Building trust through daily contact",
+   "De-escalating tense situations",
+   "Encouraging patients toward independence"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2055.00": {
+  "roadmap": [
+   {
+    "title": "AI for preference cards and instrument tracking",
+    "items": [
+     "Keep surgeons' preference cards up to date in the digital system, so set-ups match each case.",
+     "Use instrument tracking systems to find trays and check sterilisation records.",
+     "Learn new procedures with videos and AI-made study notes, checked with senior staff."
+    ],
+    "project": "Update preference cards for your five most common cases with the surgeons and count missing-item delays for a month."
+   },
+   {
+    "title": "Robotic surgery and counting systems",
+    "items": [
+     "Learn robotic surgery set-up, draping and troubleshooting for your theatres.",
+     "Use barcode or RFID sponge counting where available, and still do manual counts.",
+     "Check sterilisers and equipment on schedule, and record faults for repair."
+    ],
+    "project": "Practise robotic set-up and draping with a trainer until you can do it within the target time, and log each run."
+   },
+   {
+    "title": "Sterile field and surgical teamwork",
+    "items": [
+     "Keep the sterile field perfect and speak up at once when anyone breaks it.",
+     "Anticipate what the surgeon needs next and hand it over before they ask.",
+     "Count instruments and sponges carefully before and after every operation."
+    ],
+    "project": "Ask two surgeons for feedback on your anticipation during cases for a month and practise the steps they mention."
+   }
+  ],
+  "aiTools": [
+   "Digital preference card systems",
+   "Instrument tracking systems",
+   "RFID sponge counting systems"
+  ],
+  "humanEdge": [
+   "Keeping the sterile field perfect",
+   "Anticipating the surgeon's next need",
+   "Careful counts before and after surgery"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2056.00": {
+  "roadmap": [
+   {
+    "title": "AI for lab results, records and owner notes",
+    "items": [
+     "Run blood and urine tests on in-clinic analysers with automatic flags, and check odd results by microscope.",
+     "Keep anaesthesia and treatment records in the practice system, with doses checked against weight.",
+     "Write discharge and care instructions for owners with AI help, checked by the veterinarian."
+    ],
+    "project": "Write discharge instructions for five common procedures with AI help, have the vet check them and track owner calls."
+   },
+   {
+    "title": "AI diagnostics and clinic workflows",
+    "items": [
+     "Learn AI tools for x-ray and cytology reads in veterinary practice, and how vets check them.",
+     "Use reminders for vaccines and follow-ups, so fewer animals miss care.",
+     "Keep inventory of drugs and supplies with alerts for low stock and expiry."
+    ],
+    "project": "Set up automated vaccine reminders for one month's patients and compare return rates with the month before."
+   },
+   {
+    "title": "Animal handling and nursing care",
+    "items": [
+     "Restrain and calm animals safely during exams, reading their stress signals.",
+     "Monitor anaesthesia and recovery closely, and act fast when an animal's condition changes.",
+     "Support worried owners kindly, especially when animals are very ill or dying."
+    ],
+    "project": "Practise low-stress handling techniques for a month and record how often animals needed extra restraint."
+   }
+  ],
+  "aiTools": [
+   "In-clinic analysers with automatic flags",
+   "Veterinary practice management software",
+   "AI tools for veterinary x-ray reads"
+  ],
+  "humanEdge": [
+   "Calm, safe handling of stressed animals",
+   "Watching anaesthesia and recovery closely",
+   "Supporting worried owners kindly"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2057.00": {
+  "roadmap": [
+   {
+    "title": "AI for histories and automated eye tests",
+    "items": [
+     "Take patient histories with structured electronic forms, and confirm details in conversation.",
+     "Run autorefractors, tonometers and imaging devices that measure automatically, and recheck odd results.",
+     "Record measurements directly from devices into the record, checking every imported value."
+    ],
+    "project": "Track how often automatic measurements needed a manual recheck for a month and share the patterns with the team."
+   },
+   {
+    "title": "Imaging, AI screening and clinic flow",
+    "items": [
+     "Capture OCT and retinal images that AI screening tools can read, with good quality on every eye.",
+     "Use clinic flow tools to reduce waiting time between tests and keep patients informed.",
+     "Learn the field tests and imaging for glaucoma and retina clinics in depth."
+    ],
+    "project": "Track image quality failures for a month, find the most common cause and fix it with training or setup changes."
+   },
+   {
+    "title": "Patient care and procedure support",
+    "items": [
+     "Measure vision and eye pressure carefully, helping patients who struggle with tests.",
+     "Assist physicians in procedures and surgery with sterile, careful work.",
+     "Explain tests and eye drops to nervous patients in plain words."
+    ],
+    "project": "Write plain-language test explanations with AI help, use them for a month and ask patients if tests felt easier."
+   }
+  ],
+  "aiTools": [
+   "Automated eye measurement devices",
+   "OCT and retinal imaging",
+   "Electronic health records with device import"
+  ],
+  "humanEdge": [
+   "Helping patients through hard tests",
+   "Sterile support in eye procedures",
+   "Explaining tests to nervous patients"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -17846,6 +18434,468 @@
    "Querying doctors about unclear diagnoses",
    "Judging what the documentation really supports",
    "Protecting patient privacy"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2081.00": {
+  "roadmap": [
+   {
+    "title": "AI for lens advice, orders and records",
+    "items": [
+     "Use virtual try-on and face measurement tools to help clients choose frames, then fit them in person.",
+     "Explain lens and coating options with clear AI-drafted guides, matched to the client's work and hobbies.",
+     "Keep prescriptions, orders and payments in practice software that tracks each job."
+    ],
+    "project": "Introduce virtual try-on for a month and compare frame choices, returns and sales with the month before."
+   },
+   {
+    "title": "Digital measurements and online competition",
+    "items": [
+     "Use digital centration and measurement devices, and check them against your manual measures.",
+     "Learn how online glasses sellers work, and what you offer that they cannot.",
+     "Automate stock, insurance claims and reminders so admin takes less of your day."
+    ],
+    "project": "Compare digital and manual measurements for 30 clients and record which jobs needed remakes for each."
+   },
+   {
+    "title": "Fitting, adjusting and trust",
+    "items": [
+     "Adjust frames by hand with heat and pliers until they fit comfortably and correctly.",
+     "Check finished lenses against the prescription before handing them over.",
+     "Understand each client's daily visual needs and recommend what truly helps."
+    ],
+    "project": "Follow up with 20 clients a week after collection, record fit or vision problems and fix their causes."
+   }
+  ],
+  "aiTools": [
+   "Virtual try-on and face measurement tools",
+   "Digital centration devices",
+   "Optical practice management software"
+  ],
+  "humanEdge": [
+   "Adjusting frames by hand for comfort",
+   "Checking lenses before handover",
+   "Advising on real daily vision needs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2091.00": {
+  "roadmap": [
+   {
+    "title": "AI for records, scans and design",
+    "items": [
+     "Keep patient records and measurements in practice software, and write clinical notes with approved tools.",
+     "Use 3D scanning instead of plaster casts where it fits, and check scans against the limb.",
+     "Design devices in CAD software from scans, refining the shape with your clinical knowledge."
+    ],
+    "project": "Scan and design five devices digitally, compare fit and adjustment visits with five cast-based devices."
+   },
+   {
+    "title": "3D printing and smart devices",
+    "items": [
+     "Use 3D printing for prototypes and some devices, testing strength and fit before use.",
+     "Learn microprocessor knees and myoelectric hands, including their setup and tuning software.",
+     "Track device outcomes and patient feedback to improve your designs."
+    ],
+    "project": "3D-print one test socket, fit it with a patient and record the changes before the final device."
+   },
+   {
+    "title": "Fitting, adjustment and patient training",
+    "items": [
+     "Fit and adjust devices by hand until they are comfortable and work in daily life.",
+     "Teach patients to use and care for their devices, with patience through early struggles.",
+     "Work with physicians and therapists on prescriptions and goals for each patient."
+    ],
+    "project": "Follow ten new users for three months, record problems in daily use and change one part of your fitting routine."
+   }
+  ],
+  "aiTools": [
+   "3D scanners for limbs",
+   "CAD software for orthotics and prosthetics",
+   "Tuning software for powered devices"
+  ],
+  "humanEdge": [
+   "Hand-fitting devices for comfort",
+   "Training patients through early struggles",
+   "Setting goals with physicians and therapists"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2092.00": {
+  "roadmap": [
+   {
+    "title": "AI hearing aid fitting and client records",
+    "items": [
+     "Fit hearing aids with manufacturer software that suggests settings from the audiogram, then fine-tune with the client listening.",
+     "Keep test results, fittings and repairs in practice software, so every visit builds on the last.",
+     "Prepare care guides for hearing aids and assistive devices with AI, in large clear print checked by you."
+    ],
+    "project": "Track how many follow-up adjustments AI-suggested first fits needed over two months, compared with your usual fitting method."
+   },
+   {
+    "title": "Remote tuning and smart devices",
+    "items": [
+     "Offer remote adjustments through manufacturer apps for clients who find visits hard.",
+     "Learn AI features in modern hearing aids, such as speech-in-noise modes, and show clients how to use them.",
+     "Demonstrate assistive listening devices and phone apps that help in meetings and at home."
+    ],
+    "project": "Offer remote follow-ups to ten clients for two months and record satisfaction and travel saved compared with clinic visits."
+   },
+   {
+    "title": "Hands-on care and client coaching",
+    "items": [
+     "Take earmold impressions and repair devices by hand with care and precision.",
+     "Train clients patiently to use and clean their devices, repeating steps as often as needed.",
+     "Counsel clients and families on communication tactics that make daily life easier."
+    ],
+    "project": "Run a small group session on communication tactics for new users and their families, and collect what they found useful."
+   }
+  ],
+  "aiTools": [
+   "Hearing aid fitting software with AI suggestions",
+   "Manufacturer apps for remote tuning",
+   "Assistive listening apps and devices"
+  ],
+  "humanEdge": [
+   "Precise impressions and repairs by hand",
+   "Patient device training for older clients",
+   "Coaching families on communication"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2099.01": {
+  "roadmap": [
+   {
+    "title": "AI for EEG review and test summaries",
+    "items": [
+     "Use automated spike and seizure detection on long EEGs to find events faster, and review every marked section yourself.",
+     "Summarise technical findings for physicians with templates, noting artefacts and patient events.",
+     "Explain tests to patients with AI-made information sheets, reviewed by the neurologist."
+    ],
+    "project": "Compare automated seizure detection with your own review on ten long EEG recordings and record misses and false alarms."
+   },
+   {
+    "title": "Sleep, monitoring and equipment",
+    "items": [
+     "Use automated sleep scoring as a first pass, and correct every epoch that looks wrong.",
+     "Learn intraoperative monitoring systems and remote review, with clear alert rules for surgeons.",
+     "Calibrate and troubleshoot equipment on schedule, and keep records for each device."
+    ],
+    "project": "Correct automated sleep scoring on five studies and record agreement by sleep stage before you sign them off."
+   },
+   {
+    "title": "Electrodes, artefacts and patient care",
+    "items": [
+     "Place electrodes accurately and keep good contact through long studies.",
+     "Recognise artefacts from movement and equipment during recording and fix them on the spot.",
+     "Reassure patients, including children and confused adults, so tests can be completed."
+    ],
+    "project": "Track electrode-related artefacts in your studies for a month and change one step in your setup to reduce them."
+   }
+  ],
+  "aiTools": [
+   "Automated EEG spike and seizure detection",
+   "Automated sleep scoring software",
+   "Intraoperative monitoring systems"
+  ],
+  "humanEdge": [
+   "Accurate electrode placement for long studies",
+   "Spotting and fixing artefacts live",
+   "Reassuring frightened patients"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2099.05": {
+  "roadmap": [
+   {
+    "title": "AI for refraction support and patient education",
+    "items": [
+     "Use autorefraction and wavefront data as a starting point, then refine refractions by subjective testing.",
+     "Educate patients on eye conditions, drops and surgery with AI-drafted materials checked by the ophthalmologist.",
+     "Document histories and test results in the record, with device data imported and checked."
+    ],
+    "project": "Compare autorefraction with your final subjective refraction for 50 patients and record how often and how much you changed it."
+   },
+   {
+    "title": "Advanced imaging and glaucoma testing",
+    "items": [
+     "Capture and quality-check retinal nerve fibre and OCT imaging used by AI glaucoma tools.",
+     "Run visual field tests consistently, coaching patients so results are reliable.",
+     "Train junior technicians on testing protocols with clear guides and demonstrations."
+    ],
+    "project": "Write a testing guide for visual fields and OCT with photos, train two technicians with it and track repeat rates."
+   },
+   {
+    "title": "Skilled testing and surgical assistance",
+    "items": [
+     "Perform retinoscopy and refraction on children and patients who cannot respond well.",
+     "Assist in ophthalmic surgery with sterile, steady support, preparing instruments the surgeon prefers.",
+     "Answer patients' questions about their eyes and treatment calmly and clearly."
+    ],
+    "project": "Practise retinoscopy on children with a mentor for a month and compare your findings with the ophthalmologist's."
+   }
+  ],
+  "aiTools": [
+   "Autorefractors and wavefront analysers",
+   "OCT and nerve fibre imaging",
+   "Electronic health records"
+  ],
+  "humanEdge": [
+   "Refraction for patients who cannot respond well",
+   "Steady support in eye surgery",
+   "Answering patients' questions calmly"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2099.08": {
+  "roadmap": [
+   {
+    "title": "AI for complaints, replies and policy questions",
+    "items": [
+     "Log complaints and inquiries in one system and let AI suggest categories, checked before routing to staff.",
+     "Draft replies to patients with AI from approved policy text, and personalise each one with care.",
+     "Keep an up-to-date guide to community services with AI search, confirmed by phone."
+    ],
+    "project": "Use AI-suggested categories on complaints for a month, check each and measure how much faster cases reach the right team."
+   },
+   {
+    "title": "Patient feedback data and improvement",
+    "items": [
+     "Analyse complaint and feedback data with AI-assisted tools to find recurring problems by unit.",
+     "Report trends to managers with clear recommendations and follow up on actions taken.",
+     "Explain billing, sliding-scale charges and rights in plain-language guides made with AI help."
+    ],
+    "project": "Analyse six months of complaints with AI help, present the top three issues to managers and track their fixes."
+   },
+   {
+    "title": "Listening, mediating and advocacy",
+    "items": [
+     "Meet upset patients and families in person, listen fully and calm the situation.",
+     "Mediate between patients and staff, keeping both sides respected.",
+     "Advocate for patients' rights inside the hospital, even when it is uncomfortable."
+    ],
+    "project": "Follow ten serious complaints to resolution, record how long each took and agree one process change with managers."
+   }
+  ],
+  "aiTools": [
+   "Complaint management software",
+   "ChatGPT or Claude for reply drafts",
+   "Community resource directories"
+  ],
+  "humanEdge": [
+   "Calming upset patients and families",
+   "Mediating between patients and staff",
+   "Advocating for patients' rights"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-9021.00": {
+  "roadmap": [
+   {
+    "title": "AI-assisted coding and registry abstraction",
+    "items": [
+     "Use computer-assisted coding that suggests codes from notes, and check every code against the record and rules.",
+     "Abstract cancer registry data with AI-assisted tools, and verify every staging field in the source documents.",
+     "Produce statistical reports and dashboards from the record system, checking totals against source data."
+    ],
+    "project": "Measure the accuracy of computer-assisted code suggestions on 100 charts and record the error types you corrected."
+   },
+   {
+    "title": "Data quality, security and system upgrades",
+    "items": [
+     "Run automated data quality checks for missing and conflicting codes, and resolve them with clinicians.",
+     "Protect records with access audits and alerts for unusual access, and follow up each alert.",
+     "Evaluate system upgrades and AI tools with clear tests before they go live."
+    ],
+    "project": "Review one month of access audit alerts with privacy staff, and close any gaps in roles or training."
+   },
+   {
+    "title": "Clinical queries and team leadership",
+    "items": [
+     "Query doctors on unclear or conflicting diagnoses clearly and respectfully.",
+     "Lead and train coding staff, especially in checking AI suggestions.",
+     "Judge complex coding cases where rules and documentation conflict."
+    ],
+    "project": "Write a guide for coders on reviewing AI code suggestions, train the team with it and audit accuracy after a month."
+   }
+  ],
+  "aiTools": [
+   "Computer-assisted coding software",
+   "Cancer registry abstraction tools",
+   "Record access audit tools"
+  ],
+  "humanEdge": [
+   "Clear, respectful queries to doctors",
+   "Judging complex coding cases",
+   "Training coders to check AI suggestions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-9091.00": {
+  "roadmap": [
+   {
+    "title": "AI for injury records and rehab plans",
+    "items": [
+     "Keep injury and treatment records in a digital system on your phone, updated at the field, not later.",
+     "Draft rehabilitation exercise plans with AI help, adapted to each athlete and checked with the physician.",
+     "Write injury reports for coaches and doctors with templates, keeping medical details private."
+    ],
+    "project": "Move injury records to a mobile app for a season and compare time spent on paperwork with the previous season."
+   },
+   {
+    "title": "Load data and prevention programs",
+    "items": [
+     "Use wearable and load data with coaches to spot athletes at risk of overuse injury.",
+     "Run prevention programs, such as warm-ups that cut knee injuries, and track injury rates.",
+     "Teach coaches, athletes and parents injury prevention with clear short materials."
+    ],
+    "project": "Introduce an evidence-based warm-up program for one team for a season and compare injury rates with last season."
+   },
+   {
+    "title": "Field care and return to play",
+    "items": [
+     "Assess injuries on the field quickly and decide when to send an athlete to a doctor.",
+     "Tape, brace and treat athletes with skilled hands before and after training.",
+     "Report rehab progress honestly to coaches, even when they want athletes back sooner."
+    ],
+    "project": "Practise emergency action plans with your team before the season and time each response drill."
+   }
+  ],
+  "aiTools": [
+   "Mobile injury record apps",
+   "Wearable and load monitoring platforms",
+   "ChatGPT or Claude for rehab and prevention materials"
+  ],
+  "humanEdge": [
+   "Fast injury assessment on the field",
+   "Skilled taping, bracing and treatment",
+   "Honest progress reports to coaches"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-9092.00": {
+  "roadmap": [
+   {
+    "title": "AI for consultation letters and variant review",
+    "items": [
+     "Draft consultation letters with an approved, secure tool, and check every result and risk figure.",
+     "Use variant interpretation databases and AI tools to prepare for sessions, and confirm each finding with the lab.",
+     "Draw and analyse family trees with pedigree software that flags inheritance patterns."
+    ],
+    "project": "Draft consultation letters with an approved tool for a month and compare time and patient questions with your usual letters."
+   },
+   {
+    "title": "Risk models and patient education",
+    "items": [
+     "Use risk calculation models for cancer and heart disease, and explain their limits clearly.",
+     "Create education materials on inheritance and testing with AI in plain language, checked by you.",
+     "Learn direct-to-consumer tests and AI health apps patients bring, and how to address them."
+    ],
+    "project": "Create plain-language guides for three common referral reasons with AI help and test them with ten patients."
+   },
+   {
+    "title": "Counselling through hard decisions",
+    "items": [
+     "Counsel patients and families through uncertain and life-changing results with empathy.",
+     "Support informed decisions about testing without steering people toward your own view.",
+     "Notice emotional needs, such as fear or family conflict, and refer when more help is needed."
+    ],
+    "project": "Review ten counselling sessions with a supervisor, focusing on how you handled uncertainty, and agree one change."
+   }
+  ],
+  "aiTools": [
+   "Approved, secure documentation tools",
+   "Variant interpretation databases",
+   "Pedigree drawing software"
+  ],
+  "humanEdge": [
+   "Counselling through life-changing results",
+   "Non-directive support for decisions",
+   "Noticing emotional needs in families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-9093.00": {
+  "roadmap": [
+   {
+    "title": "AI for case prep and learning",
+    "items": [
+     "Review the surgical plan, consent and imaging before each case with the surgeon, using the digital record.",
+     "Learn new procedures with surgical videos and AI-made study notes, checked with the surgeon.",
+     "Log your cases and skills in a digital logbook for certification and review."
+    ],
+    "project": "Keep a digital case log for three months and review it with your surgeon to plan which skills to develop next."
+   },
+   {
+    "title": "Robotic and minimally invasive skills",
+    "items": [
+     "Train on robotic and laparoscopic assisting with simulators, logging scores over time.",
+     "Learn energy devices and their safety settings for each procedure you assist.",
+     "Use positioning and padding checklists to prevent pressure injuries in long operations."
+    ],
+    "project": "Practise on a laparoscopic simulator weekly for two months and track your scores and completion times."
+   },
+   {
+    "title": "Hands-on surgical assistance",
+    "items": [
+     "Keep the operative field clear with retraction and suction, anticipating the surgeon's needs.",
+     "Close wounds and control bleeding with skilled, careful technique.",
+     "Watch the patient's position, bleeding and condition throughout, and speak up early."
+    ],
+    "project": "Ask your surgeon to rate your closures for a month and practise the techniques they suggest on a skills pad."
+   }
+  ],
+  "aiTools": [
+   "Surgical simulators for robotic and laparoscopic training",
+   "Digital case logbooks",
+   "Surgical video libraries"
+  ],
+  "humanEdge": [
+   "Skilled wound closure and bleeding control",
+   "Keeping the operative field clear",
+   "Speaking up early about problems"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-9099.01": {
+  "roadmap": [
+   {
+    "title": "AI for documentation and birth education",
+    "items": [
+     "Keep prenatal and birth records in a secure maternity app, updated at each visit including home visits.",
+     "Create birth preparation and postpartum guides with AI in plain language, checked against midwifery guidance.",
+     "Review lab results and histories with decision support flags, and refer to doctors when needed."
+    ],
+    "project": "Create a set of plain-language postpartum guides with AI help, check them and ask ten mothers which parts helped most."
+   },
+   {
+    "title": "Monitoring and safe referral pathways",
+    "items": [
+     "Use remote blood pressure and glucose readings to watch for hypertension and diabetes between visits.",
+     "Agree clear referral rules with obstetricians, so problems reach the right person quickly.",
+     "Track birth outcomes and complications to learn from your own practice."
+    ],
+    "project": "Agree written referral criteria with your local obstetric team and review every referral against them for three months."
+   },
+   {
+    "title": "Comfort, presence and hands-on care",
+    "items": [
+     "Support mothers in labour with comfort measures, such as massage, breathing and position changes.",
+     "Monitor mother and baby with hands and ears, feeling contractions and listening to the heartbeat.",
+     "Assess mothers and babies after birth, noticing early problems in feeding, bleeding or mood."
+    ],
+    "project": "Follow ten families through the first six weeks after birth and record the problems you caught early."
+   }
+  ],
+  "aiTools": [
+   "Secure maternity record apps",
+   "Remote blood pressure and glucose monitoring",
+   "ChatGPT or Claude for birth education materials"
+  ],
+  "humanEdge": [
+   "Comforting mothers through labour",
+   "Hands-on monitoring of mother and baby",
+   "Catching early problems after birth"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -17975,6 +19025,300 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "31-1132.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for transport and tasks",
+    "items": [
+     "Use the hospital's task app to receive, track and close transport requests, so nothing is missed.",
+     "Report equipment needing repair through the digital system with photos and location.",
+     "Learn the safe handling steps for each lifting device from short video guides."
+    ],
+    "project": "Track your transport requests in the task app for a month and find the times when delays build up."
+   },
+   {
+    "title": "Hospital robots and infection control",
+    "items": [
+     "Work alongside delivery robots for supplies and specimens, and know when to step in.",
+     "Follow cleaning and disinfection checklists for each room type, with digital sign-off.",
+     "Keep specimen and pharmacy deliveries documented with scanning at handover."
+    ],
+    "project": "Use scanning at every specimen handover for a month and record any lost or delayed items compared with before."
+   },
+   {
+    "title": "Safe lifting and kind patient contact",
+    "items": [
+     "Lift and move patients safely with the right equipment and teamwork, protecting backs and skin.",
+     "Talk kindly to patients during transport; a calm word helps frightened people.",
+     "Notice and report changes in a patient's condition while you move them."
+    ],
+    "project": "Practise safe transfers with a trainer and your team, and record injuries and near misses over three months."
+   }
+  ],
+  "aiTools": [
+   "Hospital task and transport apps",
+   "Delivery robots for supplies",
+   "Barcode scanning for handovers"
+  ],
+  "humanEdge": [
+   "Lifting and moving patients safely",
+   "Kind words to frightened patients",
+   "Noticing changes during transport"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-1133.00": {
+  "roadmap": [
+   {
+    "title": "Digital records and shift handover",
+    "items": [
+     "Record vital signs, meals and behaviour on a tablet during the shift, so the team sees changes early.",
+     "Use structured handover notes so the next shift knows each patient's mood and risks.",
+     "Handle phone calls and orders in the computer system carefully, protecting patient privacy."
+    ],
+    "project": "Use a structured handover template for a month and ask the next shift whether it told them what they needed."
+   },
+   {
+    "title": "Activities and safety routines",
+    "items": [
+     "Plan social and recreational activities with ideas from AI, adapted to what patients enjoy.",
+     "Follow observation schedules exactly, with checks recorded on time.",
+     "Learn de-escalation and safe holding methods, practised regularly with the team."
+    ],
+    "project": "Run one new activity each week for a month with AI-prepared ideas and record which ones patients joined most."
+   },
+   {
+    "title": "Emotional support and daily care",
+    "items": [
+     "Listen to patients and give encouragement; being heard helps people in crisis.",
+     "Help patients with meals, bathing and dressing with patience and dignity.",
+     "Spot early signs of distress or harm and alert nurses before things escalate."
+    ],
+    "project": "Write down three early warning signs you have learned for each of your regular patients and share them in handover."
+   }
+  ],
+  "aiTools": [
+   "Tablet-based observation records",
+   "Structured handover templates",
+   "ChatGPT or Claude for activity ideas"
+  ],
+  "humanEdge": [
+   "Listening to patients in crisis",
+   "Daily care with patience and dignity",
+   "Spotting early signs of distress"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI for notes, activities and scheduling",
+    "items": [
+     "Write progress notes with approved documentation tools during or right after sessions, and check each one.",
+     "Find therapy activity ideas with AI that match each patient's goals and interests, and adapt them.",
+     "Handle scheduling and billing paperwork with clinic software, so more time goes to patients."
+    ],
+    "project": "Track documentation time for two weeks, then use approved note templates for two weeks and compare time and quality."
+   },
+   {
+    "title": "Home programs and adaptive technology",
+    "items": [
+     "Create home exercise and living-skills programs with photos and simple steps, checked by the therapist.",
+     "Learn adaptive devices and apps, such as voice assistants and smart home tools, that help independence.",
+     "Report progress to the therapist with clear data from your sessions."
+    ],
+    "project": "Set up one smart home or voice assistant tool for two patients and record the daily tasks they can now do alone."
+   },
+   {
+    "title": "Hands-on therapy and encouragement",
+    "items": [
+     "Guide patients through activities with hands-on help and encouragement, adjusting as they tire.",
+     "Teach families to support home programs and use equipment safely.",
+     "Notice small gains and setbacks that tell the therapist when to change the plan."
+    ],
+    "project": "Teach three families a home program with photo guides and check how well they followed it after two weeks."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical documentation tools",
+   "Smart home and voice assistant tools",
+   "ChatGPT or Claude for activity ideas"
+  ],
+  "humanEdge": [
+   "Hands-on guidance with encouragement",
+   "Teaching families to help at home",
+   "Noticing small gains and setbacks"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-2012.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for supplies, schedules and records",
+    "items": [
+     "Order supplies and track inventory with a simple digital system and low-stock alerts.",
+     "Schedule appointments and handle forms with clinic software and templates.",
+     "Record attendance and progress notes in the record system as the therapist directs."
+    ],
+    "project": "Set up low-stock alerts for therapy supplies and count the times you ran out over three months, before and after."
+   },
+   {
+    "title": "Prepared sessions and infection control",
+    "items": [
+     "Prepare work areas and materials for each session from a shared list, so therapy starts on time.",
+     "Follow infection control and equipment security checklists, with digital sign-off.",
+     "Prepare craft and game activities with ideas from AI, checked with the therapist."
+    ],
+    "project": "Prepare session kits for the therapist's five most common activities and time how much faster sessions start."
+   },
+   {
+    "title": "Patient support and encouragement",
+    "items": [
+     "Encourage patients through activities and help with their physical needs kindly.",
+     "Move patients safely to and from the therapy area, using wheelchairs and transfer aids correctly.",
+     "Demonstrate crafts and games so patients can join in with confidence."
+    ],
+    "project": "Ask five patients which activities they enjoy most and share the list with the therapist to plan sessions."
+   }
+  ],
+  "aiTools": [
+   "Inventory and ordering software",
+   "Clinic scheduling software",
+   "ChatGPT or Claude for activity ideas"
+  ],
+  "humanEdge": [
+   "Encouraging patients through activities",
+   "Moving patients safely and kindly",
+   "Demonstrating crafts and games warmly"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-2021.00": {
+  "roadmap": [
+   {
+    "title": "AI for notes, exercise plans and education",
+    "items": [
+     "Write progress notes with approved documentation tools right after sessions, and check every measurement.",
+     "Create home exercise programs with exercise apps and videos, matched to the therapist's plan.",
+     "Prepare simple guides on posture and body mechanics with AI, checked by the physical therapist."
+    ],
+    "project": "Give ten patients app-based home programs with videos and compare their adherence with ten on paper sheets."
+   },
+   {
+    "title": "Progress data and modern equipment",
+    "items": [
+     "Measure range of motion and strength consistently, and track progress in simple charts.",
+     "Learn sensor and motion-capture tools for gait and movement analysis used in clinics.",
+     "Share patient data with the therapist in short, clear updates for planning."
+    ],
+    "project": "Track range of motion for five patients with charts for six weeks and use them in planning talks with the therapist."
+   },
+   {
+    "title": "Hands-on therapy and motivation",
+    "items": [
+     "Guide exercises and manual therapy with skilled hands, keeping patients safe.",
+     "Motivate patients through pain and frustration, celebrating each small gain.",
+     "Teach patients to move safely in daily life, at work and at home."
+    ],
+    "project": "Try one new motivation approach with five patients for a month and record attendance and exercise completion."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical documentation tools",
+   "Home exercise apps with videos",
+   "Motion and gait analysis sensors"
+  ],
+  "humanEdge": [
+   "Skilled, safe hands-on therapy",
+   "Motivating patients through pain",
+   "Teaching safe movement for daily life"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-2022.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for admin and treatment records",
+    "items": [
+     "Take messages, order supplies and fill forms with clinic software and templates.",
+     "Record treatments given and equipment used in the system right after each session.",
+     "Check equipment schedules and maintenance logs digitally, so nothing is overdue."
+    ],
+    "project": "Move supply ordering to a digital list with reminders and count stock-outs over three months, before and after."
+   },
+   {
+    "title": "Prepared equipment and patient flow",
+    "items": [
+     "Set up equipment and treatment areas in advance from the therapist's schedule.",
+     "Clean and disinfect equipment with checklists after every patient.",
+     "Learn the basics of each machine you prepare, such as ultrasound and traction, from manuals and videos."
+    ],
+    "project": "Prepare treatment areas from the daily schedule for a month and record how many sessions started on time."
+   },
+   {
+    "title": "Safe support and encouragement",
+    "items": [
+     "Help patients move and exercise safely under the therapist's direction.",
+     "Encourage patients warmly, especially on hard days when pain or frustration makes them want to stop.",
+     "Watch patients during treatment and report anything unusual to the therapist."
+    ],
+    "project": "Note one observation about each patient's progress daily for two weeks and share the notes with the therapist."
+   }
+  ],
+  "aiTools": [
+   "Clinic administration software",
+   "Treatment and equipment logs",
+   "Video guides for therapy equipment"
+  ],
+  "humanEdge": [
+   "Safe support for patients during exercises",
+   "Warm encouragement on hard days",
+   "Watching patients closely in treatment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9011.00": {
+  "roadmap": [
+   {
+    "title": "AI for bookings, records and client education",
+    "items": [
+     "Run bookings, reminders and payments with online tools, so admin takes less of your day.",
+     "Keep treatment records and health intake forms in secure practice software.",
+     "Create stretching and self-care guides with AI, checked against good evidence."
+    ],
+    "project": "Introduce online booking with reminders for two months and compare no-shows and admin time with before."
+   },
+   {
+    "title": "Treatment plans and growing your practice",
+    "items": [
+     "Draft treatment plans with templates and track client-reported pain and stress over sessions.",
+     "Write website text and social posts with AI help, in your own voice, without client details.",
+     "Learn when to refer clients to doctors or physiotherapists, and build those referral links."
+    ],
+    "project": "Track pain or stress scores for 20 clients across five sessions and use the results to refine your treatment plans."
+   },
+   {
+    "title": "Skilled touch and client trust",
+    "items": [
+     "Assess and treat soft tissue with skilled hands; touch and feedback guide every session.",
+     "Listen to clients about stress and pain, and adapt pressure and technique to them.",
+     "Keep clear boundaries and a safe, clean space where clients can relax."
+    ],
+    "project": "Ask 20 clients what helped most in their sessions and change one part of your routine from their answers."
+   }
+  ],
+  "aiTools": [
+   "Online booking and payment tools",
+   "Secure practice record software",
+   "ChatGPT or Claude for self-care guides"
+  ],
+  "humanEdge": [
+   "Skilled touch that reads soft tissue",
+   "Adapting pressure to each client",
+   "Safe, respectful boundaries with clients"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "31-9091.00": {
   "roadmap": [
    {
@@ -18056,6 +19400,342 @@
    "Putting nervous patients at ease",
    "Clinical skills such as injections and specimen collection",
    "Explaining instructions so patients follow them"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9093.00": {
+  "roadmap": [
+   {
+    "title": "Digital tracking for instruments and sterilisers",
+    "items": [
+     "Track every instrument tray with barcode or RFID systems from use to sterilisation and back, so none go missing.",
+     "Record autoclave loads and test results in the digital system, with alerts for failed cycles.",
+     "Use AI-assisted inventory tools to order supplies before they run low, and check unusual orders."
+    ],
+    "project": "Track missing or incomplete trays with barcode scanning for two months and fix the most common cause with theatre staff."
+   },
+   {
+    "title": "Instrument checks and tray accuracy",
+    "items": [
+     "Use digital tray lists with photos, so assembling specialty trays is fast and error-free.",
+     "Learn camera-based instrument checking systems where available, and still inspect by eye.",
+     "Flag outdated sterile supplies automatically and remove them before they reach patients."
+    ],
+    "project": "Create photo tray lists for your five most complex trays and count assembly errors reported by theatre for a month."
+   },
+   {
+    "title": "Careful cleaning and quality inspection",
+    "items": [
+     "Clean instruments thoroughly by hand where machines cannot reach; dirty instruments harm patients.",
+     "Inspect instruments for wear, leaks and damage under magnification before packing.",
+     "Run and watch sterilisers carefully, and stop a load when anything looks wrong."
+    ],
+    "project": "Audit one week of instrument inspection findings with your supervisor and agree one change to cleaning steps."
+   }
+  ],
+  "aiTools": [
+   "Barcode or RFID instrument tracking",
+   "Digital tray lists with photos",
+   "Steriliser monitoring and record systems"
+  ],
+  "humanEdge": [
+   "Thorough hand cleaning of instruments",
+   "Spotting worn and damaged instruments",
+   "Stopping unsafe steriliser loads"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9094.00": {
+  "roadmap": [
+   {
+    "title": "Editing AI speech recognition drafts",
+    "items": [
+     "Edit reports drafted by speech recognition and ambient AI scribes, correcting terms, drugs and doses against references.",
+     "Build personal word lists for each doctor's accents, terms and phrases, so drafts improve over time.",
+     "Flag unclear dictation and inconsistencies back to the doctor, instead of guessing."
+    ],
+    "project": "Track your editing time and error types on AI drafts for a month, and share the most common errors with the team."
+   },
+   {
+    "title": "Quality checking and document integrity",
+    "items": [
+     "Learn to audit AI-generated notes for missing findings, wrong laterality and copied text.",
+     "Keep templates and records organised in the record system, with correct patient matching.",
+     "Learn the basics of clinical coding or documentation improvement, where your medical language skills transfer."
+    ],
+    "project": "Audit 50 AI-drafted notes against one error checklist and present the findings to the documentation lead."
+   },
+   {
+    "title": "Medical language and clinical judgement",
+    "items": [
+     "Catch errors that sound right but are wrong, such as drug names that sound alike.",
+     "Ask doctors for clarification politely and precisely, so the record is safe.",
+     "Move toward roles such as documentation specialist or coder, which need the medical knowledge you already have."
+    ],
+    "project": "Take one introductory course in clinical coding or documentation improvement and apply it to ten records you edit."
+   }
+  ],
+  "aiTools": [
+   "Speech recognition and ambient scribe systems",
+   "Medical spelling and drug references",
+   "Electronic health records"
+  ],
+  "humanEdge": [
+   "Catching errors that sound right",
+   "Precise clarification queries to doctors",
+   "Deep knowledge of medical language"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9095.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for prescriptions and insurance",
+    "items": [
+     "Enter prescription and patient details in the pharmacy system, and check names, dates and doses twice.",
+     "Process insurance claims and copayments with the system's automatic checks, and resolve rejected claims.",
+     "Answer common phone questions with scripts, and pass anything clinical to the pharmacist."
+    ],
+    "project": "Track rejected insurance claims for a month by reason and write a short guide that cuts the most common one."
+   },
+   {
+    "title": "Inventory and expiry management",
+    "items": [
+     "Use automated inventory to reorder stock and flag items close to expiry.",
+     "Handle refrigerated and special items with temperature logs and alerts.",
+     "Learn the pharmacy's automated dispensing and robot systems, and how to restock them safely."
+    ],
+    "project": "Run an expiry check on all shelves with the inventory system, remove outdated items and record the value saved next time."
+   },
+   {
+    "title": "Customer care and teamwork",
+    "items": [
+     "Greet customers warmly and help them find products, especially older and unwell people.",
+     "Keep the pharmacy clean, organised and safe for staff and customers.",
+     "Know when a question needs the pharmacist, and pass it on at once."
+    ],
+    "project": "Ask 20 customers what would make their pharmacy visit easier and suggest two changes to the pharmacist."
+   }
+  ],
+  "aiTools": [
+   "Pharmacy management systems",
+   "Automated inventory and reorder tools",
+   "Automated dispensing systems"
+  ],
+  "humanEdge": [
+   "Warm help for unwell customers",
+   "Knowing when to call the pharmacist",
+   "Keeping the pharmacy safe and orderly"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9096.00": {
+  "roadmap": [
+   {
+    "title": "AI for reception, bookings and records",
+    "items": [
+     "Run appointments, reminders and check-ins with practice software, so the front desk runs smoothly.",
+     "Answer common owner questions with templates drafted with AI and approved by the veterinarian.",
+     "Record medications given and animal observations in the system right away."
+    ],
+    "project": "Write reply templates for the ten most common owner questions with AI help, have the vet approve them and track call times."
+   },
+   {
+    "title": "Hygiene routines and animal monitoring",
+    "items": [
+     "Follow cleaning and disinfection checklists for kennels and rooms, with sign-off in the system.",
+     "Use monitoring cameras and sensors in recovery and animal housing where available.",
+     "Keep lab animal records exact, following welfare and study rules."
+    ],
+    "project": "Track cleaning checklist completion for a month and review any infections or complaints with the practice manager."
+   },
+   {
+    "title": "Handling, care and calm",
+    "items": [
+     "Hold and calm animals during exams so they and the staff stay safe.",
+     "Watch animals recovering from surgery and tell the vet about any change.",
+     "Comfort owners in the waiting room, especially when their animal is sick."
+    ],
+    "project": "Learn one low-stress handling method with a vet technician and record how animals respond over a month."
+   }
+  ],
+  "aiTools": [
+   "Veterinary practice management software",
+   "Monitoring cameras for recovery areas",
+   "ChatGPT or Claude for owner reply templates"
+  ],
+  "humanEdge": [
+   "Holding and calming animals safely",
+   "Watching recovering animals closely",
+   "Comforting worried owners in the waiting room"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9097.00": {
+  "roadmap": [
+   {
+    "title": "Digital labels, records and scheduling",
+    "items": [
+     "Print labels at the bedside from the electronic order, and match every tube to the patient's ID band.",
+     "Enter patient, specimen and billing details in the system, checking each field before sending.",
+     "Use collection scheduling tools to plan rounds, so fasting and timed samples are drawn on time."
+    ],
+    "project": "Track labelling and specimen errors for a month after switching to bedside label printing, and compare with before."
+   },
+   {
+    "title": "Vein finding tools and quality checks",
+    "items": [
+     "Use vein visualisation devices for difficult draws, and still rely on your touch.",
+     "Track rejected samples by cause, such as haemolysis or wrong tube, and fix the most common.",
+     "Follow sharps and infection rules with checklists and safe disposal every time."
+    ],
+    "project": "Track rejected samples by cause for two months, fix the top cause with your team and measure the change."
+   },
+   {
+    "title": "Skilled draws and calm patients",
+    "items": [
+     "Draw blood skilfully, finding veins by feel in children, older people and difficult patients.",
+     "Calm nervous patients and children with clear words and a steady manner.",
+     "Watch for fainting and reactions, and respond quickly and safely."
+    ],
+    "project": "Practise one calming routine for needle-anxious patients for a month and record how many draws succeeded first time."
+   }
+  ],
+  "aiTools": [
+   "Bedside label printing from electronic orders",
+   "Vein visualisation devices",
+   "Laboratory information systems"
+  ],
+  "humanEdge": [
+   "Finding difficult veins by feel",
+   "Calming needle-anxious patients",
+   "Responding quickly to fainting"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9099.01": {
+  "roadmap": [
+   {
+    "title": "AI for therapy materials and session records",
+    "items": [
+     "Prepare therapy materials, picture cards and word lists with AI, matched to the SLP's plan.",
+     "Record each client's responses during sessions in data sheets or apps, so progress is clear.",
+     "Handle scheduling and supplies with clinic software, keeping more time for clients."
+    ],
+    "project": "Prepare materials with AI help for five clients' goals for a month and record prep time saved and client engagement."
+   },
+   {
+    "title": "Progress data and practice apps",
+    "items": [
+     "Chart client performance data for the SLP's reviews, using simple graphs.",
+     "Set up speech practice apps for home use, and check that clients use them correctly.",
+     "Keep equipment such as AAC devices and audio tools working and updated."
+    ],
+    "project": "Graph progress for five clients for six weeks and use the charts in a planning meeting with the SLP."
+   },
+   {
+    "title": "Therapy delivery and family support",
+    "items": [
+     "Carry out therapy activities warmly and consistently, keeping clients motivated.",
+     "Notice how clients respond and tell the SLP when something changes.",
+     "Help families practise at home with clear, simple guidance and short demonstrations."
+    ],
+    "project": "Show three families one home practice routine and check how often they used it over two weeks."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for therapy materials",
+   "Session data apps",
+   "Speech practice apps for home"
+  ],
+  "humanEdge": [
+   "Warm, consistent therapy delivery",
+   "Noticing changes in client responses",
+   "Guiding families in home practice"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9099.02": {
+  "roadmap": [
+   {
+    "title": "Digital tracking for scopes and reprocessing",
+    "items": [
+     "Track every scope through cleaning, disinfection and storage with a digital reprocessing system.",
+     "Record cleaning tests and leak checks electronically, with alerts when a step is missed.",
+     "Keep equipment and supply inventories in the system with automatic reorders."
+    ],
+    "project": "Audit two months of digital reprocessing records for missed steps and fix the most common gap with your team."
+   },
+   {
+    "title": "AI in endoscopy and room readiness",
+    "items": [
+     "Learn AI polyp detection systems used during colonoscopy, and how to set them up for each case.",
+     "Prepare rooms from digital procedure checklists, so every case starts with the right equipment.",
+     "Run safety checks on scopes and processors and report faults before use."
+    ],
+    "project": "Write room setup checklists for your three most common procedures and count delays for a month before and after."
+   },
+   {
+    "title": "Careful cleaning and procedure support",
+    "items": [
+     "Clean and disinfect scopes by hand exactly to instructions; mistakes spread infection.",
+     "Assist doctors and nurses during procedures, passing tools and handling specimens correctly.",
+     "Position and monitor patients safely, watching for signs of distress."
+    ],
+    "project": "Review specimen handling errors for three months and agree one change that prevents mix-ups."
+   }
+  ],
+  "aiTools": [
+   "Digital scope reprocessing tracking",
+   "AI polyp detection systems",
+   "Inventory and reorder systems"
+  ],
+  "humanEdge": [
+   "Exact hand cleaning of every scope",
+   "Steady support during procedures",
+   "Watching patients for distress"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports, counts and schedules",
+    "items": [
+     "Complete incident reports and records with approved templates and drafting tools, and check every fact.",
+     "Use electronic count and movement systems, and investigate every mismatch at once.",
+     "Build staff schedules with scheduling software, checking coverage and rest rules yourself."
+    ],
+    "project": "Use approved report templates for a month and compare writing time and supervisor corrections with the month before."
+   },
+   {
+    "title": "Surveillance tools and officer training",
+    "items": [
+     "Learn how camera analytics and contraband detection tools work, and their limits and privacy rules.",
+     "Build short training refreshers on policy changes with AI help, checked against the rules.",
+     "Track incidents by area and shift to plan patrols and staffing."
+    ],
+    "project": "Analyse six months of incidents by area and shift and adjust one patrol pattern, then compare the next three months."
+   },
+   {
+    "title": "Leading officers and keeping order",
+    "items": [
+     "Lead officers through tense situations with clear orders and calm judgement.",
+     "Model fair, respectful treatment of inmates, and correct staff behaviour when needed.",
+     "Supervise searches and emergencies safely, following the law and policy."
+    ],
+    "project": "Hold short debriefs after every serious incident for three months and record the lessons and changes agreed."
+   }
+  ],
+  "aiTools": [
+   "Approved report templates and drafting tools",
+   "Electronic count and movement systems",
+   "Staff scheduling software"
+  ],
+  "humanEdge": [
+   "Calm leadership in tense situations",
+   "Modelling fair treatment of inmates",
+   "Supervising searches and emergencies safely"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
