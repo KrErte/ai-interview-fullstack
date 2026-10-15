@@ -28979,6 +28979,1182 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "47-5081.00": {
+  "roadmap": [
+   {
+    "title": "Equipment lists, gauges and learning apps",
+    "items": [
+     "Check equipment and parts lists on a phone before driving to site, so drillers are not kept waiting.",
+     "Watch gauges and screens on rigs and machines, and tell the operator at once when readings change.",
+     "Learn drilling and extraction basics from videos and courses, and ask experienced workers to explain what you see."
+    ],
+    "project": "Keep a loading checklist on your phone for a month and record trips back to the yard compared with the month before."
+   },
+   {
+    "title": "Maintenance basics and site safety",
+    "items": [
+     "Learn routine maintenance on pumps, engines and drill tools with manuals and supervision.",
+     "Learn site safety rules for heavy equipment, dust and hazardous gas, and follow them every time.",
+     "Help set up and adjust equipment, and ask why each setting matters."
+    ],
+    "project": "Learn one maintenance task each month for three months under supervision and record each job you did alone."
+   },
+   {
+    "title": "Reliable help and a path to the trade",
+    "items": [
+     "Handle heavy parts and materials safely, working as one with the crew.",
+     "Clean and prepare sites so the next shift can start without delay.",
+     "Work toward driller or operator roles, building on what you learn every shift."
+    ],
+    "project": "Agree with your supervisor which operator role you aim for and which skills to learn this year, and track your progress."
+   }
+  ],
+  "aiTools": [
+   "Equipment checklist apps",
+   "Rig gauges and monitoring screens",
+   "Video learning apps"
+  ],
+  "humanEdge": [
+   "Safe handling of heavy parts",
+   "Teamwork with drillers and operators",
+   "Learning the trade every shift"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for scheduling, records and reports",
+    "items": [
+     "Schedule repairs and assign technicians with a maintenance system, balancing priority, parts and skills.",
+     "Pull repair statistics, inventory and time records into reports automatically, and check numbers before sharing.",
+     "Draft procedures, safety notes and performance reviews with AI, and edit them so they sound like you."
+    ],
+    "project": "Build a weekly maintenance report that updates itself from your system, and record the time saved over a month."
+   },
+   {
+    "title": "Predictive maintenance and parts planning",
+    "items": [
+     "Use equipment data and failure history to plan maintenance before breakdowns.",
+     "Track parts and tool inventories with reorder points, so jobs are not delayed.",
+     "Use a skills matrix to plan training and cover for each technician."
+    ],
+    "project": "Analyse one year of breakdowns for your top ten assets and agree a preventive plan with your manager."
+   },
+   {
+    "title": "Leading technicians and checking work",
+    "items": [
+     "Inspect completed work yourself, and coach technicians on quality.",
+     "Handle conflicts and grievances fairly and early.",
+     "Keep the shop safe, with training and checks that people take seriously."
+    ],
+    "project": "Coach two technicians on a skill gap for three months and record their progress with them."
+   }
+  ],
+  "aiTools": [
+   "Computerised maintenance management systems",
+   "AI assistant for procedures and reviews",
+   "Skills matrix and training trackers"
+  ],
+  "humanEdge": [
+   "Inspecting and coaching on quality",
+   "Fair handling of conflicts",
+   "Safety that people take seriously"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2011.00": {
+  "roadmap": [
+   {
+    "title": "Remote diagnostics and service tickets",
+    "items": [
+     "Check remote diagnostics and error logs before visiting, so you bring the right parts.",
+     "Record repairs and parts in a service app, so the next technician sees the full history.",
+     "Search service manuals and known fixes with AI help, and confirm in the manufacturer's documentation."
+    ],
+    "project": "Check remote error logs before every visit for a month and record first-time fix rates against the month before."
+   },
+   {
+    "title": "Configuration, security and networks",
+    "items": [
+     "Learn to configure networked printers, ATMs and terminals, including security settings.",
+     "Keep parts inventory in the van with an app and reorder before you run out.",
+     "Learn the security rules for ATMs and payment devices, and follow them on every visit."
+    ],
+    "project": "Set up van stock tracking with reorder points and record missing-part delays over two months."
+   },
+   {
+    "title": "Hands-on repair and customer trust",
+    "items": [
+     "Find mechanical faults such as worn rollers or gears by careful inspection.",
+     "Explain problems and care to customers in plain language.",
+     "Work calmly when a business is waiting for its machine."
+    ],
+    "project": "Write a one-page care guide for the most common machine you service, check it with customers and leave it on site."
+   }
+  ],
+  "aiTools": [
+   "Remote diagnostics and error logs",
+   "Service ticket apps",
+   "AI search over service manuals"
+  ],
+  "humanEdge": [
+   "Finding worn parts by inspection",
+   "Plain explanations to customers",
+   "Calm work under business pressure"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2021.00": {
+  "roadmap": [
+   {
+    "title": "Site data, drones and digital reports",
+    "items": [
+     "Inspect towers with drone photos before climbing, so you plan the work and the parts.",
+     "Complete close-out reports with photos and test results in an app, as carriers require.",
+     "Read site drawings and datasheets on a tablet, and check antenna types and positions on site."
+    ],
+    "project": "Use drone photos before climbing on five sites and record how often they changed your parts list or plan."
+   },
+   {
+    "title": "Testing tools and new technologies",
+    "items": [
+     "Use line sweep, PIM and fibre test tools, and understand what each result means.",
+     "Learn 5G equipment, small cells and fibre connections, as networks change.",
+     "Track climbing gear inspections and certifications with reminders."
+    ],
+    "project": "Collect test results from ten sites, find the most common fault and share a fix with your crew."
+   },
+   {
+    "title": "Safe climbing and careful installation",
+    "items": [
+     "Climb and work at height safely, with rescue plans and full attention.",
+     "Install, align and weatherproof antennas and cables so they last.",
+     "Check your own work before leaving, because return climbs cost time and risk."
+    ],
+    "project": "Run a tower rescue drill with your crew each quarter and record what you improved each time."
+   }
+  ],
+  "aiTools": [
+   "Drones for tower inspection",
+   "Line sweep and fibre test tools",
+   "Close-out reporting apps"
+  ],
+  "humanEdge": [
+   "Safe climbing with rescue plans",
+   "Careful alignment and weatherproofing",
+   "Checking your work before leaving"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2022.00": {
+  "roadmap": [
+   {
+    "title": "Network diagnostics and job apps",
+    "items": [
+     "Use network monitoring and remote tests to find faults before you go on site.",
+     "Receive jobs, record work and close tickets in a field app, with photos of connections.",
+     "Look up circuit diagrams and equipment records on a tablet instead of paper folders."
+    ],
+    "project": "Run remote tests before every fault visit for a month and record how often you went straight to the right place."
+   },
+   {
+    "title": "Fibre, networking and customer setup",
+    "items": [
+     "Learn fibre splicing, optical testing and network equipment as copper lines are replaced.",
+     "Set up routers, Wi-Fi and phone systems for customers, with security settings.",
+     "Keep facility and equipment records accurate, so other technicians can trust them."
+    ],
+    "project": "Complete fibre splicing training and test your splices with an OTDR on five jobs, recording the losses."
+   },
+   {
+    "title": "Field skill and customer explanations",
+    "items": [
+     "Work safely on poles, in manholes and in cable vaults.",
+     "Trace faults through old and messy wiring with patience.",
+     "Show customers how their equipment works and answer questions clearly."
+    ],
+    "project": "Write a simple guide for customers on your most common equipment, test it with five customers and improve it."
+   }
+  ],
+  "aiTools": [
+   "Network monitoring and remote tests",
+   "Field service apps",
+   "Optical test equipment"
+  ],
+  "humanEdge": [
+   "Safe work on poles and in manholes",
+   "Patient fault tracing in old wiring",
+   "Clear explanations to customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2091.00": {
+  "roadmap": [
+   {
+    "title": "Digital manuals and maintenance records",
+    "items": [
+     "Search aircraft maintenance manuals and wiring diagrams with digital tools, and follow the approved task exactly.",
+     "Record maintenance in the electronic system with part numbers and sign-offs, so records are audit-ready.",
+     "Review fault history from the aircraft's maintenance data before troubleshooting."
+    ],
+    "project": "Review fault history before every avionics job for a month and record how often it shortened troubleshooting."
+   },
+   {
+    "title": "Test equipment and flight data",
+    "items": [
+     "Use automated test equipment for avionics units, and understand what each test checks.",
+     "Interpret flight data to find intermittent faults that ground tests miss.",
+     "Learn new systems such as glass cockpits, datalinks and satellite communications."
+    ],
+    "project": "Track intermittent faults for three months, compare flight data with your findings and share lessons with the team."
+   },
+   {
+    "title": "Precision and responsibility",
+    "items": [
+     "Solder, crimp and route wiring to strict standards, because safety depends on it.",
+     "Coordinate with mechanics and engineers on complex faults.",
+     "Sign off only work you have checked yourself."
+    ],
+    "project": "Review ten of your sign-offs with a senior technician and agree any checks to add to your routine."
+   }
+  ],
+  "aiTools": [
+   "Digital maintenance manuals",
+   "Automated avionics test equipment",
+   "Electronic maintenance records"
+  ],
+  "humanEdge": [
+   "Precise wiring to strict standards",
+   "Teamwork on complex faults",
+   "Signing off only checked work"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2092.00": {
+  "roadmap": [
+   {
+    "title": "Diagnostics, records and quotes",
+    "items": [
+     "Use motor analysers and test meters with digital records, so each unit has a test history.",
+     "Record repairs, parts and labour in a shop system, and send quotes drafted with AI and checked by you.",
+     "Look up motor specifications and rewinding data quickly with digital tools."
+    ],
+    "project": "Record test results for every motor you repair for three months and use them to spot common failure causes."
+   },
+   {
+    "title": "Condition monitoring and drives",
+    "items": [
+     "Learn vibration analysis and thermal imaging to find motor problems before failure.",
+     "Learn variable speed drives and electronic controllers, as more motors use them.",
+     "Advise customers on repair or replacement using energy efficiency data."
+    ],
+    "project": "Offer vibration checks to three customers and record how many problems you found before failure."
+   },
+   {
+    "title": "Skilled rebuilding by hand",
+    "items": [
+     "Rewind, rebuild and balance motors carefully to the original ratings.",
+     "Find wear and damage by inspection that tests do not show.",
+     "Explain repair options honestly to customers."
+    ],
+    "project": "Train an apprentice on rewinding for three months and write down the checks you teach that are not in the manual."
+   }
+  ],
+  "aiTools": [
+   "Motor analysers and test meters",
+   "Vibration and thermal imaging tools",
+   "Shop management systems"
+  ],
+  "humanEdge": [
+   "Careful rewinding and rebuilding",
+   "Spotting wear tests do not show",
+   "Honest advice on repair options"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2093.00": {
+  "roadmap": [
+   {
+    "title": "Diagnostic software and schematics",
+    "items": [
+     "Diagnose vehicle and train electrical faults with diagnostic software, then confirm with meters and inspection.",
+     "Use digital schematics and manufacturer data to trace circuits quickly.",
+     "Record repairs and tests in the maintenance system, so service histories are complete."
+    ],
+    "project": "Track how long each fault took to find for a month, with and without diagnostic software, and share the results."
+   },
+   {
+    "title": "Electric drives and high-voltage safety",
+    "items": [
+     "Learn high-voltage battery and electric drive systems, and the safety rules for them.",
+     "Learn network systems such as CAN bus and how faults spread through them.",
+     "Keep your high-voltage training and certifications current."
+    ],
+    "project": "Complete one high-voltage safety course and use its checklist on every electric vehicle or train job for a month."
+   },
+   {
+    "title": "Hands-on fault finding",
+    "items": [
+     "Find corroded connections and chafed wires that software does not show.",
+     "Splice and solder connections that last in vibration and weather.",
+     "Test repaired systems carefully before release."
+    ],
+    "project": "Record every fault caused by wiring damage for three months and share the locations with the fleet manager."
+   }
+  ],
+  "aiTools": [
+   "Vehicle diagnostic software",
+   "Digital wiring schematics",
+   "Maintenance record systems"
+  ],
+  "humanEdge": [
+   "Finding corroded and chafed wiring",
+   "Durable splices and solder joints",
+   "Careful testing before release"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2094.00": {
+  "roadmap": [
+   {
+    "title": "Fault logs, manuals and AI help",
+    "items": [
+     "Read equipment fault logs and alarm histories before opening a cabinet, so you start from evidence.",
+     "Ask an AI assistant to explain unfamiliar drive or PLC alarms, then check the meaning in the equipment's own documentation.",
+     "Record performance problems, repairs and calibrations in the maintenance system the same day."
+    ],
+    "project": "Read fault logs before every repair for a month and record how much faster you found the cause."
+   },
+   {
+    "title": "PLCs, condition monitoring and calibration",
+    "items": [
+     "Learn PLCs, drives and industrial networks, so you can troubleshoot modern equipment.",
+     "Use thermal imaging and condition monitoring for preventive maintenance.",
+     "Keep calibration schedules in a system with reminders."
+    ],
+    "project": "Do a thermal survey of electrical panels in one area and list hot spots for repair with your supervisor."
+   },
+   {
+    "title": "Troubleshooting and teamwork",
+    "items": [
+     "Ask operators what happened before the fault, and listen carefully.",
+     "Work safely with lockout and live testing rules.",
+     "Solve problems with engineers when the cause is unclear."
+    ],
+    "project": "Interview operators after five breakdowns, note what they saw and check how often it pointed to the cause."
+   }
+  ],
+  "aiTools": [
+   "Equipment fault logs and alarms",
+   "AI search over manuals",
+   "Thermal imaging and condition monitoring"
+  ],
+  "humanEdge": [
+   "Listening to operators about faults",
+   "Strict lockout and live testing",
+   "Solving unclear problems with engineers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2095.00": {
+  "roadmap": [
+   {
+    "title": "Relay data and test records",
+    "items": [
+     "Download relay event records and fault data, and analyse them with software to find the cause of trips.",
+     "Record tests and maintenance in the asset system, so trends are visible for every breaker and transformer.",
+     "Search manuals and settings files with AI help, and confirm settings against approved documents."
+    ],
+    "project": "Analyse relay event records for every trip in a quarter and share the causes found with the engineers."
+   },
+   {
+    "title": "Digital substations and monitoring",
+    "items": [
+     "Learn digital substation systems, such as IEC 61850 and fibre networks.",
+     "Use online monitoring of transformers and breakers to plan maintenance.",
+     "Keep spare parts and test equipment inventories in a system."
+    ],
+    "project": "Complete one course on digital substations and test one protection scheme with an engineer."
+   },
+   {
+    "title": "Safe switching and careful testing",
+    "items": [
+     "Follow switching and isolation procedures exactly, as mistakes can kill.",
+     "Test relays and circuits methodically, checking every step.",
+     "Work with engineers on complex faults and changes."
+    ],
+    "project": "Review switching procedures with your team, practise one emergency scenario and record improvements."
+   }
+  ],
+  "aiTools": [
+   "Relay event and fault analysis software",
+   "Online monitoring systems",
+   "Asset maintenance systems"
+  ],
+  "humanEdge": [
+   "Exact switching and isolation",
+   "Methodical, step-by-step relay testing",
+   "Work with engineers on complex faults"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2096.00": {
+  "roadmap": [
+   {
+    "title": "Vehicle data, quotes and bookings",
+    "items": [
+     "Check wiring diagrams and vehicle integration guides on a tablet before installing equipment.",
+     "Send quotes with parts and labour drafted with AI, checking every price.",
+     "Book jobs online and send customers reminders and care tips automatically."
+    ],
+    "project": "Move bookings and quotes online for a month and record no-shows and how fast customers approve quotes compared with before."
+   },
+   {
+    "title": "Vehicle networks and new systems",
+    "items": [
+     "Learn vehicle networks, cameras and driver assistance systems, as installs now connect to them.",
+     "Use diagnostic tools to check that new equipment does not cause fault codes.",
+     "Keep up with security and tracking systems for fleets."
+    ],
+    "project": "Complete one course on vehicle networks and check every install for fault codes for a month."
+   },
+   {
+    "title": "Neat installs and customer care",
+    "items": [
+     "Run cables neatly and hide them, so interiors look factory-made.",
+     "Find electrical faults by careful testing and inspection.",
+     "Explain new equipment to customers before they drive away."
+    ],
+    "project": "Photograph your cable routing on every install for a month and review the photos to improve neatness."
+   }
+  ],
+  "aiTools": [
+   "Vehicle wiring diagrams and integration guides",
+   "Vehicle diagnostic tools",
+   "Online booking and quoting apps"
+  ],
+  "humanEdge": [
+   "Neat, hidden cable routing",
+   "Careful fault testing with meters",
+   "Clear handover to customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2097.00": {
+  "roadmap": [
+   {
+    "title": "Remote support and service records",
+    "items": [
+     "Use remote support tools to fix software and settings problems without a visit when possible.",
+     "Record repairs and tests in a service app with photos, so warranty claims are quick.",
+     "Search service manuals and known faults with AI, and confirm with the manufacturer."
+    ],
+    "project": "Track how many issues you solved remotely for a month and compare with visits needed the month before."
+   },
+   {
+    "title": "Networks, smart homes and calibration",
+    "items": [
+     "Learn networked audio, video and smart home systems, as most equipment now connects.",
+     "Calibrate sound and picture with measurement tools and apps.",
+     "Keep up with new formats and streaming setups."
+    ],
+    "project": "Calibrate five systems with measurement tools and ask customers whether they notice a difference."
+   },
+   {
+    "title": "Craft and customer service",
+    "items": [
+     "Mount and wire speakers and screens neatly in customers' homes.",
+     "Explain to customers how to use systems simply and safely.",
+     "Find hardware faults with careful testing and soldering."
+    ],
+    "project": "Write simple one-page guides for your most common setups, test them with customers and improve them."
+   }
+  ],
+  "aiTools": [
+   "Remote support tools",
+   "Sound and picture calibration apps",
+   "Service record apps"
+  ],
+  "humanEdge": [
+   "Neat mounting in customer homes",
+   "Simple guidance for customers",
+   "Careful hardware fault finding"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-2098.00": {
+  "roadmap": [
+   {
+    "title": "Design tools, quotes and remote setup",
+    "items": [
+     "Plan camera and sensor positions with design software and site photos, and confirm coverage on site.",
+     "Send quotes and risk assessments drafted with AI, checking every device and price.",
+     "Programme and test panels remotely where systems allow, and record settings securely."
+    ],
+    "project": "Plan five systems with design software and compare blind spots found after installation with earlier jobs."
+   },
+   {
+    "title": "Networks, cyber security and false alarms",
+    "items": [
+     "Learn IP cameras, networks and cyber security settings, so systems cannot be easily hacked.",
+     "Analyse false alarm logs to find faulty sensors or user errors.",
+     "Keep fire alarm testing records in a system for inspections."
+    ],
+    "project": "Analyse false alarms on ten sites for three months, fix the top causes with customers and record how alarm numbers change."
+   },
+   {
+    "title": "Careful installation and trust",
+    "items": [
+     "Install and test sensors and wiring carefully, as lives and property depend on them.",
+     "Explain systems and false alarm causes clearly to customers.",
+     "Keep customer codes, layouts and security information strictly private."
+    ],
+    "project": "Train ten customers on avoiding false alarms and record alarm rates for three months after."
+   }
+  ],
+  "aiTools": [
+   "Security system design software",
+   "Remote panel programming",
+   "Alarm log analysis"
+  ],
+  "humanEdge": [
+   "Careful testing of life-safety systems",
+   "Clear explanations of false alarms",
+   "Discretion with security information"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3011.00": {
+  "roadmap": [
+   {
+    "title": "Digital manuals and maintenance records",
+    "items": [
+     "Use digital maintenance manuals and service bulletins on a tablet, always following the current approved revision.",
+     "Record work in electronic maintenance systems, with part numbers and sign-offs.",
+     "Review aircraft health monitoring data before inspections, so you know where to look."
+    ],
+    "project": "Review health monitoring data before every inspection for a month and record findings it pointed to."
+   },
+   {
+    "title": "Inspection technology and new aircraft",
+    "items": [
+     "Learn borescopes, non-destructive testing and drone-based inspections, and their limits.",
+     "Learn composite structures and new engine types, and the repair rules for them.",
+     "Keep licences and type ratings current with reminders."
+    ],
+    "project": "Complete one training on a new inspection method and use it under supervision on three aircraft."
+   },
+   {
+    "title": "Precision, care and responsibility",
+    "items": [
+     "Inspect aircraft thoroughly, finding cracks, leaks and wear by eye and feel.",
+     "Repair to exact standards, as safety depends on it.",
+     "Certify aircraft only when you are sure, even under schedule pressure."
+    ],
+    "project": "Review your inspection findings with a senior mechanic for a month and agree where to look more carefully."
+   }
+  ],
+  "aiTools": [
+   "Digital maintenance manuals",
+   "Aircraft health monitoring systems",
+   "Borescopes and NDT tools"
+  ],
+  "humanEdge": [
+   "Finding cracks and leaks by eye",
+   "Repairs to exact standards",
+   "Certifying only when sure"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3021.00": {
+  "roadmap": [
+   {
+    "title": "AI damage estimates and repair data",
+    "items": [
+     "Check AI photo-based damage estimates from insurers against the car itself, and add hidden damage you find.",
+     "Look up manufacturer repair procedures and structural data online before cutting or welding.",
+     "Send customers repair updates with photos from the shop system, so they know when the car is ready."
+    ],
+    "project": "Compare AI photo estimates with the final repair on twenty cars and record what the estimates missed most often."
+   },
+   {
+    "title": "Measuring systems, ADAS and new materials",
+    "items": [
+     "Use electronic measuring systems to check frame alignment before and after straightening.",
+     "Learn to recalibrate cameras and radar for driver assistance systems after body repairs.",
+     "Learn repair rules for aluminium, high-strength steel and composites."
+    ],
+    "project": "Complete one ADAS calibration course and record every recalibration you do for three months with test results."
+   },
+   {
+    "title": "Hand skill and a perfect finish",
+    "items": [
+     "Shape metal and smooth filler by hand until the panel looks untouched.",
+     "Weld and fit replacement parts to the manufacturer's standards for safety.",
+     "Judge paint and panel fit in good light before the car goes back to the customer."
+    ],
+    "project": "Inspect every finished car under strong light for a month, record flaws you caught and change one step of your process."
+   }
+  ],
+  "aiTools": [
+   "AI photo damage estimating",
+   "Electronic frame measuring systems",
+   "ADAS calibration equipment"
+  ],
+  "humanEdge": [
+   "Shaping panels to look untouched",
+   "Safe welding to factory standards",
+   "Judging finish and fit in good light"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3022.00": {
+  "roadmap": [
+   {
+    "title": "Part lookup, bookings and job records",
+    "items": [
+     "Find the exact windscreen for each model with VIN lookup tools, including sensor and camera brackets.",
+     "Book mobile jobs with route planning and weather checks, since rain and cold affect curing.",
+     "Record each job with photos and cure times in an app, so warranty questions are easy to answer."
+    ],
+    "project": "Use VIN lookup for every order over a month and record wrong-part deliveries compared with the month before."
+   },
+   {
+    "title": "Camera recalibration and repair choices",
+    "items": [
+     "Learn static and dynamic recalibration of windscreen cameras after replacement.",
+     "Repair chips with resin where safe, and explain to customers when replacement is needed.",
+     "Follow adhesive cure charts for temperature and humidity before releasing a car."
+    ],
+    "project": "Record recalibration results for every camera-equipped car for three months and review failures with your supervisor."
+   },
+   {
+    "title": "Careful fitting and safe glass",
+    "items": [
+     "Remove and fit glass without damaging paint, trim or the pinchweld.",
+     "Lay an even urethane bead, as the windscreen is part of the car's safety structure.",
+     "Explain safe drive-away times clearly, even when customers are in a hurry."
+    ],
+    "project": "Ask a senior fitter to check your bead and fit on ten jobs and record what you changed after their feedback."
+   }
+  ],
+  "aiTools": [
+   "VIN-based glass lookup tools",
+   "Camera recalibration equipment",
+   "Mobile job and route apps"
+  ],
+  "humanEdge": [
+   "Fitting without damaging paint or trim",
+   "An even, safe urethane bead",
+   "Clear advice on drive-away times"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3031.00": {
+  "roadmap": [
+   {
+    "title": "Fleet telematics and diagnostic software",
+    "items": [
+     "Use fleet telematics and fault codes to plan repairs before trucks or buses come in.",
+     "Diagnose engine, emissions and brake systems with diagnostic software, and confirm with tests and inspection.",
+     "Record repairs and parts in the fleet maintenance system, so service histories are complete."
+    ],
+    "project": "Review telematics fault codes for your fleet each week for a month and record breakdowns prevented by early repairs."
+   },
+   {
+    "title": "Electric drivetrains and emissions systems",
+    "items": [
+     "Learn electric and hybrid bus and truck systems, with high-voltage safety training.",
+     "Learn modern emissions systems such as particulate filters and SCR, and their common faults.",
+     "Use repair data and manufacturer bulletins to fix known problems faster."
+    ],
+    "project": "Complete high-voltage training and work on three electric or hybrid vehicles under supervision."
+   },
+   {
+    "title": "Hearing faults and safe repairs",
+    "items": [
+     "Listen to engines and feel road tests to find problems that codes do not show.",
+     "Inspect brakes, steering and tyres carefully, as heavy vehicles carry lives and loads.",
+     "Overhaul engines and transmissions to exact specifications."
+    ],
+    "project": "Write down five faults you found by sound or feel this quarter and share them with apprentices."
+   }
+  ],
+  "aiTools": [
+   "Fleet telematics",
+   "Heavy vehicle diagnostic software",
+   "Fleet maintenance systems"
+  ],
+  "humanEdge": [
+   "Finding faults by sound and feel",
+   "Careful safety checks on brakes",
+   "Precise engine and gearbox overhauls"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3041.00": {
+  "roadmap": [
+   {
+    "title": "Remote diagnostics and farm data",
+    "items": [
+     "Use remote machine diagnostics and telematics to check faults before driving out to the farm.",
+     "Record repairs and parts in a service app, so farmers and the dealer see the full history.",
+     "Ask the dealer's technical hotline or AI search for known tractor and combine faults, and confirm in the dealer service manual."
+    ],
+    "project": "Check remote diagnostics before every field call for a season and record repeat visits saved."
+   },
+   {
+    "title": "Precision farming electronics",
+    "items": [
+     "Learn GPS guidance, yield monitors and section control, and how to set them up.",
+     "Learn the software and data links between tractors, implements and farm apps.",
+     "Plan pre-season checks with farmers, so machines are ready before busy times."
+    ],
+    "project": "Offer pre-season checks to ten farmers and record breakdowns in the busy season compared with last year."
+   },
+   {
+    "title": "Field repairs and farmer trust",
+    "items": [
+     "Repair machines in the field quickly when crops are waiting.",
+     "Listen to farmers' descriptions, as they know their machines.",
+     "Weld, fabricate and adapt parts when the right part is far away."
+    ],
+    "project": "Keep a field repair log for a season with time to fix, and share the lessons with your team."
+   }
+  ],
+  "aiTools": [
+   "Remote machine diagnostics",
+   "GPS and precision farming systems",
+   "Service apps and manuals"
+  ],
+  "humanEdge": [
+   "Fast field repairs at busy times",
+   "Listening to farmers about machines",
+   "Welding and adapting parts on site"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3042.00": {
+  "roadmap": [
+   {
+    "title": "Telematics, fault codes and service data",
+    "items": [
+     "Read telematics and fault codes from excavators, loaders and cranes before going to site.",
+     "Use computerised test equipment for hydraulics and electronics, and confirm with pressure tests.",
+     "Record repairs and parts in the service system, so the owner sees costs and history."
+    ],
+    "project": "Use telematics data to plan service for one fleet for three months and record unplanned breakdowns."
+   },
+   {
+    "title": "Oil analysis and machine automation",
+    "items": [
+     "Use oil analysis and wear data to plan component changes before failure.",
+     "Learn machine control and automation systems, as more equipment uses them.",
+     "Keep up with manufacturer updates and software flashes."
+    ],
+    "project": "Start oil sampling on five machines, record the problems it found before failure and share the results with the owners."
+   },
+   {
+    "title": "Heavy repairs done safely",
+    "items": [
+     "Dismantle and rebuild heavy components safely with hoists and jacks.",
+     "Find hydraulic and mechanical faults by testing and careful inspection.",
+     "Work in mud, cold and remote sites to get machines running."
+    ],
+    "project": "Review your lifting and blocking procedures with your team and record improvements over a month."
+   }
+  ],
+  "aiTools": [
+   "Machine telematics",
+   "Computerised hydraulic and electronic test equipment",
+   "Oil analysis services"
+  ],
+  "humanEdge": [
+   "Safe heavy component rebuilding",
+   "Hydraulic fault finding by testing",
+   "Getting machines running on remote sites"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3043.00": {
+  "roadmap": [
+   {
+    "title": "Wayside detectors and car records",
+    "items": [
+     "Use wayside detector data on bearings, wheels and brakes to know which cars need attention.",
+     "Record car condition and repairs on a tablet, so maintenance histories are complete.",
+     "Look up repair procedures and drawings digitally instead of paper manuals."
+    ],
+    "project": "Compare wayside detector alerts with your inspection findings for a month and share the matches with your supervisor."
+   },
+   {
+    "title": "Brakes, electronics and new equipment",
+    "items": [
+     "Learn electronic brake controls and propulsion systems on newer locomotives and cars.",
+     "Use measuring tools for wheels and couplers, and record readings digitally.",
+     "Follow safety rules for working on tracks and under cars every time."
+    ],
+    "project": "Record wheel measurements digitally for three months and use the trend to plan wheel changes before they reach the limit."
+   },
+   {
+    "title": "Inspection and heavy repair skills",
+    "items": [
+     "Inspect cars thoroughly for cracks, wear and damage by eye and touch.",
+     "Repair and weld heavy components to exact standards.",
+     "Test units carefully before release, as trains depend on them."
+    ],
+    "project": "Inspect cars with an experienced repairer for a month and list the defect signs they teach you."
+   }
+  ],
+  "aiTools": [
+   "Wayside detector data",
+   "Tablet inspection records",
+   "Digital wheel measuring tools"
+  ],
+  "humanEdge": [
+   "Finding cracks by eye and touch",
+   "Exact heavy repairs and welding",
+   "Careful tests before release"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3051.00": {
+  "roadmap": [
+   {
+    "title": "Engine diagnostics and service records",
+    "items": [
+     "Connect diagnostic software to modern outboard and inboard engines, and confirm faults with tests.",
+     "Record service, parts and test runs in a shop system, so owners have a full history.",
+     "Send owners seasonal service reminders and winter storage advice automatically."
+    ],
+    "project": "Set up seasonal service reminders for your customers and record bookings compared with last season."
+   },
+   {
+    "title": "Electric drives and marine electronics",
+    "items": [
+     "Learn electric outboards and battery systems, as more boats use them.",
+     "Learn marine electronics such as chartplotters and engine networks.",
+     "Follow corrosion prevention rules carefully for engines in salt water."
+    ],
+    "project": "Complete one course on electric boat drives and service three electric systems under supervision."
+   },
+   {
+    "title": "Hands-on repairs and water tests",
+    "items": [
+     "Find problems by sound, smoke and vibration on test runs.",
+     "Repair engines, props and steering to exact standards for safety at sea.",
+     "Explain care, winter storage and safe use to boat owners at handover."
+    ],
+    "project": "Write a short pre-season checklist for owners, test it with five customers and improve it."
+   }
+  ],
+  "aiTools": [
+   "Marine engine diagnostic software",
+   "Shop management systems",
+   "Customer reminder tools"
+  ],
+  "humanEdge": [
+   "Finding faults on water tests",
+   "Exact repairs for safety at sea",
+   "Practical advice to boat owners"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3052.00": {
+  "roadmap": [
+   {
+    "title": "Diagnostic tools and shop systems",
+    "items": [
+     "Use motorcycle diagnostic tools to read fault codes and live data, and confirm by testing.",
+     "Quote services and parts from the workshop system, and explain options so riders can decide what to fix now and what later.",
+     "Look up service data and recalls online before each job."
+    ],
+    "project": "Use diagnostic tools on every fuel-injected bike for a month and record time to find the fault."
+   },
+   {
+    "title": "Electric bikes and electronics",
+    "items": [
+     "Learn electric motorcycle systems and high-voltage safety.",
+     "Learn ABS, traction control and riding modes, and how to set them up.",
+     "Install accessories that connect to bike electronics without causing faults."
+    ],
+    "project": "Complete one electric motorcycle course and service three electric bikes under supervision."
+   },
+   {
+    "title": "Mechanical feel and rider trust",
+    "items": [
+     "Listen to engines and test ride to find problems codes miss.",
+     "Adjust chains, brakes and suspension precisely for safety.",
+     "Talk with riders about how they use their bikes and what feels wrong."
+    ],
+    "project": "Ask ten riders about the bike after service and record what they noticed and what to improve."
+   }
+  ],
+  "aiTools": [
+   "Motorcycle diagnostic tools",
+   "Shop management systems",
+   "Online service data"
+  ],
+  "humanEdge": [
+   "Finding faults on test rides",
+   "Precise brake and chain adjustment",
+   "Understanding what riders feel"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3053.00": {
+  "roadmap": [
+   {
+    "title": "Parts lookup, quotes and bookings",
+    "items": [
+     "Find parts with model number lookup and exploded diagrams online, and check stock before quoting.",
+     "Send repair quotes and service reminders from the shop system, drafted with AI and checked by you.",
+     "Record repairs, time and parts, so prices are fair and consistent."
+    ],
+    "project": "Send seasonal service reminders to customers before spring and record bookings compared with last year."
+   },
+   {
+    "title": "Battery tools and robotic mowers",
+    "items": [
+     "Learn battery-powered tools and robotic mowers, as customers switch from petrol.",
+     "Learn to set up and repair robotic mower software, wires and sensors.",
+     "Advise customers on repair or replacement honestly."
+    ],
+    "project": "Complete one course on robotic mowers, offer installation and servicing to customers for a season and record the jobs you won."
+   },
+   {
+    "title": "Hands-on engine skill",
+    "items": [
+     "Strip, clean and rebuild small engines by hand to good running order.",
+     "Diagnose faults by sound, smell and simple tests.",
+     "Explain care, fuel storage and safe use to customers when they collect."
+    ],
+    "project": "Write a one-page care guide for mowers and saws, give it to customers for a season and record repeat faults."
+   }
+  ],
+  "aiTools": [
+   "Online parts lookup and diagrams",
+   "Shop systems with reminders",
+   "Robotic mower setup apps"
+  ],
+  "humanEdge": [
+   "Rebuilding small engines by hand",
+   "Diagnosing by sound and smell",
+   "Honest repair-or-replace advice"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3091.00": {
+  "roadmap": [
+   {
+    "title": "Bookings, parts and bike fitting",
+    "items": [
+     "Take repair bookings online and send reminders, so the workshop runs smoothly.",
+     "Check parts compatibility with online tools, and order before the bike arrives.",
+     "Use bike fitting apps and measurements to help customers choose the right size."
+    ],
+    "project": "Use online bookings for a month and record waiting times and no-shows compared with before."
+   },
+   {
+    "title": "E-bikes and electronic shifting",
+    "items": [
+     "Learn e-bike motors, batteries and diagnostic software, as e-bikes grow fast.",
+     "Learn electronic shifting systems and their apps.",
+     "Follow battery safety rules for storage and transport."
+    ],
+    "project": "Complete one e-bike diagnostics course and record the e-bike repairs you can now do in-house instead of sending them away."
+   },
+   {
+    "title": "Hands-on mechanics and good advice",
+    "items": [
+     "Adjust gears and brakes precisely so bikes ride smoothly and safely.",
+     "True and tension wheels by hand with patience until they run straight.",
+     "Help customers choose bikes that fit their bodies and needs."
+    ],
+    "project": "Ask ten customers about their bike a month after service and record what you could improve."
+   }
+  ],
+  "aiTools": [
+   "Online booking systems",
+   "E-bike diagnostic software",
+   "Bike fitting apps"
+  ],
+  "humanEdge": [
+   "Precise gear and brake adjustment",
+   "Truing and tensioning wheels by hand",
+   "Helping customers find the right bike"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3092.00": {
+  "roadmap": [
+   {
+    "title": "Estimates, manuals and service records",
+    "items": [
+     "Look up wiring diagrams and appliance manuals digitally, and confirm with the vehicle's actual system.",
+     "Prepare estimates with parts lists and labour from the shop system, drafted with AI and checked by you.",
+     "Record repairs with photos, so owners and insurers see what was done."
+    ],
+    "project": "Record every repair with photos for a month and compare customer questions and insurance delays with before."
+   },
+   {
+    "title": "Leak detection and solar systems",
+    "items": [
+     "Use moisture meters and pressure tests to find water leaks before damage spreads.",
+     "Learn solar panels, lithium batteries and inverters, as owners add them.",
+     "Follow propane gas safety rules and test every connection."
+    ],
+    "project": "Offer leak checks with moisture meters to ten owners, record hidden damage found and how much repair cost it saved them."
+   },
+   {
+    "title": "Many trades in one vehicle",
+    "items": [
+     "Repair wiring, plumbing, gas and structure safely in small spaces.",
+     "Find leaks and faults patiently, as RV systems are complex.",
+     "Explain repairs, gas safety and care to owners clearly at handover."
+    ],
+    "project": "Write a short pre-trip checklist for owners with AI help, test it with five customers and improve it with their comments."
+   }
+  ],
+  "aiTools": [
+   "Digital wiring diagrams and manuals",
+   "Moisture meters and pressure testers",
+   "Shop estimating systems"
+  ],
+  "humanEdge": [
+   "Skill across wiring, gas and plumbing",
+   "Patient leak and fault finding",
+   "Clear advice to RV owners at handover"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-3093.00": {
+  "roadmap": [
+   {
+    "title": "Tyre data, bookings and records",
+    "items": [
+     "Look up the right tyre size, load and speed rating for each vehicle in the shop system before fitting.",
+     "Use online bookings and tyre hotel records, so customers' seasonal tyres are ready when they arrive.",
+     "Record tread depth and tyre condition with photos, so customers see why a change is needed."
+    ],
+    "project": "Record tread depth with photos for every car for a month and track how many customers accepted advice compared with before."
+   },
+   {
+    "title": "TPMS, balancing machines and safety",
+    "items": [
+     "Learn tyre pressure sensor systems and the tools to program and reset them after a change.",
+     "Use modern balancing and alignment machines, and understand what their readings mean for the driver.",
+     "Follow torque settings for every wheel nut, and use a torque wrench instead of guessing with the gun."
+    ],
+    "project": "Complete training on tyre pressure sensors and record every sensor job for a month, including problems you solved."
+   },
+   {
+    "title": "Careful work and a path to mechanic roles",
+    "items": [
+     "Spot damage, uneven wear and bulges that show suspension or alignment problems on the car.",
+     "Work quickly and safely in busy seasons, lifting wheels and using jacks correctly every time.",
+     "Help mechanics with oil changes and batteries, and build skills toward a mechanic apprenticeship."
+    ],
+    "project": "Agree with your manager which mechanic tasks you will learn this year, practise them under supervision and track progress."
+   }
+  ],
+  "aiTools": [
+   "Shop systems with tyre lookup",
+   "TPMS programming tools",
+   "Balancing and alignment machines"
+  ],
+  "humanEdge": [
+   "Spotting wear that shows car faults",
+   "Safe, fast work in busy seasons",
+   "Correct torque on every wheel nut"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9011.00": {
+  "roadmap": [
+   {
+    "title": "Work orders, quotes and site photos",
+    "items": [
+     "Receive work orders and customer photos on a phone app, so you know the door type and likely parts before arriving.",
+     "Send quotes and service reports from templates and AI drafts, checking every part and price.",
+     "Look up door and opener manuals and wiring diagrams digitally instead of carrying binders."
+    ],
+    "project": "Ask customers for photos with every request for a month and record how often you brought the right parts first time."
+   },
+   {
+    "title": "Smart openers and safety sensors",
+    "items": [
+     "Learn smart openers, access control and app-connected doors, as customers ask for them.",
+     "Test safety sensors and force settings on every visit, and record the results for liability.",
+     "Plan maintenance contracts for business customers with reminders in your service system."
+    ],
+    "project": "Offer maintenance contracts to five business customers and record breakdown callouts over six months."
+   },
+   {
+    "title": "Spring safety and fine adjustment",
+    "items": [
+     "Wind and replace springs safely with the right bars and attention, as they can cause serious injury.",
+     "Adjust doors by hand until they open and close smoothly with the right effort.",
+     "Assess headroom and site conditions in person before recommending a door."
+    ],
+    "project": "Train a new worker on spring safety for a month and write down the checks you teach before every job."
+   }
+  ],
+  "aiTools": [
+   "Field service apps with photos",
+   "Smart opener and access control apps",
+   "Digital door manuals"
+  ],
+  "humanEdge": [
+   "Safe spring winding and replacement",
+   "Fine adjustment for smooth doors",
+   "Assessing sites before recommending"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9012.00": {
+  "roadmap": [
+   {
+    "title": "Smart meters and digital field orders",
+    "items": [
+     "Install and configure smart meters, and confirm they communicate with the network before leaving.",
+     "Record meter readings, installation data and test results on a handheld, so billing and records are correct.",
+     "Use remote data from meters and telemetry to find faulty units before customers complain."
+    ],
+    "project": "Review remote meter data for one area for a month, list faulty units it revealed and fix them on planned visits."
+   },
+   {
+    "title": "Calibration and pressure control",
+    "items": [
+     "Calibrate gauges, regulators and meters with precision equipment, and keep calibration records.",
+     "Learn gas pressure telemetry and odorisation systems, and what alarms mean.",
+     "Follow gas and electrical safety rules exactly when turning services on or off."
+    ],
+    "project": "Track calibration drift for twenty instruments over six months and agree new check intervals with your supervisor."
+   },
+   {
+    "title": "Careful testing and customer safety",
+    "items": [
+     "Test valves and regulators for leaks with care, as mistakes can cause fires or explosions.",
+     "Find damaged or tampered meters by inspection and report them correctly.",
+     "Explain to customers calmly why service is being turned off or changed."
+    ],
+    "project": "Review five leak or tampering cases with your supervisor and write down the warning signs for newer workers."
+   }
+  ],
+  "aiTools": [
+   "Smart meters and network tools",
+   "Handheld field computers",
+   "Precision calibration equipment"
+  ],
+  "humanEdge": [
+   "Careful leak testing for safety",
+   "Spotting damaged or tampered meters",
+   "Calm explanations to customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "49-9021.00": {
   "roadmap": [
    {
@@ -29018,6 +30194,468 @@
    "Diagnosing difficult faults on site",
    "Safe work with refrigerants and electricity",
    "Explaining repairs honestly to customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9031.00": {
+  "roadmap": [
+   {
+    "title": "Error codes, parts and bookings",
+    "items": [
+     "Ask customers for error codes, model numbers and photos when they book, so you bring the right parts.",
+     "Search service manuals and known faults for each model with AI help, and confirm in the manufacturer's data.",
+     "Bill and record repairs in a field service app, so customers get receipts and warranty details at once."
+    ],
+    "project": "Collect model numbers and error codes at booking for a month and record first-visit fix rates compared with before."
+   },
+   {
+    "title": "Connected appliances and heat pumps",
+    "items": [
+     "Learn connected appliances and their apps, as many faults can be read remotely.",
+     "Learn heat pump dryers, induction hobs and other new technologies.",
+     "Advise customers on repair or replacement with honest costs and energy use."
+    ],
+    "project": "Write a repair-or-replace guide for common appliances, use it with twenty customers and record their choices."
+   },
+   {
+    "title": "Hands-on repair in people's homes",
+    "items": [
+     "Find leaks, noises and loose parts by watching appliances run and listening carefully.",
+     "Work safely with gas and electricity in customers' homes, respecting their space.",
+     "Explain repairs and care in plain language, so the fault does not come back."
+    ],
+    "project": "Leave a short care tip with every repair for a month and record repeat calls for the same fault."
+   }
+  ],
+  "aiTools": [
+   "AI search over service manuals",
+   "Field service and billing apps",
+   "Connected appliance apps"
+  ],
+  "humanEdge": [
+   "Finding faults by watching and listening",
+   "Safe gas and electrical work in homes",
+   "Honest repair-or-replace advice"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9041.00": {
+  "roadmap": [
+   {
+    "title": "Machine data, alarms and work orders",
+    "items": [
+     "Read machine error messages and alarm histories, and ask AI to explain unfamiliar codes before checking the manual.",
+     "Receive and close work orders in the maintenance system on a tablet, with photos of what you found.",
+     "Use maintenance history to see which machines fail often and why."
+    ],
+    "project": "Analyse three months of work orders for your top five machines and agree preventive actions with your supervisor."
+   },
+   {
+    "title": "Condition monitoring and automation",
+    "items": [
+     "Use vibration analysis, thermal imaging and oil analysis to find problems before breakdowns.",
+     "Learn PLCs, servo drives and robots on your lines, so you can troubleshoot modern machines.",
+     "Write clear repair procedures with AI help, and test them with other mechanics."
+    ],
+    "project": "Start vibration checks on ten critical machines and record problems found before failure over six months."
+   },
+   {
+    "title": "Mechanical skill and operator teamwork",
+    "items": [
+     "Listen to operators about what changed before a breakdown, and use their knowledge in diagnosis.",
+     "Dismantle, repair and reassemble machines to exact clearances and torque settings.",
+     "Test repaired machines carefully before handing them back to production."
+    ],
+    "project": "Interview operators after ten breakdowns, record what they noticed and check how often it pointed to the cause."
+   }
+  ],
+  "aiTools": [
+   "Maintenance management system on a tablet",
+   "Vibration, thermal and oil analysis",
+   "AI assistant for alarm codes and procedures"
+  ],
+  "humanEdge": [
+   "Using operators' knowledge in diagnosis",
+   "Exact clearances and torque settings",
+   "Careful testing before handback"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9043.00": {
+  "roadmap": [
+   {
+    "title": "Work orders and maintenance checklists",
+    "items": [
+     "Read work orders and lubrication schedules on a tablet, and record every task completed with notes.",
+     "Use digital checklists for routine maintenance, so nothing is skipped on busy shifts.",
+     "Report machine problems with photos to mechanics, so they can plan repairs."
+    ],
+    "project": "Use digital lubrication checklists for a month and compare missed tasks and breakdowns with the month before."
+   },
+   {
+    "title": "Learning machines and safe repair",
+    "items": [
+     "Learn how your machines work from manuals, videos and mechanics, one machine at a time.",
+     "Follow lockout and lifting rules every time you dismantle or move equipment.",
+     "Learn basic condition checks such as temperature and vibration readings."
+    ],
+    "project": "Learn one new machine each month for three months with a mechanic and record the tasks you can now do alone."
+   },
+   {
+    "title": "Reliable care and a path to mechanic",
+    "items": [
+     "Watch machines run and notice changes in sound, heat or vibration before they fail.",
+     "Clean, lubricate and adjust machines carefully, as small care prevents big breakdowns.",
+     "Work toward industrial machinery mechanic roles, building on daily maintenance experience."
+    ],
+    "project": "Agree a training plan toward mechanic with your supervisor and track the skills you complete over the year."
+   }
+  ],
+  "aiTools": [
+   "Maintenance work order apps",
+   "Digital lubrication checklists",
+   "Basic temperature and vibration meters"
+  ],
+  "humanEdge": [
+   "Noticing changes in sound and heat",
+   "Careful daily machine care",
+   "Safe lockout and lifting every time"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9044.00": {
+  "roadmap": [
+   {
+    "title": "Laser alignment and digital installation plans",
+    "items": [
+     "Align shafts and machines with laser alignment tools, and record readings before and after for each machine.",
+     "Read installation drawings and 3D layouts on a tablet to plan moves and foundations.",
+     "Document installations and repairs with photos and measurements in the maintenance system."
+    ],
+    "project": "Laser-align ten critical machines, record vibration before and after, and share the results with maintenance planning."
+   },
+   {
+    "title": "Condition monitoring and rigging plans",
+    "items": [
+     "Use vibration and thermal data to find misalignment and bearing wear early.",
+     "Plan heavy lifts and machine moves with rigging calculators, and check every point yourself.",
+     "Learn hydraulics and automation on new equipment you install."
+    ],
+    "project": "Plan one machine move with a rigging calculator and a written lift plan, and review the result with your team."
+   },
+   {
+    "title": "Precision and heavy skill",
+    "items": [
+     "Set clearances with shims and micrometres to exact tolerances by hand.",
+     "Move, set and fasten heavy machinery safely with hoists, rollers and teamwork.",
+     "Weld, fabricate and adapt parts when standard ones do not fit."
+    ],
+    "project": "Mentor an apprentice through one machine installation and write down the checks you teach that are not in the plan."
+   }
+  ],
+  "aiTools": [
+   "Laser shaft alignment tools",
+   "Vibration and thermal monitoring",
+   "Rigging and lift calculators"
+  ],
+  "humanEdge": [
+   "Exact clearances set by hand",
+   "Safe moves of heavy machinery",
+   "Fabricating parts when nothing fits"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9045.00": {
+  "roadmap": [
+   {
+    "title": "Lining records and thermal data",
+    "items": [
+     "Record lining type, thickness and repair dates for every ladle and furnace in a maintenance system, so wear trends are clear.",
+     "Read thermal camera images of shells to find hot spots where the lining is thin, and plan repairs early.",
+     "Keep mix recipes and drying schedules in a digital file, so every relining follows the same proven steps."
+    ],
+    "project": "Track lining life for every ladle over three months and agree with your supervisor which repairs to plan before failure."
+   },
+   {
+    "title": "Spray gunning and laser measurement",
+    "items": [
+     "Learn gunning and spray machines for refractory, and compare their results with hand trowelling.",
+     "Use laser scanning of linings where available to measure wear without guesswork.",
+     "Follow heat stress, dust and confined space rules strictly when working inside hot vessels."
+    ],
+    "project": "Compare laser wear measurements with your own estimates on ten linings and record where your judgement differed."
+   },
+   {
+    "title": "Hard, skilled work in heat",
+    "items": [
+     "Chip out slag and old linings safely with hand tools, without damaging the steel shell beneath.",
+     "Trowel and tamp refractory by hand to an even, dense layer that survives molten metal.",
+     "Dry and bake new linings patiently, because rushing causes cracks and dangerous spalling."
+    ],
+    "project": "Train a new worker on relining one ladle type and write down the checks you teach for a dense, even lining."
+   }
+  ],
+  "aiTools": [
+   "Thermal cameras for shell hot spots",
+   "Lining maintenance records",
+   "Laser lining scanners"
+  ],
+  "humanEdge": [
+   "Dense, even linings laid by hand",
+   "Patient drying that prevents cracks",
+   "Safe work inside hot vessels"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9051.00": {
+  "roadmap": [
+   {
+    "title": "Outage maps, work orders and line data",
+    "items": [
+     "Use outage management maps and smart meter data to see where faults are before the crew rolls out.",
+     "Receive switching orders and work packages on a tablet, and confirm every step with the control room.",
+     "Record repairs, materials and pole condition with photos in a field app, so asset records stay accurate."
+    ],
+    "project": "Record every pole and line repair with photos for a month and share the condition data with asset planners."
+   },
+   {
+    "title": "Drone inspection and grid technology",
+    "items": [
+     "Review drone and thermal images of lines to find damaged insulators and hot connections.",
+     "Learn smart grid devices such as reclosers and sensors, and how they change fault finding.",
+     "Keep live-line and climbing certifications current with reminders."
+    ],
+    "project": "Compare drone inspection findings with a walk-down of one feeder and list what each method caught."
+   },
+   {
+    "title": "Safety and teamwork at height",
+    "items": [
+     "Test, isolate and earth lines yourself before touching them, whatever the paperwork says.",
+     "Climb and work from buckets in storms and cold with full attention to the crew.",
+     "Coordinate every move with your crew partner, because mistakes with live lines are fatal."
+    ],
+    "project": "Run a monthly pole-top rescue drill with your crew for a season and record what you improved each time."
+   }
+  ],
+  "aiTools": [
+   "Outage management maps",
+   "Drone and thermal line inspection",
+   "Field work order apps"
+  ],
+  "humanEdge": [
+   "Personal testing before touching lines",
+   "Calm work at height in storms",
+   "Tight coordination with your crew"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9052.00": {
+  "roadmap": [
+   {
+    "title": "Network maps, tests and job apps",
+    "items": [
+     "Use digital network maps and remote line tests to locate faults before climbing or digging.",
+     "Record splices, test results and photos in a job app, so network records match what is in the ground.",
+     "Plan routes and dig permits with digital utility maps, and check for other services on site."
+    ],
+    "project": "Record OTDR results and photos for every splice for a month and share recurring losses with your supervisor."
+   },
+   {
+    "title": "Fibre splicing and new builds",
+    "items": [
+     "Learn fusion splicing and optical testing to a high standard, as fibre replaces copper.",
+     "Learn micro-trenching and cable blowing methods used in new fibre builds.",
+     "Set up customer equipment and Wi-Fi, and test speeds before leaving."
+    ],
+    "project": "Complete fusion splicing certification and track splice losses on your next fifty splices."
+   },
+   {
+    "title": "Field safety and customer care",
+    "items": [
+     "Work safely on poles, in trenches and near power lines, checking every hazard yourself.",
+     "Pull and tension cable carefully so it is not damaged during installation.",
+     "Explain to customers what you installed and how to check their connection."
+    ],
+    "project": "Write a short customer handover note for fibre installs, test it with ten customers and improve it."
+   }
+  ],
+  "aiTools": [
+   "Digital network maps",
+   "OTDR and optical test equipment",
+   "Job apps with photos"
+  ],
+  "humanEdge": [
+   "Safe work near power and trenches",
+   "Careful cable pulling without damage",
+   "Clear handover to customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9061.00": {
+  "roadmap": [
+   {
+    "title": "Diagnostics, quotes and repair records",
+    "items": [
+     "Run camera diagnostic software and firmware checks before opening a body, so you know which module is failing.",
+     "Send repair quotes with photos and AI-drafted explanations, checked by you, so customers understand the cost.",
+     "Record every repair, part and test in a shop system, so warranty and repeat faults are easy to trace."
+    ],
+    "project": "Record diagnostics and repairs for every camera for three months and list the most common faults by model."
+   },
+   {
+    "title": "Calibration tools and digital systems",
+    "items": [
+     "Calibrate autofocus, shutter timing and sensors with precision test equipment and software.",
+     "Learn mirrorless cameras, stabilisation systems and lens electronics as film work declines.",
+     "Source parts through manufacturer portals and specialist suppliers worldwide."
+    ],
+    "project": "Build a calibration record for the lenses you service and use it to show customers before-and-after sharpness."
+   },
+   {
+    "title": "Fine hands and rare knowledge",
+    "items": [
+     "Disassemble and reassemble small mechanisms with steady hands and great patience.",
+     "Clean lenses and sensors without scratches or dust, using careful technique.",
+     "Repair older film cameras that few people still understand."
+    ],
+    "project": "Document the repair of one classic camera model step by step and share it with a collectors' group."
+   }
+  ],
+  "aiTools": [
+   "Camera diagnostic software",
+   "Precision calibration equipment",
+   "Shop and parts systems"
+  ],
+  "humanEdge": [
+   "Steady hands for small mechanisms",
+   "Scratch-free lens and sensor cleaning",
+   "Rare knowledge of film cameras"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9062.00": {
+  "roadmap": [
+   {
+    "title": "Asset systems and service records",
+    "items": [
+     "Track every device, service date and recall in a medical equipment management system, so nothing misses maintenance.",
+     "Read device error logs and remote service data before visiting the ward, so repairs are faster.",
+     "Search manuals and service bulletins with AI help, and follow only the manufacturer's approved procedure."
+    ],
+    "project": "Clean up equipment records for one department, find overdue checks and agree a schedule with the ward manager."
+   },
+   {
+    "title": "Networked devices and cyber security",
+    "items": [
+     "Learn networked infusion pumps, monitors and imaging systems, including their software updates.",
+     "Work with IT on device security and patching, following hospital rules.",
+     "Keep test equipment calibrated and electrical safety test records complete for audits."
+    ],
+    "project": "List all networked devices in one area with their software versions and agree an update plan with IT."
+   },
+   {
+    "title": "Patient safety and clinical teamwork",
+    "items": [
+     "Test devices carefully before returning them, because patients' lives depend on them.",
+     "Watch how staff use equipment and coach them when misuse causes faults.",
+     "Respond calmly to urgent breakdowns in theatres and intensive care."
+    ],
+    "project": "Review ten user-error faults with clinical staff and create one short training sheet to prevent them."
+   }
+  ],
+  "aiTools": [
+   "Medical equipment management systems",
+   "Remote device service data",
+   "Electrical safety test equipment"
+  ],
+  "humanEdge": [
+   "Careful testing for patient safety",
+   "Coaching staff on correct use",
+   "Calm response in urgent breakdowns"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9063.00": {
+  "roadmap": [
+   {
+    "title": "Tuning apps, bookings and records",
+    "items": [
+     "Use electronic tuning apps and devices for accuracy, and finish by ear for the instrument's character.",
+     "Book tuning visits online and send reminders based on each instrument's last tuning and season.",
+     "Record repairs, parts and condition notes for each instrument, so owners have a history."
+    ],
+    "project": "Set up tuning reminders for all your piano customers and record repeat bookings over a year."
+   },
+   {
+    "title": "Parts sourcing and new materials",
+    "items": [
+     "Source rare parts and materials through specialist suppliers and online communities.",
+     "Learn digital instruments and electronic pickups, as more players use them.",
+     "Share repair photos and short videos online to build trust with players."
+    ],
+    "project": "Post ten before-and-after repair stories online over three months and record enquiries that came from them."
+   },
+   {
+    "title": "Ear, hands and musical judgement",
+    "items": [
+     "Play and listen to instruments to judge tone, response and problems that tools cannot hear.",
+     "Repair cracks, keys and pads with delicate handwork that respects the instrument.",
+     "Talk with musicians to understand how they want the instrument to feel."
+    ],
+    "project": "Set up five instruments to players' preferences, ask for their feedback and record what you learned."
+   }
+  ],
+  "aiTools": [
+   "Electronic tuning apps",
+   "Online booking and reminders",
+   "Specialist parts suppliers"
+  ],
+  "humanEdge": [
+   "Judging tone by ear and play",
+   "Delicate repairs that respect instruments",
+   "Understanding what musicians want"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9064.00": {
+  "roadmap": [
+   {
+    "title": "Timing machines and repair records",
+    "items": [
+     "Measure accuracy and amplitude with electronic timing machines, and adjust until readings are within specification.",
+     "Record each watch's serial number, condition, work done and charges in a shop system.",
+     "Send customers quotes and updates with photos of the movement, so they understand the work."
+    ],
+    "project": "Send photo updates with every service for a month and record how many customers approved extra work."
+   },
+   {
+    "title": "Parts sourcing and smart watches",
+    "items": [
+     "Source parts through manufacturer accounts, suppliers and online markets, checking authenticity.",
+     "Learn battery, sensor and water-resistance testing for modern and smart watches.",
+     "Use online platforms to show your work and reach collectors."
+    ],
+    "project": "Build an online gallery of twenty restorations and track enquiries from collectors over six months."
+   },
+   {
+    "title": "Precision and patience",
+    "items": [
+     "Disassemble, clean and reassemble movements under a loupe with very steady hands.",
+     "Make or adapt small parts on a lathe when originals are no longer made.",
+     "Listen to customers' stories about inherited watches and treat them with care."
+    ],
+    "project": "Make one replacement part by hand for an old movement and document the process for future reference."
+   }
+  ],
+  "aiTools": [
+   "Electronic timing machines",
+   "Shop management systems",
+   "Online parts and collector platforms"
+  ],
+  "humanEdge": [
+   "Steady hands under a loupe",
+   "Making small parts on a lathe",
+   "Care for heirloom watches"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -29063,6 +30701,384 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "49-9081.00": {
+  "roadmap": [
+   {
+    "title": "SCADA data and remote diagnostics",
+    "items": [
+     "Read turbine SCADA data and fault logs before climbing, so you take the right tools and parts up the tower.",
+     "Record maintenance, parts and test results in a digital work order system with photos.",
+     "Search manuals and procedures with AI help, and follow the manufacturer's approved steps."
+    ],
+    "project": "Review SCADA data before every fault visit for a month and record how often you fixed it on the first climb."
+   },
+   {
+    "title": "Condition monitoring and blade inspection",
+    "items": [
+     "Use vibration and oil condition monitoring to plan gearbox and bearing work before failures.",
+     "Review drone blade inspection images and learn to judge which damage needs repair.",
+     "Keep climbing, rescue and electrical certifications current with reminders."
+    ],
+    "project": "Compare drone blade findings with your own inspections on five turbines and agree repair priorities with engineers."
+   },
+   {
+    "title": "Safe work at height and teamwork",
+    "items": [
+     "Climb and work in nacelles safely, with rescue plans and constant attention to your partner.",
+     "Find mechanical, hydraulic and electrical faults by testing in tight spaces.",
+     "Decide when weather is too dangerous to climb, and stand by that decision."
+    ],
+    "project": "Run a nacelle rescue drill with your partner each quarter and record what you improved each time."
+   }
+  ],
+  "aiTools": [
+   "Turbine SCADA systems",
+   "Vibration and oil condition monitoring",
+   "Drone blade inspection"
+  ],
+  "humanEdge": [
+   "Safe climbing with rescue plans",
+   "Fault finding in tight nacelles",
+   "Saying no when weather is unsafe"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9091.00": {
+  "roadmap": [
+   {
+    "title": "Telemetry, routes and cash records",
+    "items": [
+     "Use vending telemetry to see stock levels and faults, and fill only the machines that need it.",
+     "Plan routes with route optimisation apps based on sales and machine alerts.",
+     "Record cash, card sales and discrepancies in a handheld system, so accounts settle correctly."
+    ],
+    "project": "Plan routes from telemetry for a month and compare driving time and empty machines with your usual route."
+   },
+   {
+    "title": "Card payments and machine electronics",
+    "items": [
+     "Learn cashless payment readers and how to troubleshoot connection problems.",
+     "Repair boards, motors and sensors with diagrams and test meters.",
+     "Use sales data to suggest product changes to location owners."
+    ],
+    "project": "Use sales data to change products in ten machines and record sales over the next two months."
+   },
+   {
+    "title": "Reliable service and trust",
+    "items": [
+     "Fix jams and simple faults quickly so customers and site owners stay happy.",
+     "Handle cash honestly and carefully, following every procedure.",
+     "Build good relationships with site owners through reliable visits."
+    ],
+    "project": "Ask ten site owners for feedback on your service, improve one thing they mention and check back with them after a month."
+   }
+  ],
+  "aiTools": [
+   "Vending telemetry systems",
+   "Route optimisation apps",
+   "Handheld cash and sales records"
+  ],
+  "humanEdge": [
+   "Quick fixes that keep sites happy",
+   "Honest, careful cash handling",
+   "Good relationships with site owners"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9092.00": {
+  "roadmap": [
+   {
+    "title": "Dive planning and inspection records",
+    "items": [
+     "Plan dives with tide, current and weather data, and check decompression plans with the supervisor.",
+     "Record underwater inspections with video and photos, and help write reports with clear findings.",
+     "Keep equipment maintenance and dive logs digital, so checks and hours are always up to date."
+    ],
+    "project": "Keep digital dive and equipment logs for three months and review missed checks with your supervisor."
+   },
+   {
+    "title": "ROVs, sonar and new methods",
+    "items": [
+     "Learn how remotely operated vehicles and sonar support dives, and where divers are still needed.",
+     "Learn underwater cutting, welding and non-destructive testing to higher certification levels.",
+     "Review inspection video with engineers to improve what you film and measure."
+    ],
+    "project": "Review one inspection video with an engineer and agree a checklist for what to film on the next job."
+   },
+   {
+    "title": "Calm skill under water",
+    "items": [
+     "Stay calm and communicate clearly with the surface in poor visibility and strong currents.",
+     "Do precise hands-on work such as bolting and welding while managing your own safety.",
+     "Train and supervise newer divers with strict discipline about safety."
+    ],
+    "project": "Mentor one newer diver for three months and write down the safety habits you teach that are not in manuals."
+   }
+  ],
+  "aiTools": [
+   "Dive planning and tide data",
+   "Underwater video and photo inspection",
+   "ROVs and sonar"
+  ],
+  "humanEdge": [
+   "Calm communication in poor visibility",
+   "Precise hands-on work under water",
+   "Strict safety discipline when training"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9094.00": {
+  "roadmap": [
+   {
+    "title": "Access systems, quotes and key records",
+    "items": [
+     "Install and program electronic access and smart locks, and test every user code and card before leaving.",
+     "Keep master key systems and customer key records in secure software, with strict access control.",
+     "Send quotes and security advice drafted with AI, checking every product and price yourself."
+    ],
+    "project": "Move one customer's master key records to secure software, audit who holds which keys and report gaps to the customer."
+   },
+   {
+    "title": "Smart security and safe skills",
+    "items": [
+     "Learn networked access control, audit trails and their security settings.",
+     "Learn safe and vault servicing to certified standards.",
+     "Check identity and ownership before every lockout job, and record it."
+    ],
+    "project": "Complete one access control course and install a networked system for a small business under supervision."
+   },
+   {
+    "title": "Trust, discretion and skilled hands",
+    "items": [
+     "Open locks without damage using skill and the right tools, not force.",
+     "Keep customers' security details strictly private, because trust is your business.",
+     "Advise customers honestly on the security they really need."
+    ],
+    "project": "Write a short ID-check procedure for lockouts, use it for three months and record any jobs you refused."
+   }
+  ],
+  "aiTools": [
+   "Electronic access control software",
+   "Secure key management software",
+   "Smart lock apps"
+  ],
+  "humanEdge": [
+   "Opening locks without damage",
+   "Strict discretion with security details",
+   "Honest advice on real security needs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9095.00": {
+  "roadmap": [
+   {
+    "title": "Site plans, estimates and records",
+    "items": [
+     "Check site plans, utility locations and access routes on maps before moving a home onto a lot.",
+     "Price set-ups and repairs from parts lists and the manufacturer's manual, and explain each line of the estimate to the owner.",
+     "Record set-up checks, levels and tests with photos, so owners and inspectors have proof."
+    ],
+    "project": "Record set-up checks with photos for every home for three months and compare callbacks with earlier jobs."
+   },
+   {
+    "title": "Levelling tools and building rules",
+    "items": [
+     "Use laser levels and digital measuring to set homes level and square on their supports.",
+     "Learn anchoring, wind and foundation rules for your area.",
+     "Learn energy-efficient upgrades such as heat pumps and better insulation for older homes."
+    ],
+    "project": "Make a set-up checklist from the manufacturer and local rules, and use it on every home for three months."
+   },
+   {
+    "title": "Many skills in one job",
+    "items": [
+     "Move and set heavy units safely with the crew and the right equipment.",
+     "Repair plumbing, wiring and structure carefully in tight spaces.",
+     "Explain to owners how to care for their home and what to watch for."
+    ],
+    "project": "Write a short owner care guide with AI help, test it with five owners and improve it based on what they found unclear."
+   }
+  ],
+  "aiTools": [
+   "Site maps and utility locators",
+   "Laser levels",
+   "Shop estimating systems"
+  ],
+  "humanEdge": [
+   "Safe moves of heavy units",
+   "Repairs across plumbing and wiring",
+   "Practical care advice to owners"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9096.00": {
+  "roadmap": [
+   {
+    "title": "Lift plans, load charts and records",
+    "items": [
+     "Prepare lift plans with rigging calculators and load charts, and check every weight and centre of gravity yourself.",
+     "Use 3D lift planning software for complex moves, so the crew sees the path before the load moves.",
+     "Record rigging inspections and certificates digitally, so every sling and shackle has a traceable history."
+    ],
+    "project": "Move rigging gear inspections to a digital register for three months and record items removed from service."
+   },
+   {
+    "title": "Load monitoring and new equipment",
+    "items": [
+     "Use load cells and wireless monitoring during lifts to see real forces, not just estimates.",
+     "Learn self-propelled modular transporters, gantries and jacking systems for heavy moves.",
+     "Review incident reports from your industry and update your methods."
+    ],
+    "project": "Compare planned and measured loads on ten lifts with load cells and share the differences with your crew."
+   },
+   {
+    "title": "Judgement and clear signals",
+    "items": [
+     "Choose slings, shackles and pick points by judgement and experience when loads are awkward.",
+     "Signal crane and hoist operators clearly, and stop the lift the moment something looks wrong.",
+     "Guide heavy machinery through tight openings with patience and constant attention."
+    ],
+    "project": "Agree standard signals and a stop-work rule with your crew, and record every stop over three months with the reason."
+   }
+  ],
+  "aiTools": [
+   "Rigging calculators and load charts",
+   "3D lift planning software",
+   "Wireless load cells"
+  ],
+  "humanEdge": [
+   "Choosing pick points for awkward loads",
+   "Clear signals and stopping unsafe lifts",
+   "Patient moves through tight openings"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9097.00": {
+  "roadmap": [
+   {
+    "title": "Remote monitoring and digital records",
+    "items": [
+     "Check remote monitoring alarms from crossings and signals before driving out, so you bring the right parts.",
+     "Record inspections, tests and repairs on a tablet with photos and locations, so audit records are complete.",
+     "Look up circuit plans and signal diagrams digitally, and confirm against the installed equipment."
+    ],
+    "project": "Record every inspection on a tablet for three months and compare missing data with paper records."
+   },
+   {
+    "title": "Electronic interlocking and testing",
+    "items": [
+     "Learn computer-based interlocking and modern train control systems as old relays are replaced.",
+     "Use data loggers to find intermittent faults in track circuits and crossings.",
+     "Follow strict testing procedures after every change, with a second person checking."
+    ],
+    "project": "Install a data logger on one troublesome crossing for a month and use the data to find the fault."
+   },
+   {
+    "title": "Safety-critical skill on the track",
+    "items": [
+     "Test circuits methodically, because a wrong signal can cause a collision.",
+     "Work safely on live track with lookouts and protection every time.",
+     "Repair gates, lamps and connections quickly in any weather."
+    ],
+    "project": "Review five past faults with a senior repairer and write down the test steps that found the cause."
+   }
+  ],
+  "aiTools": [
+   "Remote signal monitoring",
+   "Data loggers for track circuits",
+   "Tablet inspection records"
+  ],
+  "humanEdge": [
+   "Methodical safety-critical testing",
+   "Safe work on live track with lookouts",
+   "Quick repairs in any weather"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9098.00": {
+  "roadmap": [
+   {
+    "title": "Work orders, parts and learning",
+    "items": [
+     "Read work orders and parts lists on a tablet, and prepare tools and parts before the mechanic needs them.",
+     "Learn repair basics from manuals and videos, and ask experienced workers to explain what you see.",
+     "Record cleaning, lubrication and simple checks in the maintenance system the same day."
+    ],
+    "project": "Prepare parts and tools from digital work orders for a month and ask mechanics how much waiting time it saved."
+   },
+   {
+    "title": "Testing basics and safe work",
+    "items": [
+     "Learn simple tests with meters and gauges under supervision, and record readings carefully.",
+     "Follow lockout, lifting and chemical rules every time, even on quick jobs.",
+     "Watch machines run and report unusual sounds or leaks with a photo."
+    ],
+    "project": "Learn three new tests or repairs under supervision over three months and record the jobs you can now do alone."
+   },
+   {
+    "title": "Reliable help and a path to the trade",
+    "items": [
+     "Position and hold heavy parts safely, so skilled workers can work quickly.",
+     "Keep tools, parts and work areas clean and organised for the whole team.",
+     "Work toward mechanic or technician roles, building on what you learn each day."
+    ],
+    "project": "Agree a training plan toward a mechanic role with your supervisor and track your progress for a year."
+   }
+  ],
+  "aiTools": [
+   "Digital work orders on tablets",
+   "Maintenance record systems",
+   "Video learning apps"
+  ],
+  "humanEdge": [
+   "Safe handling of heavy parts",
+   "Organised tools for the whole team",
+   "Learning the trade every day"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "49-9099.01": {
+  "roadmap": [
+   {
+    "title": "System design and monitoring data",
+    "items": [
+     "Size ground-source heat pump loops with design software using soil data and building heat loss, and check assumptions on site.",
+     "Monitor plant and heat pump performance remotely, and investigate drops in efficiency early.",
+     "Prepare logs and service reports from templates, checking every reading yourself."
+    ],
+    "project": "Compare design predictions with one year of real performance for five systems and share the gaps with designers."
+   },
+   {
+    "title": "Controls, drilling and plant systems",
+    "items": [
+     "Learn heat pump controls, flow sensors and plant instrumentation, and calibrate them on schedule.",
+     "Understand drilling and loop installation, and check grout and pressure tests.",
+     "Follow plant safety procedures for steam, pressure and electrical systems."
+    ],
+    "project": "Pressure-test and document every loop installation for three months and record any failures found."
+   },
+   {
+    "title": "Hands-on skill and customer trust",
+    "items": [
+     "Install, fuse and connect loops and pumps carefully, so systems run for decades.",
+     "Find faults by testing and listening when data does not explain the problem.",
+     "Explain to owners how the system works and how to keep it efficient."
+    ],
+    "project": "Write a short owner guide with AI help, check it yourself, and give it to every customer for a season."
+   }
+  ],
+  "aiTools": [
+   "Geothermal loop design software",
+   "Remote performance monitoring",
+   "Plant instrumentation"
+  ],
+  "humanEdge": [
+   "Careful loop installation that lasts",
+   "Fault finding when data is unclear",
+   "Clear explanations to owners"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "51-1011.00": {
   "roadmap": [
    {
@@ -29102,6 +31118,258 @@
    "Leading operators through change",
    "Handling conflicts and grievances fairly",
    "Seeing problems on the floor first"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-2011.00": {
+  "roadmap": [
+   {
+    "title": "Digital work instructions and 3D models",
+    "items": [
+     "Follow digital work instructions and 3D models on screens at the station, checking each step before signing it off.",
+     "Use smart torque tools that record values automatically, so every fastener has a record.",
+     "Report defects and rework in the quality system with photos, so engineers see patterns."
+    ],
+    "project": "Track rework on your station for three months, find the most common cause and suggest one fix to engineering."
+   },
+   {
+    "title": "Automation, cobots and inspection",
+    "items": [
+     "Work with automated drilling and riveting machines, and check their output with gauges.",
+     "Learn laser trackers and measurement systems used to align large assemblies.",
+     "Keep certifications for sealing, bonding and fastening up to date."
+    ],
+    "project": "Learn one automated drilling or measurement system under supervision and record what you can now operate."
+   },
+   {
+    "title": "Precision and responsibility",
+    "items": [
+     "Fit and fasten parts to tight tolerances by hand where machines cannot reach.",
+     "Inspect your own work carefully, as flight safety depends on every detail.",
+     "Raise problems immediately, even when it delays the schedule."
+    ],
+    "project": "Review ten of your defect reports with a quality inspector and agree checks to add to your routine."
+   }
+  ],
+  "aiTools": [
+   "Digital work instructions and 3D models",
+   "Smart torque tools",
+   "Laser trackers"
+  ],
+  "humanEdge": [
+   "Tight-tolerance fitting by hand",
+   "Careful self-inspection for safety",
+   "Raising problems despite schedules"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-2021.00": {
+  "roadmap": [
+   {
+    "title": "Machine settings and test records",
+    "items": [
+     "Load coil specifications into CNC winding machines from work orders, and check turns and tension on the first piece.",
+     "Record test results for resistance and insulation automatically, so every coil has a traceable record.",
+     "Report machine faults and scrap in the production system with notes, so patterns are visible."
+    ],
+    "project": "Track scrap by cause for a month on your machine and agree one setting change with your supervisor."
+   },
+   {
+    "title": "Automation and quality checks",
+    "items": [
+     "Learn automatic winding and taping machines, and how to adjust them for new designs.",
+     "Use test equipment to find shorts and weak insulation before coils go to assembly.",
+     "Learn the basics of motors and transformers, so you understand why specifications matter."
+    ],
+    "project": "Learn to set up one new coil design on the machine and record the first-piece checks you use."
+   },
+   {
+    "title": "Careful hands and quality pride",
+    "items": [
+     "Strip, bend and insert coils by hand without damaging insulation.",
+     "Spot loose turns and poor taping by eye before testing.",
+     "Move toward machine setter or quality roles, building on your product knowledge."
+    ],
+    "project": "Ask a setter to train you on machine changeovers for a month and record the changeovers you can now do."
+   }
+  ],
+  "aiTools": [
+   "CNC coil winding machines",
+   "Automatic electrical test equipment",
+   "Production tracking systems"
+  ],
+  "humanEdge": [
+   "Handling coils without damage",
+   "Spotting poor winding by eye",
+   "Pride in consistent, quality coils"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-2022.00": {
+  "roadmap": [
+   {
+    "title": "Digital instructions and automated testing",
+    "items": [
+     "Follow digital assembly instructions and wiring diagrams on screen, checking each connection against the drawing.",
+     "Use automated testers that check circuits and record results, and investigate every failure yourself.",
+     "Scan parts and serial numbers into the production system, so every unit is traceable."
+    ],
+    "project": "Record test failures by cause for a month, share the top three with the engineers and agree one fix to try on the line."
+   },
+   {
+    "title": "Soldering standards and automation",
+    "items": [
+     "Learn soldering and crimping standards such as IPC, and get certified.",
+     "Work with pick-and-place and automated optical inspection, and check what they flag.",
+     "Help train new assemblers with clear demonstrations."
+    ],
+    "project": "Complete IPC soldering training and compare your defect rate for a month before and after."
+   },
+   {
+    "title": "Fine hand skill and problem solving",
+    "items": [
+     "Solder and wire small components precisely by hand under magnification.",
+     "Find wiring mistakes by careful inspection before testing.",
+     "Work with engineers to fix production problems you notice."
+    ],
+    "project": "Suggest one assembly improvement to engineering, test it on a small batch and record the result."
+   }
+  ],
+  "aiTools": [
+   "Digital assembly instructions",
+   "Automated circuit testers",
+   "Automated optical inspection"
+  ],
+  "humanEdge": [
+   "Precise hand soldering under magnification",
+   "Finding wiring mistakes by inspection",
+   "Solving problems with engineers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-2023.00": {
+  "roadmap": [
+   {
+    "title": "Digital work instructions and traceability",
+    "items": [
+     "Follow step-by-step digital work instructions with images, and confirm each stage in the system before moving on.",
+     "Scan serial numbers and parts at every stage, so each unit's build history is traceable.",
+     "Record test results and adjustments in the production system, adding notes on anything unusual."
+    ],
+    "project": "Track assembly errors at your station for a month and suggest one change to the work instructions."
+   },
+   {
+    "title": "Robots and automated assembly",
+    "items": [
+     "Learn to tend and adjust robots and automated assembly cells safely.",
+     "Use precision measuring tools and record tolerances digitally.",
+     "Learn basic troubleshooting of motors, sensors and wiring in the units you build."
+    ],
+    "project": "Learn to restart and adjust one automated cell under supervision and record the faults you can now clear."
+   },
+   {
+    "title": "Fit, function and final checks",
+    "items": [
+     "Align and adjust moving parts by feel and measurement until units run smoothly.",
+     "Test completed units carefully against customer requirements.",
+     "Explain assembly tricks to new workers clearly and patiently."
+    ],
+    "project": "Mentor a new assembler for a month and write down the tips you teach that are not in the instructions."
+   }
+  ],
+  "aiTools": [
+   "Digital work instructions",
+   "Barcode traceability systems",
+   "Robotic assembly cells"
+  ],
+  "humanEdge": [
+   "Adjusting moving parts by feel",
+   "Careful final testing against orders",
+   "Patient teaching of new workers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-2031.00": {
+  "roadmap": [
+   {
+    "title": "Digital build sheets and smart tools",
+    "items": [
+     "Follow digital build sheets and 3D views at the station, and confirm each step before moving on.",
+     "Use smart torque tools that record fastening values, so every engine has a complete record.",
+     "Log defects and rework with photos in the quality system."
+    ],
+    "project": "Track rework on your station for three months and agree one fix with engineering based on the data."
+   },
+   {
+    "title": "Measurement and test data",
+    "items": [
+     "Measure clearances and parts with digital gauges that store readings automatically.",
+     "Understand engine and machine test data, so you know why units fail testing.",
+     "Learn assembly of electric drives and hybrid systems as products change."
+    ],
+    "project": "Review test failures for one month with a test engineer and list the assembly causes you can prevent."
+   },
+   {
+    "title": "Skill, care and quality",
+    "items": [
+     "Fit and align heavy components safely with hoists and careful hands.",
+     "Set clearances precisely and check your own work before passing it on.",
+     "Spot damaged or wrong parts before they go into the build."
+    ],
+    "project": "Record every wrong or damaged part you caught for three months and share the list with the supplier quality team."
+   }
+  ],
+  "aiTools": [
+   "Digital build sheets",
+   "Smart torque tools",
+   "Digital gauges"
+  ],
+  "humanEdge": [
+   "Safe handling of heavy parts",
+   "Precise clearances checked by you",
+   "Catching wrong parts before the build"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-2041.00": {
+  "roadmap": [
+   {
+    "title": "CAD drawings, nesting and cut lists",
+    "items": [
+     "Read 3D models and CAD drawings on a screen to check dimensions, weld symbols and sequences before cutting.",
+     "Work from CNC nesting and cut lists, and check the first pieces from plasma or laser cutters.",
+     "Record fit-up and weld inspections with photos, so quality records are complete."
+    ],
+    "project": "Check first pieces from every CNC cutting run for a month and record errors caught before fit-up."
+   },
+   {
+    "title": "Machines and quality standards",
+    "items": [
+     "Learn CNC press brakes, rolls and robotic welding cells, and check their output.",
+     "Learn welding standards and inspection methods, and get certified.",
+     "Use laser measuring tools to check large assemblies for squareness."
+    ],
+    "project": "Complete one welding certification and track your weld inspection pass rate for three months before and after it."
+   },
+   {
+    "title": "Fitting skill and problem solving",
+    "items": [
+     "Fit and align heavy parts precisely with clamps, jacks and wedges.",
+     "Straighten distortion from welding by heat and hammer with skill.",
+     "Solve fit problems when drawings and parts do not match."
+    ],
+    "project": "Record every drawing or part mismatch you solved for three months and share them with the drafting office."
+   }
+  ],
+  "aiTools": [
+   "CAD and 3D model viewers",
+   "CNC cutting and nesting",
+   "Laser measuring tools"
+  ],
+  "humanEdge": [
+   "Precise fitting of heavy parts",
+   "Straightening weld distortion",
+   "Solving fit problems on the shop floor"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
