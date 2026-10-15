@@ -8105,6 +8105,972 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "19-1029.04": {
+  "roadmap": [
+   {
+    "title": "AI for data and reports",
+    "items": [
+     "Use AI coding help to store, process and analyse biological data.",
+     "Draft research and impact reports with AI, checking every finding.",
+     "Review proposals faster with AI summaries."
+    ],
+    "project": "Analyse one field dataset with AI-assisted code and compare time and results with your usual method."
+   },
+   {
+    "title": "AI field tools",
+    "items": [
+     "Use AI species identification from photos and sounds, then confirm.",
+     "Map habitats with GIS and remote sensing.",
+     "Build clean, shareable datasets."
+    ],
+    "project": "Use AI identification on one survey and measure accuracy against expert checks."
+   },
+   {
+    "title": "Field work and partnerships",
+    "items": [
+     "Field study and classification stay human.",
+     "Work with agencies and the public.",
+     "Look at related roles: wildlife biologist or environmental consultant."
+    ],
+    "project": "Present findings to a local agency and record the actions they take."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for R or Python",
+   "Species ID apps (e.g. iNaturalist, Merlin)",
+   "GIS software"
+  ],
+  "humanEdge": [
+   "Field observation of living systems",
+   "Supervising technicians",
+   "Building partnerships with agencies"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-1031.00": {
+  "roadmap": [
+   {
+    "title": "AI for plans and specs",
+    "items": [
+     "Draft conservation plans and design specs with AI, checking calculations.",
+     "Use GIS and AI to find erosion and land use issues.",
+     "Write landowner guides with AI."
+    ],
+    "project": "Draft five conservation plans with AI help and compare preparation time with before."
+   },
+   {
+    "title": "Remote sensing",
+    "items": [
+     "Use satellite data to monitor practices and erosion.",
+     "Validate with site visits.",
+     "Track results over time."
+    ],
+    "project": "Monitor one watershed with satellite data for a season and check with site visits."
+   },
+   {
+    "title": "Landowners and field work",
+    "items": [
+     "Advising and visiting land users stay human.",
+     "Monitor construction on site.",
+     "Look at related roles: restoration planner or range manager."
+    ],
+    "project": "Revisit 10 landowners and record which practices worked."
+   }
+  ],
+  "aiTools": [
+   "GIS software",
+   "Satellite imagery platforms",
+   "ChatGPT or Claude for plans"
+  ],
+  "humanEdge": [
+   "Building trust with landowners",
+   "Reading land in the field",
+   "Monitoring construction"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-1031.02": {
+  "roadmap": [
+   {
+    "title": "AI for vegetation data",
+    "items": [
+     "Use remote sensing to assess rangeland vegetation.",
+     "Draft reports and plans with AI.",
+     "Analyse grazing data with AI."
+    ],
+    "project": "Assess forage on one range with satellite data and compare with field measurements."
+   },
+   {
+    "title": "Data-driven grazing",
+    "items": [
+     "Model carrying capacity with data.",
+     "Track permits and compliance digitally.",
+     "Share maps with ranchers."
+    ],
+    "project": "Build a carrying capacity estimate with AI help and test it over a season."
+   },
+   {
+    "title": "Field and partners",
+    "items": [
+     "Field checks and building improvements stay human.",
+     "Work with ranchers and agencies.",
+     "Look at related roles: conservation scientist or forester."
+    ],
+    "project": "Plan one range improvement with a rancher and track the result."
+   }
+  ],
+  "aiTools": [
+   "Remote sensing tools",
+   "GIS software",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Reading rangeland in person",
+   "Working with ranchers",
+   "Managing fire and revegetation"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-1031.03": {
+  "roadmap": [
+   {
+    "title": "AI for talks and materials",
+    "items": [
+     "Draft talks, brochures and articles with AI, checking facts.",
+     "Create school programs with AI help.",
+     "Research natural history with AI and verify sources."
+    ],
+    "project": "Create one new interpretive talk with AI help and gather visitor feedback."
+   },
+   {
+    "title": "Digital visitor services",
+    "items": [
+     "Set up an FAQ or app for common visitor questions.",
+     "Use AI species ID apps with visitors.",
+     "Plan events with templates."
+    ],
+    "project": "Create a visitor FAQ with AI help and measure repeat questions at the desk."
+   },
+   {
+    "title": "Guiding and teaching",
+    "items": [
+     "Leading field trips stays human.",
+     "Inspire visitors in person.",
+     "Look at related roles: environmental educator or park manager."
+    ],
+    "project": "Lead a field trip using a species ID app and record visitor engagement."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for talks and brochures",
+   "Species ID apps",
+   "Event planning tools"
+  ],
+  "humanEdge": [
+   "Leading field trips",
+   "Inspiring visitors",
+   "Handling visitor problems"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-1032.00": {
+  "roadmap": [
+   {
+    "title": "AI for forest mapping",
+    "items": [
+     "Use satellite and lidar data to map forests and estimate timber.",
+     "Draft reports and plans with AI.",
+     "Monitor compliance with AI-assisted tools."
+    ],
+    "project": "Estimate timber volume for one area with lidar or satellite tools and compare with a field cruise."
+   },
+   {
+    "title": "Forest management planning",
+    "items": [
+     "Model growth and harvest scenarios.",
+     "Detect disease and fire risk from imagery.",
+     "Validate in the field."
+    ],
+    "project": "Use imagery to detect disease or damage in one forest and verify on the ground."
+   },
+   {
+    "title": "Field work and negotiation",
+    "items": [
+     "Inspections and supervising crews stay human.",
+     "Negotiate contracts.",
+     "Look at related roles: conservation scientist or forest technician."
+    ],
+    "project": "Negotiate one harvest contract with an AI-prepared fact sheet."
+   }
+  ],
+  "aiTools": [
+   "Forest inventory software",
+   "Lidar and satellite tools",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Inspecting forests",
+   "Supervising crews",
+   "Negotiating contracts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-1041.00": {
+  "roadmap": [
+   {
+    "title": "AI for surveillance and writing",
+    "items": [
+     "Use AI coding help for statistical analysis of disease data.",
+     "Draft reports and articles with AI, checking every result.",
+     "Create public health messages with AI and test them."
+    ],
+    "project": "Analyse one surveillance dataset with AI-assisted code and compare with your usual analysis."
+   },
+   {
+    "title": "Better surveillance",
+    "items": [
+     "Build dashboards with automated alerts.",
+     "Use AI to scan reports and news for outbreaks, then verify.",
+     "Protect health data."
+    ],
+    "project": "Set up an automated alert for one disease and evaluate it for three months."
+   },
+   {
+    "title": "Investigation and advice",
+    "items": [
+     "Outbreak investigation stays human.",
+     "Advise policy makers.",
+     "Look at related roles: public health director or research scientist."
+    ],
+    "project": "Present findings to health officials and record decisions."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for R or Python",
+   "Surveillance dashboards",
+   "ChatGPT or Claude for drafts"
+  ],
+  "humanEdge": [
+   "Investigating outbreaks",
+   "Advising policy makers",
+   "Communicating risk"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-1042.00": {
+  "roadmap": [
+   {
+    "title": "AI for writing and analysis",
+    "items": [
+     "Draft grants and papers with AI, keeping results yours.",
+     "Analyse data with AI-assisted scripts.",
+     "Summarise literature with AI."
+    ],
+    "project": "Write one grant application with AI help and compare effort with the last one."
+   },
+   {
+    "title": "AI in medical research",
+    "items": [
+     "Use AI for image analysis and drug discovery tools.",
+     "Validate in the lab.",
+     "Follow ethics and data rules."
+    ],
+    "project": "Use one AI analysis tool on your data and validate results experimentally."
+   },
+   {
+    "title": "Lab and teaching",
+    "items": [
+     "Lab work and teaching stay human.",
+     "Plan studies with clinicians.",
+     "Look at related roles: clinical researcher or industry scientist."
+    ],
+    "project": "Teach one session on responsible AI in research."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for writing",
+   "AI coding assistant",
+   "AI image analysis tools"
+  ],
+  "humanEdge": [
+   "Designing studies",
+   "Lab work",
+   "Teaching and mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI for data and papers",
+    "items": [
+     "Use AI coding help for data analysis pipelines.",
+     "Draft papers and proposals with AI.",
+     "Summarise literature with AI."
+    ],
+    "project": "Rewrite one analysis pipeline with AI coding help and verify results."
+   },
+   {
+    "title": "Machine learning in astronomy",
+    "items": [
+     "Apply ML to classify objects and find anomalies.",
+     "Validate with known samples.",
+     "Share reproducible code."
+    ],
+    "project": "Train a classifier on one dataset and compare with expert labels."
+   },
+   {
+    "title": "Observation and teaching",
+    "items": [
+     "Observing and teaching stay human.",
+     "Mentor students.",
+     "Look at related roles: data scientist or physicist."
+    ],
+    "project": "Mentor one student on ML methods."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for Python",
+   "Machine learning libraries",
+   "ChatGPT or Claude for papers"
+  ],
+  "humanEdge": [
+   "Developing theories",
+   "Teaching and mentoring",
+   "Judging scientific significance"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2012.00": {
+  "roadmap": [
+   {
+    "title": "AI for calculations and papers",
+    "items": [
+     "Use AI coding help for calculations and simulations, verifying results.",
+     "Draft papers and proposals with AI.",
+     "Summarise literature with AI."
+    ],
+    "project": "Write one simulation with AI coding help and validate it against known results."
+   },
+   {
+    "title": "ML for physics",
+    "items": [
+     "Use ML for data analysis and surrogate models.",
+     "Validate with physics.",
+     "Share code openly."
+    ],
+    "project": "Build a surrogate model for one simulation and compare speed and accuracy."
+   },
+   {
+    "title": "Experiments and theory",
+    "items": [
+     "Experiments and new theories stay human.",
+     "Collaborate on equipment design.",
+     "Look at related roles: data scientist or engineer."
+    ],
+    "project": "Propose one new experiment and get feedback from colleagues."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant",
+   "Simulation software",
+   "ChatGPT or Claude for writing"
+  ],
+  "humanEdge": [
+   "Running experiments",
+   "Developing theories",
+   "Judging physical meaning"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2021.00": {
+  "roadmap": [
+   {
+    "title": "AI in forecasting",
+    "items": [
+     "Learn AI weather models and compare them with traditional forecasts.",
+     "Draft briefings and reports with AI.",
+     "Automate data gathering."
+    ],
+    "project": "Compare AI weather model forecasts with your forecasts for one month and record accuracy."
+   },
+   {
+    "title": "Better products",
+    "items": [
+     "Create graphics and maps with automation.",
+     "Tailor forecasts for business users.",
+     "Validate models with observations."
+    ],
+    "project": "Build an automated briefing for one client and gather feedback."
+   },
+   {
+    "title": "Warnings and communication",
+    "items": [
+     "Severe weather warnings and judgement stay human.",
+     "Explain uncertainty to the public.",
+     "Look at related roles: climate scientist or hydrologist."
+    ],
+    "project": "Improve one warning message with clearer language and test it with users."
+   }
+  ],
+  "aiTools": [
+   "AI weather models",
+   "Meteorological software",
+   "ChatGPT or Claude for briefings"
+  ],
+  "humanEdge": [
+   "Issuing severe weather warnings",
+   "Explaining uncertainty",
+   "Judging when models are wrong"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2031.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports and analysis",
+    "items": [
+     "Draft reports and specifications with AI, checking every value.",
+     "Analyse test data with AI-assisted tools.",
+     "Search literature with AI."
+    ],
+    "project": "Write five technical reports with AI help and measure time saved."
+   },
+   {
+    "title": "AI in chemistry",
+    "items": [
+     "Use AI tools to suggest reactions or formulations, then test.",
+     "Analyse spectra with software.",
+     "Keep lab data structured."
+    ],
+    "project": "Test one AI-suggested formulation change in the lab."
+   },
+   {
+    "title": "Lab skills",
+    "items": [
+     "Lab work and instrument care stay human.",
+     "Train lab staff.",
+     "Look at related roles: chemical engineer or quality manager."
+    ],
+    "project": "Develop one improved analytical method and document it."
+   }
+  ],
+  "aiTools": [
+   "Lab data systems",
+   "ChatGPT or Claude for reports",
+   "Chemistry AI tools"
+  ],
+  "humanEdge": [
+   "Lab experiments",
+   "Maintaining instruments",
+   "Judging results"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2032.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and reports",
+    "items": [
+     "Draft reports and proposals with AI.",
+     "Use AI to search materials databases.",
+     "Analyse test data with AI."
+    ],
+    "project": "Write one proposal with AI help and compare effort with a previous one."
+   },
+   {
+    "title": "AI materials discovery",
+    "items": [
+     "Use ML to predict material properties.",
+     "Validate predictions in the lab.",
+     "Build datasets."
+    ],
+    "project": "Test one AI-predicted material in the lab."
+   },
+   {
+    "title": "Lab and customers",
+    "items": [
+     "Experiments and testing stay human.",
+     "Work with customers on needs.",
+     "Look at related roles: materials engineer or R&D lead."
+    ],
+    "project": "Meet one customer to tailor a material and document needs."
+   }
+  ],
+  "aiTools": [
+   "Materials databases with AI",
+   "AI coding assistant",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Lab experiments",
+   "Working with customers",
+   "Judging material behaviour"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2041.00": {
+  "roadmap": [
+   {
+    "title": "AI for environmental data",
+    "items": [
+     "Analyse monitoring data with AI-assisted scripts.",
+     "Draft reports and briefings with AI.",
+     "Review permits with AI help."
+    ],
+    "project": "Analyse one monitoring dataset with AI help and compare time with manual work."
+   },
+   {
+    "title": "Better monitoring",
+    "items": [
+     "Use sensors and remote sensing for pollution.",
+     "Validate data quality.",
+     "Map results with GIS."
+    ],
+    "project": "Set up automated quality checks for one dataset."
+   },
+   {
+    "title": "Inspections and advice",
+    "items": [
+     "Audits and inspections stay human.",
+     "Communicate with the public.",
+     "Look at related roles: environmental engineer or policy analyst."
+    ],
+    "project": "Present findings to a community group and record questions."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant",
+   "GIS and remote sensing",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Inspecting sites",
+   "Communicating with the public",
+   "Judging environmental risk"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2041.01": {
+  "roadmap": [
+   {
+    "title": "AI for research and briefs",
+    "items": [
+     "Summarise climate studies with AI and verify key numbers.",
+     "Draft briefs and memos with AI.",
+     "Compare policies across countries with AI research."
+    ],
+    "project": "Write three policy briefs with AI help and compare effort and quality with past ones."
+   },
+   {
+    "title": "Better analysis",
+    "items": [
+     "Use models and data for policy impacts.",
+     "Track legislation with AI alerts.",
+     "Check every source."
+    ],
+    "project": "Analyse one policy's impact with AI-assisted data and present it."
+   },
+   {
+    "title": "Advocacy and presentation",
+    "items": [
+     "Promoting initiatives stays human.",
+     "Present to governments and groups.",
+     "Look at related roles: sustainability officer or environmental scientist."
+    ],
+    "project": "Present a brief to policy makers and record outcomes."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for research and drafts",
+   "Policy tracking tools",
+   "Data analysis tools"
+  ],
+  "humanEdge": [
+   "Persuading policy makers",
+   "Judging policy trade-offs",
+   "Building coalitions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2041.02": {
+  "roadmap": [
+   {
+    "title": "AI for planning and data",
+    "items": [
+     "Analyse site data with AI.",
+     "Draft plans, schedules and budgets with AI.",
+     "Create GIS diagrams."
+    ],
+    "project": "Draft one restoration plan with AI help and compare time with a past one."
+   },
+   {
+    "title": "Monitoring restoration",
+    "items": [
+     "Use drones and imagery to track progress.",
+     "Validate in the field.",
+     "Report results."
+    ],
+    "project": "Monitor one restoration site with drone imagery for a season."
+   },
+   {
+    "title": "Field leadership",
+    "items": [
+     "Site assessments and crew supervision stay human.",
+     "Coordinate professionals.",
+     "Look at related roles: conservation scientist or brownfield specialist."
+    ],
+    "project": "Lead one field restoration day and record results."
+   }
+  ],
+  "aiTools": [
+   "GIS software",
+   "Drone imagery tools",
+   "ChatGPT or Claude for plans"
+  ],
+  "humanEdge": [
+   "Assessing sites",
+   "Supervising field crews",
+   "Coordinating experts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2041.03": {
+  "roadmap": [
+   {
+    "title": "AI for assessments and reports",
+    "items": [
+     "Draft reports with AI, checking all data.",
+     "Use AI to review literature.",
+     "Build databases with AI help."
+    ],
+    "project": "Write one impact report with AI help and compare effort with a past report."
+   },
+   {
+    "title": "Life cycle and flow analysis",
+    "items": [
+     "Use LCA software with AI-assisted data.",
+     "Model material flows.",
+     "Validate data sources."
+    ],
+    "project": "Run a life cycle assessment for one product with AI-assisted data collection."
+   },
+   {
+    "title": "Systems thinking",
+    "items": [
+     "Judging trade-offs and side effects stays human.",
+     "Work with industry partners.",
+     "Look at related roles: sustainability specialist or environmental scientist."
+    ],
+    "project": "Present one improvement to an industry partner and track adoption."
+   }
+  ],
+  "aiTools": [
+   "LCA software",
+   "ChatGPT or Claude for reports",
+   "Data analysis tools"
+  ],
+  "humanEdge": [
+   "Systems thinking",
+   "Judging trade-offs",
+   "Working with industry"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2042.00": {
+  "roadmap": [
+   {
+    "title": "AI for maps and reports",
+    "items": [
+     "Draft geological reports and maps with AI help.",
+     "Use AI coding help for data analysis.",
+     "Summarise studies with AI."
+    ],
+    "project": "Draft one report with AI help and compare time with the last one."
+   },
+   {
+    "title": "AI in geoscience",
+    "items": [
+     "Use ML for seismic or remote sensing interpretation.",
+     "Validate with field data.",
+     "Build models of the subsurface."
+    ],
+    "project": "Interpret one dataset with ML tools and compare with your interpretation."
+   },
+   {
+    "title": "Field and advice",
+    "items": [
+     "Field studies and sampling stay human.",
+     "Advise on construction and resources.",
+     "Look at related roles: hydrologist or environmental scientist."
+    ],
+    "project": "Lead one field survey and document findings."
+   }
+  ],
+  "aiTools": [
+   "Geological software with ML",
+   "AI coding assistant",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Field geology",
+   "Interpreting complex data",
+   "Advising on risk"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2043.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports and models",
+    "items": [
+     "Draft reports with AI, checking every number.",
+     "Use AI coding help for hydrologic models.",
+     "Graph data with automation."
+    ],
+    "project": "Write one report with AI help and compare effort with a previous one."
+   },
+   {
+    "title": "ML in hydrology",
+    "items": [
+     "Use ML for flood and flow prediction.",
+     "Validate with observations.",
+     "Automate data collection."
+    ],
+    "project": "Build an ML flow prediction for one river and compare with your current model."
+   },
+   {
+    "title": "Field and supervision",
+    "items": [
+     "Field sampling stays human.",
+     "Supervise staff.",
+     "Look at related roles: water resource specialist or geoscientist."
+    ],
+    "project": "Lead one field investigation and document results."
+   }
+  ],
+  "aiTools": [
+   "Hydrologic modelling software",
+   "AI coding assistant",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Field investigations",
+   "Supervising staff",
+   "Judging flood risk"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-2099.01": {
+  "roadmap": [
+   {
+    "title": "AI for image processing",
+    "items": [
+     "Use AI models to classify land cover from imagery, then check samples.",
+     "Write processing scripts with AI coding help.",
+     "Draft reports and presentations with AI."
+    ],
+    "project": "Classify land cover for one area with an AI model and measure accuracy against ground truth."
+   },
+   {
+    "title": "Geospatial foundation models",
+    "items": [
+     "Learn new foundation models for satellite imagery.",
+     "Build clean training and validation sets.",
+     "Automate data pipelines."
+    ],
+    "project": "Test one geospatial foundation model on your data and compare with your current method."
+   },
+   {
+    "title": "Projects and judgement",
+    "items": [
+     "Discussing goals and methods with teams stays human.",
+     "Judge data quality and limits.",
+     "Look at related roles: GIS analyst or data scientist."
+    ],
+    "project": "Lead one project from goal to delivery and record decisions made."
+   }
+  ],
+  "aiTools": [
+   "Remote sensing software with AI (e.g. Google Earth Engine)",
+   "AI coding assistant for Python",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Framing the right question",
+   "Judging data quality",
+   "Working with project teams"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3011.00": {
+  "roadmap": [
+   {
+    "title": "AI for data and research",
+    "items": [
+     "Use AI coding help for econometric models, checking methods.",
+     "Summarise research and data with AI.",
+     "Draft reports and articles with AI."
+    ],
+    "project": "Replicate one past analysis with AI coding help and compare results and time."
+   },
+   {
+    "title": "Economics of AI",
+    "items": [
+     "Study how AI affects labour, productivity and markets.",
+     "Use new data sources (text, web data) carefully.",
+     "Validate forecasts."
+    ],
+    "project": "Write a short analysis of AI's effect on one industry using public data."
+   },
+   {
+    "title": "Advice and explanation",
+    "items": [
+     "Advising clients and explaining to the public stay human.",
+     "Supervise research.",
+     "Look at related roles: policy advisor or data scientist."
+    ],
+    "project": "Present one analysis to non-economists and gather feedback."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for R, Stata or Python",
+   "ChatGPT or Claude for research",
+   "Economic databases"
+  ],
+  "humanEdge": [
+   "Judging causality",
+   "Advising decision makers",
+   "Explaining economics to the public"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3011.01": {
+  "roadmap": [
+   {
+    "title": "AI for research and writing",
+    "items": [
+     "Draft technical documents and articles with AI.",
+     "Use AI coding help for cost-benefit models.",
+     "Summarise research with AI."
+    ],
+    "project": "Write one cost-benefit analysis with AI help and compare effort with a past one."
+   },
+   {
+    "title": "Better models",
+    "items": [
+     "Build scenario models with data.",
+     "Use satellite and environmental data.",
+     "Validate assumptions."
+    ],
+    "project": "Build one scenario model and present results to stakeholders."
+   },
+   {
+    "title": "Policy and teaching",
+    "items": [
+     "Policy advice and teaching stay human.",
+     "Present to decision makers.",
+     "Look at related roles: climate policy analyst or economist."
+    ],
+    "project": "Present policy recommendations to one agency."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant",
+   "ChatGPT or Claude for writing",
+   "Environmental data platforms"
+  ],
+  "humanEdge": [
+   "Policy judgement",
+   "Presenting to decision makers",
+   "Teaching"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3022.00": {
+  "roadmap": [
+   {
+    "title": "AI for survey analysis",
+    "items": [
+     "Code open-ended answers with AI, checking samples.",
+     "Create tables, charts and summaries with AI help.",
+     "Draft questionnaires with AI and test them."
+    ],
+    "project": "Code 1,000 open answers with AI, check 100 by hand, and compare accuracy and time."
+   },
+   {
+    "title": "AI in survey methods",
+    "items": [
+     "Learn risks of AI-generated responses and bots in surveys.",
+     "Use AI for questionnaire testing.",
+     "Validate data quality."
+    ],
+    "project": "Add bot detection checks to one survey and measure how many responses are filtered."
+   },
+   {
+    "title": "Design and clients",
+    "items": [
+     "Survey design and client consultation stay human.",
+     "Lead interviewers.",
+     "Look at related roles: data scientist or market researcher."
+    ],
+    "project": "Design one survey with a client and record design decisions."
+   }
+  ],
+  "aiTools": [
+   "Survey platforms with AI",
+   "ChatGPT or Claude for coding answers",
+   "Statistical software"
+  ],
+  "humanEdge": [
+   "Designing good questions",
+   "Consulting with clients",
+   "Judging data quality"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3032.00": {
+  "roadmap": [
+   {
+    "title": "AI for analysis and reports",
+    "items": [
+     "Analyse workplace data with AI-assisted tools.",
+     "Draft reports and test materials with AI.",
+     "Write job analyses with AI help."
+    ],
+    "project": "Analyse one workplace program's outcomes with AI help and present findings."
+   },
+   {
+    "title": "AI at work",
+    "items": [
+     "Study how AI changes jobs and teams.",
+     "Audit AI selection tools for fairness and validity.",
+     "Design training for AI adoption."
+    ],
+    "project": "Audit one AI hiring tool for validity and adverse impact."
+   },
+   {
+    "title": "People and change",
+    "items": [
+     "Observing and interviewing workers stays human.",
+     "Facilitate organisational change.",
+     "Look at related roles: HR director or organisational consultant."
+    ],
+    "project": "Facilitate a change workshop on AI adoption and record outcomes."
+   }
+  ],
+  "aiTools": [
+   "Statistical software",
+   "ChatGPT or Claude for reports",
+   "People analytics tools"
+  ],
+  "humanEdge": [
+   "Facilitating change",
+   "Interviewing workers",
+   "Judging fairness"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "19-3033.00": {
   "roadmap": [
    {
@@ -8144,6 +9110,1350 @@
    "Building a therapeutic relationship and trust",
    "Working with people in crisis",
    "Making diagnosis and treatment decisions responsibly"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3034.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports and records",
+    "items": [
+     "Draft psychological reports with approved tools, never public AI with student data.",
+     "Organise records digitally.",
+     "Create plain-language summaries for parents."
+    ],
+    "project": "Draft reports with approved AI tools for a month and measure time saved."
+   },
+   {
+    "title": "Better plans and data",
+    "items": [
+     "Develop education plans with templates.",
+     "Analyse program data.",
+     "Learn about AI tools students use."
+    ],
+    "project": "Create a template for education plans and use it with teachers."
+   },
+   {
+    "title": "Children and families",
+    "items": [
+     "Testing, counselling and consultation stay human.",
+     "Support teachers.",
+     "Look at related roles: counsellor or clinical psychologist."
+    ],
+    "project": "Use saved time for more counselling sessions and record outcomes."
+   }
+  ],
+  "aiTools": [
+   "Approved report writing tools",
+   "Test scoring software",
+   "Student information systems"
+  ],
+  "humanEdge": [
+   "Counselling children",
+   "Assessing needs",
+   "Working with families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3039.02": {
+  "roadmap": [
+   {
+    "title": "AI for reports",
+    "items": [
+     "Draft neuropsychological reports with approved tools, editing every line.",
+     "Use scoring software for tests.",
+     "Summarise literature with AI."
+    ],
+    "project": "Draft reports with approved AI tools for a month and compare time and edits."
+   },
+   {
+    "title": "Digital assessment",
+    "items": [
+     "Learn computerised testing tools.",
+     "Keep data secure.",
+     "Evaluate new AI assessment tools carefully."
+    ],
+    "project": "Evaluate one digital assessment tool against standard tests."
+   },
+   {
+    "title": "Evaluation and care",
+    "items": [
+     "Evaluations and diagnosis stay human.",
+     "Counsel families.",
+     "Look at related roles: clinical neuropsychologist or researcher."
+    ],
+    "project": "Supervise one intern and review their reports."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical report tools",
+   "Test scoring software",
+   "ChatGPT or Claude for literature"
+  ],
+  "humanEdge": [
+   "Conducting evaluations",
+   "Diagnosing",
+   "Counselling families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3039.03": {
+  "roadmap": [
+   {
+    "title": "AI for reports",
+    "items": [
+     "Draft reports with approved tools, editing every conclusion.",
+     "Use scoring software.",
+     "Summarise literature with AI."
+    ],
+    "project": "Draft reports with approved tools for a month and measure time and edits."
+   },
+   {
+    "title": "Digital assessment",
+    "items": [
+     "Learn computerised tests.",
+     "Keep patient data secure.",
+     "Evaluate AI tools carefully."
+    ],
+    "project": "Compare one digital test with standard methods."
+   },
+   {
+    "title": "Clinical care",
+    "items": [
+     "Evaluations and therapy stay human.",
+     "Supervise interns.",
+     "Look at related roles: neuropsychologist or researcher."
+    ],
+    "project": "Use saved time for patient education sessions."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical report tools",
+   "Test scoring software",
+   "ChatGPT or Claude for literature"
+  ],
+  "humanEdge": [
+   "Clinical evaluation",
+   "Therapy",
+   "Supervising interns"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3041.00": {
+  "roadmap": [
+   {
+    "title": "AI for data and writing",
+    "items": [
+     "Analyse data with AI-assisted code.",
+     "Draft papers and grants with AI.",
+     "Code interviews with AI, checking samples."
+    ],
+    "project": "Code one set of interviews with AI and compare with your own coding."
+   },
+   {
+    "title": "Studying AI and society",
+    "items": [
+     "Research how AI affects social behaviour.",
+     "Use new data sources carefully.",
+     "Validate methods."
+    ],
+    "project": "Design one study on AI and society."
+   },
+   {
+    "title": "Research and teaching",
+    "items": [
+     "Theory and teaching stay human.",
+     "Advise policy makers.",
+     "Look at related roles: policy analyst or researcher."
+    ],
+    "project": "Present findings to policy makers."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant",
+   "Qualitative analysis tools with AI",
+   "ChatGPT or Claude for writing"
+  ],
+  "humanEdge": [
+   "Building theories",
+   "Teaching",
+   "Advising on social issues"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3051.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports and analysis",
+    "items": [
+     "Draft land use reports with AI.",
+     "Analyse data with GIS and AI.",
+     "Answer public inquiries with AI-assisted replies."
+    ],
+    "project": "Draft five reports with AI help and measure time saved."
+   },
+   {
+    "title": "Digital planning",
+    "items": [
+     "Use 3D models and scenario tools.",
+     "Analyse public feedback with AI.",
+     "Check proposals against codes."
+    ],
+    "project": "Analyse public comments on one plan with AI and summarise themes."
+   },
+   {
+    "title": "Public engagement",
+    "items": [
+     "Public meetings and negotiation stay human.",
+     "Advise officials.",
+     "Look at related roles: transportation planner or project manager."
+    ],
+    "project": "Run a public meeting with AI-prepared visuals and record feedback."
+   }
+  ],
+  "aiTools": [
+   "GIS software",
+   "ChatGPT or Claude for reports",
+   "Public engagement platforms"
+  ],
+  "humanEdge": [
+   "Leading public meetings",
+   "Balancing interests",
+   "Advising officials"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3091.00": {
+  "roadmap": [
+   {
+    "title": "AI for writing and research",
+    "items": [
+     "Draft reports and papers with AI.",
+     "Compare site data with AI help.",
+     "Organise records digitally."
+    ],
+    "project": "Write one report with AI help and compare effort with a past one."
+   },
+   {
+    "title": "Digital archaeology",
+    "items": [
+     "Use lidar and remote sensing to find sites.",
+     "Use AI image tools for artifacts.",
+     "Validate in the field."
+    ],
+    "project": "Use lidar data to find potential sites and check them in the field."
+   },
+   {
+    "title": "Fieldwork and communities",
+    "items": [
+     "Excavation and fieldwork stay human.",
+     "Work with communities.",
+     "Look at related roles: historian or curator."
+    ],
+    "project": "Consult with one community on a project."
+   }
+  ],
+  "aiTools": [
+   "GIS and lidar tools",
+   "ChatGPT or Claude for writing",
+   "Photogrammetry software"
+  ],
+  "humanEdge": [
+   "Fieldwork and excavation",
+   "Interpreting cultures",
+   "Working with communities"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3092.00": {
+  "roadmap": [
+   {
+    "title": "AI for maps and reports",
+    "items": [
+     "Create maps with GIS and AI help.",
+     "Draft reports with AI.",
+     "Gather data with AI-assisted searches."
+    ],
+    "project": "Produce one map series with AI help and measure time saved."
+   },
+   {
+    "title": "Geospatial AI",
+    "items": [
+     "Use AI for imagery analysis.",
+     "Validate with field data.",
+     "Build databases."
+    ],
+    "project": "Analyse one region with AI imagery tools."
+   },
+   {
+    "title": "Consulting and teaching",
+    "items": [
+     "Fieldwork and consulting stay human.",
+     "Teach geography.",
+     "Look at related roles: GIS specialist or urban planner."
+    ],
+    "project": "Consult on one project."
+   }
+  ],
+  "aiTools": [
+   "GIS software with AI",
+   "ChatGPT or Claude for reports",
+   "Satellite imagery tools"
+  ],
+  "humanEdge": [
+   "Fieldwork",
+   "Interpreting places",
+   "Teaching"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3093.00": {
+  "roadmap": [
+   {
+    "title": "AI for sources and writing",
+    "items": [
+     "Transcribe and search old documents with AI, checking accuracy.",
+     "Draft manuscripts with AI, keeping interpretations yours.",
+     "Organise sources digitally."
+    ],
+    "project": "Transcribe one archive collection with AI and check a sample."
+   },
+   {
+    "title": "Digital history",
+    "items": [
+     "Use text analysis on large collections.",
+     "Check AI for invented facts.",
+     "Build online exhibits."
+    ],
+    "project": "Build one online exhibit with AI-assisted research and verify every fact."
+   },
+   {
+    "title": "Interpretation",
+    "items": [
+     "Interpreting the past stays human.",
+     "Teach and present history.",
+     "Look at related roles: archivist or curator."
+    ],
+    "project": "Present findings in a public talk."
+   }
+  ],
+  "aiTools": [
+   "AI transcription for handwriting",
+   "ChatGPT or Claude for drafts",
+   "Text analysis tools"
+  ],
+  "humanEdge": [
+   "Interpreting the past",
+   "Judging sources",
+   "Teaching history"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3094.00": {
+  "roadmap": [
+   {
+    "title": "AI for analysis and writing",
+    "items": [
+     "Analyse election and survey data with AI-assisted code.",
+     "Draft papers and policy papers with AI.",
+     "Track policy decisions with AI."
+    ],
+    "project": "Analyse one election dataset with AI help."
+   },
+   {
+    "title": "Studying AI and politics",
+    "items": [
+     "Research AI in elections and governance.",
+     "Analyse misinformation.",
+     "Validate methods."
+    ],
+    "project": "Write an analysis of AI regulation in one country."
+   },
+   {
+    "title": "Advice and teaching",
+    "items": [
+     "Advising officials stays human.",
+     "Teach politics.",
+     "Look at related roles: policy analyst or economist."
+    ],
+    "project": "Brief one official on a topic."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant",
+   "ChatGPT or Claude for writing",
+   "Text analysis tools"
+  ],
+  "humanEdge": [
+   "Advising officials",
+   "Judging politics",
+   "Teaching"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-3099.01": {
+  "roadmap": [
+   {
+    "title": "AI for reports and models",
+    "items": [
+     "Draft reports with AI.",
+     "Interpret traffic model data with AI help.",
+     "Build models with AI coding help."
+    ],
+    "project": "Write one planning report with AI help and compare time."
+   },
+   {
+    "title": "New mobility data",
+    "items": [
+     "Use mobility and sensor data.",
+     "Model scenarios.",
+     "Validate with counts."
+    ],
+    "project": "Model one scenario with new data and present it."
+   },
+   {
+    "title": "Public engagement",
+    "items": [
+     "Public meetings stay human.",
+     "Work with engineers.",
+     "Look at related roles: urban planner or transportation engineer."
+    ],
+    "project": "Present a plan at a public meeting."
+   }
+  ],
+  "aiTools": [
+   "Traffic modelling software",
+   "GIS",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Engaging the public",
+   "Balancing priorities",
+   "Working with engineers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4012.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and reports",
+    "items": [
+     "Record data with digital forms.",
+     "Create summaries and charts with AI.",
+     "Use AI to explain lab procedures."
+    ],
+    "project": "Switch to digital data recording for one trial and measure errors."
+   },
+   {
+    "title": "Precision tools",
+    "items": [
+     "Learn sensors and drones.",
+     "Map trial plots.",
+     "Automate data checks."
+    ],
+    "project": "Use a drone to map one trial and compare with manual notes."
+   },
+   {
+    "title": "Field and lab skills",
+    "items": [
+     "Crop work, sampling and machinery stay human.",
+     "Train workers.",
+     "Look at related roles: precision agriculture technician."
+    ],
+    "project": "Learn one new technology and train a colleague."
+   }
+  ],
+  "aiTools": [
+   "Digital field data apps",
+   "ChatGPT or Claude for reports",
+   "Drones"
+  ],
+  "humanEdge": [
+   "Field crop work",
+   "Operating machinery",
+   "Collecting samples"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4012.01": {
+  "roadmap": [
+   {
+    "title": "AI for maps and records",
+    "items": [
+     "Create precision maps with software and AI.",
+     "Keep records digital.",
+     "Compare yield and soil maps with AI."
+    ],
+    "project": "Analyse yield and soil maps for one farm with AI and propose management zones."
+   },
+   {
+    "title": "Smarter equipment",
+    "items": [
+     "Program variable-rate equipment.",
+     "Use AI crop scouting tools.",
+     "Validate in the field."
+    ],
+    "project": "Test variable-rate application on one field and measure results."
+   },
+   {
+    "title": "Hands-on work",
+    "items": [
+     "Installing and calibrating sensors stay human.",
+     "Advise farmers.",
+     "Look at related roles: agronomist or agricultural engineer."
+    ],
+    "project": "Calibrate equipment for one farm and document it."
+   }
+  ],
+  "aiTools": [
+   "Precision agriculture software",
+   "GIS",
+   "AI crop scouting apps"
+  ],
+  "humanEdge": [
+   "Calibrating equipment",
+   "Working with farmers",
+   "Field checks"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4013.00": {
+  "roadmap": [
+   {
+    "title": "AI for test records",
+    "items": [
+     "Record and compile test results with AI help.",
+     "Create charts and reports with AI.",
+     "Calculate formulas with checked tools."
+    ],
+    "project": "Automate reporting for one test and measure time saved."
+   },
+   {
+    "title": "Smarter quality control",
+    "items": [
+     "Use lab systems for data.",
+     "Track trends in test results.",
+     "Keep records audit-ready."
+    ],
+    "project": "Track trends for one product and flag drifts."
+   },
+   {
+    "title": "Lab and senses",
+    "items": [
+     "Testing, tasting and lab care stay human.",
+     "Assist scientists.",
+     "Look at related roles: food scientist or quality analyst."
+    ],
+    "project": "Learn one new test method and document it."
+   }
+  ],
+  "aiTools": [
+   "Lab information systems",
+   "ChatGPT or Claude for reports",
+   "Spreadsheet tools"
+  ],
+  "humanEdge": [
+   "Tasting and smelling",
+   "Lab testing",
+   "Maintaining equipment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4021.00": {
+  "roadmap": [
+   {
+    "title": "AI for lab data and reports",
+    "items": [
+     "Draft reports and summaries of findings with AI from your data.",
+     "Keep detailed logs with digital lab notebooks.",
+     "Use AI to explain protocols and equipment manuals."
+    ],
+    "project": "Write one month of experiment summaries with AI help and measure time saved."
+   },
+   {
+    "title": "Automated lab work",
+    "items": [
+     "Learn lab automation and robotic liquid handlers.",
+     "Use AI image tools for counting and classification, checking samples.",
+     "Track equipment calibration digitally."
+    ],
+    "project": "Automate one routine assay step and compare time and errors with manual work."
+   },
+   {
+    "title": "Hands-on lab skills",
+    "items": [
+     "Specimen prep, sampling and equipment care stay human.",
+     "Support scientists with reliable work.",
+     "Look at related roles: clinical lab technician or research associate."
+    ],
+    "project": "Master one new lab technique and train a colleague."
+   }
+  ],
+  "aiTools": [
+   "Electronic lab notebooks",
+   "Lab automation software",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Preparing specimens carefully",
+   "Maintaining lab equipment",
+   "Spotting when an experiment goes wrong"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4031.00": {
+  "roadmap": [
+   {
+    "title": "AI for test results and reports",
+    "items": [
+     "Compile and interpret test results with AI-assisted spreadsheets.",
+     "Write technical reports and charts with AI.",
+     "Automate inventory tracking."
+    ],
+    "project": "Automate reporting of one routine test and measure time saved."
+   },
+   {
+    "title": "Smarter instruments",
+    "items": [
+     "Use instrument software with automated analysis.",
+     "Track quality trends.",
+     "Keep data audit-ready."
+    ],
+    "project": "Set up trend tracking for one product's quality data."
+   },
+   {
+    "title": "Lab skills",
+    "items": [
+     "Running tests and preparing solutions stay human.",
+     "Maintain instruments.",
+     "Look at related roles: chemist or quality analyst."
+    ],
+    "project": "Learn one new analytical technique and document it."
+   }
+  ],
+  "aiTools": [
+   "Lab information management systems",
+   "Instrument analysis software",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Running lab tests safely",
+   "Maintaining instruments",
+   "Preparing solutions precisely"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4042.00": {
+  "roadmap": [
+   {
+    "title": "AI for test reports",
+    "items": [
+     "Prepare test reports and charts with AI from your data.",
+     "Answer public questions with AI-prepared materials.",
+     "Keep databases organised."
+    ],
+    "project": "Write test reports with AI help for a month and measure time saved."
+   },
+   {
+    "title": "Digital monitoring",
+    "items": [
+     "Use sensors and data loggers.",
+     "Automate calculations.",
+     "Map results with GIS."
+    ],
+    "project": "Automate calculations for one test type and check accuracy."
+   },
+   {
+    "title": "Field and lab",
+    "items": [
+     "Sampling and investigations stay human.",
+     "Discuss results with customers.",
+     "Look at related roles: environmental scientist or engineer."
+    ],
+    "project": "Lead one sampling campaign and document lessons."
+   }
+  ],
+  "aiTools": [
+   "Data loggers and sensors",
+   "ChatGPT or Claude for reports",
+   "GIS"
+  ],
+  "humanEdge": [
+   "Collecting samples safely",
+   "Investigating spills",
+   "Calibrating instruments"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4043.00": {
+  "roadmap": [
+   {
+    "title": "AI for logs and reports",
+    "items": [
+     "Compile and log data digitally.",
+     "Draft reports and maps with AI help.",
+     "Use AI to explain data patterns."
+    ],
+    "project": "Draft reports with AI for a month and measure time saved."
+   },
+   {
+    "title": "Digital geology",
+    "items": [
+     "Use core scanning and image analysis tools.",
+     "Map with GIS.",
+     "Automate data checks."
+    ],
+    "project": "Analyse core images with AI tools and compare with manual logging."
+   },
+   {
+    "title": "Field skills",
+    "items": [
+     "Field surveys, sampling and equipment repair stay human.",
+     "Support geoscientists.",
+     "Look at related roles: geoscientist or surveyor."
+    ],
+    "project": "Learn one new field instrument."
+   }
+  ],
+  "aiTools": [
+   "Core imaging software",
+   "GIS",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Field sampling",
+   "Operating equipment",
+   "Repairing devices"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4044.00": {
+  "roadmap": [
+   {
+    "title": "AI for data quality",
+    "items": [
+     "Use AI-assisted checks on hydrologic data.",
+     "Write reports and tables with AI.",
+     "Answer data requests faster."
+    ],
+    "project": "Automate quality checks for one station's data and count errors caught."
+   },
+   {
+    "title": "Real-time data",
+    "items": [
+     "Set up telemetry and alerts.",
+     "Share real-time data during floods.",
+     "Validate sensor data."
+    ],
+    "project": "Set up alerts for one station and test them."
+   },
+   {
+    "title": "Field work",
+    "items": [
+     "Measuring water and maintaining equipment stay human.",
+     "Support hydrologists.",
+     "Look at related roles: hydrologist or water specialist."
+    ],
+    "project": "Maintain one station network and record downtime."
+   }
+  ],
+  "aiTools": [
+   "Hydrologic data software",
+   "Telemetry systems",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Measuring water in the field",
+   "Repairing equipment",
+   "Working in floods"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4051.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and monitoring",
+    "items": [
+     "Use digital records for tests and readings.",
+     "Analyse equipment data for trends.",
+     "Write procedures with AI, checked by supervisors."
+    ],
+    "project": "Analyse three months of equipment data with AI and find one maintenance need."
+   },
+   {
+    "title": "Safety systems",
+    "items": [
+     "Learn automated monitoring systems.",
+     "Follow strict rules for any software.",
+     "Practise emergency procedures."
+    ],
+    "project": "Review one procedure with AI help and propose improvements to your supervisor."
+   },
+   {
+    "title": "Safety and hands-on",
+    "items": [
+     "Radiation measurement and equipment testing stay human.",
+     "Protect workers.",
+     "Look at related roles: reactor operator or monitoring technician."
+    ],
+    "project": "Train new staff on one safety procedure."
+   }
+  ],
+  "aiTools": [
+   "Plant monitoring systems",
+   "Digital records",
+   "ChatGPT or Claude for non-sensitive drafts"
+  ],
+  "humanEdge": [
+   "Measuring radiation",
+   "Testing equipment",
+   "Protecting workers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4051.02": {
+  "roadmap": [
+   {
+    "title": "AI for reports and calculations",
+    "items": [
+     "Prepare contamination reports with AI from your readings.",
+     "Calculate exposure times with checked tools.",
+     "Enter data digitally."
+    ],
+    "project": "Write reports with AI help for a month and measure time saved."
+   },
+   {
+    "title": "Automated detection",
+    "items": [
+     "Learn automated radiation monitors.",
+     "Test detection equipment.",
+     "Analyse data trends."
+    ],
+    "project": "Analyse monitoring data for trends in one area."
+   },
+   {
+    "title": "Safety work",
+    "items": [
+     "Monitoring and briefing workers stay human.",
+     "Train staff on protection.",
+     "Look at related roles: nuclear technician or health physicist."
+    ],
+    "project": "Run a safety training and test workers' knowledge."
+   }
+  ],
+  "aiTools": [
+   "Radiation monitoring systems",
+   "Digital records",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Monitoring radiation",
+   "Briefing workers",
+   "Protecting people"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4061.00": {
+  "roadmap": [
+   {
+    "title": "AI for data and reports",
+    "items": [
+     "Use AI coding help for statistical analysis.",
+     "Clean and verify data with AI-assisted scripts.",
+     "Draft tables, charts and reports with AI."
+    ],
+    "project": "Clean and analyse one dataset with AI help and compare time with your usual process."
+   },
+   {
+    "title": "Research workflows",
+    "items": [
+     "Build reproducible scripts.",
+     "Use AI for literature searches, checking sources.",
+     "Protect participant data."
+    ],
+    "project": "Create a reproducible analysis pipeline for one project."
+   },
+   {
+    "title": "Participants and interviews",
+    "items": [
+     "Interviewing and recruiting participants stay human.",
+     "Support researchers.",
+     "Look at related roles: data analyst or researcher."
+    ],
+    "project": "Run interviews for one study and record lessons."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for R or Python",
+   "Statistical software",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Interviewing participants",
+   "Recruiting people",
+   "Ensuring data quality"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4071.00": {
+  "roadmap": [
+   {
+    "title": "AI for mapping and data",
+    "items": [
+     "Map forest data with digital systems.",
+     "Maintain databases with AI help.",
+     "Use AI to plan work."
+    ],
+    "project": "Map one area digitally and measure time saved."
+   },
+   {
+    "title": "Remote sensing and fire tools",
+    "items": [
+     "Use drones and satellite data.",
+     "Use fire detection tools.",
+     "Validate in the field."
+    ],
+    "project": "Use drone imagery for one survey and compare with ground data."
+   },
+   {
+    "title": "Field work",
+    "items": [
+     "Planting, thinning, fire work and patrols stay human.",
+     "Lead crews.",
+     "Look at related roles: forester or conservation scientist."
+    ],
+    "project": "Lead a crew on one project and record results."
+   }
+  ],
+  "aiTools": [
+   "GIS and mapping apps",
+   "Drones",
+   "Fire detection tools"
+  ],
+  "humanEdge": [
+   "Fighting fires",
+   "Leading crews",
+   "Working in forests"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4092.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports",
+    "items": [
+     "Draft reports with approved tools from your notes.",
+     "Keep evidence records digital.",
+     "Use AI to explain methods."
+    ],
+    "project": "Draft reports with approved tools for a month and measure time saved."
+   },
+   {
+    "title": "Forensic tools",
+    "items": [
+     "Learn AI-assisted fingerprint and image tools.",
+     "Validate tools for court use.",
+     "Keep chain of custody."
+    ],
+    "project": "Compare one AI-assisted comparison tool with manual comparisons."
+   },
+   {
+    "title": "Evidence and court",
+    "items": [
+     "Collecting evidence stays human.",
+     "Testify in court.",
+     "Look at related roles: crime lab analyst or digital forensics."
+    ],
+    "project": "Prepare for one testimony with a mock cross-examination."
+   }
+  ],
+  "aiTools": [
+   "Forensic analysis software",
+   "Evidence management systems",
+   "Approved report tools"
+  ],
+  "humanEdge": [
+   "Collecting evidence at scenes",
+   "Testifying",
+   "Judging evidence"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4099.01": {
+  "roadmap": [
+   {
+    "title": "AI for test data and reports",
+    "items": [
+     "Compile and analyse test data with AI-assisted tools.",
+     "Write deviation reports and trend analyses with AI.",
+     "Complete documentation with templates."
+    ],
+    "project": "Automate trend analysis for one product and measure time saved."
+   },
+   {
+    "title": "Digital quality",
+    "items": [
+     "Use lab systems for data integrity.",
+     "Learn AI visual inspection.",
+     "Keep records audit-ready."
+    ],
+    "project": "Pilot AI visual inspection on one product and compare with manual checks."
+   },
+   {
+    "title": "Lab skills",
+    "items": [
+     "Running tests and calibrating equipment stay human.",
+     "Liaise with departments.",
+     "Look at related roles: quality manager or validation engineer."
+    ],
+    "project": "Lead one investigation into an out-of-spec result."
+   }
+  ],
+  "aiTools": [
+   "Lab information management systems",
+   "ChatGPT or Claude for reports",
+   "AI visual inspection"
+  ],
+  "humanEdge": [
+   "Running analyses",
+   "Investigating deviations",
+   "Calibrating equipment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-4099.03": {
+  "roadmap": [
+   {
+    "title": "AI for image processing",
+    "items": [
+     "Use AI tools to correct and enhance images.",
+     "Verify data accuracy with automated checks.",
+     "Prepare presentations with AI."
+    ],
+    "project": "Process one image set with AI tools and compare time with manual work."
+   },
+   {
+    "title": "Integration and databases",
+    "items": [
+     "Integrate data with GIS.",
+     "Maintain databases.",
+     "Learn new sensors."
+    ],
+    "project": "Build one geospatial database with automated checks."
+   },
+   {
+    "title": "Field and teamwork",
+    "items": [
+     "Collecting data stays human.",
+     "Work with scientists.",
+     "Look at related roles: remote sensing scientist or GIS analyst."
+    ],
+    "project": "Plan one mapping project with a scientist."
+   }
+  ],
+  "aiTools": [
+   "Remote sensing software",
+   "GIS",
+   "ChatGPT or Claude for presentations"
+  ],
+  "humanEdge": [
+   "Collecting field data",
+   "Judging image quality",
+   "Working with scientists"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-5011.00": {
+  "roadmap": [
+   {
+    "title": "AI for safety reports",
+    "items": [
+     "Write inspection and incident reports with AI from your notes.",
+     "Analyse incident data with AI for trends.",
+     "Create training materials with AI."
+    ],
+    "project": "Analyse three years of incidents with AI and present the top risks."
+   },
+   {
+    "title": "Smarter safety programs",
+    "items": [
+     "Use AI tools to spot hazards in photos or video.",
+     "Track corrective actions digitally.",
+     "Keep human judgement on decisions."
+    ],
+    "project": "Pilot one AI hazard detection tool and measure accuracy."
+   },
+   {
+    "title": "Inspection and training",
+    "items": [
+     "Inspections and investigations stay human.",
+     "Train workers in person.",
+     "Look at related roles: safety engineer or environmental compliance."
+    ],
+    "project": "Run a training with AI-prepared materials and test knowledge."
+   }
+  ],
+  "aiTools": [
+   "Safety management software",
+   "ChatGPT or Claude for reports",
+   "AI hazard detection tools"
+  ],
+  "humanEdge": [
+   "Inspecting workplaces",
+   "Investigating accidents",
+   "Persuading people to work safely"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "19-5012.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and recommendations",
+    "items": [
+     "Maintain records and logs digitally.",
+     "Draft recommendations with AI from test results.",
+     "Review reports with AI help."
+    ],
+    "project": "Digitise records for one site and measure time saved."
+   },
+   {
+    "title": "Better monitoring",
+    "items": [
+     "Use digital monitors for noise and air.",
+     "Track PPE use.",
+     "Analyse trends."
+    ],
+    "project": "Set up digital monitoring for one hazard."
+   },
+   {
+    "title": "Hands-on safety",
+    "items": [
+     "Testing workplaces and maintaining PPE stay human.",
+     "Consult with organisations.",
+     "Look at related roles: safety specialist or industrial hygienist."
+    ],
+    "project": "Test one workplace and recommend fixes."
+   }
+  ],
+  "aiTools": [
+   "Digital monitoring equipment",
+   "Safety software",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Testing workplaces",
+   "Maintaining equipment",
+   "Advising on safety"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1011.00": {
+  "roadmap": [
+   {
+    "title": "Less paperwork, safely",
+    "items": [
+     "Use approved tools to draft progress notes and reports, never public AI with client data.",
+     "Create client education materials with AI.",
+     "Organise referrals with templates."
+    ],
+    "project": "Draft notes with approved tools for a month and measure time saved."
+   },
+   {
+    "title": "Better aftercare",
+    "items": [
+     "Use reminders and apps to support clients after treatment.",
+     "Track progress on goals.",
+     "Learn about AI apps clients use."
+    ],
+    "project": "Set up aftercare check-ins and track relapse contacts for three months."
+   },
+   {
+    "title": "Counselling",
+    "items": [
+     "Counselling and building trust stay human.",
+     "Coordinate with health professionals.",
+     "Look at related roles: mental health counsellor or social worker."
+    ],
+    "project": "Use saved time for extra group sessions and record outcomes."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical documentation tools",
+   "Recovery support apps",
+   "ChatGPT or Claude for education materials"
+  ],
+  "humanEdge": [
+   "Counselling people in recovery",
+   "Building trust",
+   "Handling crises"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1012.00": {
+  "roadmap": [
+   {
+    "title": "AI for student information",
+    "items": [
+     "Create information on programs and financial aid with AI, checking facts.",
+     "Review transcripts with AI-assisted tools.",
+     "Draft recommendation letters with AI, then personalise."
+    ],
+    "project": "Create a guide on college options with AI help and test it with students."
+   },
+   {
+    "title": "Careers in an AI world",
+    "items": [
+     "Learn how AI changes careers and skills.",
+     "Use career tools with students.",
+     "Teach students to use AI for planning."
+    ],
+    "project": "Run a session on AI and careers and gather student feedback."
+   },
+   {
+    "title": "Counselling",
+    "items": [
+     "Personal counselling and crisis help stay human.",
+     "Work with parents and teachers.",
+     "Look at related roles: school psychologist or career coach."
+    ],
+    "project": "Use saved time for one-on-one sessions and record outcomes."
+   }
+  ],
+  "aiTools": [
+   "Career exploration platforms",
+   "ChatGPT or Claude for guides",
+   "Student information systems"
+  ],
+  "humanEdge": [
+   "Counselling students",
+   "Crisis intervention",
+   "Working with families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1013.00": {
+  "roadmap": [
+   {
+    "title": "Less paperwork",
+    "items": [
+     "Draft case notes with approved, privacy-compliant tools.",
+     "Create education materials with AI.",
+     "Keep files organised."
+    ],
+    "project": "Use approved note tools for a month and measure time saved."
+   },
+   {
+    "title": "Better plans",
+    "items": [
+     "Use templates for treatment plans.",
+     "Track progress.",
+     "Learn about AI apps clients use."
+    ],
+    "project": "Create a treatment plan template and use it for new clients."
+   },
+   {
+    "title": "Therapy",
+    "items": [
+     "Therapy and relationships stay human.",
+     "Consult with professionals.",
+     "Look at related roles: clinical supervisor or psychologist."
+    ],
+    "project": "Use saved time for one new skill and track its use."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical note tools",
+   "Practice management software",
+   "ChatGPT or Claude for non-client materials"
+  ],
+  "humanEdge": [
+   "Helping families in conflict",
+   "Building trust",
+   "Reading relationships"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1014.00": {
+  "roadmap": [
+   {
+    "title": "Less paperwork",
+    "items": [
+     "Use approved tools for treatment records.",
+     "Fill forms with templates.",
+     "Create psychoeducation materials with AI."
+    ],
+    "project": "Use approved note tools for a month and measure time saved."
+   },
+   {
+    "title": "Better care",
+    "items": [
+     "Use measurement tools to track progress.",
+     "Learn about AI mental health apps.",
+     "Coordinate with colleagues."
+    ],
+    "project": "Track outcomes with a standard measure for three months."
+   },
+   {
+    "title": "Counselling",
+    "items": [
+     "Counselling stays human.",
+     "Support families.",
+     "Look at related roles: clinical supervisor or psychologist."
+    ],
+    "project": "Use saved time for extra sessions."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical documentation tools",
+   "Outcome tracking tools",
+   "ChatGPT or Claude for materials"
+  ],
+  "humanEdge": [
+   "Counselling clients",
+   "Building trust",
+   "Crisis support"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1015.00": {
+  "roadmap": [
+   {
+    "title": "AI for case files",
+    "items": [
+     "Use approved tools to draft case notes and reports.",
+     "Keep records organised.",
+     "Draft rehabilitation plans with templates."
+    ],
+    "project": "Draft case notes with approved tools for a month and measure time saved."
+   },
+   {
+    "title": "Job matching",
+    "items": [
+     "Use job search tools with clients.",
+     "Find employers with AI-assisted research.",
+     "Track progress."
+    ],
+    "project": "Use AI job search tools with five clients and track placements."
+   },
+   {
+    "title": "Support and advocacy",
+    "items": [
+     "Supporting clients and employers stays human.",
+     "Work with families.",
+     "Look at related roles: career counsellor or social worker."
+    ],
+    "project": "Visit employers to support placements and record outcomes."
+   }
+  ],
+  "aiTools": [
+   "Case management software",
+   "Job search platforms",
+   "ChatGPT or Claude for materials"
+  ],
+  "humanEdge": [
+   "Supporting clients",
+   "Working with employers",
+   "Advocating for people"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -8189,6 +10499,510 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "21-1022.00": {
+  "roadmap": [
+   {
+    "title": "AI for care coordination",
+    "items": [
+     "Use approved tools for case notes.",
+     "Search community resources with AI help.",
+     "Create discharge guides."
+    ],
+    "project": "Build a resource directory with AI help and verify every entry."
+   },
+   {
+    "title": "Better discharge planning",
+    "items": [
+     "Use templates for discharge plans.",
+     "Track outcomes.",
+     "Coordinate with teams."
+    ],
+    "project": "Create a discharge template and track readmissions."
+   },
+   {
+    "title": "Support and advocacy",
+    "items": [
+     "Counselling and advocacy stay human.",
+     "Organise support groups.",
+     "Look at related roles: case manager or mental health social worker."
+    ],
+    "project": "Start a support group and record attendance and feedback."
+   }
+  ],
+  "aiTools": [
+   "Case management software",
+   "ChatGPT or Claude for resource searches",
+   "Approved documentation tools"
+  ],
+  "humanEdge": [
+   "Supporting patients and families",
+   "Advocating in crises",
+   "Coordinating care"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1023.00": {
+  "roadmap": [
+   {
+    "title": "Less paperwork, safely",
+    "items": [
+     "Use approved tools to record progress notes, never public AI with client details.",
+     "Create plain-language education materials on illness and medication with AI.",
+     "Search community resources with AI help, verifying each one."
+    ],
+    "project": "Use approved note tools for a month and measure the time you get back for clients."
+   },
+   {
+    "title": "Better coordination",
+    "items": [
+     "Use templates for assessments and treatment plans.",
+     "Set reminders for appointments and follow-ups.",
+     "Keep a verified local resource list."
+    ],
+    "project": "Build a verified housing and treatment resource list with AI help and share it with colleagues."
+   },
+   {
+    "title": "Counselling and advocacy",
+    "items": [
+     "Counselling and supporting families stay human.",
+     "Coordinate with doctors and nurses.",
+     "Look at related roles: clinical supervisor or mental health counsellor."
+    ],
+    "project": "Use saved time for extra family sessions and record outcomes."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical documentation tools",
+   "Case management software",
+   "ChatGPT or Claude for education materials"
+  ],
+  "humanEdge": [
+   "Counselling people in crisis",
+   "Supporting families",
+   "Coordinating complex care"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1091.00": {
+  "roadmap": [
+   {
+    "title": "AI for health materials",
+    "items": [
+     "Create health education materials with AI in plain language and several languages, checked by experts.",
+     "Draft press releases and campaigns with AI.",
+     "Keep records and databases tidy."
+    ],
+    "project": "Create one campaign's materials with AI help and test them with community members."
+   },
+   {
+    "title": "Better programs",
+    "items": [
+     "Analyse program data with AI.",
+     "Use social media tools for outreach.",
+     "Evaluate programs with surveys."
+    ],
+    "project": "Evaluate one program with AI-assisted survey analysis and improve it."
+   },
+   {
+    "title": "Community relationships",
+    "items": [
+     "Building partnerships stays human.",
+     "Present workshops in person.",
+     "Look at related roles: community health worker or public health manager."
+    ],
+    "project": "Run a workshop with AI-prepared materials and gather feedback."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for materials",
+   "Canva for visuals",
+   "Survey tools"
+  ],
+  "humanEdge": [
+   "Building community trust",
+   "Presenting in person",
+   "Understanding local needs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1092.00": {
+  "roadmap": [
+   {
+    "title": "AI for case files and reports",
+    "items": [
+     "Use approved tools to draft progress and presentence reports, checking every fact.",
+     "Keep case folders digital and organised.",
+     "Never put offender data into public AI tools."
+    ],
+    "project": "Draft reports with approved tools for a month and measure time saved."
+   },
+   {
+    "title": "Risk tools with care",
+    "items": [
+     "Learn how risk assessment tools work and their bias.",
+     "Document your own judgement next to scores.",
+     "Track referrals to services."
+    ],
+    "project": "Review 20 risk scores and document where your judgement differed and why."
+   },
+   {
+    "title": "Supervision and court",
+    "items": [
+     "Interviews, field supervision and court testimony stay human.",
+     "Build relationships that support change.",
+     "Look at related roles: correctional supervisor or social worker."
+    ],
+    "project": "Use saved time for more field visits and record outcomes."
+   }
+  ],
+  "aiTools": [
+   "Case management systems",
+   "Approved report tools",
+   "Electronic monitoring systems"
+  ],
+  "humanEdge": [
+   "Supervising people in the community",
+   "Testifying in court",
+   "Judging risk"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1093.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and referrals",
+    "items": [
+     "Use approved tools for visit records.",
+     "Search community services with AI, verifying each one.",
+     "Create simple guides for clients."
+    ],
+    "project": "Build a verified service directory with AI help."
+   },
+   {
+    "title": "Organised support",
+    "items": [
+     "Use templates for care plans.",
+     "Set reminders for follow-ups.",
+     "Translate materials with AI, checked by speakers."
+    ],
+    "project": "Create a care plan template and use it for new clients."
+   },
+   {
+    "title": "People skills",
+    "items": [
+     "Home visits and group work stay human.",
+     "Support clients daily.",
+     "Look at related roles: social worker or case manager."
+    ],
+    "project": "Use saved time for extra home visits."
+   }
+  ],
+  "aiTools": [
+   "Case management software",
+   "ChatGPT or Claude for guides",
+   "Translation apps"
+  ],
+  "humanEdge": [
+   "Visiting clients at home",
+   "Supporting daily life",
+   "Building trust"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1094.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and education",
+    "items": [
+     "Keep client records with approved tools.",
+     "Create health advice materials with AI, checked by a nurse or doctor.",
+     "Translate materials with AI, checked by speakers."
+    ],
+    "project": "Create diabetes self-care materials with AI help and test them with clients."
+   },
+   {
+    "title": "Better follow-up",
+    "items": [
+     "Use reminders and text messages for follow-ups.",
+     "Track referrals.",
+     "Map community needs."
+    ],
+    "project": "Set up follow-up reminders and track completed actions."
+   },
+   {
+    "title": "Community trust",
+    "items": [
+     "Home visits and advocacy stay human.",
+     "Attend community events.",
+     "Look at related roles: health educator or nurse."
+    ],
+    "project": "Visit five community events and record needs heard."
+   }
+  ],
+  "aiTools": [
+   "Case management apps",
+   "ChatGPT or Claude for materials",
+   "Text message reminders"
+  ],
+  "humanEdge": [
+   "Earning community trust",
+   "Home visits",
+   "Advocating for people"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI for writing and admin",
+    "items": [
+     "Use AI to research and outline sermons, then write in your own voice.",
+     "Handle admin tasks with templates and AI drafts.",
+     "Create education materials with AI."
+    ],
+    "project": "Prepare one month of newsletters and education materials with AI help and measure time saved."
+   },
+   {
+    "title": "Community communication",
+    "items": [
+     "Use AI for translations and accessible materials.",
+     "Organise volunteers with digital tools.",
+     "Think about AI ethics in your tradition."
+    ],
+    "project": "Lead a discussion on AI and faith with your community."
+   },
+   {
+    "title": "Pastoral care",
+    "items": [
+     "Counselling, visits and ceremonies stay human.",
+     "Comfort people in hard moments.",
+     "Look at related roles: chaplain or counsellor."
+    ],
+    "project": "Use saved time for more visits and record their impact."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for research and drafts",
+   "Church management software",
+   "Translation tools"
+  ],
+  "humanEdge": [
+   "Comforting people",
+   "Leading worship",
+   "Spiritual counselling"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-2021.00": {
+  "roadmap": [
+   {
+    "title": "AI for programs and admin",
+    "items": [
+     "Plan programs and schedules with AI help.",
+     "Write newsletters and publicity with AI.",
+     "Select curricula with AI-assisted research."
+    ],
+    "project": "Plan one program with AI help and measure time saved."
+   },
+   {
+    "title": "Better coordination",
+    "items": [
+     "Organise volunteers with digital tools.",
+     "Track attendance.",
+     "Create study materials with AI."
+    ],
+    "project": "Set up volunteer scheduling and track sign-ups."
+   },
+   {
+    "title": "Leadership and care",
+    "items": [
+     "Training staff and counselling stay human.",
+     "Recruit volunteers.",
+     "Look at related roles: clergy or community manager."
+    ],
+    "project": "Train volunteers with AI-prepared materials."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for planning",
+   "Volunteer management tools",
+   "Canva"
+  ],
+  "humanEdge": [
+   "Recruiting volunteers",
+   "Counselling",
+   "Leading education"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "23-1012.00": {
+  "roadmap": [
+   {
+    "title": "AI for legal research",
+    "items": [
+     "Use court-approved legal AI to find cases, then read and cite-check every source.",
+     "Draft memos and opinion sections with AI, under the judge's direction.",
+     "Summarise filings with AI to find the issues."
+    ],
+    "project": "Prepare five bench memos with AI-assisted research, verify every citation, and compare time with before."
+   },
+   {
+    "title": "Verification habits",
+    "items": [
+     "Keep a checklist for AI errors: invented cases, wrong quotes, outdated law.",
+     "Follow court rules on AI use.",
+     "Track law changes with alerts."
+    ],
+    "project": "Write a verification checklist for AI-assisted research and use it for a month."
+   },
+   {
+    "title": "Judgement and the judge",
+    "items": [
+     "Conferring with judges stays human.",
+     "Attend hearings.",
+     "Look at related roles: lawyer or judge."
+    ],
+    "project": "Discuss one complex case with the judge and record what reasoning mattered."
+   }
+  ],
+  "aiTools": [
+   "Court-approved legal AI (e.g. Westlaw, Lexis AI)",
+   "Document review tools",
+   "Citation checkers"
+  ],
+  "humanEdge": [
+   "Legal reasoning",
+   "Supporting the judge's decisions",
+   "Catching errors"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "23-1021.00": {
+  "roadmap": [
+   {
+    "title": "AI for opinions and research",
+    "items": [
+     "Draft decisions with approved tools, keeping the reasoning yours.",
+     "Use AI to summarise claim documents.",
+     "Research law with legal AI and verify."
+    ],
+    "project": "Draft decisions with approved tools for a month and measure time and edits."
+   },
+   {
+    "title": "Fair process",
+    "items": [
+     "Follow rules on AI use in decisions.",
+     "Document reasoning clearly.",
+     "Check AI for bias."
+    ],
+    "project": "Write guidance on AI use in your hearings office."
+   },
+   {
+    "title": "Hearings",
+    "items": [
+     "Conducting hearings stays human.",
+     "Rule fairly.",
+     "Look at related roles: judge or mediator."
+    ],
+    "project": "Review five decisions for clarity and fairness."
+   }
+  ],
+  "aiTools": [
+   "Approved legal AI",
+   "Case management systems",
+   "Document summarisation tools"
+  ],
+  "humanEdge": [
+   "Conducting fair hearings",
+   "Weighing evidence",
+   "Making decisions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "23-1022.00": {
+  "roadmap": [
+   {
+    "title": "AI for documents and research",
+    "items": [
+     "Draft opinions and agreements with AI, checking every term.",
+     "Summarise documents with AI.",
+     "Schedule sessions with digital tools."
+    ],
+    "project": "Draft settlement agreements with AI help for a month and measure time saved."
+   },
+   {
+    "title": "Online dispute resolution",
+    "items": [
+     "Learn online mediation platforms.",
+     "Use AI to prepare issue summaries.",
+     "Keep confidentiality."
+    ],
+    "project": "Run one online mediation and gather feedback."
+   },
+   {
+    "title": "Mediation",
+    "items": [
+     "Facilitating communication stays human.",
+     "Build trust with parties.",
+     "Look at related roles: lawyer or judge."
+    ],
+    "project": "Record five mediations' turning points."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for drafts",
+   "Online dispute resolution platforms",
+   "Legal research tools"
+  ],
+  "humanEdge": [
+   "Building trust between parties",
+   "Facilitating dialogue",
+   "Judging fairness"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "23-1023.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and drafts",
+    "items": [
+     "Use approved legal AI for research, verifying every source.",
+     "Draft decisions with clerks' help and AI, keeping reasoning yours.",
+     "Summarise filings with AI."
+    ],
+    "project": "Use AI-assisted research on five cases and record errors caught."
+   },
+   {
+    "title": "AI in courts",
+    "items": [
+     "Learn court rules on AI use by lawyers and parties.",
+     "Handle evidence questions about deepfakes.",
+     "Follow judicial ethics."
+    ],
+    "project": "Write a standing order on AI use in your court."
+   },
+   {
+    "title": "Judging",
+    "items": [
+     "Presiding and sentencing stay human.",
+     "Decide fairly.",
+     "Look at related roles: appellate judge or mediator."
+    ],
+    "project": "Review how you explain decisions to parties."
+   }
+  ],
+  "aiTools": [
+   "Approved legal research AI",
+   "Case management systems",
+   "Document summarisation tools"
+  ],
+  "humanEdge": [
+   "Presiding over hearings",
+   "Sentencing",
+   "Judging credibility"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "23-2011.00": {
   "roadmap": [
    {
@@ -8228,6 +11042,2904 @@
    "Building trust with clients and witnesses",
    "Catching the citation or date that would embarrass the firm",
    "Keeping a case file organised under deadline"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "23-2093.00": {
+  "roadmap": [
+   {
+    "title": "AI for title searches",
+    "items": [
+     "Use AI to read and summarise deeds, liens and mortgages, checking each one.",
+     "Prepare reports with AI.",
+     "Enter records with automation."
+    ],
+    "project": "Search 30 titles with AI help, verify every finding, and compare time with before."
+   },
+   {
+    "title": "Automated title work",
+    "items": [
+     "Use title plants and search software.",
+     "Flag encumbrances automatically.",
+     "Keep human review on all policies."
+    ],
+    "project": "Set up automated flagging for one issue type and measure accuracy."
+   },
+   {
+    "title": "Problem solving",
+    "items": [
+     "Resolving title problems stays human.",
+     "Work with lenders and buyers.",
+     "Look at related roles: paralegal or closing agent."
+    ],
+    "project": "Resolve one complex title problem and document steps."
+   }
+  ],
+  "aiTools": [
+   "Title search software",
+   "Document AI tools",
+   "ChatGPT or Claude for summaries"
+  ],
+  "humanEdge": [
+   "Resolving title problems",
+   "Working with parties",
+   "Judging risk"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for course work",
+    "items": [
+     "Prepare syllabi, cases and handouts with AI, checking facts.",
+     "Use AI to give first feedback on drafts, then grade yourself.",
+     "Use AI for research literature."
+    ],
+    "project": "Redesign one course module with AI help and measure preparation time."
+   },
+   {
+    "title": "Teach business in the AI era",
+    "items": [
+     "Add AI tools to business cases and exercises.",
+     "Set clear rules on AI use in assignments.",
+     "Redesign assessments so they test thinking."
+    ],
+    "project": "Create one assignment where students use AI and reflect on its limits."
+   },
+   {
+    "title": "Teaching and mentoring",
+    "items": [
+     "Lectures, discussion and advising stay human.",
+     "Research and publish.",
+     "Look at related roles: consultant or program director."
+    ],
+    "project": "Mentor students on AI careers in business."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for course design",
+   "Learning management systems with AI",
+   "Research databases"
+  ],
+  "humanEdge": [
+   "Leading class discussions",
+   "Mentoring students",
+   "Research judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1021.00": {
+  "roadmap": [
+   {
+    "title": "AI in teaching computing",
+    "items": [
+     "Prepare course materials with AI help.",
+     "Use AI coding assistants in class examples.",
+     "Use AI to help grade code, with your review."
+    ],
+    "project": "Redesign one course with AI coding tools and measure student outcomes."
+   },
+   {
+    "title": "Assessment and curriculum",
+    "items": [
+     "Redesign assessments for an AI world.",
+     "Teach responsible AI use.",
+     "Update curriculum with AI topics."
+    ],
+    "project": "Add a module on building with LLMs and evaluate it."
+   },
+   {
+    "title": "Research and mentoring",
+    "items": [
+     "Lectures and mentoring stay human.",
+     "Research and publish.",
+     "Look at related roles: industry researcher or engineer."
+    ],
+    "project": "Mentor student projects using AI."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistants",
+   "Learning management systems",
+   "Autograding tools"
+  ],
+  "humanEdge": [
+   "Teaching problem solving",
+   "Mentoring",
+   "Research"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1022.00": {
+  "roadmap": [
+   {
+    "title": "AI for course materials",
+    "items": [
+     "Prepare problem sets and handouts with AI, checking every solution.",
+     "Use AI to generate practice problems.",
+     "Grade with AI help, reviewing results."
+    ],
+    "project": "Create practice problem sets with AI and check them for errors."
+   },
+   {
+    "title": "Teaching with AI",
+    "items": [
+     "Teach students to check AI's maths.",
+     "Redesign exams for understanding.",
+     "Use proof assistants."
+    ],
+    "project": "Create one assignment where students find errors in AI solutions."
+   },
+   {
+    "title": "Teaching and research",
+    "items": [
+     "Lectures and discussion stay human.",
+     "Office hours and advising.",
+     "Look at related roles: data scientist or researcher."
+    ],
+    "project": "Hold office hours focused on understanding and track student progress."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for materials",
+   "Computer algebra systems",
+   "Learning management systems"
+  ],
+  "humanEdge": [
+   "Explaining concepts",
+   "Mentoring students",
+   "Research"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1031.00": {
+  "roadmap": [
+   {
+    "title": "AI for teaching materials",
+    "items": [
+     "Prepare course materials with AI.",
+     "Use AI image tools in design studios.",
+     "Research with AI help."
+    ],
+    "project": "Create one studio exercise using AI image tools and evaluate results."
+   },
+   {
+    "title": "AI in architecture education",
+    "items": [
+     "Teach AI design tools critically.",
+     "Set rules for AI use.",
+     "Update curriculum."
+    ],
+    "project": "Add an AI design module and evaluate it."
+   },
+   {
+    "title": "Studio teaching",
+    "items": [
+     "Studio critique stays human.",
+     "Supervise students.",
+     "Look at related roles: practising architect or researcher."
+    ],
+    "project": "Run studio critiques and record feedback quality."
+   }
+  ],
+  "aiTools": [
+   "AI image generation",
+   "BIM software",
+   "ChatGPT or Claude for materials"
+  ],
+  "humanEdge": [
+   "Studio critique",
+   "Mentoring",
+   "Design judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1032.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and teaching",
+    "items": [
+     "Draft grants and papers with AI.",
+     "Prepare course materials with AI.",
+     "Use AI coding help in research."
+    ],
+    "project": "Write one grant proposal with AI help and compare effort with the last one."
+   },
+   {
+    "title": "Engineering education with AI",
+    "items": [
+     "Teach AI tools in engineering.",
+     "Redesign assessments.",
+     "Teach responsible AI use."
+    ],
+    "project": "Add AI tools to one course and evaluate outcomes."
+   },
+   {
+    "title": "Mentoring",
+    "items": [
+     "Supervising research stays human.",
+     "Lectures and labs.",
+     "Look at related roles: industry R&D."
+    ],
+    "project": "Mentor one research student on AI methods."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for writing",
+   "AI coding assistant",
+   "Simulation software"
+  ],
+  "humanEdge": [
+   "Supervising research",
+   "Teaching",
+   "Engineering judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1041.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and teaching",
+    "items": [
+     "Draft papers and grants with AI.",
+     "Prepare course materials with AI.",
+     "Analyse data with AI help."
+    ],
+    "project": "Write one paper section with AI help."
+   },
+   {
+    "title": "Digital agriculture teaching",
+    "items": [
+     "Teach precision agriculture tools.",
+     "Use AI in labs.",
+     "Update curriculum."
+    ],
+    "project": "Add a precision agriculture module."
+   },
+   {
+    "title": "Field and mentoring",
+    "items": [
+     "Field work and labs stay human.",
+     "Advise students.",
+     "Look at related roles: agronomist or researcher."
+    ],
+    "project": "Lead one field course."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Precision agriculture software",
+   "Statistical software"
+  ],
+  "humanEdge": [
+   "Field teaching",
+   "Mentoring",
+   "Research"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1042.00": {
+  "roadmap": [
+   {
+    "title": "AI for teaching materials",
+    "items": [
+     "Prepare lab and course materials with AI.",
+     "Grade with AI help, reviewing results.",
+     "Research with AI."
+    ],
+    "project": "Create lab materials with AI and test them."
+   },
+   {
+    "title": "Biology with AI",
+    "items": [
+     "Teach AI tools in biology.",
+     "Redesign assessments.",
+     "Update curriculum."
+    ],
+    "project": "Add an AI in biology module."
+   },
+   {
+    "title": "Lab teaching",
+    "items": [
+     "Lab supervision stays human.",
+     "Mentor students.",
+     "Look at related roles: researcher."
+    ],
+    "project": "Mentor students in lab research."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Bioinformatics tools",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Lab teaching",
+   "Mentoring",
+   "Research"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1043.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and teaching",
+    "items": [
+     "Draft papers and grants with AI.",
+     "Prepare course materials with AI.",
+     "Analyse forest data with AI."
+    ],
+    "project": "Write one grant with AI help."
+   },
+   {
+    "title": "Teach new tools",
+    "items": [
+     "Teach remote sensing and AI.",
+     "Use field data apps.",
+     "Update curriculum."
+    ],
+    "project": "Add a remote sensing module."
+   },
+   {
+    "title": "Field teaching",
+    "items": [
+     "Field work stays human.",
+     "Supervise students.",
+     "Look at related roles: forester or researcher."
+    ],
+    "project": "Lead one field course."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Remote sensing tools",
+   "GIS"
+  ],
+  "humanEdge": [
+   "Field teaching",
+   "Mentoring",
+   "Research"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1051.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and grants",
+    "items": [
+     "Draft grant proposals and papers with AI, keeping results and claims yours.",
+     "Use AI coding help for climate, ocean or geology data analysis.",
+     "Prepare syllabi and problem sets with AI, checking every answer."
+    ],
+    "project": "Write one grant proposal with AI help and compare effort with your last one."
+   },
+   {
+    "title": "Teach earth science with AI",
+    "items": [
+     "Teach students AI weather models, remote sensing and ML for geoscience.",
+     "Set clear AI rules for assignments.",
+     "Redesign exams to test reasoning."
+    ],
+    "project": "Add one lab where students compare an AI forecast or classifier with observations."
+   },
+   {
+    "title": "Field and mentoring",
+    "items": [
+     "Field trips and lab supervision stay human.",
+     "Mentor graduate researchers.",
+     "Look at related roles: research scientist or climate consultant."
+    ],
+    "project": "Lead one field course and record what students learned that data could not show."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for writing",
+   "AI coding assistant for Python",
+   "Remote sensing and model data platforms"
+  ],
+  "humanEdge": [
+   "Field teaching",
+   "Mentoring researchers",
+   "Scientific judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1052.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and course prep",
+    "items": [
+     "Draft papers and grants with AI.",
+     "Prepare problem sets and lab handouts with AI, checking chemistry carefully.",
+     "Use AI for literature searches."
+    ],
+    "project": "Create one semester's problem sets with AI help and check every solution."
+   },
+   {
+    "title": "Chemistry teaching with AI",
+    "items": [
+     "Teach AI tools for reaction prediction and spectra.",
+     "Show where AI gets chemistry wrong.",
+     "Set AI rules for lab reports."
+    ],
+    "project": "Create one assignment where students check AI-predicted reactions in the lab."
+   },
+   {
+    "title": "Lab and mentoring",
+    "items": [
+     "Lab supervision and safety stay human.",
+     "Mentor research students.",
+     "Look at related roles: industry chemist or researcher."
+    ],
+    "project": "Mentor one student research project."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for writing",
+   "Chemistry AI tools",
+   "Learning management systems"
+  ],
+  "humanEdge": [
+   "Lab safety and supervision",
+   "Mentoring",
+   "Research judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1053.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and grading",
+    "items": [
+     "Draft papers and grants with AI.",
+     "Prepare course materials with AI.",
+     "Give first feedback on drafts with AI, then grade yourself."
+    ],
+    "project": "Prepare one course with AI-drafted materials and measure time saved."
+   },
+   {
+    "title": "Teach environmental data",
+    "items": [
+     "Teach GIS, remote sensing and AI for environmental work.",
+     "Discuss AI's own environmental cost.",
+     "Set AI rules."
+    ],
+    "project": "Add a module on AI for environmental monitoring."
+   },
+   {
+    "title": "Field and mentoring",
+    "items": [
+     "Field and lab supervision stay human.",
+     "Advise students.",
+     "Look at related roles: environmental consultant or researcher."
+    ],
+    "project": "Lead one field project with students."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "GIS and remote sensing",
+   "Learning management systems"
+  ],
+  "humanEdge": [
+   "Field teaching",
+   "Mentoring",
+   "Research"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1054.00": {
+  "roadmap": [
+   {
+    "title": "AI for course and research",
+    "items": [
+     "Prepare problem sets and handouts with AI, checking physics carefully.",
+     "Use AI coding help for simulations and data.",
+     "Draft papers with AI."
+    ],
+    "project": "Create one set of computational exercises with AI help and test them with students."
+   },
+   {
+    "title": "Physics teaching with AI",
+    "items": [
+     "Teach students to verify AI physics answers.",
+     "Use AI for simulation labs.",
+     "Redesign assessments."
+    ],
+    "project": "Create an assignment where students find errors in AI physics solutions."
+   },
+   {
+    "title": "Teaching and mentoring",
+    "items": [
+     "Lectures and labs stay human.",
+     "Mentor students.",
+     "Look at related roles: research or industry physicist."
+    ],
+    "project": "Run office hours focused on intuition and track progress."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "AI coding assistant for Python",
+   "Simulation tools"
+  ],
+  "humanEdge": [
+   "Explaining physical intuition",
+   "Lab teaching",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1061.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and teaching",
+    "items": [
+     "Draft papers with AI, keeping interpretations yours.",
+     "Prepare course materials with AI.",
+     "Code interviews and field notes with AI, checking samples."
+    ],
+    "project": "Code one set of field notes with AI and compare with your own coding."
+   },
+   {
+    "title": "Teach AI critically",
+    "items": [
+     "Teach AI as a cultural phenomenon.",
+     "Use AI tools for archaeology (lidar, image analysis).",
+     "Set AI rules."
+    ],
+    "project": "Create one module on AI and culture."
+   },
+   {
+    "title": "Field and discussion",
+    "items": [
+     "Fieldwork and discussion stay human.",
+     "Mentor students.",
+     "Look at related roles: researcher or museum curator."
+    ],
+    "project": "Lead one field school."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Qualitative analysis tools",
+   "GIS and lidar"
+  ],
+  "humanEdge": [
+   "Fieldwork",
+   "Leading discussions",
+   "Interpretation"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1062.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and materials",
+    "items": [
+     "Draft papers with AI.",
+     "Prepare course materials with AI.",
+     "Give first feedback with AI, then grade yourself."
+    ],
+    "project": "Redesign one course module with AI help."
+   },
+   {
+    "title": "Teach AI and bias",
+    "items": [
+     "Teach how AI reflects bias about race, gender and culture.",
+     "Use AI critically in assignments.",
+     "Set rules."
+    ],
+    "project": "Create an assignment analysing bias in AI outputs."
+   },
+   {
+    "title": "Discussion and mentoring",
+    "items": [
+     "Moderating discussion stays human.",
+     "Advise students.",
+     "Look at related roles: researcher or policy analyst."
+    ],
+    "project": "Mentor students on research."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning management systems",
+   "Research databases"
+  ],
+  "humanEdge": [
+   "Leading sensitive discussions",
+   "Mentoring",
+   "Critical thinking"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1063.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and materials",
+    "items": [
+     "Use AI coding help for econometrics.",
+     "Prepare problem sets with AI, checking answers.",
+     "Draft papers with AI."
+    ],
+    "project": "Create one problem set with AI help and check every answer."
+   },
+   {
+    "title": "Economics of AI in class",
+    "items": [
+     "Teach AI's economic effects.",
+     "Use AI tools in data assignments.",
+     "Set rules."
+    ],
+    "project": "Add a module on AI and the labour market."
+   },
+   {
+    "title": "Teaching and research",
+    "items": [
+     "Lectures and mentoring stay human.",
+     "Department duties.",
+     "Look at related roles: economist or policy advisor."
+    ],
+    "project": "Mentor one student research project."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant",
+   "ChatGPT or Claude",
+   "Statistical software"
+  ],
+  "humanEdge": [
+   "Explaining economics",
+   "Mentoring",
+   "Research judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1064.00": {
+  "roadmap": [
+   {
+    "title": "AI for course and research",
+    "items": [
+     "Prepare course materials with AI.",
+     "Draft papers with AI.",
+     "Use AI-assisted GIS in research."
+    ],
+    "project": "Prepare one course module with AI help and measure time saved."
+   },
+   {
+    "title": "Teach geospatial AI",
+    "items": [
+     "Teach AI tools for maps and imagery.",
+     "Set rules.",
+     "Redesign assessments."
+    ],
+    "project": "Add a geospatial AI lab."
+   },
+   {
+    "title": "Teaching and fieldwork",
+    "items": [
+     "Lectures and fieldwork stay human.",
+     "Advise students.",
+     "Look at related roles: GIS analyst or planner."
+    ],
+    "project": "Lead one field trip."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "GIS with AI",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Teaching",
+   "Fieldwork",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1065.00": {
+  "roadmap": [
+   {
+    "title": "AI for course and research",
+    "items": [
+     "Prepare course materials with AI.",
+     "Draft papers with AI.",
+     "Give first feedback with AI, then grade yourself."
+    ],
+    "project": "Redesign one course with AI help."
+   },
+   {
+    "title": "Teach AI and politics",
+    "items": [
+     "Teach AI regulation and AI in elections.",
+     "Discuss misinformation.",
+     "Set rules."
+    ],
+    "project": "Add a module on AI governance."
+   },
+   {
+    "title": "Discussion and mentoring",
+    "items": [
+     "Moderating debate stays human.",
+     "Advise students.",
+     "Look at related roles: policy analyst."
+    ],
+    "project": "Run a debate on AI regulation."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning management systems",
+   "Research databases"
+  ],
+  "humanEdge": [
+   "Leading debate",
+   "Mentoring",
+   "Political analysis"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1066.00": {
+  "roadmap": [
+   {
+    "title": "AI for course and research",
+    "items": [
+     "Prepare course materials with AI.",
+     "Use AI coding help for data analysis.",
+     "Draft papers with AI."
+    ],
+    "project": "Redesign one course module with AI help."
+   },
+   {
+    "title": "Teach psychology of AI",
+    "items": [
+     "Teach how people interact with AI.",
+     "Discuss AI in mental health.",
+     "Set rules."
+    ],
+    "project": "Add a module on human-AI interaction."
+   },
+   {
+    "title": "Teaching and supervision",
+    "items": [
+     "Discussion and supervision stay human.",
+     "Mentor research.",
+     "Look at related roles: research psychologist."
+    ],
+    "project": "Supervise one student study."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Statistical software",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Teaching",
+   "Supervising research",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1067.00": {
+  "roadmap": [
+   {
+    "title": "AI for course and research",
+    "items": [
+     "Prepare course materials with AI.",
+     "Draft papers with AI.",
+     "Give first feedback with AI, then grade yourself."
+    ],
+    "project": "Redesign one course with AI help."
+   },
+   {
+    "title": "Teach AI and society",
+    "items": [
+     "Teach AI's social effects.",
+     "Use AI in research methods.",
+     "Set rules."
+    ],
+    "project": "Add a module on AI and inequality."
+   },
+   {
+    "title": "Discussion and mentoring",
+    "items": [
+     "Moderating discussion stays human.",
+     "Advise students.",
+     "Look at related roles: researcher or policy analyst."
+    ],
+    "project": "Mentor student research."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Qualitative analysis tools",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Leading discussions",
+   "Mentoring",
+   "Social analysis"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1071.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and teaching",
+    "items": [
+     "Draft papers and grants with AI.",
+     "Prepare course materials with AI, checked against clinical guidelines.",
+     "Use AI for literature reviews."
+    ],
+    "project": "Write one grant with AI help and compare effort."
+   },
+   {
+    "title": "Teach clinical AI",
+    "items": [
+     "Teach AI in diagnosis and documentation, with its risks.",
+     "Set rules on patient data.",
+     "Update curriculum."
+    ],
+    "project": "Add a module on clinical AI safety."
+   },
+   {
+    "title": "Clinical mentoring",
+    "items": [
+     "Supervising students stays human.",
+     "Collaborate on research.",
+     "Look at related roles: clinical researcher."
+    ],
+    "project": "Mentor one student project."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Clinical AI tools",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Clinical supervision",
+   "Mentoring",
+   "Research"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1072.00": {
+  "roadmap": [
+   {
+    "title": "AI for course materials",
+    "items": [
+     "Prepare course materials and case studies with AI, checked against guidelines.",
+     "Grade written work with AI help, reviewing results.",
+     "Create simulation scenarios with AI."
+    ],
+    "project": "Create five clinical case studies with AI help and test them with students."
+   },
+   {
+    "title": "Teach nursing with AI",
+    "items": [
+     "Teach AI documentation and decision support tools.",
+     "Discuss safety and patient privacy.",
+     "Update curriculum."
+    ],
+    "project": "Add a module on AI in nursing practice."
+   },
+   {
+    "title": "Clinical teaching",
+    "items": [
+     "Supervising clinical work stays human.",
+     "Demonstrate patient care.",
+     "Look at related roles: nurse educator or clinical specialist."
+    ],
+    "project": "Supervise clinical rotations and record feedback."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Simulation tools",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Supervising clinical work",
+   "Demonstrating patient care",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1081.00": {
+  "roadmap": [
+   {
+    "title": "AI for teaching education",
+    "items": [
+     "Prepare course materials with AI.",
+     "Draft papers with AI.",
+     "Give first feedback with AI, then grade yourself."
+    ],
+    "project": "Redesign one course with AI help."
+   },
+   {
+    "title": "Train teachers for AI",
+    "items": [
+     "Teach future teachers to use AI in lessons.",
+     "Discuss assessment in an AI world.",
+     "Set rules."
+    ],
+    "project": "Add a module on AI in the classroom."
+   },
+   {
+    "title": "Supervision and mentoring",
+    "items": [
+     "Supervising fieldwork stays human.",
+     "Advise students.",
+     "Look at related roles: instructional coordinator."
+    ],
+    "project": "Supervise student teachers and gather feedback."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning platforms",
+   "Education AI tools"
+  ],
+  "humanEdge": [
+   "Supervising student teachers",
+   "Mentoring",
+   "Leading discussions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1082.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and courses",
+    "items": [
+     "Draft papers with AI.",
+     "Prepare course materials with AI.",
+     "Develop online courses with AI help."
+    ],
+    "project": "Build one online module with AI help."
+   },
+   {
+    "title": "Teach AI in libraries",
+    "items": [
+     "Teach AI search, metadata and information literacy.",
+     "Discuss AI misinformation.",
+     "Set rules."
+    ],
+    "project": "Add a module on AI and information literacy."
+   },
+   {
+    "title": "Teaching and mentoring",
+    "items": [
+     "Lectures and discussion stay human.",
+     "Advise students.",
+     "Look at related roles: librarian or archivist."
+    ],
+    "project": "Mentor students on AI projects."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Library systems with AI",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Teaching",
+   "Mentoring",
+   "Information judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1111.00": {
+  "roadmap": [
+   {
+    "title": "AI for course work",
+    "items": [
+     "Prepare course materials with AI.",
+     "Give first feedback with AI, then grade yourself.",
+     "Create exams with AI, checking them."
+    ],
+    "project": "Create one course module with AI help."
+   },
+   {
+    "title": "Teach AI in justice",
+    "items": [
+     "Teach AI in policing and courts, with bias risks.",
+     "Discuss facial recognition and risk scores.",
+     "Set rules."
+    ],
+    "project": "Add a module on AI ethics in criminal justice."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Lectures and discussion stay human.",
+     "Advise students.",
+     "Look at related roles: policy analyst."
+    ],
+    "project": "Mentor students."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning platforms",
+   "Research databases"
+  ],
+  "humanEdge": [
+   "Teaching",
+   "Leading discussions",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1112.00": {
+  "roadmap": [
+   {
+    "title": "AI for legal research",
+    "items": [
+     "Use legal AI for research, verifying every source.",
+     "Draft papers with AI.",
+     "Prepare materials with AI."
+    ],
+    "project": "Write one article with AI-assisted research and verify every citation."
+   },
+   {
+    "title": "Teach law and AI",
+    "items": [
+     "Teach AI tools in legal practice and their risks.",
+     "Teach AI law and regulation.",
+     "Set exam rules."
+    ],
+    "project": "Add a course on AI law."
+   },
+   {
+    "title": "Socratic teaching",
+    "items": [
+     "Discussion stays human.",
+     "Advise students.",
+     "Look at related roles: lawyer or policy advisor."
+    ],
+    "project": "Lead a seminar on AI regulation."
+   }
+  ],
+  "aiTools": [
+   "Legal research AI",
+   "ChatGPT or Claude",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Socratic teaching",
+   "Legal reasoning",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1113.00": {
+  "roadmap": [
+   {
+    "title": "AI for course work",
+    "items": [
+     "Prepare course materials with AI.",
+     "Draft papers with AI.",
+     "Give feedback with AI help."
+    ],
+    "project": "Redesign one course with AI help."
+   },
+   {
+    "title": "Teach AI in social work",
+    "items": [
+     "Teach AI tools and risks in social services.",
+     "Discuss privacy and bias.",
+     "Set rules."
+    ],
+    "project": "Add a module on AI ethics in social work."
+   },
+   {
+    "title": "Field supervision",
+    "items": [
+     "Supervising fieldwork stays human.",
+     "Moderate discussion.",
+     "Look at related roles: social work manager."
+    ],
+    "project": "Supervise field placements."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning platforms",
+   "Research databases"
+  ],
+  "humanEdge": [
+   "Field supervision",
+   "Leading discussions",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1121.00": {
+  "roadmap": [
+   {
+    "title": "AI for course materials",
+    "items": [
+     "Prepare lectures and materials with AI.",
+     "Research with AI.",
+     "Plan rehearsal schedules with AI."
+    ],
+    "project": "Prepare one course with AI help."
+   },
+   {
+    "title": "Teach art in the AI era",
+    "items": [
+     "Teach AI tools in art, music or theatre critically.",
+     "Discuss copyright and authorship.",
+     "Set rules."
+    ],
+    "project": "Create a project where students use and critique AI tools."
+   },
+   {
+    "title": "Artistic mentoring",
+    "items": [
+     "Demonstrating technique and directing stay human.",
+     "Mentor students.",
+     "Look at related roles: working artist or director."
+    ],
+    "project": "Direct one performance or exhibition."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "AI music and image tools",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Demonstrating technique",
+   "Directing performances",
+   "Artistic mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1122.00": {
+  "roadmap": [
+   {
+    "title": "AI for grading and materials",
+    "items": [
+     "Give first feedback on speeches and papers with AI, then grade yourself.",
+     "Prepare materials with AI.",
+     "Research with AI."
+    ],
+    "project": "Use AI first feedback on one assignment and survey students."
+   },
+   {
+    "title": "Teach media and AI",
+    "items": [
+     "Teach AI in media and misinformation.",
+     "Teach students to use AI tools well.",
+     "Set rules."
+    ],
+    "project": "Add a module on AI and media."
+   },
+   {
+    "title": "Discussion and speech",
+    "items": [
+     "Discussion and speech coaching stay human.",
+     "Advise students.",
+     "Look at related roles: communications consultant."
+    ],
+    "project": "Coach students on public speaking."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning platforms",
+   "Media tools"
+  ],
+  "humanEdge": [
+   "Coaching speakers",
+   "Leading discussions",
+   "Media judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1123.00": {
+  "roadmap": [
+   {
+    "title": "AI for feedback and materials",
+    "items": [
+     "Give first feedback on drafts with AI, then grade yourself.",
+     "Prepare materials with AI.",
+     "Teach online with AI help."
+    ],
+    "project": "Use AI first feedback on one essay assignment and measure grading time."
+   },
+   {
+    "title": "Writing in the AI era",
+    "items": [
+     "Redesign writing assignments for an AI world.",
+     "Teach critical reading of AI text.",
+     "Set rules."
+    ],
+    "project": "Create a writing assignment that uses AI and reflection."
+   },
+   {
+    "title": "Writing instruction",
+    "items": [
+     "Teaching writing stays human.",
+     "Moderate discussions.",
+     "Look at related roles: editor or writer."
+    ],
+    "project": "Hold writing conferences with students."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning platforms",
+   "Writing tools"
+  ],
+  "humanEdge": [
+   "Teaching writing",
+   "Discussing literature",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1124.00": {
+  "roadmap": [
+   {
+    "title": "AI for language materials",
+    "items": [
+     "Prepare exercises and materials with AI, checked for accuracy.",
+     "Give first feedback with AI.",
+     "Keep records digital."
+    ],
+    "project": "Create one unit of exercises with AI help."
+   },
+   {
+    "title": "Teach language with AI",
+    "items": [
+     "Use AI conversation practice.",
+     "Teach translation tools critically.",
+     "Set rules."
+    ],
+    "project": "Add AI conversation practice and measure speaking progress."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Discussion and culture teaching stay human.",
+     "Advise students.",
+     "Look at related roles: translator or interpreter."
+    ],
+    "project": "Run a cultural exchange event."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Language learning apps",
+   "Translation tools"
+  ],
+  "humanEdge": [
+   "Teaching culture",
+   "Conversation",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1125.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and grading",
+    "items": [
+     "Prepare lectures and materials with AI.",
+     "Give first feedback with AI.",
+     "Research with AI, checking sources."
+    ],
+    "project": "Redesign one course with AI help."
+   },
+   {
+    "title": "Teach history with AI",
+    "items": [
+     "Teach students to check AI's historical claims.",
+     "Use AI transcription of sources.",
+     "Set rules."
+    ],
+    "project": "Create an assignment fact-checking AI history."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Discussion stays human.",
+     "Advise students.",
+     "Look at related roles: historian or curator."
+    ],
+    "project": "Mentor students."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "AI transcription tools",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Interpreting history",
+   "Leading discussion",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1126.00": {
+  "roadmap": [
+   {
+    "title": "AI for writing and grading",
+    "items": [
+     "Draft articles with AI help, keeping arguments yours.",
+     "Give first feedback with AI.",
+     "Prepare materials with AI."
+    ],
+    "project": "Redesign one course with AI help."
+   },
+   {
+    "title": "Teach ethics of AI",
+    "items": [
+     "Teach AI ethics and philosophy of mind.",
+     "Use AI in debate exercises.",
+     "Set rules."
+    ],
+    "project": "Add a module on AI ethics."
+   },
+   {
+    "title": "Discussion",
+    "items": [
+     "Moderating discussion stays human.",
+     "Advise students.",
+     "Look at related roles: ethicist or advisor."
+    ],
+    "project": "Run a seminar on AI ethics."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning platforms",
+   "Research databases"
+  ],
+  "humanEdge": [
+   "Leading discussion",
+   "Ethical reasoning",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1192.00": {
+  "roadmap": [
+   {
+    "title": "AI for lectures and grading",
+    "items": [
+     "Prepare lectures on nutrition, food science or child development with AI, checking facts against sources.",
+     "Give first feedback on assignments with AI, then grade yourself.",
+     "Create exams and handouts with AI."
+    ],
+    "project": "Redesign one course with AI-prepared materials and measure preparation time saved."
+   },
+   {
+    "title": "Teach AI in everyday life",
+    "items": [
+     "Teach AI tools for meal planning, budgeting and family life, with their limits.",
+     "Discuss AI and children.",
+     "Set AI rules for assignments."
+    ],
+    "project": "Add a module where students test AI nutrition advice against guidelines."
+   },
+   {
+    "title": "Teaching and advising",
+    "items": [
+     "Discussion and advising stay human.",
+     "Mentor students on careers.",
+     "Look at related roles: extension educator or dietitian."
+    ],
+    "project": "Advise students on careers and record their questions."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for course prep",
+   "Learning management systems",
+   "Nutrition analysis software"
+  ],
+  "humanEdge": [
+   "Mentoring students",
+   "Leading discussions",
+   "Judging practical advice"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1193.00": {
+  "roadmap": [
+   {
+    "title": "AI for lectures and grading",
+    "items": [
+     "Prepare lectures on anatomy and recreation with AI, checking facts.",
+     "Give first feedback with AI.",
+     "Research with AI."
+    ],
+    "project": "Redesign one course with AI help."
+   },
+   {
+    "title": "Teach AI in fitness",
+    "items": [
+     "Teach wearables and AI coaching critically.",
+     "Use motion analysis tools.",
+     "Set rules."
+    ],
+    "project": "Add a lab using AI motion analysis."
+   },
+   {
+    "title": "Teaching and mentoring",
+    "items": [
+     "Discussion and practical teaching stay human.",
+     "Advise students.",
+     "Look at related roles: fitness coordinator or therapist."
+    ],
+    "project": "Mentor students on careers."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Motion analysis apps",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Practical teaching",
+   "Mentoring",
+   "Leading discussions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-1194.00": {
+  "roadmap": [
+   {
+    "title": "AI for lessons and records",
+    "items": [
+     "Prepare lessons, visuals and curricula with AI.",
+     "Keep grades and records digital.",
+     "Create tests with AI, checking them."
+    ],
+    "project": "Create one course unit with AI help and measure time saved."
+   },
+   {
+    "title": "AI in the trade",
+    "items": [
+     "Teach AI tools used in the trade you teach.",
+     "Use simulations and video for practice.",
+     "Update curriculum with industry."
+    ],
+    "project": "Add one AI tool used in the trade to your course."
+   },
+   {
+    "title": "Hands-on teaching",
+    "items": [
+     "Supervising tool use and demonstrating stay human.",
+     "Individual coaching.",
+     "Look at related roles: industry trainer."
+    ],
+    "project": "Run hands-on workshops and track skill progress."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Simulation software",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Supervising tool use safely",
+   "Demonstrating skills",
+   "Individual coaching"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI for planning and parents",
+    "items": [
+     "Plan activities and themes with AI ideas, adapted to your children.",
+     "Write parent newsletters with AI.",
+     "Never put children's data into public AI tools."
+    ],
+    "project": "Plan one month of activities with AI ideas and measure planning time."
+   },
+   {
+    "title": "Organised classroom",
+    "items": [
+     "Use templates for observations.",
+     "Create printable materials with AI.",
+     "Translate parent messages with AI, checked by speakers."
+    ],
+    "project": "Create observation templates and use them for a month."
+   },
+   {
+    "title": "Caring and teaching",
+    "items": [
+     "Caring for children and teaching social skills stay human.",
+     "Read and play with children.",
+     "Look at related roles: kindergarten teacher or childcare director."
+    ],
+    "project": "Use saved time for more one-on-one play."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for ideas",
+   "Canva for materials",
+   "Parent communication apps"
+  ],
+  "humanEdge": [
+   "Caring for young children",
+   "Teaching social skills",
+   "Building trust with parents"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2012.00": {
+  "roadmap": [
+   {
+    "title": "AI for planning and records",
+    "items": [
+     "Plan lessons and activities with AI ideas, adapted to your class.",
+     "Prepare reports with templates.",
+     "Create printable materials with AI."
+    ],
+    "project": "Plan one unit with AI help and measure planning time."
+   },
+   {
+    "title": "Differentiation",
+    "items": [
+     "Use AI to create materials at different levels.",
+     "Track progress digitally.",
+     "Communicate with parents."
+    ],
+    "project": "Create differentiated reading materials with AI and use them."
+   },
+   {
+    "title": "Teaching young children",
+    "items": [
+     "Teaching and caring stay human.",
+     "Read to children.",
+     "Look at related roles: elementary teacher or special education."
+    ],
+    "project": "Use saved time for small-group reading."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Canva",
+   "Classroom apps"
+  ],
+  "humanEdge": [
+   "Teaching young children",
+   "Managing a classroom",
+   "Supporting each child"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2021.00": {
+  "roadmap": [
+   {
+    "title": "AI for lesson planning",
+    "items": [
+     "Plan lessons and activities with AI, adapted to your class.",
+     "Create worksheets and quizzes at different levels.",
+     "Give first feedback on writing with AI, then check."
+    ],
+    "project": "Plan one unit with AI help and compare planning time and student results."
+   },
+   {
+    "title": "Teach children about AI",
+    "items": [
+     "Teach basic AI literacy: what AI is and how it can be wrong.",
+     "Set clear rules for AI use.",
+     "Keep student data out of public tools."
+    ],
+    "project": "Teach a short AI literacy unit and assess understanding."
+   },
+   {
+    "title": "Teaching and care",
+    "items": [
+     "Teaching, classroom management and parent meetings stay human.",
+     "Support each child.",
+     "Look at related roles: instructional coach or school leader."
+    ],
+    "project": "Use saved time for more small-group teaching."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for lesson ideas",
+   "Education AI tools (e.g. MagicSchool)",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Managing a classroom",
+   "Supporting each child",
+   "Working with parents"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2022.00": {
+  "roadmap": [
+   {
+    "title": "AI for lessons and grading",
+    "items": [
+     "Plan lessons with AI, adapted to your students.",
+     "Create tests and assignments with AI, checking them.",
+     "Give first feedback with AI, then grade yourself."
+    ],
+    "project": "Use AI for planning and feedback for one month and measure hours saved."
+   },
+   {
+    "title": "AI in learning",
+    "items": [
+     "Teach responsible AI use.",
+     "Redesign homework for an AI world.",
+     "Use AI for tutoring support, with checks."
+    ],
+    "project": "Redesign one assignment so it tests thinking, not AI output."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Classroom teaching and support stay human.",
+     "Help struggling students.",
+     "Look at related roles: instructional coach or counsellor."
+    ],
+    "project": "Use saved time for tutoring and track progress."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Education AI tools",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Managing a classroom",
+   "Motivating teenagers",
+   "Helping struggling students"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2023.00": {
+  "roadmap": [
+   {
+    "title": "AI for lessons and grading",
+    "items": [
+     "Plan lessons with AI.",
+     "Grade with AI help, reviewing.",
+     "Create materials."
+    ],
+    "project": "Plan one unit with AI help."
+   },
+   {
+    "title": "Teach tech skills",
+    "items": [
+     "Teach AI tools used in careers.",
+     "Teach safe use.",
+     "Set rules."
+    ],
+    "project": "Add an AI tools project."
+   },
+   {
+    "title": "Hands-on teaching",
+    "items": [
+     "Equipment supervision and demonstration stay human.",
+     "Classroom management.",
+     "Look at related roles: CTE teacher secondary."
+    ],
+    "project": "Run a hands-on project and record learning."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning platforms",
+   "Simulation tools"
+  ],
+  "humanEdge": [
+   "Supervising equipment",
+   "Demonstrating skills",
+   "Managing a class"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2032.00": {
+  "roadmap": [
+   {
+    "title": "AI for lessons",
+    "items": [
+     "Plan lessons and materials with AI.",
+     "Grade with AI help.",
+     "Keep records digital."
+    ],
+    "project": "Plan one unit with AI help."
+   },
+   {
+    "title": "AI in careers",
+    "items": [
+     "Teach AI tools in the occupation you teach.",
+     "Work with employers.",
+     "Update curriculum."
+    ],
+    "project": "Add an AI tool from industry to your course."
+   },
+   {
+    "title": "Hands-on teaching",
+    "items": [
+     "Teaching skills with equipment stays human.",
+     "Safety supervision.",
+     "Look at related roles: industry trainer."
+    ],
+    "project": "Run a workplace project with an employer."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Industry software",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Teaching practical skills",
+   "Safety supervision",
+   "Working with employers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2051.00": {
+  "roadmap": [
+   {
+    "title": "AI for plans and records",
+    "items": [
+     "Draft IEP goals and objectives with approved tools, adapting to each child.",
+     "Create visual supports with AI.",
+     "Keep records with templates, never in public AI tools."
+    ],
+    "project": "Draft IEP sections with approved tools for a month and measure time saved."
+   },
+   {
+    "title": "Assistive technology",
+    "items": [
+     "Use communication apps and assistive tech.",
+     "Create personalised materials.",
+     "Track progress."
+    ],
+    "project": "Introduce one assistive technology for a child and track progress."
+   },
+   {
+    "title": "Care and teaching",
+    "items": [
+     "Caring, comforting and teaching stay human.",
+     "Work with families.",
+     "Look at related roles: special education coordinator."
+    ],
+    "project": "Use saved time for more one-on-one support."
+   }
+  ],
+  "aiTools": [
+   "Approved IEP tools",
+   "Assistive communication apps",
+   "Canva for visual supports"
+  ],
+  "humanEdge": [
+   "Caring for children with special needs",
+   "Comforting and encouraging",
+   "Working with families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2055.00": {
+  "roadmap": [
+   {
+    "title": "AI for IEPs and materials",
+    "items": [
+     "Draft IEP sections with approved tools.",
+     "Create adapted materials with AI.",
+     "Keep records with templates."
+    ],
+    "project": "Create adapted materials with AI for one unit."
+   },
+   {
+    "title": "Assistive tech",
+    "items": [
+     "Use assistive apps.",
+     "Track progress.",
+     "Work with specialists."
+    ],
+    "project": "Introduce one assistive tool and track results."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Teaching and behaviour support stay human.",
+     "Work with parents.",
+     "Look at related roles: special education coordinator."
+    ],
+    "project": "Use saved time for one-on-one instruction."
+   }
+  ],
+  "aiTools": [
+   "Approved IEP tools",
+   "Assistive technology",
+   "ChatGPT or Claude for materials"
+  ],
+  "humanEdge": [
+   "Teaching with patience",
+   "Behaviour support",
+   "Working with families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2056.00": {
+  "roadmap": [
+   {
+    "title": "AI for IEPs and adaptations",
+    "items": [
+     "Draft IEP sections with approved tools.",
+     "Adapt curriculum materials with AI.",
+     "Keep records organised."
+    ],
+    "project": "Adapt one unit's materials with AI help."
+   },
+   {
+    "title": "Assistive technology",
+    "items": [
+     "Use text-to-speech and assistive apps.",
+     "Track progress.",
+     "Train students on tools."
+    ],
+    "project": "Introduce one assistive tool and measure progress."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Teaching and life skills stay human.",
+     "Work with families and staff.",
+     "Look at related roles: special education coordinator."
+    ],
+    "project": "Use saved time for small-group teaching."
+   }
+  ],
+  "aiTools": [
+   "Approved IEP tools",
+   "Assistive technology",
+   "ChatGPT or Claude for adaptations"
+  ],
+  "humanEdge": [
+   "Teaching with patience",
+   "Life skills teaching",
+   "Working with families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2057.00": {
+  "roadmap": [
+   {
+    "title": "AI for IEPs and materials",
+    "items": [
+     "Draft IEPs with approved tools.",
+     "Adapt curriculum with AI.",
+     "Keep records digital."
+    ],
+    "project": "Draft IEPs with approved tools and measure time saved."
+   },
+   {
+    "title": "Assistive tools",
+    "items": [
+     "Use assistive apps.",
+     "Track progress.",
+     "Teach self-advocacy."
+    ],
+    "project": "Introduce one assistive tool."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Teaching stays human.",
+     "Work with parents.",
+     "Look at related roles: coordinator."
+    ],
+    "project": "Use saved time for student support."
+   }
+  ],
+  "aiTools": [
+   "Approved IEP tools",
+   "Assistive technology",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Teaching with patience",
+   "Behaviour support",
+   "Working with families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2058.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and IEPs",
+    "items": [
+     "Draft reports and IEPs with approved tools.",
+     "Adapt materials with AI.",
+     "Keep records organised."
+    ],
+    "project": "Draft reports with approved tools for a month."
+   },
+   {
+    "title": "Transition and tools",
+    "items": [
+     "Use assistive and career tools.",
+     "Plan transitions to work or study.",
+     "Track progress."
+    ],
+    "project": "Create transition plans with AI-assisted research."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Teaching and support stay human.",
+     "Work with families.",
+     "Look at related roles: transition coordinator."
+    ],
+    "project": "Support students in work placements."
+   }
+  ],
+  "aiTools": [
+   "Approved IEP tools",
+   "Assistive technology",
+   "Career exploration tools"
+  ],
+  "humanEdge": [
+   "Teaching with patience",
+   "Supporting transitions",
+   "Working with families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2059.01": {
+  "roadmap": [
+   {
+    "title": "AI for IEPs and lesson plans",
+    "items": [
+     "Draft IEP goals and lesson plans with approved tools.",
+     "Create adapted activity ideas with AI.",
+     "Keep records digital."
+    ],
+    "project": "Draft lesson plans with AI help for a month and measure time saved."
+   },
+   {
+    "title": "Tracking progress",
+    "items": [
+     "Use apps to track physical progress.",
+     "Use video for feedback.",
+     "Work with therapists."
+    ],
+    "project": "Track progress for five students with an app."
+   },
+   {
+    "title": "Physical teaching",
+    "items": [
+     "Teaching movement and encouraging students stay human.",
+     "Collaborate with staff.",
+     "Look at related roles: physical therapist assistant."
+    ],
+    "project": "Run an inclusive activity and record participation."
+   }
+  ],
+  "aiTools": [
+   "Approved IEP tools",
+   "Fitness tracking apps",
+   "ChatGPT or Claude for ideas"
+  ],
+  "humanEdge": [
+   "Teaching movement",
+   "Encouraging students",
+   "Keeping activities safe"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-3011.00": {
+  "roadmap": [
+   {
+    "title": "AI for lessons and materials",
+    "items": [
+     "Create lesson materials at different levels with AI.",
+     "Use AI for conversation practice and feedback.",
+     "Keep records digital."
+    ],
+    "project": "Create one unit's materials with AI and measure student progress."
+   },
+   {
+    "title": "Teach digital and AI skills",
+    "items": [
+     "Teach adults to use AI tools safely.",
+     "Use translation tools wisely.",
+     "Set rules."
+    ],
+    "project": "Run a short course on AI basics for adult learners."
+   },
+   {
+    "title": "Teaching adults",
+    "items": [
+     "Teaching and encouraging adults stay human.",
+     "Adapt to each learner.",
+     "Look at related roles: tutor or program coordinator."
+    ],
+    "project": "Use saved time for one-on-one support."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Language learning apps",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Encouraging adult learners",
+   "Adapting to each person",
+   "Building confidence"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-3021.00": {
+  "roadmap": [
+   {
+    "title": "AI for lesson plans",
+    "items": [
+     "Prepare lesson plans and objectives with AI.",
+     "Create handouts and visuals with AI.",
+     "Market classes with AI-written texts."
+    ],
+    "project": "Prepare one course with AI help and measure time saved."
+   },
+   {
+    "title": "Online and hybrid",
+    "items": [
+     "Create online materials.",
+     "Use AI for student practice.",
+     "Track progress."
+    ],
+    "project": "Create an online version of one class."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Demonstrating and coaching stay human.",
+     "Encourage students.",
+     "Look at related roles: trainer or coach."
+    ],
+    "project": "Run a workshop and gather feedback."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Canva",
+   "Online course platforms"
+  ],
+  "humanEdge": [
+   "Demonstrating skills",
+   "Encouraging students",
+   "Personal coaching"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-3031.00": {
+  "roadmap": [
+   {
+    "title": "AI for quick prep",
+    "items": [
+     "Use AI to understand lesson plans and topics quickly.",
+     "Create backup activities with AI.",
+     "Keep attendance digitally."
+    ],
+    "project": "Create a bank of backup activities with AI for different subjects."
+   },
+   {
+    "title": "Classroom tools",
+    "items": [
+     "Use AI to answer student questions you are unsure about, then check.",
+     "Use classroom technology.",
+     "Learn school rules on AI."
+    ],
+    "project": "Learn the main classroom tools in your schools."
+   },
+   {
+    "title": "Classroom management",
+    "items": [
+     "Keeping order and helping students stay human.",
+     "Adapt quickly.",
+     "Look at related roles: teacher or tutor."
+    ],
+    "project": "Take a course toward full teacher qualification."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Classroom technology",
+   "Learning platforms"
+  ],
+  "humanEdge": [
+   "Managing a classroom",
+   "Adapting quickly",
+   "Supervising students"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-3041.00": {
+  "roadmap": [
+   {
+    "title": "AI for lesson plans",
+    "items": [
+     "Prepare lesson plans and quizzes with AI.",
+     "Use AI to explain topics in new ways.",
+     "Schedule sessions with apps."
+    ],
+    "project": "Prepare tutoring materials with AI for a month and measure time saved."
+   },
+   {
+    "title": "AI as study partner",
+    "items": [
+     "Teach students to use AI for learning, not copying.",
+     "Use AI practice tools.",
+     "Track progress."
+    ],
+    "project": "Teach one student to use AI as a study partner and track grades."
+   },
+   {
+    "title": "Personal tutoring",
+    "items": [
+     "Motivating students stays human.",
+     "Communicate with parents.",
+     "Look at related roles: teacher or learning specialist."
+    ],
+    "project": "Use saved time for more sessions."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Practice apps",
+   "Scheduling apps"
+  ],
+  "humanEdge": [
+   "Motivating students",
+   "Building confidence",
+   "Explaining in person"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-4011.00": {
+  "roadmap": [
+   {
+    "title": "AI for description and access",
+    "items": [
+     "Draft finding aids and descriptions with AI, checking them.",
+     "Transcribe handwritten documents with AI.",
+     "Answer reference questions with AI-assisted search."
+    ],
+    "project": "Describe one collection with AI help and check accuracy."
+   },
+   {
+    "title": "Digital archives",
+    "items": [
+     "Digitise and add AI search.",
+     "Use metadata tools.",
+     "Plan long-term preservation."
+    ],
+    "project": "Add AI-powered search to one digital collection."
+   },
+   {
+    "title": "Expertise",
+    "items": [
+     "Preservation and appraisal stay human.",
+     "Run outreach programs.",
+     "Look at related roles: historian or curator."
+    ],
+    "project": "Run a public workshop on the archive."
+   }
+  ],
+  "aiTools": [
+   "AI transcription (e.g. Transkribus)",
+   "Archive management software",
+   "ChatGPT or Claude for descriptions"
+  ],
+  "humanEdge": [
+   "Preserving materials",
+   "Appraising documents",
+   "Judging historical value"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-4012.00": {
+  "roadmap": [
+   {
+    "title": "AI for writing and records",
+    "items": [
+     "Draft grants, reports and labels with AI.",
+     "Maintain catalogues with AI help.",
+     "Research with AI, checking sources."
+    ],
+    "project": "Write one grant with AI help."
+   },
+   {
+    "title": "Digital museums",
+    "items": [
+     "Create digital exhibits.",
+     "Use AI for visitor guides.",
+     "Analyse visitor data."
+    ],
+    "project": "Create one digital exhibit."
+   },
+   {
+    "title": "Curation",
+    "items": [
+     "Selecting and authenticating objects stay human.",
+     "Supervise staff.",
+     "Look at related roles: museum director."
+    ],
+    "project": "Curate one exhibition."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Collection management systems",
+   "Digital exhibit tools"
+  ],
+  "humanEdge": [
+   "Selecting objects",
+   "Authenticating",
+   "Telling stories"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-4013.00": {
+  "roadmap": [
+   {
+    "title": "AI for records",
+    "items": [
+     "Enter collection data with AI help.",
+     "Draft condition reports with AI.",
+     "Classify artifacts."
+    ],
+    "project": "Update database records with AI help."
+   },
+   {
+    "title": "Digital tools",
+    "items": [
+     "Use 3D scanning.",
+     "Use imaging for analysis.",
+     "Track conditions."
+    ],
+    "project": "3D scan one artifact."
+   },
+   {
+    "title": "Conservation",
+    "items": [
+     "Repairing and cleaning objects stay human.",
+     "Install exhibits.",
+     "Look at related roles: conservator or curator."
+    ],
+    "project": "Restore one artifact and document it."
+   }
+  ],
+  "aiTools": [
+   "Collection databases",
+   "3D scanning",
+   "ChatGPT or Claude for reports"
+  ],
+  "humanEdge": [
+   "Restoring artifacts",
+   "Handling objects",
+   "Installing exhibits"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-4022.00": {
+  "roadmap": [
+   {
+    "title": "AI for reference and cataloguing",
+    "items": [
+     "Use AI to help answer reference questions, verifying sources.",
+     "Catalogue materials with AI help.",
+     "Plan programs with AI."
+    ],
+    "project": "Use AI help for reference questions for a month and record accuracy."
+   },
+   {
+    "title": "Teach AI literacy",
+    "items": [
+     "Teach patrons to use AI and check its answers.",
+     "Teach about misinformation.",
+     "Offer AI workshops."
+    ],
+    "project": "Run an AI literacy workshop for patrons."
+   },
+   {
+    "title": "Community",
+    "items": [
+     "Helping patrons stays human.",
+     "Manage staff.",
+     "Look at related roles: archivist or information specialist."
+    ],
+    "project": "Partner with a community group on a program."
+   }
+  ],
+  "aiTools": [
+   "Library systems with AI",
+   "ChatGPT or Claude",
+   "Research databases"
+  ],
+  "humanEdge": [
+   "Helping patrons",
+   "Teaching information skills",
+   "Community building"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-4031.00": {
+  "roadmap": [
+   {
+    "title": "AI for routine tasks",
+    "items": [
+     "Use AI to help find resources.",
+     "Catalogue with automation.",
+     "Update records."
+    ],
+    "project": "Use AI help for patron questions and record accuracy."
+   },
+   {
+    "title": "Digital services",
+    "items": [
+     "Help patrons with digital tools.",
+     "Learn AI tools.",
+     "Teach basics."
+    ],
+    "project": "Help patrons with AI tools for a month."
+   },
+   {
+    "title": "Service",
+    "items": [
+     "Helping patrons stays human.",
+     "Train volunteers.",
+     "Look at related roles: librarian."
+    ],
+    "project": "Train volunteers."
+   }
+  ],
+  "aiTools": [
+   "Library systems",
+   "ChatGPT or Claude",
+   "Self-checkout"
+  ],
+  "humanEdge": [
+   "Helping patrons",
+   "Organising collections",
+   "Training volunteers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-9021.00": {
+  "roadmap": [
+   {
+    "title": "AI for leaflets and research",
+    "items": [
+     "Research farmers' questions with AI, then verify with trusted extension sources.",
+     "Create leaflets and visual aids with AI help.",
+     "Keep records of visits and advice digitally."
+    ],
+    "project": "Create five practical leaflets with AI help, check them with a specialist, and gather farmer feedback."
+   },
+   {
+    "title": "Digital advice",
+    "items": [
+     "Teach farmers and families useful AI and farm apps.",
+     "Use data to understand community needs.",
+     "Send updates by text or email."
+    ],
+    "project": "Run a workshop on farm and household AI tools and record what attendees start using."
+   },
+   {
+    "title": "Visits and community",
+    "items": [
+     "Farm visits and demonstrations stay human.",
+     "Organise community events like fairs.",
+     "Look at related roles: agricultural advisor or program coordinator."
+    ],
+    "project": "Use saved time for extra farm visits and record problems solved."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for research and leaflets",
+   "Farm management apps",
+   "Canva for visual aids"
+  ],
+  "humanEdge": [
+   "Demonstrating techniques on the farm",
+   "Earning farmers' trust",
+   "Community organising"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-9031.00": {
+  "roadmap": [
+   {
+    "title": "AI for instructional materials",
+    "items": [
+     "Develop lesson plans, handouts and tests with AI, checking quality.",
+     "Edit materials faster with AI.",
+     "Analyse performance data with AI help."
+    ],
+    "project": "Develop one curriculum unit with AI help and compare development time with a past unit."
+   },
+   {
+    "title": "Lead AI in teaching",
+    "items": [
+     "Train teachers to use AI tools well.",
+     "Write guidance on AI use and assessment.",
+     "Evaluate AI education tools."
+    ],
+    "project": "Run an AI training for teachers and measure tool use after a month."
+   },
+   {
+    "title": "Coaching teachers",
+    "items": [
+     "Observing and coaching teachers stays human.",
+     "Lead workshops.",
+     "Look at related roles: training manager or school leader."
+    ],
+    "project": "Observe five classes and give coaching feedback."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for materials",
+   "Learning management systems",
+   "Education AI tools"
+  ],
+  "humanEdge": [
+   "Coaching teachers",
+   "Leading workshops",
+   "Judging teaching quality"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-9042.00": {
+  "roadmap": [
+   {
+    "title": "AI for materials",
+    "items": [
+     "Prepare lesson materials and displays with AI ideas.",
+     "Grade with answer keys and tools.",
+     "Record student progress digitally."
+    ],
+    "project": "Prepare materials with AI help for a month and measure time saved."
+   },
+   {
+    "title": "Tutoring with AI",
+    "items": [
+     "Use AI to explain topics in different ways.",
+     "Help students use AI for learning, not copying.",
+     "Follow school rules."
+    ],
+    "project": "Use AI explanations in tutoring for a month and track student progress."
+   },
+   {
+    "title": "Working with children",
+    "items": [
+     "Tutoring and supervising students stay human.",
+     "Support the teacher.",
+     "Look at related roles: teacher or tutor."
+    ],
+    "project": "Take a course toward teacher qualification."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Education apps",
+   "Canva"
+  ],
+  "humanEdge": [
+   "Supporting children one-on-one",
+   "Supervising students",
+   "Encouraging learners"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-9043.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and materials",
+    "items": [
+     "Record observations with templates.",
+     "Create visual supports with AI.",
+     "Never put student data into public AI tools."
+    ],
+    "project": "Create visual supports with AI for one student."
+   },
+   {
+    "title": "Assistive technology",
+    "items": [
+     "Help students use assistive devices and apps.",
+     "Learn new tools.",
+     "Report progress."
+    ],
+    "project": "Learn one assistive tool and help a student use it."
+   },
+   {
+    "title": "Care and support",
+    "items": [
+     "Supporting students with special needs stays human.",
+     "Teach daily living skills.",
+     "Look at related roles: special education teacher."
+    ],
+    "project": "Take a course in special education."
+   }
+  ],
+  "aiTools": [
+   "Assistive technology",
+   "Canva for visual supports",
+   "Communication apps"
+  ],
+  "humanEdge": [
+   "Supporting students with disabilities",
+   "Patience and care",
+   "Teaching daily skills"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-9044.00": {
+  "roadmap": [
+   {
+    "title": "AI for grading and materials",
+    "items": [
+     "Give first feedback with AI, then grade yourself.",
+     "Develop materials and answer keys with AI, checking them.",
+     "Answer common student questions with an FAQ."
+    ],
+    "project": "Use AI first feedback for one assignment and measure grading time."
+   },
+   {
+    "title": "Teaching with AI",
+    "items": [
+     "Help students use AI responsibly.",
+     "Follow course AI rules.",
+     "Spot AI misuse fairly."
+    ],
+    "project": "Create a guide for students on AI use in your course."
+   },
+   {
+    "title": "Teaching",
+    "items": [
+     "Leading sections and tutoring stay human.",
+     "Office hours.",
+     "Look at related roles: lecturer or researcher."
+    ],
+    "project": "Run review sessions and track student results."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Learning management systems",
+   "Grading tools"
+  ],
+  "humanEdge": [
+   "Leading discussion sections",
+   "Tutoring",
+   "Mentoring"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for concepts and layouts",
+    "items": [
+     "Use AI image tools for moodboards and concept directions before briefing designers.",
+     "Generate layout variations with AI, then refine.",
+     "Manage budgets and schedules with AI-assisted tools."
+    ],
+    "project": "Develop concepts for one campaign with AI tools and compare time and client feedback with a past project."
+   },
+   {
+    "title": "Lead AI-assisted teams",
+    "items": [
+     "Set rules for AI use: brand, rights, disclosure.",
+     "Build brand assets for AI tools.",
+     "Review AI output quality."
+    ],
+    "project": "Write your team's AI creative guidelines and use them on two projects."
+   },
+   {
+    "title": "Creative leadership",
+    "items": [
+     "Creative direction and client presentation stay human.",
+     "Hire and coach designers.",
+     "Look at related roles: creative director."
+    ],
+    "project": "Present a campaign to a client and record decisions."
+   }
+  ],
+  "aiTools": [
+   "Adobe Firefly and Photoshop AI",
+   "Midjourney for concepts",
+   "Project management tools"
+  ],
+  "humanEdge": [
+   "Creative direction",
+   "Client presentation",
+   "Leading designers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1012.00": {
+  "roadmap": [
+   {
+    "title": "AI for marketing your crafts",
+    "items": [
+     "Write product descriptions and ads with AI.",
+     "Plan pricing and packaging with AI help.",
+     "Create social posts with AI."
+    ],
+    "project": "Rewrite your online shop listings with AI and track sales for a month."
+   },
+   {
+    "title": "Ideas and online sales",
+    "items": [
+     "Use AI for design ideas, then make them your own.",
+     "Photograph products with AI editing.",
+     "Find craft shows with AI research."
+    ],
+    "project": "Improve product photos with AI editing and compare clicks."
+   },
+   {
+    "title": "Craft skills",
+    "items": [
+     "Making objects by hand stays human.",
+     "Talk with customers.",
+     "Look at related roles: teacher or jeweller."
+    ],
+    "project": "Teach a workshop and gather feedback."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for marketing",
+   "Photo editing apps",
+   "Online shop platforms (e.g. Etsy)"
+  ],
+  "humanEdge": [
+   "Handmade skill",
+   "Selecting materials",
+   "Connecting with customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1013.00": {
+  "roadmap": [
+   {
+    "title": "AI for marketing and research",
+    "items": [
+     "Market artwork with AI-written texts and posts.",
+     "Research trends and opportunities with AI.",
+     "Manage client communication with AI drafts."
+    ],
+    "project": "Market your work with AI-written posts for a month and track engagement."
+   },
+   {
+    "title": "AI and your art",
+    "items": [
+     "Explore AI tools as sketches or references, if they fit your practice.",
+     "Understand copyright and AI training.",
+     "Protect your work online."
+    ],
+    "project": "Decide your position on AI in your art and write it on your website."
+   },
+   {
+    "title": "Artistic practice",
+    "items": [
+     "Creating artwork stays human.",
+     "Teach techniques.",
+     "Look at related roles: illustrator or art teacher."
+    ],
+    "project": "Create a series that shows your personal style."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for marketing",
+   "Social media tools",
+   "Image tools (optional)"
+  ],
+  "humanEdge": [
+   "Personal style",
+   "Handmade technique",
+   "Artistic vision"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1014.00": {
+  "roadmap": [
+   {
+    "title": "AI in animation pipelines",
+    "items": [
+     "Use AI tools for rotoscoping, in-betweening and cleanup, checking quality.",
+     "Generate textures and concepts with AI.",
+     "Speed up storyboards with AI."
+    ],
+    "project": "Use AI tools on one shot's routine tasks and compare time with manual work."
+   },
+   {
+    "title": "New tools",
+    "items": [
+     "Learn AI video and 3D generation tools.",
+     "Understand rights and studio rules.",
+     "Build efficient pipelines."
+    ],
+    "project": "Test one AI video tool in a short project."
+   },
+   {
+    "title": "Creative craft",
+    "items": [
+     "Character performance and storytelling stay human.",
+     "Direct animation.",
+     "Look at related roles: art director or technical director."
+    ],
+    "project": "Create a short piece showing your animation style."
+   }
+  ],
+  "aiTools": [
+   "AI rotoscoping and cleanup tools",
+   "AI video and 3D generation",
+   "Adobe and Blender tools"
+  ],
+  "humanEdge": [
+   "Character performance",
+   "Storytelling",
+   "Creative judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1021.00": {
+  "roadmap": [
+   {
+    "title": "AI for sketches and research",
+    "items": [
+     "Use AI image tools for concept sketches, then refine.",
+     "Research materials and costs with AI.",
+     "Study competitor products with AI."
+    ],
+    "project": "Develop concepts for one product with AI tools and compare time."
+   },
+   {
+    "title": "Generative design",
+    "items": [
+     "Use generative design in CAD.",
+     "3D print prototypes.",
+     "Test with users."
+    ],
+    "project": "Use generative design on one part."
+   },
+   {
+    "title": "Design leadership",
+    "items": [
+     "User research and model testing stay human.",
+     "Present to clients.",
+     "Look at related roles: design lead."
+    ],
+    "project": "Test a prototype with users."
+   }
+  ],
+  "aiTools": [
+   "AI image generation",
+   "CAD with generative design",
+   "ChatGPT or Claude for research"
+  ],
+  "humanEdge": [
+   "Understanding users",
+   "Testing prototypes",
+   "Design judgement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1022.00": {
+  "roadmap": [
+   {
+    "title": "AI for sketches and trends",
+    "items": [
+     "Use AI for design sketches and colour ideas.",
+     "Research trends with AI.",
+     "Write specifications with AI help."
+    ],
+    "project": "Develop one collection's concepts with AI help."
+   },
+   {
+    "title": "Digital fashion",
+    "items": [
+     "Use 3D garment software.",
+     "Plan production with data.",
+     "Understand AI rights."
+    ],
+    "project": "Create one garment in 3D before sampling."
+   },
+   {
+    "title": "Craft and fit",
+    "items": [
+     "Fitting and sampling stay human.",
+     "Work with clients.",
+     "Look at related roles: pattern maker."
+    ],
+    "project": "Run fittings and record changes."
+   }
+  ],
+  "aiTools": [
+   "AI image tools",
+   "3D garment software (e.g. CLO)",
+   "Trend research tools"
+  ],
+  "humanEdge": [
+   "Fitting garments",
+   "Selecting fabrics",
+   "Creative vision"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1023.00": {
+  "roadmap": [
+   {
+    "title": "AI for the business side",
+    "items": [
+     "Use AI for orders, records and customer messages.",
+     "Write social posts with AI.",
+     "Plan arrangements with AI ideas."
+    ],
+    "project": "Handle orders with AI help for a month."
+   },
+   {
+    "title": "Online shop",
+    "items": [
+     "Use online ordering.",
+     "Photograph arrangements.",
+     "Track flower costs."
+    ],
+    "project": "Set up online ordering."
+   },
+   {
+    "title": "Floral craft",
+    "items": [
+     "Arranging flowers stays human.",
+     "Work with clients.",
+     "Look at related roles: event designer."
+    ],
+    "project": "Design for one event."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Online shop platforms",
+   "Photo apps"
+  ],
+  "humanEdge": [
+   "Arranging flowers",
+   "Working with clients",
+   "Creativity"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -8273,6 +13985,720 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "27-1025.00": {
+  "roadmap": [
+   {
+    "title": "AI for renders and documents",
+    "items": [
+     "Use AI tools for room renders and mood boards.",
+     "Produce CAD documents faster.",
+     "Estimate costs with AI help."
+    ],
+    "project": "Present one design with AI renders and record client feedback."
+   },
+   {
+    "title": "Virtual design",
+    "items": [
+     "Use virtual staging and 3D.",
+     "Source products with AI search.",
+     "Manage projects digitally."
+    ],
+    "project": "Create a 3D walkthrough for a client."
+   },
+   {
+    "title": "Client and site",
+    "items": [
+     "Client consultation and site inspection stay human.",
+     "Coordinate contractors.",
+     "Look at related roles: architect."
+    ],
+    "project": "Coordinate one project on site."
+   }
+  ],
+  "aiTools": [
+   "AI interior render tools",
+   "CAD software",
+   "Project management tools"
+  ],
+  "humanEdge": [
+   "Understanding clients",
+   "Coordinating trades",
+   "Inspecting work"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1026.00": {
+  "roadmap": [
+   {
+    "title": "AI for display planning",
+    "items": [
+     "Plan displays with AI ideas.",
+     "Create signage with AI.",
+     "Use visual merchandising apps."
+    ],
+    "project": "Plan one display with AI ideas."
+   },
+   {
+    "title": "Data-informed displays",
+    "items": [
+     "Use sales data to judge displays.",
+     "Photograph and share displays.",
+     "Learn digital signage."
+    ],
+    "project": "Track sales for one display."
+   },
+   {
+    "title": "Hands-on",
+    "items": [
+     "Building displays stays human.",
+     "Work with managers.",
+     "Look at related roles: visual merchandiser."
+    ],
+    "project": "Build a display and measure results."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Canva",
+   "Digital signage"
+  ],
+  "humanEdge": [
+   "Building displays",
+   "Visual creativity",
+   "Working with teams"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1027.00": {
+  "roadmap": [
+   {
+    "title": "AI for research and renders",
+    "items": [
+     "Research period styles with AI, checking with experts.",
+     "Create preliminary renders with AI tools.",
+     "Estimate costs with AI help."
+    ],
+    "project": "Research and render one set with AI help."
+   },
+   {
+    "title": "Digital design",
+    "items": [
+     "Use 3D and CAD tools.",
+     "Plan virtual sets.",
+     "Share plans digitally."
+    ],
+    "project": "Create a 3D set model."
+   },
+   {
+    "title": "Production",
+    "items": [
+     "Directing construction stays human.",
+     "Attend rehearsals.",
+     "Look at related roles: production designer."
+    ],
+    "project": "Oversee one set build."
+   }
+  ],
+  "aiTools": [
+   "AI image tools",
+   "CAD and 3D software",
+   "ChatGPT or Claude"
+  ],
+  "humanEdge": [
+   "Directing construction",
+   "Collaborating with directors",
+   "Visual storytelling"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI for preparation",
+    "items": [
+     "Use AI to analyse scripts and character relationships.",
+     "Practise lines with AI reading other parts.",
+     "Prepare self-tapes with AI editing."
+    ],
+    "project": "Prepare three auditions with AI line partners and record callbacks."
+   },
+   {
+    "title": "Career and rights",
+    "items": [
+     "Understand AI voice and likeness rights in contracts.",
+     "Market yourself with AI help.",
+     "Protect your image."
+    ],
+    "project": "Review your contracts for AI clauses with your agent."
+   },
+   {
+    "title": "Performance",
+    "items": [
+     "Performing stays human.",
+     "Work with ensembles and directors.",
+     "Look at related roles: voice actor or drama teacher."
+    ],
+    "project": "Take one class to deepen your craft."
+   }
+  ],
+  "aiTools": [
+   "Script analysis with AI",
+   "Line-reading apps",
+   "Video editing for self-tapes"
+  ],
+  "humanEdge": [
+   "Live performance",
+   "Emotional truth",
+   "Ensemble work"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2012.00": {
+  "roadmap": [
+   {
+    "title": "AI for planning and scripts",
+    "items": [
+     "Analyse scripts and plan shots with AI.",
+     "Manage budgets and schedules with AI.",
+     "Use AI previsualisation."
+    ],
+    "project": "Plan one production with AI previs and compare time."
+   },
+   {
+    "title": "AI in production",
+    "items": [
+     "Learn AI video, sound and editing tools.",
+     "Understand rights and union rules.",
+     "Set AI policies."
+    ],
+    "project": "Use one AI tool in post-production."
+   },
+   {
+    "title": "Directing",
+    "items": [
+     "Directing actors and crews stays human.",
+     "Creative vision.",
+     "Look at related roles: showrunner."
+    ],
+    "project": "Direct a short piece."
+   }
+  ],
+  "aiTools": [
+   "AI previs tools",
+   "AI editing tools",
+   "Production management software"
+  ],
+  "humanEdge": [
+   "Directing actors",
+   "Creative vision",
+   "Leading crews"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2012.03": {
+  "roadmap": [
+   {
+    "title": "AI for scheduling and promos",
+    "items": [
+     "Plan schedules with AI help.",
+     "Create promotions with AI.",
+     "Analyse audience data."
+    ],
+    "project": "Create promos with AI for a month."
+   },
+   {
+    "title": "Data-driven programming",
+    "items": [
+     "Use audience analytics.",
+     "Test content.",
+     "Manage rights."
+    ],
+    "project": "Adjust schedule with data."
+   },
+   {
+    "title": "Leadership",
+    "items": [
+     "Leading staff stays human.",
+     "On-air duties.",
+     "Look at related roles: station manager."
+    ],
+    "project": "Lead a new program launch."
+   }
+  ],
+  "aiTools": [
+   "Audience analytics",
+   "ChatGPT or Claude",
+   "Scheduling software"
+  ],
+  "humanEdge": [
+   "Programming judgement",
+   "Leading staff",
+   "On-air presence"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2012.04": {
+  "roadmap": [
+   {
+    "title": "AI for casting admin",
+    "items": [
+     "Manage talent files with AI help.",
+     "Send notices with automation.",
+     "Review submissions faster."
+    ],
+    "project": "Organise talent files with AI."
+   },
+   {
+    "title": "Digital casting",
+    "items": [
+     "Use self-tape platforms.",
+     "Understand AI likeness issues.",
+     "Track availability."
+    ],
+    "project": "Run one casting with self-tapes."
+   },
+   {
+    "title": "Judging talent",
+    "items": [
+     "Auditions stay human.",
+     "Negotiate contracts.",
+     "Look at related roles: producer."
+    ],
+    "project": "Cast one production."
+   }
+  ],
+  "aiTools": [
+   "Casting platforms",
+   "ChatGPT or Claude",
+   "Video tools"
+  ],
+  "humanEdge": [
+   "Judging talent",
+   "Matching actors to roles",
+   "Negotiating"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2012.05": {
+  "roadmap": [
+   {
+    "title": "AI in broadcast tech",
+    "items": [
+     "Use automated graphics and captions.",
+     "Learn AI camera tools.",
+     "Monitor broadcasts."
+    ],
+    "project": "Use automated captions for one program."
+   },
+   {
+    "title": "Automation",
+    "items": [
+     "Learn production automation.",
+     "Test equipment.",
+     "Train staff."
+    ],
+    "project": "Pilot one automation tool."
+   },
+   {
+    "title": "Live production",
+    "items": [
+     "Live directing stays human.",
+     "Supervise crews.",
+     "Look at related roles: producer."
+    ],
+    "project": "Lead one live broadcast."
+   }
+  ],
+  "aiTools": [
+   "Broadcast automation",
+   "AI captioning",
+   "Graphics systems"
+  ],
+  "humanEdge": [
+   "Live switching",
+   "Supervising crews",
+   "Calm under pressure"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2021.00": {
+  "roadmap": [
+   {
+    "title": "AI for performance analysis",
+    "items": [
+     "Review your games with AI video analysis to spot strengths and weaknesses.",
+     "Use wearables and apps to track training load and recovery.",
+     "Ask AI to explain nutrition plans, then check with your team's experts."
+    ],
+    "project": "Track training and recovery data for eight weeks with AI analysis and discuss the findings with your coach."
+   },
+   {
+    "title": "Your career and brand",
+    "items": [
+     "Prepare for media with AI practice questions.",
+     "Manage social media with AI-drafted posts in your own voice.",
+     "Plan for a career after sport with AI research."
+    ],
+    "project": "Write a career-after-sport plan with AI-assisted research and discuss it with a mentor."
+   },
+   {
+    "title": "Performance and leadership",
+    "items": [
+     "Training and competing stay human.",
+     "Lead teammates.",
+     "Look at related roles: coach, scout or official."
+    ],
+    "project": "Mentor a younger athlete for a season."
+   }
+  ],
+  "aiTools": [
+   "AI video analysis apps",
+   "Wearables and training apps",
+   "ChatGPT or Claude for media prep"
+  ],
+  "humanEdge": [
+   "Physical performance",
+   "Competing under pressure",
+   "Team leadership"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2022.00": {
+  "roadmap": [
+   {
+    "title": "AI for practice and scouting",
+    "items": [
+     "Plan practice sessions with AI ideas, adapted to your athletes.",
+     "Analyse game video and opponent data with AI tools.",
+     "Organise travel and schedules with AI help."
+    ],
+    "project": "Use AI video analysis to scout three opponents and compare game plans and results with before."
+   },
+   {
+    "title": "Data-driven development",
+    "items": [
+     "Track athletes' load and progress with apps.",
+     "Use data to adjust conditioning.",
+     "Keep judgement on selection human."
+    ],
+    "project": "Track training load for a season and adjust plans to reduce injuries."
+   },
+   {
+    "title": "Coaching people",
+    "items": [
+     "Motivating and teaching athletes stays human.",
+     "Make team decisions.",
+     "Look at related roles: head coach or athletic director."
+    ],
+    "project": "Hold individual development talks with each athlete."
+   }
+  ],
+  "aiTools": [
+   "Video analysis tools (e.g. Hudl)",
+   "Athlete tracking apps",
+   "ChatGPT or Claude for planning"
+  ],
+  "humanEdge": [
+   "Motivating athletes",
+   "Reading the game live",
+   "Building team culture"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2023.00": {
+  "roadmap": [
+   {
+    "title": "AI for rules and review",
+    "items": [
+     "Study rules and case examples with AI help.",
+     "Review your own games on video to improve decisions.",
+     "Prepare with AI quizzes on rule situations."
+    ],
+    "project": "Review 10 of your games on video and record decisions to improve."
+   },
+   {
+    "title": "Technology in officiating",
+    "items": [
+     "Learn video review systems (VAR, replay).",
+     "Understand electronic line calling.",
+     "Use fitness apps."
+    ],
+    "project": "Train with video review protocols."
+   },
+   {
+    "title": "On-field judgement",
+    "items": [
+     "Officiating live stays human.",
+     "Manage players and conflicts.",
+     "Look at related roles: official trainer or assessor."
+    ],
+    "project": "Mentor a new official."
+   }
+  ],
+  "aiTools": [
+   "Video review tools",
+   "Rule quiz apps",
+   "Fitness apps"
+  ],
+  "humanEdge": [
+   "Making calls in real time",
+   "Managing players",
+   "Keeping calm"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2031.00": {
+  "roadmap": [
+   {
+    "title": "AI for practice and career",
+    "items": [
+     "Use video and AI motion analysis to refine technique.",
+     "Manage auditions and bookings with AI help.",
+     "Promote yourself with AI-drafted posts."
+    ],
+    "project": "Record and analyse practice with AI motion tools for a month."
+   },
+   {
+    "title": "Teaching and choreography",
+    "items": [
+     "Use AI music tools to explore ideas.",
+     "Create online classes.",
+     "Understand rights to your likeness."
+    ],
+    "project": "Create one online dance class."
+   },
+   {
+    "title": "Dance",
+    "items": [
+     "Performing and training stay human.",
+     "Teach students.",
+     "Look at related roles: choreographer or dance teacher."
+    ],
+    "project": "Perform in one new production."
+   }
+  ],
+  "aiTools": [
+   "Video and motion analysis apps",
+   "Social media tools",
+   "Music tools"
+  ],
+  "humanEdge": [
+   "Physical expression",
+   "Ensemble work",
+   "Artistic interpretation"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2032.00": {
+  "roadmap": [
+   {
+    "title": "AI for ideas and admin",
+    "items": [
+     "Study scores and storylines with AI help.",
+     "Manage dance school admin with AI.",
+     "Record notes and ideas digitally."
+    ],
+    "project": "Manage school admin with AI tools for a month."
+   },
+   {
+    "title": "Digital choreography",
+    "items": [
+     "Use video and motion capture to record work.",
+     "Explore AI music tools.",
+     "Share work online."
+    ],
+    "project": "Record one piece with motion capture or video notation."
+   },
+   {
+    "title": "Creating and teaching",
+    "items": [
+     "Creating and directing dance stays human.",
+     "Prevent injuries through teaching.",
+     "Look at related roles: artistic director."
+    ],
+    "project": "Create a new piece."
+   }
+  ],
+  "aiTools": [
+   "Video tools",
+   "ChatGPT or Claude for admin",
+   "Music software"
+  ],
+  "humanEdge": [
+   "Creating movement",
+   "Directing dancers",
+   "Teaching technique"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2041.00": {
+  "roadmap": [
+   {
+    "title": "AI for scores and admin",
+    "items": [
+     "Use notation software with AI features.",
+     "Write grants and budgets with AI.",
+     "Plan programs with AI research."
+    ],
+    "project": "Write one grant with AI help."
+   },
+   {
+    "title": "AI and composition",
+    "items": [
+     "Explore AI music tools critically.",
+     "Understand rights and licensing.",
+     "Decide your position on AI."
+    ],
+    "project": "Experiment with one AI tool and write your policy."
+   },
+   {
+    "title": "Directing music",
+    "items": [
+     "Conducting and interpreting stay human.",
+     "Lead ensembles.",
+     "Look at related roles: music educator."
+    ],
+    "project": "Direct one performance."
+   }
+  ],
+  "aiTools": [
+   "Notation software (e.g. Sibelius, Dorico)",
+   "ChatGPT or Claude for grants",
+   "AI music tools"
+  ],
+  "humanEdge": [
+   "Conducting ensembles",
+   "Musical interpretation",
+   "Creative composition"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2042.00": {
+  "roadmap": [
+   {
+    "title": "AI for practice and promotion",
+    "items": [
+     "Use AI apps for practice feedback and accompaniment.",
+     "Promote gigs with AI-drafted posts.",
+     "Manage bookings with AI help."
+    ],
+    "project": "Promote your music with AI help for a month and track engagement."
+   },
+   {
+    "title": "Teaching and income",
+    "items": [
+     "Teach online with digital tools.",
+     "Understand AI and music rights.",
+     "Protect your recordings."
+    ],
+    "project": "Create one online lesson series."
+   },
+   {
+    "title": "Performance",
+    "items": [
+     "Performing live stays human.",
+     "Collaborate with musicians.",
+     "Look at related roles: music teacher."
+    ],
+    "project": "Play one new venue."
+   }
+  ],
+  "aiTools": [
+   "Practice apps",
+   "Social media tools",
+   "Recording software"
+  ],
+  "humanEdge": [
+   "Live performance",
+   "Musical expression",
+   "Teaching"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-2091.00": {
+  "roadmap": [
+   {
+    "title": "AI for playlists and marketing",
+    "items": [
+     "Organise music libraries with AI tagging.",
+     "Create playlists with AI suggestions, then curate.",
+     "Advertise services with AI help."
+    ],
+    "project": "Advertise with AI-written posts for a month and track bookings."
+   },
+   {
+    "title": "New tools",
+    "items": [
+     "Learn AI stem separation and mixing tools.",
+     "Track music trends.",
+     "Use client forms."
+    ],
+    "project": "Use stem separation in one set."
+   },
+   {
+    "title": "Reading the crowd",
+    "items": [
+     "Reading a room stays human.",
+     "Work with clients.",
+     "Look at related roles: producer or event planner."
+    ],
+    "project": "Play one event and record crowd response."
+   }
+  ],
+  "aiTools": [
+   "DJ software with AI features",
+   "Music library tools",
+   "ChatGPT or Claude for marketing"
+  ],
+  "humanEdge": [
+   "Reading the crowd",
+   "Mixing live",
+   "Building client trust"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-3011.00": {
+  "roadmap": [
+   {
+    "title": "AI for show prep",
+    "items": [
+     "Research guests and topics with AI, checking facts.",
+     "Draft news and weather scripts with AI.",
+     "Plan content with AI help."
+    ],
+    "project": "Prepare shows with AI research for a month and measure prep time."
+   },
+   {
+    "title": "AI in radio",
+    "items": [
+     "Understand AI voices and automation.",
+     "Build your personal brand.",
+     "Create podcasts."
+    ],
+    "project": "Launch a podcast segment."
+   },
+   {
+    "title": "On-air personality",
+    "items": [
+     "Live hosting and interviews stay human.",
+     "Appear at events.",
+     "Look at related roles: podcaster or producer."
+    ],
+    "project": "Host live events."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for research",
+   "Broadcast software",
+   "Podcast tools"
+  ],
+  "humanEdge": [
+   "Live personality",
+   "Interviewing",
+   "Connecting with listeners"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "27-3023.00": {
   "roadmap": [
    {
@@ -8312,6 +14738,48 @@
    "Building trusted sources over years",
    "Being on the scene and asking the hard question",
    "Judging what is true and what matters"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-3031.00": {
+  "roadmap": [
+   {
+    "title": "AI for content",
+    "items": [
+     "Draft press releases, posts and newsletters with AI, checking facts and tone.",
+     "Update websites with AI help.",
+     "Respond to media requests faster."
+    ],
+    "project": "Produce one month of content with AI drafts and measure time saved and engagement."
+   },
+   {
+    "title": "Monitoring and strategy",
+    "items": [
+     "Use AI media monitoring.",
+     "Plan strategies with AI research.",
+     "Set AI disclosure rules."
+    ],
+    "project": "Set up AI media monitoring and report on coverage."
+   },
+   {
+    "title": "Relationships",
+    "items": [
+     "Relationships with journalists stay human.",
+     "Coach spokespeople.",
+     "Look at related roles: PR manager."
+    ],
+    "project": "Coach a spokesperson for an interview."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for content",
+   "Media monitoring tools",
+   "Social media tools"
+  ],
+  "humanEdge": [
+   "Building media relationships",
+   "Coaching spokespeople",
+   "Crisis judgement"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -8357,6 +14825,300 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "27-3042.00": {
+  "roadmap": [
+   {
+    "title": "AI for documentation",
+    "items": [
+     "Draft and edit documents with AI from source material.",
+     "Maintain help docs with AI.",
+     "Standardise style with AI checks."
+    ],
+    "project": "Write one manual with AI help and measure time saved."
+   },
+   {
+    "title": "Docs for AI",
+    "items": [
+     "Structure docs for AI search and chatbots.",
+     "Build AI help assistants on docs.",
+     "Test accuracy."
+    ],
+    "project": "Set up an AI assistant on your docs and test 50 questions."
+   },
+   {
+    "title": "Understanding users",
+    "items": [
+     "Interviewing engineers and users stays human.",
+     "Judge what users need.",
+     "Look at related roles: content designer."
+    ],
+    "project": "Interview five users and improve the docs."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude",
+   "Docs platforms with AI",
+   "Style checkers"
+  ],
+  "humanEdge": [
+   "Understanding complex products",
+   "Interviewing experts",
+   "Knowing what users need"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-3043.05": {
+  "roadmap": [
+   {
+    "title": "AI for research and admin",
+    "items": [
+     "Research facts and settings with AI, verifying sources.",
+     "Organise outlines and notes with AI.",
+     "Format manuscripts for submission."
+    ],
+    "project": "Research one project with AI help and check every fact."
+   },
+   {
+    "title": "AI and your writing",
+    "items": [
+     "Decide how you use AI, if at all.",
+     "Understand AI and copyright.",
+     "Protect your work."
+    ],
+    "project": "Write your AI policy for your work."
+   },
+   {
+    "title": "Writing",
+    "items": [
+     "Your voice and stories stay human.",
+     "Teach writing.",
+     "Look at related roles: editor or teacher."
+    ],
+    "project": "Finish one piece in your own voice."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for research",
+   "Writing software",
+   "Grammar tools"
+  ],
+  "humanEdge": [
+   "Personal voice",
+   "Original stories",
+   "Emotional truth"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-3092.00": {
+  "roadmap": [
+   {
+    "title": "AI in transcription",
+    "items": [
+     "Use AI speech recognition for first drafts, then correct carefully.",
+     "Proofread with AI tools.",
+     "Keep exhibits organised."
+    ],
+    "project": "Compare AI transcripts with your own on five proceedings."
+   },
+   {
+    "title": "Certified accuracy",
+    "items": [
+     "Learn rules on AI in legal records.",
+     "Use realtime captioning tools.",
+     "Verify every transcript."
+    ],
+    "project": "Build a quality checklist for AI-assisted transcripts."
+   },
+   {
+    "title": "Certified record",
+    "items": [
+     "Certifying accuracy stays human.",
+     "Handle difficult audio.",
+     "Look at related roles: captioner or legal assistant."
+    ],
+    "project": "Specialise in one area like medical or technical terms."
+   }
+  ],
+  "aiTools": [
+   "Speech recognition software",
+   "Stenography software",
+   "Proofreading tools"
+  ],
+  "humanEdge": [
+   "Certifying accuracy",
+   "Handling difficult speech",
+   "Legal knowledge"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-4011.00": {
+  "roadmap": [
+   {
+    "title": "AI for audio and video",
+    "items": [
+     "Use AI tools for noise removal and editing.",
+     "Diagnose problems with AI help.",
+     "Organise media files."
+    ],
+    "project": "Use AI noise removal on one project."
+   },
+   {
+    "title": "New tech",
+    "items": [
+     "Learn AI video and audio tools.",
+     "Learn streaming systems.",
+     "Maintain equipment."
+    ],
+    "project": "Set up a streaming system."
+   },
+   {
+    "title": "Live work",
+    "items": [
+     "Running live events stays human.",
+     "Repair equipment.",
+     "Look at related roles: sound engineer."
+    ],
+    "project": "Run one live event."
+   }
+  ],
+  "aiTools": [
+   "AI audio cleanup tools",
+   "Video editing software",
+   "Streaming software"
+  ],
+  "humanEdge": [
+   "Running live events",
+   "Fixing equipment",
+   "Quick problem solving"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-4012.00": {
+  "roadmap": [
+   {
+    "title": "AI in broadcast",
+    "items": [
+     "Use automation and AI monitoring.",
+     "Edit with AI tools.",
+     "Keep logs digital."
+    ],
+    "project": "Use AI tools for one month of editing."
+   },
+   {
+    "title": "IP and streaming",
+    "items": [
+     "Learn IP broadcast systems.",
+     "Learn streaming.",
+     "Maintain networks."
+    ],
+    "project": "Learn one IP broadcast system."
+   },
+   {
+    "title": "Hands-on",
+    "items": [
+     "Repairs and live monitoring stay human.",
+     "Emergency fixes.",
+     "Look at related roles: broadcast engineer."
+    ],
+    "project": "Lead an equipment upgrade."
+   }
+  ],
+  "aiTools": [
+   "Broadcast automation",
+   "Video editing tools",
+   "Network monitoring"
+  ],
+  "humanEdge": [
+   "Emergency repairs",
+   "Live monitoring",
+   "Installing equipment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-4014.00": {
+  "roadmap": [
+   {
+    "title": "AI in mixing",
+    "items": [
+     "Use AI tools for stem separation and cleanup.",
+     "Use AI mastering as a starting point.",
+     "Organise sessions."
+    ],
+    "project": "Use AI tools on one mix and compare with manual work."
+   },
+   {
+    "title": "New tools",
+    "items": [
+     "Learn spatial audio.",
+     "Understand AI voice rights.",
+     "Build templates."
+    ],
+    "project": "Mix one track in spatial audio."
+   },
+   {
+    "title": "Ears and taste",
+    "items": [
+     "Recording and mixing judgement stay human.",
+     "Work with artists.",
+     "Look at related roles: producer."
+    ],
+    "project": "Record one session."
+   }
+  ],
+  "aiTools": [
+   "AI audio tools (e.g. iZotope)",
+   "DAW software",
+   "Stem separation tools"
+  ],
+  "humanEdge": [
+   "Critical listening",
+   "Working with artists",
+   "Microphone technique"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-4015.00": {
+  "roadmap": [
+   {
+    "title": "AI for programming lights",
+    "items": [
+     "Use AI help for console programming.",
+     "Plan rigs with software.",
+     "Document shows."
+    ],
+    "project": "Program one show with software help."
+   },
+   {
+    "title": "New tech",
+    "items": [
+     "Learn automated lighting.",
+     "Learn pre-visualisation software.",
+     "Maintain fixtures."
+    ],
+    "project": "Pre-visualise one show."
+   },
+   {
+    "title": "Hands-on",
+    "items": [
+     "Rigging and focusing stay human.",
+     "Work safely at height.",
+     "Look at related roles: lighting designer."
+    ],
+    "project": "Light one production."
+   }
+  ],
+  "aiTools": [
+   "Lighting console software",
+   "Previs software",
+   "ChatGPT or Claude for help"
+  ],
+  "humanEdge": [
+   "Rigging safely",
+   "Focusing lights",
+   "Live operation"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "27-4021.00": {
   "roadmap": [
    {
@@ -8396,6 +15158,132 @@
    "Directing people so they relax in front of the camera",
    "Seeing light and the moment on location",
    "A personal style clients come back for"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-4031.00": {
+  "roadmap": [
+   {
+    "title": "AI for editing and prep",
+    "items": [
+     "Edit footage with AI tools.",
+     "Plan shots with AI previs.",
+     "Organise footage."
+    ],
+    "project": "Edit one project with AI tools."
+   },
+   {
+    "title": "New cameras",
+    "items": [
+     "Learn AI autofocus and tracking.",
+     "Learn virtual production.",
+     "Maintain gear."
+    ],
+    "project": "Work on a virtual production shoot."
+   },
+   {
+    "title": "Camera craft",
+    "items": [
+     "Framing and operating stay human.",
+     "Work with directors.",
+     "Look at related roles: cinematographer."
+    ],
+    "project": "Shoot a short film."
+   }
+  ],
+  "aiTools": [
+   "Video editing with AI",
+   "Camera tracking tools",
+   "Previs tools"
+  ],
+  "humanEdge": [
+   "Framing shots",
+   "Operating cameras",
+   "Working with crews"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-4032.00": {
+  "roadmap": [
+   {
+    "title": "AI in editing",
+    "items": [
+     "Use AI for transcription, search and rough cuts.",
+     "Use AI tools for audio cleanup.",
+     "Organise footage with AI tags."
+    ],
+    "project": "Edit one project using AI search and rough cut tools and measure time saved."
+   },
+   {
+    "title": "New tools",
+    "items": [
+     "Learn AI effects and colour tools.",
+     "Understand rights.",
+     "Build templates."
+    ],
+    "project": "Use AI colour tools on one project."
+   },
+   {
+    "title": "Storytelling",
+    "items": [
+     "Story decisions stay human.",
+     "Work with directors.",
+     "Look at related roles: director or producer."
+    ],
+    "project": "Edit a short film."
+   }
+  ],
+  "aiTools": [
+   "Premiere Pro or DaVinci with AI",
+   "AI transcription",
+   "Audio cleanup tools"
+  ],
+  "humanEdge": [
+   "Storytelling",
+   "Pacing and rhythm",
+   "Working with directors"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and education",
+    "items": [
+     "Use approved tools for case notes.",
+     "Create patient exercise guides with AI.",
+     "Keep patient data private."
+    ],
+    "project": "Use approved note tools for a month and measure time saved."
+   },
+   {
+    "title": "Digital practice",
+    "items": [
+     "Use AI imaging support carefully.",
+     "Online booking and reminders.",
+     "Track outcomes."
+    ],
+    "project": "Set up online booking and track no-shows."
+   },
+   {
+    "title": "Hands-on care",
+    "items": [
+     "Manual adjustments stay human.",
+     "Diagnosis and patient care.",
+     "Look at related roles: physical therapist."
+    ],
+    "project": "Track patient outcomes for three months."
+   }
+  ],
+  "aiTools": [
+   "Practice management software",
+   "Approved clinical note tools",
+   "Patient education tools"
+  ],
+  "humanEdge": [
+   "Manual adjustment",
+   "Diagnosis by touch",
+   "Patient trust"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
