@@ -34,6 +34,20 @@ const SCALE = [
   { from: 70, to: 100, color: 'var(--band-very-high)' }
 ];
 
+/**
+ * A task is only suggested as "try it with AI" when AI can really do a good part of it; below this,
+ * the first step is the roadmap's first item instead (phase 1 starts where AI already helps).
+ */
+const FIRST_STEP_MIN_AUTOMATION = 40;
+
+interface FirstStep {
+  /** The task with the most automatable time, if any task passes FIRST_STEP_MIN_AUTOMATION. */
+  task: TaskExposure | null;
+  firstItem: string | null;
+  tool: string | null;
+  project: string | null;
+}
+
 @Component({
   selector: 'app-ai-check-page',
   standalone: true,
@@ -253,6 +267,40 @@ const SCALE = [
       <p *ngIf="!r.personalNote && personalNoteRequested" class="text-[14px] text-muted">
         The AI comment is not available right now. The rest of the result does not depend on it.
       </p>
+
+      <!-- One concrete start -->
+      <section *ngIf="firstStep(r) as s" class="card avoid-break grid gap-6 border-accent p-6 sm:p-8 lg:grid-cols-12">
+        <div class="lg:col-span-4 lg:pr-6">
+          <p class="kicker !text-accent">Start this week</p>
+          <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Your first step</h2>
+          <p class="mt-3 text-[15px] leading-relaxed text-muted">
+            One real try this week beats a course you never finish.
+          </p>
+        </div>
+        <div class="space-y-5 lg:col-span-8">
+          <div class="rounded-xl bg-surface-2 p-5">
+            <p class="kicker">This week</p>
+            <ng-container *ngIf="s.task; else roadmapStart">
+              <p class="mt-2 text-[17px] font-semibold leading-snug">Do this task once with AI help: {{ s.task.name }}</p>
+              <p class="num mt-2 font-mono text-[12px] text-faint">{{ s.task.share }}% of the week &middot; {{ s.task.automationPercent }}% automatable</p>
+              <p *ngIf="s.tool" class="mt-3 text-[15px] leading-relaxed text-muted">A tool to try: <span class="font-semibold text-fg">{{ s.tool }}</span>. Check the result yourself before you use it.</p>
+            </ng-container>
+            <ng-template #roadmapStart>
+              <p class="mt-2 text-[17px] font-semibold leading-snug">{{ s.firstItem }}</p>
+              <p class="mt-3 text-[15px] leading-relaxed text-muted">Most of your work stays hands-on, so start where AI helps around it: records, planning and learning.</p>
+            </ng-template>
+          </div>
+          <div *ngIf="s.project" class="rounded-xl border border-line p-5">
+            <p class="kicker">Then your first project</p>
+            <p class="mt-2 text-[15px] leading-relaxed">{{ s.project }}</p>
+            <label class="mt-3 flex cursor-pointer items-center gap-2 text-[14px] text-muted print:hidden">
+              <input type="checkbox" class="h-4 w-4 accent-[#c6f432]"
+                     [checked]="isDone(r, s.project)" (change)="toggleDone(r, s.project)" />
+              Project done
+            </label>
+          </div>
+        </div>
+      </section>
 
       <!-- Tasks -->
       <section class="card grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
@@ -689,6 +737,22 @@ export class AiCheckPageComponent implements OnInit {
     const top = new Set([...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS));
     const rest = r.tasks.filter(t => !top.has(t));
     return { count: rest.length, share: rest.reduce((sum, t) => sum + t.share, 0) };
+  }
+
+  /**
+   * One concrete start: the task with the most automatable time (share × automation), the first
+   * suggested tool and the first roadmap project. Null when the profession lists no tasks.
+   */
+  firstStep(r: AssessmentResult): FirstStep | null {
+    const task = (r.tasks ?? [])
+      .filter(t => t.automationPercent >= FIRST_STEP_MIN_AUTOMATION)
+      .reduce<TaskExposure | null>((best, t) =>
+        !best || t.share * t.automationPercent > best.share * best.automationPercent ? t : best, null);
+    const firstItem = r.professionRoadmap?.[0]?.items?.[0] ?? null;
+    if (!task && !firstItem) {
+      return null;
+    }
+    return { task, firstItem, tool: r.aiTools?.[0] ?? null, project: r.professionRoadmap?.[0]?.project ?? null };
   }
 
   /** Ticked roadmap steps (items and projects, by text) for the profession on screen. */
