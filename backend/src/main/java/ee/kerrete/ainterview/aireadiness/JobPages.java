@@ -39,9 +39,18 @@ public class JobPages {
     private final Map<String, Profession> byName = new HashMap<>();
     private final Map<String, String> redirects = new HashMap<>();
 
-    /** Lehe andmed: neutraalne skoor (ilma vastusteta), suurimad ülesanded ja lingitavad seotud ametid. */
+    /**
+     * Ülesanne, mida kokkuvõte nimetab "AI teeb peamiselt seda", peab olema vähemalt nii palju
+     * automatiseeritav; muidu nimetaks lause just seda tööosa, mis jääb inimesele (nt koka toiduvalmistamine).
+     */
+    static final int LEAD_TASK_MIN_AUTOMATION = 40;
+
+    /**
+     * Lehe andmed: neutraalne skoor (ilma vastusteta), suurimad ülesanded ja lingitavad seotud ametid.
+     * leadTask on kokkuvõttes nimetatav ülesanne või null, kui ükski suur ülesanne pole piisavalt automatiseeritav.
+     */
     public record JobPage(Profession profession, String slug, AssessmentResult result, List<TaskExposure> topTasks,
-                          int moreTasks, int moreShare, List<Related> related, String group) {
+                          int moreTasks, int moreShare, List<Related> related, String group, TaskExposure leadTask) {
     }
 
     /** Seotud amet; slug on null, kui sellel pole oma lehte. */
@@ -131,7 +140,10 @@ public class JobPages {
                     return new Related(name, match == null ? null : slugOf(match.id()));
                 })
                 .toList();
+        TaskExposure leadTask = top.stream()
+                .filter(t -> t.automationPercent() >= LEAD_TASK_MIN_AUTOMATION)
+                .findFirst().orElse(null);
         return new JobPage(p, slugOf(p.id()), result, top, Math.max(0, byShare.size() - TOP_TASKS), moreShare,
-                related, catalog.group(p).orElse(null));
+                related, catalog.group(p).orElse(null), leadTask);
     }
 }

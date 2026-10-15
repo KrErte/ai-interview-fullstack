@@ -48,6 +48,16 @@ class JobPageWebMvcTest {
     }
 
     @Test
+    void summaryDoesNotClaimAiDoesTheHandsOnCore() throws Exception {
+        mvc.perform(get("/jobs/cooks-restaurant"))
+                .andExpect(content().string(not(containsString("mostly: season and cook food"))))
+                .andExpect(content().string(containsString("None of the largest tasks is highly automatable")));
+        mvc.perform(get("/jobs/data-entry-keyers"))
+                .andExpect(content().string(containsString("of the typical work in this occupation, mostly: ")))
+                .andExpect(content().string(not(containsString("None of the largest tasks"))));
+    }
+
+    @Test
     void handWrittenProfessionHasAPage() throws Exception {
         mvc.perform(get("/jobs/accountant"))
                 .andExpect(status().isOk())

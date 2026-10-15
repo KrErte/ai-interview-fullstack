@@ -12,6 +12,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class JobPagesTest {
@@ -82,5 +84,20 @@ class JobPagesTest {
         assertEquals(6, page.topTasks().size());
         assertEquals(page.result().tasks().size() - 6, page.moreTasks());
         assertFalse(page.related().isEmpty());
+    }
+
+    @Test
+    void summaryNamesNoLeadTaskWhenNoLargeTaskIsAutomatable() {
+        // A cook's largest tasks are hands-on; the summary must not say AI does "mostly" the cooking.
+        JobPages.JobPage cook = PAGES.page(PAGES.bySlug("cooks-restaurant").orElseThrow());
+        assertNull(cook.leadTask());
+    }
+
+    @Test
+    void summaryNamesTheMostAutomatableLargeTask() {
+        JobPages.JobPage page = PAGES.page(PAGES.bySlug("data-entry-keyers").orElseThrow());
+        assertNotNull(page.leadTask());
+        assertTrue(page.leadTask().automationPercent() >= JobPages.LEAD_TASK_MIN_AUTOMATION);
+        assertEquals(page.topTasks().get(0), page.leadTask());
     }
 }
