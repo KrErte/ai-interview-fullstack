@@ -31373,6 +31373,1140 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "51-2051.00": {
+  "roadmap": [
+   {
+    "title": "Layup schedules and cure records",
+    "items": [
+     "Follow digital layup schedules and ply books on a screen, ticking off each layer so none is missed or doubled.",
+     "Record resin batches, mix ratios, temperature and humidity for each part, so defects can be traced later.",
+     "Report defects with photos in the quality system, so engineers see where problems repeat."
+    ],
+    "project": "Record resin batch, temperature and humidity for every part for two months and match them against defects found."
+   },
+   {
+    "title": "Infusion, moulds and inspection tools",
+    "items": [
+     "Learn vacuum infusion and closed moulding, which cut fumes and give more consistent parts.",
+     "Use ultrasonic or tap testing tools to find voids and delamination before parts leave the shop.",
+     "Follow strict rules for resin fumes, dust and skin protection every shift."
+    ],
+    "project": "Make the same part by open layup and by vacuum infusion, and compare weight, defects and time with your supervisor."
+   },
+   {
+    "title": "Hand skill and an eye for defects",
+    "items": [
+     "Wet out cloth and roll out air bubbles by hand, so laminates are strong and even.",
+     "Repair damaged fibreglass parts so the fix matches the original thickness and shape.",
+     "Judge resin gel time by touch and look, and adjust your pace to the conditions."
+    ],
+    "project": "Repair five damaged parts, test each with a supervisor and record which repair steps made the difference."
+   }
+  ],
+  "aiTools": [
+   "Digital layup schedules and ply books",
+   "Vacuum infusion equipment",
+   "Ultrasonic and tap testing tools"
+  ],
+  "humanEdge": [
+   "Bubble-free laminating by hand",
+   "Repairs that match the original part",
+   "Judging gel time by touch and look"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-2061.00": {
+  "roadmap": [
+   {
+    "title": "Timing machines and assembly records",
+    "items": [
+     "Test rate and amplitude on electronic timing machines after assembly, and adjust until readings are within tolerance.",
+     "Record serial numbers, test results and adjustments in the production system, so each movement is traceable.",
+     "Follow digital assembly instructions with magnified images of each step."
+    ],
+    "project": "Track first-pass test results for your movements for three months and find the step that causes most rework."
+   },
+   {
+    "title": "Automation and microscope inspection",
+    "items": [
+     "Work with automated assembly and oiling stations, and check their output under the microscope.",
+     "Use digital microscopes to document defects and share them with quality engineers.",
+     "Learn the electronic modules in quartz and smart timepieces."
+    ],
+    "project": "Photograph every defect you find with a digital microscope for a month and review the patterns with quality."
+   },
+   {
+    "title": "Precision and patience",
+    "items": [
+     "Assemble tiny parts with tweezers and a loupe, keeping hands steady for long periods.",
+     "Adjust hairsprings and endshake by hand, where machines cannot judge the fine result.",
+     "Spot worn or misaligned parts by eye before they cause faults."
+    ],
+    "project": "Train a new assembler on hairspring adjustment for a month and write down the checks you teach."
+   }
+  ],
+  "aiTools": [
+   "Electronic timing machines",
+   "Digital microscopes",
+   "Automated assembly stations"
+  ],
+  "humanEdge": [
+   "Steady hands with tiny parts",
+   "Fine hairspring adjustment by hand",
+   "Spotting worn parts by eye"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-2092.00": {
+  "roadmap": [
+   {
+    "title": "Digital instructions and team data",
+    "items": [
+     "Follow digital work instructions at each station you rotate through, checking each step against the screen.",
+     "Enter quality checks and production counts on a tablet, so the team sees results during the shift.",
+     "Report problems and ideas in the team's digital board, so they are not forgotten."
+    ],
+    "project": "Record every quality issue at your stations for a month and bring the top three to the team meeting with ideas."
+   },
+   {
+    "title": "Cobots, forklifts and new skills",
+    "items": [
+     "Learn to work safely next to collaborative robots, and to restart them after small stops.",
+     "Get certified on forklifts and other equipment the team uses.",
+     "Learn basic machine care so small faults are fixed before maintenance is needed."
+    ],
+    "project": "Learn every station in your area within six months and keep a skills record signed off by your team leader."
+   },
+   {
+    "title": "Teamwork and quality pride",
+    "items": [
+     "Help teammates when they fall behind, and keep the whole line moving.",
+     "Catch defects by eye and feel that automatic checks miss.",
+     "Move toward team leader, setter or quality roles, building on knowing every station."
+    ],
+    "project": "Agree with your supervisor which next role you aim for, and track the skills you build toward it for a year."
+   }
+  ],
+  "aiTools": [
+   "Digital work instructions",
+   "Tablet quality and production records",
+   "Collaborative robots"
+  ],
+  "humanEdge": [
+   "Helping teammates keep the line moving",
+   "Catching defects by eye and feel",
+   "Knowing every station on the line"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-3011.00": {
+  "roadmap": [
+   {
+    "title": "Recipe scaling, ordering and labels",
+    "items": [
+     "Scale recipes and calculate ingredient orders with spreadsheets or bakery software, and check totals before ordering.",
+     "Produce allergen and nutrition labels from recipe data, and check every allergen yourself.",
+     "Use sales data to plan how much of each product to bake, so less goes to waste."
+    ],
+    "project": "Plan daily bakes from last month's sales data for four weeks and record waste and sell-outs compared with before."
+   },
+   {
+    "title": "Oven controls and food safety records",
+    "items": [
+     "Use programmable ovens and proofers, and keep the settings that work for each product.",
+     "Record temperatures, cleaning and hygiene checks digitally for food safety inspections.",
+     "Try new recipes and trends with AI suggestions, then test and adjust them yourself."
+    ],
+    "project": "Develop two new products with AI recipe ideas as a starting point, test them with customers and keep the best."
+   },
+   {
+    "title": "Craft, taste and early mornings",
+    "items": [
+     "Judge dough by feel and baking by colour and smell, adjusting for flour and weather.",
+     "Shape, decorate and finish products by hand so they look and taste special.",
+     "Keep quality steady during early shifts and busy seasons."
+    ],
+    "project": "Teach a new baker shaping and dough judgement for a month and write down the signs you teach."
+   }
+  ],
+  "aiTools": [
+   "Bakery recipe and costing software",
+   "Programmable ovens and proofers",
+   "Digital food safety records"
+  ],
+  "humanEdge": [
+   "Judging dough by feel and smell",
+   "Hand shaping and decorating",
+   "Steady quality on early shifts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-3021.00": {
+  "roadmap": [
+   {
+    "title": "Labels, orders and stock planning",
+    "items": [
+     "Weigh, label and price cuts with connected scales, checking dates and allergen information before display.",
+     "Take special orders online or by phone into a shared list, so nothing is forgotten on busy days.",
+     "Plan meat orders from sales data and upcoming holidays, so stock matches demand."
+    ],
+    "project": "Plan meat orders from sales data for a month and record waste and out-of-stock items compared with before."
+   },
+   {
+    "title": "Food safety and product ideas",
+    "items": [
+     "Record fridge temperatures and hygiene checks digitally, so inspections are easy.",
+     "Learn traceability rules, so every cut can be traced to its supplier.",
+     "Create recipe cards and cooking tips with AI help for customers, checking them yourself."
+    ],
+    "project": "Write recipe cards for five less popular cuts with AI help, display them and record sales over a month."
+   },
+   {
+    "title": "Knife skill and customer advice",
+    "items": [
+     "Cut, bone and trim meat skilfully with little waste and safe knife work.",
+     "Advise customers on cuts, quantities and cooking methods for their meals.",
+     "Inspect deliveries by look, smell and feel, and refuse poor quality."
+    ],
+    "project": "Ask twenty customers what advice helped them, and add the most useful tips to your counter display."
+   }
+  ],
+  "aiTools": [
+   "Connected scales and label printers",
+   "Order and stock planning tools",
+   "Digital temperature and hygiene records"
+  ],
+  "humanEdge": [
+   "Skilful, low-waste cutting",
+   "Cooking advice for customers",
+   "Judging quality by look and smell"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-3022.00": {
+  "roadmap": [
+   {
+    "title": "Line data, yields and traceability",
+    "items": [
+     "Check yield and weight data from the line after each shift, and learn which cuts leave too much meat behind.",
+     "Scan and label containers so every batch is traceable from carcass to customer.",
+     "Report defects and machine problems on the line terminal with notes."
+    ],
+    "project": "Review your yield data each week for two months and agree one cutting change with your supervisor."
+   },
+   {
+    "title": "Automation and safe knives",
+    "items": [
+     "Work safely next to automated portioning and deboning machines, and check their cuts.",
+     "Keep knives sharp and use cut-resistant gloves, following every safety rule.",
+     "Learn food safety rules for temperature, hygiene and contamination."
+    ],
+    "project": "Track cuts and strain injuries in your team for three months and suggest one change to tools or rotation."
+   },
+   {
+    "title": "Speed, accuracy and care",
+    "items": [
+     "Trim and cut quickly and accurately, removing defects and fat by eye.",
+     "Spot bruises, bones and foreign matter that machines miss.",
+     "Move toward butcher, quality or line leader roles, building on your cutting skill."
+    ],
+    "project": "Ask a quality inspector to review your trimming for a week and record which defects you now catch."
+   }
+  ],
+  "aiTools": [
+   "Line yield and weight data",
+   "Traceability labels and scanners",
+   "Automated portioning machines"
+  ],
+  "humanEdge": [
+   "Fast, accurate trimming by eye",
+   "Spotting defects machines miss",
+   "Safe knife work at line speed"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-3023.00": {
+  "roadmap": [
+   {
+    "title": "Line records and traceability",
+    "items": [
+     "Record carcass numbers, weights and inspection results with scanners, so every animal is traceable.",
+     "Follow digital line instructions for each product, and report problems with notes on the terminal.",
+     "Check hygiene and temperature records each shift, as food safety depends on them."
+    ],
+    "project": "Track hygiene check results for your station for a month and agree one improvement with the supervisor."
+   },
+   {
+    "title": "Automation, welfare and safety",
+    "items": [
+     "Work safely alongside automated splitting and evisceration machines, and stop them when something is wrong.",
+     "Learn animal welfare rules and report any concern immediately.",
+     "Use cut-resistant gear and rotation to protect your hands, back and shoulders."
+    ],
+    "project": "Agree a rotation plan with your team to reduce strain injuries, use it for three months and record the results."
+   },
+   {
+    "title": "Skill and steady work",
+    "items": [
+     "Make precise cuts at line speed, keeping carcasses clean and intact.",
+     "Notice signs of disease or contamination and alert inspectors.",
+     "Keep calm and careful in a hard, fast and cold workplace."
+    ],
+    "project": "Review five contamination or defect cases with the meat inspector and write down the signs to watch for."
+   }
+  ],
+  "aiTools": [
+   "Carcass tracking scanners",
+   "Line terminals and digital instructions",
+   "Automated splitting machines"
+  ],
+  "humanEdge": [
+   "Precise cuts at line speed",
+   "Noticing disease and contamination",
+   "Steady care in hard conditions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-3091.00": {
+  "roadmap": [
+   {
+    "title": "Process data and production records",
+    "items": [
+     "Watch temperature, humidity and moisture readings on control screens, and adjust settings when products drift.",
+     "Record weights, times and temperatures automatically in the production system, adding notes on any problem.",
+     "Use roast and bake profiles stored in the controls, so each batch follows the proven recipe."
+    ],
+    "project": "Compare process data with taste or quality results for a month and agree one profile change with quality."
+   },
+   {
+    "title": "Sensors, alarms and maintenance",
+    "items": [
+     "Learn in-line moisture and colour sensors, and check them against samples regularly.",
+     "Respond to alarms quickly and know which ones need maintenance help.",
+     "Clean equipment on schedule with digital checklists, so hygiene is recorded."
+    ],
+    "project": "Check sensor readings against lab samples for a month and report any drift to maintenance."
+   },
+   {
+    "title": "Senses and judgement",
+    "items": [
+     "Taste, smell and look at products to judge roasting and drying, beyond what sensors show.",
+     "Hear jams and spillage early and act before the line stops.",
+     "Handle hot roasters, trays and products safely, with the right gloves and care."
+    ],
+    "project": "Taste and score samples each shift for a month with quality staff, and compare your scores with lab results."
+   }
+  ],
+  "aiTools": [
+   "Process control screens",
+   "In-line moisture and colour sensors",
+   "Production recording systems"
+  ],
+  "humanEdge": [
+   "Judging roasts by taste and smell",
+   "Hearing jams before the line stops",
+   "Safe handling of hot products"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-3092.00": {
+  "roadmap": [
+   {
+    "title": "Digital recipes and batch records",
+    "items": [
+     "Follow digital recipes on the batch terminal, scanning each ingredient so the system confirms the right one and weight.",
+     "Record batch data such as temperatures, times and test results automatically, adding notes when anything differs.",
+     "Check allergen changeover steps on a digital checklist before starting a new product."
+    ],
+    "project": "Use ingredient scanning for every batch for a month and record weighing errors caught compared with before."
+   },
+   {
+    "title": "Process control and quality tests",
+    "items": [
+     "Learn the mixing and heating controls well enough to correct drift before a batch fails.",
+     "Run quick quality tests such as viscosity, pH or sugar content, and compare them with lab results.",
+     "Follow cleaning and sterilising procedures exactly, with records for food safety audits."
+    ],
+    "project": "Compare your quick tests with lab results for twenty batches and agree corrections with quality staff."
+   },
+   {
+    "title": "Taste, texture and food safety",
+    "items": [
+     "Taste, smell and feel batches to catch problems that instruments miss, and report them at once.",
+     "Spot leaks, plugging or unusual sounds in equipment before they spoil a batch.",
+     "Take food safety seriously, because a wrong ingredient can harm customers with allergies."
+    ],
+    "project": "Review every rejected batch for three months with your supervisor and write down what early signs you could have seen."
+   }
+  ],
+  "aiTools": [
+   "Digital recipe and batch terminals",
+   "Ingredient scanning systems",
+   "Quick quality test instruments"
+  ],
+  "humanEdge": [
+   "Tasting and feeling batch quality",
+   "Spotting equipment problems early",
+   "Serious care for allergen safety"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-3093.00": {
+  "roadmap": [
+   {
+    "title": "Cooking controls and production data",
+    "items": [
+     "Run cookers and kettles from control screens with stored cooking profiles, and watch temperature and pressure trends.",
+     "Record cooking times, temperatures and test results in the production system for each batch.",
+     "Use alarms and trend charts to catch steam or temperature problems before products are spoiled."
+    ],
+    "project": "Review cooking trend charts each shift for a month and record the problems you caught before quality checks."
+   },
+   {
+    "title": "Food safety checks and cleaning",
+    "items": [
+     "Learn the critical control points for cooking, and why each temperature and time matters for safety.",
+     "Take product samples and test colour, consistency or acidity, and act on the results.",
+     "Clean and sterilise equipment with digital checklists, so hygiene is recorded."
+    ],
+    "project": "Make a one-page guide to the critical control points on your line with AI help and check it with quality staff."
+   },
+   {
+    "title": "Senses and steady work",
+    "items": [
+     "Judge cooked products by look, smell and texture alongside the instruments.",
+     "Handle hot equipment, steam and heavy ingredients safely every shift.",
+     "Move toward process technician or line leader roles, building on your process knowledge."
+    ],
+    "project": "Agree a training plan toward a technician role with your supervisor and track the skills you build over a year."
+   }
+  ],
+  "aiTools": [
+   "Cooking control screens and profiles",
+   "Production data systems",
+   "Sample testing instruments"
+  ],
+  "humanEdge": [
+   "Judging food by look and smell",
+   "Safe work with steam and heat",
+   "Process knowledge from daily work"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4021.00": {
+  "roadmap": [
+   {
+    "title": "Extrusion data and quality records",
+    "items": [
+     "Watch melt temperature, pressure and line speed on the extruder screen, and adjust before dimensions drift.",
+     "Use in-line laser gauges to measure profile or diameter continuously, and check them with hand gauges.",
+     "Record setups, die changes and defects in the production system, so good settings can be reused."
+    ],
+    "project": "Save the settings for every good run for three months and use them to cut startup scrap on repeat jobs."
+   },
+   {
+    "title": "Die changes and troubleshooting",
+    "items": [
+     "Learn die and sizing setups for new products, and record each step for the next changeover.",
+     "Use scrap data to find which products and settings cause most waste.",
+     "Learn basic maintenance of screws, heaters and pullers to fix small problems quickly."
+    ],
+    "project": "Time your die changes for a month, find the slowest step and agree one improvement with the setter."
+   },
+   {
+    "title": "Feel for the process",
+    "items": [
+     "Notice changes in material, sound or surface finish that tell you the process is drifting.",
+     "Handle hot dies and heavy reels safely with the right equipment.",
+     "Explain problems clearly to maintenance and quality, so fixes happen fast."
+    ],
+    "project": "Write down five process problems you noticed before the gauges for newer operators and review them together."
+   }
+  ],
+  "aiTools": [
+   "Extruder control screens",
+   "In-line laser gauges",
+   "Production and scrap data systems"
+  ],
+  "humanEdge": [
+   "Noticing process drift early",
+   "Safe handling of hot dies and reels",
+   "Clear problem reports to maintenance"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4022.00": {
+  "roadmap": [
+   {
+    "title": "Press data and setup records",
+    "items": [
+     "Use press monitoring screens for force, temperature and stroke, and stop when readings leave the normal range.",
+     "Keep digital setup sheets for each die with photos, so changeovers are faster and repeatable.",
+     "Record measurements of sample forgings in the quality system before running the full batch."
+    ],
+    "project": "Create photo setup sheets for your five most common dies and time the next changeovers against before."
+   },
+   {
+    "title": "Die care and heating control",
+    "items": [
+     "Track die wear and tonnage counts, so dies are repaired before they crack.",
+     "Learn induction heating controls and how billet temperature affects forging quality.",
+     "Use thermal cameras or pyrometers to check temperatures, not just colour."
+    ],
+    "project": "Track die life for three months and agree a maintenance interval with the die shop based on the data."
+   },
+   {
+    "title": "Skill with heat and heavy tools",
+    "items": [
+     "Set and align heavy dies safely with cranes and careful teamwork.",
+     "Judge forging quality by eye and gauge, and adjust strokes as you go.",
+     "Work safely with hot metal, noise and heavy machines every shift."
+    ],
+    "project": "Mentor a new operator on die setting for a month and write down the checks you teach that are not on the setup sheet."
+   }
+  ],
+  "aiTools": [
+   "Press monitoring systems",
+   "Digital setup sheets",
+   "Pyrometers and thermal cameras"
+  ],
+  "humanEdge": [
+   "Safe setting of heavy dies",
+   "Judging forgings by eye and gauge",
+   "Steady work with hot metal"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4023.00": {
+  "roadmap": [
+   {
+    "title": "Mill automation and gauge data",
+    "items": [
+     "Watch automatic gauge and flatness control on the mill screen, and step in when it cannot correct a problem.",
+     "Read thickness and shape data from in-line gauges, and record coil quality in the system.",
+     "Follow digital rolling schedules and orders, checking each coil's specification before threading."
+    ],
+    "project": "Record every coil where automatic control could not hold tolerance for a month and review the causes with engineers."
+   },
+   {
+    "title": "Roll changes and maintenance data",
+    "items": [
+     "Track roll wear and change history, so rolls are ground before defects appear.",
+     "Learn the mill's hydraulic and drive systems, so you can explain faults to maintenance.",
+     "Use camera surface inspection results to find defects and trace their cause."
+    ],
+    "project": "Analyse surface inspection defects for a month and agree one roll or setting change with the shift leader."
+   },
+   {
+    "title": "Safe operation and judgement",
+    "items": [
+     "Thread strips and handle cobbles safely, keeping out of danger zones.",
+     "Judge strip shape and surface by eye when gauges disagree.",
+     "Coordinate closely with your crew during roll changes and jams."
+    ],
+    "project": "Review your roll change procedure with the crew, time it for a month and record safety and speed improvements."
+   }
+  ],
+  "aiTools": [
+   "Automatic gauge and flatness control",
+   "Surface inspection cameras",
+   "Roll management systems"
+  ],
+  "humanEdge": [
+   "Safe threading and cobble handling",
+   "Judging strip shape by eye",
+   "Crew coordination during roll changes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4031.00": {
+  "roadmap": [
+   {
+    "title": "Press programs and part records",
+    "items": [
+     "Load press and laser cutting programs from the production system, and check the first part against the drawing.",
+     "Record die changes, counts and scrap on the machine terminal, so tool life is tracked.",
+     "Use nesting software results to understand how parts are laid out on the sheet."
+    ],
+    "project": "Track scrap by cause on your machine for a month, agree one fix with the setter and measure scrap again the month after."
+   },
+   {
+    "title": "Sensors, safety and quick changeovers",
+    "items": [
+     "Learn die protection sensors and light curtains, and never bypass a safety device.",
+     "Practise quick die changes with standard tools and checklists.",
+     "Learn CNC press brake and laser cutter controls to widen your skills."
+    ],
+    "project": "Use a changeover checklist for a month, time each changeover and record what made them faster."
+   },
+   {
+    "title": "Careful checks and safe hands",
+    "items": [
+     "Inspect parts for burrs, cracks and marks by eye and touch, and sort defects correctly.",
+     "Keep hands safe around presses, following every guarding rule.",
+     "Set stops and blades precisely with gauges and shims."
+    ],
+    "project": "Inspect first and last parts of every batch for a month and record defects caught before they reached customers."
+   }
+  ],
+  "aiTools": [
+   "Machine terminals and programs",
+   "Nesting software",
+   "Die protection sensors"
+  ],
+  "humanEdge": [
+   "Finding burrs and cracks by touch",
+   "Strict respect for press guarding",
+   "Precise setting with gauges and shims"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4032.00": {
+  "roadmap": [
+   {
+    "title": "CNC programs and inspection records",
+    "items": [
+     "Load drilling programs and check tool offsets before the first hole, comparing the first part with the drawing.",
+     "Record hole sizes and positions with digital gauges, so measurements are stored automatically.",
+     "Track drill and tool life on the machine, so tools are changed before they break."
+    ],
+    "project": "Record tool life for your most-used drills for a month and set change intervals that prevent broken tools."
+   },
+   {
+    "title": "Feeds, speeds and fixtures",
+    "items": [
+     "Use cutting data calculators to choose speeds and feeds for each material, and adjust by sound and chips.",
+     "Learn quick-change fixtures and probes that set up parts faster.",
+     "Learn basic CNC programming, so you can make small corrections safely."
+    ],
+    "project": "Test calculator speeds and feeds on three materials, record tool life and finish, and share the best settings."
+   },
+   {
+    "title": "Precision and attention",
+    "items": [
+     "Secure workpieces firmly and square, as poor clamping ruins parts and is dangerous.",
+     "Listen to drilling and watch chips to catch dull tools early.",
+     "Measure carefully and stop the machine when parts drift."
+    ],
+    "project": "Train a new operator on clamping and first-part checks for a month and write down the checks you teach."
+   }
+  ],
+  "aiTools": [
+   "CNC drilling controls",
+   "Digital gauges",
+   "Cutting data calculators"
+  ],
+  "humanEdge": [
+   "Firm, square clamping of every part",
+   "Hearing dull drills before they break",
+   "Stopping the machine when parts drift"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4033.00": {
+  "roadmap": [
+   {
+    "title": "Grinding programs and measurement data",
+    "items": [
+     "Run CNC grinding programs and check the first part with precision gauges before the batch.",
+     "Use in-process gauging that measures parts during grinding, and check its readings by hand.",
+     "Record wheel dressing, sizes and surface finish results in the production system."
+    ],
+    "project": "Compare in-process gauge readings with hand measurements on fifty parts and report any drift to the setter."
+   },
+   {
+    "title": "Wheels, coolant and surface finish",
+    "items": [
+     "Learn wheel types and dressing settings, and how they affect finish and burn.",
+     "Use surface roughness testers to check finish, and adjust feeds and speeds.",
+     "Keep coolant clean and at the right concentration, recording checks."
+    ],
+    "project": "Record wheel dressing intervals and finish results for a month and agree a better dressing schedule."
+   },
+   {
+    "title": "Fine judgement and care",
+    "items": [
+     "Notice grinding burn, chatter and sparks that tell you something is wrong.",
+     "Handle precision parts carefully so finished surfaces are not damaged.",
+     "Measure to microns patiently, trusting careful checks over speed."
+    ],
+    "project": "Write down the signs of burn and chatter you look for, teach them to a new operator and review their results."
+   }
+  ],
+  "aiTools": [
+   "CNC grinding controls",
+   "In-process gauging",
+   "Surface roughness testers"
+  ],
+  "humanEdge": [
+   "Noticing burn and chatter",
+   "Careful handling of finished parts",
+   "Patient measurement to microns"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4034.00": {
+  "roadmap": [
+   {
+    "title": "CNC turning programs and offsets",
+    "items": [
+     "Load turning programs, set tool offsets and run the first part, checking every dimension before the batch.",
+     "Use CAM-generated programs and simulation to see the toolpath before cutting.",
+     "Record measurements with digital micrometers and gauges that send readings to the system."
+    ],
+    "project": "Simulate every new program before cutting for a month and record crashes or scrapped first parts compared with before."
+   },
+   {
+    "title": "Programming and tooling",
+    "items": [
+     "Learn to edit CNC turning programs safely, starting with small changes under supervision.",
+     "Use tool life data to change inserts before finish or size goes wrong.",
+     "Learn bar feeders and automation that let lathes run longer unattended."
+    ],
+    "project": "Complete one CNC programming course and write or edit three simple programs under supervision."
+   },
+   {
+    "title": "Machining skill and judgement",
+    "items": [
+     "Listen to the cut and watch chips to know when tools are worn or settings are wrong.",
+     "Adjust offsets carefully to keep parts in tolerance as tools wear.",
+     "Sharpen and set tools well, and keep the machine clean and accurate."
+    ],
+    "project": "Track how often your offset adjustments kept parts in tolerance for a month and share what you learned."
+   }
+  ],
+  "aiTools": [
+   "CNC lathe controls",
+   "CAM software and simulation",
+   "Digital micrometers and gauges"
+  ],
+  "humanEdge": [
+   "Reading cuts by sound and chips",
+   "Careful offset adjustment",
+   "Well-set tools and clean machines"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4035.00": {
+  "roadmap": [
+   {
+    "title": "CNC milling programs and setups",
+    "items": [
+     "Load milling programs, set work offsets with probes and check the first part against the drawing.",
+     "Simulate toolpaths in CAM software before cutting, to avoid crashes on new jobs.",
+     "Record setups with photos and notes, so repeat jobs start faster."
+    ],
+    "project": "Make photo setup sheets for your ten most repeated jobs and record setup time on the next runs."
+   },
+   {
+    "title": "Tooling, probing and programming",
+    "items": [
+     "Learn tool and part probing that sets up jobs faster and more accurately.",
+     "Use cutting data to choose tools and feeds, and adjust for vibration and finish.",
+     "Learn to edit programs safely as you gain experience."
+    ],
+    "project": "Use probing for setups for a month and compare setup time and first-part errors with manual setups."
+   },
+   {
+    "title": "Precision and problem solving",
+    "items": [
+     "Fixture parts square and firm, as alignment decides final accuracy.",
+     "Compute angles and tolerances with shop maths when drawings need interpretation.",
+     "Solve chatter and finish problems by experience and testing."
+    ],
+    "project": "Record every chatter or finish problem you solved for three months and share the fixes with your team."
+   }
+  ],
+  "aiTools": [
+   "CNC milling controls",
+   "CAM simulation",
+   "Tool and part probes"
+  ],
+  "humanEdge": [
+   "Square, firm fixturing of every part",
+   "Shop maths for tricky drawings",
+   "Solving chatter by experience"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4041.00": {
+  "roadmap": [
+   {
+    "title": "CAM, AI help and digital drawings",
+    "items": [
+     "Create toolpaths in CAM software from 3D models, and check simulations before cutting metal.",
+     "Use AI assistants to explain G-code, suggest feeds or check programs, and verify every suggestion on a safe test cut.",
+     "Read 3D models and digital drawings to plan operations, fixtures and tolerances."
+    ],
+    "project": "Program three parts with CAM and AI help, compare setup and cycle time with your manual method, and record lessons."
+   },
+   {
+    "title": "Measurement and automation",
+    "items": [
+     "Use coordinate measuring machines and probes to check complex parts.",
+     "Learn multi-axis machining and automation such as pallet changers.",
+     "Keep machines accurate with regular checks and maintenance."
+    ],
+    "project": "Learn to run one CMM inspection program and check five parts you machined, comparing with hand measurements."
+   },
+   {
+    "title": "Craft and problem solving",
+    "items": [
+     "Plan the best order of operations for one-off and tricky parts from experience.",
+     "Machine to tight tolerances with feel for materials and tools.",
+     "Solve problems with engineers when designs are hard to make."
+    ],
+    "project": "Suggest one design change that makes a part easier to machine, discuss it with the engineer and record the result."
+   }
+  ],
+  "aiTools": [
+   "CAM software",
+   "AI assistant for G-code and feeds",
+   "Coordinate measuring machines"
+  ],
+  "humanEdge": [
+   "Planning operations for tricky parts",
+   "Feel for materials and tools",
+   "Making designs manufacturable"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4051.00": {
+  "roadmap": [
+   {
+    "title": "Furnace controls and melt data",
+    "items": [
+     "Run furnaces from control screens, watching temperature, power and gas flows, and act on alarms quickly.",
+     "Use charge calculation software to plan materials for each melt, and check results against sample analysis.",
+     "Record melt data, samples and times in the production log automatically, adding notes on events."
+    ],
+    "project": "Compare charge calculations with sample analysis for a month and agree corrections with the metallurgist."
+   },
+   {
+    "title": "Spectrometers and process control",
+    "items": [
+     "Learn how spectrometer results guide additions, and why each element matters.",
+     "Use thermal imaging to check furnace walls and linings for hot spots.",
+     "Learn energy use data, so you can reduce power and fuel per tonne."
+    ],
+    "project": "Track energy use per melt for a month and test one practice change to lower it with your supervisor."
+   },
+   {
+    "title": "Heat, judgement and safety",
+    "items": [
+     "Read metal colour and fluidity by eye alongside the instruments.",
+     "Tap and transfer molten metal safely with full protective gear.",
+     "Inspect furnaces for wear and defects before they become dangerous."
+    ],
+    "project": "Review three furnace incidents or near misses with your crew and write down the warning signs."
+   }
+  ],
+  "aiTools": [
+   "Furnace control systems",
+   "Charge calculation software",
+   "Spectrometers"
+  ],
+  "humanEdge": [
+   "Reading metal colour and fluidity",
+   "Safe tapping of molten metal",
+   "Spotting furnace wear early"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4052.00": {
+  "roadmap": [
+   {
+    "title": "Pour data and casting records",
+    "items": [
+     "Record pour temperatures, times and ladle numbers for every casting, so defects can be traced.",
+     "Watch temperature readings from immersion probes and screens, and pour only within the specified range.",
+     "Follow digital pour schedules and mould lists, so each mould gets the right alloy."
+    ],
+    "project": "Record pour data for every casting for two months and compare it with casting defect reports."
+   },
+   {
+    "title": "Automated pouring and inspection",
+    "items": [
+     "Learn automated pouring systems and how to step in when they misbehave.",
+     "Understand X-ray and other casting inspection results, and which defects pouring causes.",
+     "Check moulds and coatings carefully with checklists before pouring."
+    ],
+    "project": "Review casting defect reports with quality for a month, find the ones pouring caused and agree one pouring practice change."
+   },
+   {
+    "title": "Steady hands with molten metal",
+    "items": [
+     "Pour at a steady rate by hand, judging flow and fill by eye.",
+     "Skim slag and handle ladles safely with full protective gear.",
+     "Signal crane operators clearly when moving ladles."
+    ],
+    "project": "Train a new pourer on safe ladle handling for a month and write down the steps and warning signs you teach."
+   }
+  ],
+  "aiTools": [
+   "Immersion temperature probes",
+   "Automated pouring systems",
+   "Casting inspection reports"
+  ],
+  "humanEdge": [
+   "Steady pouring judged by eye",
+   "Safe ladle handling in full gear",
+   "Clear signals to crane operators"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4061.00": {
+  "roadmap": [
+   {
+    "title": "CAD, 3D printing and fast prototypes",
+    "items": [
+     "Turn CAD models into prototype parts with 3D printing, CNC and laser cutting, choosing the fastest method for each part.",
+     "Use CAM software to program model parts, and check toolpaths in simulation before cutting.",
+     "Share photos and measurements of prototypes with engineers digitally, so design changes happen faster."
+    ],
+    "project": "Make one prototype by 3D printing and by CNC machining, and compare time, cost and accuracy with the engineer."
+   },
+   {
+    "title": "Scanning, measuring and new materials",
+    "items": [
+     "Use 3D scanners to compare prototypes with the CAD model and show deviations in colour maps.",
+     "Learn new printing materials and composites, and when each is strong enough to test.",
+     "Build jigs and fixtures quickly with printed parts where metal is not needed."
+    ],
+    "project": "Scan five prototypes, compare them with CAD models and report the deviations and their causes to engineering."
+   },
+   {
+    "title": "Craft and creative problem solving",
+    "items": [
+     "Shape, file and fit parts by hand where machines cannot reach the final detail.",
+     "Suggest design changes from making experience, so products are easier to build.",
+     "Solve unusual making problems with creative use of tools and materials."
+    ],
+    "project": "Record every design change you suggested for six months, and which ones engineering adopted and why."
+   }
+  ],
+  "aiTools": [
+   "CAD and CAM software",
+   "3D printers and CNC machines",
+   "3D scanners for prototype checks"
+  ],
+  "humanEdge": [
+   "Hand finishing of fine details",
+   "Design advice from making experience",
+   "Creative solutions to making problems"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4062.00": {
+  "roadmap": [
+   {
+    "title": "3D models, printing and CNC patterns",
+    "items": [
+     "Build pattern and corebox models in CAD with shrinkage and draft allowances, and check them with the foundry.",
+     "Make patterns by CNC machining or large-format 3D printing, choosing by size, quantity and durability.",
+     "Store pattern files and repair history digitally, so remakes and changes are quick."
+    ],
+    "project": "Print one pattern and machine another for similar castings, and compare cost, time and casting quality with the foundry."
+   },
+   {
+    "title": "Scanning, simulation and repair",
+    "items": [
+     "Use 3D scanning to recreate patterns for old castings where no drawings exist.",
+     "Learn casting simulation results, so patterns include the right gates and risers.",
+     "Repair worn patterns with measured checks before returning them to production."
+    ],
+    "project": "Scan one old casting with no drawing, build its pattern model and have the foundry test it."
+   },
+   {
+    "title": "Precision and foundry know-how",
+    "items": [
+     "Finish patterns by hand to a smooth surface that releases cleanly from sand.",
+     "Judge shrinkage, draft and parting lines from foundry experience.",
+     "Work closely with moulders to solve casting defects caused by patterns."
+    ],
+    "project": "Review ten casting defects with moulders, trace which ones came from patterns and fix them."
+   }
+  ],
+  "aiTools": [
+   "CAD with shrinkage allowances",
+   "CNC machining and large 3D printers",
+   "3D scanners for old castings"
+  ],
+  "humanEdge": [
+   "Hand finishing for clean release",
+   "Judging shrinkage and draft",
+   "Solving defects with moulders"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4071.00": {
+  "roadmap": [
+   {
+    "title": "Sand data and mould records",
+    "items": [
+     "Check sand test results such as moisture and strength on the foundry system before making moulds.",
+     "Record mould numbers, core types and problems for each casting, so defects can be traced.",
+     "Follow digital mould instructions with photos of core placement for each pattern."
+    ],
+    "project": "Record mould and core problems for every casting for two months and compare them with scrap reports."
+   },
+   {
+    "title": "Printed cores and automated moulding",
+    "items": [
+     "Learn 3D-printed sand moulds and cores, and how they change hand moulding work.",
+     "Work with automated moulding lines, checking moulds they produce before pouring.",
+     "Use dust extraction and protection for silica sand every shift."
+    ],
+    "project": "Compare one printed core with a hand-made core on casting quality and time, and share the results."
+   },
+   {
+    "title": "Hand skill in sand moulds",
+    "items": [
+     "Ram sand evenly by hand and feel, so moulds are strong but not too hard.",
+     "Repair mould surfaces neatly so castings come out clean.",
+     "Place cores precisely and check clearances before closing moulds."
+    ],
+    "project": "Train a new moulder on ramming and core setting for a month and write down the feel you teach."
+   }
+  ],
+  "aiTools": [
+   "Sand testing data systems",
+   "3D-printed sand cores",
+   "Automated moulding lines"
+  ],
+  "humanEdge": [
+   "Even ramming by hand and feel",
+   "Neat repair of mould surfaces",
+   "Precise core placement and checks"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4072.00": {
+  "roadmap": [
+   {
+    "title": "Machine data and process records",
+    "items": [
+     "Watch injection or casting machine data such as pressure, temperature and cycle time, and act when they drift.",
+     "Use stored process settings for each mould, so startups are faster and more consistent.",
+     "Record defects and scrap in the production system with photos, so causes can be found."
+    ],
+    "project": "Track startup scrap for every mould change for a month and agree setting improvements with the process technician."
+   },
+   {
+    "title": "Vision checks and robot cells",
+    "items": [
+     "Work with vision inspection systems that check parts, and check samples by hand.",
+     "Learn to restart and adjust robot take-out and trimming cells safely.",
+     "Learn mould care and cleaning routines that prevent defects."
+    ],
+    "project": "Compare vision system rejects with hand inspection on two hundred parts and report results to quality."
+   },
+   {
+    "title": "Eyes, hands and judgement",
+    "items": [
+     "Spot flash, sink marks and short shots by eye before they reach customers.",
+     "Clean and care for moulds carefully, as damage is costly.",
+     "Move toward setter or process technician roles, building on machine knowledge."
+    ],
+    "project": "Agree a training plan toward setter with your supervisor and track the setups you can do alone over a year."
+   }
+  ],
+  "aiTools": [
+   "Machine process monitoring",
+   "Vision inspection systems",
+   "Robot take-out cells"
+  ],
+  "humanEdge": [
+   "Spotting moulding defects by eye",
+   "Careful mould cleaning and care",
+   "Machine knowledge for setup roles"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4081.00": {
+  "roadmap": [
+   {
+    "title": "Programs, schedules and measurements",
+    "items": [
+     "Run several CNC machines from digital job schedules, loading programs and checking first parts on each.",
+     "Record measurements with digital gauges and SPC charts, so trends show before parts go out of tolerance.",
+     "Track tool life and coolant on every machine with simple digital reminders."
+    ],
+    "project": "Use SPC charts on two machines for a month and record how often trends warned you before parts failed."
+   },
+   {
+    "title": "Automation and multi-skill setup",
+    "items": [
+     "Learn robot loading and pallet systems that let one person run more machines.",
+     "Learn setups on each machine type in your cell, from lathes to grinders.",
+     "Do minor maintenance and adjustments, and report bigger faults clearly."
+    ],
+    "project": "Learn the setup of one new machine type in your cell each quarter and record setups you can now do alone."
+   },
+   {
+    "title": "Attention across many machines",
+    "items": [
+     "Notice sounds, chips and finishes that tell you a machine needs attention.",
+     "Plan your moves between machines so none waits idle.",
+     "Deburr and check parts carefully before they leave the cell."
+    ],
+    "project": "Track idle time across your machines for a month and test one change in your routine to reduce it."
+   }
+  ],
+  "aiTools": [
+   "CNC controls and job schedules",
+   "Digital gauges and SPC charts",
+   "Robot loading systems"
+  ],
+  "humanEdge": [
+   "Noticing machine problems by sound",
+   "Planning moves so machines never wait",
+   "Careful deburring and final checks"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4111.00": {
+  "roadmap": [
+   {
+    "title": "CAD/CAM and die simulation",
+    "items": [
+     "Design and program die components in CAD/CAM, and simulate machining before cutting tool steel.",
+     "Use forming simulation results to understand where dies will crack or wrinkle parts.",
+     "Store die drawings, changes and repair history digitally, so the next repair is faster."
+    ],
+    "project": "Keep a digital repair history for your ten most used dies for six months and plan repairs from the patterns."
+   },
+   {
+    "title": "Wire EDM, measuring and new methods",
+    "items": [
+     "Use wire and sinker EDM, high-speed milling and grinding for precise die parts.",
+     "Check parts with CMMs and scanners, and compare with CAD models.",
+     "Learn 3D-printed tool inserts with cooling channels for moulds and dies."
+    ],
+    "project": "Measure one new die's parts on a CMM, compare with your hand checks and share the findings with the team."
+   },
+   {
+    "title": "Master craft and try-out",
+    "items": [
+     "Fit, shim and polish die parts by hand to tolerances machines cannot finish.",
+     "Run try-outs and adjust dies until parts meet the specification.",
+     "Visualise complex 3D shapes and plan the best way to make them."
+    ],
+    "project": "Mentor an apprentice through one complete die build and write down the craft steps you teach."
+   }
+  ],
+  "aiTools": [
+   "CAD/CAM software",
+   "Wire and sinker EDM",
+   "Coordinate measuring machines"
+  ],
+  "humanEdge": [
+   "Hand fitting and polishing to tolerance",
+   "Patient die try-out and adjustment",
+   "Visualising complex 3D shapes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "51-4121.00": {
   "roadmap": [
    {
@@ -31415,6 +32549,2022 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "51-4122.00": {
+  "roadmap": [
+   {
+    "title": "Robot programs and weld data",
+    "items": [
+     "Load and adjust robot welding programs, and check first welds by eye and gauge before running the batch.",
+     "Watch weld monitoring data such as current and wire feed, and stop when readings drift.",
+     "Record weld settings and defects in the production system, so good parameters are reused."
+    ],
+    "project": "Record weld defects by cause for a month and agree one program or fixture change with the welding engineer."
+   },
+   {
+    "title": "Robot teaching and fixtures",
+    "items": [
+     "Learn to teach robot weld paths and touch-sensing, starting with small changes.",
+     "Keep fixtures clean and accurate, as poor fit-up causes most weld problems.",
+     "Learn weld inspection methods and the standards your welds must meet."
+    ],
+    "project": "Complete robot welding programming training and teach one new part program under supervision."
+   },
+   {
+    "title": "Welding judgement and safety",
+    "items": [
+     "Judge weld quality by look, sound and spatter, and fix problems before they repeat.",
+     "Prepare and fit parts carefully, so the machine can weld them well.",
+     "Work safely around robots, arcs and fumes every shift."
+    ],
+    "project": "Inspect welds with a certified inspector for a month and record which defects you now catch yourself."
+   }
+  ],
+  "aiTools": [
+   "Robot welding cells",
+   "Weld monitoring systems",
+   "Production defect records"
+  ],
+  "humanEdge": [
+   "Judging welds by look and sound",
+   "Careful fit-up before welding",
+   "Safe work around robots and arcs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4191.00": {
+  "roadmap": [
+   {
+    "title": "Furnace controls and heat records",
+    "items": [
+     "Run furnaces from programmed recipes, checking temperature, atmosphere and time on the control screen.",
+     "Record every heat treatment cycle automatically with charts, so certificates and audits are complete.",
+     "Check thermocouple calibration and furnace surveys on schedule with digital reminders."
+    ],
+    "project": "Review heat treatment charts for every load for a month and record deviations you caught before parts shipped."
+   },
+   {
+    "title": "Hardness testing and metallurgy",
+    "items": [
+     "Test hardness with digital testers and understand what results mean for each steel.",
+     "Learn the metallurgy of quenching, tempering and case hardening, so you can explain failures.",
+     "Learn induction hardening and vacuum furnaces, as more shops use them."
+    ],
+    "project": "Complete one short metallurgy course and use it to explain three hardness failures to quality staff."
+   },
+   {
+    "title": "Heat, care and responsibility",
+    "items": [
+     "Load parts carefully, so heat and quench reach every surface evenly.",
+     "Judge steel colour and quench behaviour by eye as a check on the instruments.",
+     "Handle hot parts, quench oils and gases safely every shift."
+    ],
+    "project": "Review five distortion or cracking cases with the metallurgist and write down loading changes that prevent them."
+   }
+  ],
+  "aiTools": [
+   "Programmable furnace controls",
+   "Digital hardness testers",
+   "Heat treatment record systems"
+  ],
+  "humanEdge": [
+   "Careful loading for even treatment",
+   "Judging steel colour by eye",
+   "Safe work with quench oils and gas"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4192.00": {
+  "roadmap": [
+   {
+    "title": "CAD layouts and digital marking",
+    "items": [
+     "Read CAD models and nesting plans on a screen to plan layouts, checking dimensions before marking.",
+     "Use CNC marking, plasma etching or laser projection to mark lines and holes where available.",
+     "Record layout checks with photos and measurements, so fabrication errors are traced fast."
+    ],
+    "project": "Use laser projection or CNC marking on one job and compare marking time and errors with hand layout."
+   },
+   {
+    "title": "Laser trackers and templates",
+    "items": [
+     "Learn laser trackers and total stations for large structures.",
+     "Make templates with CNC cutting or 3D printing from CAD instead of by hand.",
+     "Understand how heat and welding move metal, and plan allowances."
+    ],
+    "project": "Measure a large assembly with a laser tracker before and after welding and record the distortion."
+   },
+   {
+    "title": "Geometry and practical skill",
+    "items": [
+     "Develop layouts for curved and complex shapes with trigonometry and experience.",
+     "Mark lines and centres precisely by hand where machines cannot reach.",
+     "Explain layouts clearly to fitters and welders."
+    ],
+    "project": "Teach a fitter to develop one complex layout by hand, record the steps you explain and check their next layout together."
+   }
+  ],
+  "aiTools": [
+   "CAD and nesting software",
+   "Laser projection and CNC marking",
+   "Laser trackers"
+  ],
+  "humanEdge": [
+   "Developing complex layouts by hand",
+   "Precise marking where machines fail",
+   "Clear layouts for fitters and welders"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4193.00": {
+  "roadmap": [
+   {
+    "title": "Bath data and process records",
+    "items": [
+     "Track bath chemistry, temperature and current on the line controller, and record every adjustment you make.",
+     "Use lab analysis results and dosing calculators to top up chemicals in the right amounts.",
+     "Record each load's times, current and inspection results, so coating problems can be traced."
+    ],
+    "project": "Record bath readings and coating defects for two months and agree one dosing or timing change with the chemist."
+   },
+   {
+    "title": "Automation, thickness and environment",
+    "items": [
+     "Learn automatic hoist lines and dosing pumps, and how to step in when they misbehave.",
+     "Measure coating thickness with X-ray or magnetic gauges, and compare with the specification.",
+     "Follow strict rules for chemical handling, ventilation and waste water every shift."
+    ],
+    "project": "Measure coating thickness on fifty parts for a month and adjust rack positions to make coverage more even."
+   },
+   {
+    "title": "Careful eyes and safe chemistry",
+    "items": [
+     "Inspect plated parts for bubbles, burns and uneven coverage under good light.",
+     "Rack parts carefully, so current and solution reach every surface.",
+     "Handle acids, cyanides and other chemicals with full protection and calm care."
+    ],
+    "project": "Train a new operator on racking for a month and record coating defects caused by racking before and after."
+   }
+  ],
+  "aiTools": [
+   "Plating line controllers",
+   "Coating thickness gauges",
+   "Chemical dosing calculators"
+  ],
+  "humanEdge": [
+   "Inspecting coatings under good light",
+   "Careful racking for even coverage",
+   "Calm, safe chemical handling"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-4194.00": {
+  "roadmap": [
+   {
+    "title": "CNC tool grinding and measurement",
+    "items": [
+     "Run CNC tool grinders from stored programs, and measure the first tool on an optical tool presetter.",
+     "Record tool geometry and measurements digitally, so regrinds match the original.",
+     "Use tool life data from production to plan regrinds before tools fail."
+    ],
+    "project": "Record regrind counts and tool life for twenty tools for three months and share the best intervals with production."
+   },
+   {
+    "title": "Wheels, coatings and geometry",
+    "items": [
+     "Learn diamond and CBN wheels and how dressing affects edge quality.",
+     "Learn coatings and edge preparation that make tools last longer.",
+     "Use tool design software to understand angles and their effect on cutting."
+    ],
+    "project": "Test two edge preparations on the same tool type in production and compare tool life with the machinists."
+   },
+   {
+    "title": "Feel and fine finishing",
+    "items": [
+     "Feel edges and surfaces to judge sharpness and finish where gauges are slow.",
+     "File and hone by hand to finish edges that machines cannot reach.",
+     "Talk with machinists about how tools fail, and adjust grinds to fix it."
+    ],
+    "project": "Ask machinists about ten tool failures, adjust the grind for each and record whether tool life improved."
+   }
+  ],
+  "aiTools": [
+   "CNC tool grinders",
+   "Optical tool presetters",
+   "Tool design software"
+  ],
+  "humanEdge": [
+   "Judging sharpness by feel",
+   "Hand honing of fine edges",
+   "Learning from machinists' tool failures"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-5111.00": {
+  "roadmap": [
+   {
+    "title": "Automated preflight and digital proofs",
+    "items": [
+     "Run automated preflight checks for fonts, images and colour profiles, and fix every flagged file before plates.",
+     "Produce colour-managed digital proofs and compare them with the printed result.",
+     "Use workflow software to impose pages and send them to plate or digital press automatically."
+    ],
+    "project": "Track preflight problems by client for a month and send the top three clients a short guide on fixing them."
+   },
+   {
+    "title": "Colour management and AI image tools",
+    "items": [
+     "Use spectrophotometers and colour management to keep colour consistent across presses and papers.",
+     "Use AI image tools to retouch and upscale images, checking every change at print size.",
+     "Learn digital printing and variable data workflows, as short runs grow."
+    ],
+    "project": "Measure colour on proofs and printed sheets for ten jobs and record the differences to tune your profiles."
+   },
+   {
+    "title": "Eye for print quality",
+    "items": [
+     "Judge colour, detail and trapping by eye on proofs before costly print runs.",
+     "Explain technical file problems to designers and clients in simple terms.",
+     "Check plates carefully for flaws before they reach the press."
+    ],
+    "project": "Review press rejects for three months, find those that prepress could have caught and add checks to your routine."
+   }
+  ],
+  "aiTools": [
+   "Automated preflight software",
+   "Colour management and spectrophotometers",
+   "AI image retouching tools"
+  ],
+  "humanEdge": [
+   "Judging colour and detail by eye",
+   "Explaining file problems simply",
+   "Careful plate checks before printing"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-5112.00": {
+  "roadmap": [
+   {
+    "title": "Press automation and colour control",
+    "items": [
+     "Use automatic plate changing, ink presetting and closed-loop colour control, and check sheets against the proof.",
+     "Respond to press fault and alert messages quickly, and record recurring faults for maintenance.",
+     "Read job tickets digitally, checking quantity, stock and special instructions before makeready."
+    ],
+    "project": "Record makeready time and waste for every job for a month and agree one change with your supervisor to reduce it."
+   },
+   {
+    "title": "Data, maintenance and digital presses",
+    "items": [
+     "Use press data on speed, waste and downtime to see where time is lost.",
+     "Learn digital and hybrid presses, as short runs and personalisation grow.",
+     "Keep cleaning and maintenance routines on schedule with digital checklists."
+    ],
+    "project": "Analyse one month of press downtime data and present the top three causes with fixes to the team."
+   },
+   {
+    "title": "Printer's eye and steady hands",
+    "items": [
+     "Judge ink, register and paper behaviour by eye and touch during runs.",
+     "Solve problems such as ghosting, hickeys and paper jams from experience.",
+     "Change plates and blankets safely and quickly."
+    ],
+    "project": "Mentor a new press assistant for a month and write down the print problems you teach them to spot."
+   }
+  ],
+  "aiTools": [
+   "Closed-loop colour control",
+   "Press data and waste reporting",
+   "Digital job tickets"
+  ],
+  "humanEdge": [
+   "Judging ink and register by eye",
+   "Solving print problems from experience",
+   "Safe, quick plate changes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-5113.00": {
+  "roadmap": [
+   {
+    "title": "Job data and automated setups",
+    "items": [
+     "Use automated setup on folders, binders and cutters from job data, and check the first copies by hand.",
+     "Read digital job tickets for sizes, folds and binding, so setups match the order.",
+     "Record counts, waste and faults on machine terminals, so problems are visible."
+    ],
+    "project": "Track setup time and waste for each machine for a month and agree one improvement with your supervisor."
+   },
+   {
+    "title": "Inline finishing and machine care",
+    "items": [
+     "Learn inline finishing with digital presses, as more jobs are finished in one pass.",
+     "Keep knives, glues and rollers in good order with maintenance checklists.",
+     "Use cameras or sensors that check page order, and test them regularly."
+    ],
+    "project": "Check camera page-order systems against hand counts on ten jobs, report any misses and agree test intervals with the supervisor."
+   },
+   {
+    "title": "Careful checks and craft",
+    "items": [
+     "Inspect books and print for loose pages, bad trims and glue faults by eye.",
+     "Do hand binding and special finishing for jobs machines cannot handle.",
+     "Work safely with guillotines and moving machinery."
+    ],
+    "project": "Inspect samples from every job for a month, record defects caught before delivery and share the most common ones with the team."
+   }
+  ],
+  "aiTools": [
+   "Automated bindery setup",
+   "Digital job tickets",
+   "Page-order camera systems"
+  ],
+  "humanEdge": [
+   "Spotting binding faults by eye",
+   "Hand finishing for special jobs",
+   "Safe work with guillotines"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6011.00": {
+  "roadmap": [
+   {
+    "title": "Tracking, tagging and customer messages",
+    "items": [
+     "Tag and scan items with barcodes or RFID, so every garment can be tracked from drop-off to pickup.",
+     "Send customers ready-for-pickup messages and receipts automatically from the shop system.",
+     "Use programmed wash and dry-clean cycles for each fabric type, and check care labels first."
+    ],
+    "project": "Track lost or mixed-up items for three months before and after barcode tagging and share the results."
+   },
+   {
+    "title": "Chemicals, stains and machine care",
+    "items": [
+     "Learn stain types and treatments, and test on hidden areas before treating.",
+     "Learn wet cleaning and other solvent-free methods, as rules on solvents tighten.",
+     "Keep machine maintenance and chemical dosing on schedule with checklists."
+    ],
+    "project": "Try wet cleaning on suitable items for a month, record results and customer comments, and decide with the owner whether to expand it."
+   },
+   {
+    "title": "Care for garments and customers",
+    "items": [
+     "Sort items by fabric, colour and dirt carefully, so nothing is damaged.",
+     "Inspect stains and damage and tell customers honestly what can be done.",
+     "Fold, press and pack items neatly, so customers feel cared for."
+    ],
+    "project": "Ask twenty customers about their experience, and improve one part of how you receive or return items."
+   }
+  ],
+  "aiTools": [
+   "Barcode and RFID garment tracking",
+   "Shop systems with customer messages",
+   "Programmed wash and dry-clean cycles"
+  ],
+  "humanEdge": [
+   "Careful sorting by fabric and colour",
+   "Honest advice on stains and damage",
+   "Neat finishing that shows care"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6021.00": {
+  "roadmap": [
+   {
+    "title": "Machine programs and order tracking",
+    "items": [
+     "Use pressing machines with stored programs for each garment type, and adjust for delicate fabrics.",
+     "Scan garments to match them with orders, so finished items go to the right customer.",
+     "Record finished counts and problems in the shop system during the shift."
+    ],
+    "project": "Track pressing time per garment type for a month and agree one change in workflow with your supervisor."
+   },
+   {
+    "title": "Fabrics, finishes and safety",
+    "items": [
+     "Learn temperatures and pressures for new fabrics and blends, and test before pressing.",
+     "Keep machines clean and maintained with checklists.",
+     "Protect yourself from heat, steam and repetitive strain with good posture and breaks."
+    ],
+    "project": "Make a fabric settings card for your machines, check it with your supervisor and use it for a month."
+   },
+   {
+    "title": "Skilled finishing by hand",
+    "items": [
+     "Finish shirts, jackets and delicate items by hand iron to a sharp look.",
+     "Spot stains, damage or missing buttons before items go back to customers.",
+     "Work steadily and carefully under time pressure."
+    ],
+    "project": "Inspect every finished item for a week, record problems caught and share them with the cleaning team."
+   }
+  ],
+  "aiTools": [
+   "Programmed pressing machines",
+   "Garment scanning and order tracking",
+   "Shop management systems"
+  ],
+  "humanEdge": [
+   "Sharp hand finishing of garments",
+   "Spotting damage before return",
+   "Steady care under time pressure"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6031.00": {
+  "roadmap": [
+   {
+    "title": "Digital patterns and production data",
+    "items": [
+     "Follow digital work instructions and sample photos for each style, and check the first pieces against the spec.",
+     "Use computerised sewing machines with stored stitch programs, and adjust for each fabric.",
+     "Record pieces, defects and machine problems on a tablet or terminal, so supervisors see issues quickly."
+    ],
+    "project": "Record defects by type for a month and agree with your supervisor one change to reduce the most common one."
+   },
+   {
+    "title": "Automated machines and new skills",
+    "items": [
+     "Learn automated pocket setters, buttonhole and embroidery machines.",
+     "Learn more operations on the line, so you can cover for others and grow.",
+     "Do basic machine care such as needle changes, threading and cleaning."
+    ],
+    "project": "Learn two new operations over three months and keep a record of your speed and quality on each."
+   },
+   {
+    "title": "Skilled hands and quality",
+    "items": [
+     "Guide fabric smoothly for straight seams and matched patterns.",
+     "Notice stitch faults and thread breaks right away.",
+     "Move toward sample maker, quality or line leader roles, building on your skills."
+    ],
+    "project": "Agree a development plan toward sample maker or quality with your supervisor and track progress for a year."
+   }
+  ],
+  "aiTools": [
+   "Computerised sewing machines",
+   "Digital work instructions",
+   "Production tracking terminals"
+  ],
+  "humanEdge": [
+   "Straight seams and matched patterns",
+   "Noticing stitch faults right away",
+   "Skill across many operations"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6041.00": {
+  "roadmap": [
+   {
+    "title": "Bookings, quotes and online sales",
+    "items": [
+     "Take repair bookings and send quotes with photos online, so customers agree the price before work starts.",
+     "Sell custom and repaired leather goods online with photos and descriptions you edit yourself.",
+     "Record repairs and customers' preferences in a simple shop system."
+    ],
+    "project": "Send photo quotes for every repair for a month and record how many customers approved without visiting."
+   },
+   {
+    "title": "Foot scanning and new materials",
+    "items": [
+     "Use foot scanning and digital measurement for custom footwear, and check fit by hand.",
+     "Learn new sole materials, glues and finishes, and their repair methods.",
+     "Use laser engraving or cutting for custom leather work where it helps."
+    ],
+    "project": "Try foot scanning for five custom orders and compare fit adjustments with your usual measuring."
+   },
+   {
+    "title": "Leather craft and personal service",
+    "items": [
+     "Cut, stitch and finish leather by hand to a quality customers can see and feel.",
+     "Restore treasured items carefully, matching colours and textures.",
+     "Advise customers on care, repair and when an item is worth saving."
+    ],
+    "project": "Document three restorations with before-and-after photos and use them to show customers what is possible."
+   }
+  ],
+  "aiTools": [
+   "Online booking and quote tools",
+   "Foot scanners",
+   "Laser engraving and cutting"
+  ],
+  "humanEdge": [
+   "Hand stitching and finishing leather",
+   "Careful restoration of treasured items",
+   "Honest advice on care and repair"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6042.00": {
+  "roadmap": [
+   {
+    "title": "Machine programs and production records",
+    "items": [
+     "Run programmable stitching and lasting machines from stored programs, checking the first pairs against the sample.",
+     "Record pairs, defects and machine stops on the production terminal during the shift.",
+     "Follow digital work instructions and photos for each style."
+    ],
+    "project": "Track defects by machine and style for a month and agree one setting change with the supervisor."
+   },
+   {
+    "title": "Automation and machine care",
+    "items": [
+     "Learn automated cutting, gluing and moulding machines, and how to restart them safely.",
+     "Do routine care such as needle changes, threading and cleaning on schedule.",
+     "Learn more operations, so you can move between stations."
+    ],
+    "project": "Learn one new machine each quarter under supervision and record the operations you can now do."
+   },
+   {
+    "title": "Accuracy and care in every pair",
+    "items": [
+     "Align and stitch parts precisely along seams and edges.",
+     "Inspect shoes for stitch and glue faults before they move on.",
+     "Move toward setter or quality roles, building on machine experience."
+    ],
+    "project": "Inspect samples from every batch for a month and record defects caught before the next stage."
+   }
+  ],
+  "aiTools": [
+   "Programmable stitching machines",
+   "Production terminals",
+   "Automated cutting and moulding"
+  ],
+  "humanEdge": [
+   "Precise stitching along seams",
+   "Catching stitch and glue faults",
+   "Experience across many machines"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6051.00": {
+  "roadmap": [
+   {
+    "title": "Patterns, orders and online sales",
+    "items": [
+     "Print or project patterns from digital files, and check the first piece against the sample before cutting more.",
+     "Keep orders, measurements and special requests in a simple digital system, so nothing is lost.",
+     "Sell handmade items online with photos and descriptions you edit yourself, showing the handwork."
+    ],
+    "project": "Photograph ten handmade pieces and list them online, and record which descriptions bring the most enquiries."
+   },
+   {
+    "title": "Techniques, materials and restoration",
+    "items": [
+     "Learn new hand techniques from video courses, and practise them on samples before using them on orders.",
+     "Learn restoration of textiles, books or costumes, where hand sewing is essential.",
+     "Use embroidery machines for repeat motifs, and keep hand stitching for detail work."
+    ],
+    "project": "Complete one course in a specialist hand technique and use it on three paid orders within six months."
+   },
+   {
+    "title": "Fine handwork and patience",
+    "items": [
+     "Sew neat, even stitches by hand that hold for years and look good up close.",
+     "Handle delicate fabrics, leather or paper without damage.",
+     "Understand customers' wishes and suggest the right technique for each piece."
+    ],
+    "project": "Document one complex hand-sewn piece from start to finish and use it to show customers what is possible."
+   }
+  ],
+  "aiTools": [
+   "Digital pattern printing and projection",
+   "Online shop and order tools",
+   "Embroidery machines for repeats"
+  ],
+  "humanEdge": [
+   "Neat, durable hand stitches",
+   "Handling delicate materials safely",
+   "Choosing the right technique per piece"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6052.00": {
+  "roadmap": [
+   {
+    "title": "Bookings, measurements and orders",
+    "items": [
+     "Book fittings online and keep each customer's measurements and preferences in a digital record.",
+     "Send quotes and ready messages automatically, so customers know price and pickup time.",
+     "Use pattern software to draft made-to-measure patterns from measurements, then refine them by fitting."
+    ],
+    "project": "Keep digital measurement records for every customer for three months and track repeat orders and fitting time."
+   },
+   {
+    "title": "Body scanning and new services",
+    "items": [
+     "Try body scanning apps for remote measuring, and check results at the first fitting.",
+     "Offer repair and upcycling services, as more people want clothes that last.",
+     "Share before-and-after photos online to show your work."
+    ],
+    "project": "Offer an upcycling or repair service for three months and record how many new customers it brought."
+   },
+   {
+    "title": "Fit, craft and trust",
+    "items": [
+     "Fit garments on customers and see what needs changing, which software cannot do.",
+     "Sew and alter by hand and machine to a high standard.",
+     "Make customers feel comfortable and listened to during fittings."
+    ],
+    "project": "Ask twenty customers about their fitting experience, improve one thing they mention and ask the next twenty whether they notice."
+   }
+  ],
+  "aiTools": [
+   "Online booking and customer records",
+   "Made-to-measure pattern software",
+   "Body scanning apps"
+  ],
+  "humanEdge": [
+   "Seeing fit problems on the body",
+   "High-standard sewing and alterations",
+   "Comfortable, listening fittings"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6061.00": {
+  "roadmap": [
+   {
+    "title": "Colour recipes and process control",
+    "items": [
+     "Use colour matching software and spectrophotometers to set dye recipes, and check results on samples before bulk runs.",
+     "Run dyeing machines from programmed cycles, watching temperature, flow and chemical dosing on the screen.",
+     "Record every batch's recipe, process data and results, so colours can be repeated."
+    ],
+    "project": "Compare right-first-time colour results for three months before and after using colour matching software."
+   },
+   {
+    "title": "Water, energy and chemical safety",
+    "items": [
+     "Track water, energy and chemical use per batch, and test changes that lower them.",
+     "Learn the rules for hazardous chemicals and wastewater, and follow them strictly.",
+     "Do routine maintenance on pumps and machines with digital checklists."
+    ],
+    "project": "Track water use per batch for a month and test one change in rinsing with your supervisor."
+   },
+   {
+    "title": "Colour eye and fabric feel",
+    "items": [
+     "Judge colour and shade by eye under standard light, alongside the instruments.",
+     "Feel fabric to find handle problems or uneven treatment.",
+     "Handle heavy cloth rolls, hot liquors and chemicals safely with the right gear."
+    ],
+    "project": "Compare your visual shade judgements with spectrophotometer readings on fifty samples and discuss differences with the colourist."
+   }
+  ],
+  "aiTools": [
+   "Colour matching software",
+   "Spectrophotometers",
+   "Programmed dyeing machines"
+  ],
+  "humanEdge": [
+   "Judging shade by eye under light",
+   "Feeling fabric for handle problems",
+   "Safe handling of hot chemicals"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6062.00": {
+  "roadmap": [
+   {
+    "title": "CNC cutting and marker plans",
+    "items": [
+     "Run CNC fabric cutters from digital marker files, checking the first pieces against the pattern.",
+     "Use marker-making software results to understand how layouts save fabric.",
+     "Record cut quantities, fabric used and problems on the production terminal."
+    ],
+    "project": "Compare fabric waste on CNC-cut and hand-cut orders for a month and share the results with the planner."
+   },
+   {
+    "title": "Machine settings and fabric types",
+    "items": [
+     "Adjust blade, vacuum and speed settings for each fabric, and save good settings for repeats.",
+     "Learn laser and ultrasonic cutting for synthetic fabrics.",
+     "Keep blades and machines in good condition with maintenance checklists."
+    ],
+    "project": "Build a settings record for ten fabrics you cut often, test it with a new operator and fix the settings they found unclear."
+   },
+   {
+    "title": "Care with fabric and patterns",
+    "items": [
+     "Spread fabric straight and flat, matching stripes and checks where needed.",
+     "Check cut pieces for size and fraying before they go to sewing.",
+     "Work safely with blades and moving machinery."
+    ],
+    "project": "Inspect cut bundles for a month and record defects found before sewing compared with before."
+   }
+  ],
+  "aiTools": [
+   "CNC fabric cutters",
+   "Marker-making software",
+   "Production terminals"
+  ],
+  "humanEdge": [
+   "Straight, flat fabric spreading",
+   "Checking cut pieces before sewing",
+   "Safe work with blades and cutters"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6063.00": {
+  "roadmap": [
+   {
+    "title": "Machine monitoring and fabric data",
+    "items": [
+     "Use loom and knitting machine monitoring screens to see stops, efficiency and faults across many machines.",
+     "Record defects and stoppage causes on terminals, so maintenance sees patterns.",
+     "Load pattern programs for jacquard and electronic machines, and check the first metres."
+    ],
+    "project": "Analyse stoppage data for your machines for a month and agree one change with the technician."
+   },
+   {
+    "title": "Camera inspection and setups",
+    "items": [
+     "Work with camera fabric inspection systems, and check what they flag.",
+     "Learn to set up machines for new styles with digital setup sheets.",
+     "Learn basic maintenance, so small faults are fixed quickly."
+    ],
+    "project": "Compare camera inspection results with hand inspection on ten rolls and report what each method missed."
+   },
+   {
+    "title": "Eyes, hands and many machines",
+    "items": [
+     "Spot weaving and knitting defects by eye as fabric runs.",
+     "Fix broken yarns and restart machines quickly and safely.",
+     "Plan your rounds so many machines keep running."
+    ],
+    "project": "Track how long each machine waits for you during a shift and test one change in your rounds."
+   }
+  ],
+  "aiTools": [
+   "Machine monitoring screens",
+   "Camera fabric inspection",
+   "Electronic pattern programs"
+  ],
+  "humanEdge": [
+   "Spotting fabric defects as it runs",
+   "Quick, safe repairs of broken yarns",
+   "Planning rounds across machines"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6064.00": {
+  "roadmap": [
+   {
+    "title": "Machine monitoring and yarn quality",
+    "items": [
+     "Watch winding and spinning machine screens for breaks, efficiency and quality alarms, and act on them quickly.",
+     "Use yarn clearer data to see which defects are removed and where they come from.",
+     "Record package changes, stops and quality problems on the production terminal."
+    ],
+    "project": "Review yarn clearer data for a month and share the most common defects with the preparation department."
+   },
+   {
+    "title": "Automation and setups",
+    "items": [
+     "Learn automatic doffing and piecing systems, and how to clear their faults.",
+     "Set up machines for new yarn counts with digital setup sheets.",
+     "Keep machines clean and lubricated, as fly and dust cause defects."
+    ],
+    "project": "Learn setups for two new yarn types under supervision and record the setups you can now do alone."
+   },
+   {
+    "title": "Care and steady attention",
+    "items": [
+     "Notice uneven yarn and poor packages by eye and touch.",
+     "Piece broken ends quickly and neatly to keep machines running.",
+     "Work safely around fast spindles and moving parts."
+    ],
+    "project": "Track breaks per machine for a month and agree cleaning or setting changes with the technician."
+   }
+  ],
+  "aiTools": [
+   "Machine monitoring screens",
+   "Electronic yarn clearers",
+   "Automatic doffing systems"
+  ],
+  "humanEdge": [
+   "Spotting uneven yarn by eye",
+   "Quick, neat piecing of ends",
+   "Safe work near fast spindles"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6091.00": {
+  "roadmap": [
+   {
+    "title": "Process screens and spinning data",
+    "items": [
+     "Monitor extrusion temperatures, pump speeds and pressures on the control system, and react to alarms quickly.",
+     "Record breaks, bushing problems and quality results in the production system, so causes can be found.",
+     "Follow digital setup instructions for each product, checking settings before start."
+    ],
+    "project": "Track filament breaks by position for a month and agree one maintenance or setting change with the engineer."
+   },
+   {
+    "title": "Quality testing and maintenance",
+    "items": [
+     "Learn in-line quality measurements such as diameter and finish, and check them against lab results.",
+     "Clean spinnerettes and bushings carefully with the right tools and schedule.",
+     "Learn safety rules for heat, molten material and fibres."
+    ],
+    "project": "Compare in-line quality readings with lab tests for a month and report any drift to quality."
+   },
+   {
+    "title": "Steady skill at the machine",
+    "items": [
+     "Restring filaments quickly and safely after breaks.",
+     "Notice changes in filament flow by eye before alarms.",
+     "Keep your area clean to prevent contamination."
+    ],
+    "project": "Train a new operator on restringing for a month and record the time to restart before and after."
+   }
+  ],
+  "aiTools": [
+   "Extrusion control systems",
+   "In-line quality measurement",
+   "Production recording systems"
+  ],
+  "humanEdge": [
+   "Quick, safe restringing after breaks",
+   "Noticing flow changes by eye",
+   "Clean work against contamination"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6092.00": {
+  "roadmap": [
+   {
+    "title": "Pattern CAD and automatic grading",
+    "items": [
+     "Draft and grade patterns in pattern CAD software, and check each size against the size chart.",
+     "Use automatic marker making to plan layouts that waste less fabric.",
+     "Use 3D garment simulation to check fit and drape before the first sample is sewn."
+    ],
+    "project": "Simulate three styles in 3D before sampling, record how many sample rounds you saved and what the simulation still missed."
+   },
+   {
+    "title": "Fit data and body scanning",
+    "items": [
+     "Use fit feedback and returns data to find which sizes and styles fit poorly.",
+     "Learn body scan data and how it improves size charts.",
+     "Share digital patterns with factories and check their samples against them."
+    ],
+    "project": "Analyse returns for fit reasons on five styles and correct the patterns that cause most returns."
+   },
+   {
+    "title": "Fit judgement and design partnership",
+    "items": [
+     "Fit samples on real bodies and judge what needs changing.",
+     "Turn designers' ideas into patterns that can be made well and affordably.",
+     "Explain fit changes clearly to designers and factories."
+    ],
+    "project": "Run three fittings with a designer, record each change and why, and share the notes with the factory."
+   }
+  ],
+  "aiTools": [
+   "Pattern CAD and grading software",
+   "3D garment simulation",
+   "Automatic marker making"
+  ],
+  "humanEdge": [
+   "Judging fit on real bodies",
+   "Turning designs into makeable patterns",
+   "Clear fit notes for factories"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-6093.00": {
+  "roadmap": [
+   {
+    "title": "Quotes, fabric visuals and orders",
+    "items": [
+     "Show customers fabric options on photos of their furniture with visualiser apps before they choose.",
+     "Calculate fabric and materials for each piece with apps, and send quotes drafted with AI and checked by you.",
+     "Order fabrics and foams from supplier portals and track deliveries."
+    ],
+    "project": "Use a visualiser app with ten customers and record how many changed their mind after the work started."
+   },
+   {
+    "title": "Materials, safety and online presence",
+    "items": [
+     "Learn fire safety rules for upholstery foams and fabrics.",
+     "Learn sustainable materials such as natural fillings and recycled fabrics.",
+     "Show restorations online with before-and-after photos."
+    ],
+    "project": "Post ten before-and-after restorations online over three months and record enquiries they brought."
+   },
+   {
+    "title": "Craft, comfort and restoration",
+    "items": [
+     "Build up padding by hand so furniture is comfortable and looks right.",
+     "Fit and tension fabric so patterns line up and there are no wrinkles.",
+     "Restore antique pieces with traditional methods and respect."
+    ],
+    "project": "Restore one antique chair with traditional methods and document the steps for future customers."
+   }
+  ],
+  "aiTools": [
+   "Fabric visualiser apps",
+   "Material calculators",
+   "Supplier ordering portals"
+  ],
+  "humanEdge": [
+   "Comfortable padding built by hand",
+   "Wrinkle-free fabric with matched patterns",
+   "Respectful antique restoration"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-7011.00": {
+  "roadmap": [
+   {
+    "title": "CAD design and CNC cutting",
+    "items": [
+     "Design cabinets and furniture in CAD software, and show customers 3D views before building.",
+     "Use CNC routers and nesting software to cut parts accurately, and check the first sheet.",
+     "Produce cut lists and quotes from the design automatically, checking every number."
+    ],
+    "project": "Design and CNC-cut one kitchen or furniture job, and compare time and fit with your last hand-built job."
+   },
+   {
+    "title": "Materials, hardware and finishing",
+    "items": [
+     "Learn new boards, edge banding and hardware systems, and their fitting rules.",
+     "Use moisture meters to check timber before building.",
+     "Keep a photo record of each finished piece with materials and hardware used, for repeats and repairs."
+    ],
+    "project": "Build an online portfolio of ten projects with photos and short stories, and use it in your next five quotes to see what customers ask."
+   },
+   {
+    "title": "Joinery craft and customer fit",
+    "items": [
+     "Cut and fit joints by hand for a snug, strong result.",
+     "Adjust doors and drawers so they close perfectly.",
+     "Understand how customers will use the piece, and suggest better designs."
+    ],
+    "project": "Make one piece with traditional hand-cut joints, document the steps and use it to show customers what your craft adds."
+   }
+  ],
+  "aiTools": [
+   "Furniture CAD software",
+   "CNC routers and nesting",
+   "Moisture meters"
+  ],
+  "humanEdge": [
+   "Snug, strong hand-cut joinery",
+   "Perfectly adjusted doors and drawers",
+   "Designs fitted to customers' lives"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-7021.00": {
+  "roadmap": [
+   {
+    "title": "Colour matching and job records",
+    "items": [
+     "Use colour matching tools and photos to match stains and paints, and test on hidden areas first.",
+     "Record finishes, recipes and techniques for each job, so repairs and repeats match.",
+     "Send quotes with photos of damage, drafted with AI and checked by you."
+    ],
+    "project": "Keep a finish recipe file for every job for three months and use it to match one later repair."
+   },
+   {
+    "title": "Spray systems and safer finishes",
+    "items": [
+     "Learn modern spray equipment and water-based finishes that reduce fumes.",
+     "Use extraction and protective gear every time you spray or strip.",
+     "Learn restoration methods for antiques, including shellac and French polish."
+    ],
+    "project": "Compare a water-based and a solvent finish on test pieces, and record durability and look over a month."
+   },
+   {
+    "title": "Eye for wood and patience",
+    "items": [
+     "Read wood grain and colour to choose the right finish and method.",
+     "Repair cracks and marks so they disappear in the finish.",
+     "Work patiently through each coat, as rushing ruins finishes."
+    ],
+    "project": "Restore one damaged piece, photograph each stage and use the photos to show customers your process."
+   }
+  ],
+  "aiTools": [
+   "Colour matching tools",
+   "Modern spray equipment",
+   "Job and recipe records"
+  ],
+  "humanEdge": [
+   "Reading wood grain and colour",
+   "Invisible repairs of cracks and marks",
+   "Patient work through each coat"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-7031.00": {
+  "roadmap": [
+   {
+    "title": "CAD models, CNC and 3D printing",
+    "items": [
+     "Turn designers' CAD files into wooden models with CNC routers, and finish the shapes by hand.",
+     "Print small parts and details in 3D where wood is not needed, and combine them with wooden sections.",
+     "Share photos and measurements of models with designers digitally, so changes are agreed quickly."
+    ],
+    "project": "Build one model with CNC roughing and hand finishing, and compare time and accuracy with a fully hand-made model."
+   },
+   {
+    "title": "Scanning and new materials",
+    "items": [
+     "Use 3D scanning to check models against the CAD file and show deviations to designers.",
+     "Learn tooling boards and foams that machine faster than wood for large models.",
+     "Keep templates and model files organised, so repeats and changes start quickly."
+    ],
+    "project": "Scan three finished models, compare them with CAD and report the differences and their causes to the design team."
+   },
+   {
+    "title": "Hand shaping and design sense",
+    "items": [
+     "Shape curves and surfaces by hand and eye until the model feels right to the designer.",
+     "Choose wood stock and grain direction for strength and a clean finish.",
+     "Suggest changes when a design will be hard to make or use."
+    ],
+    "project": "Record every design change you suggested for six months and which ones the designers adopted and why."
+   }
+  ],
+  "aiTools": [
+   "CNC routers for wood",
+   "3D printers for small details",
+   "3D scanners for model checks"
+  ],
+  "humanEdge": [
+   "Hand shaping curves by eye",
+   "Choosing stock and grain direction",
+   "Design advice from making experience"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-7032.00": {
+  "roadmap": [
+   {
+    "title": "CAD patterns and CNC machining",
+    "items": [
+     "Model foundry patterns in CAD with shrinkage and draft, and machine them on CNC routers from the file.",
+     "Store pattern files and repair records digitally, so patterns can be remade or changed quickly.",
+     "Share pattern photos and measurements with the foundry before the first casting."
+    ],
+    "project": "Machine one pattern from a CAD file and compare time, accuracy and casting quality with a hand-made pattern."
+   },
+   {
+    "title": "Printed patterns and casting feedback",
+    "items": [
+     "Learn 3D-printed patterns and core boxes, and when they beat wood on cost and time.",
+     "Use casting defect reports to correct patterns that cause problems.",
+     "Learn casting simulation basics, so gates and risers are placed well."
+    ],
+    "project": "Review defect reports for five castings with the foundry and correct the patterns that caused them."
+   },
+   {
+    "title": "Woodworking skill and foundry sense",
+    "items": [
+     "Shape, fit and finish patterns by hand so they release cleanly from sand.",
+     "Repair damaged patterns quickly so production is not delayed.",
+     "Understand how moulders use patterns, and design them to be easy to use."
+    ],
+    "project": "Watch moulders use three of your patterns, note what slows them down and improve the next patterns."
+   }
+  ],
+  "aiTools": [
+   "CAD with shrinkage allowances",
+   "CNC routers for patterns",
+   "3D-printed patterns and core boxes"
+  ],
+  "humanEdge": [
+   "Hand finishing for clean release",
+   "Quick repairs of damaged patterns",
+   "Designing patterns moulders like"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-7041.00": {
+  "roadmap": [
+   {
+    "title": "Optimising saws and scanners",
+    "items": [
+     "Run log and board scanners that suggest the best cuts, and check their choices against the wood itself.",
+     "Use saw control panels with stored cutting patterns, and adjust them for each order.",
+     "Record volumes, grades and downtime on the production terminal during the shift."
+    ],
+    "project": "Compare scanner cut suggestions with your own choice on fifty logs, and record yield differences with your supervisor."
+   },
+   {
+    "title": "Blade care and machine data",
+    "items": [
+     "Track blade changes and cutting quality, so blades are sharpened before they wander.",
+     "Use machine data on stops and jams to find the most common causes.",
+     "Learn safety systems such as guards and stops, and never bypass them."
+    ],
+    "project": "Track blade life and cut quality for a month and agree a better sharpening schedule with the saw filer."
+   },
+   {
+    "title": "Reading wood and safe sawing",
+    "items": [
+     "Read logs and boards for knots, rot and grain to plan the best cuts.",
+     "Clear jams and adjust saws safely, following lockout every time.",
+     "Grade lumber by eye accurately and quickly as it leaves the saw."
+    ],
+    "project": "Grade the same fifty boards as an experienced grader without seeing their results, and compare your grades."
+   }
+  ],
+  "aiTools": [
+   "Log and board scanners",
+   "Optimising saw controls",
+   "Production terminals"
+  ],
+  "humanEdge": [
+   "Reading knots and grain for cuts",
+   "Safe jam clearing with lockout",
+   "Quick, accurate grading by eye"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-7042.00": {
+  "roadmap": [
+   {
+    "title": "CNC programs and digital setups",
+    "items": [
+     "Load CNC router and machining centre programs from the design office, and check the first part against the drawing.",
+     "Use stored setups for moulders and sanders, so changeovers are faster.",
+     "Record counts, defects and stops on the production terminal."
+    ],
+    "project": "Create digital setup sheets for your five most common jobs and time the next changeovers against before."
+   },
+   {
+    "title": "Programming and machine care",
+    "items": [
+     "Learn basic CNC programming and nesting for woodworking machines.",
+     "Track knife and cutter sharpness, and change them before finish suffers.",
+     "Use dust extraction and noise protection every shift."
+    ],
+    "project": "Complete a short CNC woodworking programming course and write one simple program under supervision."
+   },
+   {
+    "title": "Feel for wood and finish",
+    "items": [
+     "Feel surfaces and check edges for tear-out, burns and wrong angles.",
+     "Adjust feeds and cutters for grain, moisture and species.",
+     "Work safely with fast cutters and kickback risk."
+    ],
+    "project": "Inspect finished parts by hand for a month, record defects and agree setting changes with the setter."
+   }
+  ],
+  "aiTools": [
+   "CNC routers and machining centres",
+   "Nesting software",
+   "Production terminals"
+  ],
+  "humanEdge": [
+   "Feeling surfaces for tear-out",
+   "Adjusting for grain and moisture",
+   "Safe work with fast cutters"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8011.00": {
+  "roadmap": [
+   {
+    "title": "Plant data, procedures and logs",
+    "items": [
+     "Monitor plant parameters on digital control systems, and use trend displays to spot slow changes before alarms.",
+     "Record surveillance test results and logs in the plant's electronic systems, following procedures word for word.",
+     "Use electronic procedures and AI search over approved documents to find steps quickly, always confirming the official revision."
+    ],
+    "project": "Review trend data for one system each week for three months and report early signs of change to engineering."
+   },
+   {
+    "title": "Simulator training and digital upgrades",
+    "items": [
+     "Train on full-scope simulators for normal and emergency scenarios, and review your performance honestly.",
+     "Learn digital instrumentation and control upgrades, and their failure modes.",
+     "Take part in lessons-learned reviews from your plant and the industry."
+    ],
+    "project": "After each simulator session for six months, write down one lesson and how you will apply it in the control room."
+   },
+   {
+    "title": "Judgement, discipline and teamwork",
+    "items": [
+     "Follow procedures strictly, and stop and ask when something does not match.",
+     "Communicate clearly with the crew using three-way communication.",
+     "Stay calm and make conservative decisions in abnormal situations."
+    ],
+    "project": "Practise three-way communication in every shift turnover for a month and record misunderstandings avoided."
+   }
+  ],
+  "aiTools": [
+   "Digital plant control systems",
+   "Full-scope simulators",
+   "Electronic procedures and logs"
+  ],
+  "humanEdge": [
+   "Strict procedure discipline",
+   "Clear three-way communication",
+   "Calm, conservative decisions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8012.00": {
+  "roadmap": [
+   {
+    "title": "Grid systems, forecasts and switching orders",
+    "items": [
+     "Monitor the grid on SCADA and energy management systems, and act on alarms and overloads quickly.",
+     "Use load and weather forecasts, including solar and wind output, to plan switching and power flows.",
+     "Prepare switching orders with system models and checks, and review every step before release."
+    ],
+    "project": "Compare forecast and actual loads for a month and agree adjustments to your planning with the forecasting team."
+   },
+   {
+    "title": "Renewables, storage and outage tools",
+    "items": [
+     "Learn how batteries, solar and wind change grid control, and how to dispatch them.",
+     "Use outage management and smart meter data to locate faults faster.",
+     "Train on simulators for storms and major outages."
+    ],
+    "project": "Take part in one storm simulation exercise and write down three improvements for real events."
+   },
+   {
+    "title": "Calm control and clear coordination",
+    "items": [
+     "Coordinate field crews and plants clearly, so everyone works safely.",
+     "Make fast, careful decisions during emergencies and line failures.",
+     "Double-check switching steps, because mistakes can kill field workers."
+    ],
+    "project": "Review five switching events with field crews and agree one improvement in how you communicate orders."
+   }
+  ],
+  "aiTools": [
+   "SCADA and energy management systems",
+   "Load and renewable forecasts",
+   "Outage management systems"
+  ],
+  "humanEdge": [
+   "Clear coordination with field crews",
+   "Fast, careful emergency decisions",
+   "Double-checked switching for safety"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8013.00": {
+  "roadmap": [
+   {
+    "title": "Control room data and electronic logs",
+    "items": [
+     "Watch boiler, turbine and generator trends on the distributed control system, and investigate slow drifts before they become trips.",
+     "Keep shift logs and readings in the plant's electronic log, adding clear notes on events and actions.",
+     "Use performance dashboards for heat rate and emissions to see how your operating choices affect efficiency."
+    ],
+    "project": "Track one efficiency measure such as heat rate across your shifts for a month and test one operating change with the shift lead."
+   },
+   {
+    "title": "Flexible operation and predictive tools",
+    "items": [
+     "Learn fast ramping and start-stop operation, as plants balance more wind and solar on the grid.",
+     "Use predictive maintenance alerts on pumps, fans and turbines, and confirm them with rounds.",
+     "Train on simulators for trips, blackouts and black starts."
+    ],
+    "project": "Review every predictive maintenance alert on your unit for three months and record which ones your rounds confirmed."
+   },
+   {
+    "title": "Rounds, senses and safe teamwork",
+    "items": [
+     "Walk the plant and use your eyes, ears and nose to find leaks, vibration and heat that sensors miss.",
+     "Follow lockout and permit rules strictly when equipment is released for repair.",
+     "Communicate clearly with dispatchers and the crew during start-ups and upsets."
+    ],
+    "project": "Record every problem you found on rounds that the control system had not alarmed for three months and share them."
+   }
+  ],
+  "aiTools": [
+   "Distributed control systems",
+   "Performance and emissions dashboards",
+   "Predictive maintenance alerts"
+  ],
+  "humanEdge": [
+   "Finding leaks and vibration on rounds",
+   "Strict lockout and permit discipline",
+   "Clear communication during upsets"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8013.03": {
+  "roadmap": [
+   {
+    "title": "Fuel data and combustion control",
+    "items": [
+     "Check feedstock moisture and quality data before loading, and adjust boiler settings for wet or mixed fuel.",
+     "Watch combustion, steam and emission readings on the control system, and act before limits are reached.",
+     "Record fuel use, output and incidents in the electronic log, so efficiency can be tracked."
+    ],
+    "project": "Record feedstock moisture and boiler efficiency for every shift for a month and agree fuel blending changes with the supervisor."
+   },
+   {
+    "title": "Fuel handling and maintenance",
+    "items": [
+     "Learn conveyors, chippers and fuel feed systems, as most stoppages start in fuel handling.",
+     "Use maintenance alerts and checklists for grates, fans and ash systems.",
+     "Learn emissions rules and how combustion settings affect them."
+    ],
+    "project": "Track fuel handling stoppages for three months, find the top cause and agree a fix with maintenance."
+   },
+   {
+    "title": "Hands-on care in a dusty plant",
+    "items": [
+     "Judge fuel quality by look and feel, and spot foreign objects before they jam feeders.",
+     "Work safely with dust, fire risk and hot ash.",
+     "Repair conveyors and feeders quickly to keep the boiler running."
+    ],
+    "project": "Write a short fire and dust safety checklist with AI help, check it with your team and use it every shift for a month."
+   }
+  ],
+  "aiTools": [
+   "Boiler control systems",
+   "Fuel moisture and quality data",
+   "Maintenance alert systems"
+  ],
+  "humanEdge": [
+   "Judging fuel quality by look and feel",
+   "Safe work with dust and hot ash",
+   "Quick repairs of conveyors and feeders"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8013.04": {
+  "roadmap": [
+   {
+    "title": "SCADA, water data and remote control",
+    "items": [
+     "Monitor generators, gates and water levels through SCADA, often for several remote plants, and act on alarms quickly.",
+     "Use inflow and weather forecasts to plan generation and spillway operation with the dispatcher.",
+     "Record readings, work requests and maintenance in the plant's digital systems."
+    ],
+    "project": "Compare forecast and actual inflows for a season and agree improvements to generation planning with the dispatcher."
+   },
+   {
+    "title": "Condition monitoring and testing",
+    "items": [
+     "Use vibration, temperature and partial discharge monitoring to plan generator and turbine maintenance.",
+     "Test relays, batteries and breakers on schedule with digital test records.",
+     "Learn dam safety monitoring and what changes in readings may mean."
+    ],
+    "project": "Review condition monitoring data for one unit for six months and propose a maintenance priority list to your supervisor."
+   },
+   {
+    "title": "Skilled repairs and water safety",
+    "items": [
+     "Repair motors, hydraulics and controls hands-on, often far from help.",
+     "Work safely near water, confined spaces and high voltage.",
+     "Report changes in the dam or river you notice on site."
+    ],
+    "project": "Walk the dam and intakes with a senior technician each month for a season and record the signs they teach you to watch."
+   }
+  ],
+  "aiTools": [
+   "SCADA for remote plants",
+   "Inflow and weather forecasts",
+   "Generator condition monitoring"
+  ],
+  "humanEdge": [
+   "Hands-on repairs far from help",
+   "Safe work near water and voltage",
+   "Noticing changes at the dam"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8021.00": {
+  "roadmap": [
+   {
+    "title": "Building systems and digital logs",
+    "items": [
+     "Monitor boilers, chillers and pumps through the building management system, and check alarms on site.",
+     "Keep daily logs, water tests and safety checks in a digital system, so inspections are easy.",
+     "Use energy dashboards to see which systems waste fuel and power."
+    ],
+    "project": "Use energy dashboards to find one waste in your plant, fix it with your supervisor and record savings over three months."
+   },
+   {
+    "title": "Water treatment and efficiency",
+    "items": [
+     "Test boiler water chemistry and adjust treatment to prevent scale and corrosion.",
+     "Learn heat pumps, combined heat and power and other efficient systems.",
+     "Plan maintenance with reminders for safety valves, burners and controls."
+    ],
+    "project": "Track water test results and chemical use for three months and agree a better treatment plan with the supplier."
+   },
+   {
+    "title": "Practical skill and safety",
+    "items": [
+     "Hear and feel when pumps, burners or fans are not right during rounds.",
+     "Repair valves, gaskets and bearings with your own hands.",
+     "Follow boiler safety rules strictly, as failures can be deadly."
+    ],
+    "project": "Write down five problems you found by sound or feel this year and use them to train a new operator."
+   }
+  ],
+  "aiTools": [
+   "Building management systems",
+   "Energy dashboards",
+   "Water testing kits and logs"
+  ],
+  "humanEdge": [
+   "Hearing faults during rounds",
+   "Hands-on valve and pump repairs",
+   "Strict boiler safety discipline"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8031.00": {
+  "roadmap": [
+   {
+    "title": "SCADA, sensors and lab data",
+    "items": [
+     "Monitor treatment stages through SCADA and online sensors for turbidity, chlorine and flow, and act on alarms.",
+     "Enter lab and field test results into the plant data system, so compliance reports are accurate.",
+     "Use trend charts to adjust chemical dosing before water quality drifts."
+    ],
+    "project": "Compare online sensor readings with your lab tests for a month and report drifting sensors to maintenance."
+   },
+   {
+    "title": "Process optimisation and compliance",
+    "items": [
+     "Use dosing models and data to reduce chemical and energy use without risking quality.",
+     "Learn regulations and reporting for drinking water or discharge permits.",
+     "Plan maintenance of pumps, filters and blowers with the maintenance system."
+    ],
+    "project": "Test one dosing or aeration change for a month with your supervisor, recording quality, chemical and energy use."
+   },
+   {
+    "title": "Public health and hands-on care",
+    "items": [
+     "Collect and test samples carefully, as public health depends on them.",
+     "Spot smells, colours and sounds that warn of process problems.",
+     "Repair and clean equipment safely in wet, confined and hazardous areas."
+    ],
+    "project": "Review three past process upsets with your team and write down the early signs that could have warned you."
+   }
+  ],
+  "aiTools": [
+   "SCADA and online water sensors",
+   "Plant data and compliance systems",
+   "Chemical dosing models"
+  ],
+  "humanEdge": [
+   "Careful sampling for public health",
+   "Spotting warning smells and colours",
+   "Safe work in wet, confined spaces"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8091.00": {
+  "roadmap": [
+   {
+    "title": "Process control and data",
+    "items": [
+     "Run chemical processes from the control system, watching trends for temperature, pressure and flow.",
+     "Use advanced process control and alarms, and know when to take manual control.",
+     "Record operating data and lab results electronically, adding notes on unusual conditions."
+    ],
+    "project": "Review alarm logs for your unit for a month, list nuisance alarms and agree improvements with engineering."
+   },
+   {
+    "title": "Safety systems and process knowledge",
+    "items": [
+     "Learn the hazards of each chemical and the safety systems that protect the plant.",
+     "Train on simulators for upsets, fires and releases.",
+     "Take part in hazard reviews and share what you see in the field."
+    ],
+    "project": "Join one hazard review, contribute three field observations and track how they are addressed."
+   },
+   {
+    "title": "Field awareness and teamwork",
+    "items": [
+     "Walk units and notice leaks, smells and sounds that instruments miss.",
+     "Take samples and run quick tests safely, wearing the right protection.",
+     "Communicate clearly with the board operator and field crew."
+    ],
+    "project": "Record every field finding you reported for three months, how each was resolved and which ones the instruments had missed."
+   }
+  ],
+  "aiTools": [
+   "Distributed control systems",
+   "Advanced process control",
+   "Electronic logs and lab data"
+  ],
+  "humanEdge": [
+   "Noticing leaks and smells on rounds",
+   "Safe sampling of chemicals",
+   "Clear board-to-field communication"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8092.00": {
+  "roadmap": [
+   {
+    "title": "Gas process control and records",
+    "items": [
+     "Run compressors, scrubbers and liquefaction units from control panels, watching pressures, levels and temperatures.",
+     "Use gas analysers for purity, moisture and leaks, and record results automatically.",
+     "Keep operations records and gauge readings in the electronic log for regulators."
+    ],
+    "project": "Review analyser and process data for a month and report one pattern that affects gas quality to engineering."
+   },
+   {
+    "title": "Leak detection and safety",
+    "items": [
+     "Use fixed and portable gas detectors and optical leak cameras to find leaks early.",
+     "Learn emergency shutdown systems and practise responses.",
+     "Plan maintenance on compressors and valves with data from the maintenance system."
+    ],
+    "project": "Survey one area with a leak camera each month for three months and record leaks found and repaired."
+   },
+   {
+    "title": "Vigilance with flammable products",
+    "items": [
+     "Follow safety rules for flammable gases strictly, every shift.",
+     "Solve unit problems together with other operators.",
+     "Notice unusual sounds or frost that signal leaks or faults."
+    ],
+    "project": "Run one emergency shutdown drill with your crew, time each step and record what to improve before the next drill."
+   }
+  ],
+  "aiTools": [
+   "Gas plant control panels",
+   "Gas analysers and detectors",
+   "Optical leak cameras"
+  ],
+  "humanEdge": [
+   "Strict safety with flammable gas",
+   "Teamwork on unit problems",
+   "Noticing frost and unusual sounds"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8093.00": {
+  "roadmap": [
+   {
+    "title": "Refinery controls and tank data",
+    "items": [
+     "Control refinery units and pumping systems from the control board, using trends to spot drifting variables.",
+     "Read automatic tank gauges and flow meters, and check them against manual dips.",
+     "Record operating data and lab results in electronic systems, noting unusual events."
+    ],
+    "project": "Compare automatic tank gauges with manual dips for a month, report gauges that drift and track how quickly they are fixed."
+   },
+   {
+    "title": "Optimisation and safety systems",
+    "items": [
+     "Learn advanced process control and what it does to keep units on target.",
+     "Use simulators to practise upsets and emergency procedures.",
+     "Learn environmental rules for emissions and spills."
+    ],
+    "project": "Complete simulator training for one emergency scenario and write down lessons for your crew."
+   },
+   {
+    "title": "Field patrols and coordination",
+    "items": [
+     "Patrol units and tanks to find leaks, overflows and unsafe work.",
+     "Signal and coordinate clearly with field workers by radio.",
+     "Respond calmly and by procedure when processes go wrong."
+    ],
+    "project": "Record every unsafe condition you found on patrols for three months, how it was fixed and how long the fix took."
+   }
+  ],
+  "aiTools": [
+   "Refinery control systems",
+   "Automatic tank gauges",
+   "Process simulators"
+  ],
+  "humanEdge": [
+   "Finding leaks on field patrols",
+   "Clear radio coordination with crews",
+   "Calm response to process upsets"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-8099.01": {
+  "roadmap": [
+   {
+    "title": "Batch data and lab results",
+    "items": [
+     "Monitor fermentation or reaction processes on control screens, tracking temperature, pH and conversion over each batch.",
+     "Run routine quality tests and record results in the lab system, comparing them with fuel specifications.",
+     "Use batch records to find which feedstocks and settings give the best yield."
+    ],
+    "project": "Compare yield and quality across thirty batches with your supervisor and agree one setting or feedstock change."
+   },
+   {
+    "title": "Feedstock quality and maintenance",
+    "items": [
+     "Check feedstock quality data before loading, and adjust recipes for changes.",
+     "Plan maintenance on pumps, centrifuges and instruments with the maintenance system.",
+     "Learn sustainability rules and certification for biofuels."
+    ],
+    "project": "Track feedstock quality against batch problems for three months and share the findings with purchasing."
+   },
+   {
+    "title": "Process care and safety",
+    "items": [
+     "Notice smells, foaming or colour changes that show a batch is going wrong.",
+     "Handle chemicals and flammable products safely.",
+     "Inspect equipment regularly and report damage early."
+    ],
+    "project": "Review five batch problems with your team and write down the early signs for newer technicians."
+   }
+  ],
+  "aiTools": [
+   "Process control screens",
+   "Lab quality systems",
+   "Batch data analysis"
+  ],
+  "humanEdge": [
+   "Noticing batches going wrong",
+   "Safe handling of flammable products",
+   "Early reporting of damage"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9011.00": {
+  "roadmap": [
+   {
+    "title": "Reactor controls and batch records",
+    "items": [
+     "Run reactors and mixers from control screens, following electronic batch records step by step.",
+     "Weigh and add ingredients with scanning and scale systems that confirm the right material and amount.",
+     "Record readings and test results automatically, adding notes on anything unusual."
+    ],
+    "project": "Use ingredient scanning for every batch for a month and record weighing or material errors caught."
+   },
+   {
+    "title": "Testing and safety systems",
+    "items": [
+     "Test samples for pH, viscosity or concentration, and compare with lab results.",
+     "Learn the reaction hazards and safety systems for each product.",
+     "Patrol equipment with digital checklists to find leaks and faults."
+    ],
+    "project": "Compare your quick tests with lab results on twenty batches and agree corrections with quality."
+   },
+   {
+    "title": "Care and vigilance on the unit",
+    "items": [
+     "Notice smells, sounds and changes in mixtures that instruments may miss.",
+     "Shut down equipment safely when something is wrong.",
+     "Follow fire and explosion precautions strictly."
+    ],
+    "project": "Review three near misses with your team and write down the warning signs for newer operators."
+   }
+  ],
+  "aiTools": [
+   "Reactor control screens",
+   "Electronic batch records",
+   "Ingredient scanning and scales"
+  ],
+  "humanEdge": [
+   "Noticing changes instruments miss",
+   "Safe shutdown when things go wrong",
+   "Strict fire and explosion care"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9012.00": {
+  "roadmap": [
+   {
+    "title": "Process screens and quality data",
+    "items": [
+     "Run separators, filters and stills from control screens, watching flow, temperature and pressure trends.",
+     "Record shift data and test results in the production database, noting any process change.",
+     "Use alarms and quality data to adjust settings before product goes off specification."
+    ],
+    "project": "Track off-specification batches for a month, find the most common cause and agree a setting change with the supervisor."
+   },
+   {
+    "title": "Testing and cleaning routines",
+    "items": [
+     "Test samples for viscosity, acidity or concentration, and check instruments against lab results.",
+     "Follow cleaning and sterilising routines with digital checklists.",
+     "Learn energy and environmental rules for your process."
+    ],
+    "project": "Compare quick test results with lab tests on twenty samples and report any drift to quality."
+   },
+   {
+    "title": "Hands-on care on every round",
+    "items": [
+     "Notice clogging, foaming or leaks by eye and ear during rounds.",
+     "Clean screens and tanks carefully and safely.",
+     "Handle chemicals and hot materials with care."
+    ],
+    "project": "Record every problem you found on rounds for three months and share the patterns with maintenance."
+   }
+  ],
+  "aiTools": [
+   "Process control screens",
+   "Production databases",
+   "Quick test instruments"
+  ],
+  "humanEdge": [
+   "Spotting clogging and leaks",
+   "Careful, safe cleaning of tanks",
+   "Care with hot materials and chemicals"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9021.00": {
+  "roadmap": [
+   {
+    "title": "Plant monitoring and production data",
+    "items": [
+     "Watch crusher and mill loads, power draw and flow on control screens, and adjust feed to avoid overloads.",
+     "Record throughput, product size tests and stops in the production system.",
+     "Use particle size results to adjust crusher settings or screens."
+    ],
+    "project": "Compare particle size results with crusher settings for a month and agree one setting change with the supervisor."
+   },
+   {
+    "title": "Wear parts and maintenance data",
+    "items": [
+     "Track liner, screen and hammer wear, and plan changes before failures.",
+     "Use vibration alerts on crushers and conveyors to catch problems early.",
+     "Learn dust control and noise protection, and use them every shift."
+    ],
+    "project": "Track wear part life for three months, propose change intervals to maintenance and compare breakdowns afterwards."
+   },
+   {
+    "title": "Eyes, ears and safe clearing",
+    "items": [
+     "Hear and see when material flow or machines are not right.",
+     "Clear jams safely with lockout, never reaching into moving equipment.",
+     "Check product by eye and hand for size and quality."
+    ],
+    "project": "Review every jam you cleared for a month with your supervisor and agree one change to prevent repeats."
+   }
+  ],
+  "aiTools": [
+   "Crusher and mill control screens",
+   "Particle size analysis",
+   "Vibration alerts"
+  ],
+  "humanEdge": [
+   "Hearing when flow is not right",
+   "Safe jam clearing with lockout",
+   "Checking product by eye and hand"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9022.00": {
+  "roadmap": [
+   {
+    "title": "Work instructions and quality records",
+    "items": [
+     "Follow digital work instructions with photos of the finish required, and compare your parts against reference samples.",
+     "Record finished counts, defects and rework on the production terminal, so problems show up quickly.",
+     "Use surface roughness testers where available to confirm finishes you judge by eye and touch."
+    ],
+    "project": "Check your finish with a roughness tester on twenty parts and compare the readings with your own judgement."
+   },
+   {
+    "title": "Robots, abrasives and health",
+    "items": [
+     "Learn robotic grinding and polishing cells, and how to check and touch up their work by hand.",
+     "Learn which abrasives suit each material, so you finish faster with less waste.",
+     "Protect yourself from dust, vibration and noise with extraction, low-vibration tools and breaks."
+    ],
+    "project": "Track hand-arm vibration exposure for your tools for a month and agree changes with your supervisor."
+   },
+   {
+    "title": "Touch and a perfect surface",
+    "items": [
+     "Feel surfaces for ridges and burrs that eyes and machines miss.",
+     "Finish complex shapes by hand where robots cannot reach.",
+     "Move toward inspector or robot cell operator roles, building on finishing knowledge."
+    ],
+    "project": "Train a new worker on finishing one difficult part for a month and write down the checks you teach by touch."
+   }
+  ],
+  "aiTools": [
+   "Digital work instructions",
+   "Surface roughness testers",
+   "Robotic grinding cells"
+  ],
+  "humanEdge": [
+   "Feeling ridges and burrs by touch",
+   "Finishing shapes robots cannot reach",
+   "Judging finish against samples"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9023.00": {
+  "roadmap": [
+   {
+    "title": "Recipe systems and batch data",
+    "items": [
+     "Follow electronic recipes on the mixer terminal, scanning each material so the system confirms weights and order.",
+     "Record mixing times, temperatures and test results automatically, adding notes when batches behave differently.",
+     "Use batch data to see which materials or settings cause rejects."
+    ],
+    "project": "Track rejected batches for two months, find the most common cause and agree one recipe or setting change."
+   },
+   {
+    "title": "Quality tests and cleaning",
+    "items": [
+     "Run quick tests such as moisture, viscosity or colour, and compare them with lab results.",
+     "Follow cleaning and changeover checklists, especially for allergens or hazardous materials.",
+     "Learn the basics of each material you mix, so you understand why the recipe matters."
+    ],
+    "project": "Compare quick tests with lab results on twenty batches, report any drift to quality and agree how often to check the instruments."
+   },
+   {
+    "title": "Senses and steady care",
+    "items": [
+     "Notice changes in texture, smell or sound of the mixer that mean a batch is wrong.",
+     "Lift and pour materials safely, using hoists and good technique.",
+     "Keep equipment clean, so batches are not contaminated."
+    ],
+    "project": "Review five bad batches with your supervisor and write down the early signs you could have noticed."
+   }
+  ],
+  "aiTools": [
+   "Electronic recipe terminals",
+   "Material scanning and scales",
+   "Quick quality test instruments"
+  ],
+  "humanEdge": [
+   "Noticing texture and smell changes",
+   "Safe lifting and pouring of materials",
+   "Clean equipment against contamination"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9031.00": {
+  "roadmap": [
+   {
+    "title": "Digital patterns and cutting plans",
+    "items": [
+     "Follow digital cutting plans and printed or projected templates, and check the first pieces against the order.",
+     "Use yield data from earlier jobs to place templates so less material is wasted.",
+     "Record counts, defects and waste on a tablet or terminal during the shift."
+    ],
+    "project": "Record waste per job for a month and test one template layout change to reduce it with your supervisor."
+   },
+   {
+    "title": "Machines, tools and safety",
+    "items": [
+     "Learn the cutting machines in your area, so you can move between hand and machine work.",
+     "Keep knives and tools sharp and safe, and use cut-resistant gloves.",
+     "Learn defect standards for each material, so sorting is consistent."
+    ],
+    "project": "Learn one cutting machine under supervision over two months and record the jobs you can now run."
+   },
+   {
+    "title": "Eye, hand and accuracy",
+    "items": [
+     "Spot stains, scratches and flaws by eye before cutting good material.",
+     "Cut accurately by hand along lines and around shapes.",
+     "Sort pieces by size and shade carefully, so the next stage runs smoothly."
+    ],
+    "project": "Inspect material before cutting for a month and record flaws you caught that would have become scrap."
+   }
+  ],
+  "aiTools": [
+   "Digital cutting plans and templates",
+   "Yield and waste data",
+   "Production terminals"
+  ],
+  "humanEdge": [
+   "Spotting flaws before cutting",
+   "Accurate hand cutting along lines",
+   "Careful sorting by size and shade"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9032.00": {
+  "roadmap": [
+   {
+    "title": "Machine settings and production data",
+    "items": [
+     "Load stored cutting programs for each product, and check the first pieces for size and weight.",
+     "Use in-line scales and vision checks, and confirm their readings with samples by hand.",
+     "Record output, waste and stoppages on the production terminal."
+    ],
+    "project": "Compare in-line scale readings with hand weighing on fifty pieces and report any drift to maintenance."
+   },
+   {
+    "title": "Blades, safety and changeovers",
+    "items": [
+     "Track blade wear and change blades before cut quality drops.",
+     "Use guards, lockout and safe clearing methods every time.",
+     "Speed up changeovers with checklists and pre-set tools."
+    ],
+    "project": "Time your changeovers for a month with a checklist, record what made them faster and share the best order of steps with the team."
+   },
+   {
+    "title": "Attention and quality",
+    "items": [
+     "Notice uneven cuts and jams quickly and stop the machine before waste piles up.",
+     "Judge cut quality by eye and touch for each material.",
+     "Move toward setter or line leader roles, building on machine knowledge."
+    ],
+    "project": "Agree a training plan toward a setter role with your supervisor and track the setups you can do over a year."
+   }
+  ],
+  "aiTools": [
+   "Stored cutting programs",
+   "In-line scales and vision checks",
+   "Production terminals"
+  ],
+  "humanEdge": [
+   "Stopping jams before waste piles up",
+   "Judging cut quality by eye and touch",
+   "Machine knowledge for setup roles"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9041.00": {
+  "roadmap": [
+   {
+    "title": "Process data and setups",
+    "items": [
+     "Watch pressure, temperature and speed on the machine screen, and adjust before products go out of tolerance.",
+     "Use stored setups for each die or mould, so changeovers are faster and repeatable.",
+     "Record production, scrap and readings on the terminal, so patterns can be found."
+    ],
+    "project": "Save settings for every good run for three months and use them to reduce startup scrap on repeat jobs."
+   },
+   {
+    "title": "Die care and inspection",
+    "items": [
+     "Track die and mould wear, and plan maintenance before defects appear.",
+     "Use gauges, scales and vision checks to measure products, and check samples by hand.",
+     "Learn safety systems for presses and compactors, and never bypass them."
+    ],
+    "project": "Track die life for three months, agree a maintenance schedule with the tool room and compare defects before and after."
+   },
+   {
+    "title": "Hands-on skill and judgement",
+    "items": [
+     "Clear jams safely and remove defective products before they move on.",
+     "Notice changes in material flow or sound that signal problems.",
+     "Install dies and moulds carefully with the right tools."
+    ],
+    "project": "Record every jam and its cause for a month and agree one change with maintenance to prevent repeats."
+   }
+  ],
+  "aiTools": [
+   "Machine control screens",
+   "Stored die setups",
+   "Gauges and vision checks"
+  ],
+  "humanEdge": [
+   "Safe jam clearing and removal",
+   "Noticing flow and sound changes",
+   "Careful die and mould installation"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9051.00": {
+  "roadmap": [
+   {
+    "title": "Temperature control and records",
+    "items": [
+     "Run furnaces, kilns and driers from programmed profiles, watching temperature and humidity trends on screen.",
+     "Record readings, test results and output automatically, with notes on events and adjustments.",
+     "Use alarms and trend charts to catch heating problems before products are spoiled."
+    ],
+    "project": "Review temperature trends for every batch for a month and record problems caught before quality tests."
+   },
+   {
+    "title": "Energy, testing and maintenance",
+    "items": [
+     "Track energy use per batch and test changes that cut it without hurting quality.",
+     "Test samples for moisture, hardness or colour, and compare with lab results.",
+     "Keep burners, fans and seals in good order with maintenance checklists."
+    ],
+    "project": "Track energy per batch for a month and test one loading or profile change with your supervisor."
+   },
+   {
+    "title": "Heat, eyes and safety",
+    "items": [
+     "Judge products by colour, texture and smell as they come out.",
+     "Load and unload hot products safely with the right equipment.",
+     "Report malfunctions clearly so problems are fixed fast."
+    ],
+    "project": "Write down five problems you noticed by eye before the instruments and share them with newer operators."
+   }
+  ],
+  "aiTools": [
+   "Programmed heating profiles",
+   "Temperature and humidity trends",
+   "Energy monitoring"
+  ],
+  "humanEdge": [
+   "Judging products by colour and smell",
+   "Safe handling of hot loads",
+   "Clear reports of malfunctions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "51-9061.00": {
   "roadmap": [
    {
@@ -31454,6 +34604,132 @@
    "Judging defects that are hard to measure",
    "Careful, consistent inspection",
    "Explaining why a part fails"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9071.00": {
+  "roadmap": [
+   {
+    "title": "CAD design, 3D printing and quotes",
+    "items": [
+     "Design jewellery in CAD software and show customers realistic renders before making anything.",
+     "Print wax or resin models for casting from CAD files, and check details before investing.",
+     "Calculate metal, stone and labour costs with a spreadsheet or app, and send clear quotes."
+    ],
+    "project": "Design five custom pieces in CAD with renders for customers and record how many were approved without changes."
+   },
+   {
+    "title": "Laser tools and online sales",
+    "items": [
+     "Use laser welders and engravers for precise repairs and personal engraving.",
+     "Sell and show your work online with good photos and honest descriptions.",
+     "Learn ethical sourcing and certification of metals and stones."
+    ],
+    "project": "Photograph twenty pieces for an online shop and track enquiries and sales over three months."
+   },
+   {
+    "title": "Handcraft and personal trust",
+    "items": [
+     "Set stones, solder and polish by hand with steady, precise work under magnification.",
+     "Repair treasured pieces carefully, respecting their history.",
+     "Listen to customers' stories and turn them into meaningful designs."
+    ],
+    "project": "Make one piece fully by hand, document the process and use it to show customers your craft."
+   }
+  ],
+  "aiTools": [
+   "Jewellery CAD and rendering",
+   "3D printing for casting models",
+   "Laser welders and engravers"
+  ],
+  "humanEdge": [
+   "Precise stone setting by hand",
+   "Careful repair of treasured pieces",
+   "Turning stories into designs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9071.06": {
+  "roadmap": [
+   {
+    "title": "Scanning, planning and grading tools",
+    "items": [
+     "Scan rough stones with 3D planning systems that suggest cuts for best value, and judge the options yourself.",
+     "Use digital grading instruments for colour and clarity, and confirm results with your own eye.",
+     "Record each stone's measurements, plots and grades in a digital file for buyers and certificates."
+    ],
+    "project": "Compare planning software cut suggestions with your own plans on ten stones and record the value of each result."
+   },
+   {
+    "title": "Identification and synthetic stones",
+    "items": [
+     "Learn to detect lab-grown and treated stones with modern instruments.",
+     "Follow market prices and grading standards to value stones accurately.",
+     "Learn laser cutting and automated polishing, and where hand work still matters."
+    ],
+    "project": "Complete one course on lab-grown diamond detection and test ten stones with a senior grader."
+   },
+   {
+    "title": "Eye, hand and judgement",
+    "items": [
+     "Polish facets by hand to precise angles that bring out brilliance.",
+     "Judge colour and clarity by trained eye, consistently.",
+     "Advise customers honestly on stones and their best use."
+    ],
+    "project": "Grade the same twenty stones as a senior grader without seeing their results, and discuss the differences."
+   }
+  ],
+  "aiTools": [
+   "3D rough stone planning systems",
+   "Digital grading instruments",
+   "Laser cutting and automated polishing"
+  ],
+  "humanEdge": [
+   "Hand polishing to precise angles",
+   "Consistent grading by trained eye",
+   "Honest advice to customers on stones"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9081.00": {
+  "roadmap": [
+   {
+    "title": "Digital scans, CAD and milling",
+    "items": [
+     "Design crowns, bridges and aligners in dental CAD software from intraoral scans, and check fit and bite on screen.",
+     "Mill or 3D print restorations from digital designs, and finish them by hand.",
+     "Track cases, prescriptions and deadlines in a lab management system."
+    ],
+    "project": "Design and mill ten crowns from digital scans and compare remake rates with traditional models."
+   },
+   {
+    "title": "Materials and AI design help",
+    "items": [
+     "Use AI-assisted design tools that propose tooth shapes, and adjust them for each patient's bite.",
+     "Learn zirconia, lithium disilicate and printed resins, and their limits.",
+     "Communicate with dentists digitally with photos and shade notes."
+    ],
+    "project": "Compare AI-proposed designs with your own on twenty cases and record where you changed them and why."
+   },
+   {
+    "title": "Artistry and precision",
+    "items": [
+     "Layer and stain porcelain by hand to match natural teeth.",
+     "Check occlusion and fit carefully on articulators.",
+     "Solve difficult cases together with dentists, using photos and clear notes."
+    ],
+    "project": "Match the shade of five difficult anterior cases, photograph results and review them with the dentist."
+   }
+  ],
+  "aiTools": [
+   "Dental CAD software",
+   "Milling machines and 3D printers",
+   "AI-assisted tooth design"
+  ],
+  "humanEdge": [
+   "Layering porcelain to match teeth",
+   "Careful bite and fit checks",
+   "Solving difficult cases with dentists"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
