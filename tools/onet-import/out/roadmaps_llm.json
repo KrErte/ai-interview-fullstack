@@ -21965,6 +21965,552 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "39-2021.00": {
+  "roadmap": [
+   {
+    "title": "Apps for care records and bookings",
+    "items": [
+     "Record feeding, weight, medication and condition for each animal in a care app, so every shift sees the same picture.",
+     "Handle bookings and phone questions with a scheduling system and an FAQ drafted with AI help.",
+     "Answer visitor questions about animals with information sheets made with AI, checked against good sources."
+    ],
+    "project": "Move one area's care records to an app for a month and compare missed feeds or medications with paper records."
+   },
+   {
+    "title": "Monitoring and supply routines",
+    "items": [
+     "Use cameras or sensors in pens and kennels to check on animals overnight.",
+     "Order feed and supplies with an inventory list that warns before stock runs low.",
+     "Follow cleaning and disinfection checklists with sign-off, so disease does not spread."
+    ],
+    "project": "Track feed and supply stock with low-stock alerts for two months and count the times you ran short before and after."
+   },
+   {
+    "title": "Hands-on care and noticing problems",
+    "items": [
+     "Feed, groom and exercise animals with patience, building trust with each one.",
+     "Spot early signs of illness or injury and call the vet before problems grow.",
+     "Handle nervous or difficult animals calmly and safely, protecting yourself and them."
+    ],
+    "project": "Write a short health check routine for daily rounds, use it for a month and record the problems it caught early."
+   }
+  ],
+  "aiTools": [
+   "Animal care record apps",
+   "Kennel cameras and sensors",
+   "Booking and scheduling software"
+  ],
+  "humanEdge": [
+   "Patient daily care that builds trust",
+   "Spotting illness or injury early",
+   "Calm handling of nervous animals"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-3011.00": {
+  "roadmap": [
+   {
+    "title": "Table systems and rule refreshers",
+    "items": [
+     "Learn the electronic table systems and card shufflers at your games, including how to handle faults.",
+     "Refresh game rules and payout tables with practice apps, so you stay fast and accurate.",
+     "Use payout calculators where allowed, and still check large wins against the rules."
+    ],
+    "project": "Practise payout calculations with an app for 15 minutes a day for a month and track your speed and accuracy."
+   },
+   {
+    "title": "Responsible gambling and game protection",
+    "items": [
+     "Learn the signs of problem gambling and the steps your casino takes when staff see them.",
+     "Understand how cameras and table analytics watch for cheating, and follow procedures that protect the game.",
+     "Learn new games and variants through training so you can deal more tables."
+    ],
+    "project": "Learn one new game through training and practice, and get certified to deal it within two months."
+   },
+   {
+    "title": "Dealing skill and table atmosphere",
+    "items": [
+     "Deal accurately and fast, with clean card handling that protects the game.",
+     "Keep the table friendly and fair, managing players' moods and disputes calmly.",
+     "Work as a team with other dealers and supervisors during busy shifts."
+    ],
+    "project": "Ask your supervisor to observe one shift and give you two tips on speed or manner, then practise them for two weeks."
+   }
+  ],
+  "aiTools": [
+   "Electronic table and shuffler systems",
+   "Payout practice apps",
+   "Responsible gambling training tools"
+  ],
+  "humanEdge": [
+   "Fast, accurate dealing and payouts",
+   "Keeping the table friendly and fair",
+   "Calm handling of player disputes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-3012.00": {
+  "roadmap": [
+   {
+    "title": "Betting terminals and payout checks",
+    "items": [
+     "Process bets and payouts on the betting terminal, checking amounts and tickets before paying.",
+     "Answer rule and policy questions with clear guides, and refer complex cases to supervisors.",
+     "Prepare collection and payout reports from the system at the end of each event."
+    ],
+    "project": "Track payout errors on your terminal for a month and practise the bet types where errors happen most."
+   },
+   {
+    "title": "Odds, responsible gambling and fraud",
+    "items": [
+     "Learn how odds and sports book systems work, so you can explain bets clearly to customers.",
+     "Spot signs of problem gambling and follow the steps your company takes.",
+     "Watch for fake tickets and suspicious betting patterns, and report them by procedure."
+    ],
+    "project": "Write a one-page guide on common bet types with AI help, check it with a supervisor and use it with new customers."
+   },
+   {
+    "title": "Customer contact and accuracy",
+    "items": [
+     "Handle cash and chips accurately under pressure, with every amount checked.",
+     "Explain bets, odds and payouts patiently to new customers, without pushing them to bet more.",
+     "Stay calm with disappointed or angry customers after results, and call support when needed."
+    ],
+    "project": "Track customer questions for two weeks and add the five most common answers to a quick guide for colleagues."
+   }
+  ],
+  "aiTools": [
+   "Betting terminals and sports book systems",
+   "Payout and report software",
+   "ChatGPT or Claude for customer guides"
+  ],
+  "humanEdge": [
+   "Accurate cash handling under pressure",
+   "Explaining bets to new customers",
+   "Calm with disappointed customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-3021.00": {
+  "roadmap": [
+   {
+    "title": "Digital cinema servers and monitoring",
+    "items": [
+     "Schedule shows, ads and trailers on digital cinema servers, and check playlists before doors open.",
+     "Use remote monitoring to watch image and sound quality across screens from one place.",
+     "Keep maintenance logs for projectors and sound systems with reminders for lamp and filter changes."
+    ],
+    "project": "Set up maintenance reminders for every projector for three months and count unplanned show stops before and after."
+   },
+   {
+    "title": "Automation and troubleshooting",
+    "items": [
+     "Learn the automation that starts shows, dims lights and switches sound, and test it daily.",
+     "Troubleshoot server and projector errors with manuals and AI help, then confirm the fix with a test.",
+     "Handle digital film files and keys carefully, so shows are never missing at start time."
+    ],
+    "project": "Write troubleshooting cards for the five most common faults and time how fast a colleague fixes them with the cards."
+   },
+   {
+    "title": "Picture, sound and show quality",
+    "items": [
+     "Set up focus, brightness and sound by eye and ear for each auditorium.",
+     "Clean and maintain projectors and lenses carefully by hand, following the maker's instructions.",
+     "Solve problems fast when a show fails, keeping the audience informed."
+    ],
+    "project": "Check picture and sound in every auditorium weekly for a month, fix what you find and record complaints after."
+   }
+  ],
+  "aiTools": [
+   "Digital cinema servers and playlists",
+   "Remote projection monitoring",
+   "Maintenance log apps"
+  ],
+  "humanEdge": [
+   "Judging picture and sound by eye and ear",
+   "Fast recovery when shows fail",
+   "Careful projector care by hand"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-3031.00": {
+  "roadmap": [
+   {
+    "title": "Ticket scanners and event apps",
+    "items": [
+     "Scan mobile and printed tickets with handheld scanners, and handle invalid tickets politely.",
+     "Use the venue app to check seat maps, event times and accessibility details.",
+     "Answer common visitor questions with a quick guide, and translation apps for other languages."
+    ],
+    "project": "Make a one-page quick guide with AI help for common visitor questions, use it for a month and add what was missing."
+   },
+   {
+    "title": "Crowd flow and safety routines",
+    "items": [
+     "Learn the venue's crowd flow plan and where people bunch up, using past event data.",
+     "Know the emergency exits, procedures and your role, practised in drills.",
+     "Spot fake or copied tickets and report fraud patterns to supervisors after each event."
+    ],
+    "project": "Take part in one evacuation drill, note where people slowed and suggest one change to your supervisor."
+   },
+   {
+    "title": "Welcoming and helping every visitor",
+    "items": [
+     "Greet visitors warmly and help them find seats, especially older and disabled people.",
+     "Settle seating disputes and complaints calmly and fairly, calling a supervisor when needed.",
+     "Guide people to exits calmly and clearly in an emergency, helping those who need it."
+    ],
+    "project": "Help at five events with a focus on disabled visitors, and note what would make their visit easier."
+   }
+  ],
+  "aiTools": [
+   "Handheld ticket scanners",
+   "Venue apps with seat maps",
+   "Translation apps"
+  ],
+  "humanEdge": [
+   "Warm welcome for every visitor",
+   "Settling seating disputes calmly",
+   "Calm guidance to exits in emergencies"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-3091.00": {
+  "roadmap": [
+   {
+    "title": "Ticketing, rentals and visitor info",
+    "items": [
+     "Sell tickets and rentals on the point-of-sale system, checking wristbands and passes.",
+     "Answer visitor questions about rides and rules with a quick guide and the park app.",
+     "Log ride checks and incidents on digital checklists at the start and end of each shift."
+    ],
+    "project": "Use a digital ride checklist for a month and record the problems caught before opening, compared with paper."
+   },
+   {
+    "title": "Ride systems and queue management",
+    "items": [
+     "Learn the ride's control system and safety interlocks, and never bypass them.",
+     "Use virtual queue and wait-time systems to keep lines moving and visitors informed.",
+     "Clean and inspect equipment and rides with checklists, reporting wear at once."
+    ],
+    "project": "Track wait times at your ride for two weeks and try one loading change to cut them with your supervisor's approval."
+   },
+   {
+    "title": "Safety and friendly service",
+    "items": [
+     "Check every restraint and safety device by hand before a ride starts.",
+     "Watch visitors closely and stop unsafe behaviour with firm, friendly words.",
+     "Help children, older people and disabled visitors on and off rides safely."
+    ],
+    "project": "Practise the emergency stop and evacuation steps for your ride with the team monthly and record response times."
+   }
+  ],
+  "aiTools": [
+   "Point-of-sale and ticketing systems",
+   "Virtual queue and wait-time systems",
+   "Digital ride checklists"
+  ],
+  "humanEdge": [
+   "Checking every restraint by hand",
+   "Firm, friendly enforcement of safety rules",
+   "Helping visitors on and off rides"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-3092.00": {
+  "roadmap": [
+   {
+    "title": "Digital costume lists and change plans",
+    "items": [
+     "Keep costume inventories with photos, sizes and status in a database or app, updated after every show.",
+     "Write dressing lists and quick-change plans with templates, checked in rehearsal.",
+     "Look up cleaning methods for unusual fabrics with AI help, and test on a hidden spot first."
+    ],
+    "project": "Photograph and record one production's costumes in an inventory app and time how fast you find items before and after."
+   },
+   {
+    "title": "Fittings, alterations and teamwork",
+    "items": [
+     "Record fitting notes with photos and measurements, so tailors get clear instructions.",
+     "Coordinate with designers and wardrobe on changes through shared notes and photos.",
+     "Plan laundry and repair schedules around performances with a simple calendar."
+    ],
+    "project": "Use photo fitting notes for one production and ask the tailors whether alterations needed fewer rounds."
+   },
+   {
+    "title": "Fast changes and careful repairs",
+    "items": [
+     "Dress performers in fast changes calmly, with everything in the right place.",
+     "Repair, press and clean costumes by hand, keeping them show-ready.",
+     "Spot fit and wear problems before they become a problem on stage."
+    ],
+    "project": "Time quick changes for one show over a week, rearrange the setup and record the seconds saved."
+   }
+  ],
+  "aiTools": [
+   "Costume inventory apps",
+   "Templates for dressing lists",
+   "ChatGPT or Claude for fabric care questions"
+  ],
+  "humanEdge": [
+   "Calm, fast quick changes backstage",
+   "Hand repairs that keep costumes show-ready",
+   "Spotting fit and wear problems"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-3093.00": {
+  "roadmap": [
+   {
+    "title": "Digital lockers, claims and info",
+    "items": [
+     "Use digital locker and coat check systems with tickets or apps, and help guests who struggle with them.",
+     "Answer questions about costs and rules with a printed or online guide.",
+     "Order towels and supplies with a simple inventory list and low-stock alerts."
+    ],
+    "project": "Track lost claim tickets and locker problems for a month and agree one fix with your manager."
+   },
+   {
+    "title": "Cleaning and laundry routines",
+    "items": [
+     "Follow cleaning checklists for showers, floors and lockers, signed off on a tablet or sheet.",
+     "Run laundry machines with the right settings for towels and uniforms, and log loads.",
+     "Report broken lockers, leaks and safety hazards with photos through the maintenance system."
+    ],
+    "project": "Report every hazard with photos through the maintenance system for a month and track how fast each was fixed."
+   },
+   {
+    "title": "Guest care, safety and trust",
+    "items": [
+     "Keep facilities clean, safe and welcoming, because guests notice every detail.",
+     "Watch for slips, falls and rule breaking, and act politely but firmly.",
+     "Look after guests' belongings honestly and carefully, returning lost items the right way."
+    ],
+    "project": "Ask 20 guests what would improve the changing area and suggest the top two changes to your manager."
+   }
+  ],
+  "aiTools": [
+   "Digital locker and coat check systems",
+   "Inventory lists with alerts",
+   "Maintenance request apps"
+  ],
+  "humanEdge": [
+   "Keeping the facility clean and welcoming",
+   "Polite but firm with safety rules",
+   "Honest care of guests' belongings"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-4011.00": {
+  "roadmap": [
+   {
+    "title": "Digital records and family arrangements",
+    "items": [
+     "Keep case records, legal forms and preparation notes in funeral home software, checking every name and date.",
+     "Draft obituary notices with families using AI help for structure, keeping their words and memories central.",
+     "Look up health, sanitation and transport rules with official sources and AI summaries you confirm."
+    ],
+    "project": "Draft five obituaries with families using AI help for structure, and ask each family whether it felt right to them."
+   },
+   {
+    "title": "Compliance checklists and supplies",
+    "items": [
+     "Use checklists for each preparation step and legal requirement, signed off in the system.",
+     "Track embalming supplies and chemicals with an inventory list and reorder alerts.",
+     "Learn new restorative techniques and products through online courses and videos."
+    ],
+    "project": "Write a step checklist for preparation and legal paperwork, use it on every case for a month and review any gaps."
+   },
+   {
+    "title": "Restorative skill and care for the bereaved",
+    "items": [
+     "Prepare and restore the deceased with skill and respect, so families can say goodbye.",
+     "Apply cosmetics and dress the deceased with care for how families remember them.",
+     "Support grieving families during visitations with quiet, steady presence."
+    ],
+    "project": "Ask a senior colleague to review your restorative work on five cases and practise the techniques they suggest."
+   }
+  ],
+  "aiTools": [
+   "Funeral home management software",
+   "ChatGPT or Claude for obituary structure",
+   "Inventory lists with reorder alerts"
+  ],
+  "humanEdge": [
+   "Skilled, respectful restorative work",
+   "Care for how families remember",
+   "Steady presence with the bereaved"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-4012.00": {
+  "roadmap": [
+   {
+    "title": "Digital identity checks and records",
+    "items": [
+     "Check identity documents and tags against records at every step, with sign-off in the crematory system.",
+     "Record each cremation's details, times and handover in the system, so remains are always traceable.",
+     "Prepare clear information for families about the cremation process with AI help, checked by the director."
+    ],
+    "project": "Audit identity checks and records for one month with a supervisor, and fix any step where a mistake could happen."
+   },
+   {
+    "title": "Equipment monitoring and safety",
+    "items": [
+     "Monitor cremator temperatures and emissions with control systems, and act on alarms at once.",
+     "Keep maintenance logs for cremators and cremulators, with reminders for servicing.",
+     "Learn alkaline hydrolysis and other new methods, with their rules and safety steps."
+    ],
+    "project": "Track equipment alarms and maintenance for three months and agree a servicing schedule that cuts breakdowns."
+   },
+   {
+    "title": "Respect, care and comfort",
+    "items": [
+     "Handle human and pet remains with respect and care at every step.",
+     "Explain the process to families gently and honestly when they ask.",
+     "Comfort bereaved families with quiet kindness and patience."
+    ],
+    "project": "Write down how you explain cremation to families, review it with a director and improve one part each month."
+   }
+  ],
+  "aiTools": [
+   "Crematory record and tracking systems",
+   "Cremator control and emission monitors",
+   "ChatGPT or Claude for family information sheets"
+  ],
+  "humanEdge": [
+   "Respectful handling of remains",
+   "Gentle, honest explanations to families",
+   "Quiet comfort for the bereaved"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-4021.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for services and admin",
+    "items": [
+     "Check service schedules, room bookings and family requests in the funeral home system each morning.",
+     "Handle phone calls and documents with templates and the office system, checking every name.",
+     "Set up livestreams and slideshows for services, and test them before families arrive."
+    ],
+    "project": "Prepare a checklist for livestream and slideshow setup, use it for a month and record technical problems before and after."
+   },
+   {
+    "title": "Smooth services and upkeep",
+    "items": [
+     "Use a service checklist so flowers, seating, music and parking are ready on time.",
+     "Keep vehicle and building maintenance logs with reminders, so nothing fails on a service day.",
+     "Learn cultural and religious customs for services you assist, from families and guides."
+    ],
+    "project": "Write a one-page guide to the customs of three communities you serve, checked with families or leaders."
+   },
+   {
+    "title": "Dignity, calm and support",
+    "items": [
+     "Greet and guide mourners with quiet dignity and patience, especially those who are lost or upset.",
+     "Drive hearses and lead processions safely and respectfully, planning routes in advance.",
+     "Notice what families need during services and help before they ask."
+    ],
+    "project": "Ask funeral directors for feedback on your work at five services and practise the points they raise."
+   }
+  ],
+  "aiTools": [
+   "Funeral home management systems",
+   "Livestream and slideshow tools",
+   "Maintenance log apps"
+  ],
+  "humanEdge": [
+   "Quiet dignity with mourners at services",
+   "Safe, respectful driving in processions",
+   "Noticing what families need before they ask"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-4031.00": {
+  "roadmap": [
+   {
+    "title": "AI for paperwork, obituaries and plans",
+    "items": [
+     "Complete death certificates and permits in official online systems, checking every detail with the family.",
+     "Draft obituaries and service programmes with families using AI help, keeping their own words.",
+     "Plan services, flowers and venues with a shared checklist and calendar for each family."
+    ],
+    "project": "Draft programmes and obituaries with AI help for five families, and ask each whether the result felt personal."
+   },
+   {
+    "title": "Business records and family choices",
+    "items": [
+     "Keep accounts, orders and stock in funeral home software, with monthly reports.",
+     "Show service options and prices clearly on your website and in printed guides.",
+     "Offer livestreams, online guestbooks and memorial pages for families who want them."
+    ],
+    "project": "Write a clear online price and options guide with AI help and track family questions for a month afterwards."
+   },
+   {
+    "title": "Counsel, care and ceremony",
+    "items": [
+     "Meet grieving families with patience, helping them make decisions at a hard time.",
+     "Oversee care of the deceased with skill and respect for every family's customs.",
+     "Lead funerals and processions with calm dignity, adapting to each family's wishes on the day."
+    ],
+    "project": "Follow up with ten families a month after the funeral and record what they valued and what you could improve."
+   }
+  ],
+  "aiTools": [
+   "Funeral home management software",
+   "ChatGPT or Claude for obituaries and programmes",
+   "Livestream and memorial page tools"
+  ],
+  "humanEdge": [
+   "Guiding families through hard decisions",
+   "Respect for every family's customs",
+   "Calm dignity in ceremonies"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-5011.00": {
+  "roadmap": [
+   {
+    "title": "Apps for bookings, payments and marketing",
+    "items": [
+     "Run bookings, reminders and payments with a barber app, so you spend less time on the phone.",
+     "Post photos of your cuts on social media with captions drafted with AI and edited in your voice.",
+     "Keep client notes on preferred styles and products in the booking app."
+    ],
+    "project": "Introduce online booking with reminders for two months and compare no-shows and empty chair time with before."
+   },
+   {
+    "title": "Style tools and growing your shop",
+    "items": [
+     "Use virtual try-on apps to show clients new styles before you cut.",
+     "Track which services and products sell best, and adjust prices and offers.",
+     "Learn new cuts and techniques from online courses and videos, and practise them on mannequins."
+    ],
+    "project": "Offer virtual try-on to clients for a month and record how many tried a new style and came back."
+   },
+   {
+    "title": "Craft, conversation and community",
+    "items": [
+     "Cut and shave with skilled hands; precision and feel are your trade.",
+     "Listen to clients and suggest styles that suit their face and life.",
+     "Build a loyal community with good conversation and a welcoming shop."
+    ],
+    "project": "Learn one new technique from a course, practise it on willing clients and add it to your service menu."
+   }
+  ],
+  "aiTools": [
+   "Barber booking and payment apps",
+   "Virtual hairstyle try-on apps",
+   "ChatGPT or Claude for social captions"
+  ],
+  "humanEdge": [
+   "Precise cutting and shaving by hand",
+   "Suggesting styles that suit each client",
+   "Building a loyal community in the chair"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "39-5012.00": {
   "roadmap": [
    {
@@ -22004,6 +22550,342 @@
    "Cutting and colouring skill",
    "Listening and reading what suits each client",
    "Building loyal, long-term clients"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-5091.00": {
+  "roadmap": [
+   {
+    "title": "AI for script breakdowns and looks",
+    "items": [
+     "Break down scripts with AI help to list each character's looks, changes and continuity notes, checked by you.",
+     "Create mood boards and period references with AI image search, then design looks yourself.",
+     "Keep continuity photos and notes in an app, so every day's look matches exactly."
+    ],
+    "project": "Break down one script with AI help, check it scene by scene and record the continuity changes it missed."
+   },
+   {
+    "title": "Kits, supplies and digital effects",
+    "items": [
+     "Track kit products, shades and allergies for each performer in a simple database.",
+     "Learn how digital makeup and visual effects affect your work on screen, and agree hand-offs with VFX teams.",
+     "Order prosthetics, wigs and special products early with a supply list tied to the schedule."
+    ],
+    "project": "Build a performer database with shades, products and allergies for one production and use it every shooting day."
+   },
+   {
+    "title": "Artistry under lights and cameras",
+    "items": [
+     "Apply makeup and prosthetics with artistry, adjusting for lights, cameras and sweat.",
+     "Work with directors and performers to bring characters to life, staying calm on set.",
+     "Duplicate looks precisely day after day by eye and touch, even after long breaks in filming."
+    ],
+    "project": "Create one ageing or injury effect from scratch, photograph each step and get feedback from a senior artist."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for script breakdowns",
+   "Continuity photo apps",
+   "AI image search for references"
+  ],
+  "humanEdge": [
+   "Artistry under lights and cameras",
+   "Calm teamwork with performers on set",
+   "Precise continuity by eye and touch"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-5092.00": {
+  "roadmap": [
+   {
+    "title": "Apps for bookings and client records",
+    "items": [
+     "Run bookings, reminders and payments with a salon app, cutting no-shows and phone time.",
+     "Keep client records on allergies, nail health and preferences in the app.",
+     "Post photos of your nail designs with AI-drafted captions edited in your voice."
+    ],
+    "project": "Introduce online booking with reminders for two months and compare no-shows and gaps with before."
+   },
+   {
+    "title": "Design ideas and safe products",
+    "items": [
+     "Find nail art ideas with AI image tools and trends, then make each design your own.",
+     "Learn product safety, ventilation and allergy rules for gels and acrylics.",
+     "Track product use and costs so prices cover your time and materials."
+    ],
+    "project": "Track product costs for every service for a month and adjust prices where you were losing money."
+   },
+   {
+    "title": "Precise handwork and client care",
+    "items": [
+     "Shape, file and paint with steady hands and an eye for detail, even on long busy days.",
+     "Check hands and feet for infections and refer clients to a doctor when needed.",
+     "Keep tools and stations sterile between every client, so people trust your hygiene."
+    ],
+    "project": "Practise one advanced nail art technique each week for a month and add the best designs to your portfolio."
+   }
+  ],
+  "aiTools": [
+   "Salon booking and payment apps",
+   "AI image tools for nail art ideas",
+   "ChatGPT or Claude for social captions"
+  ],
+  "humanEdge": [
+   "Steady, detailed handwork on every nail",
+   "Spotting infections and referring",
+   "Sterile tools and trusted hygiene"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-5093.00": {
+  "roadmap": [
+   {
+    "title": "Apps for records and learning",
+    "items": [
+     "Keep treatment records for scalp conditions and products in the salon app.",
+     "Learn about scalp conditions and products from online courses, checked with senior stylists.",
+     "Check your schedule and client notes in the booking app before each client arrives."
+    ],
+    "project": "Complete one online course on scalp care and use what you learned with clients for a month, noting the results."
+   },
+   {
+    "title": "Scalp care and your next step",
+    "items": [
+     "Learn scalp analysis tools and cameras some salons use, and what they show.",
+     "Study for a hairdressing or cosmetology licence, with practice videos and AI study help.",
+     "Track which treatments clients ask for, and share the list with your salon manager."
+    ],
+    "project": "Make a study plan for a hairdressing licence with AI help and follow it for three months, tracking progress."
+   },
+   {
+    "title": "Relaxing, careful service",
+    "items": [
+     "Shampoo and massage with care, so clients relax and feel looked after.",
+     "Notice scalp problems and suggest clients see a doctor when needed.",
+     "Chat warmly with clients and pass their wishes to the stylist."
+    ],
+    "project": "Ask 20 clients how their shampoo and massage felt and change one part of your routine based on their answers."
+   }
+  ],
+  "aiTools": [
+   "Salon booking apps",
+   "Online scalp care courses",
+   "Scalp analysis cameras"
+  ],
+  "humanEdge": [
+   "Relaxing, caring scalp massage",
+   "Noticing scalp problems and referring",
+   "Warm chat that puts clients at ease"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-5094.00": {
+  "roadmap": [
+   {
+    "title": "Apps for bookings, records and skin analysis",
+    "items": [
+     "Book treatments online with deposits and reminders, so your schedule fills and no-shows fall.",
+     "Use skin analysis cameras and apps to track changes over time, and judge treatments with your own eyes.",
+     "Keep client records on skin type, allergies, products and reactions in secure software."
+    ],
+    "project": "Track five regular clients' skin with analysis photos for three months and use the changes to adjust their routines."
+   },
+   {
+    "title": "Product knowledge and home routines",
+    "items": [
+     "Write home care routines for clients with AI help, checked against product ingredients and their skin.",
+     "Check product ingredients and claims with reliable sources, not marketing or AI guesses.",
+     "Post before-and-after photos with consent and AI-drafted captions edited in your voice."
+    ],
+    "project": "Write home care routines for ten clients with AI help, check each one and ask them a month later what changed."
+   },
+   {
+    "title": "Skilled treatments and client trust",
+    "items": [
+     "Perform facials, waxing and extractions with skilled, gentle hands.",
+     "Examine skin under magnification and refer clients to a dermatologist when something looks wrong.",
+     "Keep tools and rooms sterile and calm, so clients feel safe and cared for from start to finish."
+    ],
+    "project": "Learn one advanced treatment through a certified course and offer it to regular clients, tracking results and feedback."
+   }
+  ],
+  "aiTools": [
+   "Skin analysis cameras and apps",
+   "Salon booking software",
+   "ChatGPT or Claude for home routine drafts"
+  ],
+  "humanEdge": [
+   "Gentle, skilled hands-on treatments",
+   "Spotting skin problems to refer",
+   "Sterile, caring treatment rooms"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-6011.00": {
+  "roadmap": [
+   {
+    "title": "Apps for luggage tags and guest info",
+    "items": [
+     "Tag and track luggage with the hotel's digital claim system, so bags are never lost.",
+     "Answer guests' questions about the area with the hotel's guide and translation apps.",
+     "Explain room features, such as smart locks and climate controls, so guests feel at home."
+    ],
+    "project": "Track luggage claim problems for a month with the digital system and agree one fix with the front desk."
+   },
+   {
+    "title": "Requests, delivery robots and teamwork",
+    "items": [
+     "Receive and close guest requests in the hotel task app, so nothing is forgotten.",
+     "Work alongside delivery robots for room items, and handle what they cannot.",
+     "Learn the hotel's services and local tips well, so your advice is personal."
+    ],
+    "project": "Write your own top-ten local tips list with AI help, check each place yourself and share it with guests for a month."
+   },
+   {
+    "title": "Warm welcome and careful handling",
+    "items": [
+     "Greet guests warmly and make arrivals smooth, especially after long journeys.",
+     "Carry luggage carefully and safely, protecting both bags and your back.",
+     "Help guests with disabilities and families with small children with patience."
+    ],
+    "project": "Ask 20 arriving guests how their welcome felt and change one part of your routine based on their answers."
+   }
+  ],
+  "aiTools": [
+   "Digital luggage claim systems",
+   "Hotel task and request apps",
+   "Translation apps"
+  ],
+  "humanEdge": [
+   "Warm, smooth arrivals for tired guests",
+   "Careful, safe luggage handling",
+   "Patient help for guests who need it"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-6012.00": {
+  "roadmap": [
+   {
+    "title": "AI for recommendations and bookings",
+    "items": [
+     "Use AI and booking platforms to find restaurants, shows and tours quickly, and check every detail before confirming.",
+     "Answer simple questions through the hotel's chat or app, and keep personal service for complex requests.",
+     "Keep a digital file of each guest's preferences, so returning guests get personal service."
+    ],
+    "project": "Track how long you spend on simple questions for two weeks, move them to the hotel app and use the time for complex requests."
+   },
+   {
+    "title": "Insider knowledge AI cannot copy",
+    "items": [
+     "Build personal relationships with restaurants, venues and guides that get guests what websites cannot.",
+     "Keep your own notes on places you have visited, with honest opinions guests can trust.",
+     "Learn to verify AI travel answers, which often list closed places or wrong times."
+    ],
+    "project": "Visit ten local places this month, write honest notes on each and use them to update your recommendations."
+   },
+   {
+    "title": "Special requests and personal service",
+    "items": [
+     "Solve unusual requests creatively, from hard-to-find items to surprise events.",
+     "Read guests' moods and needs, and suggest what will truly delight them.",
+     "Turn problems into good memories with calm, quick service and a personal follow-up."
+    ],
+    "project": "Keep a log of unusual requests you solved for three months and share the best methods with your team."
+   }
+  ],
+  "aiTools": [
+   "Booking platforms for restaurants and events",
+   "Hotel guest chat and app",
+   "Guest preference records"
+  ],
+  "humanEdge": [
+   "Personal contacts that open doors",
+   "Solving unusual requests creatively",
+   "Reading what will delight each guest"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-7011.00": {
+  "roadmap": [
+   {
+    "title": "AI for tour research and visitor info",
+    "items": [
+     "Research site history and stories with AI search, and confirm every fact in reliable sources.",
+     "Prepare multilingual handouts and directions with AI translation, checked by a native speaker.",
+     "Register visitors and issue badges with a simple app, so groups start on time."
+    ],
+    "project": "Research five new stories for your tour with AI help, check each in sources and test them with two groups."
+   },
+   {
+    "title": "Bookings, audio guides and school programs",
+    "items": [
+     "Use booking platforms and reviews to fill tours and learn what visitors value.",
+     "Learn how AI audio guides work, and offer what they cannot: live stories and questions.",
+     "Adapt tours for school groups with activities made with AI help, checked with teachers."
+    ],
+    "project": "Create one school version of your tour with AI-made activities, run it twice and ask the teachers for feedback."
+   },
+   {
+    "title": "Storytelling, safety and group care",
+    "items": [
+     "Tell stories with energy and humour, reading the group and adapting as you go.",
+     "Keep groups safe on sites, roads and boats, watching everyone and every risk.",
+     "Answer questions honestly, including when you do not know the answer."
+    ],
+    "project": "Ask every group for one-line feedback for a month and change the part of your tour they enjoyed least."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for research and handouts",
+   "Tour booking platforms",
+   "Translation apps"
+  ],
+  "humanEdge": [
+   "Live storytelling that reads the group",
+   "Keeping groups safe on the move",
+   "Honest answers to visitors' questions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-7012.00": {
+  "roadmap": [
+   {
+    "title": "AI for itineraries and travel logistics",
+    "items": [
+     "Draft itineraries with AI from routes, times and clients' interests, and check every booking and opening time.",
+     "Arrange transport, hotels and equipment with booking platforms, keeping all confirmations in one place.",
+     "Answer clients' sightseeing and shopping questions with AI help and your own local knowledge."
+    ],
+    "project": "Draft one new itinerary with AI help, check every detail on the ground and run it with a test group."
+   },
+   {
+    "title": "Risk planning, problems and sales",
+    "items": [
+     "Plan for weather, health and safety risks with forecasts and medical contacts for each trip.",
+     "Keep a problem log from past trips to plan better and avoid repeating mistakes.",
+     "Sell packages with clear descriptions and photos, drafted with AI and checked by you."
+    ],
+    "project": "Write a risk plan for one expedition with AI help, review it with a medical or safety expert and use it on the trip."
+   },
+   {
+    "title": "Leading groups in the field",
+    "items": [
+     "Lead groups through new places, reading their energy and adjusting the day.",
+     "Solve problems on the road calmly, from missed transfers to illness.",
+     "Set up camps, cook and care for participants with special needs."
+    ],
+    "project": "Collect feedback from every participant on two trips and change one part of your itinerary or leadership."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for itinerary drafts",
+   "Travel booking platforms",
+   "Weather and safety alert apps"
+  ],
+  "humanEdge": [
+   "Leading groups through new places",
+   "Calm problem solving on the road",
+   "Caring for participants' special needs"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -22049,6 +22931,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "39-9011.01": {
+  "roadmap": [
+   {
+    "title": "AI for activities, meals and family notes",
+    "items": [
+     "Find age-appropriate activities and crafts with AI ideas, and adapt them to each child's interests.",
+     "Plan healthy meals and snacks with AI help, checking allergies with the parents first.",
+     "Share daily notes and photos with parents through an app they agree to, respecting privacy."
+    ],
+    "project": "Plan two weeks of activities and meals with AI help, adapt them to the children and ask the parents for feedback."
+   },
+   {
+    "title": "Learning support and safe tech use",
+    "items": [
+     "Help with homework by guiding children to think, not by letting AI give answers.",
+     "Set screen and AI app rules with parents, and supervise children's use of them.",
+     "Keep emergency contacts, allergies and routines in one shared document with the family."
+    ],
+    "project": "Agree screen and AI app rules with the parents, use them for a month and review what worked together."
+   },
+   {
+    "title": "Care, play and child development",
+    "items": [
+     "Play, read and talk with children, building language and confidence every day.",
+     "Teach habits such as eating, sleeping and kindness with patience and consistency.",
+     "Notice changes in a child's mood, health or development and tell the parents."
+    ],
+    "project": "Keep short weekly notes on each child's development for two months and discuss them with the parents."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for activity and meal ideas",
+   "Family communication apps",
+   "Shared family documents"
+  ],
+  "humanEdge": [
+   "Play and talk that build confidence",
+   "Patient, consistent daily habits",
+   "Noticing changes in a child's mood or health"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "39-9031.00": {
   "roadmap": [
    {
@@ -22088,6 +23012,90 @@
    "Spotting poor form and fatigue in a live class",
    "Motivating people to keep coming back",
    "Building a friendly training community"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-9032.00": {
+  "roadmap": [
+   {
+    "title": "AI for activity plans and sign-ups",
+    "items": [
+     "Plan activities, games and crafts with AI ideas, adapted to the group's ages and abilities.",
+     "Run sign-ups, attendance and inventory with online forms and apps, so admin takes less time.",
+     "Promote programs with AI-drafted posts and flyers, checked for accuracy."
+    ],
+    "project": "Plan one month of activities with AI help, run them and record attendance and participants' favourites."
+   },
+   {
+    "title": "Inclusive programs and feedback",
+    "items": [
+     "Adapt activities for people with disabilities, with ideas from AI and advice from specialists.",
+     "Collect short feedback after activities, and change programs based on what people say.",
+     "Keep safety checks for equipment and facilities on digital checklists."
+    ],
+    "project": "Adapt two activities for participants with disabilities, run them and ask participants how included they felt."
+   },
+   {
+    "title": "Leading groups with energy",
+    "items": [
+     "Lead activities with energy, getting shy people involved and keeping everyone safe.",
+     "Teach skills and safety by demonstration, adjusting for each participant.",
+     "Welcome newcomers and introduce them, so everyone feels part of the group."
+    ],
+    "project": "Track newcomers for a month, pair each with a regular participant and record how many come back."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for activity ideas",
+   "Online sign-up and attendance forms",
+   "Digital safety checklists"
+  ],
+  "humanEdge": [
+   "Energetic, inclusive group leadership",
+   "Teaching skills by demonstration",
+   "Welcoming newcomers into the group"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-9041.00": {
+  "roadmap": [
+   {
+    "title": "AI for programs, reports and resources",
+    "items": [
+     "Plan educational and social programs for residents with AI ideas, adapted to what students ask for.",
+     "Write incident reports with templates, keeping facts clear and private information protected.",
+     "Keep a current list of campus support services, so you can refer students quickly."
+    ],
+    "project": "Plan three resident programs with AI ideas, run them and compare attendance with last term's programs."
+   },
+   {
+    "title": "Maintenance requests and staff training",
+    "items": [
+     "Report maintenance problems through the work order system with photos, and follow up until fixed.",
+     "Train resident assistants with short guides and role plays prepared with AI help.",
+     "Learn how students use AI tools and apps for study and wellbeing, so you can advise them."
+    ],
+    "project": "Prepare a role-play training on difficult conversations with AI help and run it with your resident assistants."
+   },
+   {
+    "title": "Support, safety and fair discipline",
+    "items": [
+     "Listen to students with family, money or study problems, and connect them with help.",
+     "Mediate conflicts between residents fairly, so they can keep living together.",
+     "Make rounds and notice students who withdraw or behave unusually, and act early."
+    ],
+    "project": "Hold short check-ins with every resident on your floor within a month and record who needed referral to support."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for program ideas and training",
+   "Work order systems",
+   "Incident report templates"
+  ],
+  "humanEdge": [
+   "Listening to students in trouble",
+   "Fair mediation between residents",
+   "Noticing students who withdraw"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -22133,6 +23141,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "41-1012.00": {
+  "roadmap": [
+   {
+    "title": "AI for sales dashboards and reports",
+    "items": [
+     "Track team targets, pipeline and activity in CRM dashboards, and coach on the numbers each week.",
+     "Prepare sales and inventory reports for management with AI-assisted summaries, checking every figure.",
+     "Draft replies to complaints with AI, then call the customer yourself on serious cases."
+    ],
+    "project": "Build a weekly CRM dashboard for your team, use it in one-to-ones for a month and track progress toward targets."
+   },
+   {
+    "title": "Forecasting, schedules and hiring",
+    "items": [
+     "Use AI-assisted forecasting in the CRM to plan targets, and test it against what your team knows about deals.",
+     "Plan schedules and territories with tools that balance workload and travel.",
+     "Screen applicants with structured interviews, and check any AI screening tool for bias."
+    ],
+    "project": "Compare the CRM forecast with your team's own forecast for a quarter and record which was closer for each deal size."
+   },
+   {
+    "title": "Coaching sellers and winning deals",
+    "items": [
+     "Join sellers on hard calls and help close complicated deals, showing rather than telling.",
+     "Coach each person on their own weak spots with honest, specific feedback.",
+     "Work with other departments and leaders to find new markets and fix customer problems."
+    ],
+    "project": "Hold one coaching ride-along with each seller in a month and record one skill each worked on afterwards."
+   }
+  ],
+  "aiTools": [
+   "CRM with dashboards such as Salesforce",
+   "AI-assisted sales forecasting",
+   "ChatGPT or Claude for reports and replies"
+  ],
+  "humanEdge": [
+   "Helping sellers close hard deals",
+   "Honest, specific coaching for each seller",
+   "Fixing customer problems across departments"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "41-2011.00": {
   "roadmap": [
    {
@@ -22172,6 +23222,132 @@
    "Calming an upset customer and finding a fix they accept",
    "Spotting problems at self-checkout before they become queues",
    "Keeping a busy checkout friendly and moving"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-2012.00": {
+  "roadmap": [
+   {
+    "title": "Cash systems and transaction records",
+    "items": [
+     "Process exchanges and payouts on the cashier system, counting carefully and checking every amount.",
+     "Keep transaction records and authorization forms complete in the system before the end of each shift.",
+     "Reconcile daily summaries with the system's reports, and investigate every difference."
+    ],
+    "project": "Track reconciliation differences for a month, find their causes and agree one fix with your supervisor."
+   },
+   {
+    "title": "Security, credit checks and responsible gambling",
+    "items": [
+     "Follow cage security rules exactly, including camera coverage and dual counts.",
+     "Check credit applications with verification tools, and refer anything doubtful.",
+     "Learn the signs of problem gambling and money laundering, and report them by procedure."
+    ],
+    "project": "Review anti-money-laundering signs with a short AI-made guide checked by compliance, and report how often you spotted them in a month."
+   },
+   {
+    "title": "Accuracy, honesty and patron care",
+    "items": [
+     "Count money fast and accurately under pressure, with no shortcuts.",
+     "Serve patrons politely, including those who are upset after losing.",
+     "Act with complete honesty; trust is the core of handling money."
+    ],
+    "project": "Practise counting and verifying procedures with a trainer for a month and record your error rate before and after."
+   }
+  ],
+  "aiTools": [
+   "Casino cashier and cage systems",
+   "Credit verification tools",
+   "Transaction reconciliation reports"
+  ],
+  "humanEdge": [
+   "Fast, accurate cash counting under pressure",
+   "Polite service to upset patrons",
+   "Complete honesty in handling money"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-2021.00": {
+  "roadmap": [
+   {
+    "title": "AI for bookings, quotes and rental forms",
+    "items": [
+     "Take rental and service orders in the booking system, and confirm dates, prices and deposits with the customer.",
+     "Let customers book and sign rental forms online, and check licences and IDs in person at pickup.",
+     "Answer common questions about fees and policies with an AI chat or FAQ, checked by your manager."
+    ],
+    "project": "Set up an online FAQ with AI help for your top 15 questions and count phone calls about them for a month after."
+   },
+   {
+    "title": "Inventory, returns and customer data",
+    "items": [
+     "Track rental items, condition and returns in the system with photos at checkout and return.",
+     "Use booking data to see which items are in demand and suggest stock changes.",
+     "Explain equipment use with short videos or guides made with AI help and tested on customers."
+    ],
+    "project": "Photograph every rental item at checkout and return for a month and compare damage disputes with before."
+   },
+   {
+    "title": "Helpful service and judgement",
+    "items": [
+     "Help customers choose the right item for their job, asking what they really need.",
+     "Show customers how equipment works safely before they leave, and check they can use it.",
+     "Handle disputes about damage or fees fairly and calmly, using your checkout photos as evidence."
+    ],
+    "project": "Ask 20 customers whether they got the right item for their job, and change your questions based on their answers."
+   }
+  ],
+  "aiTools": [
+   "Rental and booking systems",
+   "Online forms with e-signature",
+   "ChatGPT or Claude for FAQs and guides"
+  ],
+  "humanEdge": [
+   "Finding the right item for each job",
+   "Safe demonstrations before handover",
+   "Fair handling of damage disputes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-2022.00": {
+  "roadmap": [
+   {
+    "title": "AI part lookup and order handling",
+    "items": [
+     "Find part numbers with electronic catalogues and AI search by vehicle or machine, and confirm fit before selling.",
+     "Take phone and online orders in the parts system, with stock checks and delivery dates.",
+     "Update customers on back-orders with automatic messages, and call when delays matter."
+    ],
+    "project": "Track wrong-part returns for a month, find the most common lookup mistake and fix it with your team."
+   },
+   {
+    "title": "Inventory and demand data",
+    "items": [
+     "Use inventory data to reorder fast-moving parts before they run out.",
+     "Label and locate stock with barcodes, so parts are found quickly.",
+     "Learn parts for electric and hybrid vehicles and new machines as demand grows."
+    ],
+    "project": "Review three months of sales data with AI help, adjust stock for the top 20 parts and track stock-outs after."
+   },
+   {
+    "title": "Diagnosing needs and trusted advice",
+    "items": [
+     "Work out which part a customer needs from an old part or a description of the fault.",
+     "Examine returned parts for defects and judge fair exchanges, explaining your decision clearly.",
+     "Build trust with mechanics and repeat customers through honest, reliable advice."
+    ],
+    "project": "Ask five regular mechanic customers what would make ordering easier, make two changes and ask again a month later."
+   }
+  ],
+  "aiTools": [
+   "Electronic parts catalogues",
+   "Parts and inventory systems",
+   "Barcode labelling and scanning"
+  ],
+  "humanEdge": [
+   "Identifying parts from faults and samples",
+   "Judging returned parts fairly",
+   "Trusted advice for mechanics"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -22385,6 +23561,174 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "41-4011.00": {
+  "roadmap": [
+   {
+    "title": "AI for prospecting, proposals and CRM",
+    "items": [
+     "Research prospects and their needs with AI from public sources before calls, and check facts before using them.",
+     "Draft proposals and technical presentations with AI from product specs, and verify every claim with engineering.",
+     "Log calls and notes in the CRM with AI summaries, and correct them before saving."
+    ],
+    "project": "Prepare AI-researched briefs for ten prospect calls, check each and compare meeting rates with your usual preparation."
+   },
+   {
+    "title": "Quotes, pricing and pipeline",
+    "items": [
+     "Build quotes with configuration and pricing tools, and check margins and terms before sending.",
+     "Use CRM data to see which leads convert and focus time on the best ones.",
+     "Answer routine product and availability questions with an AI assistant, and handle technical ones yourself."
+    ],
+    "project": "Score your leads with CRM data for a quarter, focus on the top tier and compare win rates with the previous quarter."
+   },
+   {
+    "title": "Technical trust and negotiation",
+    "items": [
+     "Visit customers on site to understand their process and problems first-hand.",
+     "Explain technical products in the customer's terms and solve their real problem.",
+     "Negotiate prices and terms that keep long-term relationships healthy."
+    ],
+    "project": "Visit three key customers' sites, map a problem your product could solve and present a proposal to each."
+   }
+  ],
+  "aiTools": [
+   "CRM with AI summaries",
+   "ChatGPT or Claude for research and proposals",
+   "Quote configuration tools"
+  ],
+  "humanEdge": [
+   "Understanding customers' processes on site",
+   "Explaining technology in customers' terms",
+   "Negotiating for long-term relationships"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-4011.07": {
+  "roadmap": [
+   {
+    "title": "AI for solar proposals and site estimates",
+    "items": [
+     "Generate proposals with solar design software from satellite images, and check roof size, shading and orientation.",
+     "Calculate production and savings estimates with design tools, and explain their assumptions honestly.",
+     "Answer questions on incentives, financing and warranties with AI-drafted guides checked against official sources."
+    ],
+    "project": "Compare satellite-based production estimates with on-site measurements for ten homes and record where they differed."
+   },
+   {
+    "title": "Leads, follow-up and honest selling",
+    "items": [
+     "Manage leads and follow-ups in a CRM with automatic reminders, and call the warm ones yourself.",
+     "Track installed systems' real production against your estimates to improve future proposals.",
+     "Stay up to date on incentive and grid connection rules with official sources."
+    ],
+    "project": "Track real production for 20 installed systems against your proposals and adjust your estimating assumptions."
+   },
+   {
+    "title": "Site visits and customer trust",
+    "items": [
+     "Assess sites in person: roof condition, shading and electrical panels decide what is possible.",
+     "Listen to customers' energy needs and budgets, and recommend honestly, even if it means a smaller system.",
+     "Explain complex financing simply, so customers make good long-term decisions."
+    ],
+    "project": "Ask ten customers a year after installation whether savings matched your estimate, and share the results openly."
+   }
+  ],
+  "aiTools": [
+   "Solar design software such as Aurora",
+   "CRM with follow-up reminders",
+   "ChatGPT or Claude for incentive guides"
+  ],
+  "humanEdge": [
+   "Assessing roofs, shading and panels in person",
+   "Honest recommendations on system size",
+   "Explaining financing simply"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-9011.00": {
+  "roadmap": [
+   {
+    "title": "AI for scripts, product facts and reports",
+    "items": [
+     "Prepare demo scripts and product facts with AI help from the brand's materials, and check every claim.",
+     "Record coupons, samples and sales on a phone app during events, so reports are ready at the end.",
+     "Answer common customer questions with a quick fact sheet made with AI and approved by the brand."
+    ],
+    "project": "Prepare a checked fact sheet for one product with AI help, use it at five events and track questions you could not answer."
+   },
+   {
+    "title": "Event data and better demonstrations",
+    "items": [
+     "Track which demos, times and locations sell best, and plan future events from the data.",
+     "Film short demo videos for social media with captions drafted with AI.",
+     "Practise demonstrations with video of yourself, and improve how you explain and show the product."
+    ],
+    "project": "Track sales by time and location for ten events, find the best slots and suggest a better schedule to the brand."
+   },
+   {
+    "title": "Live persuasion and connection",
+    "items": [
+     "Draw people in with energy and a friendly opening line, even late in a long event day.",
+     "Show the product in action and adapt your pitch to each person's needs.",
+     "Answer doubts honestly, without promising what the product cannot do."
+    ],
+    "project": "Try three different opening lines at events for two weeks and record which ones started the most conversations."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for scripts and fact sheets",
+   "Event reporting apps",
+   "Phone video for demo clips"
+  ],
+  "humanEdge": [
+   "Drawing people in with energy and warmth",
+   "Adapting the pitch to each person",
+   "Honest answers to customer doubts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-9012.00": {
+  "roadmap": [
+   {
+    "title": "Apps for bookings, portfolios and admin",
+    "items": [
+     "Keep your portfolio and digital comp card online, updated with recent shoots.",
+     "Track bookings, rates, dates and payments in one app, and check agency statements against it.",
+     "Write bios and social posts with AI help in your own voice, and keep them current."
+    ],
+    "project": "Track every booking, rate and payment in one app for three months and check them against your agency statements."
+   },
+   {
+    "title": "AI models, rights and your image",
+    "items": [
+     "Learn how AI-generated models and digital twins are used in fashion, and what they mean for your work.",
+     "Read contracts for clauses on digital likeness, AI training and image use, and get advice before signing.",
+     "Keep records of where your images are used, and act on unauthorised use."
+    ],
+    "project": "Review your contracts for AI and likeness clauses with your agency or a lawyer, and change one before your next job."
+   },
+   {
+    "title": "Posing, presence and professionalism",
+    "items": [
+     "Pose with expression and movement that bring clothes and products to life.",
+     "Work smoothly with photographers, stylists and clients under time pressure.",
+     "Look after your health and energy with sustainable routines, not extreme diets."
+    ],
+    "project": "Practise posing with a photographer friend for a month and build ten new portfolio images from the sessions."
+   }
+  ],
+  "aiTools": [
+   "Online portfolio and comp card platforms",
+   "Booking and payment tracking apps",
+   "ChatGPT or Claude for bios and posts"
+  ],
+  "humanEdge": [
+   "Posing that brings products to life",
+   "Teamwork with photographers and stylists",
+   "Protecting your image and likeness"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "41-9021.00": {
   "roadmap": [
    {
@@ -22511,6 +23855,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "41-9041.00": {
+  "roadmap": [
+   {
+    "title": "AI for call scripts, CRM and follow-up",
+    "items": [
+     "Adapt call scripts with AI to each customer group, and keep the talk natural rather than read out.",
+     "Log calls and outcomes in the CRM with AI summaries you check, so follow-ups are accurate.",
+     "Use AI-suggested next steps and call times in the dialler, and judge each call yourself."
+    ],
+    "project": "Test two AI-adapted scripts for one campaign over two weeks and compare conversion and complaint rates."
+   },
+   {
+    "title": "Compliance, consent and quality",
+    "items": [
+     "Learn the rules on consent, do-not-call lists and recording, and follow them on every call.",
+     "Review your recorded calls with AI scoring and a coach, and improve one skill at a time.",
+     "Know how AI voice agents handle simple calls, and focus on the conversations they cannot."
+    ],
+    "project": "Review ten of your recorded calls with a coach and AI scoring, pick one skill and track it for a month."
+   },
+   {
+    "title": "Listening, trust and next steps",
+    "items": [
+     "Listen for what each person really needs, and stop pushing when the answer is no.",
+     "Handle objections with honesty and respect, keeping the caller's trust.",
+     "Move toward customer success or field sales, where these skills are in demand."
+    ],
+    "project": "Shadow a customer success or account manager for a day and write down which of your skills fit that role."
+   }
+  ],
+  "aiTools": [
+   "CRM with AI call summaries",
+   "Diallers with AI call timing",
+   "Call recording and AI coaching tools"
+  ],
+  "humanEdge": [
+   "Listening for what people really need",
+   "Respectful handling of objections",
+   "Accepting a no gracefully and politely"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "41-9091.00": {
+  "roadmap": [
+   {
+    "title": "Phone tools for orders, payments and routes",
+    "items": [
+     "Take card and mobile payments with a phone reader, and log every sale in an app.",
+     "Plan routes and stops with maps and past sales data, so you spend more time selling.",
+     "Build prospect lists from public data with AI help, respecting privacy rules."
+    ],
+    "project": "Track sales by area and time for a month in an app, then change your route toward the best areas and compare."
+   },
+   {
+    "title": "Product knowledge and honest pitches",
+    "items": [
+     "Prepare short product explanations and answers to common questions with AI help, checked for accuracy.",
+     "Use social media and messaging to tell regulars where you will be.",
+     "Learn local rules for street trading and door-to-door sales, and carry the right permits."
+    ],
+    "project": "Post your location and offers daily on social media for a month and count regular customers who came."
+   },
+   {
+    "title": "Face-to-face selling and stamina",
+    "items": [
+     "Start conversations with strangers warmly and read quickly whether to continue.",
+     "Demonstrate products in person and answer questions honestly.",
+     "Keep going through rejection and weather with a steady attitude."
+    ],
+    "project": "Try two different opening lines for two weeks each and record which leads to more conversations and sales."
+   }
+  ],
+  "aiTools": [
+   "Mobile payment readers",
+   "Route and map apps",
+   "Social media and messaging apps"
+  ],
+  "humanEdge": [
+   "Warm conversations with strangers",
+   "Honest demonstrations in person",
+   "Steady attitude through rejection"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "43-1011.00": {
   "roadmap": [
    {
@@ -22550,6 +23978,132 @@
    "Coaching people through change",
    "Handling escalated complaints and disputes",
    "Judging quality and fairness in the team's work"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI call routing and message handling",
+    "items": [
+     "Work with automated call menus and AI receptionists, taking over calls they cannot handle.",
+     "Record messages with AI transcription, and tidy them so they are clear and complete.",
+     "Keep directories and schedules up to date, so automated routing sends calls to the right place."
+    ],
+    "project": "Track for a month which calls the automated system passed to you and why, and suggest two routing fixes."
+   },
+   {
+    "title": "Visitors, alarms and front-desk skills",
+    "items": [
+     "Greet visitors and manage badges with a visitor system, keeping a human welcome at the desk.",
+     "Know emergency procedures and alarm systems well, and practise announcements.",
+     "Learn reception and office tools, such as booking rooms and handling deliveries, to widen your role."
+    ],
+    "project": "Practise emergency announcement procedures with security for a month and time how fast you complete each step."
+   },
+   {
+    "title": "Human voice in difficult calls",
+    "items": [
+     "Calm upset or confused callers, and solve the problems an automated menu cannot.",
+     "Handle emergency calls quickly and clearly, routing them to the right people.",
+     "Move toward receptionist, office coordinator or customer service roles with these skills."
+    ],
+    "project": "List the calls only a person could handle this month and use them to describe your value in your next review."
+   }
+  ],
+  "aiTools": [
+   "AI receptionists and call routing",
+   "AI transcription for messages",
+   "Visitor management systems"
+  ],
+  "humanEdge": [
+   "Calming upset or confused callers",
+   "Clear handling of emergency calls",
+   "A warm welcome at the front desk"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-2021.00": {
+  "roadmap": [
+   {
+    "title": "Automated systems and special assistance",
+    "items": [
+     "Learn the automated directory and connection systems, and step in where callers need a person.",
+     "Keep directory information accurate, so automated searches give callers the right numbers.",
+     "Use AI transcription and relay tools where they help callers who are deaf or hard of hearing."
+    ],
+    "project": "Track for a month which calls needed your help after automation, and write a short guide on handling them."
+   },
+   {
+    "title": "Records, accessibility and new skills",
+    "items": [
+     "Keep call and charge records in the system, and check reports for errors.",
+     "Learn accessibility services such as relay and captioned calls in depth.",
+     "Build skills for customer service, dispatch or reception roles through short courses."
+    ],
+    "project": "Complete one short course in customer service or dispatch and ask your manager about a trial shift in that role."
+   },
+   {
+    "title": "Help for people who need it most",
+    "items": [
+     "Help people who cannot dial or are in emergencies, calmly and quickly.",
+     "Find listings from incomplete details by asking good questions and checking spellings.",
+     "Speak clearly and kindly with older and disabled callers, at their pace."
+    ],
+    "project": "Ask five callers who needed special help what made the call easier, and share the tips with your team."
+   }
+  ],
+  "aiTools": [
+   "Automated directory and connection systems",
+   "Relay and captioned call services",
+   "AI transcription tools"
+  ],
+  "humanEdge": [
+   "Calm help for callers in emergencies",
+   "Finding listings from partial details",
+   "Patient help for older and disabled callers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-3011.00": {
+  "roadmap": [
+   {
+    "title": "AI for account work and contact planning",
+    "items": [
+     "Use collection software that ranks accounts and suggests contact times, and judge each case yourself.",
+     "Draft payment reminders and letters with AI in plain, respectful language that follows the law.",
+     "Record conversations and agreements accurately in the account system, checking AI summaries."
+    ],
+    "project": "Rewrite your standard reminder letters with AI in plain language, check them with compliance and compare payment rates."
+   },
+   {
+    "title": "Payment plans and compliance",
+    "items": [
+     "Use affordability tools to set repayment plans people can keep, not just the fastest ones.",
+     "Follow debt collection rules on contact times, language and data protection on every call.",
+     "Offer self-service payment portals and reminders so customers can pay without a call."
+    ],
+    "project": "Track kept versus broken payment plans for three months and adjust how you set plans with customers."
+   },
+   {
+    "title": "Listening and fair agreements",
+    "items": [
+     "Listen to why people cannot pay, without judging, and find a realistic way forward.",
+     "Stay calm and respectful with angry or distressed customers, even when calls turn hostile.",
+     "Spot customers in vulnerable situations and refer them to debt advice services."
+    ],
+    "project": "Refer every customer who seems vulnerable to free debt advice for a month and record how their accounts progress."
+   }
+  ],
+  "aiTools": [
+   "Collection software with account scoring",
+   "Self-service payment portals",
+   "ChatGPT or Claude for plain-language letters"
+  ],
+  "humanEdge": [
+   "Listening to debtors without judging",
+   "Calm with distressed customers",
+   "Spotting customers in vulnerable situations"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -22637,6 +24191,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "43-3041.00": {
+  "roadmap": [
+   {
+    "title": "Cage systems and report checks",
+    "items": [
+     "Record exchanges, cheque cashing and credit advances in the cage system, checking every entry.",
+     "Verify authorization forms and reconciliation reports with system checks, and fix differences at once.",
+     "Answer patrons' questions about casino operations with clear printed or online guides."
+    ],
+    "project": "Track report discrepancies for a month, group them by cause and agree one fix with the cage manager."
+   },
+   {
+    "title": "Regulations, fraud and money laundering",
+    "items": [
+     "Learn gaming and anti-money-laundering rules well, and follow reporting thresholds exactly.",
+     "Spot counterfeit notes, cheque fraud and structuring with detection tools and training.",
+     "Supply cash and chips to other departments with dual control and signed records."
+    ],
+    "project": "Complete anti-money-laundering refresher training and record how many suspicious transactions you reported in the next quarter."
+   },
+   {
+    "title": "Accuracy, security and service",
+    "items": [
+     "Count and balance large sums accurately under time pressure, with every step documented.",
+     "Keep cage security tight, following every rule even when busy.",
+     "Serve patrons courteously while checking every transaction carefully."
+    ],
+    "project": "Practise balancing procedures with a senior cashier for a month and track your end-of-shift differences."
+   }
+  ],
+  "aiTools": [
+   "Casino cage management systems",
+   "Counterfeit and fraud detection tools",
+   "Reconciliation reports"
+  ],
+  "humanEdge": [
+   "Accurate balancing of large sums",
+   "Tight cage security when busy",
+   "Courteous, careful service at the cage"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "43-3051.00": {
   "roadmap": [
    {
@@ -22679,6 +24275,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "43-3061.00": {
+  "roadmap": [
+   {
+    "title": "AI for purchase orders and order tracking",
+    "items": [
+     "Create purchase orders from approved requisitions in the procurement system, and check specifications and prices.",
+     "Track orders and deliveries with automatic status updates, and chase only the exceptions.",
+     "Answer supplier and requester questions on order status with system data and AI-drafted replies."
+    ],
+    "project": "Track order exceptions for a month, find the most common cause of late deliveries and agree a fix with the supplier."
+   },
+   {
+    "title": "Bid comparisons and supplier data",
+    "items": [
+     "Compare bids on price, specification and delivery with AI-assisted spreadsheets, and check every line.",
+     "Keep supplier files, price lists and contracts current in one system.",
+     "Use inventory data and reorder points to order before stock runs low, and review exceptions."
+    ],
+    "project": "Compare three supplier bids with an AI-assisted template, check it line by line and present the result to the buyer."
+   },
+   {
+    "title": "Supplier relationships and problem solving",
+    "items": [
+     "Call suppliers to expedite urgent orders and resolve shortages; relationships get things moving.",
+     "Check unusual requisitions with requesters before ordering, to avoid costly mistakes.",
+     "Learn negotiation and category skills, which lead toward buyer roles."
+    ],
+    "project": "Take one short course in purchasing or negotiation and ask to handle one small purchase as buyer with supervision."
+   }
+  ],
+  "aiTools": [
+   "Procurement systems such as SAP Ariba",
+   "AI-assisted bid comparison spreadsheets",
+   "Supplier and contract databases"
+  ],
+  "humanEdge": [
+   "Getting suppliers to expedite urgent orders",
+   "Catching costly requisition mistakes",
+   "Building supplier relationships"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "43-3071.00": {
   "roadmap": [
    {
@@ -22718,6 +24356,48 @@
    "Spotting fraud and protecting vulnerable customers",
    "Resolving account problems face to face",
    "Earning the trust of regular customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-4011.00": {
+  "roadmap": [
+   {
+    "title": "AI for transaction records and client questions",
+    "items": [
+     "Process and document transactions in the brokerage system, checking automated entries against instructions.",
+     "Answer client questions on accounts and market moves with AI-drafted replies, checked and personalised.",
+     "Prepare transaction forms and confirmations from templates, and verify every number."
+    ],
+    "project": "Track errors found in automated transaction entries for a month and agree one control with your supervisor."
+   },
+   {
+    "title": "Compliance checks and exceptions",
+    "items": [
+     "Verify ownership, identity and dividend instructions against regulations, using automated checks.",
+     "Monitor collateral and margin alerts, and act on exceptions quickly.",
+     "Learn the rules on market abuse and client protection, and how systems flag issues."
+    ],
+    "project": "Review margin and collateral alerts for a month, record the response times and propose one improvement."
+   },
+   {
+    "title": "Problem solving and next steps",
+    "items": [
+     "Resolve account problems that automation cannot, working with clients and colleagues.",
+     "Explain fees, dividends and transfers clearly to clients who are confused.",
+     "Study for licences or operations roles in finance, building on your knowledge of transactions."
+    ],
+    "project": "Pick one finance licence or operations course, make a study plan with AI help and follow it for three months."
+   }
+  ],
+  "aiTools": [
+   "Brokerage operations systems",
+   "Automated compliance and identity checks",
+   "ChatGPT or Claude for client replies"
+  ],
+  "humanEdge": [
+   "Solving account problems automation cannot",
+   "Explaining fees clearly to clients",
+   "Acting fast on margin and compliance exceptions"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
