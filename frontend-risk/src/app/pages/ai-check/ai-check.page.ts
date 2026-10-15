@@ -40,12 +40,28 @@ const SCALE = [
  */
 const FIRST_STEP_MIN_AUTOMATION = 40;
 
-interface FirstStep {
+export interface FirstStep {
   /** The task with the most automatable time, if any task passes FIRST_STEP_MIN_AUTOMATION. */
   task: TaskExposure | null;
   firstItem: string | null;
   tool: string | null;
   project: string | null;
+}
+
+/**
+ * One concrete start: the task with the most automatable time (share × automation), the first
+ * suggested tool and the first roadmap project. Null when there is neither a task nor a roadmap.
+ */
+export function firstStep(r: AssessmentResult): FirstStep | null {
+  const task = (r.tasks ?? [])
+    .filter(t => t.automationPercent >= FIRST_STEP_MIN_AUTOMATION)
+    .reduce<TaskExposure | null>((best, t) =>
+      !best || t.share * t.automationPercent > best.share * best.automationPercent ? t : best, null);
+  const firstItem = r.professionRoadmap?.[0]?.items?.[0] ?? null;
+  if (!task && !firstItem) {
+    return null;
+  }
+  return { task, firstItem, tool: r.aiTools?.[0] ?? null, project: r.professionRoadmap?.[0]?.project ?? null };
 }
 
 @Component({
@@ -739,20 +755,8 @@ export class AiCheckPageComponent implements OnInit {
     return { count: rest.length, share: rest.reduce((sum, t) => sum + t.share, 0) };
   }
 
-  /**
-   * One concrete start: the task with the most automatable time (share × automation), the first
-   * suggested tool and the first roadmap project. Null when the profession lists no tasks.
-   */
   firstStep(r: AssessmentResult): FirstStep | null {
-    const task = (r.tasks ?? [])
-      .filter(t => t.automationPercent >= FIRST_STEP_MIN_AUTOMATION)
-      .reduce<TaskExposure | null>((best, t) =>
-        !best || t.share * t.automationPercent > best.share * best.automationPercent ? t : best, null);
-    const firstItem = r.professionRoadmap?.[0]?.items?.[0] ?? null;
-    if (!task && !firstItem) {
-      return null;
-    }
-    return { task, firstItem, tool: r.aiTools?.[0] ?? null, project: r.professionRoadmap?.[0]?.project ?? null };
+    return firstStep(r);
   }
 
   /** Ticked roadmap steps (items and projects, by text) for the profession on screen. */
