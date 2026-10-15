@@ -2,7 +2,7 @@ import { Component, DestroyRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, of, switchMap } from 'rxjs';
 
 import { AiReadinessService } from '../../services/ai-readiness.service';
@@ -519,6 +519,7 @@ export class AiCheckPageComponent implements OnInit {
     private api: AiReadinessService,
     private analytics: AnalyticsService,
     private route: ActivatedRoute,
+    private router: Router,
     private destroyRef: DestroyRef
   ) {}
 
@@ -601,8 +602,20 @@ export class AiCheckPageComponent implements OnInit {
     return this.selectedProfession?.name ?? '';
   }
 
-  /** /ai-test?profession=<id> (the button on a /jobs page) starts the test with that profession. */
+  /**
+   * /ai-test?profession=<id> (the button on a /jobs page) starts the test with that profession;
+   * /ai-test?view=saved opens the saved result.
+   */
   private preselectFromLink(): void {
+    // /ai-test?view=saved (the "continue your plan" card on the home page) opens the saved result
+    if (this.route.snapshot.queryParamMap.get('view') === 'saved') {
+      // drop the parameter, so a reload after "Take the test again" does not reopen the result
+      this.router.navigate([], { relativeTo: this.route, queryParams: {}, replaceUrl: true });
+      if (this.lastResult) {
+        this.showLastResult();
+      }
+      return;
+    }
     const id = this.route.snapshot.queryParamMap.get('profession');
     if (!id) {
       return;

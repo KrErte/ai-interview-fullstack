@@ -9,7 +9,8 @@ import {
   Features,
   ProfessionSummary,
   Question,
-  SavedAnswers
+  SavedAnswers,
+  SavedPlan
 } from '../models/ai-readiness.model';
 
 @Injectable({
@@ -113,6 +114,26 @@ export class AiReadinessService {
     } catch {
       // storage unavailable – ticks last only for this visit
     }
+  }
+
+  /**
+   * The saved result's profession and how many of its roadmap steps (items and projects) are
+   * ticked; null when nothing is saved or the result has no roadmap.
+   */
+  savedPlan(): SavedPlan | null {
+    const result = this.loadLastResult();
+    const phases = result?.professionRoadmap ?? [];
+    if (!result || !phases.length) {
+      return null;
+    }
+    const steps = phases.flatMap(ph => [...ph.items, ph.project]);
+    const done = new Set(this.loadProgress(result.professionId));
+    return {
+      professionName: result.professionName,
+      score: result.replaceabilityScore,
+      done: steps.filter(step => done.has(step)).length,
+      total: steps.length
+    };
   }
 
   private readProgress(): Record<string, string[]> {

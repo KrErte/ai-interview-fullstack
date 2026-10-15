@@ -73,6 +73,14 @@ export interface SavedAnswers {
   answers: Record<string, string>;
 }
 
+/** A returning visitor's saved plan, for the "continue your plan" card. */
+export interface SavedPlan {
+  professionName: string;
+  score: number;
+  done: number;
+  total: number;
+}
+
 export interface AssessmentResult {
   professionId: string;
   professionName: string;
