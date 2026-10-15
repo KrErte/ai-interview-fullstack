@@ -95,6 +95,24 @@ class BuildCatalogTest(unittest.TestCase):
         self.assertEqual(by_code['15-1252.00']['roadmap'][0]['project'], 'IT project 1')
         self.assertEqual(self.templates['35']['roadmap'][0]['project'], 'Food project 1')
 
+    def test_written_roadmaps_replace_template_projects_and_human_edge(self):
+        written = {'roadmap': [{'title': f'Cook phase {i}', 'items': ['x', 'y', 'z'], 'project': f'Cook {i}.'}
+                               for i in (1, 2, 3)],
+                   'aiTools': ['Recipe costing app', 'Voice notes', 'Chat assistant'],
+                   'humanEdge': ['Tasting and adjusting', 'Running a busy line', 'Training new cooks'],
+                   'model': 'claude-opus-5'}
+        catalog = build_catalog(self.out, self.templates, hidden_codes=set(),
+                                projects={'35-2014.00': ['P1.', 'P2.', 'P3.']}, roadmaps={'35-2014.00': written})
+        by_code = {p['onetCode']: p for p in catalog}
+        cook = by_code['35-2014.00']
+        self.assertEqual(cook['roadmap'], written['roadmap'])
+        self.assertEqual(cook['aiTools'], written['aiTools'])
+        self.assertEqual(cook['humanEdge'], written['humanEdge'])
+        self.assertNotIn('model', cook)
+        # others keep the template and the task-statement human edge
+        self.assertEqual(by_code['15-1252.00']['roadmap'][0]['title'], 'IT phase 1')
+        self.assertEqual(by_code['15-1252.00']['humanEdge'], ['Talk to users.', 'Write code.', 'Review code.'])
+
     def test_aliases_carry_titles_of_hidden_occupations(self):
         aliases = build_aliases(self.out, {'software-developer': ['15-1252.00', '15-1253.00'], 'other': []})
         self.assertEqual(aliases, {'software-developer': ['Software Developers', 'Coder', 'Software Engineer',

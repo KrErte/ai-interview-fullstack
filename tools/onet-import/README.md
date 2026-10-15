@@ -117,6 +117,17 @@ Lesson: cancelling a batch does not stop requests that are already being process
 
 The backend loads both files. `GET /api/ai-readiness/professions` still returns only the hand-written professions. `GET /api/ai-readiness/professions/search?q=&limit=` searches all of them by name and alternate title.
 
+## Whole occupation-specific roadmaps (spec O3)
+
+O2 left the phase titles and items on the 22 group templates, so an actuary got the IT template ("Pair programming with AI") and `humanEdge` was three raw task statements. `write_roadmaps.py` asks Claude for the whole thing from the occupation's 10 largest tasks (share and automation) and its related occupations: three phases (start where AI already helps, make it repeatable, grow what AI cannot do), each with a title, three items and a project, plus three `aiTools` and three `humanEdge` strengths. Answers with the wrong count or an over-long field are rejected and retried.
+
+```bash
+python tools/onet-import/write_roadmaps.py direct --pilot --max-usd 4   # the 30 PILOT occupations
+python tools/onet-import/catalog.py                                     # picks up out/roadmaps_llm.json
+```
+
+`catalog.py` uses `out/roadmaps_llm.json` where it has an occupation and falls back to the template plus the O2 project elsewhere. The file is resumable: a later run without `--pilot` writes only the missing occupations.
+
 ## Attribution
 
 Products using these files must show:
