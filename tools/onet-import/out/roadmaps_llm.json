@@ -2099,6 +2099,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "11-9199.02": {
+  "roadmap": [
+   {
+    "title": "AI for compliance reports and monitoring",
+    "items": [
+     "Prepare management reports on compliance activity with AI from your case data, and check every finding and number.",
+     "Use AI to summarise regulatory changes and industry practices, and confirm them in official sources.",
+     "Keep investigation files and complaint records organised and searchable with AI help."
+    ],
+    "project": "Generate monthly compliance reports with AI help for three months and measure the time saved for reviews and training."
+   },
+   {
+    "title": "Monitoring and AI governance",
+    "items": [
+     "Use AI monitoring of transactions or communications for risk, and have people review every flagged case.",
+     "Add AI governance to your compliance program: an inventory of AI tools, EU AI Act obligations and data protection.",
+     "Test compliance controls with periodic reviews and audits, and fix weaknesses before regulators find them."
+    ],
+    "project": "Draft an AI governance policy for your organisation, including an inventory of AI tools in use, and get management approval."
+   },
+   {
+    "title": "Investigations and advice",
+    "items": [
+     "Conduct investigations and interviews yourself; judging intent and credibility needs a person.",
+     "Advise management on hard calls and explain the reasons behind your advice.",
+     "Grow toward chief compliance officer, or move into regulatory affairs or risk management."
+    ],
+    "project": "Run one internal review with AI-assisted data analysis and present findings and fixes to management."
+   }
+  ],
+  "aiTools": [
+   "Compliance monitoring software",
+   "ChatGPT or Claude for reports and rule summaries",
+   "Case and document management systems"
+  ],
+  "humanEdge": [
+   "Investigating issues with the people involved",
+   "Advising management on hard calls",
+   "Judging intent, credibility and risk"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "11-9199.08": {
   "roadmap": [
    {
@@ -2225,6 +2267,174 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "11-9199.11": {
+  "roadmap": [
+   {
+    "title": "AI for permits, funding and reports",
+    "items": [
+     "Draft permit applications for demolition, cleanup and construction with AI, and check every requirement against the agency's rules.",
+     "Find and draft funding applications for brownfield grants with AI help, checking eligibility and deadlines yourself.",
+     "Prepare progress reports and presentations with AI from your project records, and keep the decision log current."
+    ],
+    "project": "Write one funding application with AI help, check every requirement, and compare effort and outcome with your last one."
+   },
+   {
+    "title": "Better cost and contamination analysis",
+    "items": [
+     "Estimate cleanup and remediation costs with AI-assisted spreadsheets, and test them against similar past projects.",
+     "Map contamination data with GIS to identify sources and plan where to sample next.",
+     "Compare remediation proposals side by side with AI, checking methods, risks and costs."
+    ],
+    "project": "Map contamination data for one site with GIS and AI help and use it to update the cleanup plan and cost estimate."
+   },
+   {
+    "title": "Site work and community relations",
+    "items": [
+     "Inspect sites yourself to assess damage and monitor cleanup; what you see often changes the plan.",
+     "Explain projects and risks to neighbours, investors and officials in plain words.",
+     "To go deeper on the technical side, environmental engineering or restoration planning build on your site experience."
+    ],
+    "project": "Hold a community meeting with AI-prepared maps and plans and record the concerns that changed the project."
+   }
+  ],
+  "aiTools": [
+   "GIS software",
+   "ChatGPT or Claude for applications and reports",
+   "Microsoft 365 Copilot in Excel for cost estimates"
+  ],
+  "humanEdge": [
+   "Inspecting contaminated sites in person",
+   "Explaining risks to communities and investors",
+   "Coordinating cleanup contractors safely"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for client business admin and pitching",
+    "items": [
+     "Manage bookings, travel and client finances with AI-assisted tools, and check every contract date and fee.",
+     "Track industry news, deals and opportunities with AI summaries, and verify what matters before acting.",
+     "Draft pitches and promotional emails for your clients with AI, then personalise each one for the buyer."
+    ],
+    "project": "Use AI to prepare pitch emails for one client for a month and compare responses and bookings with the month before."
+   },
+   {
+    "title": "Protect your clients in an AI world",
+    "items": [
+     "Review contracts for clauses on AI voice, likeness and training data, and get a lawyer's view on risky terms.",
+     "Keep contracts, fees, commissions and schedules in one system so nothing is missed.",
+     "Build templates for career plans and client reports that you update each quarter."
+    ],
+    "project": "Review all your clients' contracts for AI likeness and voice clauses with AI help and a lawyer, and fix the riskiest ones."
+   },
+   {
+    "title": "Relationships and negotiation",
+    "items": [
+     "Negotiate with promoters, managers and unions in person; deals depend on trust and timing.",
+     "Build networks with brands and producers, and spot talent worth representing.",
+     "Your network and pitching skills carry over to talent direction or public relations if you want a change."
+    ],
+    "project": "Negotiate one deal with an AI-prepared market fact sheet and record how the terms compared with your last similar deal."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for pitches and news summaries",
+   "CRM for contacts and deals",
+   "Accounting software for client finances"
+  ],
+  "humanEdge": [
+   "Negotiating contracts for clients",
+   "Building trust with clients and promoters",
+   "Spotting talent before others do"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1021.00": {
+  "roadmap": [
+   {
+    "title": "AI for records, demand and markets",
+    "items": [
+     "Keep transactions and inventories in your trading software, and let it prepare the reports agencies require.",
+     "Use AI-assisted demand forecasts to plan purchases, and adjust with what growers tell you about the season.",
+     "Summarise market, weather and crop reports with AI, and check prices against official sources."
+    ],
+    "project": "Use AI-assisted demand forecasts for one product for a season and compare them with your usual estimates."
+   },
+   {
+    "title": "Better logistics and quality data",
+    "items": [
+     "Plan transport and storage with optimisation tools, and check them against real capacity and costs.",
+     "Track prices and quality grades over time to see which growers deliver consistently.",
+     "Write contract templates with AI and check them with a lawyer before use."
+    ],
+    "project": "Analyse a year of price and quality data with AI and adjust your buying plan for the next season."
+   },
+   {
+    "title": "Field judgement and relationships",
+    "items": [
+     "Grade crops and products by eye and hand; that judgement sets prices and protects quality.",
+     "Negotiate with farmers and build relationships that last beyond one season.",
+     "If you want a change, farm management builds on your crop knowledge and wholesale buying on your trading skills."
+    ],
+    "project": "Visit growers with AI-prepared data on their deliveries and agree on one quality improvement with each of them."
+   }
+  ],
+  "aiTools": [
+   "Commodity trading and inventory software",
+   "ChatGPT or Claude for market summaries",
+   "Microsoft 365 Copilot in Excel"
+  ],
+  "humanEdge": [
+   "Grading crops and products by eye and hand",
+   "Negotiating fair contracts with farmers",
+   "Building long-term grower relationships"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1022.00": {
+  "roadmap": [
+   {
+    "title": "AI for sales trends and buying plans",
+    "items": [
+     "Use AI to analyse sales records, trends and seasonality to predict demand by product and store.",
+     "Summarise trend reports, competitor ranges and customer reviews with AI before planning a range.",
+     "Recommend prices and markdowns with AI-assisted analysis, and check them against margin targets."
+    ],
+    "project": "Compare AI demand forecasts with your own for one category over a season and adjust your next buying plan."
+   },
+   {
+    "title": "Smarter buying and vendor management",
+    "items": [
+     "Set automatic reorder points and alerts, and review the exceptions instead of every line.",
+     "Track vendor performance on quality, delivery and margin in a scorecard.",
+     "Test pricing and markdown changes on small product sets before rolling them out."
+    ],
+    "project": "Test AI-suggested markdowns on one category and measure margin and sell-through against your usual approach."
+   },
+   {
+    "title": "Taste, negotiation and product development",
+    "items": [
+     "Select products customers will want; taste and knowledge of your customers stay your job.",
+     "Negotiate prices, terms and exclusives with vendors face to face.",
+     "Category management is a natural next step: you already balance range, price and vendor terms."
+    ],
+    "project": "Develop one product with a vendor using AI-assisted trend research and track its sales for a season."
+   }
+  ],
+  "aiTools": [
+   "Retail analytics and demand planning tools",
+   "ChatGPT or Claude for trend summaries",
+   "Microsoft 365 Copilot in Excel"
+  ],
+  "humanEdge": [
+   "Choosing products customers will want",
+   "Negotiating prices and terms with vendors",
+   "Judging quality in person"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "13-1023.00": {
   "roadmap": [
    {
@@ -2309,6 +2519,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "13-1032.00": {
+  "roadmap": [
+   {
+    "title": "AI photo estimates and claim forms",
+    "items": [
+     "Use AI photo-estimating tools for first damage estimates, then inspect the vehicle to confirm hidden damage.",
+     "Prepare insurance forms and estimates in your estimating software, checking parts prices and labour times.",
+     "Compare repair shop estimates with your own using AI-assisted line-by-line comparisons."
+    ],
+    "project": "Compare AI photo estimates with your inspection results on 20 vehicles and record where and why they differed."
+   },
+   {
+    "title": "Faster, fairer settlements",
+    "items": [
+     "Set clear rules for when photo estimates are enough and when an in-person inspection is needed.",
+     "Track disagreements with repair shops by cause, and fix the most common one.",
+     "Use market data to judge repair versus total loss and salvage values."
+    ],
+    "project": "Analyse three months of shop disagreements with AI help and agree one change with your team that reduces them."
+   },
+   {
+    "title": "Inspection and negotiation",
+    "items": [
+     "Find structural and hidden damage in person; photos miss what you can feel and measure.",
+     "Negotiate repair costs with shops fairly, explaining the reasons behind your numbers.",
+     "Train new appraisers on hidden damage and on when to distrust a photo estimate, using your own cases."
+    ],
+    "project": "Inspect 10 vehicles where photo estimates were low and document the hidden damage you found."
+   }
+  ],
+  "aiTools": [
+   "AI photo damage estimating software",
+   "Parts and labour databases",
+   "Claims management software"
+  ],
+  "humanEdge": [
+   "Finding hidden vehicle damage",
+   "Negotiating fairly with repair shops",
+   "Judging repair versus total loss"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "13-1041.00": {
   "roadmap": [
    {
@@ -2348,6 +2600,258 @@
    "Interviewing applicants and specialists to get the facts",
    "Inspecting sites and seeing what papers hide",
    "Making fair, defensible licensing decisions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1041.01": {
+  "roadmap": [
+   {
+    "title": "AI for inspection records and reports",
+    "items": [
+     "Draft inspection reports and notices of violation with AI from your notes and photos, and check every legal reference.",
+     "Summarise regulations and permit conditions with AI before an inspection, and confirm them in the official text.",
+     "Organise inspection records and chain-of-custody documents with AI-assisted tools."
+    ],
+    "project": "Write inspection reports with AI help for a month and measure the time saved and the corrections needed."
+   },
+   {
+    "title": "Risk-based inspection planning",
+    "items": [
+     "Use monitoring data and complaints to choose which sites to inspect first.",
+     "Map complaints and violations with GIS to find patterns across your area.",
+     "Track follow-up actions and deadlines automatically so cases do not stall."
+    ],
+    "project": "Map a year of complaints with GIS and AI help and plan the next quarter's inspections by risk."
+   },
+   {
+    "title": "Field work and enforcement",
+    "items": [
+     "Collect samples, inspect facilities and interview people yourself; evidence must hold up in hearings.",
+     "Explain the rules and the fix to business owners in plain words, so they can comply before your next visit.",
+     "With further study, your sampling and inspection work is a base for environmental scientist or engineer roles."
+    ],
+    "project": "Run risk-based inspections for a quarter and compare violations found per inspection with the previous quarter."
+   }
+  ],
+  "aiTools": [
+   "Inspection software with templates",
+   "GIS mapping software",
+   "ChatGPT or Claude for reports and rule summaries"
+  ],
+  "humanEdge": [
+   "Collecting evidence in the field",
+   "Interviewing people about violations",
+   "Explaining rules to businesses"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1041.03": {
+  "roadmap": [
+   {
+    "title": "AI for complaints, reports and statistics",
+    "items": [
+     "Draft investigation reports with AI from your interview notes, and check every fact and quote.",
+     "Summarise civil rights laws and guidance with AI, and confirm them in official sources.",
+     "Analyse hiring and promotion statistics with AI for possible bias, and investigate what the numbers show."
+    ],
+    "project": "Analyse one year of hiring and promotion data with AI help and present findings and corrective actions."
+   },
+   {
+    "title": "Fair processes and AI bias",
+    "items": [
+     "Learn how AI hiring and promotion tools can discriminate, and how to test them for it.",
+     "Build checks for AI use in employment decisions, with human review and records.",
+     "Train managers on fair hiring and grievance procedures with AI-prepared materials."
+    ],
+    "project": "Audit one AI tool used in hiring for adverse impact and write recommendations for how it may be used."
+   },
+   {
+    "title": "Mediation and trust in hard cases",
+    "items": [
+     "Interview the people involved and mediate disputes yourself; trust decides whether people speak openly.",
+     "Check how anti-discrimination guidelines work in practice by talking with employees, not only reading policies.",
+     "Labour relations is a close next step: you already investigate, interview and help settle disputes."
+    ],
+    "project": "Mediate cases with AI-prepared case summaries for a quarter and record outcomes and time to resolution."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for reports and law summaries",
+   "HR analytics tools",
+   "Case management software"
+  ],
+  "humanEdge": [
+   "Interviewing people about sensitive issues",
+   "Mediating disputes fairly",
+   "Judging fairness beyond the numbers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1041.04": {
+  "roadmap": [
+   {
+    "title": "AI for investigation reports and records",
+    "items": [
+     "Draft inspection reports, letters and recommendations with AI from your notes and photos, and check every finding and date.",
+     "Compare invoices, contracts and delivery records with AI to spot discrepancies, then confirm each one in the source documents.",
+     "Turn contract specifications into a short site checklist with AI before each visit, and add what the last inspection found."
+    ],
+    "project": "Write investigation reports with AI help for a month and track the corrections needed and the hours saved per report."
+   },
+   {
+    "title": "Risk-based checks on contractors and permits",
+    "items": [
+     "Flag contractors with unusual billing or inventory patterns using AI-assisted analysis, and review each flag before acting.",
+     "Keep evidence, photos and chain-of-custody records in one searchable case system so cases are ready for legal action.",
+     "Rank sites, contractors and permit applications by risk from past findings, and inspect the highest-risk ones first."
+    ],
+    "project": "Score a year of findings by contractor with AI help, inspect the top 10 by risk next quarter and compare the violations found."
+   },
+   {
+    "title": "Site inspections and building strong cases",
+    "items": [
+     "Inspect construction sites, public housing and equipment in person; poor work hidden behind walls never shows up in records.",
+     "Collect and preserve evidence carefully, and work with police and prosecutors so cases hold up in court.",
+     "If you want a change, construction inspection or workplace safety build on your site experience and knowledge of rules."
+    ],
+    "project": "Prepare one case file to a prosecutor's standard with AI-organised evidence, and ask a legal advisor to review what was missing."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for report drafts",
+   "Microsoft 365 Copilot in Excel for records analysis",
+   "Case management and evidence tracking software"
+  ],
+  "humanEdge": [
+   "Inspecting sites and spotting hidden poor work",
+   "Building cases that hold up in court",
+   "Questioning contractors and witnesses"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1041.06": {
+  "roadmap": [
+   {
+    "title": "AI for case reports and medical histories",
+    "items": [
+     "Draft case reports and required forms in an approved, secure AI tool from your notes; never put case details in public chatbots.",
+     "Summarise long medical histories with an approved AI tool to find relevant conditions and medicines, then read the key records yourself.",
+     "Use AI to check death certificates for missing fields and inconsistent dates before you sign; cause and manner stay your decision."
+    ],
+    "project": "Track for a month how long reports and certificates take, then test an approved AI drafting tool and compare time and corrections."
+   },
+   {
+    "title": "Consistent records and agency coordination",
+    "items": [
+     "Build report templates for common types of death so every case records the same scene, history and examination details.",
+     "Use photo and scene-documentation tools to record body positions and evidence consistently, with time stamps.",
+     "Set up a shared case tracker with police and public health so tests, results and next steps are visible to all."
+    ],
+    "project": "Create templates for your three most common case types, use them for a month and count the follow-up questions from agencies."
+   },
+   {
+    "title": "Examinations, scenes and families",
+    "items": [
+     "Examine bodies and death scenes yourself; signs of trauma and the context around them need trained eyes and hands.",
+     "Tell relatives what happened with honesty and care, and answer their questions in plain words.",
+     "Interview witnesses at scenes and judge what is reliable; your findings may be tested in court."
+    ],
+    "project": "Review five past cases with a colleague, note what the scene showed that the records did not, and add it to your checklist."
+   }
+  ],
+  "aiTools": [
+   "Secure, approved AI tools for report drafting",
+   "Case management and death registration systems",
+   "Scene photography and documentation tools"
+  ],
+  "humanEdge": [
+   "Examining bodies and scenes for signs of trauma",
+   "Telling families hard news with care",
+   "Deciding the cause and manner of death"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1041.07": {
+  "roadmap": [
+   {
+    "title": "AI for submissions, labels and rule changes",
+    "items": [
+     "Draft sections of regulatory submissions with AI from approved source documents, and verify every claim against the data.",
+     "Check labels and promotional materials against approved claims with AI, and review every flagged phrase yourself.",
+     "Summarise new guidance and rule changes with AI, confirm them in the official text and note what each means for your products."
+    ],
+    "project": "Draft one submission section with AI help, track the hours and review findings, and compare with a similar section written by hand."
+   },
+   {
+    "title": "Submission templates and document control",
+    "items": [
+     "Build templates for recurring submissions and agency responses, with fixed review and sign-off steps.",
+     "Keep technical files and the documentation database current, with version control and a clear owner for each document.",
+     "Use AI to compare a draft against the agency's checklist so gaps are found before submission, not after."
+    ],
+    "project": "Build a template and checklist for your most common submission type and measure how many agency questions it prevents."
+   },
+   {
+    "title": "Agency strategy and advice to teams",
+    "items": [
+     "Plan regulatory strategy with agencies in meetings and calls; reading what reviewers worry about takes experience.",
+     "Advise project teams early on labelling, clinical and export requirements, so problems are designed out.",
+     "Learn how AI inside products is regulated, such as AI medical device software, and become your team's go-to person for it."
+    ],
+    "project": "Prepare for one agency meeting with AI-summarised past questions and record which concerns you anticipated correctly."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for drafts and guidance summaries",
+   "Regulatory information management systems",
+   "Document control and e-submission software"
+  ],
+  "humanEdge": [
+   "Planning regulatory strategy with agencies",
+   "Advising teams before problems are built in",
+   "Judging scientific data for submissions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1041.08": {
+  "roadmap": [
+   {
+    "title": "AI for customs documents and tariff codes",
+    "items": [
+     "Extract data from invoices, packing lists and certificates of origin with AI document tools, and check every field.",
+     "Get AI suggestions for tariff classification, then confirm each code in the official tariff and past binding rulings.",
+     "Summarise new trade rules, sanctions and tariff changes with AI, and confirm them in the customs authority's notices."
+    ],
+    "project": "Classify 50 past shipments with AI suggestions, compare them with the codes you used and note where and why they differ."
+   },
+   {
+    "title": "Faster, error-free clearance workflows",
+    "items": [
+     "Set up automatic checks that the invoice, packing list and declaration match before you file.",
+     "Build a library of classifications and rulings for your clients' regular products so repeat entries are quick and consistent.",
+     "Calculate duties and taxes in your customs software and spot-check unusual entries by hand."
+    ],
+    "project": "Track errors and holds for a month, add one automatic pre-filing check for the most common cause and measure the change."
+   },
+   {
+    "title": "Advice, rulings and agency relations",
+    "items": [
+     "Advise clients on restrictions, origin rules and duty savings; they pay for your judgement, not for data entry.",
+     "Resolve held shipments with customs officials; knowing who to call and what they need takes experience.",
+     "If you want a change, freight forwarding uses the same documents and contacts, with more logistics planning."
+    ],
+    "project": "Write a one-page guide for one client on duty savings and origin rules with AI help, and record the savings they achieve."
+   }
+  ],
+  "aiTools": [
+   "Customs declaration software",
+   "AI document extraction tools for invoices",
+   "ChatGPT or Claude for trade rule summaries"
+  ],
+  "humanEdge": [
+   "Advising clients on complex trade rules",
+   "Resolving held shipments with officials",
+   "Judging tricky tariff classifications"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -2393,6 +2897,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "13-1074.00": {
+  "roadmap": [
+   {
+    "title": "AI for payroll, hiring posts and schedules",
+    "items": [
+     "Run hours and pay in a time-tracking app, and check each worker's pay against hours, rates and deductions before paying.",
+     "Write job posts and work-rule sheets with AI and translate them into your workers' languages, checked by a native speaker.",
+     "Plan crews and transport routes for each farm with AI help, and adjust them each morning for weather and absences."
+    ],
+    "project": "Move one crew's hours and pay to a time-tracking app for a month and count the payroll errors compared with paper records."
+   },
+   {
+    "title": "Reliable records and worker information",
+    "items": [
+     "Keep worker documents, licences and safety training records in one system, with reminders before they expire.",
+     "Send shift times, locations and safety notices to workers as group messages in their own languages.",
+     "Track hours, output and incidents by crew to plan how many workers each farm needs next season."
+    ],
+    "project": "Set up translated group messages for shift and safety notices and compare missed shifts for a month before and after."
+   },
+   {
+    "title": "Leading crews safely in the field",
+    "items": [
+     "Supervise crews in the field and solve problems as they come; respect and clear instructions keep the work moving.",
+     "Provide water, shade, sanitation and safe transport every day; your workers' health depends on it.",
+     "Choose and train foremen whom workers trust; good foremen let you run more crews and farms well."
+    ],
+    "project": "Write a one-page daily safety checklist for heat, water and transport, use it for a month and record the problems it caught."
+   }
+  ],
+  "aiTools": [
+   "Time-tracking and payroll apps",
+   "Translation apps such as Google Translate or DeepL",
+   "Group messaging apps for crew notices"
+  ],
+  "humanEdge": [
+   "Leading crews in the field with respect",
+   "Keeping workers safe in heat and transport",
+   "Choosing reliable workers and foremen"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1075.00": {
+  "roadmap": [
+   {
+    "title": "AI for contract language and grievance files",
+    "items": [
+     "Search and compare collective agreement clauses with AI to answer interpretation questions, and check the answer in the signed text.",
+     "Draft proposals and counter-proposals with AI from your bargaining notes, then check costs and wording with your team.",
+     "Summarise grievance files and past arbitration awards with AI before a meeting, and verify the key facts in the record."
+    ],
+    "project": "Build an AI-searchable index of your agreements and past grievances, then time ten real interpretation questions against the old way."
+   },
+   {
+    "title": "Bargaining data and compliance checks",
+    "items": [
+     "Cost wage and benefit proposals in a spreadsheet model with AI help, so each offer's price is clear before you reach the table.",
+     "Check payroll and hours data against agreement terms with automated rules, and investigate each exception yourself.",
+     "Keep a grievance tracker with deadlines, steps and outcomes, so patterns across sites show up early."
+    ],
+    "project": "Build a costing model for your next bargaining round and test it on the last agreement's final offer to check its accuracy."
+   },
+   {
+    "title": "Negotiation, mediation and trust",
+    "items": [
+     "Negotiate at the table yourself; reading the room and knowing when to move takes experience no tool has.",
+     "Mediate between managers and union representatives, and keep trust on both sides even when you disagree.",
+     "Prepare for questions about AI at work: monitoring, job changes and consultation duties are entering bargaining."
+    ],
+    "project": "Draft a proposal on AI use at work for your next bargaining round, covering monitoring, training and consultation."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for clause comparison and drafts",
+   "Microsoft 365 Copilot in Excel for costing",
+   "Grievance and case tracking software"
+  ],
+  "humanEdge": [
+   "Negotiating at the bargaining table",
+   "Keeping trust with unions and managers",
+   "Mediating conflicts before they escalate"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "13-1081.00": {
   "roadmap": [
    {
@@ -2432,6 +3020,90 @@
    "Keeping partners and customers on side when things go wrong",
    "Setting priorities in a shortage",
    "Leading a team under time pressure"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1081.01": {
+  "roadmap": [
+   {
+    "title": "AI for logistics data analysis and models",
+    "items": [
+     "Write Python or SQL for logistics analyses with an AI coding assistant, and test results against known totals before you trust them.",
+     "Use AI to clean and join shipment, inventory and order data from different systems, logging every assumption you make.",
+     "Draft customer proposals and study reports with AI from your analysis, and check every number against the model."
+    ],
+    "project": "Rebuild one recurring network or rate analysis with an AI coding assistant and compare hours and results with the last manual run."
+   },
+   {
+    "title": "Reusable models and KPI dashboards",
+    "items": [
+     "Turn your cost models and time studies into reusable, documented scripts that analysts can run without you.",
+     "Build KPI dashboards with automatic data refresh, and add alerts when a measure leaves its normal range.",
+     "Test layout and routing options with simulation or optimisation tools before changing a real facility."
+    ],
+    "project": "Build a KPI dashboard for one business unit with automatic refresh and track how many manual report hours it removes in a month."
+   },
+   {
+    "title": "Floor walks and leading change",
+    "items": [
+     "Walk facilities and talk with staff; the cause of a slow flow is often visible on the floor, not in the data.",
+     "Turn analysis into change people accept: explain trade-offs to managers and drivers in plain words.",
+     "Coach your analysts on checking AI-written code and results, and set the team's review rules."
+    ],
+    "project": "Pick one process from your data, observe it on site for a week, and write up what the data missed and the fix you propose."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for Python and SQL",
+   "Optimisation and simulation software",
+   "Power BI or Tableau dashboards"
+  ],
+  "humanEdge": [
+   "Seeing flow problems on the warehouse floor",
+   "Getting managers and staff to accept change",
+   "Judging which model fits the real operation"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1081.02": {
+  "roadmap": [
+   {
+    "title": "AI for logistics reports and metrics",
+    "items": [
+     "Automate weekly reports on on-time delivery, fill rates and inventory turns, and spot-check the figures against source data.",
+     "Ask AI to explain sudden changes in cost or delivery data, then confirm the cause with carriers or the warehouse.",
+     "Clean and update the logistics database with AI-assisted tools, keeping a log of what was changed and why."
+    ],
+    "project": "Automate your weekly performance report with AI help and measure the hours saved and the errors found over a month."
+   },
+   {
+    "title": "Carrier tracking and exception alerts",
+    "items": [
+     "Track shipments from origin to delivery in one view, with alerts for delays instead of manual checking.",
+     "Build a carrier scorecard on cost, on-time rate and damage that updates automatically each month.",
+     "Use AI to draft routine messages to carriers and forwarders about delays and claims, and check them before sending."
+    ],
+    "project": "Build a carrier scorecard for your top five providers and use it in one quarterly review to agree an improvement."
+   },
+   {
+    "title": "Cost decisions and supplier relations",
+    "items": [
+     "Work through service-versus-cost trade-offs with managers; the right answer depends on the customers and the business.",
+     "Talk with carriers and forwarders directly when problems repeat; relationships solve what reports cannot.",
+     "Learn basic forecasting and optimisation methods; they lead toward supply chain planning and manager roles."
+    ],
+    "project": "Analyse a quarter of back orders with AI help, find the top three causes and agree one fix with the purchasing team."
+   }
+  ],
+  "aiTools": [
+   "Microsoft 365 Copilot in Excel",
+   "Power BI or Tableau dashboards",
+   "Transport management and shipment tracking systems"
+  ],
+  "humanEdge": [
+   "Weighing service against cost with managers",
+   "Solving repeat problems with carriers",
+   "Judging data that does not add up"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -2519,6 +3191,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "13-1131.00": {
+  "roadmap": [
+   {
+    "title": "AI for grant applications and appeals",
+    "items": [
+     "Draft grant applications with AI from your program facts and budgets, and check every figure and the funder's criteria.",
+     "Write appeal letters and emails in several versions with AI, and test which one brings in more gifts.",
+     "Research foundations and companies with AI from public sources, and keep personal donor data out of public AI tools."
+    ],
+    "project": "Write two versions of your next appeal with AI help, send each to half the list and compare response rate and average gift."
+   },
+   {
+    "title": "Clean donor data and steady campaigns",
+    "items": [
+     "Keep the donor database clean and current, and use its reports to find lapsed donors worth a call.",
+     "Set up automatic thank-you messages and gift receipts, then add a personal note for larger gifts.",
+     "Build a campaign calendar and reusable templates for annual giving, events and grant reporting."
+    ],
+    "project": "Pull a list of lapsed donors from your database, call or write to 30 of them and count how many give again."
+   },
+   {
+    "title": "Donor relationships and asks in person",
+    "items": [
+     "Meet major donors in person and listen for what they care about; trust decides big gifts, not the letter.",
+     "Make the ask yourself and handle the answer with grace, whether it is yes, not now or no.",
+     "Plan events that donors remember, and work the room to start relationships worth following up."
+    ],
+    "project": "Hold ten donor meetings with AI-prepared briefing notes from public sources and record the gifts or next steps from each."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for grant and appeal drafts",
+   "Donor database or CRM such as Salesforce",
+   "Email marketing tools for appeals"
+  ],
+  "humanEdge": [
+   "Building trust with major donors",
+   "Asking for big gifts face to face",
+   "Reading what a donor really cares about"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1141.00": {
+  "roadmap": [
+   {
+    "title": "AI for job descriptions and pay analysis",
+    "items": [
+     "Draft job descriptions with AI from interviews with managers, and check duties and levels against your job framework.",
+     "Compare pay across roles with AI-assisted spreadsheets in approved tools; never put employee pay data in public chatbots.",
+     "Summarise benefits surveys and rule changes with AI, and confirm them with brokers and official sources."
+    ],
+    "project": "Rewrite ten job descriptions with AI help from manager interviews and compare consistency and time with your usual method."
+   },
+   {
+    "title": "Pay transparency and plan administration",
+    "items": [
+     "Prepare for EU pay transparency rules: clear pay criteria, pay ranges in job ads and gender pay gap reports.",
+     "Keep benefit plan rules, eligibility and enrolment in one system, with automatic checks on deadlines.",
+     "Build a template for cost analyses of pay and benefit changes, reviewed by finance before each use."
+    ],
+    "project": "Run a pay equity analysis for one department with AI-assisted spreadsheets, explain each gap and propose fixes to management."
+   },
+   {
+    "title": "Fair pay judgement and advice",
+    "items": [
+     "Judge where a role fits in the pay structure when its work does not match any existing level.",
+     "Explain pay and benefit decisions to employees and managers clearly, including the ones they will not like.",
+     "Work with brokers and insurers on plan renewals; negotiation and knowing your people decide the outcome."
+    ],
+    "project": "Write a plain-language guide to how pay is set in your organisation, test it on five employees and revise what confused them."
+   }
+  ],
+  "aiTools": [
+   "Microsoft 365 Copilot in Excel for pay analysis",
+   "HR information system with compensation module",
+   "ChatGPT or Claude for job description drafts"
+  ],
+  "humanEdge": [
+   "Judging where a role fits in the pay structure",
+   "Explaining pay decisions people may not like",
+   "Negotiating plan renewals with brokers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "13-1151.00": {
   "roadmap": [
    {
@@ -2561,6 +3317,132 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "13-1161.01": {
+  "roadmap": [
+   {
+    "title": "AI for keyword research and SEO content",
+    "items": [
+     "Group keywords by search intent with AI from your research tool exports, and check volumes and intent against real results pages.",
+     "Draft title tags, meta descriptions and content briefs with AI, and edit them to match your brand and the searcher's question.",
+     "Summarise analytics and Search Console data with AI each week, and check unusual changes in the source reports."
+    ],
+    "project": "Rewrite titles and descriptions for 20 pages with AI help and compare click-through rates for the four weeks before and after."
+   },
+   {
+    "title": "Visibility in AI search and automated reports",
+    "items": [
+     "Track how your brand appears in AI answers such as Google AI Overviews and ChatGPT, and adjust content so it gets cited.",
+     "Automate KPI reports from analytics and search tools into one dashboard, with notes on what changed and why.",
+     "Run regular technical SEO audits with crawling tools and give developers a ranked list of fixes."
+    ],
+    "project": "Test 20 key questions in AI search tools each month, record where your site is cited and track the change after content updates."
+   },
+   {
+    "title": "Strategy, original content and teamwork",
+    "items": [
+     "Decide which topics deserve investment; original data and expert content are what AI answers cannot copy.",
+     "Work with developers and designers on site structure, speed and usability so changes actually ship.",
+     "Explain to marketing leaders what AI search means for traffic, and set realistic goals and measures."
+    ],
+    "project": "Publish one piece with original data or expert interviews, and track links, citations and AI-answer mentions for two months."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for briefs and metadata",
+   "SEO platforms such as Semrush or Ahrefs",
+   "Google Analytics and Search Console"
+  ],
+  "humanEdge": [
+   "Choosing topics worth investing in",
+   "Creating original content AI cannot copy",
+   "Getting developers and marketers to act"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1199.04": {
+  "roadmap": [
+   {
+    "title": "AI for plans, test reports and scenarios",
+    "items": [
+     "Write test reports with AI from your exercise notes and logs, and check every result, time and action owner yourself.",
+     "Draft disruption scenarios with AI, such as a ransomware attack or a supplier failure, and adapt them to your real systems.",
+     "Review existing continuity plans with AI for gaps, outdated contacts and missing steps, then confirm each finding with the owner."
+    ],
+    "project": "Review three department continuity plans with AI help, list the gaps found and track how many owners fix them within a month."
+   },
+   {
+    "title": "Living plans and AI-related risks",
+    "items": [
+     "Keep plans, contacts and recovery steps in one maintained tool, with reminders for owners to review them.",
+     "Add AI-related risks to your impact analysis: outages of AI services you depend on, and AI-assisted cyberattacks.",
+     "Turn training material into short, scenario-based exercises that staff can take each quarter."
+    ],
+    "project": "Map which critical processes depend on AI or cloud services, define a workaround for each and test one of them."
+   },
+   {
+    "title": "Exercises, decisions and leadership",
+    "items": [
+     "Run live exercises yourself; seeing how people act under pressure shows gaps no document review finds.",
+     "Agree recovery priorities and acceptable downtime with business leaders, who must own the trade-offs.",
+     "Emergency management director or IT project manager roles build on the planning and coordination you already do."
+    ],
+    "project": "Run a tabletop exercise with an AI-drafted scenario, then record the decisions that were slow and the plan changes agreed."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for scenarios and report drafts",
+   "Business continuity management software",
+   "Microsoft 365 Copilot for plan reviews"
+  ],
+  "humanEdge": [
+   "Leading people through crisis exercises",
+   "Getting leaders to agree recovery priorities",
+   "Judging which risks really matter"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1199.05": {
+  "roadmap": [
+   {
+    "title": "AI for sustainability reports and research",
+    "items": [
+     "Draft sustainability reports and presentations with AI from your measured data, and check every figure and claim against sources.",
+     "Follow new rules and standards, such as EU sustainability reporting, with AI summaries, and confirm each point in the official text.",
+     "Collect energy, water and waste data from bills and meters with AI-assisted tools, and flag gaps and outliers for checking."
+    ],
+    "project": "Prepare one quarterly sustainability report with AI help, log the hours and corrections, and compare with the last report."
+   },
+   {
+    "title": "Reliable indicators and greenwashing checks",
+    "items": [
+     "Set up a data pipeline for energy, emissions and waste indicators, so reports come from the same checked numbers every time.",
+     "Check marketing and reports for claims you cannot prove, so the company avoids greenwashing complaints.",
+     "Compare initiatives on cost, carbon saved and feasibility in one template that managers can read quickly."
+    ],
+    "project": "Build an indicator dashboard for energy and waste with automatic updates, and use it to set one reduction target with managers."
+   },
+   {
+    "title": "Change on the ground and stakeholder buy-in",
+    "items": [
+     "Visit sites and talk with the people who run them; savings come from changed habits, not from reports.",
+     "Win support for initiatives from finance and operations by showing costs, savings and risks honestly.",
+     "If you want to grow, chief sustainability officer roles need strategy and leadership on top of your analysis."
+    ],
+    "project": "Run one waste or energy pilot with a site team for a month and report the measured savings and what made people change."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for report drafts and rule summaries",
+   "Carbon accounting and ESG reporting software",
+   "Microsoft 365 Copilot in Excel for indicators"
+  ],
+  "humanEdge": [
+   "Changing habits on site with the people involved",
+   "Winning support from finance and operations",
+   "Judging which claims are honest"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "13-1199.06": {
   "roadmap": [
    {
@@ -2600,6 +3482,174 @@
    "Choosing products and suppliers worth selling",
    "Building a brand customers trust",
    "Fixing a customer's problem in a way they remember"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-1199.07": {
+  "roadmap": [
+   {
+    "title": "AI for security procedures and specifications",
+    "items": [
+     "Draft and update security procedures and post orders with AI from your site notes, and check each step with the people who use it.",
+     "Write specifications for access control and CCTV with AI from the site survey, and check standards and vendor claims yourself.",
+     "Summarise incident reports and threat information with AI to see patterns, and confirm the facts before acting on them."
+    ],
+    "project": "Update the security procedures for one site with AI help, walk through them with the guards and record what had to change."
+   },
+   {
+    "title": "Risk analysis and smarter monitoring",
+    "items": [
+     "Build a risk register template that scores threats, likelihood and countermeasures the same way at every site.",
+     "Learn how AI video analytics flags people and vehicles, its error rates, and the privacy rules for using it.",
+     "Track alarm and access-card events in reports that show false alarms and unusual patterns each month."
+    ],
+    "project": "Analyse three months of alarm data, find the top causes of false alarms and measure the change after one fix."
+   },
+   {
+    "title": "Site audits and security judgement",
+    "items": [
+     "Audit sites in person: walk the perimeter, test doors and watch how staff really use access cards.",
+     "Judge which threats deserve money and which do not, and explain the trade-offs to managers and budget holders.",
+     "Security manager is a natural step once you lead teams and budgets, not only designs and audits."
+    ],
+    "project": "Audit one site on foot with an AI-prepared checklist from its plans, and compare what you found with what the documents showed."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for procedures and specifications",
+   "Video management software with analytics",
+   "Access control and alarm reporting tools"
+  ],
+  "humanEdge": [
+   "Spotting weaknesses on a site walk",
+   "Judging which threats deserve money",
+   "Persuading managers to fund security"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-2022.00": {
+  "roadmap": [
+   {
+    "title": "AI for comparable sales and appraisal reports",
+    "items": [
+     "Search auction results and sales databases for comparables with AI help, and check each match's condition, date and provenance.",
+     "Draft appraisal reports and item descriptions with AI from your notes and photos, and check every measurement and value.",
+     "Use AI image search to find similar objects and makers' marks, then confirm the match with reference books and experts."
+    ],
+    "project": "Write five appraisal reports with AI help from your notes, log the hours and corrections, and compare with five done the old way."
+   },
+   {
+    "title": "A searchable appraisal archive",
+    "items": [
+     "Keep all completed appraisals, photos and comparables in a searchable database, so past work speeds up new jobs.",
+     "Build report templates for each valuation type, such as fair market, replacement and liquidation.",
+     "Record your value-adjustment rules for condition and rarity, so similar items are valued the same way."
+    ],
+    "project": "Move a year of past appraisals into a searchable database and time how long finding comparables takes before and after."
+   },
+   {
+    "title": "Hands-on inspection and expert judgement",
+    "items": [
+     "Inspect each item in hand: materials, wear, repairs and fakes show up under a loupe, not in a photo.",
+     "Choose the right valuation type for the client's purpose, such as insurance, estate or sale, and explain why.",
+     "Build a speciality, such as jewellery, art or industrial equipment; deep knowledge is what clients pay for."
+    ],
+    "project": "Re-examine three items you once valued from photos only, record what the hands-on inspection changed, and update your intake rules."
+   }
+  ],
+  "aiTools": [
+   "Auction and sales price databases",
+   "AI image search such as Google Lens",
+   "ChatGPT or Claude for report drafts"
+  ],
+  "humanEdge": [
+   "Spotting fakes and repairs by hand",
+   "Choosing the right valuation for the purpose",
+   "Deep knowledge of a speciality"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-2023.00": {
+  "roadmap": [
+   {
+    "title": "AI for valuation reports and market data",
+    "items": [
+     "Draft appraisal reports with AI from your inspection notes and comparables, and check that each one meets appraisal standards.",
+     "Pull sales, lease and land records with AI-assisted search, and verify each comparable in the official register.",
+     "Summarise price, rent and construction cost trends with AI for your area, and check them against your own sales data."
+    ],
+    "project": "Prepare five reports with AI drafting, record hours and corrections, and have a colleague check that they meet the standards."
+   },
+   {
+    "title": "Automated valuation models with checks",
+    "items": [
+     "Learn how automated valuation models work, where they fail, and when a model value needs a full appraisal.",
+     "Keep parcel data, maps and property features current in one GIS-linked database.",
+     "Compare model values with your appraisals each quarter and record where and why they differ."
+    ],
+    "project": "Compare an automated valuation model with your appraisals on 30 properties and write down the property types where it fails."
+   },
+   {
+    "title": "Inspections and local market judgement",
+    "items": [
+     "Inspect properties and new construction in person; condition, layout and the street matter more than the data shows.",
+     "Defend your values to owners, lenders and appeal boards with clear reasoning and evidence.",
+     "If you want a change, brokerage uses the same local market knowledge, with more selling and negotiation."
+    ],
+    "project": "Track ten properties you inspected where the model value was off, and write down what you saw that the data missed."
+   }
+  ],
+  "aiTools": [
+   "Automated valuation models (AVMs)",
+   "GIS and property records databases",
+   "ChatGPT or Claude for report drafts"
+  ],
+  "humanEdge": [
+   "Judging condition and location in person",
+   "Defending values to owners and appeal boards",
+   "Knowing the local market street by street"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-2031.00": {
+  "roadmap": [
+   {
+    "title": "AI for budget variance and estimates",
+    "items": [
+     "Explain monthly budget-versus-actual variances with AI help, and confirm each explanation with the department before reporting.",
+     "Check budget requests for errors, missing items and rule breaches with AI-assisted spreadsheets, then review the flags yourself.",
+     "Draft budget summaries and recommendations on funding requests with AI, and check every figure against the ledger."
+    ],
+    "project": "Prepare the monthly variance report with AI help for two months and compare the hours and the questions from managers."
+   },
+   {
+    "title": "Rolling forecasts and automated reports",
+    "items": [
+     "Set up automatic budget reports from the accounting system, so the monthly pack is ready without copy and paste.",
+     "Build a simple rolling forecast from spending trends, and update it each month with what managers expect.",
+     "Create a standard template for cost-benefit analyses, so funding requests are compared on the same terms."
+    ],
+    "project": "Build a rolling forecast for one department and compare its accuracy over three months with the original budget."
+   },
+   {
+    "title": "Advising managers on hard choices",
+    "items": [
+     "Work through budget changes with managers; they need to understand the trade-offs, not just the numbers.",
+     "Judge which requests to recommend when money is short, and explain the reasons to people who lose out.",
+     "Treasurer or controller roles build on this work once you add accounting depth and team leadership."
+    ],
+    "project": "Hold budget reviews with three managers using AI-prepared scenarios and record which decisions changed as a result."
+   }
+  ],
+  "aiTools": [
+   "Microsoft 365 Copilot in Excel",
+   "Budgeting and planning software",
+   "ChatGPT or Claude for summaries and memos"
+  ],
+  "humanEdge": [
+   "Explaining trade-offs to managers",
+   "Judging which requests to fund",
+   "Saying no to requests with clear reasons"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -2771,6 +3821,132 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "13-2054.00": {
+  "roadmap": [
+   {
+    "title": "AI for risk code, data and reports",
+    "items": [
+     "Write and debug Python or R for risk calculations with an AI coding assistant, and test results against your existing models.",
+     "Gather and clean market and internal risk data with AI help, documenting every source and adjustment for audit.",
+     "Draft risk reports and committee papers with AI from your results, and check every number and conclusion yourself."
+    ],
+    "project": "Rebuild one recurring risk report with AI help, reconcile it to the last version and record the hours saved per run."
+   },
+   {
+    "title": "Scenario analysis and model validation",
+    "items": [
+     "Generate stress scenarios with AI, such as rate shocks or a market crash, and check they are plausible and consistent.",
+     "Build automatic checks that warn when model inputs or outputs move outside expected ranges.",
+     "Learn how AI and machine learning models are validated, including bias, drift and explainability, under model risk rules."
+    ],
+    "project": "Write one new stress scenario with AI help, run it through your models and present the results and limits to your team."
+   },
+   {
+    "title": "Risk judgement and clear communication",
+    "items": [
+     "Judge when a model no longer fits the market; numbers alone do not show when the world has changed.",
+     "Explain risk positions to traders, managers and boards in plain words, including what the model cannot see.",
+     "Quantitative analysis and fund management are close paths, adding deeper modelling or investment decisions."
+    ],
+    "project": "Present one risk report to a non-specialist audience, collect their questions and rewrite the parts that confused them."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for Python and R",
+   "Risk management and market data systems",
+   "ChatGPT or Claude for report drafts"
+  ],
+  "humanEdge": [
+   "Judging when a model no longer fits",
+   "Explaining risk to boards in plain words",
+   "Challenging traders and managers on risk"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-2061.00": {
+  "roadmap": [
+   {
+    "title": "AI for examination reports and document review",
+    "items": [
+     "Draft examination reports and supporting schedules with AI from your workpapers, and check every finding and figure.",
+     "Review loan files and board minutes in an approved AI tool to find key terms and decisions, then read the flagged passages yourself.",
+     "Summarise new laws and supervisory guidance with AI, and confirm what changes for the institutions you examine."
+    ],
+    "project": "Draft one examination report section with AI help from workpapers and compare hours and review comments with the last cycle."
+   },
+   {
+    "title": "Data-driven examination planning",
+    "items": [
+     "Analyse loan portfolios and financial ratios with AI-assisted tools to find concentrations and weak spots before on-site work.",
+     "Build a standard workpaper template for each examination area, with links from each finding to its evidence.",
+     "Compare internal and external audit reports across institutions to spot weak internal controls early."
+    ],
+    "project": "Analyse one institution's loan portfolio with AI help before the examination and compare your risk areas with the final findings."
+   },
+   {
+    "title": "Meetings with management and enforcement",
+    "items": [
+     "Question directors and senior managers in meetings; how they answer tells you as much as the documents.",
+     "Decide what action a problem needs, from a recommendation to formal enforcement, and stand behind it.",
+     "Learn how banks use AI in lending and fraud detection, and how to examine those models for risk and fairness."
+    ],
+    "project": "Prepare questions for one management meeting from an AI review of the documents and note which answers changed your findings."
+   }
+  ],
+  "aiTools": [
+   "Approved AI tools for document review",
+   "Data analysis software for loan portfolios",
+   "Microsoft 365 Copilot for report drafts"
+  ],
+  "humanEdge": [
+   "Questioning bank directors and managers",
+   "Deciding when a problem needs enforcement",
+   "Judging the soundness of an institution"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-2071.00": {
+  "roadmap": [
+   {
+    "title": "AI for budgets, plans and client letters",
+    "items": [
+     "Build budgets and debt repayment plans in approved budgeting software, and check every income and debt figure with the client.",
+     "Draft client letters and plan summaries with AI in plain language, without names or account numbers in public tools.",
+     "Use AI to prepare answers to common questions about debt programs, and review each before it goes to clients."
+    ],
+    "project": "Write plain-language templates for your five most common client letters with AI help and track client questions for a month."
+   },
+   {
+    "title": "Smooth casework and creditor contacts",
+    "items": [
+     "Keep case notes, documents and payment plans in one system with reminders for follow-ups and deadlines.",
+     "Build templates for creditor proposals, such as lower interest or longer terms, so requests are complete the first time.",
+     "Track which creditors accept which proposals, so you can suggest realistic plans from the start."
+    ],
+    "project": "Track creditor responses for a quarter, list which proposals each accepts and use it to build better first offers."
+   },
+   {
+    "title": "Trust, motivation and hard options",
+    "items": [
+     "Listen to clients under stress without judging; shame often hides the real picture of their debts.",
+     "Help clients choose between hard options, such as a repayment plan or bankruptcy, and explain the consequences.",
+     "Keep clients motivated through long plans with regular check-ins and small wins."
+    ],
+    "project": "Follow ten clients through their first three months on a plan, record why some fell behind and adjust your check-in routine."
+   }
+  ],
+  "aiTools": [
+   "Budgeting and debt management software",
+   "ChatGPT or Claude for plain-language letters",
+   "Case management system with reminders"
+  ],
+  "humanEdge": [
+   "Listening to stressed clients without judging",
+   "Helping clients choose between hard options",
+   "Keeping clients motivated on long plans"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "13-2072.00": {
   "roadmap": [
    {
@@ -2810,6 +3986,48 @@
    "Understanding the person or business behind the numbers",
    "Making and defending a lending decision",
    "Building referral networks with trust"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-2081.00": {
+  "roadmap": [
+   {
+    "title": "AI for return checks and case records",
+    "items": [
+     "Use your agency's approved tools to flag returns with unusual credits or deductions, and review each flag before acting.",
+     "Draft letters asking for documents with approved AI tools, in plain language, and check the facts of each case.",
+     "Summarise tax law changes and rulings with AI, and confirm them in the official text before applying them."
+    ],
+    "project": "Rewrite your three most common taxpayer letters in plain language with AI help and track how many replies need a second letter."
+   },
+   {
+    "title": "Consistent case work and risk selection",
+    "items": [
+     "Keep case notes, contacts and actions in the case system the same way every time, so cases can pass between colleagues.",
+     "Learn how risk-scoring models select returns for review, and report cases where the scores look wrong.",
+     "Build checklists for common examination issues, such as home office or vehicle deductions, with the rules and evidence needed."
+    ],
+    "project": "Build a checklist for one common examination issue, use it on 20 cases and compare time per case and the findings upheld."
+   },
+   {
+    "title": "Taxpayer meetings and fair enforcement",
+    "items": [
+     "Meet taxpayers and their advisers; explaining the rules calmly gets more paid than letters do.",
+     "Judge when to agree a payment plan and when to enforce collection, weighing the law and the taxpayer's situation.",
+     "Examine business accounting systems on site, where you can see how records are really kept."
+    ],
+    "project": "Track ten collection cases for a quarter, compare outcomes of payment plans and enforced collection, and share the lessons with your team."
+   }
+  ],
+  "aiTools": [
+   "Agency-approved AI and analytics tools",
+   "Tax case management system",
+   "ChatGPT or Claude for public law summaries"
+  ],
+  "humanEdge": [
+   "Explaining tax rules calmly to taxpayers",
+   "Judging between payment plans and enforcement",
+   "Examining business records on site"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -2855,6 +4073,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "13-2099.01": {
+  "roadmap": [
+   {
+    "title": "AI coding help for pricing and research models",
+    "items": [
+     "Use an AI coding assistant to write and refactor pricing and portfolio code, and keep unit tests that catch silent numerical errors.",
+     "Ask AI to explain unfamiliar papers, methods and library functions, then verify the maths before you build on it.",
+     "Draft research summaries for traders and portfolio managers with AI, and check every result against your notebooks."
+    ],
+    "project": "Refactor one model library module with an AI coding assistant, add tests that cover edge cases, and record the bugs the tests found."
+   },
+   {
+    "title": "Model libraries with tests and documentation",
+    "items": [
+     "Generate documentation for each model with AI from the code, and review it so assumptions and limits are stated.",
+     "Set up automatic regression tests that compare model outputs before and after each change.",
+     "Build a backtesting template with fixed rules on data, costs and look-ahead bias, so studies are comparable."
+    ],
+    "project": "Write AI-drafted documentation for three models, have a colleague review it and count the undocumented assumptions found."
+   },
+   {
+    "title": "Model judgement and work with traders",
+    "items": [
+     "Interpret results with traders and portfolio managers; knowing when a model's answer makes no sense is the key skill.",
+     "Choose model specifications and data methods, and defend those choices to risk and validation teams.",
+     "Study machine learning methods for finance carefully, including overfitting and data snooping, to lead their use well."
+    ],
+    "project": "Review one strategy's backtest with a trader, list the assumptions that do not hold in live markets, and adjust the model."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant such as GitHub Copilot",
+   "Python data and statistics libraries",
+   "ChatGPT or Claude for paper summaries"
+  ],
+  "humanEdge": [
+   "Knowing when a model's answer makes no sense",
+   "Defending model choices to validators",
+   "Turning trader needs into sound models"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "13-2099.04": {
+  "roadmap": [
+   {
+    "title": "AI for investigation reports and data analysis",
+    "items": [
+     "Draft investigation reports with AI from your case notes, and check every fact, date and amount against the evidence.",
+     "Analyse transactions with AI-assisted tools to find unusual payments, round amounts and hidden links between parties.",
+     "Summarise large document sets, such as emails and contracts, in an approved AI tool, and read the key passages yourself."
+    ],
+    "project": "Re-run the analysis of one closed case with AI-assisted tools and compare what it found with the original investigation's findings."
+   },
+   {
+    "title": "Case triage and fraud pattern tracking",
+    "items": [
+     "Score incoming fraud alerts by risk with clear rules, so investigators spend their time on the cases that matter most.",
+     "Keep a searchable database of fraud cases, methods and red flags, so new cases can be compared with old ones.",
+     "Learn how fraudsters use AI, such as deepfake voices and fake documents, and how to spot it in your cases."
+    ],
+    "project": "Build a red-flag library from 20 past cases and test it on new alerts for a month, recording true and false hits."
+   },
+   {
+    "title": "Interviews, evidence and case leadership",
+    "items": [
+     "Interview witnesses and suspects yourself; reading answers, pauses and contradictions takes practice.",
+     "Build evidence that holds up in court, and work with lawyers and police as the case develops.",
+     "Lead investigation teams and decide when a case is strong enough to refer to law enforcement."
+    ],
+    "project": "Prepare an interview plan with AI-sorted evidence for one case, then record what the interview added that the documents lacked."
+   }
+  ],
+  "aiTools": [
+   "Data analytics tools for transaction analysis",
+   "Approved AI tools for document review",
+   "Case management and link analysis software"
+  ],
+  "humanEdge": [
+   "Interviewing witnesses and suspects",
+   "Building evidence that holds up in court",
+   "Judging when a case is ready to refer"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "15-1211.00": {
   "roadmap": [
    {
@@ -2894,6 +4196,48 @@
    "Finding out what users need, not what they first ask for",
    "Agreeing system principles and trade-offs with management",
    "Seeing how a change in one system breaks another"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1211.01": {
+  "roadmap": [
+   {
+    "title": "AI for training materials and data analysis",
+    "items": [
+     "Write training guides and quick-reference cards for clinical systems with AI, and test them with nurses before release.",
+     "Analyse nursing and system data with AI-assisted tools in approved environments only; patient data never goes into public chatbots.",
+     "Draft requirements and workflow descriptions with AI from your notes with nurses, and confirm them with the clinicians."
+    ],
+    "project": "Rewrite the training guide for one clinical workflow with AI help, test it with five nurses and count the questions it removes."
+   },
+   {
+    "title": "Evaluating AI tools in clinical work",
+    "items": [
+     "Evaluate AI features such as ambient documentation and early-warning scores for accuracy, bias and fit with nursing workflow.",
+     "Set up a standard process for testing and approving new decision-support rules, with clinical sign-off.",
+     "Build dashboards on documentation time and alert fatigue to show where systems help or burden nurses."
+    ],
+    "project": "Measure nurses' documentation time on one unit before and after a system change and report the result to nursing leaders."
+   },
+   {
+    "title": "Bridging nurses and engineers",
+    "items": [
+     "Translate between bedside nursing and system design; you understand both what nurses need and what engineers can build.",
+     "Support nurses on the unit when systems change; trust in a new tool is won at the bedside, not in training rooms.",
+     "Lead your organisation's rules on AI in nursing: what is allowed, who checks results and how errors are reported."
+    ],
+    "project": "Draft a one-page policy on using AI tools in nursing documentation with AI help and review it with nurses, IT and data protection."
+   }
+  ],
+  "aiTools": [
+   "Electronic health record analytics",
+   "Approved, secure AI tools for documentation",
+   "ChatGPT or Claude for training materials without patient data"
+  ],
+  "humanEdge": [
+   "Translating between nurses and engineers",
+   "Winning nurses' trust in new systems",
+   "Judging if a tool is safe for patients"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -2939,6 +4283,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "15-1221.00": {
+  "roadmap": [
+   {
+    "title": "AI assistants for research code and papers",
+    "items": [
+     "Use AI coding assistants to prototype ideas and experiments faster, and review every line that goes into published results.",
+     "Search and summarise related work with AI research tools, then read the key papers fully before citing them.",
+     "Draft paper sections, proposals and documentation with AI, keeping the ideas, claims and conclusions your own."
+    ],
+    "project": "Prototype one research idea with an AI coding assistant, log the time per step and record the bugs you had to fix by hand."
+   },
+   {
+    "title": "Reproducible experiments at scale",
+    "items": [
+     "Set up experiment tracking, so every result can be traced to its code, data and settings.",
+     "Automate benchmark runs and result tables, so new ideas are compared fairly with baselines.",
+     "Agree group rules on AI use in research code and writing, including disclosure and checks."
+    ],
+    "project": "Reproduce one of your past results from scratch with your tracking setup and fix whatever was missing to make it repeatable."
+   },
+   {
+    "title": "New ideas and cross-field work",
+    "items": [
+     "Frame problems as mathematical models in new ways; the creative step of choosing what to study is yours.",
+     "Work with experts from other fields, such as robotics or medicine, and turn their problems into research questions.",
+     "Mentor students and junior researchers, and teach them to check AI-generated code and claims."
+    ],
+    "project": "Write a one-page research proposal with a partner from another field and get feedback from two senior colleagues."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistants such as GitHub Copilot",
+   "AI literature tools such as Semantic Scholar",
+   "Experiment tracking tools"
+  ],
+  "humanEdge": [
+   "Choosing problems worth studying",
+   "Turning other fields' problems into research",
+   "Mentoring students into careful researchers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1231.00": {
+  "roadmap": [
+   {
+    "title": "AI for troubleshooting and ticket notes",
+    "items": [
+     "Paste error messages and logs into an AI assistant to get likely causes, removing passwords and internal addresses first.",
+     "Write ticket notes and fixes with AI from your work log, so the next person can follow what you did.",
+     "Ask AI to explain router and switch configuration syntax, then test changes in a lab or during a maintenance window."
+    ],
+    "project": "Use an AI assistant on 20 network tickets, record where its suggested cause was right, and add the good fixes to your knowledge base."
+   },
+   {
+    "title": "Monitoring alerts and configuration scripts",
+    "items": [
+     "Set up monitoring with alerts on link use, errors and latency, so problems show up before users call.",
+     "Write small scripts with AI help to back up and check device configurations, reviewed before running on live equipment.",
+     "Build a knowledge base of common faults and fixes from ticket history, and keep it current."
+    ],
+    "project": "Write a script with AI help that backs up all switch configurations nightly, test it for a week and document how to restore."
+   },
+   {
+    "title": "Hands-on repair and calm user support",
+    "items": [
+     "Fix cabling, ports and equipment on site; physical faults need hands, tools and patience.",
+     "Calm stressed users on the phone and explain what is wrong without jargon.",
+     "Learn security basics such as access rights and segmentation; they lead toward security or systems admin roles."
+    ],
+    "project": "Shadow a network administrator for a week, list three tasks you could take over, and agree a plan to learn them."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for log and error analysis",
+   "Network monitoring tools such as PRTG or Zabbix",
+   "Help desk and ticketing software"
+  ],
+  "humanEdge": [
+   "Fixing physical faults on site",
+   "Calming stressed users on the phone",
+   "Knowing your own network's quirks"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "15-1232.00": {
   "roadmap": [
    {
@@ -2981,6 +4409,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "15-1241.01": {
+  "roadmap": [
+   {
+    "title": "AI for diagnostics, docs and tech updates",
+    "items": [
+     "Use AI to read logs and traffic data for likely causes of call quality or connection problems, and confirm with your test tools.",
+     "Draft requirement documents and change requests with AI from meetings with users, and check them with the engineers.",
+     "Summarise vendor documentation and new standards with AI, and check key details in the original source."
+    ],
+    "project": "Diagnose ten support cases with AI help from logs, compare the suggested cause with the real one and keep a list of misses."
+   },
+   {
+    "title": "Capacity monitoring and change control",
+    "items": [
+     "Set up dashboards on traffic, capacity and faults, with alerts when trends point to trouble.",
+     "Script routine backups and configuration checks with AI help, and test restores on a schedule.",
+     "Use one template to review modification requests for cost, risk and compatibility."
+    ],
+    "project": "Build a capacity dashboard for one site, set alert thresholds and record how many problems it caught early over a month."
+   },
+   {
+    "title": "Installations, vendors and projects",
+    "items": [
+     "Lead installations and upgrades on site with installers and vendors; plans change when you open the cabinet.",
+     "Turn user needs into the right technology purchase, and say no to features that add cost without value.",
+     "Network architecture is a natural next step if you enjoy design more than daily support."
+    ],
+    "project": "Lead one small upgrade project with an AI-drafted plan and checklist, and record what changed on site and why."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for log analysis and documents",
+   "Network and voice monitoring tools",
+   "Test equipment and diagnostic software"
+  ],
+  "humanEdge": [
+   "Leading installs with vendors on site",
+   "Turning user needs into the right purchase",
+   "Supervising maintenance crews safely"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "15-1242.00": {
   "roadmap": [
    {
@@ -3020,6 +4490,90 @@
    "Owning data safety and recovery",
    "Judging which change is too risky to run",
    "Mentoring junior staff and developers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1243.00": {
+  "roadmap": [
+   {
+    "title": "AI for data models, SQL and schema docs",
+    "items": [
+     "Draft data models and SQL with an AI assistant from the requirements, and review keys, constraints and indexes yourself.",
+     "Generate schema documentation and diagrams with AI from the live database, and check them against the real structure.",
+     "Ask AI to review query plans and suggest index changes, then test each one on realistic data volumes."
+    ],
+    "project": "Document one database's schema with AI help, have a developer use the documents for a week and fix what they found missing."
+   },
+   {
+    "title": "Design standards and data for AI systems",
+    "items": [
+     "Write design standards for naming, keys, partitions and security, and check new schemas against them automatically.",
+     "Learn how vector databases and embeddings support AI search, and when to add them to your existing systems.",
+     "Build test data sets and load tests that show how a design behaves at expected scale."
+    ],
+    "project": "Prototype AI search on one data set with a vector extension in your database, and compare cost and quality with keyword search."
+   },
+   {
+    "title": "Architecture decisions and team guidance",
+    "items": [
+     "Turn business requirements into designs that will still work in five years; that judgement takes experience.",
+     "Weigh trade-offs between cost, speed, security and simplicity with architects and product owners.",
+     "Coach junior staff on reviewing AI-written SQL and schemas for errors and security holes."
+    ],
+    "project": "Write an architecture decision record for one design choice, review it with the team and track whether it holds after three months."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for SQL",
+   "Data modelling tools",
+   "Vector database extensions such as pgvector"
+  ],
+  "humanEdge": [
+   "Designing for needs years ahead",
+   "Weighing trade-offs with product owners",
+   "Reviewing designs for security and scale"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1243.01": {
+  "roadmap": [
+   {
+    "title": "AI for ETL code and data mapping",
+    "items": [
+     "Write and refactor ETL code and SQL with an AI coding assistant, and test it on sample loads before production.",
+     "Draft source-to-warehouse mappings with AI from table descriptions, and confirm each field's meaning with its owner.",
+     "Ask AI to explain failed loads from error logs, then confirm the cause in the source data."
+    ],
+    "project": "Rewrite one ETL job with an AI coding assistant, add tests, and compare run time and failure rate for a month."
+   },
+   {
+    "title": "Automated data quality checks",
+    "items": [
+     "Add automatic data quality tests for row counts, duplicates and missing values to every load.",
+     "Generate data catalogue entries with AI from your code and tables, and have data owners review them.",
+     "Set up alerts and runbooks for common load failures, so on-call fixes are fast and consistent."
+    ],
+    "project": "Add quality tests to your five most important tables and count the bad loads caught before users saw them over a month."
+   },
+   {
+    "title": "Data meaning and business trust",
+    "items": [
+     "Agree definitions of key business terms with data owners; AI cannot decide what 'active customer' means.",
+     "Troubleshoot complex load problems across systems where logs only tell part of the story.",
+     "Prepare your warehouse for AI use: clean definitions and documented tables make AI answers trustworthy."
+    ],
+    "project": "Agree definitions for ten key business terms with their owners and add them to the catalogue that analysts and AI tools use."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for SQL and Python",
+   "Data quality testing tools such as dbt tests",
+   "Data catalogue software"
+  ],
+  "humanEdge": [
+   "Agreeing data definitions with owners",
+   "Solving problems across many systems",
+   "Earning business trust in the numbers"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -3104,6 +4658,342 @@
    "Deciding what is worth building for users",
    "Reviewing code for security and quality",
    "Turning vague requests into clear requirements"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1255.01": {
+  "roadmap": [
+   {
+    "title": "AI for design documents and quick prototypes",
+    "items": [
+     "Draft and update design documents for mechanics, missions and characters with AI, and keep the vision and final calls yours.",
+     "Prototype mechanics faster with AI coding help in your engine's scripting language, and test them in play, not on paper.",
+     "Brainstorm puzzle and mission variations with AI, then cut the ones that do not fit your game's rules and tone."
+    ],
+    "project": "Prototype one mechanic with AI coding help in a week, playtest it with five people and record what changed after their feedback."
+   },
+   {
+    "title": "Playtest data and balancing tools",
+    "items": [
+     "Collect playtest telemetry and use AI-assisted analysis to find where players get stuck, quit or exploit a system.",
+     "Build balancing spreadsheets or simulations for economies and difficulty curves, and check them against real play.",
+     "Summarise playtest surveys and comments with AI, and watch the recordings that matter yourself."
+    ],
+    "project": "Analyse telemetry from one playtest with AI help, change the three worst difficulty spikes and compare completion rates."
+   },
+   {
+    "title": "Game feel, vision and team leadership",
+    "items": [
+     "Judge game feel and fun by playing; no metric tells you whether a jump or a puzzle feels right.",
+     "Guide design discussions between art, code and production, and protect the core vision when scope grows.",
+     "Learn where AI-generated assets and text raise rights, credit and player-trust issues, and set clear team rules."
+    ],
+    "project": "Write your team's rules for AI-generated assets and text, covering rights, credit and review, and agree them with the leads."
+   }
+  ],
+  "aiTools": [
+   "AI coding help for Unity or Unreal scripts",
+   "ChatGPT or Claude for design documents",
+   "Game analytics and telemetry tools"
+  ],
+  "humanEdge": [
+   "Judging game feel and fun by playing",
+   "Protecting the creative vision",
+   "Guiding art, code and production to agree"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1299.01": {
+  "roadmap": [
+   {
+    "title": "AI for server issues and site content",
+    "items": [
+     "Use AI to read server and error logs for likely causes of outages and slow pages, then confirm the cause before changing anything.",
+     "Update page content and find broken links with AI-assisted tools, and review every change before it goes live.",
+     "Ask AI to explain web server and DNS configuration options, and test changes on a staging server first."
+    ],
+    "project": "Diagnose the next ten site incidents with AI help from logs, record where its first guess was right, and write a fix guide."
+   },
+   {
+    "title": "Automated patching and monitoring",
+    "items": [
+     "Automate updates and patches with a schedule, a staging test and a rollback plan for each server.",
+     "Set up uptime, certificate and security monitoring with alerts, so you hear about problems before users do.",
+     "Build a monthly usage report with AI-written notes on traffic changes, checked against the analytics data."
+    ],
+    "project": "Automate patching for one server group with staging tests and rollback, and track downtime from updates for two months."
+   },
+   {
+    "title": "Security judgement and team support",
+    "items": [
+     "Decide how to respond to an attack or breach, and who must be told; speed and judgement matter more than tools.",
+     "Work with developers and designers on usability problems that users report, and test the fixes with real users.",
+     "Learn cloud hosting and infrastructure as code; they lead toward systems engineering or DevOps roles."
+    ],
+    "project": "Write an incident response checklist for your sites with AI help, run a test with the team and fix the steps that were unclear."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for log analysis and configs",
+   "Uptime and security monitoring services",
+   "Web analytics such as Google Analytics"
+  ],
+  "humanEdge": [
+   "Making fast, sound calls during a breach",
+   "Working with developers on usability",
+   "Knowing your servers' history and quirks"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1299.02": {
+  "roadmap": [
+   {
+    "title": "AI for GIS scripts and map production",
+    "items": [
+     "Write Python scripts for QGIS or ArcGIS with an AI coding assistant, and test them on a copy of the data first.",
+     "Digitise features from scanned maps and images with AI-assisted tools, and check edges and attributes by hand.",
+     "Draft map reports and metadata with AI from your layers, and check every figure and source."
+    ],
+    "project": "Automate one recurring map product with an AI-written Python script, and compare the hours per update before and after."
+   },
+   {
+    "title": "Data quality checks and imagery analysis",
+    "items": [
+     "Set up automatic checks for topology errors, missing attributes and outdated layers in your GIS database.",
+     "Use AI-based image classification on aerial or satellite images to map land cover, and validate it with field samples.",
+     "Document data sources, dates and accuracy for every layer, so users know what they can trust."
+    ],
+    "project": "Classify land cover for one area with AI tools, check 50 random points against field data or images and report the accuracy."
+   },
+   {
+    "title": "Spatial judgement and user support",
+    "items": [
+     "Choose the right projection, scale and method for each question; a wrong choice gives a confident but wrong map.",
+     "Help users turn their questions into spatial analyses, and explain the limits of the data in plain words.",
+     "Learn spatial data science in Python; it leads toward data scientist or geospatial analyst roles."
+    ],
+    "project": "Hold three sessions with users about what they need from maps, then redesign one product based on their answers."
+   }
+  ],
+  "aiTools": [
+   "QGIS or ArcGIS Pro",
+   "AI coding assistant for Python",
+   "AI image classification tools for aerial imagery"
+  ],
+  "humanEdge": [
+   "Choosing the right method for each map",
+   "Explaining data limits to users",
+   "Judging when a map is misleading"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1299.03": {
+  "roadmap": [
+   {
+    "title": "AI for classification, metadata and guides",
+    "items": [
+     "Use AI to suggest document types, metadata and security levels for incoming files, and review a sample each week.",
+     "Write user guides and training materials with AI from your system procedures, and test them with new users.",
+     "Answer common user questions with an AI-drafted help page, and update it from the tickets you receive."
+    ],
+    "project": "Test AI classification on 500 documents, compare it with manual labels and record the error rate by document type."
+   },
+   {
+    "title": "Workflows, retention and AI search",
+    "items": [
+     "Configure approval and review workflows so documents move without email, with clear owners at each step.",
+     "Set retention rules by document type and automate deletion reminders, with legal sign-off on the rules.",
+     "Prepare your repository for AI search: clean metadata and correct permissions decide what AI assistants can find and show."
+    ],
+    "project": "Audit permissions on one sensitive library before enabling AI search, fix the over-shared folders and record how many you found."
+   },
+   {
+    "title": "Information governance and user trust",
+    "items": [
+     "Decide who may see what and why; access rules for sensitive documents need judgement and accountability.",
+     "Work with users to find why they keep files outside the system, and fix the real cause.",
+     "Lead the rules for AI assistants reading company documents, together with IT, legal and data protection."
+    ],
+    "project": "Interview ten users about where they keep files and why, then change one workflow and measure system use a month later."
+   }
+  ],
+  "aiTools": [
+   "Document management systems such as SharePoint",
+   "Microsoft 365 Copilot for search and summaries",
+   "ChatGPT or Claude for user guides"
+  ],
+  "humanEdge": [
+   "Deciding who may see sensitive documents",
+   "Finding why users avoid the system",
+   "Agreeing rules across IT, legal and teams"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1299.04": {
+  "roadmap": [
+   {
+    "title": "AI for reports, recon notes and scripts",
+    "items": [
+     "Draft findings and reports with AI from your notes and evidence, keeping client data out of public tools, and check every detail.",
+     "Write and adapt small scripts for testing with AI coding help, and read every line before running it on a client system.",
+     "Summarise scan output and vulnerability data with AI to plan where to look first, then verify each finding by hand."
+    ],
+    "project": "Write your next test report with AI drafting in an approved tool, track the hours saved and the corrections your reviewer made."
+   },
+   {
+    "title": "Testing AI systems and repeatable methods",
+    "items": [
+     "Learn to test AI applications for prompt injection, data leaks and unsafe tool use, using guides such as the OWASP LLM Top 10.",
+     "Build reusable test plans and report templates for common targets, such as web apps, networks and cloud accounts.",
+     "Keep a findings library with descriptions, risk ratings and fixes, so reports are consistent across testers."
+    ],
+    "project": "Run an authorised test of one internal AI chatbot against the OWASP LLM Top 10 and report the findings to its owners."
+   },
+   {
+    "title": "Creative attacks and clear advice",
+    "items": [
+     "Chain small weaknesses into real attack paths; creativity and persistence find what scanners miss.",
+     "Explain findings to IT teams and managers so they fix the right things first, without blame.",
+     "Stay within the agreed scope and rules of engagement, and judge when to stop and call the client."
+    ],
+    "project": "Present one test's results to a non-technical manager, ask what they would fix first, and adjust how you rank risks."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for report drafts",
+   "AI coding assistant for test scripts",
+   "Security testing tools such as Burp Suite"
+  ],
+  "humanEdge": [
+   "Chaining small flaws into real attacks",
+   "Explaining risk so the right fixes happen",
+   "Judging scope and when to stop"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1299.05": {
+  "roadmap": [
+   {
+    "title": "AI for alerts, policies and detection rules",
+    "items": [
+     "Use AI assistants in your security tools to summarise alerts and incidents, and confirm each conclusion in the raw logs.",
+     "Draft security policies, procedures and standards with AI from your frameworks, and check them against the real systems.",
+     "Write detection rules and scripts with AI coding help, and test them against known attacks and normal traffic."
+    ],
+    "project": "Write five detection rules with AI help, test them on a week of logs and record true and false alerts for each."
+   },
+   {
+    "title": "Compliance mapping and securing AI use",
+    "items": [
+     "Map controls to standards such as ISO 27001 or NIS2 in one register, with evidence links that update automatically.",
+     "Set security rules for AI tools in your company: approved tools, data limits, logging and access to internal data.",
+     "Automate vulnerability scanning and patch tracking, and review the exceptions instead of every finding."
+    ],
+    "project": "Write an AI tool security standard for your company, covering data, access and logging, and get it approved by management."
+   },
+   {
+    "title": "Incident judgement and security design",
+    "items": [
+     "Lead breach investigations: decide what to contain, what to preserve and who must be told, under time pressure.",
+     "Design security into new systems with architects and developers, instead of adding it at the end.",
+     "Judge which risks matter most for your business and explain them to management in plain terms."
+    ],
+    "project": "Run a tabletop exercise for an AI-assisted phishing attack, record the decisions that were slow and update the response plan."
+   }
+  ],
+  "aiTools": [
+   "Security tools with AI assistants (SIEM, EDR)",
+   "ChatGPT or Claude for policy drafts",
+   "Vulnerability scanning and patch tools"
+  ],
+  "humanEdge": [
+   "Leading breach response under pressure",
+   "Designing security into new systems",
+   "Judging which risks matter most"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1299.06": {
+  "roadmap": [
+   {
+    "title": "AI for log parsing and forensic summaries",
+    "items": [
+     "Write parsing scripts for large logs and artefacts with AI coding help, and validate the output against the raw data.",
+     "Draft technical summaries and timelines with AI from your verified findings, in approved tools that keep case data private.",
+     "Use AI-assisted search to sort large volumes of files and messages, and examine every relevant hit yourself."
+    ],
+    "project": "Write a parser with AI help for one log type you handle often, validate it on a past case and record the hours it saves."
+   },
+   {
+    "title": "Repeatable, court-ready workflows",
+    "items": [
+     "Standardise acquisition and imaging steps with checklists and hash checks, so evidence stays sound.",
+     "Build a script library for common artefacts, with tests and version records you can explain in court.",
+     "Learn to detect AI-generated or altered images, audio and documents, and the limits of detection tools."
+    ],
+    "project": "Test two deepfake detection tools on known real and fake samples and write down their error rates and limits."
+   },
+   {
+    "title": "Expert judgement and testimony",
+    "items": [
+     "Interpret what the evidence does and does not show; overstating a finding can ruin a case.",
+     "Explain technical findings to lawyers, judges and managers in plain words, and stand up to cross-examination.",
+     "Plan investigations with investigators and lawyers, choosing what to collect before evidence is lost."
+    ],
+    "project": "Present one past case's findings to a non-technical colleague as if in court, and rewrite the parts they did not follow."
+   }
+  ],
+  "aiTools": [
+   "Forensic suites such as Autopsy or EnCase",
+   "AI coding assistant for parsing scripts",
+   "Approved AI tools for search and summaries"
+  ],
+  "humanEdge": [
+   "Stating only what the evidence shows",
+   "Explaining findings clearly in court",
+   "Planning collection before evidence is lost"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "15-1299.07": {
+  "roadmap": [
+   {
+    "title": "AI coding help for contracts and services",
+    "items": [
+     "Write and refactor client, server and smart contract code with an AI coding assistant, and review every change for security.",
+     "Generate unit and property tests for smart contracts with AI, and add the edge cases attackers would try.",
+     "Ask AI to explain unfamiliar protocols and libraries, then confirm the details in the official specifications."
+    ],
+    "project": "Add AI-generated tests to one smart contract, include attack-style edge cases, and record the bugs found before audit."
+   },
+   {
+    "title": "Safe deployment and security analysis",
+    "items": [
+     "Automate builds and deployments across nodes with staged rollouts and fast rollback.",
+     "Run static analysis and fuzzing on contracts in your pipeline, and treat every high finding as a release blocker.",
+     "Keep design decisions, threat models and audit results documented, so new engineers understand the risks."
+    ],
+    "project": "Add static analysis and fuzzing to your contract pipeline and count the issues caught before review over a month."
+   },
+   {
+    "title": "Protocol design and honest advice",
+    "items": [
+     "Design consensus, key management and cryptography with security experts; mistakes here are costly and permanent.",
+     "Tell clients honestly when a database would serve them better than a blockchain.",
+     "Test how large peer-to-peer networks behave under failure and attack, where simulations miss real conditions."
+    ],
+    "project": "Write a one-page threat model for one system with AI help, review it with a security expert and fix the top two risks."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant such as GitHub Copilot",
+   "Smart contract analysis tools such as Slither",
+   "CI/CD pipelines for staged deployment"
+  ],
+  "humanEdge": [
+   "Designing secure protocols with experts",
+   "Advising honestly when not to use blockchain",
+   "Judging security risks in permanent code"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
