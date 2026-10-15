@@ -24401,6 +24401,216 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "43-4021.00": {
+  "roadmap": [
+   {
+    "title": "AI drafts for letters and replies",
+    "items": [
+     "Draft replies to claims, billing questions and complaints with AI from approved templates, and check every fact before sending.",
+     "Sort incoming letters and emails with AI suggestions for topic and urgency, and confirm where each one goes.",
+     "Gather the records each reply needs with search tools, and check them for completeness before attaching."
+    ],
+    "project": "Draft replies with AI for one type of correspondence for a month and compare handling time and corrections with the month before."
+   },
+   {
+    "title": "Templates, records and routing rules",
+    "items": [
+     "Keep a library of approved reply templates that you review when rules or products change.",
+     "Log every letter and reply in the tracking system, so reports on volumes and delays build themselves.",
+     "Agree routing rules with other departments so AI-sorted mail reaches the right person first time."
+    ],
+    "project": "Review your ten most used templates against current rules with your manager, fix the outdated ones and track complaints after."
+   },
+   {
+    "title": "Hard cases and clear explanations",
+    "items": [
+     "Handle angry or complicated cases yourself; tone and judgement decide whether a customer stays.",
+     "Explain rules and decisions in plain words, so customers understand what happens next.",
+     "Move toward complaints handling or customer service roles, where your writing and judgement count."
+    ],
+    "project": "Take five complex complaints from start to finish yourself, and record what you did that a template could not."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude with approved templates",
+   "Correspondence tracking systems",
+   "AI mail sorting and routing"
+  ],
+  "humanEdge": [
+   "Handling angry or complicated cases",
+   "Explaining rules in plain words",
+   "Judging where each case belongs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-4031.00": {
+  "roadmap": [
+   {
+    "title": "Digital case files and public questions",
+    "items": [
+     "Record case outcomes, orders and fee arrangements in the court case system, checking every name and date.",
+     "Answer common questions about hearings and procedures with an approved online guide or chat, and handle the rest yourself.",
+     "Process e-filed documents and licence applications online, and check each one for missing information."
+    ],
+    "project": "Write a plain-language guide with AI help for the ten questions you hear most, get it approved and track calls after a month."
+   },
+   {
+    "title": "Orders, licences and record accuracy",
+    "items": [
+     "Prepare court orders and summonses from templates in the system, and have every one checked before issue.",
+     "Use automated checks on licence applications, and judge the unusual cases yourself.",
+     "Keep vital and fiscal records accurate and secure, with audit trails for every change."
+    ],
+    "project": "Track errors found in issued documents for three months, find the main cause and agree one check with your supervisor."
+   },
+   {
+    "title": "Helping people through the system",
+    "items": [
+     "Help people without lawyers understand forms and dates, without giving legal advice.",
+     "Question applicants carefully to get complete, correct information the first time.",
+     "Stay calm and polite with stressed people at the counter or on the phone."
+    ],
+    "project": "Note the questions people without lawyers ask for a month and suggest two improvements to forms or signs."
+   }
+  ],
+  "aiTools": [
+   "Court case management systems",
+   "E-filing and online licence portals",
+   "Approved online guides and chat"
+  ],
+  "humanEdge": [
+   "Helping people without lawyers",
+   "Careful questioning for complete answers",
+   "Calm with stressed people at the counter"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-4041.00": {
+  "roadmap": [
+   {
+    "title": "Automated credit checks and records",
+    "items": [
+     "Use automated credit decision tools for standard applications, and review every referral and edge case yourself.",
+     "Pull credit bureau and bank data through integrated systems, and check that it matches the right person.",
+     "Write findings and recommendations with templates, giving clear reasons for each decision."
+    ],
+    "project": "Review one month of cases the automated system referred to you, record why each was referred and suggest one rule change."
+   },
+   {
+    "title": "Fraud signals and fair decisions",
+    "items": [
+     "Learn the fraud signals your tools flag, such as identity mismatches, and confirm them before acting.",
+     "Check that automated credit rules treat similar applicants the same way, and report patterns that look unfair.",
+     "Keep charge and payment records accurate, so later decisions rest on correct data."
+    ],
+    "project": "Compare decisions for 50 similar applicants over three months and report any differences that the rules cannot explain."
+   },
+   {
+    "title": "Interviews and judgement calls",
+    "items": [
+     "Interview applicants to understand situations that data does not show, such as new jobs or one-off debts.",
+     "Resolve disputes about transactions with customers calmly and fairly.",
+     "Judge borderline cases and explain your reasoning so others can check it."
+    ],
+    "project": "Handle ten borderline applications with written reasoning and review the outcomes with your supervisor after six months."
+   }
+  ],
+  "aiTools": [
+   "Automated credit decision systems",
+   "Credit bureau data integrations",
+   "Fraud detection tools"
+  ],
+  "humanEdge": [
+   "Judging borderline applications",
+   "Interviewing applicants about their situation",
+   "Resolving disputes fairly"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-4061.00": {
+  "roadmap": [
+   {
+    "title": "Case systems and benefit calculations",
+    "items": [
+     "Use the case system's rules engine to calculate benefits, and check each result against the applicant's documents.",
+     "Write case notes and required reports with templates, keeping personal data inside approved systems.",
+     "Answer common questions about claims with an approved guide, and explain individual cases yourself."
+    ],
+    "project": "Check 30 automatically calculated benefit amounts against the rules by hand and record every difference you find."
+   },
+   {
+    "title": "Fair automation and data checks",
+    "items": [
+     "Learn the risks of automated eligibility and fraud scoring, and how errors have harmed families elsewhere.",
+     "Verify information with employers and agencies through data matching, and confirm before acting on any mismatch.",
+     "Track deadlines for renewals and reviews with automatic reminders, so no one loses benefits by mistake."
+    ],
+    "project": "Review every case flagged by data matching for a month and record how many flags were real problems."
+   },
+   {
+    "title": "Interviews, rights and referrals",
+    "items": [
+     "Interview applicants with respect, gathering the facts behind each situation.",
+     "Explain rights, appeal options and decisions clearly, especially when you deny or end support.",
+     "Refer people to other services when their needs go beyond your program."
+    ],
+    "project": "Rewrite your standard explanation of appeal rights in plain words with AI help and ask ten applicants if it was clear."
+   }
+  ],
+  "aiTools": [
+   "Benefit case management systems",
+   "Rules engines for eligibility",
+   "Data matching with employers and agencies"
+  ],
+  "humanEdge": [
+   "Respectful interviews about hard situations",
+   "Explaining rights and appeal options",
+   "Catching automated errors before harm"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-4071.00": {
+  "roadmap": [
+   {
+    "title": "Scanning, OCR and digital filing",
+    "items": [
+     "Scan paper records with OCR so they become searchable, and check the text on a sample of each batch.",
+     "Use AI suggestions to classify and tag documents, and correct wrong tags before filing.",
+     "Answer requests for records from the digital system, checking that the person is allowed to see them."
+    ],
+    "project": "Scan and tag one archive box with OCR and AI tags, check every tag and record the error rate and time taken."
+   },
+   {
+    "title": "Retention rules and confidential records",
+    "items": [
+     "Apply retention schedules with reminders, so records are kept or destroyed exactly on time.",
+     "Handle confidential files with access controls and logs, and report any breach at once.",
+     "Keep naming and folder rules consistent, so everyone finds files the same way."
+    ],
+    "project": "Write a one-page naming and filing guide for your team, use it for a month and count misfiled documents before and after."
+   },
+   {
+    "title": "Order, trust and your next step",
+    "items": [
+     "Find documents others cannot, using your knowledge of how records were kept over the years.",
+     "Judge which records matter and which can go, following rules and asking when unsure.",
+     "Move toward records or document management roles, which build on these skills."
+    ],
+    "project": "Take one short course in records or document management and apply one new method to your filing system."
+   }
+  ],
+  "aiTools": [
+   "Scanners with OCR",
+   "Document management systems with AI tagging",
+   "Retention schedule tools"
+  ],
+  "humanEdge": [
+   "Finding records others cannot",
+   "Careful handling of confidential files",
+   "Judging what to keep and what to destroy"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "43-4081.00": {
   "roadmap": [
    {
@@ -24443,6 +24653,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "43-4111.00": {
+  "roadmap": [
+   {
+    "title": "Digital forms and interview data",
+    "items": [
+     "Collect answers on tablets or online forms with built-in checks, so missing or impossible answers are caught at once.",
+     "Use AI transcription for recorded interviews, and check quotes and numbers against the recording.",
+     "Code and review survey answers with AI help, and check a sample by hand for accuracy."
+    ],
+    "project": "Code 200 open answers with AI help, check 50 by hand and record where the AI coding was wrong."
+   },
+   {
+    "title": "Insurance checks and smooth scheduling",
+    "items": [
+     "Verify insurance benefits through online portals before appointments, and explain costs clearly.",
+     "Schedule interviews and send reminders automatically, so fewer people miss appointments.",
+     "Keep records and billing accurate in the system, with every change logged."
+    ],
+    "project": "Send automatic reminders for one month and compare missed interviews or appointments with the month before."
+   },
+   {
+    "title": "Rapport and clear questions",
+    "items": [
+     "Put people at ease so they answer honestly, especially on sensitive topics.",
+     "Help people fill in forms they find hard, without changing their answers.",
+     "Spot answers that do not fit together and clear them up with polite follow-up questions."
+    ],
+    "project": "Practise a warm opening and follow-up questions with a colleague, use them for a month and compare completion rates."
+   }
+  ],
+  "aiTools": [
+   "Tablet and online survey forms",
+   "AI transcription tools",
+   "Insurance verification portals"
+  ],
+  "humanEdge": [
+   "Putting people at ease to answer honestly",
+   "Helping people with hard forms",
+   "Clearing up inconsistent answers politely"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-4121.00": {
+  "roadmap": [
+   {
+    "title": "Circulation systems and patron records",
+    "items": [
+     "Run loans, returns and holds through the library system and self-service machines, and fix their errors.",
+     "Update patron records carefully, keeping personal data private.",
+     "Answer routine questions with the library's online help, and pass harder ones to a librarian."
+    ],
+    "project": "Track self-checkout problems for a month, write a short guide for the most common ones and post it at the machines."
+   },
+   {
+    "title": "Sorting, inter-library loans and new items",
+    "items": [
+     "Use RFID and sorting systems for returns, and shelve items accurately so they can be found.",
+     "Process inter-library loans and new materials through the system, checking every record.",
+     "Learn the e-book, audiobook and database services patrons ask about most."
+    ],
+    "project": "Learn three e-book or database services well, help ten patrons use them over a month and note what confused them."
+   },
+   {
+    "title": "Helping patrons in person",
+    "items": [
+     "Help patrons find materials and use computers with patience, especially older and new users.",
+     "Show children and students how to search the catalogue and check sources.",
+     "Library technician roles are a natural next step, adding cataloguing and reference skills."
+    ],
+    "project": "Help at five computer or homework sessions and note the questions people ask, then share them with the librarian."
+   }
+  ],
+  "aiTools": [
+   "Library management systems",
+   "Self-service and RFID sorting machines",
+   "E-book and audiobook platforms"
+  ],
+  "humanEdge": [
+   "Patient help for new computer users",
+   "Teaching children to search well",
+   "Accurate shelving people can rely on"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "43-4131.00": {
   "roadmap": [
    {
@@ -24482,6 +24776,90 @@
    "Interviewing applicants about their real situation",
    "Explaining a rejection kindly and clearly",
    "Spotting documents that do not add up"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-4141.00": {
+  "roadmap": [
+   {
+    "title": "Digital onboarding and identity checks",
+    "items": [
+     "Open accounts through digital onboarding with automatic identity and document checks, and review every flagged case.",
+     "Answer common questions about accounts and services with approved guides, and explain individual choices yourself.",
+     "Correct account errors in the system with full notes, so the next colleague understands what happened."
+    ],
+    "project": "Review one month of onboarding cases the automatic checks flagged, record the reasons and share patterns with your team."
+   },
+   {
+    "title": "Fraud, compliance and product knowledge",
+    "items": [
+     "Learn the anti-money-laundering and fraud signals in onboarding, and report suspicious applications.",
+     "Know the bank's products well, so you can match them to each customer's needs.",
+     "Help customers set up online and mobile banking safely, including scam warnings."
+    ],
+    "project": "Write a one-page scam safety guide with AI help, check it with compliance and give it to every new customer for a month."
+   },
+   {
+    "title": "Trust and the right referral",
+    "items": [
+     "Interview customers patiently, especially those with unusual documents or little banking experience.",
+     "Explain accounts and fees clearly, without pushing products customers do not need.",
+     "Refer customers to advisers when their needs go beyond basic accounts."
+    ],
+    "project": "Ask 20 new customers whether they understood their account and fees, and improve your explanation from their answers."
+   }
+  ],
+  "aiTools": [
+   "Digital onboarding and identity verification",
+   "Core banking systems",
+   "Fraud and anti-money-laundering tools"
+  ],
+  "humanEdge": [
+   "Patient help for inexperienced customers",
+   "Honest explanations of fees",
+   "Spotting suspicious applications"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-4151.00": {
+  "roadmap": [
+   {
+    "title": "Automated order entry and invoices",
+    "items": [
+     "Let online orders and AI email reading fill order forms automatically, and check product numbers, prices and addresses.",
+     "Create invoices and shipping documents from the order system, and review unusual orders before release.",
+     "Send automatic order updates on prices, shipping dates and delays, and call customers when it really matters."
+    ],
+    "project": "Track errors in automatically entered orders for a month, find the most common cause and agree a fix with your team."
+   },
+   {
+    "title": "Stock checks and order tracking",
+    "items": [
+     "Check stock and delivery dates in real time before confirming orders, so promises can be kept.",
+     "Follow incomplete orders to completion with clear status notes others can read.",
+     "Use shipment tracking links to trace delays before customers ask."
+    ],
+    "project": "Review one month of late orders by cause with the warehouse and agree one change to reduce them."
+   },
+   {
+    "title": "Complaints and coordination",
+    "items": [
+     "Handle customer complaints personally, fixing the problem and the cause behind it.",
+     "Coordinate with sales, production and carriers to speed up urgent orders.",
+     "Move toward customer service or sales support roles, where your product knowledge counts."
+    ],
+    "project": "Handle ten complaints from start to finish, record the root cause of each and share the top three with your manager."
+   }
+  ],
+  "aiTools": [
+   "Order management systems",
+   "AI email and order reading",
+   "Shipment tracking tools"
+  ],
+  "humanEdge": [
+   "Personal handling of complaints",
+   "Speeding up urgent orders across teams",
+   "Catching unusual orders before release"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -24569,6 +24947,216 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "43-4181.00": {
+  "roadmap": [
+   {
+    "title": "Booking systems and travel information",
+    "items": [
+     "Make and change bookings in reservation systems, and check names, dates and connections against documents.",
+     "Answer schedule and policy questions with the company's online help and chat, and handle exceptions yourself.",
+     "Issue tickets, itineraries and insurance documents from the system, and explain visa and health rules from official sources."
+    ],
+    "project": "Track the questions customers ask that online help could not answer for a month and suggest three additions."
+   },
+   {
+    "title": "Disruptions and self-service",
+    "items": [
+     "Rebook passengers quickly during delays and cancellations, using the system's options and your judgement.",
+     "Help customers use self-service kiosks and apps, and step in when they get stuck.",
+     "Check baggage and documents carefully at the counter, catching problems before departure."
+    ],
+    "project": "Write a quick guide for the five most common disruption cases with AI help, use it during delays and ask colleagues for feedback."
+   },
+   {
+    "title": "Calm service under pressure",
+    "items": [
+     "Stay calm and kind with stressed travellers, especially when plans fall apart.",
+     "Find creative solutions for complex trips that booking engines cannot handle.",
+     "Help travellers with disabilities, children or language needs with patience."
+    ],
+    "project": "Note five complex cases you solved this month and share the solutions with your team as a short guide."
+   }
+  ],
+  "aiTools": [
+   "Reservation systems such as Amadeus",
+   "Self-service kiosks and apps",
+   "Online help and chat"
+  ],
+  "humanEdge": [
+   "Calm, kind service when plans fall apart",
+   "Creative solutions for complex trips",
+   "Patient help for travellers with needs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-5011.00": {
+  "roadmap": [
+   {
+    "title": "Digital shipping documents and tracking",
+    "items": [
+     "Prepare bills of lading and invoices from shipment data in the system, and check weights, codes and addresses.",
+     "Track shipments with carrier platforms and alerts, and act on delays before customers call.",
+     "Scan goods with barcode readers, so records match what was really received or sent."
+    ],
+    "project": "Track document errors for a month, find the most common cause and add one check to your process."
+   },
+   {
+    "title": "Rates, carriers and records",
+    "items": [
+     "Compare freight rates and transit times with booking platforms, and check the full cost before choosing.",
+     "Keep shipping, receiving and storage records accurate in one system.",
+     "Notify customers of arrivals automatically, and arrange delivery for special cases yourself."
+    ],
+    "project": "Compare carrier rates and on-time performance for your top lanes over a quarter and recommend changes to your manager."
+   },
+   {
+    "title": "Inspections, claims and lost goods",
+    "items": [
+     "Inspect and count goods on arrival, recording shortages and damage with photos.",
+     "Trace lost shipments by phone and paperwork, using every lead.",
+     "Advise customers on the best way to ship, based on goods, time and budget."
+    ],
+    "project": "Photograph every damaged arrival for a month and use the photos to settle claims with carriers faster."
+   }
+  ],
+  "aiTools": [
+   "Shipping and freight management systems",
+   "Carrier tracking platforms",
+   "Barcode scanners"
+  ],
+  "humanEdge": [
+   "Careful inspection of arriving goods",
+   "Tracing lost shipments by every lead",
+   "Practical advice on shipping choices"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-5011.01": {
+  "roadmap": [
+   {
+    "title": "AI for documents, quotes and tracking",
+    "items": [
+     "Generate packing lists, bills of lading and certificates from shipment data, and check every detail against the order.",
+     "Build freight quotes with rate platforms and AI help, and check surcharges and transit times before sending.",
+     "Monitor shipments in transit with tracking platforms, and send status updates to clients and insurers automatically."
+    ],
+    "project": "Quote ten shipments with a rate platform and AI help, check each line and compare quote time and accuracy with your usual method."
+   },
+   {
+    "title": "Routes, rules and customs paperwork",
+    "items": [
+     "Compare routes by cost, time, risk and emissions, and explain the trade-offs to clients.",
+     "Prepare customs paperwork with digital tools, and confirm rules for each country in official sources.",
+     "Follow sanctions, dangerous goods and security rules, and check every shipment against them."
+    ],
+    "project": "Compare two routes for a regular client's shipments on cost, time and emissions, and present the options to them."
+   },
+   {
+    "title": "Carrier deals and problem solving",
+    "items": [
+     "Negotiate rates and space with carriers, using your relationships when capacity is tight.",
+     "Solve problems in transit, such as delays or held goods, through calls and quick decisions.",
+     "Advise clients on the best way to move unusual or urgent goods."
+    ],
+    "project": "Handle three urgent or unusual shipments from start to finish and write down the decisions that saved time or money."
+   }
+  ],
+  "aiTools": [
+   "Freight rate and booking platforms",
+   "Shipment tracking platforms",
+   "Digital customs and document tools"
+  ],
+  "humanEdge": [
+   "Negotiating space when capacity is tight",
+   "Solving problems in transit",
+   "Advice on unusual and urgent shipments"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-5021.00": {
+  "roadmap": [
+   {
+    "title": "Delivery apps and route planning",
+    "items": [
+     "Use the delivery app for routes, stops and proof of delivery, and check addresses before you set off.",
+     "Let route planning tools order your stops, and adjust for traffic, closures and customer windows.",
+     "Record deliveries, signatures and payments in the app as you go, so records are always current."
+    ],
+    "project": "Follow app-planned routes for two weeks, adjust them with your local knowledge and compare time per stop."
+   },
+   {
+    "title": "Safe loads and special deliveries",
+    "items": [
+     "Load vehicles safely, securing hazardous and fragile goods by the rules.",
+     "Learn the rules for medical deliveries, such as specimen handling and temperature control.",
+     "Keep your bike or vehicle maintained with a simple checklist and log."
+    ],
+    "project": "Write a one-page checklist for medical or fragile deliveries, use it for a month and record any problems avoided."
+   },
+   {
+    "title": "Reliable, friendly delivery",
+    "items": [
+     "Find addresses and entrances that apps get wrong, using local knowledge.",
+     "Deliver on time with a friendly word, building trust with regular customers.",
+     "Stay safe in traffic and bad weather, and plan rest on long days."
+    ],
+    "project": "Note addresses where the app was wrong for a month and report them so the next driver gets it right."
+   }
+  ],
+  "aiTools": [
+   "Delivery and proof-of-delivery apps",
+   "Route planning tools",
+   "Vehicle check apps"
+  ],
+  "humanEdge": [
+   "Local knowledge apps lack",
+   "Friendly, reliable delivery",
+   "Staying safe in traffic and weather"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-5031.00": {
+  "roadmap": [
+   {
+    "title": "AI support in the dispatch centre",
+    "items": [
+     "Use computer-aided dispatch with location data and suggested units, and decide each dispatch yourself.",
+     "Let AI transcription and call summaries fill incident records, and check every detail while the call is fresh.",
+     "Search databases for vehicles, persons and premises history quickly through integrated systems."
+    ],
+    "project": "Review one month of AI-filled incident records with your supervisor and record the corrections you had to make."
+   },
+   {
+    "title": "Triage tools and situational awareness",
+    "items": [
+     "Learn structured call-taking protocols and the triage tools in your system, and when to depart from them.",
+     "Monitor radio channels and unit status screens to keep a live picture of every incident.",
+     "Know how AI handles non-emergency calls and translation, and when to take over."
+    ],
+    "project": "Practise rare call types such as hazmat or mass casualty in simulation monthly and record your response times."
+   },
+   {
+    "title": "Calm voices in emergencies",
+    "items": [
+     "Keep callers calm, get their location and give life-saving instructions under pressure.",
+     "Set priorities when many calls come at once, making hard choices quickly.",
+     "Look after your own wellbeing after difficult calls, using debriefs and support."
+    ],
+    "project": "Join debriefs after the five hardest calls this month and write down one practice each that you will keep."
+   }
+  ],
+  "aiTools": [
+   "Computer-aided dispatch (CAD)",
+   "AI call transcription",
+   "Integrated police and fire databases"
+  ],
+  "humanEdge": [
+   "Calming callers in crisis",
+   "Fast priority decisions under pressure",
+   "Giving life-saving instructions by phone"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "43-5032.00": {
   "roadmap": [
    {
@@ -24611,6 +25199,216 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "43-5041.00": {
+  "roadmap": [
+   {
+    "title": "Smart meters and handheld data",
+    "items": [
+     "Learn the smart meters and remote readings replacing manual rounds, and how their data reaches billing.",
+     "Record readings on handheld devices with photos, and upload them the same day.",
+     "Check readings the system flags as unusual, and record the likely reason."
+    ],
+    "project": "Track flagged readings on your route for a month and record how many were meter faults, leaks or reading errors."
+   },
+   {
+    "title": "Field checks and new tasks",
+    "items": [
+     "Inspect meters for tampering, damage and safety hazards, reporting each with photos and location.",
+     "Learn smart meter installation and fault finding, which utilities still need people for.",
+     "Update address and meter location data, so the next visit is easier."
+    ],
+    "project": "Complete one training in smart meter installation or fault finding and ask to shadow an installer for a week."
+   },
+   {
+    "title": "Safe visits and customer contact",
+    "items": [
+     "Visit homes and businesses safely, judging dogs, access and risks on the spot.",
+     "Answer customers' questions about bills and meters politely, and pass complex ones to the service centre.",
+     "Connect and disconnect services by the rules, with care for vulnerable customers."
+    ],
+    "project": "Note every access problem on your route for a month and agree solutions with the service department."
+   }
+  ],
+  "aiTools": [
+   "Handheld meter reading devices",
+   "Smart meter data systems",
+   "Field service apps"
+  ],
+  "humanEdge": [
+   "Spotting tampering and hazards",
+   "Safe visits to homes and businesses",
+   "Care for vulnerable customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-5051.00": {
+  "roadmap": [
+   {
+    "title": "Counter systems and self-service",
+    "items": [
+     "Weigh, price and label items on the counter system, and check addresses and customs forms before accepting.",
+     "Help customers use self-service kiosks and online postage, and step in when they get stuck.",
+     "Answer questions on rates and rules with the postal guide and online tools."
+    ],
+    "project": "Note the questions kiosk users ask for a month and suggest two improvements to signs or kiosk help screens."
+   },
+   {
+    "title": "Sorting machines and cash balance",
+    "items": [
+     "Run electronic sorting and scanning equipment, and clear faults safely.",
+     "Balance cash drawers and daily transactions in the system, and report differences at once.",
+     "Handle registered and insured items with full scanning and signatures."
+    ],
+    "project": "Track your daily cash differences for a month, find the causes and practise the steps where errors happen."
+   },
+   {
+    "title": "Service for every customer",
+    "items": [
+     "Help older and less digital customers patiently, explaining options in plain words.",
+     "Check parcels for damage, bad packaging or prohibited items before accepting them.",
+     "Keep the counter friendly and fair during long queues."
+    ],
+    "project": "Ask 20 older customers what would make their visit easier and share their ideas with your manager."
+   }
+  ],
+  "aiTools": [
+   "Postal counter systems",
+   "Self-service postage kiosks",
+   "Electronic sorting and scanning equipment"
+  ],
+  "humanEdge": [
+   "Patient help for less digital customers",
+   "Checking parcels before acceptance",
+   "Friendly service in long queues"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-5052.00": {
+  "roadmap": [
+   {
+    "title": "Scanners, routes and delivery apps",
+    "items": [
+     "Scan every item and record deliveries on your handheld device, with photos where required.",
+     "Use route sequencing from the sorting system, and adjust for closed roads and new addresses.",
+     "Leave digital notices for missed deliveries, so customers can rebook online."
+    ],
+    "project": "Track missed deliveries on your route for a month and agree fixes with the office for the top three causes."
+   },
+   {
+    "title": "Safety, vehicles and route knowledge",
+    "items": [
+     "Keep your vehicle and equipment checked with a simple daily log.",
+     "Report unsafe addresses, dogs and hazards in the system, so colleagues are warned.",
+     "Learn electric delivery vehicles and their charging routines."
+    ],
+    "project": "Record hazards on your route for a month in the system and check whether substitute carriers found the notes useful."
+   },
+   {
+    "title": "Community and careful delivery",
+    "items": [
+     "Deliver reliably in all weather, and handle registered mail with signatures and care.",
+     "Know your community and notice when an older resident's mail piles up, then report it.",
+     "Answer customers' questions politely, and help them use online postal services."
+    ],
+    "project": "Agree a way to report concerns about vulnerable residents with your manager and use it for three months."
+   }
+  ],
+  "aiTools": [
+   "Handheld delivery scanners",
+   "Route sequencing systems",
+   "Digital delivery notice tools"
+  ],
+  "humanEdge": [
+   "Reliable delivery in all weather",
+   "Knowing and caring for your community",
+   "Spotting residents who may need help"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-5053.00": {
+  "roadmap": [
+   {
+    "title": "Sorting machines and OCR systems",
+    "items": [
+     "Operate optical readers and bar-code sorters, and learn the error codes and fixes for each machine.",
+     "Key in addresses that OCR cannot read, using video coding screens quickly and accurately.",
+     "Check items for legible addresses and postage, and route special items by hand."
+    ],
+    "project": "Track the jams and rejects on your machine for a month, find the main cause and suggest a fix to maintenance."
+   },
+   {
+    "title": "Automated transport and safe lifting",
+    "items": [
+     "Work safely with automated trains, conveyors and forklifts, following every lockout rule.",
+     "Load and unload containers with good lifting technique and the right equipment.",
+     "Learn basic machine maintenance tasks, which lead toward technician roles."
+    ],
+    "project": "Shadow a maintenance technician for two shifts and list three tasks you could learn to do yourself."
+   },
+   {
+    "title": "Speed, accuracy and teamwork",
+    "items": [
+     "Sort odd-sized and damaged mail by hand that machines cannot handle.",
+     "Meet dispatch deadlines with your team, helping where the work piles up.",
+     "Spot dangerous or suspicious items and follow security procedures."
+    ],
+    "project": "Track your hand-sorting accuracy for two weeks and practise the items where you make most errors."
+   }
+  ],
+  "aiTools": [
+   "Optical character readers and bar-code sorters",
+   "Video coding systems",
+   "Automated mail transport"
+  ],
+  "humanEdge": [
+   "Hand-sorting what machines cannot",
+   "Meeting deadlines as a team",
+   "Spotting suspicious items"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-5061.00": {
+  "roadmap": [
+   {
+    "title": "AI for schedules, status and requirements",
+    "items": [
+     "Update production schedules in planning software when orders, materials or staff change, and check the knock-on effects.",
+     "Compile status reports on production, materials and customers automatically, and check unusual figures.",
+     "Review work orders and staffing with planning tools to see shortages before they stop the line."
+    ],
+    "project": "Automate one weekly status report with AI help and compare preparation time and errors over a month."
+   },
+   {
+    "title": "Inventory, forecasts and expediting",
+    "items": [
+     "Use forecasts and inventory data to order materials in time, and check them against what sales expect.",
+     "Track supplier deliveries with alerts, and expedite the ones that threaten the schedule.",
+     "Record production data accurately, so planning rests on real numbers."
+    ],
+    "project": "Track late supplier deliveries for a quarter, rank suppliers and agree improvements with the worst two."
+   },
+   {
+    "title": "Coordination and quick decisions",
+    "items": [
+     "Coordinate with supervisors, vendors and customers to solve delays fast.",
+     "Judge which orders to move first when capacity is short, and explain the reasons.",
+     "Walk the floor to check progress and problems that systems do not show."
+    ],
+    "project": "Walk the production floor daily for a month and record problems you caught before they showed in the system."
+   }
+  ],
+  "aiTools": [
+   "Production planning and ERP systems",
+   "Inventory and forecasting tools",
+   "Supplier tracking alerts"
+  ],
+  "humanEdge": [
+   "Solving delays with people fast",
+   "Judging which orders go first",
+   "Seeing floor problems systems miss"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "43-5071.00": {
   "roadmap": [
    {
@@ -24650,6 +25448,48 @@
    "Checking goods with your own eyes and hands",
    "Solving problems with drivers and suppliers on the spot",
    "Packing and handling goods safely"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-5111.00": {
+  "roadmap": [
+   {
+    "title": "Digital scales, scanners and records",
+    "items": [
+     "Record weights, counts and test results straight from connected scales and scanners, and check readings that look wrong.",
+     "Compare labels, manifests and purchase orders with automatic matching, and investigate every mismatch.",
+     "Share product and shipment information with customers and vendors through the system, with clear notes."
+    ],
+    "project": "Track mismatches between manifests and received goods for a month and agree a fix for the top cause with suppliers."
+   },
+   {
+    "title": "Vision checks, sampling and calibration",
+    "items": [
+     "Learn camera and vision systems that check labels, damage and dimensions, and check what they reject.",
+     "Collect and label samples for the lab with barcodes, so results link to the right batch.",
+     "Calibrate scales and gauges on schedule, and keep the records for audits."
+    ],
+    "project": "Check 100 items rejected by a vision system by hand and record how many rejects were correct."
+   },
+   {
+    "title": "Careful checks and quick action",
+    "items": [
+     "Examine products and packaging for damage and defects with trained eyes and the right gauges.",
+     "Pull loads that fail standards and tell supervisors at once, even under time pressure.",
+     "Estimate quantities and spot shortages that paperwork hides."
+    ],
+    "project": "Record every load you rejected for a quarter with the reason, and review the list with quality to prevent repeats."
+   }
+  ],
+  "aiTools": [
+   "Connected scales and barcode scanners",
+   "Vision inspection systems",
+   "Warehouse and quality record systems"
+  ],
+  "humanEdge": [
+   "Trained eyes for damage and defects",
+   "Stopping bad loads under pressure",
+   "Spotting shortages paperwork hides"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -24863,6 +25703,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "43-9022.00": {
+  "roadmap": [
+   {
+    "title": "AI dictation, drafting and formatting",
+    "items": [
+     "Turn dictation and rough drafts into finished documents with speech recognition and AI, and check every name and number.",
+     "Use AI grammar and style checks, and decide yourself which suggestions fit the author's meaning.",
+     "Apply templates and styles so layout, spacing and headings are right without manual fixes."
+    ],
+    "project": "Produce ten documents from dictation with speech recognition and AI help, and record time saved and errors you corrected."
+   },
+   {
+    "title": "Complex documents and accessibility",
+    "items": [
+     "Build long reports, tables and statistical documents from several sources with mail merge and automation.",
+     "Make documents accessible with headings, alt text and readable tables, checked with accessibility tools.",
+     "Keep files organised and versioned, so the latest copy is always clear."
+    ],
+    "project": "Make five standard documents fully accessible, test them with an accessibility checker and share a guide with colleagues."
+   },
+   {
+    "title": "Precision and your next role",
+    "items": [
+     "Catch errors that tools miss, such as wrong figures, names or legal terms.",
+     "Understand what authors want and deliver documents they can use without rework.",
+     "Move toward document specialist, editor or office coordinator roles, where these skills count."
+    ],
+    "project": "Take one short course in document production or editing and offer a new service, such as accessible formatting, to your team."
+   }
+  ],
+  "aiTools": [
+   "Speech recognition and dictation software",
+   "AI grammar and style tools",
+   "Word processing with templates and automation"
+  ],
+  "humanEdge": [
+   "Catching errors tools miss",
+   "Delivering what authors really need",
+   "Precise formatting of complex documents"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-9031.00": {
+  "roadmap": [
+   {
+    "title": "AI in layout and image work",
+    "items": [
+     "Use AI features in layout and image software to remove backgrounds, extend images and fix photos, then check every result.",
+     "Start layouts from templates and AI suggestions, and adjust type, spacing and hierarchy yourself.",
+     "Proof pages with automatic checks for missing fonts, low-resolution images and overset text."
+    ],
+    "project": "Lay out one publication with AI-assisted tools and compare time and proof corrections with your last similar job."
+   },
+   {
+    "title": "Automation and multi-channel output",
+    "items": [
+     "Automate repeated layouts, such as catalogues or price lists, with data merge from spreadsheets.",
+     "Prepare the same content for print, web and social formats with linked styles and assets.",
+     "Learn the image rights and AI-generated image rules your clients or company require."
+    ],
+    "project": "Automate one catalogue or price list with data merge and record the hours saved on the next update."
+   },
+   {
+    "title": "Design judgement and collaboration",
+    "items": [
+     "Judge what makes a page clear and attractive, from type choice to white space.",
+     "Work with editors, writers and designers to meet the brief and deadlines.",
+     "Check final proofs with care; printed errors are costly and public."
+    ],
+    "project": "Redesign one regular document for clarity, test it with five readers and record what they found easier."
+   }
+  ],
+  "aiTools": [
+   "Adobe InDesign and Photoshop with AI features",
+   "Data merge for automated layouts",
+   "Preflight and proofing tools"
+  ],
+  "humanEdge": [
+   "Design judgement for clear pages",
+   "Careful final proofing before print",
+   "Working with editors and designers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "43-9041.00": {
   "roadmap": [
    {
@@ -24905,6 +25829,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "43-9051.00": {
+  "roadmap": [
+   {
+    "title": "Mail tracking and postage tools",
+    "items": [
+     "Scan incoming parcels and log them in a tracking system, so every item can be found and signed for.",
+     "Use postage meters and online shipping tools to choose the best rate for each item.",
+     "Notify staff of arrivals automatically by email or app, and keep records of collection."
+    ],
+    "project": "Introduce scan-and-notify for incoming parcels for a month and record lost items and search time before and after."
+   },
+   {
+    "title": "Checks, sorting and large mailings",
+    "items": [
+     "Check addresses and postage with software before large mailings, cutting returns and costs.",
+     "Sort and route mail by department with clear labels and a fixed schedule.",
+     "Learn the rules for hazardous, international and confidential mail."
+    ],
+    "project": "Clean the address list for one large mailing with software and compare returned items with the previous mailing."
+   },
+   {
+    "title": "Reliable handling and service",
+    "items": [
+     "Handle mail and parcels carefully, lifting safely and protecting fragile items.",
+     "Release items only to the right people, checking identification every time.",
+     "Help colleagues with shipping questions and choose the best service for them."
+    ],
+    "project": "Write a one-page shipping guide for colleagues with AI help, use it for a month and add the questions it missed."
+   }
+  ],
+  "aiTools": [
+   "Parcel tracking and notification systems",
+   "Postage meters and online shipping tools",
+   "Address verification software"
+  ],
+  "humanEdge": [
+   "Careful, safe parcel handling",
+   "Releasing items to the right people",
+   "Helpful shipping advice to colleagues"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "43-9061.00": {
   "roadmap": [
    {
@@ -24944,6 +25910,720 @@
    "Knowing who to ask and how the office really works",
    "Handling difficult callers with patience",
    "Spotting when a document or request does not look right"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-9071.00": {
+  "roadmap": [
+   {
+    "title": "Digital print jobs and scanning",
+    "items": [
+     "Receive print and copy jobs through online job tickets, and check quantities, paper and finishing before running.",
+     "Scan documents to searchable digital files with OCR, and check a sample of each batch.",
+     "Use printer management software to queue jobs and track supplies."
+    ],
+    "project": "Move job requests to an online ticket form for a month and record reprints caused by unclear instructions before and after."
+   },
+   {
+    "title": "Machine care and finishing equipment",
+    "items": [
+     "Set up and adjust copiers, folders and binders for each job, and keep settings for repeat work.",
+     "Clear jams and do routine maintenance with manuals and video guides.",
+     "Track machine faults and supply use in a log, so service is called before breakdowns."
+    ],
+    "project": "Log every machine fault for a month, share the pattern with the service company and agree a maintenance plan."
+   },
+   {
+    "title": "Quality checks and service",
+    "items": [
+     "Check finished work for quality, order and completeness before delivery.",
+     "Handle confidential documents carefully and destroy spoiled copies securely.",
+     "Learn digital print, document scanning or reprographics skills that lead to wider roles."
+    ],
+    "project": "Take one short course in digital print or document scanning and offer a new service to your colleagues."
+   }
+  ],
+  "aiTools": [
+   "Online job ticket systems",
+   "Scanners with OCR",
+   "Printer management software"
+  ],
+  "humanEdge": [
+   "Careful quality checks before delivery",
+   "Secure handling of confidential copies",
+   "Setting up machines for tricky jobs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-9081.00": {
+  "roadmap": [
+   {
+    "title": "AI checks with human judgement",
+    "items": [
+     "Run AI grammar, spelling and consistency checks first, then read for meaning, tone and errors the tools miss.",
+     "Compare figures and names between copy and source data with automatic comparison tools, and check every flag.",
+     "Use reference tools and style guides with AI search, and confirm the rule in the official guide."
+    ],
+    "project": "Proof ten documents with AI checks first, record what the tools caught and what only you caught."
+   },
+   {
+    "title": "Style guides and specialist content",
+    "items": [
+     "Keep a house style guide and custom word lists in your tools, so checks follow your rules.",
+     "Specialise in content where errors are costly, such as legal, medical or financial text.",
+     "Check AI-written content for invented facts, repeated phrases and wrong claims."
+    ],
+    "project": "Fact-check five AI-written texts against sources and write a short checklist of the errors you found most."
+   },
+   {
+    "title": "Meaning, voice and author trust",
+    "items": [
+     "Read for meaning and logic, catching sentences that are correct but wrong.",
+     "Suggest changes to authors tactfully, keeping their voice.",
+     "Write headlines and captions that are accurate and clear."
+    ],
+    "project": "Write headlines or captions for ten items, compare them with an AI version and ask an editor which work better."
+   }
+  ],
+  "aiTools": [
+   "AI grammar and style checkers",
+   "Document comparison tools",
+   "Style guides with custom word lists"
+  ],
+  "humanEdge": [
+   "Reading for meaning and logic",
+   "Tactful suggestions that keep the voice",
+   "Catching costly errors in specialist text"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "43-9111.00": {
+  "roadmap": [
+   {
+    "title": "AI for data entry, coding and checks",
+    "items": [
+     "Load data from forms and files with import tools instead of typing, and check totals against the source.",
+     "Code survey and record data with AI help, and check a sample of codes by hand.",
+     "Run automatic checks for missing, duplicate and impossible values before analysis."
+    ],
+    "project": "Replace one manual data entry task with an import and check routine, and record time saved and errors over a month."
+   },
+   {
+    "title": "Scripts, charts and repeatable reports",
+    "items": [
+     "Write simple analysis scripts in R or Python with AI coding help, and test them on known data.",
+     "Build charts and report tables automatically from the data, so updates take minutes.",
+     "Keep databases tidy and documented, so others can use them."
+    ],
+    "project": "Automate one recurring statistical report with an AI-written script, test it and compare time per update."
+   },
+   {
+    "title": "Data judgement and your next step",
+    "items": [
+     "Spot data that looks wrong, such as sudden jumps, and find out why before it reaches a report.",
+     "Discuss with clients what they need from the data, and present it clearly.",
+     "Learn statistics and data analysis further; they lead toward analyst roles."
+    ],
+    "project": "Take one online course in data analysis and apply it to one real report at work within two months."
+   }
+  ],
+  "aiTools": [
+   "AI coding assistant for R or Python",
+   "Spreadsheet import and validation tools",
+   "Charting and reporting software"
+  ],
+  "humanEdge": [
+   "Spotting data that looks wrong",
+   "Understanding what clients need",
+   "Presenting findings clearly"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-1011.00": {
+  "roadmap": [
+   {
+    "title": "Apps for crews, records and planning",
+    "items": [
+     "Schedule crews, equipment and transport across sites with farm management apps, adjusting for weather each day.",
+     "Keep records of work, inputs and costs in one system, so accounting and payroll are easier.",
+     "Use translation apps to give clear instructions to workers who speak other languages."
+    ],
+    "project": "Schedule crews with a farm app for one season and compare idle time and missed tasks with last season."
+   },
+   {
+    "title": "Precision farming and machine data",
+    "items": [
+     "Use GPS guidance, yield maps and sensor data to plan field work where it matters most.",
+     "Track machine hours and maintenance with telematics and reminders.",
+     "Learn drones and satellite crop monitoring, and how to check what they show in the field."
+    ],
+    "project": "Use satellite or drone crop maps for one season to target scouting and compare problems found with your usual walks."
+   },
+   {
+    "title": "Leading crews safely in the field",
+    "items": [
+     "Inspect crops, animals and equipment in person, and decide what work comes first.",
+     "Lead crews with clear instructions and fair treatment, and enforce safety without exceptions.",
+     "Repair and adjust machinery with the crew when breakdowns hit at busy times."
+    ],
+    "project": "Hold a short safety briefing before each busy-season shift for a month and record incidents and near misses."
+   }
+  ],
+  "aiTools": [
+   "Farm management and crew scheduling apps",
+   "GPS guidance and yield mapping",
+   "Machine telematics"
+  ],
+  "humanEdge": [
+   "Judging fields and animals in person",
+   "Fair, safe crew leadership",
+   "Fixing machines at busy times"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI for inspection reports and rules",
+    "items": [
+     "Write inspection reports and corrective actions on a tablet with templates and photos, checking every finding.",
+     "Look up regulations with AI summaries and official sources, and explain required standards clearly.",
+     "Track samples sent to labs with barcodes, so results link to the right batch and site."
+    ],
+    "project": "Write inspection reports on a tablet with templates for a month and compare time and follow-up compliance with paper."
+   },
+   {
+    "title": "Risk-based inspections and detection tools",
+    "items": [
+     "Plan inspections by risk using past findings, recalls and lab results.",
+     "Learn rapid tests and imaging tools for residues, disease and contamination, and their limits.",
+     "Check transport and handling records digitally, so cold chain breaks are caught."
+    ],
+    "project": "Rank sites by risk from past findings, inspect the top ten first and compare violations found with your usual order."
+   },
+   {
+    "title": "Hands-on inspection and fair enforcement",
+    "items": [
+     "Inspect plants, animals and processing lines in person, using your senses and training.",
+     "Grade and certify products accurately, standing behind your decisions.",
+     "Explain problems and fixes to farmers and processors fairly and firmly."
+    ],
+    "project": "Review ten of your grading decisions with a senior inspector and agree where your judgement needs calibration."
+   }
+  ],
+  "aiTools": [
+   "Tablet inspection apps",
+   "Rapid test kits and imaging tools",
+   "Lab sample tracking systems"
+  ],
+  "humanEdge": [
+   "Hands-on inspection with trained senses",
+   "Standing behind grading decisions",
+   "Fair, firm explanations to producers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-2021.00": {
+  "roadmap": [
+   {
+    "title": "Breeding records and genetics data",
+    "items": [
+     "Keep breeding, growth and diet records in a herd or kennel app, with photos and weights.",
+     "Use pedigree and genetic data tools to plan matings, and check suggestions against your knowledge of the animals.",
+     "Market animals and products online with AI-drafted listings edited in your voice."
+    ],
+    "project": "Move breeding records to an app for six months and use the data to plan the next season's matings."
+   },
+   {
+    "title": "Monitoring tools and health planning",
+    "items": [
+     "Use heat detection collars or cameras to time breeding, and confirm signs by watching the animals.",
+     "Track health events and treatments, so patterns lead to better prevention with the vet.",
+     "Order feed and medicines with stock lists and reminders."
+    ],
+    "project": "Try heat detection sensors on part of your herd for a season and compare conception rates with the rest."
+   },
+   {
+    "title": "Animal care and breeding judgement",
+    "items": [
+     "Care for animals daily, noticing early signs of illness or stress.",
+     "Select breeding animals by eye and record, balancing traits, health and temperament.",
+     "Handle animals calmly during breeding and birth."
+    ],
+    "project": "Compare your selection notes with offspring results for one season and adjust what you look for."
+   }
+  ],
+  "aiTools": [
+   "Herd and kennel management apps",
+   "Genetic and pedigree analysis tools",
+   "Heat detection sensors and cameras"
+  ],
+  "humanEdge": [
+   "Selecting breeding animals by eye",
+   "Daily care that spots illness early",
+   "Calm handling at breeding and birth"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-2041.00": {
+  "roadmap": [
+   {
+    "title": "Vision sorting machines and records",
+    "items": [
+     "Work with optical and AI sorting machines, and check samples of what they accept and reject.",
+     "Record grades, batch numbers and weights on scanners or tablets, so traceability is complete.",
+     "Report machine errors and unusual rejects to supervisors with examples."
+    ],
+    "project": "Sample the machine's accepted product each hour for a week, record defects it missed and share the pattern with the operator."
+   },
+   {
+    "title": "Standards and machine settings",
+    "items": [
+     "Learn the grading standards for each product well, so you can judge borderline cases.",
+     "Help adjust sorting machine settings with the operator when quality changes.",
+     "Keep the line clean and safe, following food hygiene rules."
+    ],
+    "project": "Agree with your supervisor which borderline cases you send back to the machine and which you decide, and track them for a month."
+   },
+   {
+    "title": "Trained eyes and steady pace",
+    "items": [
+     "Grade by look, feel and smell where machines are unsure.",
+     "Remove foreign matter and defects quickly and accurately at line speed.",
+     "Move toward sorting machine operator roles, building on your product knowledge."
+    ],
+    "project": "Ask the machine operator to train you on basic settings for a month and record what you can now adjust."
+   }
+  ],
+  "aiTools": [
+   "Optical and AI sorting machines",
+   "Scanners and tablets for batch records",
+   "Line quality dashboards"
+  ],
+  "humanEdge": [
+   "Grading by look, feel and smell",
+   "Accuracy and care at line speed",
+   "Judging borderline products"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-2091.00": {
+  "roadmap": [
+   {
+    "title": "GPS guidance and digital field records",
+    "items": [
+     "Drive tractors and combines with GPS auto-steer, and watch the field, the implement and the people around you.",
+     "Log field work, chemical use and machine hours in a farm app, so records are ready for audits.",
+     "Check weather and soil apps before spraying or planting, and confirm conditions in the field yourself."
+    ],
+    "project": "Log all field work in a farm app for one season and compare overlaps and missed strips with last year's paper records."
+   },
+   {
+    "title": "Machine data and preventive care",
+    "items": [
+     "Read machine dashboards and fault codes, and learn which ones mean stop now.",
+     "Set up variable-rate seeding and spraying from prescription maps with your agronomist.",
+     "Keep a maintenance log with reminders, so service is done before the busy season."
+    ],
+    "project": "Build a pre-season maintenance checklist for your main machines with AI help and record breakdowns over the season."
+   },
+   {
+    "title": "Safe operation and mechanical skill",
+    "items": [
+     "Hear and feel when a machine is wrong, and stop before damage spreads.",
+     "Mix and load chemicals safely with the right protective gear and exact measures.",
+     "Repair and adjust machinery in the field, often with only the tools on hand."
+    ],
+    "project": "Record every field breakdown for a season with cause and fix, and share the list with your supervisor before winter service."
+   }
+  ],
+  "aiTools": [
+   "GPS auto-steer and guidance systems",
+   "Farm management apps",
+   "Machine dashboards and fault codes"
+  ],
+  "humanEdge": [
+   "Hearing when a machine is wrong",
+   "Safe handling of farm chemicals",
+   "Field repairs with tools on hand"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-2092.00": {
+  "roadmap": [
+   {
+    "title": "Apps for tasks, plants and safety",
+    "items": [
+     "Follow daily task lists and harvest targets on a phone app, and report problems with a photo.",
+     "Use plant identification apps to learn pests, diseases and weeds, and check with your supervisor.",
+     "Read safety and chemical instructions with translation apps when they are not in your language."
+    ],
+    "project": "Photograph pest or disease signs you find for a month and review them with your supervisor to learn the most common ones."
+   },
+   {
+    "title": "Greenhouse systems and quality",
+    "items": [
+     "Learn how greenhouse climate and irrigation controls work, and report readings that look wrong.",
+     "Grade and pack produce to buyer standards, keeping labels and batch codes right.",
+     "Learn to operate tractors or harvest machines safely, with training and certification."
+    ],
+    "project": "Learn one greenhouse control or machine with your supervisor's training and take on that task for a full season."
+   },
+   {
+    "title": "Skilled hands and steady work",
+    "items": [
+     "Harvest, prune and transplant with care and speed, so plants and produce are not damaged.",
+     "Notice plants that look stressed or sick before others do.",
+     "Work safely in heat, with tools and chemicals, and look after your crew."
+    ],
+    "project": "Keep a simple record of your harvest quality and speed for a month and agree one improvement with your supervisor."
+   }
+  ],
+  "aiTools": [
+   "Task and harvest apps",
+   "Plant identification apps",
+   "Translation apps"
+  ],
+  "humanEdge": [
+   "Careful, fast hand harvesting",
+   "Noticing stressed or sick plants",
+   "Working safely in heat and with tools"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-2093.00": {
+  "roadmap": [
+   {
+    "title": "Feeding, health and herd records in apps",
+    "items": [
+     "Record feeding, weights and treatments in a herd app, so the farm sees each animal's history.",
+     "Use feed system controls and alerts to check that water and feed reach every pen.",
+     "Look up medicine doses and withdrawal times in the farm's records before treating, and follow the vet's plan."
+    ],
+    "project": "Record treatments in a herd app for three months and check with the vet whether withdrawal times were always met."
+   },
+   {
+    "title": "Sensors, robots and early warnings",
+    "items": [
+     "Learn milking robots, feeders or barn climate controls, and act on their alarms quickly.",
+     "Use activity and health sensor alerts to find sick animals, and confirm by checking the animal.",
+     "Keep equipment, fences and buildings in repair with a simple task list."
+    ],
+    "project": "Check every sensor health alert for a month against the animal itself and record how many found a real problem."
+   },
+   {
+    "title": "Animal care and calm handling",
+    "items": [
+     "Watch animals daily for injury, illness or changes in behaviour, using experience sensors cannot replace.",
+     "Move and handle animals calmly and safely, reducing stress and injuries.",
+     "Help at births and treat animals with steady hands and care."
+    ],
+    "project": "Agree with your manager a calmer way to move animals to one pen or truck, try it for a month and record injuries."
+   }
+  ],
+  "aiTools": [
+   "Herd management apps",
+   "Animal activity and health sensors",
+   "Automated feeding and milking systems"
+  ],
+  "humanEdge": [
+   "Daily watch for illness and injury",
+   "Calm, safe animal handling",
+   "Steady, gentle hands at births and treatment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-3031.00": {
+  "roadmap": [
+   {
+    "title": "Navigation, fish finding and catch logs",
+    "items": [
+     "Use chart plotters, sonar and fish finders to locate fish, and combine them with your knowledge of the waters.",
+     "Record catch, area and time in electronic logbooks, so reports to authorities are correct.",
+     "Check marine weather and sea forecasts in apps before leaving, and decide yourself when it is safe."
+    ],
+    "project": "Keep an electronic catch log for a season and use it to compare catch per trip by area and time."
+   },
+   {
+    "title": "Rules, quotas and engine care",
+    "items": [
+     "Check quotas, size limits and closed areas in official apps before each trip.",
+     "Track engine hours and gear repairs in a simple log, so maintenance is done in port.",
+     "Plan trips with fuel and weather data to cut costs and risk."
+    ],
+    "project": "Track fuel use per trip for a season and test one change, such as speed or route, to lower it."
+   },
+   {
+    "title": "Sea skills and safe work",
+    "items": [
+     "Set and haul gear safely in rough conditions, watching the crew and the weather.",
+     "Handle, sort and ice the catch quickly, so quality stays high.",
+     "Read the water, birds and weather from experience that tools only support."
+    ],
+    "project": "Run a man-overboard or fire drill with your crew each month for a season and record what you improved each time."
+   }
+  ],
+  "aiTools": [
+   "Chart plotters and fish finders",
+   "Electronic catch logbooks",
+   "Marine weather apps"
+  ],
+  "humanEdge": [
+   "Reading water and weather from experience",
+   "Safe gear handling in rough seas",
+   "Quick, careful catch handling"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-4011.00": {
+  "roadmap": [
+   {
+    "title": "Maps, apps and work records",
+    "items": [
+     "Use GPS and forestry map apps to find work areas, boundaries and planting plots.",
+     "Record planting, thinning and spraying in an app, with photos and locations.",
+     "Identify tree pests and diseases with apps, and confirm with a forester."
+    ],
+    "project": "Record planting or thinning work in a map app for a season and share the map with your forester for checking."
+   },
+   {
+    "title": "Fire, safety and equipment checks",
+    "items": [
+     "Follow fire danger ratings and weather apps when planning burning or brush work.",
+     "Check saws and equipment with a checklist before use, and log repairs.",
+     "Learn the rules for herbicide and insecticide use, and keep the records required."
+    ],
+    "project": "Use a daily equipment checklist for a month and record the faults you found before work started, not during it."
+   },
+   {
+    "title": "Skilled work in the forest",
+    "items": [
+     "Plant, prune and thin trees with skill, choosing which trees to keep.",
+     "Work safely with saws and fire, watching your crew and the conditions.",
+     "Help visitors and campers on site with friendly, practical advice."
+    ],
+    "project": "Agree with your forester how to choose trees to keep when thinning, and review one stand together after the work."
+   }
+  ],
+  "aiTools": [
+   "GPS and forestry map apps",
+   "Plant and pest identification apps",
+   "Fire danger and weather apps"
+  ],
+  "humanEdge": [
+   "Choosing which trees to keep",
+   "Safe work with saws and fire",
+   "Practical help for forest visitors"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-4021.00": {
+  "roadmap": [
+   {
+    "title": "Digital maps and cutting records",
+    "items": [
+     "Use harvesting maps and GPS to find stand boundaries, protected trees and escape routes.",
+     "Record trees felled and log lengths in an app, so the volume is clear for the buyer.",
+     "Check wind and weather forecasts before work, and stop when conditions get dangerous."
+    ],
+    "project": "Record fell counts and log lengths in an app for a month and compare them with the scaler's figures."
+   },
+   {
+    "title": "Saw care and safety planning",
+    "items": [
+     "Keep a saw maintenance log, so chains, bars and brakes are serviced on time.",
+     "Plan each day's work with your team, including escape routes and first aid.",
+     "Learn from accident and near-miss reports in your industry, and change how you work."
+    ],
+    "project": "Write a short pre-felling safety checklist with your team and use it on every tree for a month."
+   },
+   {
+    "title": "Reading trees and controlling the fall",
+    "items": [
+     "Judge each tree's lean, rot, wind and surroundings before cutting.",
+     "Control the direction of the fall with precise cuts and wedges.",
+     "Work as a team with clear signals, and look out for each other."
+    ],
+    "project": "Review difficult fells with an experienced faller for a month and agree what you would do differently."
+   }
+  ],
+  "aiTools": [
+   "Harvesting maps and GPS",
+   "Log and volume recording apps",
+   "Weather and wind forecasts"
+  ],
+  "humanEdge": [
+   "Judging lean, rot and wind in each tree",
+   "Precise cuts that control the fall",
+   "Teamwork with clear signals"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-4022.00": {
+  "roadmap": [
+   {
+    "title": "Harvester computers and production data",
+    "items": [
+     "Use harvester and forwarder computers that measure logs and suggest cuts, and check them against the order.",
+     "Follow digital harvesting maps for boundaries, ground conditions and protected areas.",
+     "Fill in shift and production reports on the machine or a tablet instead of paper."
+    ],
+    "project": "Compare the harvester's log measurements with the scaler's for a month and calibrate the machine with your supervisor."
+   },
+   {
+    "title": "Machine care and smoother operation",
+    "items": [
+     "Read machine fault codes and service reminders, and do routine maintenance on time.",
+     "Learn from operator training simulators and machine data to work more smoothly.",
+     "Plan skid roads and loading areas with maps to protect the ground."
+    ],
+    "project": "Use machine data on fuel and cycle time for a month and test one change in technique to improve both."
+   },
+   {
+    "title": "Skilled, safe operation in the forest",
+    "items": [
+     "Operate heavy machines on steep or soft ground, judging what is safe.",
+     "Grade logs by eye for knots, rot and straightness when the machine is unsure.",
+     "Inspect machines before use and stop when something is not right."
+    ],
+    "project": "Record every unsafe ground situation you met for a season and share them with your crew as learning cases."
+   }
+  ],
+  "aiTools": [
+   "Harvester and forwarder computers",
+   "Digital harvesting maps",
+   "Operator training simulators"
+  ],
+  "humanEdge": [
+   "Judging safe ground for heavy machines",
+   "Grading logs by eye when unsure",
+   "Stopping when a machine is not right"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "45-4023.00": {
+  "roadmap": [
+   {
+    "title": "Digital scaling and handheld records",
+    "items": [
+     "Record log grades and volumes on handheld terminals, so totals and conversions are calculated automatically.",
+     "Check truck weights and supplier data in the weighbridge system against delivery notes.",
+     "Use photo and scanner measurement of log loads where available, and check samples by hand."
+    ],
+    "project": "Compare scanner or photo volume readings with your hand scaling on 50 loads and record the difference."
+   },
+   {
+    "title": "Consistent grading and dispute records",
+    "items": [
+     "Keep grading rules and examples on your handheld, so decisions stay consistent.",
+     "Record defects with photos, so disputes with suppliers are settled quickly.",
+     "Share grade and defect data with buyers and suppliers in clear reports."
+    ],
+    "project": "Photograph defects on all downgraded logs for a month and use them to settle supplier disputes."
+   },
+   {
+    "title": "Expert grading on site",
+    "items": [
+     "Inspect logs for rot, splits, twist and knots with trained eyes and a scale stick.",
+     "Decide fairly when grades are borderline, and explain the reason to suppliers.",
+     "Direct log movement safely with clear signals."
+    ],
+    "project": "Grade the same 30 logs as a colleague without seeing their answers, compare results and agree on the differences."
+   }
+  ],
+  "aiTools": [
+   "Handheld scaling terminals",
+   "Weighbridge systems",
+   "Log scanners and photo measurement"
+  ],
+  "humanEdge": [
+   "Trained eyes for log defects",
+   "Fair decisions on borderline grades",
+   "Clear signals for safe log movement"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for schedules, reports and estimates",
+    "items": [
+     "Write daily reports and site diaries with templates, photos and voice notes, checking facts before sending.",
+     "Estimate materials and crew needs with estimating software and AI drafts, and check them against drawings.",
+     "Order materials through supplier portals and track deliveries, so the crew is not waiting."
+    ],
+    "project": "Keep the site diary with voice notes and photos for a month and compare time spent with paper diaries."
+   },
+   {
+    "title": "Digital drawings and coordination",
+    "items": [
+     "Use BIM models and plan apps on a tablet to check work against the latest drawings.",
+     "Coordinate trades with a shared schedule, updating it when work slips.",
+     "Track safety inspections and toolbox talks in an app, so follow-up is visible."
+    ],
+    "project": "Track every clash or rework caused by old drawings for a month, and agree a fix with the project manager."
+   },
+   {
+    "title": "Leading crews and site safety",
+    "items": [
+     "Inspect work and sites in person for quality and safety every day.",
+     "Lead crews with clear instructions and fair assignments, and handle conflicts early.",
+     "Solve problems on site with engineers, owners and subcontractors."
+    ],
+    "project": "Hold a five-minute safety talk at the start of each shift for a month and record near misses reported."
+   }
+  ],
+  "aiTools": [
+   "Construction estimating software",
+   "BIM and plan viewing apps",
+   "Site diary and safety apps"
+  ],
+  "humanEdge": [
+   "Daily on-site quality and safety checks",
+   "Clear, fair crew leadership",
+   "Solving problems with all trades"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-1011.03": {
+  "roadmap": [
+   {
+    "title": "Solar design and quoting tools",
+    "items": [
+     "Design PV systems with solar design software using aerial images and shade analysis, and check roofs on site.",
+     "Prepare quotes, proposals and budgets with design tools and AI drafts, checking every figure and assumption.",
+     "Estimate materials and crew needs from the design, and order through supplier portals."
+    ],
+    "project": "Compare the design tool's shade and output estimates with real output from five finished systems."
+   },
+   {
+    "title": "Permits, inspections and monitoring",
+    "items": [
+     "Track permits, grid connections and inspections in a project tool, so nothing stalls.",
+     "Use monitoring platforms to check system output after start-up, and investigate underperformance.",
+     "Keep installation checklists and photos for each job, for quality and warranty."
+    ],
+    "project": "Review monitoring data for every system installed last year and list the causes of underperformance found."
+   },
+   {
+    "title": "Site safety and technical leadership",
+    "items": [
+     "Supervise installers on roofs and electrical work, enforcing fall protection and safety rules.",
+     "Assess sites in person for roof condition, structure and access.",
+     "Help installers solve technical problems, and explain systems clearly to customers."
+    ],
+    "project": "Run a roof safety audit on five active jobs with a checklist and agree improvements with your installers on each site."
+   }
+  ],
+  "aiTools": [
+   "Solar design and shade analysis software",
+   "PV monitoring platforms",
+   "Project and permit tracking tools"
+  ],
+  "humanEdge": [
+   "Enforcing safety on roofs",
+   "Assessing sites in person",
+   "Solving technical problems with installers"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
