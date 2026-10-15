@@ -126,6 +126,8 @@ python tools/onet-import/write_roadmaps.py direct --pilot --max-usd 4   # the 30
 python tools/onet-import/catalog.py                                     # picks up out/roadmaps_llm.json
 ```
 
+The 30 pilot roadmaps (2026-10-15) were written in a Claude Code session (Opus 5.5) from the same prompts and `GUIDE`, and checked with `parse_roadmap`; their `model` field says so. The rest can come from the API run above or the same way.
+
 `catalog.py` uses `out/roadmaps_llm.json` where it has an occupation and falls back to the template plus the O2 project elsewhere. The file is resumable: a later run without `--pilot` writes only the missing occupations.
 
 ## Attribution
