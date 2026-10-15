@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
       <div class="mx-auto flex max-w-[1680px] items-center justify-between gap-4 px-4 py-4 sm:px-10 xl:px-16">
         <a routerLink="/" class="flex items-center gap-2 text-[19px] font-extrabold tracking-tight">
           <span class="h-2.5 w-2.5 rounded-full bg-accent"></span>
-          Futureproof
+          careerrisk.ee
         </a>
 
         <div class="flex items-center gap-5 text-[14px]">

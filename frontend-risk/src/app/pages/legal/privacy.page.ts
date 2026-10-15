@@ -25,7 +25,7 @@ import { RouterModule } from '@angular/router';
 
       <h2>Who is responsible</h2>
       <p>
-        Futureproof (careerrisk.ee) is run by Kristo Erte, a private individual in Estonia, who is the controller of your
+        careerrisk.ee is run by Kristo Erte, a private individual in Estonia, who is the controller of your
         personal data. Contact: <a href="mailto:m6rnaja@gmail.com">m6rnaja&#64;gmail.com</a>.
       </p>
 
