@@ -26627,6 +26627,384 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "47-2011.00": {
+  "roadmap": [
+   {
+    "title": "Digital drawings, procedures and records",
+    "items": [
+     "Read 3D models and digital blueprints on a tablet to check part locations, fits and dimensions before lifting.",
+     "Use AI search over manuals and codes to find repair procedures fast, and confirm in the approved document.",
+     "Record inspections, weld numbers and repairs with photos, so the job file is complete for the inspector."
+    ],
+    "project": "Keep a photo-based repair record for every job for a month and compare inspector questions with earlier paper files."
+   },
+   {
+    "title": "Inspection tools and weld quality",
+    "items": [
+     "Learn ultrasonic and other non-destructive testing results well enough to understand where defects are.",
+     "Track welding parameters and defect rates, and work with the welding engineer on recurring problems.",
+     "Plan lifts with rigging calculators and checklists, and confirm every rigging point yourself."
+    ],
+    "project": "Track weld repairs on your jobs for three months, find the most common defect and agree a fix with the welding engineer."
+   },
+   {
+    "title": "Skilled fitting and safe heavy work",
+    "items": [
+     "Fit, align and weld pressure parts to tight tolerances, where small errors become dangerous.",
+     "Find leaks and weak spots by careful inspection inside tanks and boilers.",
+     "Signal crane operators clearly and keep the crew safe under heavy loads."
+    ],
+    "project": "Mentor one apprentice through a full boiler repair and write down the checks you teach that are not in the manual."
+   }
+  ],
+  "aiTools": [
+   "3D models and digital blueprints on tablets",
+   "AI search over codes and repair manuals",
+   "Rigging and lift planning calculators"
+  ],
+  "humanEdge": [
+   "Precise fitting of pressure parts",
+   "Finding leaks and weak spots by inspection",
+   "Clear signals under heavy loads"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2021.00": {
+  "roadmap": [
+   {
+    "title": "Quantities, quotes and plans",
+    "items": [
+     "Calculate bricks, blocks and mortar from drawings with estimating apps, and add waste for cuts and breakage.",
+     "Write quotes and job descriptions for small clients with AI drafts, and check prices and scope yourself.",
+     "Check courses and heights against digital plans on a tablet, so openings and levels match."
+    ],
+    "project": "Estimate five jobs with an app and compare estimated and used materials, adjusting your waste factor."
+   },
+   {
+    "title": "Laser levels and new materials",
+    "items": [
+     "Lay out walls with laser levels and digital measuring tools, checking corners with a level and line.",
+     "Learn insulated blocks, thin-joint systems and refractory materials, and the rules for each.",
+     "Photograph finished work and keep a portfolio for future clients."
+    ],
+    "project": "Build a portfolio of ten finished jobs with photos and short descriptions, and use it for your next three quotes."
+   },
+   {
+    "title": "Craft, accuracy and strong walls",
+    "items": [
+     "Lay brick and block straight, plumb and level by hand and eye, course after course.",
+     "Finish joints cleanly, so walls look good and keep out water.",
+     "Judge mortar, weather and surfaces on site, and adjust how you work."
+    ],
+    "project": "Train an apprentice on corners and leads for a month and record the checks you teach that keep walls plumb."
+   }
+  ],
+  "aiTools": [
+   "Masonry estimating apps",
+   "Laser levels and digital measuring tools",
+   "AI assistant for quotes"
+  ],
+  "humanEdge": [
+   "Laying straight, plumb walls by hand",
+   "Clean joints that keep out water",
+   "Judging mortar and weather on site"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2022.00": {
+  "roadmap": [
+   {
+    "title": "Design visuals and stone planning",
+    "items": [
+     "Show clients stone patterns and finishes with photos and design apps before cutting, so choices are clear.",
+     "Plan stone layouts and quantities from drawings with digital tools, and allow for natural variation.",
+     "Write quotes and care instructions for clients with AI help, checking every detail."
+    ],
+    "project": "Show three clients digital pattern options before starting and record changes requested later compared with past jobs."
+   },
+   {
+    "title": "Digital templating and restoration",
+    "items": [
+     "Use digital templating and CNC-cut stone where it saves time, and finish the fit by hand.",
+     "Learn conservation methods and historical mortars for restoration work on old buildings.",
+     "Keep a photo record of each project for portfolio and future repairs."
+    ],
+    "project": "Try digital templating on one job and compare fitting time and waste with your usual hand templating."
+   },
+   {
+    "title": "Shaping stone and an eye for pattern",
+    "items": [
+     "Read each stone's grain and shape, and cut and dress it by hand to fit.",
+     "Set stone in patterns that look natural and stay stable for decades.",
+     "Repair historic walls with matching stone and mortar."
+    ],
+    "project": "Document one restoration job step by step and share it with a local heritage group or client as a case study."
+   }
+  ],
+  "aiTools": [
+   "Stone design and visualisation apps",
+   "Digital templating and CNC cutting",
+   "AI assistant for quotes and care guides"
+  ],
+  "humanEdge": [
+   "Reading grain and shaping stone by hand",
+   "An eye for natural-looking patterns",
+   "Restoring historic walls to match"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2041.00": {
+  "roadmap": [
+   {
+    "title": "Laser measuring and seam planning",
+    "items": [
+     "Measure rooms with laser measures and apps that draw the floor plan, then check doorways and odd corners by hand.",
+     "Plan seams and cuts with carpet layout software to cut waste and hide seams from the light.",
+     "Send quotes and booking confirmations from templates, with clear notes on moving furniture."
+    ],
+    "project": "Plan five jobs with layout software and compare carpet waste with five jobs planned by hand."
+   },
+   {
+    "title": "Subfloors, materials and customer care",
+    "items": [
+     "Check subfloor moisture with meters and record readings, so failures are not blamed on your work.",
+     "Learn new carpet types, tiles and adhesives, and their fitting rules.",
+     "Give customers written care instructions, drafted with AI and checked by you."
+    ],
+    "project": "Record moisture readings on every job for three months and use them to settle one warranty question."
+   },
+   {
+    "title": "Stretching, seams and fine finish",
+    "items": [
+     "Stretch carpet tight and smooth, so it lasts without ripples.",
+     "Make seams nearly invisible with careful cutting and joining.",
+     "Trim neatly at walls and doors, and leave the room clean."
+    ],
+    "project": "Ask ten customers for feedback a month after fitting and change one part of your finishing work based on it."
+   }
+  ],
+  "aiTools": [
+   "Laser measures with floor plan apps",
+   "Carpet layout and seam planning software",
+   "Moisture meters"
+  ],
+  "humanEdge": [
+   "Tight, ripple-free stretching",
+   "Nearly invisible carpet seams",
+   "Neat trimming at walls and doors"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2042.00": {
+  "roadmap": [
+   {
+    "title": "Floor plans, cuts and material orders",
+    "items": [
+     "Turn laser measurements into floor plans with an app, and calculate vinyl, rubber or linoleum with waste.",
+     "Plan sheet layouts and pattern matches on screen before cutting expensive material.",
+     "Order materials and adhesives from supplier apps, checking batch numbers for colour matching."
+    ],
+    "project": "Plan sheet layouts on screen for five jobs and record the material saved compared with your usual method."
+   },
+   {
+    "title": "Surface preparation and technical rules",
+    "items": [
+     "Test moisture and flatness before laying, and record readings in the job file.",
+     "Learn adhesive and welding rules for commercial floors, such as hospitals and kitchens.",
+     "Keep manufacturer instructions on your phone, so you can check them on site."
+    ],
+    "project": "Build a checklist for surface preparation from manufacturer rules and use it on every job for a month."
+   },
+   {
+    "title": "Precise cutting and smooth finish",
+    "items": [
+     "Cut around pipes, door frames and odd shapes cleanly by hand.",
+     "Prepare uneven floors so nothing shows through the covering.",
+     "Join and heat-weld seams so floors stay waterproof and tidy."
+    ],
+    "project": "Learn heat welding of vinyl seams from an experienced layer and complete three supervised commercial jobs."
+   }
+  ],
+  "aiTools": [
+   "Floor plan apps with laser measures",
+   "Sheet layout planning software",
+   "Moisture and flatness testers"
+  ],
+  "humanEdge": [
+   "Clean cuts around odd shapes",
+   "Preparing uneven floors well",
+   "Waterproof, tidy seam welding"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2043.00": {
+  "roadmap": [
+   {
+    "title": "Quotes, photos and customer choices",
+    "items": [
+     "Measure floor areas with a laser and an app, and send clear quotes drafted with AI and checked by you.",
+     "Show customers stain and finish samples with photos of earlier jobs, so they can choose with confidence.",
+     "Book jobs and drying times in a scheduling app, so customers know when they can use the room."
+    ],
+    "project": "Build a photo gallery of finishes from your past jobs and use it with ten customers to reduce changes after sanding."
+   },
+   {
+    "title": "Dust control and finishes",
+    "items": [
+     "Use dust extraction systems and check air quality, protecting yourself and the customer's home.",
+     "Learn water-based, oil and hardwax finishes, and when each one suits a floor.",
+     "Track drying conditions with humidity readers, so finishes cure properly."
+    ],
+    "project": "Record humidity and drying times on every job for three months and adjust your finishing schedule."
+   },
+   {
+    "title": "Machine skill and a flawless surface",
+    "items": [
+     "Guide sanders evenly without marks, judging how much wood to remove.",
+     "Reach edges and corners by hand to match the main floor.",
+     "Inspect the surface in raking light and fix flaws before the finish."
+    ],
+    "project": "Inspect every floor in raking light before finishing for a month and record flaws you caught and fixed."
+   }
+  ],
+  "aiTools": [
+   "Laser measures with quoting apps",
+   "Dust extraction and air quality monitors",
+   "Humidity and drying monitors"
+  ],
+  "humanEdge": [
+   "Even sanding without machine marks",
+   "Hand work at edges and corners",
+   "Spotting flaws in raking light"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2044.00": {
+  "roadmap": [
+   {
+    "title": "Layout visuals and tile calculations",
+    "items": [
+     "Show clients tile layouts on screen before work starts, so pattern and cut positions are agreed.",
+     "Calculate tiles, adhesive and grout with apps, adding waste for cuts and the pattern chosen.",
+     "Send quotes and aftercare guides drafted with AI, checking every price and instruction."
+    ],
+    "project": "Agree tile layouts on screen with five clients and record how many changes they asked for during the job."
+   },
+   {
+    "title": "Waterproofing and large-format tiles",
+    "items": [
+     "Learn waterproofing systems for wet rooms and follow the rules step by step, with photos as proof.",
+     "Use levelling systems and laser lines for large-format tiles.",
+     "Keep a photo record of hidden work, such as membranes, for the client and warranty."
+    ],
+    "project": "Photograph waterproofing on every wet room for three months and give clients a short record of the hidden work."
+   },
+   {
+    "title": "Craft and a clean finish",
+    "items": [
+     "Cut and fit tiles around pipes and corners neatly by hand.",
+     "Set tiles flat and aligned, so joints run straight.",
+     "Judge the best pattern for each room, balancing cuts and look."
+    ],
+    "project": "Plan the cut positions for one difficult room by hand, compare with the app's plan and note which looks better."
+   }
+  ],
+  "aiTools": [
+   "Tile layout visualisation apps",
+   "Tile and adhesive calculators",
+   "Laser lines and levelling systems"
+  ],
+  "humanEdge": [
+   "Neat cuts around pipes and corners",
+   "Flat, straight tile setting",
+   "Choosing the best pattern for a room"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2051.00": {
+  "roadmap": [
+   {
+    "title": "Weather, curing and pour planning",
+    "items": [
+     "Plan pours with hourly weather forecasts and concrete curing calculators, and adjust for heat, wind or frost.",
+     "Calculate concrete volumes from drawings with an app, and check form depths on site before ordering.",
+     "Log each pour with photos, mix tickets and weather, so questions about cracks can be answered later."
+    ],
+    "project": "Log weather, mix and curing for every pour over two months and compare it with any cracking found afterwards."
+   },
+   {
+    "title": "Sensors, lasers and finishes",
+    "items": [
+     "Use wireless maturity sensors in slabs to know when concrete is strong enough to cut or load.",
+     "Set forms and screeds with laser levels, and check flatness with a straightedge as you go.",
+     "Learn polished, stamped and coloured finishes, and the sealers each one needs."
+    ],
+    "project": "Try maturity sensors on three slabs and compare joint cutting times with your usual timing by feel."
+   },
+   {
+    "title": "Reading concrete and leading the pour",
+    "items": [
+     "Judge by touch and look when concrete is ready to float, trowel or broom.",
+     "Direct the truck driver and labourers during the pour with clear signals.",
+     "Finish edges and joints cleanly, so slabs look right and resist cracking."
+    ],
+    "project": "Train a labourer on floating and edging over a month and write down the signs of readiness you teach."
+   }
+  ],
+  "aiTools": [
+   "Concrete maturity sensors",
+   "Weather and curing calculators",
+   "Laser levels and screeds"
+  ],
+  "humanEdge": [
+   "Judging readiness by touch and look",
+   "Leading the crew during the pour",
+   "Clean edges and crack-resistant joints"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2053.00": {
+  "roadmap": [
+   {
+    "title": "Design files and mix recipes",
+    "items": [
+     "Turn designers' digital patterns into strip layouts and colour areas, and check measurements on the floor.",
+     "Keep mix recipes, chip colours and batch weights in a spreadsheet, so repairs match years later.",
+     "Send quotes and maintenance guides drafted with AI, checking every quantity and price."
+    ],
+    "project": "Build a recipe file for every terrazzo mix you use, and use it to match one repair to an existing floor."
+   },
+   {
+    "title": "Water-jet strips and grinding systems",
+    "items": [
+     "Work with water-jet cut divider strips and inlays made from digital files, and fit them by hand.",
+     "Learn epoxy and cement terrazzo systems, and the curing and grinding rules for each.",
+     "Use dust and slurry control systems, and record their checks for health and safety."
+    ],
+    "project": "Compare one water-jet cut inlay with a hand-cut one on time, fit and look, and share the result with your team."
+   },
+   {
+    "title": "Craft, patience and a polished finish",
+    "items": [
+     "Grind and polish evenly until the chips show and the surface is flawless.",
+     "Grind stairs and curved areas by hand to match the main floor.",
+     "Fill and trowel small depressions so the repair cannot be seen."
+    ],
+    "project": "Document one complex floor from base to polish with photos and use it to train an apprentice."
+   }
+  ],
+  "aiTools": [
+   "Digital pattern and layout files",
+   "Water-jet cut strips and inlays",
+   "Recipe spreadsheets for mixes"
+  ],
+  "humanEdge": [
+   "Even grinding to a flawless polish",
+   "Hand work on stairs and curves",
+   "Invisible repairs and fills"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "47-2061.00": {
   "roadmap": [
    {
@@ -26666,6 +27044,342 @@
    "Hard physical work done safely",
    "Spotting hazards on a busy site",
    "Helping craft workers at the right moment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2071.00": {
+  "roadmap": [
+   {
+    "title": "Machine control and paving data",
+    "items": [
+     "Run pavers with 3D machine control and GPS grade systems, and watch the mat and screed yourself.",
+     "Read temperature and density readings from paver and roller sensors, and adjust before problems set.",
+     "Log tonnage, temperatures and passes in the machine or a tablet, so quality records are complete."
+    ],
+    "project": "Compare roller pass maps with core density results on one project and agree changes with the foreman."
+   },
+   {
+    "title": "Telematics, maintenance and safety",
+    "items": [
+     "Use machine telematics for fuel, hours and fault codes, and plan service before breakdowns.",
+     "Learn intelligent compaction systems and what the colour maps tell you.",
+     "Plan safe traffic zones with digital site plans, and check them with the crew each morning."
+    ],
+    "project": "Track machine downtime for a season with telematics and agree a maintenance schedule with the mechanic."
+   },
+   {
+    "title": "Smooth surfaces and a steady crew",
+    "items": [
+     "Keep the paver moving at a steady speed with the trucks, so the mat stays smooth.",
+     "Spot low spots and segregation by eye, and signal workers to fix them.",
+     "Work safely next to live traffic, watching out for your crew."
+    ],
+    "project": "Record every surface defect found after paving for a month, find the most common cause and change one habit."
+   }
+  ],
+  "aiTools": [
+   "3D machine control and GPS grade systems",
+   "Intelligent compaction systems",
+   "Machine telematics"
+  ],
+  "humanEdge": [
+   "Steady paving speed for a smooth mat",
+   "Spotting low spots and segregation",
+   "Safe work beside live traffic"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2072.00": {
+  "roadmap": [
+   {
+    "title": "Pile records and positioning systems",
+    "items": [
+     "Position piles with GPS and total station guidance, and confirm every location before driving.",
+     "Record blow counts, depths and pile data automatically with rig monitoring systems.",
+     "Send pile logs to the engineer each day in a digital format, so decisions are not delayed."
+    ],
+    "project": "Use automatic pile logging for a month and compare time spent on paperwork and engineer queries with manual logs."
+   },
+   {
+    "title": "Rig checks and vibration monitoring",
+    "items": [
+     "Do pre-start checks with a digital checklist, and log faults with photos.",
+     "Understand vibration and noise monitoring near buildings, and stop when limits are reached.",
+     "Learn the meaning of pile driving analyser results with the engineer."
+    ],
+    "project": "Review vibration monitoring data on one job with the engineer and record how you adjusted driving to stay in limits."
+   },
+   {
+    "title": "Control of heavy loads and site safety",
+    "items": [
+     "Handle hammers and piles precisely with levers and pedals, keeping loads under control.",
+     "Feel and hear when a pile meets an obstruction, and stop before damage.",
+     "Keep the exclusion zone clear and work with signals from the crew."
+    ],
+    "project": "Write a short safety briefing for your rig with AI help, check it with the crew and use it at every new site for a season."
+   }
+  ],
+  "aiTools": [
+   "GPS and total station positioning",
+   "Rig monitoring and pile logging systems",
+   "Vibration monitoring"
+  ],
+  "humanEdge": [
+   "Precise control of heavy hammers",
+   "Feeling obstructions before damage",
+   "Keeping the exclusion zone safe"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2073.00": {
+  "roadmap": [
+   {
+    "title": "Machine guidance and digital site plans",
+    "items": [
+     "Dig and grade with 2D or 3D machine guidance, checking levels against stakes and the design model.",
+     "Read digital site plans on the cab screen, including buried services, before you dig.",
+     "Fill in daily machine and load records on a tablet, so the site office has them at once."
+    ],
+    "project": "Grade one area with machine guidance and compare rework and survey checks with an area graded to stakes."
+   },
+   {
+    "title": "Telematics, simulators and new machines",
+    "items": [
+     "Use telematics to track fuel, idle time and service needs, and change habits that waste fuel.",
+     "Practise new machines or attachments on simulators before working on site.",
+     "Learn remote-controlled and semi-automated machines, and the safety rules for them."
+    ],
+    "project": "Track your idle time with telematics for a month and test one change to reduce it without slowing work."
+   },
+   {
+    "title": "Smooth control and awareness on site",
+    "items": [
+     "Control blades and buckets with fine touch, especially near pipes, cables and people.",
+     "Follow hand and radio signals from the crew and keep constant watch around the machine.",
+     "Make emergency adjustments and repairs to keep the job moving safely."
+    ],
+    "project": "Agree a standard set of hand signals with your crew, train new workers on them and record near misses for a season."
+   }
+  ],
+  "aiTools": [
+   "2D and 3D machine guidance",
+   "Machine telematics",
+   "Operator training simulators for new machines"
+  ],
+  "humanEdge": [
+   "Fine control near pipes and people",
+   "Constant awareness around the machine",
+   "Quick repairs that keep work moving"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2081.00": {
+  "roadmap": [
+   {
+    "title": "Takeoffs, layouts and board planning",
+    "items": [
+     "Calculate boards, studs and screws from digital drawings with takeoff software, and check site conditions.",
+     "Plan board layouts to reduce joints and waste, and mark openings from the drawings.",
+     "Check ceiling grids and openings against the BIM model on a tablet before installation."
+    ],
+    "project": "Use takeoff software on three jobs and compare ordered with used boards, adjusting your waste allowance."
+   },
+   {
+    "title": "Laser layout and acoustic systems",
+    "items": [
+     "Set out walls and ceiling heights with rotating lasers, and check plumb with a level.",
+     "Learn fire-rated and acoustic wall systems and their exact build rules.",
+     "Photograph fire-stopping and hidden layers before closing walls, so inspections are easy."
+    ],
+    "project": "Photograph every fire-rated wall before closing for a month and give the record to the site manager."
+   },
+   {
+    "title": "Fast, accurate hanging",
+    "items": [
+     "Hang and fasten boards straight and tight, so tapers get clean joints.",
+     "Cut openings for outlets and pipes accurately the first time.",
+     "Work safely at height with lifts, scaffolds and heavy boards."
+    ],
+    "project": "Ask the tapers to rate your joints on one job, record their comments and change one habit in your hanging."
+   }
+  ],
+  "aiTools": [
+   "Drywall takeoff software",
+   "BIM and plan viewer on a tablet",
+   "Rotating laser levels"
+  ],
+  "humanEdge": [
+   "Straight, tight board hanging",
+   "Accurate cuts the first time",
+   "Safe work at height with boards"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2082.00": {
+  "roadmap": [
+   {
+    "title": "Quotes, scheduling and drying times",
+    "items": [
+     "Measure wall and ceiling areas from drawings with apps, and send quotes drafted with AI and checked by you.",
+     "Plan coats around drying times with humidity readers, so you do not sand too early.",
+     "Keep a job app with photos, so the site manager sees progress without visits."
+    ],
+    "project": "Record humidity and drying time between coats for a month and adjust your schedule to avoid rework."
+   },
+   {
+    "title": "Mechanical tools and finish levels",
+    "items": [
+     "Learn automatic taping tools and spray finishing, and compare them with hand work for each job.",
+     "Understand finish levels and check walls with a work light before painters arrive.",
+     "Use dust-free sanders with extraction to protect your health."
+    ],
+    "project": "Use automatic taping tools on one job and compare time and finish quality with hand taping."
+   },
+   {
+    "title": "Smooth walls by hand and eye",
+    "items": [
+     "Feather compound so joints disappear under paint and strong light.",
+     "Fix cracks and dents so repairs match the wall around them.",
+     "Work safely on stilts and scaffolds for high ceilings."
+    ],
+    "project": "Inspect every finished room with a work light for a month and record which flaws you fixed before the painters came."
+   }
+  ],
+  "aiTools": [
+   "Area measuring and quoting apps",
+   "Automatic taping and spray tools",
+   "Humidity and drying monitors"
+  ],
+  "humanEdge": [
+   "Feathered joints that vanish under paint",
+   "Invisible repairs of cracks and dents",
+   "Safe work on stilts and scaffolds"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2121.00": {
+  "roadmap": [
+   {
+    "title": "Measuring, ordering and quotes",
+    "items": [
+     "Measure openings with laser tools and apps, and order glass with exact sizes and specifications from suppliers.",
+     "Write quotes for customers with AI drafts, checking glass type, safety rules and price.",
+     "Plan delivery and lifting with photos of the site, so the right equipment comes along."
+    ],
+    "project": "Measure openings with a laser app for a month and record wrong-size orders compared with tape measuring."
+   },
+   {
+    "title": "Glass types, rules and lifting aids",
+    "items": [
+     "Learn safety, fire-rated and energy-saving glass, and where building rules require each.",
+     "Use vacuum lifters and glass robots for heavy panels, and plan lifts carefully.",
+     "Keep photos and product labels of installed glass for warranty and inspection."
+    ],
+    "project": "Make a one-page guide on where safety glass is required, check it against the rules and use it for every quote."
+   },
+   {
+    "title": "Careful handling and fine fitting",
+    "items": [
+     "Cut, fit and seal glass precisely, so it is safe, quiet and watertight.",
+     "Handle large panels with care and teamwork to avoid breakage and injury.",
+     "Advise customers on glass choices for safety, noise and energy."
+    ],
+    "project": "Ask ten customers what they valued in your advice and fitting, and improve one part of your service based on it."
+   }
+  ],
+  "aiTools": [
+   "Laser measuring apps",
+   "Supplier ordering portals",
+   "Vacuum lifters and glass robots"
+  ],
+  "humanEdge": [
+   "Precise, watertight glass fitting",
+   "Careful teamwork with large panels",
+   "Practical advice on glass choices"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2131.00": {
+  "roadmap": [
+   {
+    "title": "Energy data and material planning",
+    "items": [
+     "Read thermal images and energy audit reports to see where insulation is missing or poorly fitted.",
+     "Calculate materials and coverage with insulation apps, and choose products for heat and moisture.",
+     "Photograph finished work before covering, so the customer has a record for energy grants."
+    ],
+    "project": "Take thermal images before and after five jobs and give customers a short comparison of the results."
+   },
+   {
+    "title": "Blowing equipment and safe removal",
+    "items": [
+     "Learn blowing machines and settings for even density, and check depth with markers.",
+     "Follow strict rules for removing old insulation such as asbestos, with the right protection.",
+     "Learn vapour barriers and airtightness tests, so insulation works as planned."
+    ],
+    "project": "Join one airtightness test with an energy auditor and record which gaps you can prevent in your next jobs."
+   },
+   {
+    "title": "Careful work in tight spaces",
+    "items": [
+     "Fit insulation tightly into odd spaces without gaps or compression.",
+     "Work safely in attics, crawl spaces and dusty conditions.",
+     "Explain to homeowners what was done and how it saves energy."
+    ],
+    "project": "Make a short checklist of gaps you check before closing up, use it on every job for a month and record what you found."
+   }
+  ],
+  "aiTools": [
+   "Thermal imaging cameras",
+   "Insulation coverage calculators",
+   "Airtightness test results"
+  ],
+  "humanEdge": [
+   "Gap-free fitting in tight spaces",
+   "Safe work in attics and crawl spaces",
+   "Clear explanations to homeowners"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2132.00": {
+  "roadmap": [
+   {
+    "title": "Plant drawings and heat loss data",
+    "items": [
+     "Read pipe and equipment drawings on a tablet to plan insulation, jackets and supports.",
+     "Use heat loss calculators and thermal images to show where insulation pays off most.",
+     "Record insulation type, thickness and location for each line, so maintenance knows what is there."
+    ],
+    "project": "Survey one plant area with a thermal camera and give the maintenance manager a list of uninsulated hot spots."
+   },
+   {
+    "title": "Cut patterns and corrosion risks",
+    "items": [
+     "Create cladding and fitting patterns with layout software, and cut them by hand where shapes are unusual.",
+     "Learn corrosion under insulation and how to prevent it with the right materials and seals.",
+     "Follow permits and safety rules for hot work and confined spaces."
+    ],
+    "project": "Inspect insulated lines for damaged cladding and moisture for a month and report corrosion risks with photos."
+   },
+   {
+    "title": "Skilled fitting around equipment",
+    "items": [
+     "Shape insulation and metal jackets around valves, flanges and bends neatly.",
+     "Seal joints so water and weather cannot get in.",
+     "Work safely at height and near hot equipment."
+    ],
+    "project": "Build removable insulation covers for three valves, record time saved at the next maintenance and share it with the plant."
+   }
+  ],
+  "aiTools": [
+   "Thermal imaging cameras",
+   "Heat loss calculators",
+   "Cladding pattern layout software"
+  ],
+  "humanEdge": [
+   "Neat jackets around valves and bends",
+   "Weathertight seals on every joint",
+   "Safe work near hot equipment"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -26711,6 +27425,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "47-2142.00": {
+  "roadmap": [
+   {
+    "title": "Room visuals and roll calculations",
+    "items": [
+     "Show customers wallpaper in their room with photos and visualiser apps before ordering.",
+     "Calculate rolls with pattern repeats in an app, and check batch numbers on delivery.",
+     "Send quotes and care advice from templates and AI drafts, checking every detail."
+    ],
+    "project": "Use a visualiser app with five customers and record returns or changes compared with earlier jobs."
+   },
+   {
+    "title": "Surfaces, adhesives and specialist papers",
+    "items": [
+     "Check walls for moisture and old coverings before starting, and record the condition.",
+     "Learn specialist coverings such as fabric, murals and vinyl, and their adhesives.",
+     "Photograph finished work for a portfolio and online reviews."
+    ],
+    "project": "Build an online portfolio with photos of ten finished rooms and use it for your next quotes."
+   },
+   {
+    "title": "Pattern matching and a seamless finish",
+    "items": [
+     "Match patterns perfectly across seams, corners and doorways.",
+     "Smooth out every bubble and wrinkle with a steady hand.",
+     "Trim cleanly at ceilings and skirting, so the room looks finished."
+    ],
+    "project": "Hang a difficult pattern in one room, photograph every corner and doorway, and review the matches with an experienced hanger."
+   }
+  ],
+  "aiTools": [
+   "Wallpaper visualiser apps",
+   "Roll and pattern repeat calculators",
+   "Moisture meters"
+  ],
+  "humanEdge": [
+   "Perfect pattern matching at seams",
+   "Bubble-free, wrinkle-free hanging",
+   "Clean trimming at ceilings and skirting"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2151.00": {
+  "roadmap": [
+   {
+    "title": "Laser grades and digital utility maps",
+    "items": [
+     "Set pipe grades with pipe lasers and GPS, and check slopes with a level before backfilling.",
+     "Check digital utility maps and locate services before digging, and mark them on site.",
+     "Record pipe sizes, depths and locations with GPS and photos, so as-built drawings are accurate."
+    ],
+    "project": "Record as-built data with GPS and photos on one project and compare drawing corrections with your last manual record."
+   },
+   {
+    "title": "Trench safety and pipe testing",
+    "items": [
+     "Use trench box and shoring rules with a digital checklist each day.",
+     "Learn pressure and camera testing of pipes, and what the results mean.",
+     "Plan pipe and material deliveries with the foreman so trenches are not left open."
+    ],
+    "project": "Use a daily trench safety checklist for a month and record every problem found before anyone went in."
+   },
+   {
+    "title": "Hands-on pipe work and teamwork",
+    "items": [
+     "Align and join pipes precisely, so joints are tight and grades are right.",
+     "Grade trench bases by hand where machines cannot reach.",
+     "Work closely with machine operators using clear signals."
+    ],
+    "project": "Review camera inspection results for your pipes with the foreman and agree one change to your jointing or bedding."
+   }
+  ],
+  "aiTools": [
+   "Pipe lasers and GPS",
+   "Digital utility maps",
+   "Pipe camera inspection"
+  ],
+  "humanEdge": [
+   "Tight joints at the right grade",
+   "Hand grading where machines cannot reach",
+   "Clear signals with machine operators"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "47-2152.00": {
   "roadmap": [
    {
@@ -26750,6 +27548,1434 @@
    "Hands-on installation and repair in tight spaces",
    "Diagnosing problems hidden in walls",
    "Explaining options honestly to customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2152.04": {
+  "roadmap": [
+   {
+    "title": "System design and monitoring",
+    "items": [
+     "Size solar thermal systems with design software and the customer's hot water use, and check the roof on site.",
+     "Set up controllers and remote monitoring, and read temperature and flow data after start-up.",
+     "Prepare quotes and maintenance plans with AI drafts, checking every component and price."
+    ],
+    "project": "Review monitoring data for five installed systems after a month and fix any that perform below the design."
+   },
+   {
+    "title": "Faults, maintenance and hybrid systems",
+    "items": [
+     "Use controller fault codes and data to find faults before visiting, and bring the right parts.",
+     "Plan yearly maintenance with reminders for glycol, pumps and valves.",
+     "Learn hybrid systems with heat pumps and PV, as customers ask about combinations."
+    ],
+    "project": "Set up maintenance reminders for all your customers and record faults found on the first round of visits."
+   },
+   {
+    "title": "Roof work and plumbing skill",
+    "items": [
+     "Mount collectors safely and seal roof penetrations so they never leak.",
+     "Solder and fit pipes, pumps and tanks to code with care.",
+     "Explain to customers how their system works and how to spot problems."
+    ],
+    "project": "Write a one-page owner guide with AI help, check it yourself and give it to every new customer for a season."
+   }
+  ],
+  "aiTools": [
+   "Solar thermal design software",
+   "Controllers with remote monitoring",
+   "AI assistant for quotes and guides"
+  ],
+  "humanEdge": [
+   "Safe roof work and leak-free seals",
+   "Careful plumbing and soldering to code",
+   "Clear explanations to owners"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2161.00": {
+  "roadmap": [
+   {
+    "title": "Quotes, areas and finish samples",
+    "items": [
+     "Price plastering and render jobs from photos and wall areas with a quoting app, adding scaffold and weather days.",
+     "Show customers texture and colour samples from photos of your past work before they decide.",
+     "Plan work around weather forecasts, since rain, frost and heat change how render and plaster cure."
+    ],
+    "project": "Build a photo gallery of textures from your past jobs and use it with ten customers to agree finishes before starting."
+   },
+   {
+    "title": "Facade systems and moisture checks",
+    "items": [
+     "Learn external insulation and render systems, and follow the manufacturer's build-up exactly.",
+     "Check walls for moisture with meters before plastering, and record the readings.",
+     "Try spray machines for large areas, and compare speed and finish with hand work."
+    ],
+    "project": "Record moisture readings and weather on every facade job for three months and match them to any later cracking."
+   },
+   {
+    "title": "Hand skill and flat, lasting surfaces",
+    "items": [
+     "Apply and trowel plaster flat and even, judging the right moment for each coat.",
+     "Create decorative textures and repair old plaster to match the original.",
+     "Work safely on scaffolds and keep the site clean and protected."
+    ],
+    "project": "Repair one historic or decorative wall, document each step with photos and use it to show future customers."
+   }
+  ],
+  "aiTools": [
+   "Area measuring and quoting apps",
+   "Moisture meters",
+   "Plaster and render spray machines"
+  ],
+  "humanEdge": [
+   "Flat, even troweling by hand",
+   "Matching old and decorative plaster",
+   "Judging the right moment for each coat"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2171.00": {
+  "roadmap": [
+   {
+    "title": "Bar schedules and digital drawings",
+    "items": [
+     "Read bar schedules and reinforcement drawings on a tablet, zooming into details before cutting and bending.",
+     "Check bar sizes, spacing and cover against the 3D model, and ask the engineer about clashes early.",
+     "Photograph finished reinforcement before the pour, so inspections and records are quick."
+    ],
+    "project": "Photograph every reinforcement area before the pour for a month and record inspection delays compared with before."
+   },
+   {
+    "title": "Machines, tying tools and prefab cages",
+    "items": [
+     "Use automatic rebar tying tools to save time and protect your wrists, and check every tie.",
+     "Learn computer-controlled bending machines and how to check their output against the schedule.",
+     "Work with prefabricated cages and mesh, fitting them accurately on site."
+    ],
+    "project": "Use an automatic tying tool for two weeks and compare speed and hand strain with manual tying."
+   },
+   {
+    "title": "Accurate placement and safe work",
+    "items": [
+     "Place and secure bars at the right spacing and cover, so the structure is strong.",
+     "Spot errors in drawings or deliveries before concrete covers them.",
+     "Work safely at height and with heavy bars, protecting your back and your crew."
+    ],
+    "project": "Keep a list of drawing or delivery errors you caught before pours for three months and share it with the engineer."
+   }
+  ],
+  "aiTools": [
+   "Digital reinforcement drawings on tablets",
+   "Automatic rebar tying tools",
+   "CNC rebar bending machines"
+  ],
+  "humanEdge": [
+   "Accurate bar spacing and cover",
+   "Catching errors before the pour",
+   "Safe handling of heavy bars at height"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2181.00": {
+  "roadmap": [
+   {
+    "title": "Drone surveys and roof measurements",
+    "items": [
+     "Measure roofs with drone or satellite measurement reports, and check details such as valleys and vents on site.",
+     "Inspect roofs with drone photos first to plan repairs without unnecessary climbing.",
+     "Send quotes with photos and clear options, drafted with AI and checked by you."
+    ],
+    "project": "Use drone or satellite roof reports for five quotes and compare the measurements with what you used on the job."
+   },
+   {
+    "title": "Roofing systems and safety planning",
+    "items": [
+     "Learn single-ply, metal and green roof systems, and the manufacturer rules for warranty.",
+     "Plan fall protection for each roof with a checklist and photos before work starts.",
+     "Track weather forecasts to plan tear-offs, so roofs are not left open in rain."
+    ],
+    "project": "Make a fall protection checklist for your crew, use it on every roof for a month and record what it changed."
+   },
+   {
+    "title": "Watertight work and judgement on the roof",
+    "items": [
+     "Fit flashing, valleys and penetrations so they never leak.",
+     "Find the real source of leaks, which is often far from the stain inside.",
+     "Work safely at height in changing weather, looking after your crew."
+    ],
+    "project": "Track every leak callback for a year, find its true cause and share the lessons with your crew."
+   }
+  ],
+  "aiTools": [
+   "Drone and satellite roof measurement",
+   "Roofing quote apps",
+   "Weather forecasting apps"
+  ],
+  "humanEdge": [
+   "Leak-free flashing and penetrations",
+   "Finding the real source of leaks",
+   "Safe work at height in changing weather"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2211.00": {
+  "roadmap": [
+   {
+    "title": "CAD layouts and duct fabrication",
+    "items": [
+     "Turn duct drawings into flat patterns with CAD and nesting software, so plasma cutters waste less metal.",
+     "Read BIM models to check duct routes against pipes and beams before fabrication.",
+     "Track fabricated parts with labels or QR codes, so the right piece reaches the right place on site."
+    ],
+    "project": "Nest one month's duct parts with software and compare metal waste with the previous month."
+   },
+   {
+    "title": "Machines, efficiency and site fit",
+    "items": [
+     "Learn CNC plasma, folding and coil lines, and check the first part from each run.",
+     "Seal ducts properly and understand leakage tests, as tight ducts save energy.",
+     "Measure on site with laser tools when conditions differ from the drawings."
+    ],
+    "project": "Join one duct leakage test, record the leak points found and change how you seal those joints."
+   },
+   {
+    "title": "Hand forming and fitting on site",
+    "items": [
+     "Form, cut and fit unusual pieces by hand where machines cannot.",
+     "Fit flashing and gutters neatly so water goes where it should.",
+     "Solve fitting problems on site with other trades."
+    ],
+    "project": "Record every piece you had to alter on site for a month and share the causes with the drafting office."
+   }
+  ],
+  "aiTools": [
+   "CAD and nesting software",
+   "CNC plasma and folding machines",
+   "BIM model viewers"
+  ],
+  "humanEdge": [
+   "Hand forming unusual pieces",
+   "Neat flashing that sheds water",
+   "Solving fit problems with other trades"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2221.00": {
+  "roadmap": [
+   {
+    "title": "Erection plans and digital models",
+    "items": [
+     "Follow erection sequences and piece marks from 3D steel models on a tablet, so each member goes in order.",
+     "Plan lifts with crane lift plans and load charts, and confirm rigging on site.",
+     "Record bolt tightening and welds with photos and checklists, so inspections pass quickly."
+    ],
+    "project": "Use a tablet with the 3D model on one project and record wrong-piece or wrong-order errors compared with paper drawings."
+   },
+   {
+    "title": "Laser alignment and safety systems",
+    "items": [
+     "Check plumb and level with laser and total station readings, and confirm with your own tools.",
+     "Use fall protection and rescue plans for each stage of erection.",
+     "Learn the rules for bolting and welding inspections, and what inspectors look for."
+    ],
+    "project": "Review one erection stage's fall protection plan with your crew and record the changes you made after the review."
+   },
+   {
+    "title": "Teamwork and balance in the air",
+    "items": [
+     "Connect beams and columns at height with balance, strength and attention.",
+     "Signal crane operators precisely and trust your crew completely.",
+     "Force members into position carefully, without damaging steel or people."
+    ],
+    "project": "Mentor one new ironworker through a full project and write down the safety habits you teach that are not on paper."
+   }
+  ],
+  "aiTools": [
+   "3D steel models on tablets",
+   "Crane lift planning tools",
+   "Laser and total station alignment"
+  ],
+  "humanEdge": [
+   "Balance and attention at height",
+   "Precise signals to crane operators",
+   "Trust and teamwork in the crew"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-2231.00": {
+  "roadmap": [
+   {
+    "title": "Layouts, apps and commissioning data",
+    "items": [
+     "Follow panel layouts from solar design software, and check the roof and structure on site before mounting.",
+     "Commission inverters with installer apps, and check output and errors before leaving.",
+     "Record serial numbers, photos and test results in an app, so warranty and inspection files are complete."
+    ],
+    "project": "Use an installer app to record every system you install for a month and compare paperwork time with before."
+   },
+   {
+    "title": "Batteries, monitoring and fault finding",
+    "items": [
+     "Learn battery storage and hybrid inverter systems, as more customers ask for them.",
+     "Use monitoring data and thermal cameras to find faulty panels or connections.",
+     "Follow electrical safety rules for live DC wiring every time."
+    ],
+    "project": "Inspect ten older systems with monitoring data and a thermal camera, and list the faults you found."
+   },
+   {
+    "title": "Safe roof work and clean installs",
+    "items": [
+     "Mount panels and rails safely on different roof types without causing leaks.",
+     "Make tidy, correct electrical connections that pass inspection first time.",
+     "Explain the system and app to customers before you leave."
+    ],
+    "project": "Ask ten customers what was unclear after handover, and improve your handover explanation based on their answers."
+   }
+  ],
+  "aiTools": [
+   "Solar design software layouts",
+   "Inverter commissioning apps",
+   "Monitoring platforms and thermal cameras"
+  ],
+  "humanEdge": [
+   "Safe, leak-free roof mounting",
+   "Tidy, correct electrical work",
+   "Clear handover to customers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-3011.00": {
+  "roadmap": [
+   {
+    "title": "Apps for learning and material lists",
+    "items": [
+     "Use phone apps to calculate mortar and grout mixes, so batches are consistent for the mason.",
+     "Learn masonry and tile skills from videos and apps in your own time, and ask the mason to check you.",
+     "Keep material lists on your phone, so the mason never waits for bricks, tiles or tools."
+    ],
+    "project": "Keep a mix recipe list on your phone for a month and ask the mason whether batch quality improved."
+   },
+   {
+    "title": "Cutting, scaffolds and safety",
+    "items": [
+     "Learn to cut tile and stone accurately with wet saws, checking measurements twice.",
+     "Build scaffolds to the rules, with checks before anyone climbs.",
+     "Learn the dust rules for cutting stone and concrete, and use extraction every time."
+    ],
+    "project": "Ask the mason to let you lay one small area under supervision each week for two months and record what you learn."
+   },
+   {
+    "title": "Reliable help and a path to the trade",
+    "items": [
+     "Supply materials in the right order, so the mason keeps working.",
+     "Keep the site clean and walkways clear, so nobody trips over offcuts.",
+     "Move toward an apprenticeship as a brickmason or tile setter, building on what you learn."
+    ],
+    "project": "Talk to your employer about an apprenticeship, list the skills you still need and agree a plan for the next year."
+   }
+  ],
+  "aiTools": [
+   "Mix and quantity calculator apps",
+   "Video learning apps",
+   "Wet saws with dust extraction"
+  ],
+  "humanEdge": [
+   "Reliable supply in the right order",
+   "A clean, safe site for everyone",
+   "Learning the trade by doing"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-3012.00": {
+  "roadmap": [
+   {
+    "title": "Cut lists, plans and learning",
+    "items": [
+     "Read cut lists and simple plans on a phone or tablet, and check each measurement before cutting.",
+     "Learn carpentry techniques from videos and apps, and ask the carpenter to check your work.",
+     "Keep tools and materials organised with a simple list, so the right items reach the site."
+    ],
+    "project": "Cut parts from a digital cut list for one job and ask the carpenter to check how many needed recutting."
+   },
+   {
+    "title": "Power tools, forms and safety",
+    "items": [
+     "Learn safe use of saws, nailers and drills, with training for each one.",
+     "Help build and plumb forms and frames with laser levels and squares.",
+     "Learn scaffolding and bracing rules, and check them before use."
+    ],
+    "project": "Get trained on two new power tools this season and keep a log of jobs where you used them."
+   },
+   {
+    "title": "Reliable help and a path to the trade",
+    "items": [
+     "Hold and position timber steadily, so the carpenter can work fast and safely.",
+     "Keep the work area clean and safe for the whole crew.",
+     "Work toward a carpentry apprenticeship, building on what you learn each day."
+    ],
+    "project": "Ask your employer about an apprenticeship and agree which skills you will learn in the next six months."
+   }
+  ],
+  "aiTools": [
+   "Digital cut lists and plans",
+   "Video learning apps",
+   "Laser levels"
+  ],
+  "humanEdge": [
+   "Steady, careful handling of timber",
+   "A clean, safe crew workspace",
+   "Learning carpentry by doing"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-3013.00": {
+  "roadmap": [
+   {
+    "title": "Wiring plans and parts lists",
+    "items": [
+     "Read wiring plans and parts lists on a tablet, and prepare materials before the electrician needs them.",
+     "Learn electrical basics with apps and courses, and ask the electrician to explain what you see.",
+     "Keep vans and tool stock organised with a simple inventory app."
+    ],
+    "project": "Keep a van stock list in an app for a month and record trips saved because parts were already on board."
+   },
+   {
+    "title": "Safe work and testing basics",
+    "items": [
+     "Learn lockout and isolation rules, and never work on anything until it is proven dead.",
+     "Learn how meters and testers work under supervision, and record readings carefully.",
+     "Bend conduit and pull cables neatly, following the electrician's layout."
+    ],
+    "project": "Learn the safe isolation procedure, practise it under supervision for a month and record each time you used it."
+   },
+   {
+    "title": "Reliable help and a path to the trade",
+    "items": [
+     "Pull wire and prepare runs carefully, so the electrician's work is faster.",
+     "Keep work areas clean, so cable offcuts and tools never become a hazard.",
+     "Work toward an electrical apprenticeship, building on what you learn on site."
+    ],
+    "project": "Ask your employer about an electrical apprenticeship and agree a plan for the skills you will learn this year."
+   }
+  ],
+  "aiTools": [
+   "Wiring plans on tablets",
+   "Electrical learning apps",
+   "Van stock inventory apps"
+  ],
+  "humanEdge": [
+   "Careful, neat cable pulling",
+   "Strict respect for electrical safety",
+   "Learning the trade by doing"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-3014.00": {
+  "roadmap": [
+   {
+    "title": "Colour apps, schedules and lists",
+    "items": [
+     "Check colour codes and product lists in apps, so the right paint and plaster reach the right room.",
+     "Plan masking and protection with photos of each room, agreed with the painter.",
+     "Learn finishing techniques from videos, and practise them on offcuts."
+    ],
+    "project": "Photograph each room before and after protection for a month and record damage claims compared with before."
+   },
+   {
+    "title": "Surface preparation and safety",
+    "items": [
+     "Learn sanding and filling techniques that leave surfaces ready for paint.",
+     "Build scaffolds safely, and check them before anyone climbs.",
+     "Learn the safety rules for solvents, dust and stripping chemicals."
+    ],
+    "project": "Ask the painter to rate your surface preparation on three jobs and improve one technique each time."
+   },
+   {
+    "title": "Careful prep and a path to the trade",
+    "items": [
+     "Protect floors, furniture and fittings thoroughly, so customers are happy.",
+     "Keep tools and brushes clean, so the finish is good.",
+     "Move toward painting or plastering as a trade, building on your preparation skills."
+    ],
+    "project": "Agree with your employer which painting or plastering tasks you will learn next and practise them for three months."
+   }
+  ],
+  "aiTools": [
+   "Colour and product apps",
+   "Video learning apps",
+   "Job photo apps"
+  ],
+  "humanEdge": [
+   "Thorough protection of customer homes",
+   "Careful surface preparation",
+   "Clean tools for a good finish"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-3015.00": {
+  "roadmap": [
+   {
+    "title": "Plans, parts and van stock",
+    "items": [
+     "Read piping plans and parts lists on a tablet, and collect the right pipes and fittings before work starts.",
+     "Learn plumbing and pipefitting basics with apps and videos, and ask the fitter to check you.",
+     "Track tools and van stock with an app, so nothing is forgotten."
+    ],
+    "project": "Prepare parts from a digital plan for three jobs and record how many trips to the supplier you saved."
+   },
+   {
+    "title": "Cutting, threading and leak testing",
+    "items": [
+     "Learn to cut, thread and join pipe accurately, measuring twice.",
+     "Help with pressure and leak tests, and record results carefully.",
+     "Learn the safety rules for gas, hot work and confined spaces."
+    ],
+    "project": "Practise threading and joining under supervision for a month and record leaks found at testing."
+   },
+   {
+    "title": "Reliable help and a path to the trade",
+    "items": [
+     "Lift and position pipes safely, so fitters can work fast.",
+     "Keep work areas and the shop clean, so tools and pipe ends are easy to find.",
+     "Work toward a plumbing or pipefitting apprenticeship, building on what you learn."
+    ],
+    "project": "Ask your employer about an apprenticeship and agree which skills you will learn in the next six months."
+   }
+  ],
+  "aiTools": [
+   "Piping plans on tablets",
+   "Plumbing learning apps",
+   "Van stock apps"
+  ],
+  "humanEdge": [
+   "Safe lifting and positioning of pipe",
+   "Accurate cutting and threading",
+   "Learning the trade by doing"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-3016.00": {
+  "roadmap": [
+   {
+    "title": "Job photos and material lists",
+    "items": [
+     "Photograph roofs before and after work, so the roofer and customer have a clear record.",
+     "Check material lists on a phone before loading the truck, so nothing is missing on site.",
+     "Learn roofing methods from videos, and ask the roofer to show you on the job."
+    ],
+    "project": "Keep a loading checklist on your phone for a month and record trips back to the yard compared with before."
+   },
+   {
+    "title": "Fall protection and roofing basics",
+    "items": [
+     "Learn fall protection, ladders and hoists properly, and check equipment each day.",
+     "Learn to lay underlay and shingles neatly under supervision.",
+     "Learn weather risks such as wind, heat and ice on roofs."
+    ],
+    "project": "Use a daily fall protection check for a month and record faults you found before anyone climbed."
+   },
+   {
+    "title": "Hard work, safety and a path to the trade",
+    "items": [
+     "Remove old roofing and handle heavy materials safely.",
+     "Keep the roof and site clean, so nobody trips or falls.",
+     "Work toward becoming a roofer, building on what you learn each day."
+    ],
+    "project": "Agree with your employer which roofing tasks you will learn this season and record your progress each month."
+   }
+  ],
+  "aiTools": [
+   "Job photo apps",
+   "Material checklist apps",
+   "Video learning apps"
+  ],
+  "humanEdge": [
+   "Safe handling of heavy materials",
+   "A clean roof where nobody trips",
+   "Learning roofing by doing"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4011.00": {
+  "roadmap": [
+   {
+    "title": "AI for codes, plans and reports",
+    "items": [
+     "Search building codes with AI summaries to find the right clause quickly, and confirm in the official text.",
+     "Write inspection reports and logs on a tablet with photos and templates, checking every finding yourself.",
+     "Review digital plans with markup tools, so comments reach designers clearly."
+    ],
+    "project": "Write inspection reports on a tablet for a month and compare time per report and missing information with paper."
+   },
+   {
+    "title": "Digital permits, drones and models",
+    "items": [
+     "Use digital permit systems to track applications, inspections and approvals in one place.",
+     "Use drones or remote video inspections for roofs and hard-to-reach areas, and visit in person where needed.",
+     "Compare work on site with BIM models to spot differences from approved plans."
+    ],
+    "project": "Try remote video inspections for simple checks over a month and record which ones still needed a site visit."
+   },
+   {
+    "title": "Judgement on site and fair enforcement",
+    "items": [
+     "Inspect structures and systems in person, noticing what does not look right.",
+     "Explain violations and fixes to owners and builders clearly and fairly.",
+     "Make decisions that protect public safety, and stand behind them."
+    ],
+    "project": "Review ten of your difficult decisions with a senior inspector and agree where your judgement could be more consistent."
+   }
+  ],
+  "aiTools": [
+   "AI search over building codes",
+   "Digital permit and inspection systems",
+   "Drones and remote video inspection"
+  ],
+  "humanEdge": [
+   "Noticing what does not look right",
+   "Fair, clear explanations to builders",
+   "Standing behind safety decisions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4011.01": {
+  "roadmap": [
+   {
+    "title": "Energy data analysis and reports",
+    "items": [
+     "Analyse energy bills and meter data with spreadsheets and AI, finding peaks and waste patterns quickly.",
+     "Model savings from measures with energy modelling software, and check the assumptions yourself.",
+     "Write audit reports with AI drafts, keeping the recommendations clear and the numbers checked."
+    ],
+    "project": "Audit one building using AI to analyse bills and draft the report, and compare time and quality with your last audit."
+   },
+   {
+    "title": "Sensors, thermal imaging and follow-up",
+    "items": [
+     "Use data loggers, thermal cameras and blower-door tests to find real losses on site.",
+     "Rank measures by cost, savings and payback, so clients can decide.",
+     "Follow up after work is done, comparing real savings with your estimates."
+    ],
+    "project": "Compare estimated and real savings for five past audits and adjust your models based on the differences."
+   },
+   {
+    "title": "Site insight and clear advice",
+    "items": [
+     "Notice problems on site that data misses, such as how people use the building.",
+     "Explain findings to owners in plain language, focused on what they can afford.",
+     "Stay independent and honest when savings are small."
+    ],
+    "project": "Present one audit to a client in plain language, ask what they understood and improve your presentation."
+   }
+  ],
+  "aiTools": [
+   "Energy modelling software",
+   "Data loggers and thermal cameras",
+   "AI for bill analysis and report drafts"
+  ],
+  "humanEdge": [
+   "Noticing how people use buildings",
+   "Plain-language advice owners can act on",
+   "Honest advice when savings are small"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4021.00": {
+  "roadmap": [
+   {
+    "title": "Remote monitoring and digital service records",
+    "items": [
+     "Check remote monitoring alerts and fault logs before visiting, so you arrive knowing what may be wrong.",
+     "Record inspections, repairs and safety checks in a service app, so log books are complete and searchable.",
+     "Search manuals and wiring diagrams with AI help, and confirm every value in the manufacturer's document."
+    ],
+    "project": "Review remote fault logs before every callout for a month and record how often you brought the right parts first time."
+   },
+   {
+    "title": "Predictive maintenance and controller diagnostics",
+    "items": [
+     "Use controller diagnostics and service tools to read fault codes and trip data on site.",
+     "Learn predictive maintenance data, such as door cycles and motor current, to plan repairs before breakdowns.",
+     "Keep up with code changes and modernisation kits for older lifts."
+    ],
+    "project": "Pick ten lifts with frequent callouts, study their fault data and plan preventive repairs with your supervisor."
+   },
+   {
+    "title": "Safe hands-on work in the hoistway",
+    "items": [
+     "Work safely in hoistways and machine rooms with lockout, fall protection and a partner.",
+     "Adjust brakes, doors and safety gear by feel and test, until they work exactly right.",
+     "Release trapped passengers calmly and explain what happened."
+    ],
+    "project": "Review your lockout and rescue procedures with your team, practise one rescue drill and record what you improved."
+   }
+  ],
+  "aiTools": [
+   "Remote lift monitoring systems",
+   "Controller diagnostic tools",
+   "Service and log book apps"
+  ],
+  "humanEdge": [
+   "Safe work in hoistways and machine rooms",
+   "Fine adjustment of brakes and doors",
+   "Calm help for trapped passengers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4031.00": {
+  "roadmap": [
+   {
+    "title": "Satellite maps, quotes and customer visuals",
+    "items": [
+     "Measure fence lines on satellite maps before visiting, then confirm boundaries and slopes on site.",
+     "Send quotes with material options and photos, drafted with AI and checked for price and quantity.",
+     "Show customers fence and gate styles with photos of past jobs, so they choose quickly."
+    ],
+    "project": "Quote ten jobs from satellite measurements first and compare them with your measured lengths on site."
+   },
+   {
+    "title": "Utility checks, permits and materials",
+    "items": [
+     "Check underground service maps and call-before-you-dig services before every post hole.",
+     "Learn local rules on boundaries, heights and permits, and tell customers before they order.",
+     "Order posts, panels and concrete from supplier apps with delivery to site."
+    ],
+    "project": "Make a short checklist on boundaries, permits and buried services, and use it for every quote for two months."
+   },
+   {
+    "title": "Straight lines and solid posts",
+    "items": [
+     "Set posts plumb and in line, so the fence stays straight for years.",
+     "Hang gates so they swing freely and latch properly in every season.",
+     "Adapt to rocks, roots and slopes on site without losing the line."
+    ],
+    "project": "Revisit five fences you built a year ago, check posts and gates, and change one part of your method."
+   }
+  ],
+  "aiTools": [
+   "Satellite map measuring tools",
+   "Quoting apps",
+   "Utility location services"
+  ],
+  "humanEdge": [
+   "Plumb, straight posts that last",
+   "Gates that swing and latch properly",
+   "Adapting to rocks, roots and slopes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4041.00": {
+  "roadmap": [
+   {
+    "title": "Digital safety plans and records",
+    "items": [
+     "Follow digital work plans and safety data sheets on a tablet, checking procedures before each task.",
+     "Record waste quantities, containers and transport in an app, so disposal records are complete.",
+     "Log air monitoring results and respirator checks every shift, so health records are accurate."
+    ],
+    "project": "Move one job's waste and air monitoring records to an app and compare missing entries with a paper job."
+   },
+   {
+    "title": "Monitoring equipment and rules",
+    "items": [
+     "Learn air monitors, negative pressure units and their alarms, and act on readings at once.",
+     "Keep training and medical checks up to date with reminders.",
+     "Learn the rules for asbestos, lead, mould and chemical spills, and what each one requires."
+    ],
+    "project": "Check negative pressure readings every hour on one job and record what changed when doors or units were moved."
+   },
+   {
+    "title": "Discipline and care in dangerous work",
+    "items": [
+     "Build containment carefully, so contamination never spreads.",
+     "Follow decontamination steps exactly, protecting yourself and others.",
+     "Respond calmly to emergencies with hazardous substances."
+    ],
+    "project": "Run a decontamination walk-through with a new worker and write down the steps they missed or found confusing."
+   }
+  ],
+  "aiTools": [
+   "Digital work plans and safety data sheets",
+   "Air monitoring equipment",
+   "Waste tracking apps"
+  ],
+  "humanEdge": [
+   "Careful containment that never leaks",
+   "Strict decontamination discipline",
+   "Calm response in emergencies"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4051.00": {
+  "roadmap": [
+   {
+    "title": "Work orders, GPS and road reports",
+    "items": [
+     "Receive work orders and road defect reports in an app, with location and photos from the public or inspectors.",
+     "Record repairs, materials and hours on a tablet, so the road authority has accurate data.",
+     "Use GPS in trucks to plan routes for gritting, mowing and patching."
+    ],
+    "project": "Record every pothole repair with photo and location for a month and share the map with your supervisor."
+   },
+   {
+    "title": "Weather data and smart winter service",
+    "items": [
+     "Use road weather stations and forecasts to decide when to grit before ice forms.",
+     "Learn spreader controls that adjust salt by speed and route, and check the spread rate.",
+     "Plan vehicle maintenance with reminders and check lists, so trucks are ready for storms."
+    ],
+    "project": "Compare salt used and road conditions on two routes for a winter, one with controlled spreading and one without."
+   },
+   {
+    "title": "Safe work beside traffic",
+    "items": [
+     "Set out signs and cones correctly to protect your crew from traffic.",
+     "Flag drivers clearly and stay alert to careless driving.",
+     "Clear debris and repair roads quickly in bad weather."
+    ],
+    "project": "Review each work zone setup with your crew for a month and record near misses and changes you made."
+   }
+  ],
+  "aiTools": [
+   "Work order and defect reporting apps",
+   "Road weather stations and forecasts",
+   "GPS-controlled spreaders"
+  ],
+  "humanEdge": [
+   "Safe work zones beside traffic",
+   "Alert, clear flagging of drivers",
+   "Quick repairs in bad weather"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4061.00": {
+  "roadmap": [
+   {
+    "title": "Track data and digital reports",
+    "items": [
+     "Use track geometry and inspection data to know where defects are before patrolling.",
+     "Report damaged track with photos and GPS location in an app, so repairs are prioritised.",
+     "Record work done and materials used on a tablet, so maintenance history is complete."
+    ],
+    "project": "Report every defect you find with photo and location for a month and compare repair times with paper reports."
+   },
+   {
+    "title": "Machine controls and laser alignment",
+    "items": [
+     "Learn tamping and alignment machines with laser and computer guidance, and check their results.",
+     "Check tamper and ballast machine fault codes each morning, and service hydraulics on schedule.",
+     "Learn track possession and safety systems, and follow them strictly."
+    ],
+    "project": "Compare track geometry before and after your tamping work on one section and discuss the results with your supervisor."
+   },
+   {
+    "title": "Safe track work and judgement",
+    "items": [
+     "Spot damaged rails, ties and switches on patrol with trained eyes.",
+     "Work safely near live lines, watching for trains and following lookout rules.",
+     "Repair switches and joints precisely with hand and power tools."
+    ],
+    "project": "Walk one section with an experienced track worker each week for a month and list the defect signs they teach you."
+   }
+  ],
+  "aiTools": [
+   "Track geometry and inspection data",
+   "Defect reporting apps",
+   "Laser-guided tamping machines"
+  ],
+  "humanEdge": [
+   "Trained eyes for track defects",
+   "Strict safety near live lines",
+   "Precise switch and joint repairs"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4071.00": {
+  "roadmap": [
+   {
+    "title": "Route planning and digital job records",
+    "items": [
+     "Plan service routes and septic pumping schedules with an app, so customers get reminders on time.",
+     "Record each job with photos, volumes and findings, so customers and authorities have clear records.",
+     "Send customers service reports and care tips drafted from templates, checked by you."
+    ],
+    "project": "Set up automatic pumping reminders for your customers and record repeat business over six months."
+   },
+   {
+    "title": "Camera inspection and fault finding",
+    "items": [
+     "Use sewer cameras and locators to find blockages, roots and breaks, and mark digging points accurately.",
+     "Learn to read camera footage well enough to explain it to customers.",
+     "Service jetting and vacuum equipment on schedule with reminders."
+    ],
+    "project": "Record camera findings on every blocked line for three months and list the most common causes for customers."
+   },
+   {
+    "title": "Tough work done safely",
+    "items": [
+     "Work safely in manholes and confined spaces with gas monitors and a partner.",
+     "Clear blockages and repair lines with hands-on skill.",
+     "Explain problems to customers calmly and honestly."
+    ],
+    "project": "Review your confined space procedure with your team, practise one rescue drill and record what you changed."
+   }
+  ],
+  "aiTools": [
+   "Route and scheduling apps",
+   "Sewer cameras and locators",
+   "Job record apps with photos"
+  ],
+  "humanEdge": [
+   "Safe work in confined spaces",
+   "Hands-on blockage clearing",
+   "Calm, honest explanations"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4091.00": {
+  "roadmap": [
+   {
+    "title": "Design visuals and material calculations",
+    "items": [
+     "Show customers paving patterns and colours with design apps and photos before they choose.",
+     "Calculate pavers, base and sand with apps, including cuts, edges and waste.",
+     "Send quotes drafted with AI, checking drainage, base depth and price."
+    ],
+    "project": "Use a design app with five customers and record changes they asked for during the job compared with before."
+   },
+   {
+    "title": "Laser levels and base preparation",
+    "items": [
+     "Set falls and levels with laser levels so water drains away from buildings.",
+     "Learn base and drainage design for different soils and loads.",
+     "Photograph each layer of the base, so customers see the hidden work."
+    ],
+    "project": "Photograph the base layers on every job for three months and use them in quotes to explain your price."
+   },
+   {
+    "title": "Craft and a lasting surface",
+    "items": [
+     "Set pavers straight, tight and level by eye and string line.",
+     "Cut edges and curves cleanly with splitters and saws.",
+     "Compact well, so the surface stays flat for years."
+    ],
+    "project": "Revisit five paved areas after a year, check for settling and change one step of your base preparation."
+   }
+  ],
+  "aiTools": [
+   "Paving design apps",
+   "Material calculators",
+   "Laser levels"
+  ],
+  "humanEdge": [
+   "Straight, tight, level paver setting",
+   "Clean cuts on edges and curves",
+   "Solid compaction for lasting surfaces"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-4099.03": {
+  "roadmap": [
+   {
+    "title": "Audit data and work records",
+    "items": [
+     "Read energy audit reports and thermal images to see which measures each home needs.",
+     "Record work done, materials and costs in an app, so programme records and invoices are complete.",
+     "Explain measures to residents with simple printouts drafted with AI and checked by you."
+    ],
+    "project": "Record every home in an app with before and after photos for a month and compare paperwork time with before."
+   },
+   {
+    "title": "Blower-door tests and combustion safety",
+    "items": [
+     "Use blower-door tests before and after sealing to show the air leakage you removed.",
+     "Check ventilation and combustion safety after tightening a home, following the rules.",
+     "Learn which grants and programmes residents can use."
+    ],
+    "project": "Run blower-door tests before and after on five homes and share the results with residents."
+   },
+   {
+    "title": "Careful work in people's homes",
+    "items": [
+     "Seal and insulate thoroughly in attics, crawl spaces and around windows.",
+     "Respect residents and their homes, many of them elderly or on low incomes.",
+     "Make small repairs to walls, doors and glass neatly with basic tools."
+    ],
+    "project": "Ask ten residents about comfort and draughts a month after your work, and record what they noticed and what still bothers them."
+   }
+  ],
+  "aiTools": [
+   "Energy audit reports and thermal images",
+   "Blower-door test equipment",
+   "Job record apps"
+  ],
+  "humanEdge": [
+   "Thorough sealing in hard places",
+   "Respect for residents and homes",
+   "Neat small repairs in residents' homes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5011.00": {
+  "roadmap": [
+   {
+    "title": "Mud data and digital reports",
+    "items": [
+     "Read drilling fluid data from sensors and the rig system, and test samples by hand to confirm.",
+     "Prepare mud reports with templates on a tablet, so the mud engineer and driller see trends quickly.",
+     "Look up chemical safety data sheets on a tablet before mixing additives."
+    ],
+    "project": "Keep mud reports on a tablet for a month and compare them with hand tests to find where sensors drift."
+   },
+   {
+    "title": "Pump monitoring and pipe handling systems",
+    "items": [
+     "Use pump vibration and pressure monitoring to spot problems before failure.",
+     "Learn automated pipe handling systems, and keep watch from a safe position.",
+     "Train new crew members with clear checklists and demonstrations."
+    ],
+    "project": "Write a training checklist for new floorhands with AI help, test it with two new workers and improve it."
+   },
+   {
+    "title": "Safe work high on the rig",
+    "items": [
+     "Work safely on the monkey board with fall protection and full attention.",
+     "Hear and feel when pumps or equipment are wrong, and act fast.",
+     "Lead and look after your crew in hard conditions."
+    ],
+    "project": "Record every pump problem you heard or felt before alarms over three months and share them with the crew."
+   }
+  ],
+  "aiTools": [
+   "Drilling fluid sensors and rig data",
+   "Pump vibration monitoring",
+   "Automated pipe handling systems"
+  ],
+  "humanEdge": [
+   "Safe work on the monkey board",
+   "Hearing pump problems before alarms",
+   "Leading crew in hard conditions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5012.00": {
+  "roadmap": [
+   {
+    "title": "Drilling data and automated controls",
+    "items": [
+     "Use drilling control systems and real-time data to manage speed and weight, and watch gauges yourself.",
+     "Keep drilling records automatically from rig sensors, adding notes on strata and events.",
+     "Review drilling data with engineers to choose bits and settings for each section."
+    ],
+    "project": "Compare drilling performance across three wells with engineers using rig data and agree one change for the next well."
+   },
+   {
+    "title": "Automation, maintenance and safety systems",
+    "items": [
+     "Learn automated drilling and pipe handling systems, and keep control when they misbehave.",
+     "Use maintenance data to plan repairs on pumps and draw works.",
+     "Train crews with procedures, drills and lessons from incidents."
+    ],
+    "project": "Run one well-control drill each month for a season and record how crew response times improved."
+   },
+   {
+    "title": "Leading the rig floor",
+    "items": [
+     "Read the well from feel, sound and gauges when conditions change.",
+     "Direct crews clearly and keep everyone safe on the rig floor.",
+     "Make quick, safe decisions when kicks, stuck pipe or other problems appear."
+    ],
+    "project": "Review three recent problem events with your crew and write down the early signs you noticed."
+   }
+  ],
+  "aiTools": [
+   "Drilling control systems with real-time data",
+   "Automated pipe handling",
+   "Maintenance planning tools"
+  ],
+  "humanEdge": [
+   "Reading the well by feel and sound",
+   "Clear crew direction on the rig floor",
+   "Quick decisions when problems appear"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5013.00": {
+  "roadmap": [
+   {
+    "title": "Job reports, well data and billing",
+    "items": [
+     "Fill in service tickets and billing reports on a tablet from templates, checking hours, tools and charges.",
+     "Review well files and previous service data before driving out, so you know pipe sizes and conditions.",
+     "Share well condition notes and photos with engineers in the same app, so decisions are faster."
+    ],
+    "project": "Move service tickets to a tablet for a month and compare billing errors and time to invoice with paper tickets."
+   },
+   {
+    "title": "Coiled tubing, pressure data and safety",
+    "items": [
+     "Learn coiled tubing, gas lift and other modern well techniques, and their data screens.",
+     "Watch pressure and flow data during jobs, and stop when readings leave safe limits.",
+     "Inspect pressure-control equipment with digital checklists before every job."
+    ],
+    "project": "Use a digital pre-job checklist for pressure-control equipment for a month and record the faults it caught."
+   },
+   {
+    "title": "Reading wells and leading crews",
+    "items": [
+     "Listen to engines, chains and the well to detect trouble before gauges show it.",
+     "Direct crews clearly when pipe sticks or conditions change suddenly.",
+     "Drive and set up heavy units safely on rough lease roads and sites."
+    ],
+    "project": "Write down three times you heard or felt a problem before the gauges showed it, and share them with newer operators."
+   }
+  ],
+  "aiTools": [
+   "Digital service tickets and billing",
+   "Well data and pressure monitoring",
+   "Pre-job safety checklist apps"
+  ],
+  "humanEdge": [
+   "Hearing trouble before gauges show it",
+   "Clear direction when conditions change",
+   "Safe setup of heavy units on rough sites"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5022.00": {
+  "roadmap": [
+   {
+    "title": "Machine guidance and mine plans",
+    "items": [
+     "Dig to plan with GPS machine guidance and digital dig maps, checking grade with stakes when signals fail.",
+     "Read payload and cycle data on the cab screen to load trucks evenly and fast.",
+     "Report shift production and delays on the machine terminal, so planners see real figures."
+    ],
+    "project": "Track your payload accuracy for a month and adjust your loading technique to reduce over- and under-loaded trucks."
+   },
+   {
+    "title": "Machine health and safe pit work",
+    "items": [
+     "Use machine health alerts for engines, hydraulics and bucket teeth, and report them early.",
+     "Learn collision avoidance and fatigue monitoring systems, and what each alarm means.",
+     "Study the digging plan with the supervisor before each shift, including slope and water risks."
+    ],
+    "project": "Record every machine health alert for a month with what you did, and review the list with the maintenance team."
+   },
+   {
+    "title": "Skill and awareness in the pit",
+    "items": [
+     "Dig smoothly and safely near high walls, water and other machines.",
+     "Notice ground cracks, slumps and loose rock before they become dangerous.",
+     "Follow hand signals and radio calls, and keep watch around the machine."
+    ],
+    "project": "Report every ground hazard you notice for a month with photo and location, and review them with the geotechnical team."
+   }
+  ],
+  "aiTools": [
+   "GPS machine guidance and dig maps",
+   "Payload and cycle monitoring",
+   "Collision avoidance systems"
+  ],
+  "humanEdge": [
+   "Smooth digging near high walls",
+   "Noticing ground hazards early",
+   "Constant awareness around the machine"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5023.00": {
+  "roadmap": [
+   {
+    "title": "Drill logs and digital plans",
+    "items": [
+     "Record hole depths, rock types and water strikes in a drilling app, so logs reach the client the same day.",
+     "Position drill holes with GPS and digital drilling plans, and confirm them on site.",
+     "Check underground services and permits digitally before drilling starts."
+    ],
+    "project": "Keep drill logs in an app for a month and compare client questions and reporting time with paper logs."
+   },
+   {
+    "title": "Rig data and maintenance planning",
+    "items": [
+     "Read rig data on pressure, speed and torque to adjust drilling to the rock.",
+     "Track bit wear and rig maintenance with a log, so parts are ordered before they fail.",
+     "Learn new drilling methods, such as sonic or geothermal drilling, and their data."
+    ],
+    "project": "Track bit wear against rock type for three months and use it to choose bits for the next jobs."
+   },
+   {
+    "title": "Feel for the ground and safe rigs",
+    "items": [
+     "Feel and hear changes in the ground through the rig, and adjust speed and pressure.",
+     "Set up rigs level and stable on difficult ground.",
+     "Repair and adapt equipment in the field to keep the job going safely."
+    ],
+    "project": "Train a helper on reading rig sounds and vibration for a month and write down the signs you teach."
+   }
+  ],
+  "aiTools": [
+   "Drilling log apps",
+   "GPS and digital drilling plans",
+   "Rig data displays"
+  ],
+  "humanEdge": [
+   "Feeling ground changes through the rig",
+   "Stable rig setup on difficult ground",
+   "Field repairs that keep work safe"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5032.00": {
+  "roadmap": [
+   {
+    "title": "Blast design software and records",
+    "items": [
+     "Design blast patterns with blast design software and drone surveys of the face, and check the plan on site.",
+     "Keep explosives records in a digital register, so every item is tracked as the law requires.",
+     "Record each blast with photos, vibration readings and results, so the next design improves."
+    ],
+    "project": "Record vibration, fragmentation and photos for every blast over two months and adjust your designs based on them."
+   },
+   {
+    "title": "Electronic detonators and monitoring",
+    "items": [
+     "Learn electronic detonator systems and timing software, and check each step carefully.",
+     "Use vibration and air blast monitors near buildings, and stay within limits.",
+     "Analyse fragmentation from photos with software to see if the blast met the target."
+    ],
+    "project": "Compare fragmentation analysis from photos with crusher performance for one month and share the results with the quarry manager."
+   },
+   {
+    "title": "Discipline and judgement with explosives",
+    "items": [
+     "Examine each blast area in person for cracks, water and hazards before loading.",
+     "Follow safety rules without shortcuts, and clear the area completely before firing.",
+     "Decide calmly when to stop or change a blast because conditions are wrong."
+    ],
+    "project": "Review every blast you stopped or changed this year and write down the warning signs for newer blasters."
+   }
+  ],
+  "aiTools": [
+   "Blast design software",
+   "Drone surveys of the rock face",
+   "Vibration and air blast monitors"
+  ],
+  "humanEdge": [
+   "Personal inspection before loading",
+   "No shortcuts with explosives safety",
+   "Calm decisions to stop a blast"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5041.00": {
+  "roadmap": [
+   {
+    "title": "Machine data and remote control",
+    "items": [
+     "Read machine data on cutting rates and faults, and report problems with the shift record.",
+     "Learn remote control operation, so you can work from a safer position away from the face.",
+     "Record production, delays and repairs on a terminal, so planners see real figures."
+    ],
+    "project": "Track machine stoppages and their causes for a month and review them with the maintenance team."
+   },
+   {
+    "title": "Gas monitoring and ground control data",
+    "items": [
+     "Use methane and dust monitors constantly, and stop work at once when limits are reached.",
+     "Learn the ground control plan and what roof and rib monitoring shows.",
+     "Plan maintenance of cutting teeth and conveyors with a simple log."
+    ],
+    "project": "Review gas monitor readings with your supervisor each week for a month and record the actions taken."
+   },
+   {
+    "title": "Safety and skill at the face",
+    "items": [
+     "Check roof and rib stability in person before mining, and never go under unsupported roof.",
+     "Hear and feel when the machine binds or stops, and act before damage.",
+     "Hang ventilation and keep the face safe for the whole crew."
+    ],
+    "project": "Agree a short pre-shift face check with your crew, use it every shift for a month and record hazards found."
+   }
+  ],
+  "aiTools": [
+   "Remote control units for mining machines",
+   "Methane and dust monitors",
+   "Machine data terminals"
+  ],
+  "humanEdge": [
+   "Personal roof and rib checks",
+   "Hearing when the machine binds",
+   "Keeping the face safe for the crew"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5043.00": {
+  "roadmap": [
+   {
+    "title": "Bolting plans and shift records",
+    "items": [
+     "Follow bolting patterns from digital ground control plans, and confirm spacing at the face.",
+     "Record bolts installed, types and problems on a terminal, so the record is complete for inspection.",
+     "Report unusual roof conditions with location and photos where allowed."
+    ],
+    "project": "Record every unusual roof condition for a month and review the list with the ground control engineer."
+   },
+   {
+    "title": "Bolter automation and monitoring",
+    "items": [
+     "Learn automated bolting features and drill data that show changes in rock strength.",
+     "Use roof monitoring readings to understand where the roof is moving.",
+     "Do safety checks on the bolter with a checklist before each shift."
+    ],
+    "project": "Compare drill data with what you felt in the rock on twenty holes, and discuss the matches with the engineer."
+   },
+   {
+    "title": "Reading the roof and staying safe",
+    "items": [
+     "Sound and examine the roof by eye and ear, and pull down loose rock safely.",
+     "Install bolts correctly every time, as the crew's safety depends on it.",
+     "Stay alert to dust, ventilation and the people around you."
+    ],
+    "project": "Mentor a new bolter for a month and write down the roof signs you teach that are not in the procedure."
+   }
+  ],
+  "aiTools": [
+   "Digital ground control plans",
+   "Bolter drill data",
+   "Roof monitoring instruments"
+  ],
+  "humanEdge": [
+   "Sounding and reading the roof",
+   "Correct bolting every time",
+   "Alertness to dust and people"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5044.00": {
+  "roadmap": [
+   {
+    "title": "Machine data and haulage records",
+    "items": [
+     "Record loads, delays and equipment problems on a terminal, so production figures are accurate.",
+     "Use proximity detection and collision warning systems, and react to every alarm.",
+     "Check maintenance alerts before each shift and report faults at once."
+    ],
+    "project": "Record every proximity alarm for a month with the cause, and share the patterns with your supervisor."
+   },
+   {
+    "title": "Automation and remote operation",
+    "items": [
+     "Learn remote and semi-automated loaders, and the rules for working near them.",
+     "Understand conveyor and crusher controls, so you can spot problems early.",
+     "Plan safe routes with the mine map and today's conditions."
+    ],
+    "project": "Complete training on one remote or automated loader and record what you can now operate safely."
+   },
+   {
+    "title": "Safe driving in tight spaces",
+    "items": [
+     "Drive loaded cars safely through narrow, dark roadways.",
+     "Handle trailing cables carefully with the right gloves and attention.",
+     "Clear spillage and obstructions so the roadway stays safe for others."
+    ],
+    "project": "Agree a roadway inspection habit with your crew, use it each shift for a month and record hazards cleared."
+   }
+  ],
+  "aiTools": [
+   "Proximity detection systems",
+   "Remote and automated loaders",
+   "Shift data terminals"
+  ],
+  "humanEdge": [
+   "Safe driving in narrow roadways",
+   "Careful handling of trailing cables",
+   "Clearing hazards for others"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5051.00": {
+  "roadmap": [
+   {
+    "title": "Block records and stone visuals",
+    "items": [
+     "Record block sizes, grades and locations with photos in an app, so sales and cutting know what is available.",
+     "Use 3D scans or photos of blocks to plan cuts that waste less stone.",
+     "Share block photos with buyers online, so they can choose before visiting."
+    ],
+    "project": "Photograph and record every block for a month and track how many were sold or cut without a site visit."
+   },
+   {
+    "title": "Wire saws and safe drilling",
+    "items": [
+     "Learn diamond wire saws and modern splitting tools, and compare them with wedges and feathers.",
+     "Use dust extraction and hearing protection, and record checks.",
+     "Plan explosive use only with licensed blasters and strict rules."
+    ],
+    "project": "Compare waste and time for wire sawing and hand splitting on similar blocks and share the results."
+   },
+   {
+    "title": "Reading stone and splitting by hand",
+    "items": [
+     "Read grain lines to see how rock will split before drilling.",
+     "Split stone with wedges and feathers precisely, wasting little.",
+     "Handle heavy blocks safely with slings and signals."
+    ],
+    "project": "Teach a helper to read grain lines on ten blocks and record how many of their splits went as planned."
+   }
+  ],
+  "aiTools": [
+   "Block record apps with photos",
+   "3D block scanning",
+   "Diamond wire saws"
+  ],
+  "humanEdge": [
+   "Reading grain before splitting",
+   "Precise splitting with little waste",
+   "Safe handling of heavy blocks"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "47-5071.00": {
+  "roadmap": [
+   {
+    "title": "Work orders, leak detection and records",
+    "items": [
+     "Receive work orders and permits on a tablet, and check safety requirements before starting.",
+     "Walk flow lines with gas detectors and record leaks with GPS and photos.",
+     "Record repairs and parts used, so maintenance history is complete."
+    ],
+    "project": "Record every leak found with GPS and photo for a month and give the map to your supervisor for planning."
+   },
+   {
+    "title": "Equipment knowledge and safety",
+    "items": [
+     "Learn the machinery you repair from manuals and videos, and ask mechanics to check your work.",
+     "Learn lockout, hot work and hazardous gas rules, and follow them every time.",
+     "Track tools and equipment on site with a simple list."
+    ],
+    "project": "Learn one new piece of equipment from its manual and a mechanic each month for three months."
+   },
+   {
+    "title": "Hard work, safety and a path forward",
+    "items": [
+     "Handle pipes, tongs and heavy parts safely with your crew.",
+     "Clean spills and keep sites tidy to prevent accidents and pollution.",
+     "Work toward roughneck, operator or mechanic roles, building on your field experience."
+    ],
+    "project": "Agree with your supervisor which next role you aim for and which skills to learn this year, and track your progress."
+   }
+  ],
+  "aiTools": [
+   "Work order and permit apps",
+   "Gas leak detectors",
+   "Repair record apps"
+  ],
+  "humanEdge": [
+   "Safe handling of pipe and tongs",
+   "Clean sites that prevent pollution",
+   "Field experience across many tasks"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
