@@ -34733,6 +34733,1056 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "51-9082.00": {
+  "roadmap": [
+   {
+    "title": "3D scanning, CAD and printed devices",
+    "items": [
+     "Scan patients' limbs or torsos with 3D scanners instead of plaster casts where suitable, and check the scan for errors before design.",
+     "Design sockets, braces and insoles in CAD software, and adjust shapes for pressure points the clinician marks.",
+     "Make devices by 3D printing or CNC carving from the digital model, and finish them by hand."
+    ],
+    "project": "Make three devices from 3D scans and three from plaster casts, and compare fit adjustments needed with the clinician."
+   },
+   {
+    "title": "Materials, records and clinical feedback",
+    "items": [
+     "Learn carbon fibre, thermoplastics and printed materials, and when each is strong and comfortable enough.",
+     "Keep digital records of each patient's device, adjustments and materials, so repairs and remakes are faster.",
+     "Use photos and notes from clinicians to understand fit problems and fix them."
+    ],
+    "project": "Track every fit adjustment for three months, find the most common cause and change one step in your process."
+   },
+   {
+    "title": "Craft, fit and patient comfort",
+    "items": [
+     "Shape, pad and finish devices by hand so they are comfortable on real bodies.",
+     "Adjust devices at fittings by watching how patients move and listening to them.",
+     "Repair devices quickly, because patients depend on them every day."
+    ],
+    "project": "Ask ten patients about comfort a month after delivery and record what you changed based on their answers."
+   }
+  ],
+  "aiTools": [
+   "3D body scanners",
+   "Orthotic and prosthetic CAD software",
+   "3D printing and CNC carving"
+  ],
+  "humanEdge": [
+   "Hand finishing for patient comfort",
+   "Adjusting by watching patients move",
+   "Quick repairs patients depend on"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9083.00": {
+  "roadmap": [
+   {
+    "title": "Digital prescriptions and automated edging",
+    "items": [
+     "Receive prescriptions and frame tracings digitally, and check every value before surfacing or edging lenses.",
+     "Run free-form surfacing and automated edgers from the lab system, and check the first lens of each job.",
+     "Track jobs, breakages and remakes in the lab management system, so problems are visible."
+    ],
+    "project": "Record remakes by cause for a month and agree one change with your supervisor to reduce the most common one."
+   },
+   {
+    "title": "Lens design and coatings",
+    "items": [
+     "Learn progressive and personalised lens designs, and why each parameter matters.",
+     "Learn coating processes and inspect coatings for defects under the right light.",
+     "Use lensmeters and digital measuring to verify power, axis and centration."
+    ],
+    "project": "Check twenty finished glasses with a digital lensmeter against prescriptions and record any errors found."
+   },
+   {
+    "title": "Precision and care at the bench",
+    "items": [
+     "Mount and align lenses in frames carefully with precise hand tools.",
+     "Adjust frames so glasses sit straight and comfortably.",
+     "Spot scratches, coating flaws and wrong lenses before glasses reach customers."
+    ],
+    "project": "Inspect every finished job for a week, record defects you caught before dispatch and share the most common ones with the team."
+   }
+  ],
+  "aiTools": [
+   "Lab management systems",
+   "Free-form surfacing and automated edgers",
+   "Digital lensmeters"
+  ],
+  "humanEdge": [
+   "Careful mounting and alignment",
+   "Comfortable frame adjustment",
+   "Spotting flaws before dispatch"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9111.00": {
+  "roadmap": [
+   {
+    "title": "Line data and vision checks",
+    "items": [
+     "Watch line speed, rejects and stoppages on the packaging line screen, and act on alarms quickly.",
+     "Check what vision systems reject for labels, seals and fill levels, and confirm with samples by hand.",
+     "Record changeovers, downtime and causes on the production terminal."
+    ],
+    "project": "Track stoppages by cause for a month, find the top cause and agree one fix with maintenance."
+   },
+   {
+    "title": "Changeovers and machine care",
+    "items": [
+     "Speed up changeovers with checklists, pre-set parts and photos of correct settings.",
+     "Learn robots and case packers on your line, and how to restart them safely.",
+     "Do routine cleaning and lubrication on schedule with digital checklists."
+    ],
+    "project": "Use a changeover checklist with photos for a month and compare changeover times with before."
+   },
+   {
+    "title": "Attention and quality",
+    "items": [
+     "Notice pile-ups, glue problems and jams early, before they stop the line.",
+     "Inspect packages for damage and defects that machines miss.",
+     "Learn the mechanics of fillers, sealers and labellers, which leads toward packaging technician work."
+    ],
+    "project": "Agree a training plan toward technician with your supervisor and track the skills you complete over a year."
+   }
+  ],
+  "aiTools": [
+   "Packaging line screens",
+   "Vision inspection systems",
+   "Production terminals"
+  ],
+  "humanEdge": [
+   "Noticing jams before the line stops",
+   "Inspecting packages machines miss",
+   "Knowledge of the whole line"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9123.00": {
+  "roadmap": [
+   {
+    "title": "Job data, colours and finish checks",
+    "items": [
+     "Read job orders and colour codes digitally, and mix or select coatings using colour matching tools.",
+     "Measure film thickness and colour with gauges, and record results for each job.",
+     "Record defects and retouch work on the production terminal, so causes can be found."
+    ],
+    "project": "Measure film thickness on every job for a month and agree one technique change to make it more even."
+   },
+   {
+    "title": "Spray technology and safety",
+    "items": [
+     "Learn electrostatic and high-efficiency spray guns that use less paint.",
+     "Use extraction, respirators and protective gear every time.",
+     "Learn surface preparation standards, as most coating failures start there."
+    ],
+    "project": "Compare paint use and finish quality with two spray guns over a month and share the results."
+   },
+   {
+    "title": "Steady hand and eye for finish",
+    "items": [
+     "Apply even coats by hand without runs or dry spots.",
+     "Spot defects under good light and retouch them invisibly.",
+     "Prepare surfaces carefully, because the finish depends on it."
+    ],
+    "project": "Inspect every finished piece under strong light for a month and record defects caught and fixed."
+   }
+  ],
+  "aiTools": [
+   "Colour matching tools",
+   "Film thickness gauges",
+   "Electrostatic spray guns"
+  ],
+  "humanEdge": [
+   "Even coats without runs or dry spots",
+   "Invisible retouching of defects",
+   "Careful surface preparation"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9124.00": {
+  "roadmap": [
+   {
+    "title": "Coating line controls and data",
+    "items": [
+     "Run coating lines and robot sprayers from stored programs, and check the first parts for coverage and thickness.",
+     "Watch oven temperatures, conveyor speed and booth conditions on screen, and adjust before defects appear.",
+     "Record film thickness, defects and colour checks in the production system."
+    ],
+    "project": "Record defects by type for a month, link them to line conditions and agree one setting change with the supervisor."
+   },
+   {
+    "title": "Robots, colour and environment",
+    "items": [
+     "Learn robot spray programming basics, so you can adjust paths for new parts.",
+     "Match colours with spectrophotometers and mixing systems.",
+     "Learn the rules for solvents, emissions and waste paint, and follow them."
+    ],
+    "project": "Adjust one robot spray path with supervision, record paint use and coverage before and after."
+   },
+   {
+    "title": "Eye for coating quality",
+    "items": [
+     "Spot blisters, streaks and orange peel by eye, and find the cause.",
+     "Clean and maintain spray equipment carefully, as dirty guns cause defects.",
+     "Work safely with paints, solvents and hot ovens."
+    ],
+    "project": "Review ten coating defects with quality and write down the causes and fixes for newer operators."
+   }
+  ],
+  "aiTools": [
+   "Robot spray programs",
+   "Coating line controls",
+   "Spectrophotometers and mixing systems"
+  ],
+  "humanEdge": [
+   "Spotting blisters and streaks by eye",
+   "Careful cleaning of spray equipment",
+   "Safe work with solvents and ovens"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9141.00": {
+  "roadmap": [
+   {
+    "title": "Fab automation and process data",
+    "items": [
+     "Run process tools through the manufacturing execution system, checking recipes and lot details before each run.",
+     "Watch statistical process control charts and tool alarms, and stop lots when data goes out of control.",
+     "Record lot moves, measurements and holds accurately, because every wafer must be traceable."
+    ],
+    "project": "Review SPC charts for your tools for a month and report trends to engineering before they become holds."
+   },
+   {
+    "title": "Inspection tools and contamination control",
+    "items": [
+     "Use automated inspection and metrology tools, and understand what their defect maps show.",
+     "Follow cleanroom and contamination rules strictly, as tiny particles ruin chips.",
+     "Learn the chemistry and physics of your process steps, so you understand alarms."
+    ],
+    "project": "Study defect maps for your area with an engineer for a month and record which defects come from handling."
+   },
+   {
+    "title": "Discipline and careful hands",
+    "items": [
+     "Handle wafers and carriers carefully, avoiding scratches and breakage.",
+     "Spot equipment leaks and unusual behaviour and report them quickly.",
+     "Follow procedures exactly, even when production pressure is high."
+    ],
+    "project": "Track handling incidents in your area for three months and suggest one change to reduce them."
+   }
+  ],
+  "aiTools": [
+   "Manufacturing execution systems",
+   "SPC charts and tool alarms",
+   "Automated inspection and metrology"
+  ],
+  "humanEdge": [
+   "Careful wafer and carrier handling",
+   "Strict cleanroom discipline",
+   "Reporting unusual tool behaviour"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9151.00": {
+  "roadmap": [
+   {
+    "title": "Digital ordering and AI image tools",
+    "items": [
+     "Receive photo orders online and through kiosks, and check image size and quality before printing.",
+     "Use AI tools to restore, colour-correct and upscale photos, checking every change with the customer.",
+     "Manage print queues and colour profiles, so prints match what customers see."
+    ],
+    "project": "Restore ten old family photos with AI tools, review each change with the customer and record their feedback."
+   },
+   {
+    "title": "Scanning, archiving and products",
+    "items": [
+     "Scan negatives, slides and prints at the right resolution for archiving.",
+     "Offer photo books, canvas and personalised products made from digital files.",
+     "Learn colour management and printer calibration."
+    ],
+    "project": "Offer a scanning and archiving service for three months and record orders and customer comments."
+   },
+   {
+    "title": "Eye for quality and personal service",
+    "items": [
+     "Check prints for spots, banding and colour casts before handing them over.",
+     "Help customers choose images and formats for special occasions.",
+     "Handle precious originals carefully, as many cannot be replaced."
+    ],
+    "project": "Ask twenty customers about their experience and improve one part of your service based on it."
+   }
+  ],
+  "aiTools": [
+   "Online photo ordering and kiosks",
+   "AI photo restoration tools",
+   "Colour-managed printers"
+  ],
+  "humanEdge": [
+   "Checking prints for colour casts",
+   "Helping customers choose images",
+   "Care with irreplaceable originals"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9161.00": {
+  "roadmap": [
+   {
+    "title": "CNC programs, probing and data",
+    "items": [
+     "Load CNC programs and set offsets with tool and part probes, then check the first part with precision gauges.",
+     "Use machine monitoring data on cycle time, spindle load and stoppages to find where time is lost.",
+     "Record measurements digitally with gauges that send readings to SPC charts."
+    ],
+    "project": "Use machine monitoring data for a month to find the biggest cause of idle time and fix it with your supervisor."
+   },
+   {
+    "title": "Robot loading and program edits",
+    "items": [
+     "Learn robot loading and pallet systems that let machines run longer without you.",
+     "Learn to edit offsets and simple program lines safely, with simulation where available.",
+     "Use AI assistants to explain unfamiliar G-code or alarms, and verify in the manual."
+    ],
+    "project": "Complete one CNC programming course, make three safe program edits under supervision and record what each one changed."
+   },
+   {
+    "title": "Sound, feel and careful measuring",
+    "items": [
+     "Listen for dull tools and vibration, and stop the machine before parts are scrapped.",
+     "Set up fixtures and workpieces accurately, as setup decides quality.",
+     "Measure carefully and trust your checks over the schedule."
+    ],
+    "project": "Record every problem you caught by sound for a month, share them with new operators and agree which ones need alarms."
+   }
+  ],
+  "aiTools": [
+   "CNC controls with probing",
+   "Machine monitoring data",
+   "AI assistant for G-code and alarms"
+  ],
+  "humanEdge": [
+   "Hearing dull tools and vibration",
+   "Accurate setups and fixtures",
+   "Careful measuring over speed"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9162.00": {
+  "roadmap": [
+   {
+    "title": "CAM programming and AI help",
+    "items": [
+     "Program parts in CAM software from 3D models, choosing strategies, tools and feeds, and simulate before release.",
+     "Use AI assistants to draft macros, check G-code or suggest feeds, and verify every suggestion in simulation.",
+     "Build template libraries of tools and operations, so new programs start from proven settings."
+    ],
+    "project": "Build a template library for one part family and compare programming time and first-part results with before."
+   },
+   {
+    "title": "Machine simulation and optimisation",
+    "items": [
+     "Use full machine simulation to catch collisions and over-travel before the first cut.",
+     "Optimise toolpaths for cycle time and tool life with adaptive strategies.",
+     "Work with operators to fix programs that cause problems on the shop floor."
+    ],
+    "project": "Optimise three programs for cycle time, test them with operators and record time and tool life changes."
+   },
+   {
+    "title": "Machining judgement and teamwork",
+    "items": [
+     "Choose the best order of operations and fixturing from machining experience.",
+     "Listen to operators, as they see what programs do in reality.",
+     "Check first parts with quality and fix programs quickly."
+    ],
+    "project": "Ask operators for feedback on ten programs, make changes and record which ones improved results."
+   }
+  ],
+  "aiTools": [
+   "CAM software",
+   "Full machine simulation",
+   "AI assistant for macros and code checks"
+  ],
+  "humanEdge": [
+   "Choosing operations from experience",
+   "Listening to operators on the floor",
+   "Quick fixes after first parts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9191.00": {
+  "roadmap": [
+   {
+    "title": "Machine settings and production records",
+    "items": [
+     "Use stored settings for glue amount, temperature and speed for each product, and check the first pieces for bond and alignment.",
+     "Record output, rejects and stoppages on the production terminal.",
+     "Use bond tests or peel tests and record results for quality."
+    ],
+    "project": "Record rejects by cause for a month and agree one setting change with the supervisor to reduce them."
+   },
+   {
+    "title": "Adhesives and machine care",
+    "items": [
+     "Learn the adhesives you use, their cure times and temperature limits.",
+     "Clean glue systems and nozzles on schedule, as blockages cause most defects.",
+     "Learn safety rules for hot melt and solvent adhesives."
+    ],
+    "project": "Use a cleaning checklist for glue systems for a month and compare defects with the month before."
+   },
+   {
+    "title": "Alignment and attention",
+    "items": [
+     "Align materials carefully so joins are straight and strong.",
+     "Notice glue problems by look and touch before products move on.",
+     "Restock materials ahead of time so the machine never waits."
+    ],
+    "project": "Inspect samples every hour for a week and record bond and alignment defects you caught early."
+   }
+  ],
+  "aiTools": [
+   "Stored machine settings",
+   "Production terminals",
+   "Bond and peel testing"
+  ],
+  "humanEdge": [
+   "Careful alignment for strong joins",
+   "Noticing glue problems by touch",
+   "Restocking so machines never wait"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9192.00": {
+  "roadmap": [
+   {
+    "title": "Process controls and solution data",
+    "items": [
+     "Run washing and pickling lines from control screens, watching temperatures, cycle times and conveyor speeds.",
+     "Track solution concentration with lab tests and dosing systems, and adjust before quality drops.",
+     "Record readings, chemicals used and results in the production log."
+    ],
+    "project": "Track solution tests and product quality for a month and agree a better dosing schedule with the supervisor."
+   },
+   {
+    "title": "Chemical safety and environment",
+    "items": [
+     "Learn the hazards of acids and cleaning chemicals, and use full protection.",
+     "Follow wastewater and disposal rules strictly.",
+     "Maintain pumps, tanks and sprays with checklists."
+    ],
+    "project": "Review chemical handling procedures with your team, practise one spill response and record improvements."
+   },
+   {
+    "title": "Hands-on care and attention",
+    "items": [
+     "Inspect cleaned items by eye for residue and damage.",
+     "Load and unload items carefully to avoid damage.",
+     "Spot leaks and machine faults early on rounds."
+    ],
+    "project": "Inspect samples from every batch for a week and record residue or damage caught before the next stage."
+   }
+  ],
+  "aiTools": [
+   "Line control screens",
+   "Chemical dosing systems",
+   "Production logs"
+  ],
+  "humanEdge": [
+   "Inspecting items for residue",
+   "Careful loading to avoid damage",
+   "Spotting leaks and faults on rounds"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9193.00": {
+  "roadmap": [
+   {
+    "title": "Temperature monitoring and records",
+    "items": [
+     "Watch freezer, chiller and blast cooler temperatures on control screens and wireless sensors, and act on alarms at once.",
+     "Record product temperatures and times automatically for food safety, adding notes when anything is outside limits.",
+     "Use stored cooling programs for each product, and check core temperatures with a probe."
+    ],
+    "project": "Compare probe readings with sensor data for a month and report any sensors that drift to maintenance."
+   },
+   {
+    "title": "Refrigeration systems and energy",
+    "items": [
+     "Learn the basics of refrigeration systems and ammonia or CO2 safety in your plant.",
+     "Track energy use and defrost cycles, and suggest changes that save power.",
+     "Clean and maintain coils, doors and seals with digital checklists."
+    ],
+    "project": "Track door openings and energy use in one cold room for a month and test one change to reduce losses."
+   },
+   {
+    "title": "Care with cold and food safety",
+    "items": [
+     "Load products so cold air flows evenly and every item freezes properly.",
+     "Work safely in extreme cold with the right clothing and breaks.",
+     "Notice frost build-up, unusual sounds or smells that warn of problems."
+    ],
+    "project": "Write down warning signs you have noticed in cold rooms and use them to train a new operator."
+   }
+  ],
+  "aiTools": [
+   "Wireless temperature sensors",
+   "Cooling program controls",
+   "Energy monitoring dashboards"
+  ],
+  "humanEdge": [
+   "Loading products for even cooling",
+   "Safe work in extreme cold",
+   "Noticing frost and unusual sounds"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9194.00": {
+  "roadmap": [
+   {
+    "title": "Laser engraving and digital designs",
+    "items": [
+     "Prepare designs and text in vector software, and run laser or CNC engravers from the file after a test piece.",
+     "Use AI image tools to turn customer ideas into engraving-ready artwork, and check every line before engraving.",
+     "Take orders and approvals online with digital proofs, so customers sign off before work starts."
+    ],
+    "project": "Send digital proofs for every order for a month and record how many errors were caught before engraving."
+   },
+   {
+    "title": "Materials, settings and new products",
+    "items": [
+     "Build a settings library for each material, so results are consistent.",
+     "Learn photo engraving, deep engraving and colour fill techniques.",
+     "Sell personalised products online with good photos."
+    ],
+    "project": "Build a settings library for ten materials with test samples, share it with your team and record how many test pieces it saves."
+   },
+   {
+    "title": "Hand engraving and fine detail",
+    "items": [
+     "Engrave by hand where personal, traditional work is wanted.",
+     "Judge depth, contrast and finish by eye and touch.",
+     "Handle valuable items carefully, as mistakes cannot be undone."
+    ],
+    "project": "Complete one hand-engraved piece, document each step and use it to show customers your craft."
+   }
+  ],
+  "aiTools": [
+   "Laser and CNC engravers",
+   "Vector design software",
+   "AI image tools for artwork"
+  ],
+  "humanEdge": [
+   "Traditional hand engraving",
+   "Judging depth and finish by eye",
+   "Care with valuable, one-off items"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9195.00": {
+  "roadmap": [
+   {
+    "title": "Mould data and production records",
+    "items": [
+     "Follow digital work instructions for each mould, and check the first pieces against the sample for shape and finish.",
+     "Record batches, mix ratios and cure times on the production terminal, so defects can be traced.",
+     "Use 3D-printed moulds or patterns for prototypes and small runs."
+    ],
+    "project": "Record mix ratios and defects for every batch for two months and agree one process change with the supervisor."
+   },
+   {
+    "title": "Materials and curing control",
+    "items": [
+     "Learn the materials you cast, such as plaster, concrete or resin, and how temperature affects curing.",
+     "Use humidity and temperature data to plan curing and demoulding.",
+     "Follow safety rules for dust, resins and lifting."
+    ],
+    "project": "Track curing conditions and demoulding problems for a month and agree better curing and demoulding times with the supervisor."
+   },
+   {
+    "title": "Hand skill and finishing",
+    "items": [
+     "Fill moulds evenly and remove air so pieces are strong and smooth.",
+     "Demould and finish pieces carefully by hand, without chipping edges.",
+     "Repair small chips and holes so they cannot be seen in the finished piece."
+    ],
+    "project": "Inspect every piece for a week, record defects and their likely causes and share the list with the team."
+   }
+  ],
+  "aiTools": [
+   "Digital work instructions",
+   "Production terminals",
+   "3D-printed moulds"
+  ],
+  "humanEdge": [
+   "Even filling without air pockets",
+   "Careful demoulding and finishing",
+   "Invisible repairs of small defects"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9195.03": {
+  "roadmap": [
+   {
+    "title": "CNC carving and digital templates",
+    "items": [
+     "Run CNC saws, waterjets and routers from digital files, and check the first cut before cutting expensive slabs.",
+     "Use digital templating and slab photos to place cuts where veins and colours look best.",
+     "Show customers layouts on screen before cutting, so they approve vein matching."
+    ],
+    "project": "Use digital slab layouts with five customers and record how many changes they asked for after approval."
+   },
+   {
+    "title": "3D scanning and carving",
+    "items": [
+     "Scan sculptures or old stonework in 3D to rough out copies on CNC machines.",
+     "Learn tooling and settings for different stones.",
+     "Use dust extraction and water cutting to protect your lungs."
+    ],
+    "project": "Rough out one carving on CNC from a 3D scan, finish it by hand and compare time with full hand carving."
+   },
+   {
+    "title": "Carving and finishing by hand",
+    "items": [
+     "Carve details, letters and textures by hand that machines cannot match.",
+     "Read stone grain and hidden flaws before cutting to avoid cracks.",
+     "Polish edges and surfaces to a perfect finish."
+    ],
+    "project": "Carve one lettering or ornament piece fully by hand and use it to show customers your craft."
+   }
+  ],
+  "aiTools": [
+   "CNC saws and waterjets",
+   "Digital templating and slab imaging",
+   "3D scanners for copies"
+  ],
+  "humanEdge": [
+   "Hand carving fine details",
+   "Reading grain to avoid cracks",
+   "Perfect polished finishes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9195.04": {
+  "roadmap": [
+   {
+    "title": "Kiln programs and online sales",
+    "items": [
+     "Program kilns and annealers with stored firing schedules, and record each firing so results can be repeated.",
+     "Show and sell pieces online with good photos and honest descriptions.",
+     "Use CAD and 3D printing for moulds when making repeat or technical pieces."
+    ],
+    "project": "Record firing schedules and results for two months and adjust one schedule that causes cracks or stress."
+   },
+   {
+    "title": "Technical glass and safety",
+    "items": [
+     "Learn polariscope checks for stress in glass before it leaves the studio or factory.",
+     "Learn scientific or architectural glass work, where precision matters most.",
+     "Protect yourself from heat, cuts and fumes with the right gear."
+    ],
+    "project": "Check every finished piece with a polariscope for a month and record stress problems found."
+   },
+   {
+    "title": "Hand skill with hot glass",
+    "items": [
+     "Gather, blow and shape glass by hand with timing that comes only from practice.",
+     "Judge temperature by colour and feel of the glass.",
+     "Finish pieces cleanly with grinding and polishing."
+    ],
+    "project": "Make a series of ten matching pieces by hand, measure the differences and record what improved consistency."
+   }
+  ],
+  "aiTools": [
+   "Programmable kilns and annealers",
+   "Polariscopes",
+   "CAD and 3D printing for moulds"
+  ],
+  "humanEdge": [
+   "Hand shaping with practised timing",
+   "Judging glass heat by colour",
+   "Clean grinding and polishing"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9195.05": {
+  "roadmap": [
+   {
+    "title": "Kiln control and glaze records",
+    "items": [
+     "Keep a firing log for every kiln load with cone or thermocouple results, so you can link glaze faults to firing.",
+     "Keep glaze recipes and test tiles in a digital file with photos, so colours match over time.",
+     "Track production, defects and losses on a terminal or spreadsheet."
+    ],
+    "project": "Record every firing and glaze defect for two months and change one schedule or recipe that causes most losses."
+   },
+   {
+    "title": "Moulds, slip casting and safety",
+    "items": [
+     "Use CAD and 3D printing to make master models for slip casting moulds.",
+     "Learn glaze chemistry basics, so you can fix crazing and pinholes.",
+     "Control clay and glaze dust with wet cleaning and extraction."
+    ],
+    "project": "Make one new mould from a 3D-printed master and compare time and quality with a hand-made master."
+   },
+   {
+    "title": "Throwing, trimming and finishing",
+    "items": [
+     "Throw, trim and finish pieces by hand with consistent shape and weight.",
+     "Judge clay readiness for throwing and trimming by touch.",
+     "Glaze evenly by hand, avoiding drips and thin spots."
+    ],
+    "project": "Throw twenty matching pieces, weigh and measure them, and record how your consistency improves."
+   }
+  ],
+  "aiTools": [
+   "Programmable kilns",
+   "Glaze recipe records",
+   "CAD and 3D printing for masters"
+  ],
+  "humanEdge": [
+   "Consistent throwing by hand",
+   "Judging clay readiness by touch",
+   "Even glazing by hand without drips"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9196.00": {
+  "roadmap": [
+   {
+    "title": "Machine programs and quality data",
+    "items": [
+     "Load job settings for folding, gluing and cutting machines from the production system, and check the first pieces against the sample.",
+     "Watch camera inspection and reject counts, and confirm rejects by hand.",
+     "Log bag or box counts, board waste and machine stops on the terminal before each break."
+    ],
+    "project": "Record waste by cause for a month and agree one setting change with the supervisor to reduce it."
+   },
+   {
+    "title": "Changeovers and machine care",
+    "items": [
+     "Speed up changeovers with checklists and pre-set parts.",
+     "Keep knives, glue systems and rollers in good condition.",
+     "Learn the basics of paper and board behaviour with humidity."
+    ],
+    "project": "Time changeovers with a checklist for a month, record what made them faster and share the best order of steps with the crew."
+   },
+   {
+    "title": "Eyes, hands and safety",
+    "items": [
+     "Notice misfeeds, glue problems and creases early, before waste piles up.",
+     "Clear jams safely with lockout every time, never reaching into a running machine.",
+     "Inspect finished boxes and bags by eye and touch for weak glue and bad folds."
+    ],
+    "project": "Record every jam you cleared for a month and agree one change with maintenance to prevent repeats."
+   }
+  ],
+  "aiTools": [
+   "Machine job settings",
+   "Camera inspection systems",
+   "Production terminals"
+  ],
+  "humanEdge": [
+   "Noticing misfeeds and creases early",
+   "Safe jam clearing with lockout",
+   "Inspecting products by touch"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9197.00": {
+  "roadmap": [
+   {
+    "title": "Build machine data and records",
+    "items": [
+     "Follow the build specification on the machine screen for each tyre, scanning components so the system confirms the right parts.",
+     "Watch automatic splice and centring checks, and stop when readings are out of range.",
+     "Record builds, defects and stoppages on the production terminal."
+    ],
+    "project": "Track build defects by type for a month, agree one change with the process engineer and measure defects again afterwards."
+   },
+   {
+    "title": "Automation and quality",
+    "items": [
+     "Learn automated building drums and how to restart them safely after faults.",
+     "Understand X-ray and uniformity test results, and which faults come from building.",
+     "Do routine checks and cleaning on the machine with checklists."
+    ],
+    "project": "Review test results for your tyres for a month with quality and record which defects you can prevent."
+   },
+   {
+    "title": "Care and steady work",
+    "items": [
+     "Place components accurately so tyres are balanced and safe.",
+     "Spot trapped air, wrinkles and contamination by eye.",
+     "Work safely around rotating drums and heavy rolls."
+    ],
+    "project": "Train a new builder for a month and write down the checks you teach for safe, accurate building."
+   }
+  ],
+  "aiTools": [
+   "Tyre building machine screens",
+   "Component scanning",
+   "X-ray and uniformity test results"
+  ],
+  "humanEdge": [
+   "Accurate component placement",
+   "Spotting trapped air and wrinkles",
+   "Safe work around rotating drums"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "51-9198.00": {
+  "roadmap": [
+   {
+    "title": "Digital instructions and learning",
+    "items": [
+     "Follow digital work instructions and videos at each station, and ask when something is unclear.",
+     "Record counts and problems on the production terminal, so supervisors see issues.",
+     "Learn the machines around you from manuals, videos and operators."
+    ],
+    "project": "Learn one new station each month for three months and keep a record signed off by your team leader."
+   },
+   {
+    "title": "Safety and machine basics",
+    "items": [
+     "Follow lockout, lifting and chemical rules every time.",
+     "Learn basic machine care, such as cleaning and checking guards.",
+     "Get certified on forklifts or other equipment used in your area."
+    ],
+    "project": "Get one equipment certification within three months, such as forklift, and record the new tasks it lets you do."
+   },
+   {
+    "title": "Reliable help and a path forward",
+    "items": [
+     "Supply materials and parts ahead of time, so operators never wait.",
+     "Keep work areas clean and walkways clear, so everyone works safely.",
+     "Work toward operator or setter roles, building on what you learn at each station."
+    ],
+    "project": "Agree with your supervisor which operator role you aim for and track your progress over a year."
+   }
+  ],
+  "aiTools": [
+   "Digital work instructions",
+   "Production terminals",
+   "Video learning"
+  ],
+  "humanEdge": [
+   "Supplying materials so nobody waits",
+   "Clean work areas and clear walkways",
+   "Learning every station on the line"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-1041.00": {
+  "roadmap": [
+   {
+    "title": "Load planning and cargo systems",
+    "items": [
+     "Use load planning software to plan weight and balance, and check the plan against what is actually loaded.",
+     "Track cargo, dangerous goods and special loads in the cargo system, so documents match the aircraft.",
+     "Schedule crews and equipment with rostering tools, adjusting for delays."
+    ],
+    "project": "Compare planned and actual loads on fifty flights and agree changes to reduce last-minute replanning."
+   },
+   {
+    "title": "Dangerous goods and safety data",
+    "items": [
+     "Keep dangerous goods training and checks up to date for you and your team.",
+     "Use incident and damage data to find where handling goes wrong.",
+     "Learn new ground equipment and automated cargo systems."
+    ],
+    "project": "Review three months of damage reports, find the top cause and agree one change with your team."
+   },
+   {
+    "title": "Leading crews on the ramp",
+    "items": [
+     "Supervise loading in person, checking locks, nets and positions.",
+     "Lead crews calmly under time pressure and bad weather.",
+     "Make safe decisions when loads or documents do not match."
+    ],
+    "project": "Run a short briefing before each shift for a month and record errors and damage compared with before."
+   }
+  ],
+  "aiTools": [
+   "Load planning software",
+   "Cargo management systems",
+   "Crew rostering tools"
+  ],
+  "humanEdge": [
+   "In-person checks of loads and locks",
+   "Calm leadership under time pressure",
+   "Safe decisions when loads mismatch"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-1042.00": {
+  "roadmap": [
+   {
+    "title": "Scheduling and labour data",
+    "items": [
+     "Schedule workers and tasks with workforce software, matching staff to expected volumes.",
+     "Use productivity and error data to see where teams need help, and check reasons with the people involved.",
+     "Write instructions, safety notes and messages with AI help, and translate them for workers who need it."
+    ],
+    "project": "Plan shifts from volume forecasts for a month and record overtime and idle time compared with before."
+   },
+   {
+    "title": "Safety, training and lifting aids",
+    "items": [
+     "Track injuries and near misses, and act on patterns quickly.",
+     "Train new workers with short videos and hands-on demonstrations.",
+     "Learn ergonomic methods and lifting aids that protect workers."
+    ],
+    "project": "Review injury and near-miss records for three months and introduce one lifting aid or method change."
+   },
+   {
+    "title": "Fair leadership on the floor",
+    "items": [
+     "Walk the floor and see problems before they show in data.",
+     "Treat workers fairly and listen to their ideas.",
+     "Handle conflicts in the team early and calmly, before they grow."
+    ],
+    "project": "Collect ideas from your team for a month, try the best two and report results back to them."
+   }
+  ],
+  "aiTools": [
+   "Workforce scheduling software",
+   "Productivity dashboards",
+   "AI assistant for instructions and translation"
+  ],
+  "humanEdge": [
+   "Seeing problems on the floor",
+   "Fair treatment and listening",
+   "Calm handling of conflicts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-1042.01": {
+  "roadmap": [
+   {
+    "title": "Waste data and public information",
+    "items": [
+     "Analyse collection and contamination data to find where recycling goes wrong, by area and material.",
+     "Create clear guides, posts and messages about recycling with AI help, and test them with residents.",
+     "Track programme results and costs in dashboards for managers and councils."
+    ],
+    "project": "Run a contamination campaign in one area with AI-drafted materials and measure contamination before and after."
+   },
+   {
+    "title": "Contracts, markets and rules",
+    "items": [
+     "Follow markets for recycled materials and adjust collection plans.",
+     "Learn waste laws and reporting requirements, and keep records ready for audits.",
+     "Work with haulers and processors on contracts and quality."
+    ],
+    "project": "Review one hauler contract with performance data and agree one improvement with the hauler."
+   },
+   {
+    "title": "Community engagement",
+    "items": [
+     "Talk with residents, schools and businesses in person about recycling.",
+     "Build partnerships with community groups and local businesses.",
+     "Explain changes patiently when people are confused or upset."
+    ],
+    "project": "Hold three community sessions, record questions asked and update your guides based on them."
+   }
+  ],
+  "aiTools": [
+   "Waste and contamination data",
+   "Programme dashboards",
+   "AI assistant for public materials"
+  ],
+  "humanEdge": [
+   "Talking with residents in person",
+   "Building community partnerships",
+   "Patient explanations of changes"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-1043.00": {
+  "roadmap": [
+   {
+    "title": "Fleet data and dispatch",
+    "items": [
+     "Use telematics and dispatch software to assign drivers and machines, and adjust for delays and breakdowns.",
+     "Review driving behaviour and safety data, and coach drivers on specific events.",
+     "Track maintenance, licences and inspections in a fleet system with reminders."
+    ],
+    "project": "Coach five drivers using telematics events for three months and record changes in harsh braking and incidents."
+   },
+   {
+    "title": "Safety systems and compliance",
+    "items": [
+     "Use camera and fatigue monitoring systems responsibly, with clear rules shared with drivers.",
+     "Keep hours-of-service and compliance records accurate.",
+     "Learn electric vehicles and automated equipment that are changing fleets."
+    ],
+    "project": "Review compliance records for a month, fix gaps and set up reminders that prevent repeats."
+   },
+   {
+    "title": "Leading drivers and operators",
+    "items": [
+     "Inspect equipment, yards and operations in person regularly.",
+     "Coach drivers fairly, using data as a start for conversations, not a punishment.",
+     "Handle incidents, breakdowns and emergencies calmly and by procedure."
+    ],
+    "project": "Hold monthly one-to-one talks with each driver for three months and record issues raised and solved."
+   }
+  ],
+  "aiTools": [
+   "Fleet telematics and dispatch",
+   "Camera and fatigue monitoring",
+   "Fleet compliance systems"
+  ],
+  "humanEdge": [
+   "In-person inspection of operations",
+   "Fair coaching beyond the data",
+   "Calm handling of incidents"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-1044.00": {
+  "roadmap": [
+   {
+    "title": "Rostering, reports and training",
+    "items": [
+     "Plan crew rosters and briefings with scheduling software, checking rest rules and qualifications.",
+     "Write incident and service reports with templates and AI help, checking facts before sending.",
+     "Use passenger feedback data to find service problems and plan training."
+    ],
+    "project": "Review passenger feedback for three months, pick one recurring issue and train your crew on it."
+   },
+   {
+    "title": "Safety procedures and digital tools",
+    "items": [
+     "Keep safety training and checks up to date with digital records and reminders.",
+     "Use tablets for service information, manifests and reports on board.",
+     "Learn medical and security procedures thoroughly."
+    ],
+    "project": "Run one safety scenario briefing each month for a quarter and record what crew members found unclear."
+   },
+   {
+    "title": "Leading crews and caring for passengers",
+    "items": [
+     "Lead crews calmly during delays, disruptions and emergencies.",
+     "Handle difficult passengers with patience and firmness.",
+     "Support crew members after stressful events with time to talk and rest."
+    ],
+    "project": "Debrief your crew after every difficult event for three months and record what helped them most."
+   }
+  ],
+  "aiTools": [
+   "Crew rostering software",
+   "Tablet service and report tools",
+   "Passenger feedback data"
+  ],
+  "humanEdge": [
+   "Calm leadership in disruptions",
+   "Patient, firm handling of passengers",
+   "Supporting crew after hard events"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "53-2011.00": {
   "roadmap": [
    {
@@ -34775,6 +35825,132 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "53-2012.00": {
+  "roadmap": [
+   {
+    "title": "Flight planning apps and weather data",
+    "items": [
+     "Plan flights with electronic flight bag apps for routes, weight and balance, and fuel, and cross-check key numbers yourself.",
+     "Read weather, NOTAMs and airspace updates in digital briefing tools, and decide go or no-go with your own judgement.",
+     "Keep logbooks, duty times and currency records digitally, so you always know your limits."
+    ],
+    "project": "Plan ten flights with an electronic flight bag and compare planned and actual fuel and times, noting where planning was off."
+   },
+   {
+    "title": "Automation management and simulator training",
+    "items": [
+     "Practise autopilot and avionics modes in simulators until you know what the automation will do next.",
+     "Review flight data from your own flights, where available, to find habits to improve.",
+     "Keep up with new avionics, drones in your airspace and changing rules."
+    ],
+    "project": "After each simulator or training session for six months, write down one lesson and how you will use it in flight."
+   },
+   {
+    "title": "Airmanship and passenger care",
+    "items": [
+     "Fly by hand confidently when automation fails or conditions change quickly.",
+     "Make conservative decisions about weather, fuel and fatigue, even under pressure from customers.",
+     "Brief and reassure passengers clearly, especially on small aircraft and charter flights."
+    ],
+    "project": "Fly a set amount of hand-flown practice each month for six months and record how your skills and confidence change."
+   }
+  ],
+  "aiTools": [
+   "Electronic flight bag apps",
+   "Digital weather and NOTAM briefings",
+   "Flight simulators"
+  ],
+  "humanEdge": [
+   "Confident hand flying when automation fails",
+   "Conservative go or no-go decisions",
+   "Clear, calm passenger briefings"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-2021.00": {
+  "roadmap": [
+   {
+    "title": "Radar, data tools and conflict alerts",
+    "items": [
+     "Use radar and flight data displays with conflict alerts and arrival sequencing tools, and confirm every suggestion before acting.",
+     "Use electronic flight strips and digital coordination with neighbouring sectors, so handoffs are smooth.",
+     "Review weather and traffic flow information to plan for busy periods before they start."
+    ],
+    "project": "Review sequencing tool suggestions against your own decisions for a month in training sessions and note where you differed and why."
+   },
+   {
+    "title": "Simulators and new airspace technology",
+    "items": [
+     "Train on simulators for emergencies, equipment failures and unusual traffic.",
+     "Learn data link communications, remote towers and drone traffic management as they arrive.",
+     "Take part in safety reviews and learn from incidents across the industry."
+    ],
+    "project": "Complete simulator training for one rare emergency type each quarter and write down lessons for your team."
+   },
+   {
+    "title": "Judgement, speech and calm",
+    "items": [
+     "Keep the traffic picture in your head and plan several moves ahead when it gets busy.",
+     "Speak clearly and briefly, and catch readback errors every time.",
+     "Stay calm and decisive in emergencies, supporting pilots who are under stress."
+    ],
+    "project": "Record readback errors you caught for a month and share the most common ones with your team."
+   }
+  ],
+  "aiTools": [
+   "Radar with conflict alerts",
+   "Arrival sequencing tools",
+   "Electronic flight strips"
+  ],
+  "humanEdge": [
+   "Keeping the traffic picture in mind",
+   "Clear speech and catching readbacks",
+   "Calm decisions in emergencies"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-2022.00": {
+  "roadmap": [
+   {
+    "title": "Airfield systems and inspection apps",
+    "items": [
+     "Record runway and taxiway inspections in a mobile app with photos and locations, so problems are fixed quickly.",
+     "Monitor lighting, weather and runway condition systems, and issue NOTAMs accurately when conditions change.",
+     "Track wildlife sightings and strikes in a database to find patterns."
+    ],
+    "project": "Record every inspection finding in an app for three months and track how quickly each was fixed."
+   },
+   {
+    "title": "Safety management and new technology",
+    "items": [
+     "Use safety management system data to find risks on the airfield.",
+     "Learn foreign object debris detection radar and drone detection systems.",
+     "Plan winter operations with forecasts and runway friction data."
+    ],
+    "project": "Analyse wildlife strike data for a year and agree one change in wildlife control with your manager."
+   },
+   {
+    "title": "Eyes on the field and coordination",
+    "items": [
+     "Inspect surfaces in person for cracks, debris and damage that systems miss.",
+     "Coordinate clearly with air traffic control, airlines and maintenance by radio.",
+     "Make quick, safe decisions to close or reopen areas when hazards appear."
+    ],
+    "project": "Run one emergency exercise with partners each year and record what improved in coordination."
+   }
+  ],
+  "aiTools": [
+   "Mobile inspection apps",
+   "Airfield lighting and condition systems",
+   "Debris and drone detection systems"
+  ],
+  "humanEdge": [
+   "In-person checks for debris and damage",
+   "Clear radio coordination with ATC",
+   "Quick decisions to close areas"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "53-2031.00": {
   "roadmap": [
    {
@@ -34814,6 +35990,90 @@
    "Keeping passengers safe in an emergency",
    "Calming disruptive or anxious passengers",
    "Reading the mood of a full cabin"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-3011.00": {
+  "roadmap": [
+   {
+    "title": "Navigation, dispatch and records",
+    "items": [
+     "Use dispatch systems and GPS navigation to reach patients fast, and know local shortcuts and access points.",
+     "Record trips, times and handovers on a tablet, so records are complete for billing and quality.",
+     "Check vehicle and equipment status with digital checklists at the start of every shift."
+    ],
+    "project": "Use a digital vehicle checklist every shift for a month and record faults found before calls."
+   },
+   {
+    "title": "Safe driving and patient handling",
+    "items": [
+     "Review driving data and feedback to improve safe emergency driving.",
+     "Keep first aid, lifting and infection control training current.",
+     "Learn the equipment and stretchers you use so you can work quickly and safely."
+    ],
+    "project": "Review your driving data with a supervisor for three months and agree one habit to change."
+   },
+   {
+    "title": "Care and calm under stress",
+    "items": [
+     "Drive smoothly and safely under pressure, protecting the patient and crew.",
+     "Comfort patients and families during frightening moments.",
+     "Lift and move patients safely with good technique and teamwork."
+    ],
+    "project": "Ask colleagues for feedback on your patient handling for a month and practise one improvement."
+   }
+  ],
+  "aiTools": [
+   "Dispatch systems and GPS",
+   "Tablet trip records",
+   "Digital vehicle checklists"
+  ],
+  "humanEdge": [
+   "Smooth, safe driving under pressure",
+   "Comforting frightened patients",
+   "Safe lifting with teamwork"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-3031.00": {
+  "roadmap": [
+   {
+    "title": "Route apps, orders and sales data",
+    "items": [
+     "Use route planning apps to order stops by time windows and traffic, and adjust when customers call.",
+     "Take orders and payments on a handheld device, and check stock before promising delivery.",
+     "Use sales history to suggest products customers often run out of."
+    ],
+    "project": "Use sales history to suggest restocks to ten customers for a month and record extra sales and fewer emergency orders."
+   },
+   {
+    "title": "Customer accounts and vehicle care",
+    "items": [
+     "Keep notes on each customer's preferences and delivery instructions in the app.",
+     "Track vehicle checks, fuel and maintenance with digital reminders.",
+     "Learn the products you sell well enough to answer questions confidently."
+    ],
+    "project": "Add notes for every regular customer for a month and record delivery problems before and after."
+   },
+   {
+    "title": "Relationships and reliable service",
+    "items": [
+     "Build friendly, trusted relationships with customers on your route.",
+     "Handle complaints and returns fairly on the spot.",
+     "Drive and lift safely, protecting yourself and the goods."
+    ],
+    "project": "Ask ten customers what would improve your service, act on the most common answer and check back with them a month later."
+   }
+  ],
+  "aiTools": [
+   "Route planning apps",
+   "Handheld ordering and payment",
+   "Sales history data"
+  ],
+  "humanEdge": [
+   "Trusted relationships on the route",
+   "Fair handling of complaints",
+   "Safe driving and lifting every day"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -34901,6 +36161,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "53-3051.00": {
+  "roadmap": [
+   {
+    "title": "Route apps and parent communication",
+    "items": [
+     "Follow digital routes and stop lists, and report delays through the app so schools and parents are informed.",
+     "Use student tracking or ridership apps where used, following privacy rules strictly.",
+     "Complete pre-trip inspections with digital checklists and report defects before driving."
+    ],
+    "project": "Use the digital pre-trip checklist every day for a month and record defects found and fixed."
+   },
+   {
+    "title": "Safety training and behaviour support",
+    "items": [
+     "Keep first aid, evacuation and student safety training current.",
+     "Learn calm ways to manage behaviour on the bus, and work with schools on problems.",
+     "Learn the needs of students with disabilities you transport."
+    ],
+    "project": "Run an evacuation drill with your students each term, time it and record what to improve before the next one."
+   },
+   {
+    "title": "Safe driving and caring for children",
+    "items": [
+     "Drive smoothly and watch closely for children around the bus at every stop.",
+     "Greet students warmly and notice when a child seems upset or unwell.",
+     "Keep order on the bus with fairness and patience."
+    ],
+    "project": "Keep a simple log of behaviour issues for a month, discuss patterns with the school and agree one change."
+   }
+  ],
+  "aiTools": [
+   "Digital route and stop apps",
+   "Student ridership apps",
+   "Digital pre-trip checklists"
+  ],
+  "humanEdge": [
+   "Watching children at every stop",
+   "Noticing upset or unwell children",
+   "Fair, patient order on the bus"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "53-3052.00": {
   "roadmap": [
    {
@@ -34940,6 +36242,1014 @@
    "Safe, smooth driving in heavy traffic",
    "Helping older and disabled passengers",
    "Calming conflicts on board"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-3053.00": {
+  "roadmap": [
+   {
+    "title": "Booking apps and navigation",
+    "items": [
+     "Manage bookings, routes and flight or train tracking in apps, so pickups match real arrival times.",
+     "Use navigation with live traffic, and know alternative routes for common trips.",
+     "Send clients arrival messages and confirm details before pickup."
+    ],
+    "project": "Track pickup punctuality for a month using flight and traffic tracking and record improvements."
+   },
+   {
+    "title": "Vehicle care and service standards",
+    "items": [
+     "Keep the vehicle clean and maintained with digital reminders.",
+     "Learn electric vehicles and charging planning, as fleets change.",
+     "Learn the needs of passengers with disabilities and how to assist safely."
+    ],
+    "project": "Plan charging for an electric vehicle for a month, record any trips affected by range and adjust your charging routine."
+   },
+   {
+    "title": "Discretion and personal service",
+    "items": [
+     "Offer friendly, discreet service and respect clients' privacy.",
+     "Help passengers with luggage and mobility needs carefully.",
+     "Drive smoothly and safely so passengers can relax or work."
+    ],
+    "project": "Ask regular clients for feedback each quarter, act on one suggestion each time and tell them what you changed."
+   }
+  ],
+  "aiTools": [
+   "Booking and dispatch apps",
+   "Flight and train tracking",
+   "Navigation with live traffic"
+  ],
+  "humanEdge": [
+   "Discreet, friendly service",
+   "Careful help with luggage and mobility",
+   "Smooth driving that lets passengers relax"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-3054.00": {
+  "roadmap": [
+   {
+    "title": "Ride apps, demand and earnings",
+    "items": [
+     "Use ride-hailing and dispatch apps, and learn when and where demand is highest in your city.",
+     "Track earnings, fuel and costs in an app, so you know which hours pay best.",
+     "Use navigation with live traffic, and know local shortcuts the apps miss."
+    ],
+    "project": "Track earnings per hour by time and area for a month and adjust your schedule based on the results."
+   },
+   {
+    "title": "Electric vehicles and safety",
+    "items": [
+     "Plan charging and routes if you drive an electric vehicle.",
+     "Learn safety features and procedures for difficult passengers.",
+     "Keep your licence, vehicle checks and insurance up to date with reminders."
+    ],
+    "project": "Compare running costs of your vehicle with an electric alternative using real mileage for three months."
+   },
+   {
+    "title": "Local knowledge and people skills",
+    "items": [
+     "Know your city well, including landmarks and quick routes.",
+     "Be polite and helpful, especially with elderly and disabled passengers.",
+     "Stay calm with difficult passengers and keep yourself safe."
+    ],
+    "project": "Ask passengers for ratings and comments for a month, improve one part of your service and compare ratings the month after."
+   }
+  ],
+  "aiTools": [
+   "Ride-hailing and dispatch apps",
+   "Earnings tracking apps",
+   "Navigation with live traffic"
+  ],
+  "humanEdge": [
+   "Deep local knowledge of the city",
+   "Patient help for elderly passengers",
+   "Calm with difficult passengers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-4011.00": {
+  "roadmap": [
+   {
+    "title": "Train data, signalling and energy",
+    "items": [
+     "Use in-cab signalling and train protection systems, and know how to respond when they intervene.",
+     "Use driver advisory systems to save energy, and check advice against conditions on the line.",
+     "Review event recorder data with supervisors to improve braking and handling."
+    ],
+    "project": "Use driver advisory energy advice for a month and compare energy use and punctuality with before."
+   },
+   {
+    "title": "Simulators and route knowledge",
+    "items": [
+     "Train on simulators for failures, emergencies and unusual conditions.",
+     "Keep route knowledge current with digital route guides and videos.",
+     "Learn new rolling stock and systems as they enter service."
+    ],
+    "project": "Complete one simulator session on a rare emergency each quarter and record lessons learned."
+   },
+   {
+    "title": "Vigilance and train handling",
+    "items": [
+     "Stay alert for signals, people and obstacles on long, quiet shifts.",
+     "Handle heavy trains smoothly on gradients and in poor weather.",
+     "Communicate clearly with signallers and crew."
+    ],
+    "project": "Keep a fatigue and alertness diary for a month, look for patterns by shift and agree one change with your supervisor."
+   }
+  ],
+  "aiTools": [
+   "In-cab signalling and train protection",
+   "Driver advisory systems",
+   "Train simulators"
+  ],
+  "humanEdge": [
+   "Alertness on long, quiet shifts",
+   "Smooth handling of heavy trains",
+   "Clear talk with signallers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-4013.00": {
+  "roadmap": [
+   {
+    "title": "Yard systems and remote control",
+    "items": [
+     "Use yard management systems and switch lists on a tablet to know which cars move where.",
+     "Operate locomotives by remote control where used, following all safety rules.",
+     "Record moves and problems digitally, so the yard plan stays accurate."
+    ],
+    "project": "Record every move delay for a month with its cause and share the patterns with the yardmaster."
+   },
+   {
+    "title": "Safety systems and equipment checks",
+    "items": [
+     "Inspect locomotives before use with digital checklists.",
+     "Learn yard safety systems, blue flag protection and the rules for each track.",
+     "Train on new remote control or automation equipment before using it in the yard."
+    ],
+    "project": "Use the digital inspection checklist every shift for a month and record faults found before the locomotive moved."
+   },
+   {
+    "title": "Care and coordination in the yard",
+    "items": [
+     "Watch constantly for people, vehicles and equipment in busy yards, especially at night.",
+     "Couple and move cars gently to avoid damage to cargo and equipment.",
+     "Coordinate clearly with the crew by radio and signals."
+    ],
+    "project": "Review three near misses in your yard with the crew, agree one safety improvement and check after a month that it is used."
+   }
+  ],
+  "aiTools": [
+   "Yard management systems",
+   "Remote control locomotive units",
+   "Digital inspection checklists"
+  ],
+  "humanEdge": [
+   "Constant watch for people in yards",
+   "Gentle coupling to avoid damage",
+   "Clear radio coordination with ATC"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-4022.00": {
+  "roadmap": [
+   {
+    "title": "Switch lists and train systems",
+    "items": [
+     "Follow digital switch lists and train consists on a tablet, checking car numbers before every move.",
+     "Use radio and digital communication with engineers and dispatchers to confirm each step.",
+     "Record defects and inspections in the railway's system with photos."
+    ],
+    "project": "Record every car defect you find with a photo for a month and track how quickly each was repaired."
+   },
+   {
+    "title": "Brake tests and safety rules",
+    "items": [
+     "Learn air brake testing and the digital tools that record results.",
+     "Keep operating rules training current and review rule changes.",
+     "Learn the hazards of dangerous goods cars and their placarding."
+    ],
+    "project": "Review brake test records for a month with your supervisor, find recurring problems and agree one improvement."
+   },
+   {
+    "title": "Safety on the ground",
+    "items": [
+     "Work safely around moving cars, following three-point contact and protection rules.",
+     "Spot defects such as leaks and damaged couplers by eye.",
+     "Communicate clearly so moves happen only when everyone is safe."
+    ],
+    "project": "Mentor a new conductor or switchman for a month and write down the safety habits you teach."
+   }
+  ],
+  "aiTools": [
+   "Digital switch lists",
+   "Brake test recording tools",
+   "Defect reporting apps"
+  ],
+  "humanEdge": [
+   "Safe work around moving cars",
+   "Spotting car defects by eye",
+   "Clear communication before moves"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-4031.00": {
+  "roadmap": [
+   {
+    "title": "Train consists and yard planning",
+    "items": [
+     "Use yard and train management systems to plan car moves and train building, and check plans against real conditions.",
+     "Keep train documents and dangerous goods information accurate in the digital system.",
+     "Coordinate with dispatchers using digital messages and radio."
+    ],
+    "project": "Track train building delays for a month, find the top cause and agree one change with the dispatch team."
+   },
+   {
+    "title": "Rules, safety and crew leadership",
+    "items": [
+     "Keep operating rules and dangerous goods training current for you and your crew.",
+     "Use safety data to find where incidents happen in the yard.",
+     "Learn positive train control and other safety systems."
+    ],
+    "project": "Review yard incident data for three months, find the riskiest locations and agree one safety change with your crew."
+   },
+   {
+    "title": "Leadership and judgement",
+    "items": [
+     "Lead crews clearly and fairly, especially during disruptions.",
+     "Make safe decisions when plans and reality do not match.",
+     "Walk the yard to see problems that data does not show."
+    ],
+    "project": "Hold a short briefing with every crew for a month and record errors and delays compared with before."
+   }
+  ],
+  "aiTools": [
+   "Yard and train management systems",
+   "Digital train documents",
+   "Positive train control"
+  ],
+  "humanEdge": [
+   "Clear, fair crew leadership",
+   "Safe decisions when plans fail",
+   "Walking the yard to see problems"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-4041.00": {
+  "roadmap": [
+   {
+    "title": "Train control systems and passenger information",
+    "items": [
+     "Operate trains with automatic train protection or control systems, and know how to drive manually when they fail.",
+     "Use passenger information systems to make clear announcements during delays.",
+     "Report faults and incidents digitally, so maintenance and control know at once."
+    ],
+    "project": "Record every announcement you made during delays for a month and ask passengers or colleagues which ones helped most."
+   },
+   {
+    "title": "Simulators and new systems",
+    "items": [
+     "Train on simulators for emergencies, evacuations and system failures.",
+     "Learn new signalling and automation as lines are upgraded.",
+     "Keep route knowledge current with digital guides."
+    ],
+    "project": "Complete one emergency simulator session each quarter, record lessons learned and share one with your colleagues."
+   },
+   {
+    "title": "Alertness and passenger safety",
+    "items": [
+     "Watch platforms and track for people and hazards constantly.",
+     "Handle emergencies calmly and guide passengers clearly.",
+     "Drive smoothly so standing passengers are safe."
+    ],
+    "project": "Keep a short log of hazards you spotted on platforms and track for a month and share it with your supervisor."
+   }
+  ],
+  "aiTools": [
+   "Automatic train protection and control",
+   "Passenger information systems",
+   "Digital fault reporting"
+  ],
+  "humanEdge": [
+   "Constant watch on platforms",
+   "Calm guidance in emergencies",
+   "Smooth driving for standing passengers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-5011.00": {
+  "roadmap": [
+   {
+    "title": "Digital logs and machinery monitoring",
+    "items": [
+     "Record watch logs, engine readings and maintenance in digital systems, so the crew sees trends.",
+     "Monitor engine room alarms and machinery data, and check equipment in person on rounds.",
+     "Use digital charts and AIS on watch, and report what you see to the officer."
+    ],
+    "project": "Keep engine readings in a digital log for a month, look for rising or falling trends and report them to the engineer."
+   },
+   {
+    "title": "Safety drills and maintenance",
+    "items": [
+     "Keep safety, firefighting and survival training current.",
+     "Learn planned maintenance systems and complete tasks on schedule.",
+     "Learn new fuel and emission systems on modern ships."
+    ],
+    "project": "Take an active role in every drill for three months and write down one improvement after each."
+   },
+   {
+    "title": "Seamanship and teamwork",
+    "items": [
+     "Handle lines, anchors and cargo safely in all weather.",
+     "Keep a sharp lookout and report anything unusual.",
+     "Work closely with crew members from many countries."
+    ],
+    "project": "Mentor a new crew member for a month and write down the safety habits you teach that are not in the manuals."
+   }
+  ],
+  "aiTools": [
+   "Digital watch and engine logs",
+   "Machinery alarm systems",
+   "Planned maintenance systems"
+  ],
+  "humanEdge": [
+   "Safe line and anchor handling",
+   "Sharp lookout in all weather",
+   "Teamwork with mixed crews"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-5021.00": {
+  "roadmap": [
+   {
+    "title": "ECDIS, route planning and weather",
+    "items": [
+     "Plan voyages with electronic chart systems and weather routing, and check every leg against your own judgement.",
+     "Use radar, ARPA and AIS for collision avoidance, and confirm by visual lookout.",
+     "Keep logs, crew records and port documents digitally, so inspections are quick."
+    ],
+    "project": "Compare weather-routed and planned voyages for three months, recording fuel and delays, and adjust your planning."
+   },
+   {
+    "title": "Emissions, fuel and crew training",
+    "items": [
+     "Use fuel and emission data to sail more efficiently and meet new rules.",
+     "Train crew with drills and simulators for emergencies.",
+     "Learn autonomous and remote ship technology and its limits."
+    ],
+    "project": "Track fuel use against speed and trim for a month and test one change to save fuel safely."
+   },
+   {
+    "title": "Command and seamanship",
+    "items": [
+     "Make safe decisions in bad weather, traffic and tight ports.",
+     "Lead and look after the crew, especially on long voyages.",
+     "Handle the ship by hand in close quarters with skill."
+    ],
+    "project": "Debrief the bridge team after every difficult manoeuvre for three months and record lessons."
+   }
+  ],
+  "aiTools": [
+   "ECDIS and weather routing",
+   "Radar, ARPA and AIS",
+   "Fuel and emission monitoring"
+  ],
+  "humanEdge": [
+   "Safe decisions in bad weather",
+   "Leading crews on long voyages",
+   "Hand ship handling in tight ports"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-5022.00": {
+  "roadmap": [
+   {
+    "title": "Navigation apps and bookings",
+    "items": [
+     "Use chart plotters and marine weather apps to plan trips, and decide yourself when conditions are safe.",
+     "Take bookings and passenger lists online, and keep safety briefings ready for each trip.",
+     "Record trips, fuel and maintenance in a simple app."
+    ],
+    "project": "Track fuel use and trip times for three months and test one change in speed or route to save fuel."
+   },
+   {
+    "title": "Safety equipment and engines",
+    "items": [
+     "Check life jackets, radios and safety gear with a digital checklist before each trip.",
+     "Learn basic engine troubleshooting and electric boat systems.",
+     "Keep licences and first aid training current with reminders."
+    ],
+    "project": "Use a pre-trip safety checklist for every trip for a month and record problems found before passengers boarded."
+   },
+   {
+    "title": "Boat handling and passenger care",
+    "items": [
+     "Handle the boat smoothly in waves, wind and tight docks.",
+     "Brief passengers clearly and watch them during the trip.",
+     "Respond calmly and quickly to emergencies on the water, by procedure."
+    ],
+    "project": "Practise man-overboard recovery monthly for a season, record your recovery times and what made them faster."
+   }
+  ],
+  "aiTools": [
+   "Chart plotters",
+   "Marine weather apps",
+   "Online booking tools"
+  ],
+  "humanEdge": [
+   "Smooth handling in waves and docks",
+   "Clear passenger briefings",
+   "Calm response on the water"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-5031.00": {
+  "roadmap": [
+   {
+    "title": "Engine monitoring and maintenance systems",
+    "items": [
+     "Monitor engines and machinery through the ship's automation system, and verify trends with rounds and readings.",
+     "Plan maintenance in the planned maintenance system, using condition data to set priorities.",
+     "Keep engine logs, oil records and bunkering data digital for inspections."
+    ],
+    "project": "Use condition data to reprioritise maintenance on three machines for three months and record failures avoided."
+   },
+   {
+    "title": "Fuel efficiency and new technology",
+    "items": [
+     "Use fuel and emission data to tune engines and meet regulations.",
+     "Learn new fuels, scrubbers and hybrid systems.",
+     "Train junior engineers with simulators and on-the-job coaching."
+    ],
+    "project": "Track fuel consumption against engine settings for a month and test one tuning change with the chief engineer."
+   },
+   {
+    "title": "Practical skill at sea",
+    "items": [
+     "Repair machinery at sea with limited parts and tools.",
+     "Hear, feel and smell problems in the engine room before alarms.",
+     "Work safely in hot, noisy and confined spaces."
+    ],
+    "project": "Record every repair you made with improvised solutions for six months and share them with the engine team."
+   }
+  ],
+  "aiTools": [
+   "Ship automation systems",
+   "Planned maintenance systems",
+   "Fuel and emission monitoring"
+  ],
+  "humanEdge": [
+   "Repairs at sea with few parts",
+   "Sensing problems before alarms",
+   "Safe work in hot, confined spaces"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-6011.00": {
+  "roadmap": [
+   {
+    "title": "Remote control and traffic data",
+    "items": [
+     "Operate bridges and locks through control systems and cameras, often remotely, and check every view before moving.",
+     "Use vessel tracking and schedules to plan openings that balance road and water traffic.",
+     "Record openings, faults and incidents digitally, so maintenance and managers see patterns."
+    ],
+    "project": "Analyse opening times and traffic data for a month and agree one schedule change with your supervisor."
+   },
+   {
+    "title": "Maintenance and safety systems",
+    "items": [
+     "Learn the mechanical and electrical systems of your bridge or lock.",
+     "Use maintenance reminders and checklists for routine tasks.",
+     "Train for emergencies such as failures with traffic waiting."
+    ],
+    "project": "Run one emergency scenario with your team each quarter, such as a stuck bridge with traffic waiting, and record improvements."
+   },
+   {
+    "title": "Vigilance and communication",
+    "items": [
+     "Watch carefully for people and vehicles before every movement.",
+     "Communicate clearly with vessel crews by radio.",
+     "Stay alert on long, quiet shifts with breaks and routines."
+    ],
+    "project": "Keep a log of near misses and unusual events for three months and review them with your team."
+   }
+  ],
+  "aiTools": [
+   "Bridge and lock control systems",
+   "Vessel tracking",
+   "Digital incident logs"
+  ],
+  "humanEdge": [
+   "Careful checks before every movement",
+   "Clear radio talk with vessel crews",
+   "Alertness on long, quiet shifts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-6021.00": {
+  "roadmap": [
+   {
+    "title": "Parking apps, plates and payments",
+    "items": [
+     "Use parking management systems with plate recognition and app payments, and help drivers when the system does not recognise them.",
+     "Check occupancy dashboards to guide drivers to free spaces and avoid queues at busy times.",
+     "Record incidents, damage and lost tickets digitally with photos, so disputes are settled quickly."
+    ],
+    "project": "Record every payment or barrier problem for a month with its cause and share the top three with your manager to fix."
+   },
+   {
+    "title": "Valet service and electric vehicles",
+    "items": [
+     "Track valet keys and cars with a digital system, so every car is found and returned quickly.",
+     "Learn how to move and charge electric vehicles safely, including different charging connectors.",
+     "Learn the basics of the parking equipment, so you can clear simple faults yourself."
+    ],
+    "project": "Time valet returns for a month with digital key tracking and record what made the slowest returns slow."
+   },
+   {
+    "title": "Friendly help and careful driving",
+    "items": [
+     "Help confused or upset drivers patiently, especially elderly visitors and people with disabilities.",
+     "Drive customers' cars carefully and respectfully, checking for damage before and after.",
+     "Keep the site safe and tidy, watching for hazards and suspicious activity."
+    ],
+    "project": "Ask twenty drivers about their experience for a month and improve one thing that frustrated them most."
+   }
+  ],
+  "aiTools": [
+   "Plate recognition and app payments",
+   "Occupancy dashboards",
+   "Digital valet key tracking"
+  ],
+  "humanEdge": [
+   "Patient help for confused drivers",
+   "Careful driving of customers' cars",
+   "Watching for hazards on site"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-6031.00": {
+  "roadmap": [
+   {
+    "title": "Service records and payment systems",
+    "items": [
+     "Record services such as fuel, oil, washes and tyre checks in the point-of-sale system, so customers get accurate bills.",
+     "Use booking and loyalty apps to remind customers about services and offers they actually use.",
+     "Check tyre pressure and fluid levels with digital gauges, and record readings for the customer."
+    ],
+    "project": "Record tyre and fluid checks for every customer for a month and track how many accepted the services you suggested."
+   },
+   {
+    "title": "Electric charging and marina services",
+    "items": [
+     "Learn electric vehicle charging, connector types and how to help drivers who are new to charging.",
+     "Learn fuel and spill safety rules for cars and boats, and practise spill response.",
+     "Learn simple maintenance tasks that grow your skills toward technician roles."
+    ],
+    "project": "Write a one-page charging guide for first-time electric vehicle drivers with AI help, check it and hand it out for a month."
+   },
+   {
+    "title": "Service, safety and trust",
+    "items": [
+     "Notice worn tyres, leaks or damage and tell customers honestly, without pushing sales.",
+     "Handle fuel and chemicals safely, and react quickly to spills.",
+     "Give friendly, quick service that brings customers back."
+    ],
+    "project": "Ask twenty customers what would bring them back more often and act on the most common answer."
+   }
+  ],
+  "aiTools": [
+   "Point-of-sale and service records",
+   "Booking and loyalty apps",
+   "Digital tyre and fluid gauges"
+  ],
+  "humanEdge": [
+   "Honest advice on worn parts",
+   "Safe handling of fuel and spills",
+   "Friendly service that brings repeats"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-6032.00": {
+  "roadmap": [
+   {
+    "title": "Turnaround apps and task lists",
+    "items": [
+     "Follow turnaround task lists on a handheld device, ticking off cleaning, water, waste and catering steps in order.",
+     "Record fuel, water and service quantities digitally, so billing and aircraft records are correct.",
+     "Use ramp communication apps and radios to coordinate with crew and other ground teams."
+    ],
+    "project": "Record turnaround task times for a month and find the step that most often delays departure."
+   },
+   {
+    "title": "Ground equipment and ramp safety",
+    "items": [
+     "Learn the ground equipment you use, and do digital pre-use checks every shift.",
+     "Keep ramp safety, de-icing and dangerous goods awareness training current.",
+     "Learn electric ground equipment and its charging needs."
+    ],
+    "project": "Use a digital pre-use equipment check every shift for a month and record faults found before use."
+   },
+   {
+    "title": "Speed, care and safety around aircraft",
+    "items": [
+     "Work quickly but carefully around aircraft, avoiding damage to doors and panels.",
+     "Watch for engines, propellers and moving vehicles on the ramp at all times.",
+     "Clean and prepare cabins well, as passengers notice the details."
+    ],
+    "project": "Review three ramp incidents or near misses with your team and agree one change in how you approach aircraft."
+   }
+  ],
+  "aiTools": [
+   "Handheld turnaround task lists",
+   "Ramp communication apps",
+   "Digital equipment checks"
+  ],
+  "humanEdge": [
+   "Careful work around aircraft",
+   "Constant watch for engines on the ramp",
+   "Attention to cabin details"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-6041.00": {
+  "roadmap": [
+   {
+    "title": "Traffic data and signal software",
+    "items": [
+     "Analyse traffic counts and speed data from sensors and connected vehicles, and check unusual numbers on site.",
+     "Adjust signal timing plans with traffic signal software, and test changes in simulation before using them.",
+     "Write traffic studies and reports with AI help, checking every figure and recommendation yourself."
+    ],
+    "project": "Retime one signal corridor using sensor data and simulation, and compare travel times before and after."
+   },
+   {
+    "title": "Adaptive signals and safety analysis",
+    "items": [
+     "Learn adaptive signal control and how it responds to traffic in real time.",
+     "Use crash data to find dangerous locations and propose fixes.",
+     "Learn tools for pedestrian and cycle counts, as cities plan for them."
+    ],
+    "project": "Analyse three years of crash data for one area and propose two low-cost safety changes to engineers."
+   },
+   {
+    "title": "Field checks and public questions",
+    "items": [
+     "Observe intersections in person to see driver and pedestrian behaviour that data misses.",
+     "Inspect signals, signs and markings for faults and visibility.",
+     "Answer residents' traffic complaints clearly and fairly."
+    ],
+    "project": "Watch three problem intersections at peak times, compare what you saw with the data and report the differences."
+   }
+  ],
+  "aiTools": [
+   "Traffic signal timing software",
+   "Traffic sensors and connected vehicle data",
+   "Traffic simulation tools"
+  ],
+  "humanEdge": [
+   "Seeing behaviour data misses",
+   "Field inspection of signals and signs",
+   "Clear answers to residents"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-6051.00": {
+  "roadmap": [
+   {
+    "title": "Inspection apps and risk data",
+    "items": [
+     "Record inspections in a mobile app with photos, locations and checklists, so reports are finished on site.",
+     "Use risk scores and past violations to decide which vehicles, operators or sites to inspect first.",
+     "Search rules and standards with AI summaries, and confirm the exact clause in the official text."
+    ],
+    "project": "Inspect by risk score for three months and compare violations found per inspection with your usual approach."
+   },
+   {
+    "title": "Data sharing and new transport",
+    "items": [
+     "Share findings with other agencies through digital systems, so repeat offenders are caught.",
+     "Learn electric vehicles, batteries and automated systems, and the new risks they bring.",
+     "Keep certifications and rule knowledge current with reminders."
+    ],
+    "project": "Complete one course on electric or automated vehicle safety and update your inspection checklist with what you learned."
+   },
+   {
+    "title": "Judgement and fair enforcement",
+    "items": [
+     "Inspect in person and notice problems that paperwork hides.",
+     "Explain violations and fixes fairly and firmly to operators.",
+     "Make independent decisions that protect public safety."
+    ],
+    "project": "Review ten of your decisions with a senior inspector and agree where your judgement could be more consistent."
+   }
+  ],
+  "aiTools": [
+   "Mobile inspection apps",
+   "Risk scoring tools",
+   "AI search over rules and standards"
+  ],
+  "humanEdge": [
+   "Noticing what paperwork hides",
+   "Fair, firm explanations to operators",
+   "Independent safety decisions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-6051.01": {
+  "roadmap": [
+   {
+    "title": "Aviation records and risk data",
+    "items": [
+     "Review digital maintenance records, airworthiness directives and operator data before each inspection.",
+     "Use risk-based oversight data to focus on operators and aircraft with more problems.",
+     "Write inspection reports with templates and AI help, checking every finding against the regulation."
+    ],
+    "project": "Review digital records before every inspection for three months and record findings that came from the record review."
+   },
+   {
+    "title": "New aircraft, drones and standards",
+    "items": [
+     "Learn composite structures, new avionics and electric aircraft as they enter service.",
+     "Learn drone regulations and how to oversee drone operators.",
+     "Keep your technical and regulatory knowledge current with courses."
+    ],
+    "project": "Complete one course on drones or new aircraft technology and update your inspection approach based on it."
+   },
+   {
+    "title": "Independence and technical judgement",
+    "items": [
+     "Inspect aircraft and records in person with a trained eye for unsafe conditions.",
+     "Stay independent and firm when operators push back.",
+     "Explain findings clearly so operators can fix them properly."
+    ],
+    "project": "Review five of your enforcement cases with a senior inspector and write down lessons for consistency."
+   }
+  ],
+  "aiTools": [
+   "Digital maintenance records",
+   "Risk-based oversight data",
+   "AI assistant for report drafts"
+  ],
+  "humanEdge": [
+   "Trained eye for unsafe conditions",
+   "Independence when operators push back",
+   "Clear explanation of findings"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-6051.07": {
+  "roadmap": [
+   {
+    "title": "Inspection data and diagnostic tools",
+    "items": [
+     "Use diagnostic tools and test equipment to check brakes, emissions and safety systems, and confirm by visual inspection.",
+     "Record inspections digitally with photos and measurements, so reports are complete and traceable.",
+     "Use defect history to focus on parts and systems that fail most often."
+    ],
+    "project": "Analyse defects found in three months of inspections and share the most common failures with operators."
+   },
+   {
+    "title": "New technology and standards",
+    "items": [
+     "Learn electric drivetrains, batteries and driver assistance systems, and how to inspect them safely.",
+     "Keep up with changing standards and inspection rules.",
+     "Calibrate test equipment on schedule with digital records."
+    ],
+    "project": "Complete one course on electric vehicle or rail system inspection and update your checklist with it."
+   },
+   {
+    "title": "Thorough checks and fairness",
+    "items": [
+     "Inspect underneath and inside vehicles carefully, finding wear and damage by eye.",
+     "Explain failures to owners clearly and fairly.",
+     "Refuse to pass unsafe vehicles, even under pressure."
+    ],
+    "project": "Record every case where you found a defect the diagnostic tools missed for three months and share them."
+   }
+  ],
+  "aiTools": [
+   "Vehicle diagnostic and test equipment",
+   "Digital inspection records",
+   "Defect history data"
+  ],
+  "humanEdge": [
+   "Thorough checks by eye underneath",
+   "Clear, fair explanations to owners",
+   "Refusing unsafe vehicles under pressure"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-6061.00": {
+  "roadmap": [
+   {
+    "title": "Passenger apps and service information",
+    "items": [
+     "Use passenger information and booking systems to answer questions about connections, seats and delays.",
+     "Record incidents, lost items and passenger needs digitally, so the next crew is informed.",
+     "Translate announcements or questions with translation apps when passengers speak other languages."
+    ],
+    "project": "Record passenger questions you could not answer for a month and work with your supervisor to fill the gaps."
+   },
+   {
+    "title": "Safety, first aid and accessibility",
+    "items": [
+     "Practise cabin or carriage evacuation and first aid regularly, so you act without hesitation.",
+     "Learn how to assist passengers with disabilities safely and respectfully.",
+     "Learn de-escalation techniques for difficult situations."
+    ],
+    "project": "Take one de-escalation or accessibility course and record how you used it over the next three months."
+   },
+   {
+    "title": "Care, calm and attention",
+    "items": [
+     "Notice passengers who are unwell, lost or anxious, and help them quickly.",
+     "Stay calm and guide passengers clearly in delays and emergencies.",
+     "Make passengers feel welcome and safe throughout the journey."
+    ],
+    "project": "Ask passengers for feedback for a month, improve one part of your service based on it and check whether comments change."
+   }
+  ],
+  "aiTools": [
+   "Passenger information systems",
+   "Digital incident and lost item records",
+   "Translation apps"
+  ],
+  "humanEdge": [
+   "Noticing unwell or anxious passengers",
+   "Calm guidance in emergencies",
+   "Making passengers feel welcome"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7011.00": {
+  "roadmap": [
+   {
+    "title": "Conveyor controls and alarms",
+    "items": [
+     "Run conveyor systems from control screens, watching speeds, jams and alarms across the whole line.",
+     "Use sensor data on belt tracking and motor load to spot problems before belts tear or motors fail.",
+     "Record stoppages and their causes on the terminal, so maintenance sees patterns."
+    ],
+    "project": "Record every conveyor stoppage for a month with its cause and agree one fix with maintenance for the most common."
+   },
+   {
+    "title": "Sortation systems and safety",
+    "items": [
+     "Learn automated sorters and scanners, and how to clear their faults safely.",
+     "Follow lockout rules every time before clearing jams.",
+     "Do routine checks of belts, rollers and guards with digital checklists."
+    ],
+    "project": "Use a daily conveyor check for a month and record problems found before they caused stoppages."
+   },
+   {
+    "title": "Attention and quick action",
+    "items": [
+     "Notice jams, spills and unusual noises early on long lines.",
+     "Clear blockages quickly and safely to keep goods moving.",
+     "Coordinate with workers along the line by radio."
+    ],
+    "project": "Train a new operator on jam clearing for a month and write down the safety steps you teach."
+   }
+  ],
+  "aiTools": [
+   "Conveyor control screens",
+   "Belt and motor sensors",
+   "Automated sorters and scanners"
+  ],
+  "humanEdge": [
+   "Noticing jams and noises early",
+   "Quick, safe blockage clearing",
+   "Radio coordination along the line"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7021.00": {
+  "roadmap": [
+   {
+    "title": "Load data and lift planning",
+    "items": [
+     "Use load moment indicators and crane computers, and never rely on them alone when a lift feels wrong.",
+     "Review lift plans and wind forecasts before each lift, and stop work when limits are reached.",
+     "Record lifts, inspections and faults digitally, so maintenance and supervisors see the history."
+    ],
+    "project": "Record wind readings and lift decisions for a month and review stopped lifts with your supervisor."
+   },
+   {
+    "title": "Remote, camera and anti-collision systems",
+    "items": [
+     "Learn camera, anti-collision and remote control systems on modern cranes.",
+     "Practise on crane simulators for new crane types and emergencies.",
+     "Keep certifications and medical checks current with reminders."
+    ],
+    "project": "Complete simulator training for one new crane type or emergency and record what you learned."
+   },
+   {
+    "title": "Precision and trust with riggers",
+    "items": [
+     "Move loads smoothly and precisely, often without seeing them directly.",
+     "Trust and check signals from riggers, and stop when communication breaks down.",
+     "Inspect the crane yourself before every shift."
+    ],
+    "project": "Agree standard signals and a stop rule with your riggers and record every stop for three months."
+   }
+  ],
+  "aiTools": [
+   "Load moment indicators",
+   "Crane anti-collision and camera systems",
+   "Crane simulators"
+  ],
+  "humanEdge": [
+   "Smooth, precise load control",
+   "Trust and checks with riggers",
+   "Personal pre-shift inspections"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7031.00": {
+  "roadmap": [
+   {
+    "title": "Dredge positioning and survey data",
+    "items": [
+     "Use GPS positioning and dredging software to dig to the design depth, and compare with survey results.",
+     "Read hydrographic surveys before and after work to see where material remains.",
+     "Record production, depths and pump data digitally for the project."
+    ],
+    "project": "Compare dredging software depths with surveys on one project and agree corrections with the surveyor."
+   },
+   {
+    "title": "Environment and pump systems",
+    "items": [
+     "Monitor turbidity and environmental limits, and adjust work when limits are near.",
+     "Learn pump and pipeline systems, and how to clear blockages safely.",
+     "Plan pump, cutter and winch maintenance with digital reminders."
+    ],
+    "project": "Track turbidity readings for a month, record the changes you made to stay within limits and share what worked with the crew."
+   },
+   {
+    "title": "Skill and safety on the water",
+    "items": [
+     "Feel the dredge and pumps through sound and vibration to judge material and blockages.",
+     "Work safely on the water in changing weather.",
+     "Coordinate with crews, surveyors and vessel traffic."
+    ],
+    "project": "Record every blockage for a month with signs that warned you, and share them with new operators."
+   }
+  ],
+  "aiTools": [
+   "GPS dredge positioning software",
+   "Hydrographic survey data",
+   "Turbidity monitors"
+  ],
+  "humanEdge": [
+   "Judging material by sound and feel",
+   "Safe work on the water in all weather",
+   "Coordination with vessel traffic"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7041.00": {
+  "roadmap": [
+   {
+    "title": "Hoist controls and lift records",
+    "items": [
+     "Operate hoists and winches with load and speed displays, and stop when readings or sounds are wrong.",
+     "Record lifts, inspections and rope condition digitally, so maintenance and audits are easy.",
+     "Review lift plans and signals before each job with the crew."
+    ],
+    "project": "Record rope and brake inspections digitally for three months and share the condition trends with maintenance."
+   },
+   {
+    "title": "Inspections and safety systems",
+    "items": [
+     "Learn wire rope inspection and when ropes must be replaced.",
+     "Learn overload, limit and emergency stop systems, and test them on schedule.",
+     "Log hoist hours and rope changes, so certification renewals and inspections are never missed."
+    ],
+    "project": "Complete wire rope inspection training and inspect your hoist ropes with a supervisor for a month."
+   },
+   {
+    "title": "Control and communication",
+    "items": [
+     "Control loads smoothly and stop precisely at the right point.",
+     "Follow signals carefully and stop when communication breaks down.",
+     "Notice unusual noises or vibration that warn of failure."
+    ],
+    "project": "Agree a stop rule with your crew for unclear signals and record every stop for three months."
+   }
+  ],
+  "aiTools": [
+   "Hoist load and speed displays",
+   "Digital inspection records",
+   "Overload and limit systems"
+  ],
+  "humanEdge": [
+   "Smooth, precise load control",
+   "Stopping when signals are unclear",
+   "Noticing noises that warn of failure"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -34985,6 +37295,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "53-7061.00": {
+  "roadmap": [
+   {
+    "title": "Job lists and chemical dosing",
+    "items": [
+     "Follow job lists and vehicle checklists on a tablet, so every vehicle gets the right cleaning.",
+     "Use automatic chemical dosing systems, and check concentrations so surfaces are not damaged.",
+     "Record vehicles cleaned and any damage found, with photos, before and after cleaning."
+    ],
+    "project": "Photograph vehicles before and after cleaning for a month and record damage disputes compared with before."
+   },
+   {
+    "title": "Equipment, water and safety",
+    "items": [
+     "Learn pressure washers, wash systems and water recycling equipment.",
+     "Follow chemical safety rules and use protective equipment.",
+     "Learn the cleaning needs of special vehicles, such as buses or food trucks."
+    ],
+    "project": "Track water and chemical use for a month and test one change that reduces them without hurting results."
+   },
+   {
+    "title": "Care and attention to detail",
+    "items": [
+     "Clean carefully so vehicles look good inside and out.",
+     "Spot damage, leaks or worn parts and report them.",
+     "Work safely around moving vehicles in the yard."
+    ],
+    "project": "Report every defect you spot during cleaning for a month and track how many maintenance confirmed."
+   }
+  ],
+  "aiTools": [
+   "Tablet job lists",
+   "Automatic chemical dosing",
+   "Water recycling wash systems"
+  ],
+  "humanEdge": [
+   "Careful cleaning inside and out",
+   "Spotting damage and leaks",
+   "Safety around moving vehicles"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "53-7062.00": {
   "roadmap": [
    {
@@ -35024,6 +37376,384 @@
    "Safe lifting and handling of heavy goods",
    "Spotting damage and mistakes in shipments",
    "Keeping up with a fast pace safely"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7062.04": {
+  "roadmap": [
+   {
+    "title": "Sorting systems and material data",
+    "items": [
+     "Work alongside optical sorters and robots, and remove the items they miss or misidentify.",
+     "Record contamination and bale quality data, so the plant knows where problems come from.",
+     "Use scales and tracking systems to record materials in and out accurately."
+    ],
+    "project": "Record contamination types at your station for a month and share the top three with the recycling coordinator."
+   },
+   {
+    "title": "Safety and hazardous items",
+    "items": [
+     "Learn to recognise batteries, gas bottles and other hazardous items that cause fires.",
+     "Use protective equipment and follow safety rules on the line.",
+     "Learn to operate balers or loaders safely after proper training."
+    ],
+    "project": "Record every hazardous item found for a month and work with your supervisor on a public message to reduce them."
+   },
+   {
+    "title": "Quick eyes and teamwork",
+    "items": [
+     "Spot and pick out wrong materials quickly by eye.",
+     "Work steadily and safely at line speed, taking breaks to stay sharp.",
+     "Move toward machine operator or quality roles, building on sorting knowledge."
+    ],
+    "project": "Agree a training plan toward a machine operator role with your supervisor and track progress over a year."
+   }
+  ],
+  "aiTools": [
+   "Optical sorters and robots",
+   "Scales and tracking systems",
+   "Contamination data records"
+  ],
+  "humanEdge": [
+   "Quick picking of wrong materials",
+   "Spotting batteries and hazardous items",
+   "Steady work at line speed"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7063.00": {
+  "roadmap": [
+   {
+    "title": "Machine signals and production data",
+    "items": [
+     "Watch machine screens and lights for jams, low supply and rejects, and act before the machine stops.",
+     "Record output and stoppages on the production terminal during the shift.",
+     "Follow digital work instructions for each product and machine."
+    ],
+    "project": "Record every stoppage at your machine for a month and share the top cause with your supervisor."
+   },
+   {
+    "title": "Robots, safety and new skills",
+    "items": [
+     "Learn to work safely next to robots and automatic feeders.",
+     "Follow lockout and guarding rules every time, even for a quick fix.",
+     "Learn basic machine care and simple adjustments from the setter."
+    ],
+    "project": "Learn one machine adjustment under supervision each month for three months and record what you can do alone."
+   },
+   {
+    "title": "Steady work and a path forward",
+    "items": [
+     "Feed and remove materials steadily, so the machine never waits.",
+     "Spot defective products by eye before they move to the next stage.",
+     "Work toward machine operator roles, building on what you learn."
+    ],
+    "project": "Agree a training plan toward machine operator with your supervisor and track your progress for a year."
+   }
+  ],
+  "aiTools": [
+   "Machine screens and alarms",
+   "Production terminals",
+   "Digital work instructions"
+  ],
+  "humanEdge": [
+   "Steady feeding so machines never wait",
+   "Spotting defective products",
+   "Safe work next to robots and feeders"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7064.00": {
+  "roadmap": [
+   {
+    "title": "Order scanning and pack instructions",
+    "items": [
+     "Scan items and orders so the system confirms the right products before packing.",
+     "Follow on-screen packing instructions for box size, filling and labels.",
+     "Record damaged items and missing stock in the system, so orders are fixed quickly."
+    ],
+    "project": "Record packing errors caught by scanning for a month and share patterns with your team leader."
+   },
+   {
+    "title": "Packing machines and sustainability",
+    "items": [
+     "Learn automatic box makers and labellers, and how to clear their jams.",
+     "Use right-size packaging and less filling, as customers and companies want less waste.",
+     "Learn safe lifting and workstation set-up to protect your body."
+    ],
+    "project": "Test right-size packaging on one product for a month, record material used and damage, and share the results with your team leader."
+   },
+   {
+    "title": "Care, speed and accuracy",
+    "items": [
+     "Pack fragile items carefully, so they arrive undamaged.",
+     "Work quickly and accurately at busy times without cutting corners on checks.",
+     "Move toward team leader or quality roles, building on packing knowledge."
+    ],
+    "project": "Track damage returns for your packing area for three months and agree one packing change with your team."
+   }
+  ],
+  "aiTools": [
+   "Order scanners",
+   "On-screen packing instructions",
+   "Automatic box makers and labellers"
+  ],
+  "humanEdge": [
+   "Careful packing of fragile items",
+   "Speed and accuracy at busy times",
+   "Reducing waste in packaging"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7065.00": {
+  "roadmap": [
+   {
+    "title": "Handheld scanners and pick routes",
+    "items": [
+     "Pick and stock with handheld scanners or voice picking, which guide routes and confirm each item.",
+     "Report stock errors and damaged goods in the system as you find them.",
+     "Use shelf labels and planograms on your device to stock shelves correctly."
+    ],
+    "project": "Record stock errors found during picking for a month and share the most common locations with your supervisor."
+   },
+   {
+    "title": "Robots and warehouse systems",
+    "items": [
+     "Learn to work with picking robots, goods-to-person stations and autonomous carts.",
+     "Get certified on forklifts or reach trucks to widen your skills.",
+     "Learn safe lifting and pacing to protect your body."
+    ],
+    "project": "Get one equipment certification within three months and record the new tasks it lets you do."
+   },
+   {
+    "title": "Accuracy and helpful service",
+    "items": [
+     "Notice wrong labels, damaged goods and empty shelves on your rounds.",
+     "Help customers find products and answer questions in stores.",
+     "Move toward inventory, team leader or equipment operator roles."
+    ],
+    "project": "Agree a development plan with your supervisor and track the skills you build toward your next role over a year."
+   }
+  ],
+  "aiTools": [
+   "Handheld scanners and voice picking",
+   "Picking robots and carts",
+   "Planogram apps"
+  ],
+  "humanEdge": [
+   "Noticing wrong labels and damage",
+   "Helping customers find products",
+   "Safe pacing and lifting all shift"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7071.00": {
+  "roadmap": [
+   {
+    "title": "Station controls and remote monitoring",
+    "items": [
+     "Monitor compressors and pumping stations through SCADA, often remotely, and act on pressure and flow alarms quickly.",
+     "Record readings, starts and stops digitally for operations and regulators.",
+     "Use vibration and temperature data to plan compressor maintenance."
+    ],
+    "project": "Review compressor condition data for three months and propose maintenance priorities to your supervisor."
+   },
+   {
+    "title": "Gas safety and emissions",
+    "items": [
+     "Use gas detectors and leak cameras to find leaks early.",
+     "Learn emission rules and how to reduce venting and leaks.",
+     "Train for emergency shutdowns and practise them with the control room."
+    ],
+    "project": "Survey your station for leaks with a camera each month for three months and record leaks found and fixed."
+   },
+   {
+    "title": "Hands-on skill and vigilance",
+    "items": [
+     "Hear and feel when compressors run wrong during station visits.",
+     "Repair and adjust valves and compressors safely with lockout every time.",
+     "Stay alert on long shifts at remote stations, with check-in routines."
+    ],
+    "project": "Write down warning signs you have noticed on compressors and use them to train a new operator."
+   }
+  ],
+  "aiTools": [
+   "SCADA for remote stations",
+   "Compressor condition monitoring",
+   "Leak detection cameras"
+  ],
+  "humanEdge": [
+   "Hearing compressors run wrong",
+   "Safe repairs with lockout",
+   "Alertness at remote stations"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7072.00": {
+  "roadmap": [
+   {
+    "title": "Pump controls and flow data",
+    "items": [
+     "Run pumps from control screens, watching pressures, flows and levels, and adjust before tanks overflow or run dry.",
+     "Record readings and transfers digitally, so volumes and billing are accurate.",
+     "Use pump condition data to spot wear before failures."
+    ],
+    "project": "Record pump condition data for three months and agree maintenance priorities with your supervisor."
+   },
+   {
+    "title": "Safety and product handling",
+    "items": [
+     "Learn the hazards of each product you pump, from fuels to chemicals.",
+     "Follow spill prevention and response procedures for every transfer.",
+     "Keep pump and valve maintenance on schedule with reminders."
+    ],
+    "project": "Practise one spill response with your team each quarter, time each step and record what to improve before the next drill."
+   },
+   {
+    "title": "Attention and care on rounds",
+    "items": [
+     "Check pumps, seals and valves in person for leaks and noise.",
+     "Coordinate transfers clearly with drivers, ships or plant staff.",
+     "Respond calmly to alarms and upsets, following the procedure step by step."
+    ],
+    "project": "Record every leak or fault found on rounds for three months and share the patterns with maintenance."
+   }
+  ],
+  "aiTools": [
+   "Pump control screens",
+   "Flow and level monitoring",
+   "Pump condition data"
+  ],
+  "humanEdge": [
+   "In-person checks for leaks and noise",
+   "Clear coordination of transfers",
+   "Calm response to alarms and upsets"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7073.00": {
+  "roadmap": [
+   {
+    "title": "Well data and remote monitoring",
+    "items": [
+     "Monitor well pressures, flows and pump status through remote systems, and visit wells that show problems.",
+     "Record production, tests and maintenance in a digital field app.",
+     "Use production data to find wells that are underperforming."
+    ],
+    "project": "Review production data for your wells for three months and report underperforming wells with likely causes."
+   },
+   {
+    "title": "Leak detection and maintenance",
+    "items": [
+     "Use gas detectors and leak cameras to find leaks around wellheads and tanks.",
+     "Plan maintenance on pumps, separators and valves with reminders.",
+     "Learn emission rules and how to reduce venting from tanks and wellheads."
+    ],
+    "project": "Survey your wells for leaks each month for three months and record leaks found and repaired."
+   },
+   {
+    "title": "Field skill and safety",
+    "items": [
+     "Drive long routes safely and work alone with good safety habits.",
+     "Hear and see when pump jacks or other equipment are not running right.",
+     "Repair pumps and valves in the field with care, using lockout every time."
+    ],
+    "project": "Write down warning signs you have noticed at wells, share them with newer pumpers and add the best ones to your route checklist."
+   }
+  ],
+  "aiTools": [
+   "Remote well monitoring",
+   "Digital field apps",
+   "Gas detectors and leak cameras"
+  ],
+  "humanEdge": [
+   "Safe lone work on long routes",
+   "Noticing pump problems by ear",
+   "Careful repairs in the field"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7081.00": {
+  "roadmap": [
+   {
+    "title": "Route apps and vehicle systems",
+    "items": [
+     "Follow digital routes on the truck tablet, and report missed bins, blocked streets and overfilled containers with photos.",
+     "Use bin sensors or RFID data where available to skip empty bins and plan stops.",
+     "Do pre-trip vehicle checks with a digital checklist."
+    ],
+    "project": "Report every missed or contaminated bin with a photo for a month and share patterns with the route planner."
+   },
+   {
+    "title": "Automated trucks and safety",
+    "items": [
+     "Learn automated arm trucks and camera systems, and how to use them safely.",
+     "Learn to spot contamination and hazardous items in recycling.",
+     "Follow safety rules around traffic and moving machinery."
+    ],
+    "project": "Track contamination you see on your route for a month and help the recycling team target one street."
+   },
+   {
+    "title": "Safety, care and public contact",
+    "items": [
+     "Watch constantly for pedestrians, cyclists and children around the truck.",
+     "Lift and handle bins safely to protect your back.",
+     "Be polite and helpful with residents on your route."
+    ],
+    "project": "Review three near misses with your crew and agree one change in how you work on busy streets."
+   }
+  ],
+  "aiTools": [
+   "Route tablets with photo reporting",
+   "Bin sensors and RFID",
+   "Automated arm and camera systems"
+  ],
+  "humanEdge": [
+   "Constant watch for people around the truck",
+   "Safe lifting of bins on every street",
+   "Polite contact with residents"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "53-7121.00": {
+  "roadmap": [
+   {
+    "title": "Loading systems and transfer records",
+    "items": [
+     "Use loading control systems and meters to fill tanks to the right volume, and check readings against paperwork.",
+     "Record transfers, seals and quality checks digitally, so documents match the load.",
+     "Use overfill protection and grounding systems every time."
+    ],
+    "project": "Compare meter readings with delivery documents for a month and report any differences to your supervisor."
+   },
+   {
+    "title": "Product safety and emergency response",
+    "items": [
+     "Learn the hazards of each product you load, and the right protective equipment.",
+     "Practise spill and fire response with your team at the loading area.",
+     "Learn vapour recovery and emission controls used at your loading rack."
+    ],
+    "project": "Run one spill response drill with your team each quarter, time each step and record what improved since the last drill."
+   },
+   {
+    "title": "Care and communication",
+    "items": [
+     "Check hoses, valves and connections carefully before every transfer.",
+     "Communicate clearly with drivers, ship crews and control rooms.",
+     "Stay alert during long transfers and stop when something looks wrong."
+    ],
+    "project": "Use a pre-transfer checklist for every load for a month and record problems found before loading started."
+   }
+  ],
+  "aiTools": [
+   "Loading control systems and meters",
+   "Overfill protection systems",
+   "Digital transfer records"
+  ],
+  "humanEdge": [
+   "Careful checks of hoses and valves",
+   "Clear talk with drivers and crews",
+   "Stopping when something looks wrong"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  }
