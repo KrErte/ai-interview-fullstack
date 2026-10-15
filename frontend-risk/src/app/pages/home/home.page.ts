@@ -23,18 +23,18 @@ const SCALE = [
           <span class="kicker !text-fg">Free &middot; 11 questions &middot; No account</span>
         </p>
         <h1 class="display rise mt-7 text-[clamp(3rem,8vw,9.5rem)]" style="--i:1">
-          How exposed is your work to <span class="text-accent">AI?</span>
+          The AI roadmap for <span class="text-accent">your job.</span>
         </h1>
       </div>
 
       <div class="flex flex-col justify-end lg:col-span-4">
         <p class="rise max-w-md text-[18px] leading-relaxed text-muted" style="--i:2">
-          Pick your profession and answer 11 questions. See which of your typical tasks AI can already do,
-          and get a learning path for what to do about it.
+          Everyone is learning AI, most of us at random. Pick your profession, answer 11 questions and see where to
+          start: which of your tasks AI is already changing, and what to learn first.
         </p>
         <div class="rise mt-8" style="--i:3">
           <a routerLink="/ai-test" class="btn-accent w-full sm:w-auto">
-            Take the test
+            Find your starting point
             <span class="arrow" aria-hidden="true">&rarr;</span>
           </a>
           <!-- plain href: /jobs pages are rendered by the backend, not by Angular -->
@@ -77,6 +77,21 @@ const SCALE = [
       </article>
     </section>
 
+    <!-- Why this exists: the founder's story, full text on /why -->
+    <section class="card rise mt-6 grid gap-6 p-6 sm:p-8 lg:grid-cols-12 lg:items-center" style="--i:8">
+      <p class="kicker lg:col-span-2">Why this exists</p>
+      <p class="text-[clamp(1.2rem,2.1vw,1.6rem)] font-semibold leading-snug tracking-tight lg:col-span-7">
+        &ldquo;I was a software developer when I ended up in hospital for half a year. When I came back, I had fallen
+        behind on AI and didn't know where to start.&rdquo;
+      </p>
+      <div class="lg:col-span-3 lg:text-right">
+        <a routerLink="/why" class="btn-ghost w-full sm:w-auto">
+          Why I built this
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
     <!-- Method + closing CTA -->
     <section class="mt-20 grid gap-8 border-t border-line pt-10 lg:mt-28 lg:grid-cols-12">
       <p class="kicker lg:col-span-3">How the score works</p>
@@ -96,7 +111,7 @@ const SCALE = [
       </div>
       <div class="lg:col-span-3 lg:text-right">
         <a routerLink="/ai-test" class="btn-ghost w-full sm:w-auto">
-          Start the test
+          Find your starting point
           <span class="arrow" aria-hidden="true">&rarr;</span>
         </a>
       </div>
@@ -108,16 +123,16 @@ export class HomePageComponent {
 
   readonly features = [
     {
-      title: 'Replaceability score',
-      body: "A 0–100 estimate of how much of your profession's typical work today's AI tools can take over, adjusted by your answers."
+      title: 'Where you stand',
+      body: '11 questions about how you work and how you already use AI. You get a replaceability score and your AI readiness, so you know your starting point.'
     },
     {
-      title: 'Task breakdown',
-      body: 'Each typical task in your profession, its share of the working week, and how automatable it is.'
+      title: 'What changes in your work',
+      body: 'Each typical task in your profession, its share of the working week, how much of it AI can already do, and where people already use AI for it.'
     },
     {
-      title: 'Learning path',
-      body: 'A general AI learning path that starts where you are, plus a starter plan with practice projects for your profession.'
+      title: 'What to learn, in order',
+      body: 'A general AI learning path that starts at your level, plus a starter plan with practice projects for your profession.'
     }
   ];
 }

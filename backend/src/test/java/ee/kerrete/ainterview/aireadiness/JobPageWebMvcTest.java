@@ -84,7 +84,8 @@ class JobPageWebMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith("application/xml"))
                 .andExpect(content().string(containsString("<loc>https://futureproof.example/jobs/cooks-restaurant</loc>")))
-                .andExpect(content().string(containsString("<loc>https://futureproof.example/ai-test</loc>")));
+                .andExpect(content().string(containsString("<loc>https://futureproof.example/ai-test</loc>")))
+                .andExpect(content().string(containsString("<loc>https://futureproof.example/why</loc>")));
         mvc.perform(get("/robots.txt"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Sitemap: https://futureproof.example/sitemap.xml")));
