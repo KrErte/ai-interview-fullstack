@@ -13,6 +13,7 @@ import {
   ProfessionSummary,
   Question,
   RiskBand,
+  RoadmapPhase,
   TaskExposure
 } from '../../models/ai-readiness.model';
 
@@ -354,18 +355,39 @@ const SCALE = [
       <section class="card p-6 sm:p-8">
         <p class="font-mono text-sm text-accent">07</p>
         <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Starter plan: {{ r.professionName }}</h2>
-        <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">The same steps for everyone in this profession, with a practice project in each phase.</p>
+        <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">The same steps for everyone in this profession, with a practice project in each phase. Tick off what you have done; your progress is saved in this browser.</p>
+        <div *ngIf="roadmapProgress(r) as p" class="mt-5 flex max-w-md items-center gap-4">
+          <div class="h-2 flex-1 overflow-hidden rounded-full bg-line" role="progressbar"
+               [attr.aria-valuenow]="p.done" aria-valuemin="0" [attr.aria-valuemax]="p.total" aria-label="Roadmap progress">
+            <div class="h-full rounded-full bg-accent transition-[width] duration-300" [style.width.%]="p.total ? (p.done / p.total) * 100 : 0"></div>
+          </div>
+          <span class="num shrink-0 font-mono text-[13px] text-muted">{{ p.done }} / {{ p.total }} done</span>
+        </div>
 
         <div class="mt-8 grid gap-4 md:grid-cols-3">
           <div *ngFor="let ph of r.professionRoadmap; let i = index" class="avoid-break flex flex-col rounded-xl border border-line p-5">
-            <p class="kicker">Phase {{ i + 1 }}</p>
+            <div class="flex items-baseline justify-between gap-3">
+              <p class="kicker">Phase {{ i + 1 }}</p>
+              <span class="num font-mono text-[12px] text-faint">{{ phaseDone(r, ph) }} / {{ ph.items.length + 1 }}</span>
+            </div>
             <h3 class="mt-2 text-xl font-bold leading-tight tracking-tight">{{ ph.title }}</h3>
-            <ul class="mt-4 flex-1 space-y-1.5 text-[15px] leading-relaxed">
-              <li *ngFor="let it of ph.items" class="flex gap-3"><span class="text-faint">&ndash;</span><span>{{ it }}</span></li>
+            <ul class="mt-4 flex-1 space-y-2 text-[15px] leading-relaxed">
+              <li *ngFor="let it of ph.items">
+                <label class="flex cursor-pointer gap-3">
+                  <input type="checkbox" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]"
+                         [checked]="isDone(r, it)" (change)="toggleDone(r, it)" />
+                  <span [class.text-muted]="isDone(r, it)" [class.line-through]="isDone(r, it)">{{ it }}</span>
+                </label>
+              </li>
             </ul>
             <div class="mt-6 rounded-xl bg-surface-2 p-4">
               <p class="kicker !text-accent">Project</p>
               <p class="mt-2 text-[15px] leading-relaxed">{{ ph.project }}</p>
+              <label class="mt-3 flex cursor-pointer items-center gap-2 text-[14px] text-muted">
+                <input type="checkbox" class="h-4 w-4 accent-[#c6f432]"
+                       [checked]="isDone(r, ph.project)" (change)="toggleDone(r, ph.project)" />
+                Project done
+              </label>
             </div>
           </div>
         </div>
@@ -667,6 +689,48 @@ export class AiCheckPageComponent implements OnInit {
     const top = new Set([...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS));
     const rest = r.tasks.filter(t => !top.has(t));
     return { count: rest.length, share: rest.reduce((sum, t) => sum + t.share, 0) };
+  }
+
+  /** Ticked roadmap steps (items and projects, by text) for the profession on screen. */
+  private progress: { professionId: string; done: Set<string> } | null = null;
+
+  private doneSet(r: AssessmentResult): Set<string> {
+    if (this.progress?.professionId !== r.professionId) {
+      this.progress = { professionId: r.professionId, done: new Set(this.api.loadProgress(r.professionId)) };
+    }
+    return this.progress.done;
+  }
+
+  isDone(r: AssessmentResult, step: string): boolean {
+    return this.doneSet(r).has(step);
+  }
+
+  toggleDone(r: AssessmentResult, step: string): void {
+    const done = this.doneSet(r);
+    if (done.has(step)) {
+      done.delete(step);
+    } else {
+      done.add(step);
+      this.analytics.track('roadmap-step-done', { profession: r.professionId });
+    }
+    this.api.saveProgress(r.professionId, [...done]);
+  }
+
+  /** Ticked steps in one phase, counting its project as a step. */
+  phaseDone(r: AssessmentResult, phase: RoadmapPhase): number {
+    return [...phase.items, phase.project].filter(step => this.isDone(r, step)).length;
+  }
+
+  /** Ticked and total steps over the whole profession roadmap; null when it has none. */
+  roadmapProgress(r: AssessmentResult): { done: number; total: number } | null {
+    const phases = r.professionRoadmap ?? [];
+    if (!phases.length) {
+      return null;
+    }
+    return {
+      done: phases.reduce((sum, ph) => sum + this.phaseDone(r, ph), 0),
+      total: phases.reduce((sum, ph) => sum + ph.items.length + 1, 0)
+    };
   }
 
   band(r: AssessmentResult) {

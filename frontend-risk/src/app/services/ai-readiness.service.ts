@@ -19,6 +19,7 @@ export class AiReadinessService {
   private readonly baseUrl = `${environment.apiBaseUrl}/api/ai-readiness`;
   private readonly RESULT_KEY = 'ai_readiness_last_result';
   private readonly ANSWERS_KEY = 'ai_readiness_last_answers';
+  private readonly PROGRESS_KEY = 'ai_readiness_roadmap_progress';
 
   constructor(private http: HttpClient) {}
 
@@ -89,6 +90,38 @@ export class AiReadinessService {
       return raw ? (JSON.parse(raw) as AssessmentResult) : null;
     } catch {
       return null;
+    }
+  }
+
+  /**
+   * Roadmap steps the user has ticked off for one profession. Steps are keyed by their text, so
+   * a step that is reworded in the catalog simply starts unticked.
+   */
+  loadProgress(professionId: string): string[] {
+    return this.readProgress()[professionId] ?? [];
+  }
+
+  saveProgress(professionId: string, done: string[]): void {
+    const all = this.readProgress();
+    if (done.length) {
+      all[professionId] = done;
+    } else {
+      delete all[professionId];
+    }
+    try {
+      localStorage.setItem(this.PROGRESS_KEY, JSON.stringify(all));
+    } catch {
+      // storage unavailable – ticks last only for this visit
+    }
+  }
+
+  private readProgress(): Record<string, string[]> {
+    try {
+      const raw = localStorage.getItem(this.PROGRESS_KEY);
+      const parsed = raw ? JSON.parse(raw) : null;
+      return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+    } catch {
+      return {};
     }
   }
 
