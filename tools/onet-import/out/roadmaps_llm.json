@@ -19739,6 +19739,132 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "33-1012.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports, records and rosters",
+    "items": [
+     "Review officers' reports drafted with approved AI tools from bodycam audio, and check every fact before approval.",
+     "Build duty rosters with scheduling software that respects rest rules, and adjust for training and court dates.",
+     "Check written orders and warrants against legal requirements with AI-assisted checklists, then review them yourself."
+    ],
+    "project": "Audit 20 AI-drafted incident reports against bodycam footage with a colleague and record the errors officers had missed."
+   },
+   {
+    "title": "Case management and data-led policing",
+    "items": [
+     "Track open investigations in the case system, with alerts for stalled leads and court deadlines.",
+     "Use crime data dashboards to plan patrols, and question patterns that could reflect biased data.",
+     "Set clear rules for officers on AI tools: what may be used, how it is checked and what is logged."
+    ],
+    "project": "Write a one-page AI use guide for your unit with legal advice, brief every officer and review it after three months."
+   },
+   {
+    "title": "Leading officers and community trust",
+    "items": [
+     "Guide investigators through hard cases, sharing judgement on evidence and procedure.",
+     "Handle misconduct complaints and personnel problems fairly and firmly.",
+     "Meet community groups to build trust and explain how policing works, including new technology."
+    ],
+    "project": "Hold two community meetings on policing priorities, record concerns raised and report the actions your unit took."
+   }
+  ],
+  "aiTools": [
+   "Approved AI report drafting from bodycam audio",
+   "Police case management systems",
+   "Crime data dashboards"
+  ],
+  "humanEdge": [
+   "Guiding investigators on hard cases",
+   "Handling misconduct fairly and firmly",
+   "Building trust with the community"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-1021.00": {
+  "roadmap": [
+   {
+    "title": "AI for station records and shift planning",
+    "items": [
+     "Write fire incident reports with templates that pull times and units from dispatch, and add what you saw on scene.",
+     "Plan shifts and training time with scheduling software, keeping crews at safe strength.",
+     "Draft correspondence and equipment proposals with AI help, backed by your inspection data."
+    ],
+    "project": "Use report templates and approved drafting help for two months and compare time spent on paperwork with before."
+   },
+   {
+    "title": "Inspection data and equipment readiness",
+    "items": [
+     "Track equipment checks, repairs and vehicle maintenance in one system with alerts for overdue items.",
+     "Record property inspections on tablets with photos, so follow-ups are not missed.",
+     "Use risk data on buildings and incidents to plan prevention visits where they matter most."
+    ],
+    "project": "Move equipment checks to a digital system for three months and count overdue items before and after."
+   },
+   {
+    "title": "Command, rescue and crew training",
+    "items": [
+     "Lead crews at fires and rescues, making fast decisions with incomplete information.",
+     "Drill firefighters in realistic scenarios, so skills hold under stress.",
+     "Provide emergency medical care and rescue alongside your crew, setting the standard."
+    ],
+    "project": "Run one realistic multi-crew drill each month for a quarter and record the lessons and changes agreed after each."
+   }
+  ],
+  "aiTools": [
+   "Incident reporting and records software",
+   "Equipment and fleet maintenance systems",
+   "Tablet inspection apps"
+  ],
+  "humanEdge": [
+   "Fast command decisions at incidents",
+   "Realistic drills under stress",
+   "Rescue and medical care with the crew"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-1091.00": {
+  "roadmap": [
+   {
+    "title": "AI for patrol reports and post orders",
+    "items": [
+     "Review patrol reports written with templates and AI help, and check times, places and facts.",
+     "Write and update post orders and procedures with AI, then walk through them with the guards.",
+     "Assign posts and patrols with scheduling software, matching skills and rest rules."
+    ],
+    "project": "Rewrite post orders for three posts with AI help, walk through them with the guards and record the questions raised."
+   },
+   {
+    "title": "Camera analytics and access systems",
+    "items": [
+     "Use video analytics that flag unusual activity, and train staff to verify alerts before acting.",
+     "Manage access control lists and visitor systems, with audits of who can enter where.",
+     "Track incidents and false alarms by site and time to improve patrol plans."
+    ],
+    "project": "Review a month of camera analytics alerts with your team, sort true and false alerts and adjust the settings."
+   },
+   {
+    "title": "Supervising guards and handling incidents",
+    "items": [
+     "Patrol with your team and check standards in person, coaching on the spot.",
+     "Handle disturbances and complaints calmly, protecting people and property.",
+     "Train guards in first aid, fire safety and de-escalation with practical drills."
+    ],
+    "project": "Run monthly de-escalation and first aid drills for a quarter and record incidents handled without escalation."
+   }
+  ],
+  "aiTools": [
+   "Video analytics for CCTV",
+   "Access control and visitor management",
+   "Guard scheduling software"
+  ],
+  "humanEdge": [
+   "Coaching guards in person on patrol",
+   "Calm handling of disturbances",
+   "Practical training in de-escalation"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "33-2011.00": {
   "roadmap": [
    {
@@ -19778,6 +19904,132 @@
    "Rescue and firefighting under extreme conditions",
    "Working as one crew when it is dangerous",
    "Reassuring people at their worst moment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-2021.00": {
+  "roadmap": [
+   {
+    "title": "AI for inspection reports and plan review",
+    "items": [
+     "Write inspection reports with AI from your tablet notes and photos, and check every code reference.",
+     "Review building plans with AI-assisted code checklists, and confirm each issue in the code yourself.",
+     "Explain required fixes to property owners with plain-language letters drafted with AI."
+    ],
+    "project": "Write inspection reports with AI help for a month, and compare writing time and follow-up compliance with before."
+   },
+   {
+    "title": "Risk-based inspections and investigation records",
+    "items": [
+     "Rank buildings for inspection by risk using fire history, use and past violations.",
+     "Keep investigation records, evidence logs and photos in one searchable case system.",
+     "Learn how fire modelling and data tools support origin and cause analysis."
+    ],
+    "project": "Build a simple risk ranking for one district, inspect the top 20 buildings and compare violations found with random inspections."
+   },
+   {
+    "title": "Fire scenes and testing systems",
+    "items": [
+     "Examine fire scenes and collect evidence carefully; origin and cause are read in the debris.",
+     "Test new alarm and sprinkler systems in person before buildings open.",
+     "Testify about findings in court clearly and stick to what the evidence shows."
+    ],
+    "project": "Review three past fire investigations with a senior investigator and write down the evidence that decided each cause."
+   }
+  ],
+  "aiTools": [
+   "Tablet inspection apps",
+   "AI-assisted code checklists",
+   "Investigation case management software"
+  ],
+  "humanEdge": [
+   "Reading fire scenes and debris",
+   "Testing alarm and sprinkler systems",
+   "Testifying on what evidence shows"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-2022.00": {
+  "roadmap": [
+   {
+    "title": "AI for fire danger data and public education",
+    "items": [
+     "Use fire danger ratings, weather data and satellite hotspot alerts to plan patrols each day.",
+     "Create fire safety materials and social posts with AI, checked against current rules and bans.",
+     "Keep patrol logs and inspection records in a mobile app with GPS and photos."
+    ],
+    "project": "Plan patrols from fire danger and hotspot data for one season and compare fires found early with the previous season."
+   },
+   {
+    "title": "Detection networks and hazard inspections",
+    "items": [
+     "Learn camera and AI smoke detection networks, and how alerts are confirmed before dispatch.",
+     "Inspect logging sites and forest tracts for hazards with digital checklists.",
+     "Report weather readings automatically from stations, checking values that look wrong."
+    ],
+    "project": "Inspect ten logging sites with a digital checklist, record hazards found and follow up until each is fixed."
+   },
+   {
+    "title": "Fireline leadership and community contact",
+    "items": [
+     "Direct crews on firelines safely, reading fire behaviour, wind and terrain as they change.",
+     "Talk with campers, landowners and logging crews about fire risk with respect.",
+     "Train crews in wildland firefighting with realistic field exercises."
+    ],
+    "project": "Run a pre-season field exercise with your crews and record the skills that need more practice."
+   }
+  ],
+  "aiTools": [
+   "Fire danger and satellite hotspot services",
+   "AI smoke detection camera networks",
+   "Mobile patrol and inspection apps"
+  ],
+  "humanEdge": [
+   "Reading fire behaviour on the line",
+   "Talking with the public about fire risk",
+   "Training crews in the field"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-3011.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for dockets and screening",
+    "items": [
+     "Keep the court docket and room schedules in the court's case system, checking changes each morning.",
+     "Use x-ray and metal detection screening with care, and learn the alerts these systems can raise.",
+     "Answer visitors' questions with printed guides and the court's online information."
+    ],
+    "project": "Write a one-page guide for visitors on where to go and what to bring with AI help, and track common questions for a month."
+   },
+   {
+    "title": "Security routines and evidence handling",
+    "items": [
+     "Check courtrooms for security and supplies with a standard checklist before each session.",
+     "Log evidence and exhibits with clear records every time they move.",
+     "Practise emergency drills for threats and medical events in the courthouse."
+    ],
+    "project": "Run one emergency drill with court staff, record the response time and fix the slowest step."
+   },
+   {
+    "title": "Order, custody and calm presence",
+    "items": [
+     "Keep order in the courtroom with calm authority, so trials run fairly.",
+     "Escort prisoners and protect juries from outside contact, alert to every risk.",
+     "Defuse tension in the courthouse before it becomes violence."
+    ],
+    "project": "Write down three early warning signs of courtroom conflict from your experience and share them in a team briefing."
+   }
+  ],
+  "aiTools": [
+   "Court case and docket systems",
+   "X-ray and metal detection screening",
+   "Evidence logging systems"
+  ],
+  "humanEdge": [
+   "Calm authority in the courtroom",
+   "Alert prisoner and jury escort",
+   "Defusing tension before violence"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -19823,6 +20075,216 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "33-3021.00": {
+  "roadmap": [
+   {
+    "title": "AI for case reports and record searches",
+    "items": [
+     "Draft investigation reports and warrant applications with approved tools, and check every fact against the evidence.",
+     "Search records and databases with authorised AI-assisted tools, and log every search for legal review.",
+     "Transcribe recorded interviews with approved tools, and check the transcript against the recording."
+    ],
+    "project": "Transcribe five interviews with an approved tool, check each against the audio and record the errors that mattered."
+   },
+   {
+    "title": "Digital evidence and analysis",
+    "items": [
+     "Use link analysis and timeline tools to connect people, places and events in complex cases.",
+     "Learn how deepfakes and altered media appear in evidence, and how authenticity is checked.",
+     "Coordinate with other agencies through shared case systems and clear information rules."
+    ],
+    "project": "Build a timeline of one closed case with link analysis tools and compare it with how the case was originally solved."
+   },
+   {
+    "title": "Interviews, judgement and court",
+    "items": [
+     "Interview witnesses and suspects yourself; rapport and careful questions uncover the truth.",
+     "Judge which leads matter and when the evidence is strong enough to charge.",
+     "Present evidence in court clearly and stand up to cross-examination."
+    ],
+    "project": "Review one of your recorded interviews with a senior detective and agree two questioning techniques to improve."
+   }
+  ],
+  "aiTools": [
+   "Approved report and transcription tools",
+   "Link analysis and timeline software",
+   "Authorised records search systems"
+  ],
+  "humanEdge": [
+   "Interviews that uncover the truth",
+   "Judging leads and evidence strength",
+   "Testifying under cross-examination"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-3021.02": {
+  "roadmap": [
+   {
+    "title": "AI for evidence records and scene diagrams",
+    "items": [
+     "Write evidence records and reports in the evidence system, with templates and checks for missing fields.",
+     "Create scene diagrams with sketch software and 3D scanning, checked against your measurements.",
+     "Search fingerprint databases with AFIS, and compare every candidate print yourself."
+    ],
+    "project": "Diagram three scenes with 3D scanning and software, check key measurements by hand and record the differences."
+   },
+   {
+    "title": "Evidence tracking and photography",
+    "items": [
+     "Track evidence with barcodes from scene to storage to court, so chain of custody is never broken.",
+     "Learn scene photography and image enhancement rules, so photos stay acceptable in court.",
+     "Coordinate scene work with investigators and lawyers on what to collect and how."
+    ],
+    "project": "Introduce barcode tracking for one evidence room and audit chain-of-custody gaps before and after three months."
+   },
+   {
+    "title": "Scene work and testimony",
+    "items": [
+     "Search scenes for trace evidence with light sources and patience, missing nothing important.",
+     "Lift and preserve prints carefully, following procedures that hold up in court.",
+     "Testify about evidence handling clearly and honestly, admitting limits when asked."
+    ],
+    "project": "Practise courtroom testimony on one past case with a colleague and improve how you explain your methods."
+   }
+  ],
+  "aiTools": [
+   "Automated Fingerprint Identification System (AFIS)",
+   "3D scene scanning and sketch software",
+   "Barcode evidence tracking"
+  ],
+  "humanEdge": [
+   "Patient searches for trace evidence",
+   "Careful print lifting and preservation",
+   "Honest testimony on evidence handling"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-3021.06": {
+  "roadmap": [
+   {
+    "title": "AI for collection, correlation and reports",
+    "items": [
+     "Search and correlate law enforcement databases with authorised AI tools, and log every query for oversight.",
+     "Draft intelligence reports, maps and charts with AI from your analysis, and verify each claim against sources.",
+     "Summarise large volumes of open-source information with AI, and grade each source's reliability yourself."
+    ],
+    "project": "Draft one intelligence product with AI help, grade every source used and have a senior analyst review the conclusions."
+   },
+   {
+    "title": "Network analysis and validation",
+    "items": [
+     "Use link analysis and GIS to map networks and hotspots, and test whether patterns hold over time.",
+     "Validate intelligence against independent sources before it drives action.",
+     "Learn how AI tools for pattern detection can mislead, such as with biased data or spurious links."
+    ],
+    "project": "Re-run one past network analysis with current tools and compare what the new picture adds or gets wrong."
+   },
+   {
+    "title": "Judgement, partnerships and fieldwork",
+    "items": [
+     "Judge what the evidence means and how sure you are; clear confidence levels guide decisions.",
+     "Share intelligence with partner agencies under clear rules, building trust over time.",
+     "Gather information through field observation and sources, which databases cannot replace."
+    ],
+    "project": "Write three assessments with explicit confidence levels, and review a year later how accurate each turned out."
+   }
+  ],
+  "aiTools": [
+   "Authorised AI search across police databases",
+   "Link analysis and GIS tools",
+   "Open-source intelligence tools"
+  ],
+  "humanEdge": [
+   "Judging meaning and confidence",
+   "Building trust with partner agencies",
+   "Field observation and human sources"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-3031.00": {
+  "roadmap": [
+   {
+    "title": "AI for citations, reports and wildlife data",
+    "items": [
+     "Write citations and reports on a handheld device with templates, checking details before issuing.",
+     "Record wildlife and habitat observations in a mobile app with GPS and photos.",
+     "Prepare talks for schools and clubs with AI-drafted materials, checked against current rules."
+    ],
+    "project": "Move one season's citations and reports to a mobile template and compare time and errors with paper."
+   },
+   {
+    "title": "Patrol planning and evidence",
+    "items": [
+     "Plan patrols with data on violation hotspots, seasons and reports from the public.",
+     "Use trail cameras and drones within the law to monitor hotspots, checking footage yourself.",
+     "Keep evidence and photos organised for court with chain-of-custody records."
+    ],
+    "project": "Map two years of violations and tips, plan patrols around the top hotspots and compare cases found with last season."
+   },
+   {
+    "title": "Field enforcement and public trust",
+    "items": [
+     "Patrol on foot, boat or vehicle in remote places, alone and alert to danger.",
+     "Investigate hunting accidents and poaching, interviewing witnesses with care.",
+     "Explain rules to hunters and anglers fairly, so they support conservation."
+    ],
+    "project": "Hold three community talks with hunters and anglers, record their concerns and report back what changed."
+   }
+  ],
+  "aiTools": [
+   "Mobile citation and report apps",
+   "Trail cameras and drones",
+   "Wildlife observation apps with GPS"
+  ],
+  "humanEdge": [
+   "Safe patrols in remote places",
+   "Investigating accidents and poaching",
+   "Earning hunters' and anglers' trust"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-3041.00": {
+  "roadmap": [
+   {
+    "title": "Handheld devices and plate recognition",
+    "items": [
+     "Use handheld devices that check permits and payments by plate, and confirm before issuing a ticket.",
+     "Learn licence plate recognition cars and apps that replace tyre chalking, and their error rates.",
+     "Record citations and photos digitally, so contested tickets have clear evidence."
+    ],
+    "project": "Track contested tickets for a month and how many you could defend with digital photos, compared with before."
+   },
+   {
+    "title": "Patrol data and dispatch",
+    "items": [
+     "Use data on violations and complaints to plan routes where enforcement matters most.",
+     "Coordinate tows and boots with dispatch through apps, with photos and locations.",
+     "Keep activity logs complete in the system for supervisors and appeals."
+    ],
+    "project": "Plan routes from complaint data for a month and compare complaints resolved with your usual routes."
+   },
+   {
+    "title": "Public contact and fairness",
+    "items": [
+     "Talk calmly with upset drivers and explain the rules without escalating.",
+     "Use judgement on fair warnings, for example with deliveries or emergencies.",
+     "Help visitors with directions and information about parking and streets."
+    ],
+    "project": "Note difficult driver encounters for a month, practise calming phrases with your team and compare complaints filed afterwards."
+   }
+  ],
+  "aiTools": [
+   "Handheld enforcement devices",
+   "Licence plate recognition systems",
+   "Dispatch and towing apps"
+  ],
+  "humanEdge": [
+   "Calming upset drivers without escalating",
+   "Fair judgement on when to warn",
+   "Helping visitors find their way"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "33-3051.00": {
   "roadmap": [
    {
@@ -19865,6 +20327,216 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "33-3051.04": {
+  "roadmap": [
+   {
+    "title": "AI for document checks and records",
+    "items": [
+     "Use automated passport and visa checks with facial matching, and resolve every mismatch in person.",
+     "Record findings and decisions in the border system with templates, checking every detail.",
+     "Look up laws, duties and tariffs with official tools, and explain them to travellers plainly."
+    ],
+    "project": "Track facial matching mismatches for a month, record their causes and share the patterns with your supervisor."
+   },
+   {
+    "title": "Risk targeting and inspection tools",
+    "items": [
+     "Use risk-targeting systems that flag travellers and cargo, and judge each flag with your own checks.",
+     "Learn x-ray and scanning tools for cargo and baggage, and what images can hide.",
+     "Watch for AI-forged documents and identities, and learn the newest detection methods."
+    ],
+    "project": "Review one month of risk flags you handled, record which led to findings and discuss the false alarms with analysts."
+   },
+   {
+    "title": "Interviews, inspection and judgement",
+    "items": [
+     "Interview travellers and read behaviour; many cases turn on a conversation.",
+     "Inspect baggage and cargo by hand where scans are unclear or behaviour raises doubts.",
+     "Make fair, lawful decisions on entry and detention, and explain them respectfully."
+    ],
+    "project": "Review ten of your interviews with an experienced colleague and agree two questioning techniques to improve."
+   }
+  ],
+  "aiTools": [
+   "Automated passport and facial matching",
+   "Risk-targeting systems",
+   "X-ray and cargo scanning tools"
+  ],
+  "humanEdge": [
+   "Reading travellers in interviews",
+   "Hands-on inspection where scans are unclear",
+   "Fair, lawful entry decisions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-3052.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports and incident records",
+    "items": [
+     "Write investigation reports with approved drafting tools from your notes and bodycam, and check every fact.",
+     "Keep incident records searchable by station, line and time to see where problems repeat.",
+     "Prepare safety and prevention materials for staff and passengers with AI, checked by you."
+    ],
+    "project": "Map one year of incidents by station and time and plan patrols for the top three hotspots next quarter."
+   },
+   {
+    "title": "CCTV analytics and access control",
+    "items": [
+     "Use video analytics on stations and yards, and verify every alert before acting.",
+     "Check credentials and access to secure areas with electronic systems and patrols.",
+     "Coordinate with rail operators and local police through shared incident channels."
+    ],
+    "project": "Review a month of video analytics alerts at one station and adjust settings with the control room to cut false alarms."
+   },
+   {
+    "title": "Patrols, apprehension and emergencies",
+    "items": [
+     "Patrol trains, stations and yards, reading crowds and spotting trouble early.",
+     "Apprehend and remove offenders safely, working with other police when needed.",
+     "Direct security at derailments, fires and floods, keeping people safe."
+    ],
+    "project": "Run one joint exercise with the rail operator for a major incident and record what needs to change."
+   }
+  ],
+  "aiTools": [
+   "Approved report drafting tools",
+   "Station video analytics",
+   "Electronic access control systems"
+  ],
+  "humanEdge": [
+   "Reading crowds on trains and stations",
+   "Safe apprehension of offenders",
+   "Directing security in rail emergencies"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-9011.00": {
+  "roadmap": [
+   {
+    "title": "AI for reports, records and public questions",
+    "items": [
+     "Write incident and cruelty reports with templates on a phone or tablet, adding photos and witness notes.",
+     "Keep impoundment and adoption records in shelter software, linked to microchip scans.",
+     "Answer common public questions with AI-drafted replies from local animal laws, checked by you."
+    ],
+    "project": "Write reply templates for the ten most common public questions with AI help and track response times for a month."
+   },
+   {
+    "title": "Microchips, lost pets and evidence",
+    "items": [
+     "Scan every animal for microchips and use lost-pet databases and photo matching to find owners.",
+     "Organise cruelty case evidence and photos for prosecution with clear records.",
+     "Run public education on welfare and laws with simple materials and social posts."
+    ],
+    "project": "Use photo matching and lost-pet databases for every stray for two months and compare return-to-owner rates."
+   },
+   {
+    "title": "Animal handling and difficult situations",
+    "items": [
+     "Capture and handle frightened or aggressive animals safely, with the right tools.",
+     "Investigate cruelty and attacks, talking with owners and witnesses calmly.",
+     "Care for animals in your custody, noticing injuries and illness."
+    ],
+    "project": "Practise safe capture techniques with a trainer and record injuries to staff and animals over three months."
+   }
+  ],
+  "aiTools": [
+   "Shelter management software",
+   "Microchip scanners and lost-pet databases",
+   "Mobile report apps"
+  ],
+  "humanEdge": [
+   "Safe handling of frightened animals",
+   "Calm talks with owners and witnesses",
+   "Noticing injury and illness in animals"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-9021.00": {
+  "roadmap": [
+   {
+    "title": "AI for database searches and case reports",
+    "items": [
+     "Search public records and databases with AI-assisted tools, and confirm each finding in the original source.",
+     "Write case reports and summaries with AI from your notes and evidence, and check every fact and date.",
+     "Run background checks within data protection law, recording the lawful basis for each search."
+    ],
+    "project": "Write five case reports with AI help, log time saved and have a colleague check facts against your evidence."
+   },
+   {
+    "title": "Open-source methods and fraud checks",
+    "items": [
+     "Learn open-source investigation methods, including image geolocation and checking for fakes.",
+     "Spot AI-made fake documents, photos and profiles in insurance and fraud cases.",
+     "Keep evidence organised with chain-of-custody records that stand up in court."
+    ],
+    "project": "Verify ten images from past cases with open-source methods and record which ones were edited or misdated."
+   },
+   {
+    "title": "Surveillance, interviews and ethics",
+    "items": [
+     "Conduct surveillance patiently and legally, documenting only what you see.",
+     "Interview people for evidence with tact, especially in family and custody cases.",
+     "Judge what is legal and ethical in each case, and turn down work that is not."
+    ],
+    "project": "Write your own ethics and legality checklist with a lawyer's help, and use it for every new case for three months."
+   }
+  ],
+  "aiTools": [
+   "AI-assisted public records search",
+   "Open-source investigation tools",
+   "ChatGPT or Claude for report drafts"
+  ],
+  "humanEdge": [
+   "Patient, legal surveillance work",
+   "Tactful interviews in family cases",
+   "Judging what is legal and ethical"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-9031.00": {
+  "roadmap": [
+   {
+    "title": "AI for video review and surveillance logs",
+    "items": [
+     "Use AI video analytics that flag unusual play and movements, and review every flag on camera.",
+     "Keep surveillance logs in the system with time-stamped clips linked to each observation.",
+     "Write violation reports with templates and approved drafting tools, checked against footage."
+    ],
+    "project": "Review a month of AI analytics flags with your team, sort true and false flags and adjust the settings."
+   },
+   {
+    "title": "Data patterns and regulation",
+    "items": [
+     "Use transaction and play data to spot patterns linked to cheating, collusion or money laundering.",
+     "Learn gaming regulations and anti-money-laundering rules, and how they apply on the floor.",
+     "Inspect cameras and recording systems on schedule, with fault logs."
+    ],
+    "project": "Analyse three months of table and transaction data for one game with AI help and investigate the top three anomalies."
+   },
+   {
+    "title": "Observation skill and investigations",
+    "items": [
+     "Watch games and staff with a trained eye for sleight of hand and collusion.",
+     "Investigate incidents fairly, gathering footage and statements before conclusions.",
+     "Train new observers to read tables and behaviour, sharing your experience."
+    ],
+    "project": "Build a training set of ten past cheating cases on video and use it to train one new observer."
+   }
+  ],
+  "aiTools": [
+   "Casino video analytics",
+   "Surveillance logging systems",
+   "Transaction monitoring tools"
+  ],
+  "humanEdge": [
+   "A trained eye for sleight of hand",
+   "Fair, evidence-based investigations",
+   "Training new observers to read tables"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "33-9032.00": {
   "roadmap": [
    {
@@ -19904,6 +20576,216 @@
    "Calming tense situations with words",
    "Judging whether an alarm is real",
    "Acting fast when someone is hurt"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-9091.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for shifts, plans and reports",
+    "items": [
+     "Check traffic control plans and shift details in work apps before each job, and ask about anything unclear.",
+     "Report incidents, near misses and dangerous drivers through a phone app with photos and locations.",
+     "Use translation apps to explain crossing rules to children and parents who speak other languages."
+    ],
+    "project": "Report every near miss through an app for a month and share the hotspots with the school or site supervisor."
+   },
+   {
+    "title": "Smart signals and work zone tech",
+    "items": [
+     "Learn automated flagger devices and smart work-zone signals, and when a person must take over.",
+     "Use connected warning lights and radios to coordinate with other flaggers across a site.",
+     "Keep sign and equipment checklists so every control point is set up correctly."
+    ],
+    "project": "Work one shift with an automated flagger device under supervision and write down the situations where you had to take over."
+   },
+   {
+    "title": "Reading traffic and protecting people",
+    "items": [
+     "Judge safe gaps in traffic in real time; this split-second call protects lives.",
+     "Give clear, confident signals that drivers understand and obey.",
+     "Build trust with children and parents, and teach crossing habits that last."
+    ],
+    "project": "Teach a short road safety lesson to one class with simple AI-made visuals and ask the teacher what children remembered."
+   }
+  ],
+  "aiTools": [
+   "Work and shift apps",
+   "Incident reporting apps with photos",
+   "Automated flagger devices"
+  ],
+  "humanEdge": [
+   "Judging safe gaps in live traffic",
+   "Clear, confident signals drivers obey",
+   "Teaching children safe crossing habits"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-9092.00": {
+  "roadmap": [
+   {
+    "title": "Digital records and condition reports",
+    "items": [
+     "Record weather, water or snow conditions and incidents in a mobile app, so the next shift sees them at once.",
+     "Use weather and avalanche forecasts to plan warnings and closures before conditions turn.",
+     "Keep first aid and incident reports complete with templates, checked before sign-off."
+    ],
+    "project": "Move condition and incident logs to a mobile app for a season and compare missing entries with paper logs."
+   },
+   {
+    "title": "Detection tech and safety systems",
+    "items": [
+     "Learn drowning detection cameras or avalanche transceivers, and how they support but never replace watching.",
+     "Test pool chemistry with digital testers and log results automatically.",
+     "Use radio and app systems to coordinate rescues with other guards and medical teams."
+    ],
+    "project": "Practise two rescue scenarios a month with your team using radios and timings, and record how response times change."
+   },
+   {
+    "title": "Constant watch and rescue skill",
+    "items": [
+     "Keep constant watch over swimmers or skiers, scanning and spotting trouble before it grows.",
+     "Perform rescues, first aid and CPR with trained, practised skill.",
+     "Warn and instruct the public with clear, friendly authority, before risky behaviour becomes an accident."
+    ],
+    "project": "Practise CPR and rescue drills weekly for a season and record skills refreshed and incidents handled."
+   }
+  ],
+  "aiTools": [
+   "Mobile condition and incident apps",
+   "Drowning detection or avalanche safety systems",
+   "Weather and avalanche forecasts"
+  ],
+  "humanEdge": [
+   "Constant, alert watch over people",
+   "Practised rescue and CPR skills",
+   "Friendly authority with the public"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-9093.00": {
+  "roadmap": [
+   {
+    "title": "AI-assisted x-ray and screening tools",
+    "items": [
+     "Use automated threat detection on x-ray and CT scanners, and check every flagged bag image yourself.",
+     "Use body scanner alerts to target pat-downs, explaining each step to the passenger respectfully.",
+     "Answer passenger questions about rules with quick guides, and keep lines moving."
+    ],
+    "project": "Track for a month how often automated alerts led to real findings on your lane, and discuss false alarms with your supervisor."
+   },
+   {
+    "title": "Image skills and new technology",
+    "items": [
+     "Practise image interpretation with training software that tests you on hidden threats.",
+     "Learn new CT scanners and how their 3D images change what you look for.",
+     "Record screening findings and incidents accurately in the system before the end of each shift."
+    ],
+    "project": "Complete extra image interpretation training for a month and compare your test scores before and after."
+   },
+   {
+    "title": "Searches, behaviour and calm",
+    "items": [
+     "Search bags and passengers by hand with care and respect when alarms need resolving.",
+     "Notice unusual behaviour and calmly call in support when something is wrong.",
+     "Keep calm with stressed or angry travellers, explaining rules without arguing."
+    ],
+    "project": "Practise de-escalation phrases with your team for a month and record how many passenger disputes were resolved calmly."
+   }
+  ],
+  "aiTools": [
+   "X-ray and CT scanners with threat detection",
+   "Body scanners with automated alerts",
+   "Image interpretation training software"
+  ],
+  "humanEdge": [
+   "Respectful hand searches of bags and people",
+   "Noticing unusual behaviour in the queue",
+   "Staying calm with stressed travellers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-9094.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for routes and student lists",
+    "items": [
+     "Check route and student lists in the bus app each morning, including needs for special support.",
+     "Report incidents and behaviour issues through the school's app or form the same day.",
+     "Use translation apps to talk with parents who speak other languages, keeping messages simple."
+    ],
+    "project": "Report every behaviour incident through the school's app for a month and review patterns with the driver and school."
+   },
+   {
+    "title": "Safety equipment and routines",
+    "items": [
+     "Learn the bus's safety systems, such as cameras, wheelchair lifts and child check alarms.",
+     "Follow boarding and exit checklists so no child is left on the bus.",
+     "Keep seatbelt and tie-down routines consistent, checked at every stop."
+    ],
+    "project": "Use a boarding and exit checklist on every trip for a month and record any near misses it caught."
+   },
+   {
+    "title": "Caring for children on the move",
+    "items": [
+     "Keep order on the bus with calm, fair rules children understand.",
+     "Help children with disabilities board, sit and exit safely and with dignity.",
+     "Comfort upset children and notice signs of bullying or distress."
+    ],
+    "project": "Agree three simple bus rules with the children, post them and record behaviour incidents before and after a month."
+   }
+  ],
+  "aiTools": [
+   "School bus route and student apps",
+   "Incident reporting forms or apps",
+   "Translation apps for parents"
+  ],
+  "humanEdge": [
+   "Keeping calm, fair order on the bus",
+   "Helping children with disabilities safely",
+   "Noticing bullying and distress"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-9099.02": {
+  "roadmap": [
+   {
+    "title": "AI for incident reports and loss data",
+    "items": [
+     "Write incident and investigation reports with templates and approved drafting tools, checked against footage.",
+     "Analyse loss and shrink data with AI-assisted tools to find stores, products and times with problems.",
+     "Audit stores with digital checklists, so problem areas are recorded and followed up."
+    ],
+    "project": "Analyse three months of shrink data with AI help, pick the top problem area and measure losses after one fix."
+   },
+   {
+    "title": "Video analytics and exception reports",
+    "items": [
+     "Use video analytics and self-checkout alerts to spot theft, and verify every alert before acting.",
+     "Review point-of-sale exception reports for refund and discount fraud by staff.",
+     "Check alarms, cameras and tags on a schedule, logging faults for repair."
+    ],
+    "project": "Review exception reports for refunds for a month, investigate the top five cases and report what you found."
+   },
+   {
+    "title": "Investigations and safe apprehension",
+    "items": [
+     "Investigate internal theft fairly, with evidence and interviews done by the rules.",
+     "Apprehend shoplifters only within policy and law, putting safety first.",
+     "Work with police and managers to prevent loss without treating customers as suspects."
+    ],
+    "project": "Review your last ten apprehensions or stops with a manager against policy, and agree one safety improvement."
+   }
+  ],
+  "aiTools": [
+   "Retail video analytics",
+   "Point-of-sale exception reporting",
+   "Shrink and loss analytics tools"
+  ],
+  "humanEdge": [
+   "Fair, evidence-based internal investigations",
+   "Safe, lawful apprehension of shoplifters",
+   "Preventing loss without suspicion of customers"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -19991,6 +20873,132 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "35-2011.00": {
+  "roadmap": [
+   {
+    "title": "Kitchen screens and digital checklists",
+    "items": [
+     "Work from kitchen display screens that show orders and timers, and read special requests carefully.",
+     "Record food safety checks, such as fryer oil and holding times, on digital checklists.",
+     "Learn new menu items from short training videos and step cards on the tablet."
+    ],
+    "project": "Track your order accuracy on the kitchen display for two weeks and practise the item you get wrong most."
+   },
+   {
+    "title": "Automation in the fast food kitchen",
+    "items": [
+     "Learn the automated fryers, drink machines and cooking robots in your kitchen, and how to handle their faults.",
+     "Use demand forecasts on screens to cook batches at the right time and waste less.",
+     "Keep stations stocked from prep lists made by the store system, so rushes do not run you dry."
+    ],
+    "project": "Track wasted food at your station for two weeks, follow the forecast more closely and compare the waste after."
+   },
+   {
+    "title": "Speed, safety and teamwork",
+    "items": [
+     "Cook many orders at once quickly and accurately during rushes, keeping quality the same.",
+     "Keep food safe and the kitchen clean every shift, following temperature and hygiene rules.",
+     "Help teammates and new staff in busy moments, keeping the line calm."
+    ],
+    "project": "Teach one new colleague your station during a quiet shift and check their speed and accuracy after a week."
+   }
+  ],
+  "aiTools": [
+   "Kitchen display systems",
+   "Digital food safety checklists",
+   "Automated fryers and cooking equipment"
+  ],
+  "humanEdge": [
+   "Speed and accuracy in busy rushes",
+   "Food safety and cleanliness every shift",
+   "Calm teamwork on a busy kitchen line"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-2012.00": {
+  "roadmap": [
+   {
+    "title": "Digital menus, diets and food safety logs",
+    "items": [
+     "Read menus and diet orders from the kitchen system, and check allergens and special diets for every portion.",
+     "Scale recipes for the number of portions with recipe software, checking quantities before cooking.",
+     "Record food temperatures with digital probes and logs, and act at once on any out-of-range reading."
+    ],
+    "project": "Use digital temperature logs for a month and record how many problems were caught and fixed in time."
+   },
+   {
+    "title": "Stock, waste and planning",
+    "items": [
+     "Count stock with an app or scanner, and rotate supplies so older food is used first.",
+     "Track leftover food by dish to plan quantities better with the manager.",
+     "Learn allergen management rules well, and train helpers to follow them."
+    ],
+    "project": "Track leftovers for each dish for a month and adjust portions with the manager to cut waste."
+   },
+   {
+    "title": "Cooking for people who depend on you",
+    "items": [
+     "Cook tasty, safe meals in large quantities for people with different needs.",
+     "Lead kitchen helpers clearly, sharing tasks fairly during busy service.",
+     "Serve food with a kind word; for many residents, meals are the best part of the day."
+    ],
+    "project": "Ask residents or diners for feedback on five dishes and change two recipes based on what they say."
+   }
+  ],
+  "aiTools": [
+   "Kitchen and diet management systems",
+   "Recipe scaling software",
+   "Digital temperature probes and logs"
+  ],
+  "humanEdge": [
+   "Cooking safe, tasty meals at scale",
+   "Leading kitchen helpers fairly",
+   "Serving residents with kindness"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-2013.00": {
+  "roadmap": [
+   {
+    "title": "AI for menus, shopping and diet planning",
+    "items": [
+     "Plan weekly menus with AI around the family's tastes, diets and allergies, and check every allergen yourself.",
+     "Build shopping lists and order groceries online from your menu plans, comparing prices and quality.",
+     "Find and adapt recipes for special diets with AI, and test them before serving guests."
+    ],
+    "project": "Plan four weeks of menus with AI help for the family's diets, track their feedback and keep the favourites in a recipe file."
+   },
+   {
+    "title": "Recipe files and party planning",
+    "items": [
+     "Keep a digital recipe file with family favourites, portions and reheating instructions.",
+     "Plan parties and holiday meals with AI-made timelines and shopping lists, adjusted to your kitchen.",
+     "Label frozen meals clearly with dates and reheating steps, kept in a simple freezer list."
+    ],
+    "project": "Plan one party menu with an AI-made prep timeline, cook it and note what you would change next time."
+   },
+   {
+    "title": "Cooking craft and household trust",
+    "items": [
+     "Cook from scratch with skill, adjusting taste and presentation for each family member.",
+     "Keep a clean, organised kitchen that runs smoothly around the family's routines.",
+     "Earn the family's trust through discretion, reliability and care."
+    ],
+    "project": "Learn one new cuisine or technique the family would enjoy, practise it for a month and serve it at a family meal."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for menus and recipes",
+   "Online grocery ordering apps",
+   "Digital recipe organisers"
+  ],
+  "humanEdge": [
+   "Cooking to each person's taste",
+   "Discretion and reliability in a home",
+   "Running a calm, organised kitchen"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "35-2014.00": {
   "roadmap": [
    {
@@ -20030,6 +21038,48 @@
    "Tasting and seasoning by experience",
    "Timing many dishes at once in a rush",
    "Keeping a station clean and safe"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-2015.00": {
+  "roadmap": [
+   {
+    "title": "Order screens and food safety logs",
+    "items": [
+     "Work from order tickets or screens, planning items so each table's food finishes together.",
+     "Record cooler temperatures and date labels with digital checklists or a label printer.",
+     "Learn new dishes and plating from short videos and recipe cards on a tablet."
+    ],
+    "project": "Time your tickets for two weeks during rushes, find the dish that slows you most and practise a faster method."
+   },
+   {
+    "title": "Stock rotation and supply orders",
+    "items": [
+     "Rotate food and date-stamp coolers with labels, so old stock is used first.",
+     "Order supplies with simple lists or apps based on what the menu uses each week.",
+     "Use your phone to learn food safety rules and get a food handler certificate."
+    ],
+    "project": "Take a food handler or safety course online and use one new rule at your station for a month."
+   },
+   {
+    "title": "Grill skill and quick timing",
+    "items": [
+     "Grill, fry and plate many orders at once with good timing and steady quality.",
+     "Adjust cooking to each customer's request, from egg styles to allergies.",
+     "Keep your station clean and organised so service stays smooth even at the busiest time."
+    ],
+    "project": "Ask your manager to watch one busy shift and give you two tips on timing, then practise them for two weeks."
+   }
+  ],
+  "aiTools": [
+   "Kitchen order screens or ticket printers",
+   "Digital temperature and label systems",
+   "Online food safety courses"
+  ],
+  "humanEdge": [
+   "Timing many orders so tables eat together",
+   "Cooking to each customer's request",
+   "A clean, organised station in rushes"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -20159,6 +21209,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "35-3023.01": {
+  "roadmap": [
+   {
+    "title": "Ordering apps, payments and recipes",
+    "items": [
+     "Handle app and in-store orders on the point-of-sale screen, checking custom requests before making drinks.",
+     "Learn new drink recipes from training videos and recipe cards on the tablet.",
+     "Log fridge and equipment temperatures on digital checklists every shift."
+    ],
+    "project": "Track order mistakes for two weeks on the point-of-sale screen and practise the drinks you get wrong most."
+   },
+   {
+    "title": "Quality, waste and smart machines",
+    "items": [
+     "Use grinder and espresso machine settings data to keep taste consistent through the day.",
+     "Track milk and pastry waste with simple counts, and adjust prep with the manager.",
+     "Learn the café's automated machines and how to clean and fix small faults."
+    ],
+    "project": "Track milk waste for two weeks, adjust prep amounts with your manager and compare waste after."
+   },
+   {
+    "title": "Craft, customers and atmosphere",
+    "items": [
+     "Make drinks with craft and care, adjusting grind, milk and art by taste and eye.",
+     "Remember regulars and their drinks; friendly service brings people back.",
+     "Recommend drinks and food honestly, based on what each customer likes."
+    ],
+    "project": "Learn the names and orders of 20 regulars over a month and notice how service feels for them and you."
+   }
+  ],
+  "aiTools": [
+   "Point-of-sale and ordering apps",
+   "Digital checklists",
+   "Smart espresso and grinder settings"
+  ],
+  "humanEdge": [
+   "Coffee craft by taste and eye every cup",
+   "Remembering regulars and their orders",
+   "Honest recommendations for each customer"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "35-3031.00": {
   "roadmap": [
    {
@@ -20198,6 +21290,258 @@
    "Reading what each table needs",
    "Making guests feel welcome and looked after",
    "Handling complaints with grace"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-3041.00": {
+  "roadmap": [
+   {
+    "title": "Digital diet lists and tray checks",
+    "items": [
+     "Check each tray against the digital diet list for allergies and special diets before delivery.",
+     "Take meal orders on a tablet from patients or residents, and read them back to confirm.",
+     "Use translation apps to help people who speak other languages choose their meals."
+    ],
+    "project": "Use a tray checklist against the diet list for a month and record the errors you caught before delivery."
+   },
+   {
+    "title": "Delivery routines and food safety",
+    "items": [
+     "Follow delivery routes and times from the system so hot food arrives hot.",
+     "Record food temperatures at delivery with digital probes when required.",
+     "Learn food safety and allergy rules well through short online courses."
+    ],
+    "project": "Measure food temperatures at delivery for two weeks and work with the kitchen on the routes where food arrives cold."
+   },
+   {
+    "title": "Kind, careful service at the table",
+    "items": [
+     "Serve meals with a kind word; for patients and residents, mealtimes matter a lot.",
+     "Notice who is not eating and tell nurses or staff, as it may signal a health problem.",
+     "Keep dishes, trays and serving areas clean and safe, following hygiene rules every shift."
+    ],
+    "project": "Note who leaves meals uneaten for two weeks and share the list with nurses or care staff each day."
+   }
+  ],
+  "aiTools": [
+   "Tablet meal ordering systems",
+   "Digital diet and allergy lists",
+   "Translation apps"
+  ],
+  "humanEdge": [
+   "Kind, patient service at mealtimes",
+   "Noticing residents who are not eating",
+   "Careful allergy checks on every tray"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-9011.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for shifts and table status",
+    "items": [
+     "Check shifts, swaps and tasks in the staff scheduling app, and confirm changes with the manager.",
+     "Use table status screens or apps to see which tables need clearing next.",
+     "Learn service skills from short training videos, such as setting tables and handling glassware."
+    ],
+    "project": "Track how fast you turn tables during two busy shifts using the table app, and try one change to speed it up."
+   },
+   {
+    "title": "Stock levels and cleaning checklists",
+    "items": [
+     "Keep linens, glassware and supplies stocked from a shared checklist before each service.",
+     "Follow cleaning and sanitising checklists, with sign-off on a tablet where used.",
+     "Use language learning apps with AI to build English or local language for guest contact."
+    ],
+    "project": "Practise service phrases with a language app for a month and use them with guests during your shifts."
+   },
+   {
+    "title": "Teamwork and attentive guest care",
+    "items": [
+     "Clear and reset tables quickly and quietly, helping the room flow.",
+     "Support servers and bartenders so guests are never kept waiting.",
+     "Notice guests' needs, such as water or a spill, and act before they ask."
+    ],
+    "project": "Ask the servers you work with for two tips on teamwork, try them for two weeks and ask again how it felt."
+   }
+  ],
+  "aiTools": [
+   "Staff scheduling apps",
+   "Table status screens",
+   "Language learning apps with AI"
+  ],
+  "humanEdge": [
+   "Quick, quiet table resets in busy rooms",
+   "Supporting servers and bartenders",
+   "Noticing guests' needs before they ask"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-9021.00": {
+  "roadmap": [
+   {
+    "title": "Phone tools for shifts and learning",
+    "items": [
+     "Check shifts and messages in the staff app, and swap shifts properly through it.",
+     "Learn safe chemical use from labels and short videos, so you know each product's risks.",
+     "Use AI language apps to improve your English or local language for work and life."
+    ],
+    "project": "Practise kitchen vocabulary with an AI language app for a month and use the new words with the team."
+   },
+   {
+    "title": "Machines, hygiene and food safety",
+    "items": [
+     "Learn your dishmachine's settings, temperature checks and simple fixes from the manual and videos.",
+     "Log machine temperatures and chemical levels on the checklist, so dishes are truly clean.",
+     "Take an online food hygiene course to prepare for a prep or cook role."
+    ],
+    "project": "Complete an online food hygiene certificate and ask the chef to let you help with prep one shift a week."
+   },
+   {
+    "title": "Speed, order and the path to the line",
+    "items": [
+     "Keep dishes, pots and utensils flowing back to the line fast during rushes.",
+     "Keep the kitchen clean, safe and organised, which the whole team depends on.",
+     "Learn prep tasks from the cooks, as many chefs started as dishwashers."
+    ],
+    "project": "Learn three prep tasks from the cooks over a month, practise them on slow days and ask the chef for a trial prep shift."
+   }
+  ],
+  "aiTools": [
+   "Staff scheduling apps",
+   "AI language learning apps",
+   "Online food hygiene courses"
+  ],
+  "humanEdge": [
+   "Keeping dishes flowing in rushes",
+   "A clean, safe kitchen for everyone",
+   "Learning prep skills from cooks"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-9031.00": {
+  "roadmap": [
+   {
+    "title": "Reservation systems and phone help",
+    "items": [
+     "Manage reservations and waitlists in the booking system, keeping notes on allergies and special requests.",
+     "Answer common phone questions quickly with a prepared guide, and let AI chat handle simple online bookings.",
+     "Use the table plan screen to seat guests fairly across servers' sections."
+    ],
+    "project": "Track no-shows and wait times in the booking system for a month and agree one change with the manager to reduce them."
+   },
+   {
+    "title": "Guest data and smooth seating",
+    "items": [
+     "Use guest notes for regulars, such as favourite tables and occasions, to welcome them personally.",
+     "Send confirmation and reminder messages automatically to cut no-shows.",
+     "Coordinate with the kitchen and servers on large groups through shared notes."
+    ],
+    "project": "Add notes for 20 regular guests in the booking system and record how often you used them to make visits special."
+   },
+   {
+    "title": "First impressions and handling problems",
+    "items": [
+     "Greet every guest warmly; the first minute shapes the whole visit.",
+     "Calm guests who are waiting or unhappy, and solve problems with the manager.",
+     "Read the room and seat guests where they will be comfortable."
+    ],
+    "project": "Practise three phrases for handling long waits, use them for a month and ask the manager about complaints."
+   }
+  ],
+  "aiTools": [
+   "Restaurant booking systems such as OpenTable",
+   "Table plan screens",
+   "Automatic reminder messages"
+  ],
+  "humanEdge": [
+   "Warm first impressions at the door",
+   "Calming waiting or unhappy guests",
+   "Reading the room when seating guests"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "37-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for schedules, inspections and supplies",
+    "items": [
+     "Plan staff schedules with scheduling software, matching skills, hours and room or area needs.",
+     "Inspect work with digital checklists and photos, so standards are clear and fair for everyone.",
+     "Track supplies and equipment with an inventory app that warns before you run out."
+    ],
+    "project": "Move inspections to a digital checklist with photos for a month and compare complaints and re-cleans with before."
+   },
+   {
+    "title": "Smart cleaning tools and complaint data",
+    "items": [
+     "Learn cleaning robots and sensor-based cleaning that targets busy areas, and plan staff around them.",
+     "Track complaints and requests by area in one system and fix causes, not just symptoms.",
+     "Make short training videos and picture guides for tasks, so new staff learn fast."
+    ],
+    "project": "Trial one cleaning robot or sensor-based schedule in one area and compare time, quality and complaints for a month."
+   },
+   {
+    "title": "Leading teams and quality on the floor",
+    "items": [
+     "Lead by example on the floor, helping with cleaning when the team is stretched.",
+     "Coach staff on standards and safety, and solve personnel problems fairly.",
+     "Work with other departments, such as front desk or maintenance, so services run smoothly."
+    ],
+    "project": "Hold short weekly team huddles for a month to share problems and wins, and record what changed."
+   }
+  ],
+  "aiTools": [
+   "Staff scheduling software",
+   "Digital inspection checklists",
+   "Cleaning robots and sensor-based schedules"
+  ],
+  "humanEdge": [
+   "Leading by example on the floor",
+   "Fair coaching on standards and safety",
+   "Coordinating with other departments"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "37-1012.00": {
+  "roadmap": [
+   {
+    "title": "AI for crew schedules, quotes and plans",
+    "items": [
+     "Schedule crews and equipment with job software that accounts for weather forecasts and priorities, and adjust it each morning.",
+     "Draft quotes, work orders and client updates with AI from your site notes and photos, checking every price.",
+     "Identify plant diseases and pests with AI image apps on site tours, and confirm uncertain cases with an expert."
+    ],
+    "project": "Schedule crews with weather-aware job software for a month and compare missed or moved jobs with the month before."
+   },
+   {
+    "title": "Smart irrigation, mowers and job data",
+    "items": [
+     "Use smart irrigation controllers and soil sensors to water only when needed, and check results on the ground.",
+     "Learn robotic mowers and battery equipment, and plan crews around what they handle well.",
+     "Track hours and materials by job in an app, so you know which contracts make money."
+    ],
+    "project": "Install smart irrigation on one site, compare water use with last season and report the savings to the client."
+   },
+   {
+    "title": "Crew leadership and plant care",
+    "items": [
+     "Lead crews on site, training them in pruning, turf care and safe equipment use.",
+     "Inspect grounds with a trained eye for plant health, soil and drainage problems.",
+     "Work alongside the crew when deadlines are tight, and set safety rules everyone follows."
+    ],
+    "project": "Hold a short safety and skills session each week for a month and record incidents and quality complaints after."
+   }
+  ],
+  "aiTools": [
+   "Landscaping job and crew scheduling software",
+   "AI plant and pest ID apps",
+   "Smart irrigation controllers"
+  ],
+  "humanEdge": [
+   "Training crews in pruning and turf care",
+   "A trained eye for plant health",
+   "Setting safety rules crews follow"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -20285,6 +21629,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "37-2021.00": {
+  "roadmap": [
+   {
+    "title": "AI for service records and client advice",
+    "items": [
+     "Record treatments, products and quantities on a phone app at each visit, as the law requires.",
+     "Identify pests from photos with AI apps, and confirm by inspection before choosing a treatment.",
+     "Write prevention advice for clients with AI help, in plain language matched to what you found."
+    ],
+    "project": "Write prevention guides for your five most common pests with AI help and track repeat callouts for three months."
+   },
+   {
+    "title": "Smart traps and route planning",
+    "items": [
+     "Use smart traps and sensors that report activity, so visits target the places pests really are.",
+     "Plan routes and appointments with scheduling apps to cut driving time between jobs.",
+     "Keep chemical stock, safety data sheets and licences organised digitally."
+    ],
+    "project": "Install smart traps at three commercial clients and compare treatment amounts and callouts with traditional checks."
+   },
+   {
+    "title": "Inspection, safe treatment and trust",
+    "items": [
+     "Inspect buildings carefully for entry points and nests; finding the source is the real skill.",
+     "Apply treatments safely, protecting people, pets and the environment.",
+     "Explain problems and options honestly to worried clients, without selling treatments they do not need."
+    ],
+    "project": "Track how often sealing entry points instead of spraying solved the problem over three months, and share it with clients."
+   }
+  ],
+  "aiTools": [
+   "Pest control service apps",
+   "AI pest identification apps",
+   "Smart traps and activity sensors"
+  ],
+  "humanEdge": [
+   "Finding the true source of pests",
+   "Safe treatment around people and pets",
+   "Honest advice to worried clients"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "37-3011.00": {
   "roadmap": [
    {
@@ -20324,6 +21710,258 @@
    "Knowing plants, soils and pruning",
    "Safe use of heavy and sharp equipment",
    "Working outdoors in all conditions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "37-3012.00": {
+  "roadmap": [
+   {
+    "title": "Digital spray records and weather checks",
+    "items": [
+     "Check wind, rain and temperature forecasts in weather apps before spraying, and stop when conditions change.",
+     "Keep spray records of products, rates, areas and weather in a mobile app, as regulations require.",
+     "Identify weeds and plant diseases with AI image apps, and confirm before choosing a treatment."
+    ],
+    "project": "Keep digital spray and weather records for a season and compare drift complaints and re-sprays with the season before."
+   },
+   {
+    "title": "Precision spraying and calibration",
+    "items": [
+     "Learn precision and spot-spraying equipment that targets weeds with cameras, cutting chemical use.",
+     "Calibrate sprayers carefully and record results, so rates are correct every time.",
+     "Use GPS guidance to avoid overlaps and missed strips on large areas."
+    ],
+    "project": "Calibrate your sprayer weekly for a month with a log, and compare chemical use per area with your last records."
+   },
+   {
+    "title": "Safe handling and field judgement",
+    "items": [
+     "Mix and handle chemicals safely with protective equipment, following the label exactly.",
+     "Judge droplet size, height and weather on the spot to keep spray where it belongs.",
+     "Clean and service equipment carefully, so leaks and faults never reach the field."
+    ],
+    "project": "Write a personal safety checklist for mixing and loading, use it for a season and review any incidents or near misses."
+   }
+  ],
+  "aiTools": [
+   "Weather apps with spray windows",
+   "Mobile spray record apps",
+   "Precision spot-spraying systems"
+  ],
+  "humanEdge": [
+   "Safe chemical handling with protection",
+   "Judging drift and weather on the spot",
+   "Careful sprayer calibration every time"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "37-3013.00": {
+  "roadmap": [
+   {
+    "title": "Digital tools for job quotes and tree records",
+    "items": [
+     "Photograph trees and use AI apps to identify species and diseases, then confirm with your own inspection.",
+     "Write quotes and job sheets with templates on your phone, with photos and access notes.",
+     "Check weather and wind forecasts before climbing or using booms, and postpone when unsafe."
+    ],
+    "project": "Write job quotes with phone templates and photos for a month and compare time spent and jobs won with before."
+   },
+   {
+    "title": "Power line rules and equipment upkeep",
+    "items": [
+     "Learn the safety rules for work near power lines, and plan every job with a written hazard check.",
+     "Keep maintenance logs for chainsaws, chippers and trucks, with reminders for servicing.",
+     "Learn about drone and lidar tree surveys that utilities use to plan line clearance."
+    ],
+    "project": "Write a one-page hazard check for jobs near power lines, use it on every such job for a month and review it with your crew."
+   },
+   {
+    "title": "Climbing, cutting and crew safety",
+    "items": [
+     "Climb and cut with skill and constant attention to ropes, branches and footing.",
+     "Read how a tree will fall or a limb will swing, and plan cuts to control it.",
+     "Train newer crew members in safe rigging and chipper use, watching them closely."
+    ],
+    "project": "Coach one newer crew member on rigging for a month, watching every lift, and record what they can now do alone."
+   }
+  ],
+  "aiTools": [
+   "AI tree species and disease ID apps",
+   "Phone quoting and job apps",
+   "Weather and wind forecast apps"
+  ],
+  "humanEdge": [
+   "Skilled, careful climbing and cutting",
+   "Reading how limbs will fall",
+   "Training newer crew in safe rigging"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-1013.00": {
+  "roadmap": [
+   {
+    "title": "AI for floor data and paperwork",
+    "items": [
+     "Use table and slot management dashboards to see where play is busy and move dealers in time.",
+     "Complete transaction paperwork in the casino system, checking amounts and signatures carefully.",
+     "Resolve common patron questions with clear rule guides, and keep complaint notes in the system."
+    ],
+    "project": "Use floor dashboards to plan dealer moves for a month and compare wait times at busy tables with the month before."
+   },
+   {
+    "title": "Responsible gambling and compliance",
+    "items": [
+     "Learn the responsible gambling tools and alerts in your systems, and how staff should act on them.",
+     "Keep staff schedules and training records in scheduling software, with licences tracked.",
+     "Check rules and regulation changes with official summaries, and brief your team."
+    ],
+    "project": "Brief your team on responsible gambling signs with a short guide made with AI help, and track interventions for a month."
+   },
+   {
+    "title": "Watching the floor and leading staff",
+    "items": [
+     "Watch games and players for cheating or distress, and act calmly when something is wrong.",
+     "Greet patrons and handle complaints so they feel treated fairly.",
+     "Train, evaluate and support dealers through long, demanding shifts."
+    ],
+    "project": "Observe each dealer once a month for a quarter, give specific feedback and record the improvements you see."
+   }
+  ],
+  "aiTools": [
+   "Table and slot management dashboards",
+   "Casino transaction systems",
+   "Responsible gambling alert tools"
+  ],
+  "humanEdge": [
+   "Spotting cheating or distress at tables",
+   "Fair handling of patron complaints",
+   "Supporting dealers through long shifts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-1014.00": {
+  "roadmap": [
+   {
+    "title": "AI for schedules, event info and reports",
+    "items": [
+     "Build staff schedules with scheduling software that matches skills, certifications and demand.",
+     "Answer visitor questions about events with an AI-drafted FAQ and chat, checked by staff.",
+     "Write activity reports with AI from attendance and incident data, and check every figure."
+    ],
+    "project": "Publish an AI-drafted FAQ for events, check it with staff and track repeat questions to the front desk for a month."
+   },
+   {
+    "title": "Program planning with visitor data",
+    "items": [
+     "Plan programs and events with attendance data and visitor feedback, not just past habits.",
+     "Use booking systems for activities and classes, with reminders that cut no-shows.",
+     "Keep equipment inspections and safety checks on digital checklists with photos."
+    ],
+    "project": "Review a season of attendance and feedback data with AI help and change two programs for the next season."
+   },
+   {
+    "title": "Leading staff and great experiences",
+    "items": [
+     "Lead staff on the floor, stepping in to help when an activity gets complicated.",
+     "Watch staff performance and visitor experience, and coach in the moment.",
+     "Keep visitors safe in sports, pools and shows, and handle incidents calmly."
+    ],
+    "project": "Observe one activity each week for a month, give staff two pieces of feedback each and record visitor ratings."
+   }
+  ],
+  "aiTools": [
+   "Staff scheduling software",
+   "Activity booking systems",
+   "ChatGPT or Claude for FAQs and reports"
+  ],
+  "humanEdge": [
+   "Stepping in when activities get tricky",
+   "Coaching staff in the moment",
+   "Calm handling of visitor incidents"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-1022.00": {
+  "roadmap": [
+   {
+    "title": "AI for schedules, marketing and complaints",
+    "items": [
+     "Plan staff schedules with booking data, so busy hours have enough people on the floor.",
+     "Write marketing posts, offers and emails with AI, edited in your business's voice.",
+     "Answer complaints with AI-drafted replies you personalise, then fix the cause with the team."
+    ],
+    "project": "Run one AI-drafted email offer to past customers and compare bookings and new clients with your last offer."
+   },
+   {
+    "title": "Booking systems and service quality",
+    "items": [
+     "Use online booking with reminders and deposits to cut no-shows and fill gaps in the day.",
+     "Track customer feedback by staff member and service, and coach where scores drop.",
+     "Order supplies with an inventory app that warns before you run out."
+    ],
+    "project": "Introduce online booking with reminders for two months and compare no-shows and empty slots with before."
+   },
+   {
+    "title": "Coaching staff and customer trust",
+    "items": [
+     "Watch services such as hair or spa treatments, and coach staff on quality and manner.",
+     "Hire and train people who are good with customers, not just skilled.",
+     "Handle unhappy customers personally, turning problems into loyalty."
+    ],
+    "project": "Hold one coaching session with each staff member a month for a quarter and track customer ratings."
+   }
+  ],
+  "aiTools": [
+   "Online booking and scheduling software",
+   "ChatGPT or Claude for marketing and replies",
+   "Customer feedback tools"
+  ],
+  "humanEdge": [
+   "Coaching staff on quality and manner",
+   "Hiring people good with customers",
+   "Turning complaints into loyalty"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI for training logs and client notes",
+    "items": [
+     "Keep training, health and diet records for each animal in an app, with videos of progress.",
+     "Write training plans and client homework with AI help, adapted to each animal and owner.",
+     "Market classes and services with AI-drafted posts, using your own videos of real training."
+    ],
+    "project": "Record short weekly videos of three animals' training for two months and use them to adjust each plan."
+   },
+   {
+    "title": "Behaviour data and owner coaching",
+    "items": [
+     "Track behaviour with simple counts and video, so progress is measured, not guessed.",
+     "Use activity trackers and cameras to see how animals behave when you are not there.",
+     "Run online sessions for owners between visits, with clear homework."
+    ],
+    "project": "Track one problem behaviour with daily counts for a month for three clients and share the charts with the owners."
+   },
+   {
+    "title": "Reading animals and patient training",
+    "items": [
+     "Read each animal's body language and mood, and adjust training on the spot.",
+     "Train with patience and consistency, using rewards that work for each animal.",
+     "Notice signs of illness or stress early and get veterinary help."
+    ],
+    "project": "Evaluate three new animals' temperaments with a written checklist and compare your notes with progress a month later."
+   }
+  ],
+  "aiTools": [
+   "Animal training log apps",
+   "Activity trackers and pet cameras",
+   "ChatGPT or Claude for plans and posts"
+  ],
+  "humanEdge": [
+   "Reading each animal's body language",
+   "Patient, consistent reward training",
+   "Noticing illness or stress early"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
