@@ -1805,6 +1805,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "21-1012.00": {
+  "roadmap": [
+   {
+    "title": "AI for study information, transcripts and letters",
+    "items": [
+     "Build up-to-date guides on programs, admission rules and financial aid with AI help, and check every deadline at the source.",
+     "Use AI to check transcripts against graduation or entry requirements, and confirm each flagged gap yourself.",
+     "Draft recommendation letters with AI from your notes on the student, then rewrite them so they sound like you and the student."
+    ],
+    "project": "Create a guide to the 20 most common study and career questions with AI help, check every fact, and track how students use it."
+   },
+   {
+    "title": "Careers advice for a world with AI",
+    "items": [
+     "Learn how AI is changing the jobs your students ask about, using sources you can show them.",
+     "Teach students to use AI tools for career research, CVs and interview practice, and to check what they produce.",
+     "Keep student records and personal data in school-approved systems, never in public AI tools."
+    ],
+    "project": "Run a session on AI and future careers with students, using real job data, and survey how their plans changed."
+   },
+   {
+    "title": "Grow counselling and crisis skills",
+    "items": [
+     "Get better at the personal conversations behind study choices: family pressure, anxiety and motivation.",
+     "Train in crisis intervention so you can respond well when a student is in serious trouble.",
+     "Grow toward school psychology or career coaching, or look at related roles: rehabilitation counsellor."
+    ],
+    "project": "Use the time saved on admin for one-to-one sessions with students at risk of dropping out, and track who stays for a term."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for guides and letters (no student data)",
+   "Career exploration platforms",
+   "Student information system"
+  ],
+  "humanEdge": [
+   "Counselling students through personal problems",
+   "Handling a crisis with care",
+   "Working with parents and teachers"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1014.00": {
+  "roadmap": [
+   {
+    "title": "Less paperwork, with privacy first",
+    "items": [
+     "Try a privacy-compliant AI note tool approved by your practice for progress notes, with client consent, and edit each note before signing.",
+     "Fill mandated forms and reports from templates in your practice software, checking every diagnosis code and date.",
+     "Never put identifiable client information into general-purpose AI tools, even to rephrase a note."
+    ],
+    "project": "Use an approved AI note tool with consenting clients for a month, and measure documentation time and the edits each note needed."
+   },
+   {
+    "title": "Measurement and digital support",
+    "items": [
+     "Track outcomes with standard questionnaires each session, so you and the client can see progress over time.",
+     "Learn which mental health apps and AI chatbots your clients use, what they can and cannot do, and how to talk about them.",
+     "Draft psychoeducation handouts with AI on topics like sleep or anxiety, and check them against current evidence."
+    ],
+    "project": "Track a standard outcome measure with 15 clients for three months and review the trends in supervision."
+   },
+   {
+    "title": "Deepen the therapeutic relationship",
+    "items": [
+     "Strengthen what heals: the relationship, careful listening and helping clients find their own insight.",
+     "Build skills in one evidence-based method and use the time saved on notes to practise it.",
+     "Grow toward supervision or specialist work, or look at related roles: family therapist or clinical social worker."
+    ],
+    "project": "Spend the time saved on notes on training in one therapy method for three months, and review its use in supervision."
+   }
+  ],
+  "aiTools": [
+   "Privacy-compliant AI note tool approved by your practice",
+   "Practice management software",
+   "Digital outcome questionnaires"
+  ],
+  "humanEdge": [
+   "Building a trusting relationship with clients",
+   "Helping people find their own insight",
+   "Staying with someone through a crisis"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "21-1021.00": {
   "roadmap": [
    {
@@ -1847,6 +1931,90 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "21-1022.00": {
+  "roadmap": [
+   {
+    "title": "AI for referrals, notes and discharge guides",
+    "items": [
+     "Search community resources for housing, money and care with AI help, and verify each one before you refer a patient.",
+     "Draft care notes and progress records with your hospital's approved tools, checking every fact and date.",
+     "Create plain-language discharge guides with AI for common situations, reviewed by the care team."
+    ],
+    "project": "Build a verified resource list for your patients' five most common needs and track how many referrals succeed."
+   },
+   {
+    "title": "Smoother discharge and coordination",
+    "items": [
+     "Use discharge planning templates that cover home support, equipment, medication and follow-up appointments.",
+     "Track the barriers that delay discharge and share the patterns with the care team.",
+     "Keep patient data in approved hospital systems only, never in public AI tools."
+    ],
+    "project": "Use a discharge template for two months and track delayed discharges and readmissions among your patients."
+   },
+   {
+    "title": "Grow counselling and advocacy",
+    "items": [
+     "Get better at counselling patients and families through illness, loss and hard decisions.",
+     "Advocate for patients in crisis with insurers, landlords and services, where a person changes the outcome.",
+     "Grow toward case management or specialist roles, or look at related roles: mental health social worker."
+    ],
+    "project": "Start a support group for families of patients with one condition and gather their feedback after three sessions."
+   }
+  ],
+  "aiTools": [
+   "Hospital-approved documentation tools",
+   "Case management software",
+   "ChatGPT or Claude for resource searches (no patient data)"
+  ],
+  "humanEdge": [
+   "Counselling families through illness and loss",
+   "Advocating for patients in crisis",
+   "Coordinating care across many services"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "21-1093.00": {
+  "roadmap": [
+   {
+    "title": "AI for records, referrals and guides",
+    "items": [
+     "Write visit records and reports with your agency's approved tools from your notes, never in public AI tools with client details.",
+     "Build a verified directory of local services, benefits and food help with AI research, and call to confirm each entry.",
+     "Create simple guides on benefits, childcare or budgeting with AI in plain language, and have a colleague check them."
+    ],
+    "project": "Build a verified local services directory with AI help, confirm each entry by phone, and share it with your team."
+   },
+   {
+    "title": "Better follow-up for clients",
+    "items": [
+     "Use templates for care and behaviour plans so goals and steps are clear to clients and colleagues.",
+     "Set reminders for follow-ups and appointments so no client falls through the cracks.",
+     "Translate key information with AI for clients who speak another language, and check it with a speaker when possible."
+    ],
+    "project": "Set up follow-up reminders for your caseload and track missed appointments and unanswered referrals for two months."
+   },
+   {
+    "title": "Grow the human support",
+    "items": [
+     "Get better at home visits and interviews, where trust decides what people tell you.",
+     "Support clients in daily life, from appointments to shopping, which is often where change actually happens.",
+     "Grow toward social work or case management, or look at related roles: social worker or mental health counsellor."
+    ],
+    "project": "Start a social work qualification module or shadow a social worker for ten visits, and record what you learned."
+   }
+  ],
+  "aiTools": [
+   "Agency-approved case management software",
+   "ChatGPT or Claude for plain-language guides",
+   "Translation apps"
+  ],
+  "humanEdge": [
+   "Earning trust on a home visit",
+   "Supporting people in their daily life",
+   "Noticing when someone is not coping"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "23-2011.00": {
   "roadmap": [
    {
@@ -1886,6 +2054,48 @@
    "Building trust with clients and witnesses",
    "Catching the citation or date that would embarrass the firm",
    "Keeping a case file organised under deadline"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-2011.00": {
+  "roadmap": [
+   {
+    "title": "AI for activity ideas and parent updates",
+    "items": [
+     "Plan weekly themes, songs, games and crafts with AI ideas, then adapt them to your group's ages, interests and needs.",
+     "Draft parent newsletters and daily updates with AI, keeping children's names and photos out of public tools.",
+     "Create picture cards, labels and simple printable materials for the classroom with AI image or design tools."
+    ],
+    "project": "Plan one month of themed activities with AI ideas, measure planning hours, and note which activities the children loved."
+   },
+   {
+    "title": "Observation and records without losing playtime",
+    "items": [
+     "Use a simple observation template or an approved app to record development notes during the day.",
+     "Turn your notes into short, kind development summaries for parents with AI, and check every sentence.",
+     "Translate key messages for families who speak another language, and have a speaker check them when possible."
+    ],
+    "project": "Keep structured observation notes for your group for two months and use them in parent meetings."
+   },
+   {
+    "title": "Grow care and early learning skills",
+    "items": [
+     "Get better at what matters most at this age: comfort, play, routines and helping children manage their feelings.",
+     "Learn more about child development and the early signs of learning or language difficulties.",
+     "Grow toward lead teacher or childcare director, or look at related roles: kindergarten or special education teacher."
+    ],
+    "project": "Take one course on early language or social development and use one new technique with your group for a term."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for activity ideas",
+   "Canva for picture cards and printables",
+   "Approved childcare app for observations and messages"
+  ],
+  "humanEdge": [
+   "Comforting and caring for young children",
+   "Helping children learn to share and manage feelings",
+   "Building trust with parents"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -1973,6 +2183,174 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "25-3041.00": {
+  "roadmap": [
+   {
+    "title": "AI for lesson plans, practice and admin",
+    "items": [
+     "Prepare lesson plans and practice sets for each student's goals with AI, and solve every problem yourself before the session.",
+     "Generate extra practice questions and answer keys at the right level, and check them for errors that would confuse students.",
+     "Automate booking, reminders and invoices so admin does not eat into your teaching time."
+    ],
+    "project": "Prepare one month of tutoring materials with AI help, measure hours saved, and track whether students' practice scores improve."
+   },
+   {
+    "title": "Teach students to learn with AI, not copy",
+    "items": [
+     "Show students how to use AI as a study partner: asking for hints, checking answers and explaining their own reasoning.",
+     "Agree with parents and the school what AI use is allowed, so your help never turns into doing the homework.",
+     "Write short progress reports with AI from your notes, keeping them honest and specific for parents."
+    ],
+    "project": "Teach three students a study routine with AI hints and self-checks, and compare their test results after two months."
+   },
+   {
+    "title": "Grow motivation and diagnosis",
+    "items": [
+     "Get better at finding why a student is stuck: a missing basic skill, anxiety or attention, which a chatbot rarely sees.",
+     "Build confidence with encouragement and small wins; motivation is what students and parents value most.",
+     "Grow toward teaching or learning support roles, or specialise in exam preparation or learning differences."
+    ],
+    "project": "Find the root problem for five struggling students in your first session, plan around it, and track their grades for a term."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for lesson plans and practice",
+   "AI tutoring and practice apps (e.g. Khanmigo)",
+   "Booking and invoicing apps"
+  ],
+  "humanEdge": [
+   "Finding out why a student is stuck",
+   "Motivating students and building confidence",
+   "Explaining the same idea in many ways"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-4022.00": {
+  "roadmap": [
+   {
+    "title": "AI for reference, cataloguing and programs",
+    "items": [
+     "Use AI to speed up reference searches, always checking the sources it gives, and show patrons how you verify them.",
+     "Draft catalogue records and subject headings with AI or your library system's tools, and check them against standards.",
+     "Plan programs, newsletters and event descriptions with AI help, adapted to the people in your community."
+    ],
+    "project": "Track one month of reference questions you answered with AI help, recording where its answers or sources were wrong."
+   },
+   {
+    "title": "Teach your community to use AI wisely",
+    "items": [
+     "Run AI literacy workshops for different groups such as students, job seekers and older adults, using their real questions.",
+     "Teach how to spot AI-generated misinformation and fake sources, with exercises from current news.",
+     "Advise on AI tools in the library: privacy, accessibility and which ones are worth recommending."
+    ],
+    "project": "Run an AI literacy workshop for one patron group, collect what they still found confusing, and improve the next session."
+   },
+   {
+    "title": "Grow community connection and collection judgement",
+    "items": [
+     "Build partnerships with schools, job centres and community groups who need what the library offers.",
+     "Get better at choosing materials for your community, which needs knowledge of the people and not just reviews.",
+     "Grow toward library management or digital services, or look at related roles: archivist or library science teacher."
+    ],
+    "project": "Start one partnership with a local school or community group and run three joint programs in a term."
+   }
+  ],
+  "aiTools": [
+   "Library system with AI cataloguing support",
+   "ChatGPT or Claude for programs and descriptions",
+   "Research databases with AI search"
+  ],
+  "humanEdge": [
+   "Understanding what a patron really needs",
+   "Teaching people to judge information",
+   "Building community partnerships"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "25-9042.00": {
+  "roadmap": [
+   {
+    "title": "AI for materials, marking and records",
+    "items": [
+     "Prepare worksheets, flashcards, displays and labels with AI from the teacher's lesson plan, and check them for accuracy and level.",
+     "Use answer keys and school-approved marking tools for homework and quizzes, and pass unusual answers to the teacher.",
+     "Record observations of each child's progress in a simple template so the teacher gets clear notes, not memories."
+    ],
+    "project": "Prepare one month of materials and marking with AI help and agree with the teacher how to use the hours saved with children."
+   },
+   {
+    "title": "Better small-group support",
+    "items": [
+     "Ask AI to explain a topic in two or three new ways before a tutoring session, so you can switch when a child is stuck.",
+     "Use school-approved reading or maths practice apps with small groups, and note where each child struggles.",
+     "Keep children's names and personal details out of public AI tools, and follow your school's rules."
+    ],
+    "project": "Run small-group sessions for four children for a term with AI-prepared explanations, and track their progress with the teacher."
+   },
+   {
+    "title": "Grow what children need from adults",
+    "items": [
+     "Get better at supervising groups calmly, settling conflicts on the playground and keeping children safe.",
+     "Learn behaviour support and encouragement techniques from the teachers you work with.",
+     "Grow toward a teaching qualification, or look at related roles: special education assistant or tutor."
+    ],
+    "project": "Shadow the teacher on behaviour management for a month, try two techniques with your groups, and discuss the results."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for materials (no student data)",
+   "School-approved practice apps",
+   "Canva for displays and flashcards"
+  ],
+  "humanEdge": [
+   "Supervising children safely in busy places",
+   "Encouraging a child who has given up",
+   "Settling conflicts between children"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1011.00": {
+  "roadmap": [
+   {
+    "title": "AI for concepts, layouts and project admin",
+    "items": [
+     "Explore layout and visual directions with AI image and design tools before briefing your team, and keep only ideas that serve the brief.",
+     "Generate custom illustrations and graphic elements with AI as a starting point, then have them finished to brand standards.",
+     "Track budgets, schedules and approvals with AI-assisted project tools, and flag risks to clients early."
+    ],
+    "project": "Develop concepts for one campaign with AI tools, present three directions, and compare time and client feedback with a past project."
+   },
+   {
+    "title": "Lead a team that uses AI well",
+    "items": [
+     "Write creative guidelines for AI use: brand rules, image rights, disclosure and what must be made by a person.",
+     "Review AI-assisted work as carefully as any proof: type, colour, legal claims and hidden artefacts.",
+     "Build a brand asset library and prompt kit so AI tools produce on-brand output from the start."
+    ],
+    "project": "Write your team's AI creative guidelines and asset kit, use them on two projects, and record what still needed fixing."
+   },
+   {
+    "title": "Grow creative leadership",
+    "items": [
+     "Own the idea and the reasons behind it; clients pay for direction, not for the number of options.",
+     "Hire, train and direct designers as their work shifts from making every asset to curating and refining.",
+     "Grow toward creative director, or look at related roles: producer, director or motion designer."
+    ],
+    "project": "Present one campaign to a client focusing on the idea and the reasons behind each choice, and record what convinced them."
+   }
+  ],
+  "aiTools": [
+   "Adobe Firefly and Photoshop generative tools",
+   "Midjourney or similar for concept exploration",
+   "Project tools with AI (e.g. Asana, Monday)"
+  ],
+  "humanEdge": [
+   "Owning the creative idea and defending it",
+   "Directing designers toward one clear vision",
+   "Reading what a client wants beyond the brief"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "27-1024.00": {
   "roadmap": [
    {
@@ -2012,6 +2390,48 @@
    "Understanding what the client really needs from a vague brief",
    "Taste: knowing why one design works and another does not",
    "Presenting and defending design decisions"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-1025.00": {
+  "roadmap": [
+   {
+    "title": "AI for concepts, renders and estimates",
+    "items": [
+     "Use AI render and mood-board tools to show clients several directions in the first meeting, then develop the chosen one properly.",
+     "Speed up CAD drawings with your software's automation, and check dimensions and clearances against site measurements.",
+     "Estimate material quantities and costs with AI-assisted spreadsheets from your plans, and check prices with suppliers."
+    ],
+    "project": "Present one project with AI-generated concept renders, record the client's feedback, and compare time to approval with a past project."
+   },
+   {
+    "title": "Faster sourcing and project control",
+    "items": [
+     "Use AI visual search to find furniture and finishes that match a look within budget, and check lead times and stock.",
+     "Track orders, deliveries and subcontractor work in one project tool so nothing depends on memory.",
+     "Be clear with clients about what is an AI render and what will actually be built, including colours and materials."
+    ],
+    "project": "Source all furnishings for one room with AI visual search and compare cost and time with your usual sourcing."
+   },
+   {
+    "title": "Grow client understanding and site coordination",
+    "items": [
+     "Get better at the first conversation: how people really live and work in a space, and what they cannot put into words.",
+     "Coordinate contractors and inspect work on site, where design errors become expensive.",
+     "Grow toward commercial or healthcare interiors, or look at related roles: architect or set designer."
+    ],
+    "project": "Run on-site checks at three stages of one project and record the problems you caught before they were built in."
+   }
+  ],
+  "aiTools": [
+   "AI interior rendering tools",
+   "CAD software (e.g. AutoCAD, SketchUp)",
+   "AI visual search for furniture and finishes"
+  ],
+  "humanEdge": [
+   "Understanding how people live and work in a space",
+   "Coordinating trades on site",
+   "Taste and material judgement"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -2057,6 +2477,48 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "27-3031.00": {
+  "roadmap": [
+   {
+    "title": "AI for releases, posts and publications",
+    "items": [
+     "Draft press releases, social posts and newsletters with AI from your key messages, and check every fact, quote and name.",
+     "Adapt one announcement into versions for media, website, LinkedIn and employees with AI, keeping the message consistent.",
+     "Use AI media monitoring to summarise coverage and spot issues early, and read the important articles in full."
+    ],
+    "project": "Produce one month of releases and posts with AI drafts, track editing time, and compare pickup and engagement with the month before."
+   },
+   {
+    "title": "Strategy and crisis readiness",
+    "items": [
+     "Use AI to research audiences, stakeholder concerns and past coverage before planning a campaign, and verify the sources.",
+     "Prepare crisis scenarios, holding statements and approval chains with AI help, and test them in a short drill.",
+     "Set rules for AI-generated content and images: disclosure, approval and what must never be faked."
+    ],
+    "project": "Build a crisis playbook for three likely scenarios with AI help and run a one-hour drill with your team."
+   },
+   {
+    "title": "Grow relationships and counsel",
+    "items": [
+     "Build relationships with journalists, community groups and employees; trust is what gets your call returned.",
+     "Coach spokespeople for interviews, and advise managers on what to say and what not to say.",
+     "Grow toward PR or communications management, or look at related roles: advertising manager or writer."
+    ],
+    "project": "Coach one spokesperson for a media interview with AI-generated practice questions, and review the result together."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for drafts and adaptations",
+   "Media monitoring with AI summaries",
+   "Social media scheduling tools"
+  ],
+  "humanEdge": [
+   "Relationships with journalists and community groups",
+   "Judgement on what to say in a crisis",
+   "Coaching spokespeople before a hard interview"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "27-3041.00": {
   "roadmap": [
    {
@@ -2096,6 +2558,48 @@
    "Deciding what is worth publishing",
    "Protecting the author's voice and the publication's standards",
    "Coaching writers and running deadlines"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "27-3042.00": {
+  "roadmap": [
+   {
+    "title": "AI for drafting, editing and standards",
+    "items": [
+     "Draft documentation from specs, tickets and interview notes with AI, then verify every step on the real product.",
+     "Use AI to edit for your style guide and terminology, and keep a list of terms it must never change.",
+     "Plan diagrams and screenshots with AI help, and check each one against the current version of the product."
+    ],
+    "project": "Write one user guide with AI drafting, test every procedure on the product, and compare effort and review comments with a past guide."
+   },
+   {
+    "title": "Documentation that AI assistants can use",
+    "items": [
+     "Structure docs so AI assistants and search can answer from them: clear headings, one topic per page, no hidden context.",
+     "Build or improve an AI help assistant on your docs, and test it with real user questions.",
+     "Track which questions the assistant answers wrongly, and fix the documentation behind those answers."
+    ],
+    "project": "Set up an AI assistant on your documentation, test it with 50 real questions, and fix the pages behind the wrong answers."
+   },
+   {
+    "title": "Grow product knowledge and user empathy",
+    "items": [
+     "Spend more time with engineers and users; understanding the product is what makes documentation correct.",
+     "Watch users follow your instructions and fix the places where they get lost.",
+     "Grow toward content design or developer documentation, or look at related roles: editor or document manager."
+    ],
+    "project": "Run three sessions watching users follow your docs, record where they got stuck, and fix those pages."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for drafts and edits",
+   "Docs platforms with AI search (e.g. GitBook, Confluence)",
+   "Style and terminology checkers"
+  ],
+  "humanEdge": [
+   "Understanding complex products from engineers",
+   "Seeing where users get lost",
+   "Deciding what users actually need to know"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -2141,6 +2645,132 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "27-4032.00": {
+  "roadmap": [
+   {
+    "title": "AI for logging, search and rough cuts",
+    "items": [
+     "Use AI transcription and scene detection to log footage, and search interviews by what was said instead of scrubbing.",
+     "Let AI build a first assembly from the script or transcript, then rebuild the story with your own choices.",
+     "Clean dialogue, remove noise and match levels with AI audio tools, and listen to every fix on good speakers."
+    ],
+    "project": "Edit one project with AI logging, transcript search and a rough cut, and compare hours to first cut with a similar past project."
+   },
+   {
+    "title": "Faster finishing and platform versions",
+    "items": [
+     "Use AI-assisted colour matching, reframing for social formats and captioning, and check every output frame by frame.",
+     "Create versions for different platforms and lengths from one master edit with templates.",
+     "Understand the rights for AI voices, music and generated footage before using them in client work."
+    ],
+    "project": "Deliver one project in three platform versions with AI reframing and captions, and measure finishing time against your usual workflow."
+   },
+   {
+    "title": "Grow storytelling and collaboration",
+    "items": [
+     "Get better at story and rhythm: which moment to hold and which to cut, which no automated assembly understands.",
+     "Work closely with directors and producers to find the film hidden in the footage.",
+     "Grow toward supervising editor or post-production lead, or look at related roles: director or motion designer."
+    ],
+    "project": "Recut one short piece twice with different structures, show both to an audience, and record which worked better and why."
+   }
+  ],
+  "aiTools": [
+   "Premiere Pro or DaVinci Resolve with AI features",
+   "AI transcription and text-based editing (e.g. Descript)",
+   "AI audio cleanup tools"
+  ],
+  "humanEdge": [
+   "Finding the story in hours of footage",
+   "Feeling rhythm and timing in a cut",
+   "Working closely with directors"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1021.00": {
+  "roadmap": [
+   {
+    "title": "AI for the practice's paperwork",
+    "items": [
+     "Handle insurance claims, recalls and scheduling with your practice software's automation, and check the claims it flags.",
+     "Write post-treatment care instructions in plain language with approved tools, and check them clinically.",
+     "Never put identifiable patient data into public AI tools; use only approved, contracted systems."
+    ],
+    "project": "Automate claims and recall reminders in your practice software and measure staff hours and no-shows over two months."
+   },
+   {
+    "title": "AI as a second look in diagnosis",
+    "items": [
+     "Use AI x-ray analysis as a second look for caries and bone loss, and learn its typical false positives.",
+     "Use intraoral scans and treatment planning software to show patients their options visually.",
+     "Record your own diagnosis next to AI findings, so disagreements can be reviewed later."
+    ],
+    "project": "Compare AI x-ray findings with your diagnosis on 50 cases and record agreements, misses and false alarms."
+   },
+   {
+    "title": "Clinical skill and patient trust",
+    "items": [
+     "Keep training procedures, anaesthesia and precise handwork, the core of your work that no software touches.",
+     "Get better at calming anxious patients and explaining treatment plans they can afford.",
+     "Grow toward a specialty or practice ownership, or look at related roles: orthodontist or prosthodontist."
+    ],
+    "project": "Use the time saved on admin for longer treatment-plan consultations and track how many patients accept and complete treatment."
+   }
+  ],
+  "aiTools": [
+   "Dental practice management software",
+   "AI x-ray analysis (e.g. Overjet, Pearl)",
+   "Intraoral scanners and planning software"
+  ],
+  "humanEdge": [
+   "Precise hands-on procedures",
+   "Calming anxious patients in the chair",
+   "Taking responsibility for diagnosis and treatment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1031.00": {
+  "roadmap": [
+   {
+    "title": "AI for meal plans and handouts",
+    "items": [
+     "Draft meal plans and handouts with AI, then check them against clinical guidelines and each client's allergies, culture and budget.",
+     "Analyse food records and diet history with nutrition software, and confirm the numbers that drive your advice.",
+     "Keep client records in approved tools, never in public AI tools with health details."
+    ],
+    "project": "Create meal plan templates for five common conditions with AI help, have a colleague review them, and use them for a month."
+   },
+   {
+    "title": "Digital follow-up between visits",
+    "items": [
+     "Use food logging and glucose or weight apps with clients, and agree what you will review between visits.",
+     "Interpret lab results with decision support, and explain the trends to clients in plain words.",
+     "Know the AI diet apps your clients use, where they help and where they give harmful advice."
+    ],
+    "project": "Use a food logging app with 10 clients for two months and track how many reach their goals compared with paper diaries."
+   },
+   {
+    "title": "Grow counselling for behaviour change",
+    "items": [
+     "Get better at motivational counselling: changing habits is about people, not menus.",
+     "Work with doctors and nurses on complex cases such as tube feeding, kidney disease or eating disorders.",
+     "Grow toward clinical nutrition management or a specialty, or look at related roles: health educator."
+    ],
+    "project": "Train in motivational interviewing and use it with 15 clients for three months, tracking how many reach their goals."
+   }
+  ],
+  "aiTools": [
+   "Nutrition analysis software",
+   "Food logging apps",
+   "ChatGPT or Claude for handouts (no client data)"
+  ],
+  "humanEdge": [
+   "Motivating lasting behaviour change",
+   "Clinical nutrition judgement for complex cases",
+   "Understanding clients' food culture and budget"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "29-1051.00": {
   "roadmap": [
    {
@@ -2180,6 +2810,342 @@
    "Checking prescriptions and taking responsibility for safety",
    "Counselling patients face to face",
    "Working with doctors to adjust treatment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1071.00": {
+  "roadmap": [
+   {
+    "title": "AI for histories, notes and test results",
+    "items": [
+     "Record histories and progress notes with an approved AI scribe, then correct every detail before you sign.",
+     "Read AI summaries of previous records before a visit, and check medications and allergies at the source.",
+     "Interpret test results with decision support flags, and decide yourself which deviations matter for this patient."
+    ],
+    "project": "Use an approved AI scribe for a month and measure documentation time and how many notes needed significant correction."
+   },
+   {
+    "title": "Safer prescribing and follow-up",
+    "items": [
+     "Use drug-interaction and dosing checks every time you prescribe, and report alerts that are wrong or too frequent.",
+     "Write patient instructions in plain language with approved tools, adapted to each patient's literacy and language.",
+     "Agree with your supervising physician how AI tools may be used in your practice and how to document them."
+    ],
+    "project": "Create plain-language instruction sheets for your ten most common treatments with approved tools, and test them with patients."
+   },
+   {
+    "title": "Hands-on care and clinical judgement",
+    "items": [
+     "Keep sharpening examinations and procedures such as suturing, injections and wound care, which need your hands.",
+     "Get better at counselling patients on treatment, lifestyle and difficult news.",
+     "Grow toward a specialty or surgical PA role, or look at related roles in emergency or family medicine."
+    ],
+    "project": "Use the time saved on documentation for patient counselling for a month and track follow-up attendance."
+   }
+  ],
+  "aiTools": [
+   "Approved AI clinical scribe",
+   "Clinical decision support and drug checks",
+   "Patient education tools in the EHR"
+  ],
+  "humanEdge": [
+   "Examining patients and making a first diagnosis",
+   "Procedures such as suturing and wound care",
+   "Counselling patients face to face"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1122.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and progress reports",
+    "items": [
+     "Draft evaluations and progress reports with approved documentation tools, checking every score and goal.",
+     "Create activity plans and home programs for daily living skills with AI ideas, adapted to each patient's abilities.",
+     "Keep therapy notes and photos of patients' homes in approved systems, never in public AI tools."
+    ],
+    "project": "Draft reports with approved tools for a month and measure the time saved for therapy sessions."
+   },
+   {
+    "title": "Technology for independence",
+    "items": [
+     "Learn assistive technology and AI tools that help with daily life: voice assistants, reminders and smart home controls.",
+     "Recommend apps and devices only after testing them with the patient in their real environment.",
+     "Train caregivers to use the tools and routines that keep the patient independent."
+    ],
+    "project": "Introduce one assistive technology to five patients, train their caregivers, and track independence in daily tasks after a month."
+   },
+   {
+    "title": "Hands-on therapy and home assessment",
+    "items": [
+     "Assess homes and workplaces in person; the barriers that matter are often invisible in the records.",
+     "Keep improving hands-on therapy that rebuilds skills for work, school and self-care.",
+     "Grow toward a specialty such as hand therapy or paediatrics, or related roles: rehabilitation counsellor."
+    ],
+    "project": "Do home assessments for five patients before discharge and record the changes that made independent living possible."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical documentation tools",
+   "Assistive technology and smart home devices",
+   "ChatGPT or Claude for activity ideas (no patient data)"
+  ],
+  "humanEdge": [
+   "Assessing real homes and workplaces",
+   "Rebuilding daily skills hands-on",
+   "Training caregivers and families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1123.00": {
+  "roadmap": [
+   {
+    "title": "AI for notes, plans and home programs",
+    "items": [
+     "Use approved AI documentation to draft evaluations and progress notes, and check every measurement and goal.",
+     "Build home exercise programs in an app with videos and reminders, adapted to each patient's level.",
+     "Review referrals and records with AI summaries before the first visit, and confirm red flags at the source."
+    ],
+    "project": "Use AI-assisted documentation for a month and measure the minutes per patient you get back for treatment."
+   },
+   {
+    "title": "Measure movement and adherence",
+    "items": [
+     "Use video or sensor-based motion analysis to measure range, gait or balance, and compare it with your own assessment.",
+     "Track home exercise adherence through the app and adjust programs when patients stop doing them.",
+     "Offer remote follow-ups for suitable patients, and know when someone needs to be seen in person."
+    ],
+    "project": "Track home exercise adherence with an app for 15 patients and compare their progress with patients on paper programs."
+   },
+   {
+    "title": "Hands-on therapy and motivation",
+    "items": [
+     "Keep training manual therapy, assessment by touch and adjusting treatment in the moment, which are your core skills.",
+     "Get better at motivating patients through slow recovery, where encouragement decides whether they keep going.",
+     "Grow toward a specialty such as sports, neuro or pelvic health, or related roles in rehabilitation medicine."
+    ],
+    "project": "Take one advanced manual therapy course and track outcomes for patients treated with the new technique for three months."
+   }
+  ],
+  "aiTools": [
+   "Approved clinical documentation tools",
+   "Home exercise apps with video",
+   "Motion analysis apps"
+  ],
+  "humanEdge": [
+   "Manual therapy and assessment by touch",
+   "Motivating patients through slow recovery",
+   "Adjusting treatment in the moment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1131.00": {
+  "roadmap": [
+   {
+    "title": "AI for the clinic's admin and records",
+    "items": [
+     "Use an AI scribe or voice notes for consultation records, and check drugs, doses and weights before saving.",
+     "Automate appointment reminders, vaccination recalls and payments in your practice software.",
+     "Write care instructions for owners in plain language with AI, and check every dose and warning."
+    ],
+    "project": "Use an AI scribe for consultation notes for a month and measure time per appointment and the corrections needed."
+   },
+   {
+    "title": "AI as a second look in diagnosis",
+    "items": [
+     "Use AI radiograph or cytology analysis as a second opinion, and record where it agreed or disagreed with you.",
+     "Use lab result tools to spot trends across visits, and confirm them before changing treatment.",
+     "Learn telemedicine follow-ups for suitable cases, and know when an animal must be examined in person."
+    ],
+    "project": "Compare AI radiograph reads with your own on 30 cases and discuss the disagreements with a colleague."
+   },
+   {
+    "title": "Hands-on medicine and owner trust",
+    "items": [
+     "Keep training surgery, examination and the safe handling of frightened animals, which need skill no software has.",
+     "Get better at hard conversations with owners about costs, prognosis and euthanasia.",
+     "Grow toward a specialty or clinic ownership, or look at related roles in public health or research."
+    ],
+    "project": "Use the time saved on records for longer owner consultations for a month and track how many owners accept treatment."
+   }
+  ],
+  "aiTools": [
+   "Veterinary practice management software",
+   "AI radiograph analysis tools",
+   "AI scribe or voice notes for records"
+  ],
+  "humanEdge": [
+   "Surgery and hands-on treatment",
+   "Handling frightened animals safely",
+   "Hard conversations with owners"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1141.01": {
+  "roadmap": [
+   {
+    "title": "AI for charting, safely",
+    "items": [
+     "Use your hospital's approved AI documentation tools to draft notes from your assessments, and check every value before signing.",
+     "Learn how early-warning and sepsis scores in your EHR are calculated, and what can make them wrong for your patient.",
+     "Never enter patient details into public AI tools, even to look up a drug or rephrase a note."
+    ],
+    "project": "Use approved AI charting for a month and measure how many minutes per shift you get back for patient care."
+   },
+   {
+    "title": "Smarter monitoring and smoother transfers",
+    "items": [
+     "Review deterioration alerts with your team: which ones changed care, which were noise, and what you would adjust.",
+     "Use admission, transfer and discharge templates so handovers carry the facts that matter.",
+     "Create plain-language discharge instructions with approved tools and go through them with each patient before they leave."
+    ],
+    "project": "Review 20 deterioration alerts with your team and record which were useful, which were noise, and why."
+   },
+   {
+    "title": "Bedside care and clinical judgement",
+    "items": [
+     "Keep sharpening assessment, pain management and IV skills, which need your own eyes and hands.",
+     "Spend the time you get back with patients and families, explaining what is happening and what comes next.",
+     "Grow toward clinical nurse specialist or nurse educator, or look at related roles: critical care nurse."
+    ],
+    "project": "Use the time saved on charting for structured patient education for a month and track questions and readmissions."
+   }
+  ],
+  "aiTools": [
+   "Approved AI documentation in the EHR",
+   "Early-warning and sepsis alert systems",
+   "Approved patient education tools"
+  ],
+  "humanEdge": [
+   "Bedside assessment of a deteriorating patient",
+   "Managing pain and comfort",
+   "Explaining care to frightened families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1171.00": {
+  "roadmap": [
+   {
+    "title": "AI scribes and decision support in primary care",
+    "items": [
+     "Use an approved ambient AI scribe for visit notes and care plans, with patient consent, and edit every note before signing.",
+     "Check differential diagnoses and guideline steps with clinical decision support, and record why you agreed or not.",
+     "Draft self-management instructions for diabetes or hypertension with approved tools, tailored to each patient's life."
+    ],
+    "project": "Use an approved AI scribe for a month and measure documentation time per visit and the corrections each note needed."
+   },
+   {
+    "title": "Chronic care with remote data",
+    "items": [
+     "Use remote blood pressure or glucose monitoring for patients who need it, with clear rules for which readings need a call.",
+     "Review test results with AI summaries of trends, and confirm the ones that change treatment.",
+     "Learn the limits and biases of AI tools in your practice, especially for groups underrepresented in their training data."
+    ],
+    "project": "Run remote blood pressure monitoring for 20 patients with hypertension for three months and track how many reach control."
+   },
+   {
+    "title": "Clinical judgement and patient trust",
+    "items": [
+     "Keep sharpening physical examination and diagnosis of complex or unclear cases, where AI suggestions are least reliable.",
+     "Use the time saved for coaching patients on self-management, which changes outcomes more than any note.",
+     "Grow toward a specialty or clinic leadership, or look at related roles: clinical nurse specialist."
+    ],
+    "project": "Use the time saved on notes for longer self-management coaching with ten chronic patients, and track their results for three months."
+   }
+  ],
+  "aiTools": [
+   "Approved ambient AI scribe",
+   "Clinical decision support in the EHR",
+   "Remote patient monitoring platform"
+  ],
+  "humanEdge": [
+   "Diagnosing complex and unclear cases",
+   "Physical examination of patients",
+   "Coaching patients to manage their own health"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1214.00": {
+  "roadmap": [
+   {
+    "title": "AI for charting in a busy department",
+    "items": [
+     "Use an approved ambient scribe so the note is drafted while you assess the patient, and correct it before you sign.",
+     "Read AI summaries of prior visits and outside records during triage, and verify allergies and medications at the source.",
+     "Draft discharge instructions in plain language with approved tools, in the patient's own language where possible."
+    ],
+    "project": "Use an approved ambient scribe for a month and measure charting time per patient and the charts finished after your shift."
+   },
+   {
+    "title": "Decision support where seconds matter",
+    "items": [
+     "Use AI imaging triage for strokes, bleeds or fractures as a second reader, and document your own read.",
+     "Know how sepsis and deterioration alerts are built, and when they fire too late or too often in your department.",
+     "Report wrong alerts and missed cases to the team that runs the tools, so they improve."
+    ],
+    "project": "Review 20 AI triage alerts with radiology and record which ones changed the time to treatment."
+   },
+   {
+    "title": "Lead resuscitation and hard conversations",
+    "items": [
+     "Keep resuscitation, airway and procedural skills sharp with simulation, where no tool helps you.",
+     "Get better at telling families bad news and agreeing on goals of care under time pressure.",
+     "Grow toward department leadership or a subspecialty, or look at related roles: hospitalist or critical care."
+    ],
+    "project": "Run a monthly simulation of a rare emergency with your team for a quarter and record the improvements in team performance."
+   }
+  ],
+  "aiTools": [
+   "Approved ambient AI scribe",
+   "AI imaging triage (stroke, bleed, fracture)",
+   "Sepsis and deterioration alert systems"
+  ],
+  "humanEdge": [
+   "Leading a resuscitation under pressure",
+   "Telling families bad news with care",
+   "Deciding fast with incomplete information"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-1216.00": {
+  "roadmap": [
+   {
+    "title": "AI scribes and record summaries",
+    "items": [
+     "Let an approved ambient scribe draft the visit note while you talk with the patient, then edit it before signing.",
+     "Use AI summaries of long records before visits, and verify medications, allergies and key results at the source.",
+     "Draft referral letters and patient explanations with approved tools, adapted to each patient."
+    ],
+    "project": "Use an approved AI scribe for a month and measure documentation time per patient and your evening charting hours."
+   },
+   {
+    "title": "Decision support for complex patients",
+    "items": [
+     "Use decision support for multimorbidity and drug interactions, and document when you overrule it and why.",
+     "Track chronic disease measures with registry dashboards to find patients who need attention.",
+     "Learn where AI tools are biased or untested, for example in older adults with several conditions."
+    ],
+    "project": "Use a registry dashboard to find 20 patients with poorly controlled chronic disease and track their results after outreach."
+   },
+   {
+    "title": "Diagnosis and long-term care",
+    "items": [
+     "Keep sharpening diagnosis when illnesses overlap or symptoms are unclear, where your judgement matters most.",
+     "Use the time saved for conversations about prognosis, priorities and lifestyle.",
+     "Grow toward a subspecialty or clinical leadership, or look at related roles: hospitalist or cardiologist."
+    ],
+    "project": "Use the time saved on documentation for longer visits with complex patients for a month and record what changed in their care."
+   }
+  ],
+  "aiTools": [
+   "Approved ambient AI scribe",
+   "Clinical decision support and drug checks",
+   "Patient registry dashboards"
+  ],
+  "humanEdge": [
+   "Diagnosing overlapping and unclear illnesses",
+   "Long-term relationships with patients",
+   "Talking through prognosis and priorities"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
@@ -2225,6 +3191,678 @@
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
+ "29-2011.00": {
+  "roadmap": [
+   {
+    "title": "Automation and AI in the lab",
+    "items": [
+     "Learn how your analysers' autoverification rules release normal results, and review every result they hold back.",
+     "Use digital cell morphology and AI-assisted slide review as a first pass, and confirm abnormal cells yourself.",
+     "Let the lab system flag delta checks and unusual results, and investigate before results reach the clinician."
+    ],
+    "project": "Review a month of results held by autoverification, record why each was held, and suggest one rule change to your supervisor."
+   },
+   {
+    "title": "Quality systems you can trust",
+    "items": [
+     "Use quality control software to spot drifts and trends early, and document every corrective action.",
+     "Validate any new AI or automation tool on your own samples before it goes live.",
+     "Keep patient results in the laboratory system only, never in public AI tools."
+    ],
+    "project": "Validate one new automated or AI-assisted method on 50 samples against your current method and report the agreement."
+   },
+   {
+    "title": "Expertise and teaching",
+    "items": [
+     "Keep manual skills such as microscopy, blood banking and microbiology sharp; they catch what instruments miss.",
+     "Explain results and limits to physicians when a result does not fit the clinical picture.",
+     "Grow toward lab supervisor, quality manager or specialist roles, or related roles: histotechnologist."
+    ],
+    "project": "Train one new technician on microscopy or blood bank work for a month and assess their competence at the end."
+   }
+  ],
+  "aiTools": [
+   "Laboratory information system with autoverification",
+   "Digital morphology and AI slide review",
+   "Quality control software"
+  ],
+  "humanEdge": [
+   "Recognising abnormal cells under the microscope",
+   "Judging when a result does not fit the patient",
+   "Keeping lab quality and safety high"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2034.00": {
+  "roadmap": [
+   {
+    "title": "AI in image quality and workflow",
+    "items": [
+     "Learn the AI features in your imaging systems for positioning guidance, dose reduction and image quality checks.",
+     "Use automated quality checks to catch poor images before the patient leaves, and decide yourself when to repeat.",
+     "Use worklist and PACS automation so requests, priorities and images flow without manual steps."
+    ],
+    "project": "Track repeat exposures for a month before and after using your system's AI quality checks, and report the difference."
+   },
+   {
+    "title": "Understand how radiologists use AI",
+    "items": [
+     "Learn which AI detection tools your radiologists use and which image qualities those tools depend on.",
+     "Read imaging requests carefully and query unclear ones; AI cannot fix the wrong examination.",
+     "Write patient-friendly explanations of procedures with approved tools, in several languages if needed."
+    ],
+    "project": "Ask radiologists which image problems most affect their AI tools, adjust one protocol together, and measure the effect."
+   },
+   {
+    "title": "Patient care and new modalities",
+    "items": [
+     "Keep improving positioning, calming patients and working at the bedside or in theatre, which need your hands.",
+     "Train in CT, MRI or mammography to widen your skills.",
+     "Grow toward modality lead or imaging informatics, or look at related roles: sonographer or MRI technologist."
+    ],
+    "project": "Start training in one new modality and complete the first supervised examinations within three months."
+   }
+  ],
+  "aiTools": [
+   "Imaging systems with AI positioning and dose tools",
+   "PACS and worklist automation",
+   "Approved patient information tools"
+  ],
+  "humanEdge": [
+   "Positioning patients precisely and safely",
+   "Calming patients during scans",
+   "Judging when an image must be repeated"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2042.00": {
+  "roadmap": [
+   {
+    "title": "Faster, more complete patient records",
+    "items": [
+     "Use electronic patient care reports with voice input and templates, and check vital signs and times before submitting.",
+     "Use navigation and dispatch apps with live traffic, and know the alternative routes when they fail.",
+     "Send structured pre-arrival reports to the hospital so the team is ready when you arrive."
+    ],
+    "project": "Track how long your patient care reports take for a month after switching to voice input and templates, and what errors remain."
+   },
+   {
+    "title": "Decision support without losing judgement",
+    "items": [
+     "Learn the protocols and checklists in your service's apps, and when your own assessment must override them.",
+     "Use monitor data and ECG transmission to hospitals where your service allows it.",
+     "Keep equipment and supply checks digital so missing items are flagged before a call."
+    ],
+    "project": "Switch vehicle and equipment checks to a digital checklist for a month and count missing items caught before calls."
+   },
+   {
+    "title": "Hands-on care and calm",
+    "items": [
+     "Keep first aid, immobilisation and airway skills sharp with regular drills; no tool does them for you.",
+     "Get better at calming patients and bystanders in chaotic scenes.",
+     "Grow toward paramedic, or look at related roles: dispatcher trainer or emergency department technician."
+    ],
+    "project": "Start a paramedic bridging module or take one advanced course, and practise the new skills in monthly drills."
+   }
+  ],
+  "aiTools": [
+   "Electronic patient care reporting with voice input",
+   "Navigation and dispatch apps",
+   "Monitors with ECG transmission"
+  ],
+  "humanEdge": [
+   "Hands-on emergency care at the scene",
+   "Calming patients and bystanders",
+   "Driving and acting safely under pressure"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2043.00": {
+  "roadmap": [
+   {
+    "title": "AI for records and hospital handovers",
+    "items": [
+     "Dictate patient care reports with voice input during transport where safe, and check drug doses and times before you submit.",
+     "Send structured pre-arrival reports and ECGs to the receiving hospital so specialists can prepare.",
+     "Use AI-assisted drug and protocol references on approved devices, and confirm doses against your protocol."
+    ],
+    "project": "Track report completion time and missing fields for a month after switching to voice input and templates."
+   },
+   {
+    "title": "Decision support in the field",
+    "items": [
+     "Learn how ECG interpretation and stroke or sepsis scores in your monitors work, and when to trust your own read.",
+     "Review cases with your medical director where the tools and your assessment disagreed.",
+     "Use telemedicine consultations with physicians for complex calls where your service allows it."
+    ],
+    "project": "Review ten cases where your monitor's interpretation and your own assessment disagreed, with your medical director."
+   },
+   {
+    "title": "Advanced care and scene leadership",
+    "items": [
+     "Keep advanced skills such as airway, IV access and cardiac care sharp through simulation and training.",
+     "Lead scenes calmly and coordinate police, fire and other crews.",
+     "Grow toward critical care paramedic, educator or supervisor, or related roles such as emergency nurse."
+    ],
+    "project": "Run a monthly simulation for your crew on a rare high-risk call for a quarter and record the improvements."
+   }
+  ],
+  "aiTools": [
+   "Electronic patient care reporting with voice input",
+   "Monitors with ECG interpretation",
+   "Approved drug and protocol reference apps"
+  ],
+  "humanEdge": [
+   "Advanced life support in the field",
+   "Leading chaotic scenes calmly",
+   "Comforting patients in their worst moments"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2052.00": {
+  "roadmap": [
+   {
+    "title": "Let the pharmacy system catch routine errors",
+    "items": [
+     "Use your pharmacy system's prescription entry and checks, and verify every flagged interaction or dose with the pharmacist.",
+     "Process insurance claims and rejections with the system's automation, and fix the codes it flags.",
+     "Use automated counting machines and barcode checks when filling, and double-check anything that looks unusual."
+    ],
+    "project": "Track every error the pharmacy system flagged during prescription entry for a month and review the patterns with the pharmacist."
+   },
+   {
+    "title": "Smarter stock and faster refills",
+    "items": [
+     "Use automatic reorder points and expiry alerts so shelves stay full and outdated stock is pulled on time.",
+     "Set up refill reminders and text notifications so patients collect on time and the phone rings less.",
+     "Keep patient information in the pharmacy system only, never in public AI tools."
+    ],
+    "project": "Set up expiry alerts and reorder points for the top 100 medicines and track stock-outs and waste over two months."
+   },
+   {
+    "title": "Grow toward clinical support",
+    "items": [
+     "Get better at helping customers find what they need and knowing exactly when to bring in the pharmacist.",
+     "Take certifications in sterile compounding, immunisation support or medication histories where your employer offers them.",
+     "Grow toward lead technician or pharmacy operations, or look at related roles: medical assistant."
+    ],
+    "project": "Complete one additional certification, such as sterile compounding, and take on the related tasks for a month under supervision."
+   }
+  ],
+  "aiTools": [
+   "Pharmacy management system with safety checks",
+   "Automated counting and barcode verification",
+   "Refill reminder and messaging system"
+  ],
+  "humanEdge": [
+   "Spotting a prescription that looks wrong",
+   "Helping worried customers at the counter",
+   "Careful, accurate dispensing"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2061.00": {
+  "roadmap": [
+   {
+    "title": "Faster charting without losing accuracy",
+    "items": [
+     "Use your facility's approved charting tools and vital-sign devices that record directly, and check each entry for errors.",
+     "Use barcode medication administration every time, and report when the system and the order do not match.",
+     "Prepare patient instructions in plain language with approved tools, never with patient details in public AI."
+    ],
+    "project": "Track for a month how much charting time automatic vital-sign recording saves per shift, and what errors you still catch."
+   },
+   {
+    "title": "Spot changes in patients early",
+    "items": [
+     "Learn how monitoring alerts and fall-risk scores work in your unit, and what you check when they go off.",
+     "Keep a clear handover routine so changes in a patient's condition are passed on, not lost between shifts.",
+     "Find out which tasks in your unit are being automated and which new skills your employer will pay to train."
+    ],
+    "project": "Use a structured handover checklist for a month and record the changes in patient condition caught at handover."
+   },
+   {
+    "title": "Grow hands-on care and responsibility",
+    "items": [
+     "Keep improving basic care, wound care and safe patient moving, which need both skill and kindness.",
+     "Supervise aides well: teach, check and support them on busy shifts.",
+     "Grow toward registered nurse through a bridging program, or look at related roles such as paramedic."
+    ],
+    "project": "Look into an LPN-to-RN bridging program, plan the first step with your manager, and enrol in one module within three months."
+   }
+  ],
+  "aiTools": [
+   "Approved EHR charting tools",
+   "Barcode medication administration",
+   "Automatic vital-sign monitors"
+  ],
+  "humanEdge": [
+   "Hands-on care and wound care",
+   "Noticing small changes in a patient",
+   "Comforting patients and their families"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "29-2072.00": {
+  "roadmap": [
+   {
+    "title": "Work with computer-assisted coding",
+    "items": [
+     "Use computer-assisted coding to suggest diagnosis and procedure codes, and check each against the documentation.",
+     "Let AI flag incomplete or inconsistent records, and decide which ones need a query to the clinician.",
+     "Use DRG grouper software and check the cases where the grouping changes payment the most."
+    ],
+    "project": "Code 100 records with computer-assisted coding, track how many suggestions you changed and why, and share the patterns."
+   },
+   {
+    "title": "Accuracy, privacy and audits",
+    "items": [
+     "Learn the privacy rules for releasing information, and use the system's logs to show who saw what.",
+     "Run regular coding audits on samples, including AI-suggested codes, and feed the findings back to the team.",
+     "Never paste patient records into public AI tools; work only in approved, contracted systems."
+    ],
+    "project": "Run a coding audit on 50 records, including AI-suggested codes, and report error rates by type to your manager."
+   },
+   {
+    "title": "Grow clinical documentation expertise",
+    "items": [
+     "Get better at clinician queries: asking doctors about unclear diagnoses in a way that gets fast, accurate answers.",
+     "Move toward clinical documentation improvement, auditing or health data analysis.",
+     "Look at related roles: health information technologist or medical registrar."
+    ],
+    "project": "Take a clinical documentation improvement course and run five clinician queries under supervision."
+   }
+  ],
+  "aiTools": [
+   "Computer-assisted coding software",
+   "DRG grouper software",
+   "Electronic health record with audit logs"
+  ],
+  "humanEdge": [
+   "Querying doctors about unclear diagnoses",
+   "Judging what the documentation really supports",
+   "Protecting patient privacy"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-1121.00": {
+  "roadmap": [
+   {
+    "title": "Use the care app and phone tools well",
+    "items": [
+     "Record visits, care given and changes in the client's condition in your agency's care app, clearly and on the same day.",
+     "Use voice notes or dictation in the app if typing is slow, and read back what it wrote before saving.",
+     "Ask an AI assistant for meal ideas that fit a prescribed diet, and check them with the care plan or the nurse."
+    ],
+    "project": "Keep complete same-day records in your agency's app for a month and ask your supervisor which notes were most useful."
+   },
+   {
+    "title": "Safety and health technology at home",
+    "items": [
+     "Learn the devices your clients use: fall alarms, medication dispensers, blood pressure monitors and video calls with family.",
+     "Help clients and families set up reminders and video calls, so they stay connected between your visits.",
+     "Report unusual readings or behaviour changes quickly through the right channel, not only in the notes."
+    ],
+    "project": "Help three clients set up a medication reminder or a video call with family, and note after a month what changed for them."
+   },
+   {
+    "title": "Grow care skills and responsibility",
+    "items": [
+     "Keep improving safe moving, bathing and personal care, done with respect for the client's dignity.",
+     "Get better at companionship and at noticing low mood, confusion or loneliness early.",
+     "Train toward nursing assistant, practical nurse or dementia care specialist roles."
+    ],
+    "project": "Complete a dementia care or safe moving and handling course and use the techniques with your clients for a month."
+   }
+  ],
+  "aiTools": [
+   "Agency care app with voice notes",
+   "Home safety devices (fall alarms, pill dispensers)",
+   "ChatGPT or Claude for diet-friendly meal ideas"
+  ],
+  "humanEdge": [
+   "Helping clients move, bathe and dress with dignity",
+   "Companionship that keeps clients well",
+   "Noticing early signs a client is getting worse"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-1122.00": {
+  "roadmap": [
+   {
+    "title": "Records, schedules and meals made easier",
+    "items": [
+     "Use your agency's app for visit logs, care notes and schedules, and record changes in the client's condition the same day.",
+     "Plan weekly shopping lists and simple nutritious meals with AI help, adapted to the client's tastes and budget.",
+     "Use navigation and calendar apps to plan visits, appointments and errands without missing anything."
+    ],
+    "project": "Plan a month of shopping and meals with AI help for one client, check it against their care plan, and note what they enjoyed."
+   },
+   {
+    "title": "Keep clients connected and safe",
+    "items": [
+     "Help clients use video calls, reminders and simple smart devices so they stay in touch and independent.",
+     "Learn the warning signs to report from devices such as fall alarms and blood pressure monitors.",
+     "Prepare for case reviews with clear notes on what is working for the client and what is not."
+    ],
+    "project": "Help two clients set up regular video calls with family and record changes in their mood over a month."
+   },
+   {
+    "title": "Grow care and teaching skills",
+    "items": [
+     "Get better at companionship and personal care that respects each client's routines and dignity.",
+     "Teach family members safe ways to help with bedside care and moving.",
+     "Train toward home health aide, nursing assistant or community care coordinator roles."
+    ],
+    "project": "Run a short session teaching a family member safe moving and bedside care, and check in with them after two weeks."
+   }
+  ],
+  "aiTools": [
+   "Agency care and scheduling app",
+   "ChatGPT or Claude for meal plans and shopping lists",
+   "Video call and reminder apps"
+  ],
+  "humanEdge": [
+   "Companionship and emotional support",
+   "Personal care that respects dignity",
+   "Fitting care around each client's routines"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-1131.00": {
+  "roadmap": [
+   {
+    "title": "Use the unit's devices and records well",
+    "items": [
+     "Record vital signs with devices that send readings straight to the chart, and check each reading went to the right patient.",
+     "Report observations through your unit's system clearly: what you saw, when, and what the patient said.",
+     "Use lifting equipment and fall-prevention sensors correctly, and report when they fail or alarm without reason."
+    ],
+    "project": "For one month, report every change you notice through the unit's system the same shift, and ask a nurse which reports helped."
+   },
+   {
+    "title": "Learn the technology around you",
+    "items": [
+     "Learn how call systems, bed sensors and fall alarms work in your unit, so you respond faster to what matters.",
+     "Ask the nurses which AI tools the unit uses, such as early-warning scores, and what your observations add to them.",
+     "Keep patient details private: no photos or notes about patients on your own phone."
+    ],
+    "project": "Track call-light response times on your shift for two weeks and agree one change with the team that shortens them."
+   },
+   {
+    "title": "Grow care skills and your next step",
+    "items": [
+     "Keep improving the hands-on care patients remember: moving, feeding and washing them with patience and respect.",
+     "Get better at noticing confusion, pain or low mood early and telling the nurse.",
+     "Train toward practical or registered nurse, or look at related roles: home health aide or medical assistant."
+    ],
+    "project": "Look into a practical nursing program, talk to your manager about support, and enrol in one prerequisite course."
+   }
+  ],
+  "aiTools": [
+   "Vital-sign devices linked to the chart",
+   "Call, bed sensor and fall alarm systems",
+   "Unit reporting system in the EHR"
+  ],
+  "humanEdge": [
+   "Hands-on care with patience and respect",
+   "Noticing confusion or pain early",
+   "Comforting frightened patients"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9091.00": {
+  "roadmap": [
+   {
+    "title": "Digital records, scans and scheduling",
+    "items": [
+     "Record treatment notes with your practice software's templates and voice input, and check tooth numbers and materials.",
+     "Learn intraoral scanning, which is replacing many traditional impressions, and practise until scans are complete first time.",
+     "Use the practice system's automation for recalls, billing and insurance forms, and check the claims it flags."
+    ],
+    "project": "Track how many intraoral scans you need to repeat over a month and work with the dentist to cut the repeats in half."
+   },
+   {
+    "title": "AI in the dental office",
+    "items": [
+     "Learn how AI x-ray analysis in your practice marks findings, so you can prepare patients for what the dentist will explain.",
+     "Prepare post-operative and hygiene instructions in plain language with approved tools, checked by the dentist.",
+     "Use inventory alerts for materials and supplies so procedures are never delayed."
+    ],
+    "project": "Set up inventory alerts for the 30 most used materials and track shortages for two months."
+   },
+   {
+    "title": "Grow chairside and patient skills",
+    "items": [
+     "Keep improving chairside assisting, sterilisation and infection control, the core of your work.",
+     "Get better at calming nervous patients and coaching them on home care.",
+     "Grow toward dental hygienist or practice manager, or look at related roles: medical assistant."
+    ],
+    "project": "Coach ten patients on plaque control with a simple routine and check their progress at their next visit."
+   }
+  ],
+  "aiTools": [
+   "Dental practice management software",
+   "Intraoral scanners",
+   "AI x-ray analysis used in the practice"
+  ],
+  "humanEdge": [
+   "Chairside assisting during procedures",
+   "Calming nervous patients in the chair",
+   "Strict infection control every time"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "31-9092.00": {
+  "roadmap": [
+   {
+    "title": "Less typing, more patient time",
+    "items": [
+     "Use your clinic's approved tools for intake, histories and vital signs that go straight into the record, and check each entry.",
+     "Handle phones, scheduling and insurance forms with your practice system's automation and templates.",
+     "Learn how the AI scribe or messaging tools in your clinic work, and what you still need to check."
+    ],
+    "project": "Track intake time per patient for a month after moving to digital intake forms, and note what information is still missing."
+   },
+   {
+    "title": "Clear instructions and safe processes",
+    "items": [
+     "Prepare plain-language instructions for common treatments and medicines with approved tools, checked by the clinician.",
+     "Use checklists for specimen collection, labelling and sterilisation, so errors are caught before they reach the lab.",
+     "Keep patient data in the clinic's systems only, never in personal apps or public AI tools."
+    ],
+    "project": "Introduce a specimen labelling checklist for a month and count the labelling errors reported by the lab before and after."
+   },
+   {
+    "title": "Grow clinical skills",
+    "items": [
+     "Keep improving clinical skills such as injections, specimen collection and assisting with procedures.",
+     "Get better at explaining instructions to patients so they understand and follow them.",
+     "Grow toward practical nurse or specialised roles, or look at related roles: surgical assistant or ophthalmic technician."
+    ],
+    "project": "Take one certification in phlebotomy or ECG and use the new skill in the clinic within three months."
+   }
+  ],
+  "aiTools": [
+   "Practice management system with digital intake",
+   "Clinic-approved AI scribe or messaging tools",
+   "Approved patient instruction templates"
+  ],
+  "humanEdge": [
+   "Putting nervous patients at ease",
+   "Clinical skills such as injections and specimen collection",
+   "Explaining instructions so patients follow them"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-2011.00": {
+  "roadmap": [
+   {
+    "title": "Faster incident reports and equipment checks",
+    "items": [
+     "Write incident reports with templates and voice dictation, and check times, addresses and actions before submitting.",
+     "Use your department's mobile apps for pre-incident plans, hydrant locations and building information on the way to a call.",
+     "Track equipment checks and maintenance digitally so problems are fixed before the next call."
+    ],
+    "project": "Switch apparatus and equipment checks to a digital checklist for a month and count the defects caught before calls."
+   },
+   {
+    "title": "New technology on the fireground",
+    "items": [
+     "Learn how drones, thermal imaging and sensors support size-up, and their limits in smoke and heat.",
+     "Learn the hazards of lithium-ion batteries, electric vehicles and solar panels, which change how fires behave.",
+     "Use building inspection apps to record hazards and follow up on fixes."
+    ],
+    "project": "Complete training on electric vehicle and battery fires and run a drill on it with your crew."
+   },
+   {
+    "title": "Grow skills and leadership",
+    "items": [
+     "Keep fitness, rescue and emergency medical skills sharp through regular drills.",
+     "Get better at working as a crew and at reassuring people at the worst moment of their lives.",
+     "Grow toward officer, fire inspector or investigator roles, or look at related roles: paramedic."
+    ],
+    "project": "Lead one training drill for your crew, collect feedback, and run an improved version a month later."
+   }
+  ],
+  "aiTools": [
+   "Incident reporting software with dictation",
+   "Mobile pre-incident planning apps",
+   "Thermal imaging cameras and drones"
+  ],
+  "humanEdge": [
+   "Rescue and firefighting under extreme conditions",
+   "Working as one crew when it is dangerous",
+   "Reassuring people at their worst moment"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-3012.00": {
+  "roadmap": [
+   {
+    "title": "Digital logs, counts and reports",
+    "items": [
+     "Keep daily logs, incident reports and counts in your facility's digital system, and check names, times and locations.",
+     "Use electronic count and tracking systems where your facility has them, and verify every mismatch in person.",
+     "Write incident reports with templates or dictation, keeping your own words for what you saw."
+    ],
+    "project": "Track for a month how long incident reports take with templates or dictation, and how many your supervisor returned for corrections."
+   },
+   {
+    "title": "Technology and its limits",
+    "items": [
+     "Learn how camera analytics, body scanners and contraband detection work in your facility, and their blind spots.",
+     "Follow the rules on monitoring calls and messages, and document how each tool was used.",
+     "Report false alarms and failures so the systems get fixed instead of ignored."
+    ],
+    "project": "Log every alert from one detection system for two weeks, record which were real, and share the results with your supervisor."
+   },
+   {
+    "title": "Grow communication and de-escalation",
+    "items": [
+     "Get better at talking with inmates: answering questions fairly and calming tension before it becomes violence.",
+     "Train in crisis intervention and mental health awareness, since many inmates struggle with both.",
+     "Grow toward sergeant or case manager, or look at related roles: probation officer or police officer."
+    ],
+    "project": "Complete a crisis intervention course and use the techniques for a month, debriefing incidents with a supervisor."
+   }
+  ],
+  "aiTools": [
+   "Digital logs and incident reporting system",
+   "Electronic count and tracking systems",
+   "Camera and contraband detection systems"
+  ],
+  "humanEdge": [
+   "Calming tension before it turns violent",
+   "Treating people fairly in a hard place",
+   "Staying alert and steady on long shifts"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-3051.00": {
+  "roadmap": [
+   {
+    "title": "Faster, accurate incident reports",
+    "items": [
+     "If your department drafts reports with AI from body-camera audio, check every fact, time and quote against what happened.",
+     "Use templates and voice dictation for routine reports, and keep your own words for what you saw and why you acted.",
+     "Follow your department's policy on AI tools, and never put case details into public AI tools."
+    ],
+    "project": "Track report-writing time for a month with your department's approved drafting tools, and log every correction you made."
+   },
+   {
+    "title": "Understand the technology you rely on",
+    "items": [
+     "Learn how licence-plate readers, gunshot detection and analytics in your area work, and how often they are wrong.",
+     "Know the legal limits on facial recognition and data use in your jurisdiction, and document how you used any tool.",
+     "Recognise deepfakes, scam calls and AI-enabled fraud that victims will bring to you."
+    ],
+    "project": "Write a one-page guide for your shift on spotting AI-enabled scams that victims report, and use it on calls for a month."
+   },
+   {
+    "title": "Grow community policing and judgement",
+    "items": [
+     "Get better at de-escalation and talking with people in crisis, where your judgement decides the outcome.",
+     "Build relationships with the community on your patrol area; trust brings information no system collects.",
+     "Grow toward investigations, training or supervision, or look at related roles: detective or transit police."
+    ],
+    "project": "Complete a de-escalation or crisis intervention course and apply it on calls for a month, debriefing with a supervisor."
+   }
+  ],
+  "aiTools": [
+   "Department-approved report drafting tools",
+   "Body-worn cameras and evidence systems",
+   "Licence-plate readers and dispatch analytics"
+  ],
+  "humanEdge": [
+   "De-escalating tense situations",
+   "Judging when and how to use force",
+   "Earning trust in the community"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "33-9032.00": {
+  "roadmap": [
+   {
+    "title": "Faster reports and smarter patrols",
+    "items": [
+     "Write activity and incident reports in your company's app with voice notes or templates, and check times and names before submitting.",
+     "Use guard tour apps with checkpoints and photos so patrols are recorded and gaps are visible.",
+     "Learn your site's access control and visitor system, including how to handle exceptions and lost badges."
+    ],
+    "project": "Switch your incident reports to a mobile app with photos for a month and ask your supervisor which reports were clearer than before."
+   },
+   {
+    "title": "Work with cameras and analytics",
+    "items": [
+     "Learn how AI video analytics on your site flags people, vehicles or loitering, and how often it raises false alarms.",
+     "Check every alert in person or on camera before acting, and record what you found.",
+     "Know your site's privacy rules for cameras and recordings, and what you may and may not share."
+    ],
+    "project": "Log every AI video alert on your shifts for two weeks, record how many were real, and share the results with your supervisor."
+   },
+   {
+    "title": "Grow judgement and people skills",
+    "items": [
+     "Get better at calm, firm conversations with people who break rules, so situations do not escalate.",
+     "Train in first aid and fire safety so you can act when something happens before help arrives.",
+     "Grow toward security supervisor or control room operator, or look at related roles: transit police or security screener."
+    ],
+    "project": "Complete a de-escalation and first aid course and practise the steps in a drill with your team."
+   }
+  ],
+  "aiTools": [
+   "Guard tour and incident reporting apps",
+   "Access control and visitor management systems",
+   "Video surveillance with AI analytics"
+  ],
+  "humanEdge": [
+   "Calming tense situations with words",
+   "Judging whether an alarm is real",
+   "Acting fast when someone is hurt"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
  "35-1011.00": {
   "roadmap": [
    {
@@ -2264,6 +3902,426 @@
    "Tasting and adjusting food to a standard",
    "Leading a kitchen team through a busy service",
    "Creating dishes guests remember"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-1012.00": {
+  "roadmap": [
+   {
+    "title": "AI for schedules, stock and cash-up",
+    "items": [
+     "Build staff schedules with scheduling software that uses sales forecasts, then adjust for people's availability and skills.",
+     "Use the POS and inventory app to track stock, waste and reorders, and check counts against the shelves every week.",
+     "Balance cash and card receipts with the POS end-of-day report, and investigate every difference the same night."
+    ],
+    "project": "Use forecast-based scheduling for one month and compare labour cost per cover and understaffed shifts with the month before."
+   },
+   {
+    "title": "Train and check standards consistently",
+    "items": [
+     "Write short training guides for each station with AI help, and test them with your newest staff.",
+     "Use digital checklists for cleaning, food safety and opening and closing, with photos as proof.",
+     "Analyse online reviews with AI to find the complaints that repeat, then fix one with your team."
+    ],
+    "project": "Analyse three months of reviews with AI, pick the most repeated complaint, fix it, and track reviews for the next month."
+   },
+   {
+    "title": "Lead the floor and the team",
+    "items": [
+     "Get better at coaching staff in the moment and giving feedback that improves service without killing morale.",
+     "Handle guest complaints yourself when they escalate, and turn them into return visits.",
+     "Grow toward restaurant or catering manager, or look at related roles: kitchen manager or event supervisor."
+    ],
+    "project": "Run short pre-shift briefings with one coaching point a day for a month and track guest feedback scores."
+   }
+  ],
+  "aiTools": [
+   "Scheduling software with sales forecasts",
+   "POS and inventory app",
+   "ChatGPT or Claude for training guides and review analysis"
+  ],
+  "humanEdge": [
+   "Coaching staff during a busy service",
+   "Turning a complaint into a return visit",
+   "Stepping in on any station when needed"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-2014.00": {
+  "roadmap": [
+   {
+    "title": "Use the kitchen tech that saves time",
+    "items": [
+     "Learn your kitchen display system and order flow so tickets, timings and modifications never get lost.",
+     "Use digital temperature probes and food safety apps that log readings automatically, and act on every alert.",
+     "Ask an AI assistant to scale recipes, convert units or suggest substitutes, and test the result before service."
+    ],
+    "project": "Switch your station's temperature and cleaning checks to a digital log for a month and compare missed checks with paper."
+   },
+   {
+    "title": "Less waste, better prep",
+    "items": [
+     "Use prep lists based on expected covers from the POS, and adjust them with what you know about the day.",
+     "Track food waste at your station for a few weeks and change portions or prep amounts where waste is high.",
+     "Write down your recipes and techniques clearly with AI help, so new cooks can learn your station faster."
+    ],
+    "project": "Measure food waste at your station for two weeks, change two prep amounts, and measure again for two weeks."
+   },
+   {
+    "title": "Grow your cooking and leadership",
+    "items": [
+     "Keep building taste, timing and technique; that is what makes a cook valuable in any kitchen.",
+     "Learn to lead a station or a shift: teaching, staying calm and keeping quality up in a rush.",
+     "Grow toward sous chef or head cook, or look at related roles in catering or institutional cooking."
+    ],
+    "project": "Train one new cook on your station using your written recipes, and check their dishes against yours after two weeks."
+   }
+  ],
+  "aiTools": [
+   "Kitchen display system linked to the POS",
+   "Digital temperature probes and food safety apps",
+   "ChatGPT or Claude for scaling and substitutions"
+  ],
+  "humanEdge": [
+   "Tasting and seasoning by experience",
+   "Timing many dishes at once in a rush",
+   "Keeping a station clean and safe"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-2021.00": {
+  "roadmap": [
+   {
+    "title": "Use simple tech in the kitchen",
+    "items": [
+     "Follow digital prep lists and recipes on the kitchen screen or tablet, and ask when something looks wrong.",
+     "Use label printers and date apps so stored food is labelled correctly and used in time.",
+     "Use digital temperature logs for fridges and food, and report any reading out of range straight away."
+    ],
+    "project": "Use digital labels and temperature logs for a month and count spoiled or outdated items compared with before."
+   },
+   {
+    "title": "Learn more of the kitchen",
+    "items": [
+     "Ask an AI assistant to explain cooking techniques and terms, then practise them with the cooks.",
+     "Learn the allergen rules and how to avoid cross-contamination at every station.",
+     "Watch how the cooks plan prep, and offer to prepare the next day's prep list."
+    ],
+    "project": "Learn two new prep techniques from the cooks in a month and use them in service under their watch."
+   },
+   {
+    "title": "Grow toward a cook's station",
+    "items": [
+     "Get faster and more precise at knife work and portioning, which every kitchen values.",
+     "Earn a food safety certificate so you can take on more responsibility.",
+     "Grow toward line cook, or look at related roles: short-order cook or fast food crew leader."
+    ],
+    "project": "Earn a food safety certificate and ask to work a cook's station one shift a week for a month."
+   }
+  ],
+  "aiTools": [
+   "Kitchen screens and tablets for prep lists",
+   "Label printers and food date apps",
+   "Digital temperature logs"
+  ],
+  "humanEdge": [
+   "Fast, precise knife work and portioning",
+   "Keeping food safe and clean",
+   "Supporting cooks in a busy service"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-3011.00": {
+  "roadmap": [
+   {
+    "title": "Use the bar's tech well",
+    "items": [
+     "Use the POS and handheld payment terminals fast and accurately, including tabs, splits and tips.",
+     "Track stock and pours with your bar's inventory app so you know what will run out before a busy night.",
+     "Use AI to learn new cocktail recipes, history and pairings, and test every recipe before you serve it."
+    ],
+    "project": "Track stock with an inventory app for a month and record how many times you ran out of a product compared with before."
+   },
+   {
+    "title": "Better menus and less waste",
+    "items": [
+     "Use sales data from the POS to see which drinks sell and which ingredients go to waste.",
+     "Draft a seasonal cocktail menu with AI ideas, then build and taste each drink until it is yours.",
+     "Learn ID-checking tools and responsible service rules, and know when to stop serving."
+    ],
+    "project": "Design and test four seasonal cocktails with AI ideas, put them on the menu, and track their sales for a month."
+   },
+   {
+    "title": "Grow hospitality and craft",
+    "items": [
+     "Get better at reading guests, keeping the bar friendly and handling people who have had too much.",
+     "Build your craft: technique, speed and creating drinks people remember.",
+     "Grow toward head bartender or bar manager, or look at related roles: waiter or event bartender."
+    ],
+    "project": "Take a mixology or responsible service course and track guest feedback and sales on your shifts for a month."
+   }
+  ],
+  "aiTools": [
+   "POS and handheld payment terminals",
+   "Bar inventory app",
+   "ChatGPT or Claude for recipes and menu ideas"
+  ],
+  "humanEdge": [
+   "Reading guests and keeping the bar friendly",
+   "Handling guests who have had too much",
+   "Speed and technique behind the bar"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-3023.00": {
+  "roadmap": [
+   {
+    "title": "Work alongside kiosks and app orders",
+    "items": [
+     "Learn how self-order kiosks, app orders and delivery tablets work, so you can fix problems for guests quickly.",
+     "Use the kitchen display and timers to keep orders moving and quality consistent.",
+     "Help guests who struggle with kiosks or apps, especially older customers and children."
+    ],
+    "project": "Track the kiosk and app problems guests bring to you for two weeks and share the top three with your manager."
+   },
+   {
+    "title": "Food safety and stock made easier",
+    "items": [
+     "Use digital checklists for cleaning, temperatures and opening and closing tasks.",
+     "Watch stock levels and tell your manager before items run out, using the restaurant's inventory screens.",
+     "Learn the allergen information for every item, so you can answer guests safely and quickly."
+    ],
+    "project": "Use a digital opening and closing checklist for a month and count missed tasks compared with before."
+   },
+   {
+    "title": "Grow toward shift leader",
+    "items": [
+     "Get better at handling complaints calmly and fixing them so guests come back.",
+     "Learn to train new staff and to run a shift during the rush.",
+     "Grow toward shift leader or restaurant manager, or look at related roles: cook or barista."
+    ],
+    "project": "Train one new team member on your station for two weeks and ask your manager to rate their progress."
+   }
+  ],
+  "aiTools": [
+   "Self-order kiosks and app ordering",
+   "Kitchen display and timer systems",
+   "Digital food safety checklists"
+  ],
+  "humanEdge": [
+   "Staying friendly and fast in a rush",
+   "Calming upset customers at the counter",
+   "Keeping food safe and clean"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "35-3031.00": {
+  "roadmap": [
+   {
+    "title": "Use the restaurant's ordering tech well",
+    "items": [
+     "Learn handheld ordering and payment terminals so orders reach the kitchen instantly and guests pay at the table.",
+     "Know how QR menus and online orders work in your restaurant, so you can help guests who struggle with them.",
+     "Use AI to learn the menu deeply, including ingredients, allergens and wine pairings, and confirm details with the kitchen."
+    ],
+    "project": "Build a one-page allergen and pairing cheat sheet with AI help, check it with the chef, and use it for a month."
+   },
+   {
+    "title": "Better service with fewer mistakes",
+    "items": [
+     "Track common order errors and allergy questions, and agree fixes with the kitchen.",
+     "Use reservation notes and guest preferences in the booking system to personalise service.",
+     "Translate key menu phrases with AI for guests who speak another language, and check them with a speaker."
+    ],
+    "project": "Track order errors and guest complaints at your tables for a month and agree two changes with the kitchen."
+   },
+   {
+    "title": "Grow hospitality and selling skills",
+    "items": [
+     "Get better at reading tables: when guests want to talk, when they want space, and when something is wrong.",
+     "Learn to recommend dishes and wines honestly, so guests trust your advice and order with confidence.",
+     "Grow toward head waiter, sommelier or restaurant manager, or look at related roles: host or bartender."
+    ],
+    "project": "Take a short wine or service course and track your average check and guest feedback for a month afterwards."
+   }
+  ],
+  "aiTools": [
+   "Handheld ordering and payment terminals",
+   "Restaurant booking system with guest notes",
+   "ChatGPT or Claude for menu and pairing knowledge"
+  ],
+  "humanEdge": [
+   "Reading what each table needs",
+   "Making guests feel welcome and looked after",
+   "Handling complaints with grace"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "37-2011.00": {
+  "roadmap": [
+   {
+    "title": "Work with the new cleaning technology",
+    "items": [
+     "Learn to run and look after robotic floor scrubbers or vacuums where your employer uses them, and check the spots they miss.",
+     "Use the cleaning app or QR checklists on your route to record tasks, so supervisors see what was done.",
+     "Report problems such as leaks, broken fixtures or empty dispensers through the app with photos."
+    ],
+    "project": "Use the QR or app checklist on your route for a month and count the issues you reported that got fixed."
+   },
+   {
+    "title": "Smarter, safer cleaning",
+    "items": [
+     "Learn which cleaning chemicals to use where, how to mix them safely, and what the safety data sheets say.",
+     "Where restrooms have usage sensors, clean by need instead of a fixed timetable, and tell your supervisor what you learn.",
+     "Ask an AI assistant to explain floor care methods for stone, wood or vinyl, and check with your supervisor before trying them."
+    ],
+    "project": "Take a chemical safety and floor care course and apply one new method on your route, recording the result."
+   },
+   {
+    "title": "Grow toward maintenance or supervision",
+    "items": [
+     "Get good at minor repairs to plumbing, lighting and fixtures, which makes you more valuable on any site.",
+     "Learn to train new cleaners and to check quality along a route.",
+     "Grow toward building maintenance worker or cleaning supervisor, or look at related roles: facilities assistant."
+    ],
+    "project": "Learn one basic repair skill, such as replacing fixtures or clearing drains, and handle those jobs on your site for a month."
+   }
+  ],
+  "aiTools": [
+   "Robotic floor scrubbers and vacuums",
+   "Cleaning management app with QR checklists",
+   "Restroom usage sensors"
+  ],
+  "humanEdge": [
+   "Noticing what is dirty, broken or unsafe",
+   "Careful work with cleaning chemicals",
+   "Reliable, thorough work nobody sees"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-5012.00": {
+  "roadmap": [
+   {
+    "title": "AI for bookings and your business",
+    "items": [
+     "Use online booking with automatic reminders and deposits so no-shows drop and the phone rings less.",
+     "Write social posts and service descriptions with AI help, using your own photos of your work.",
+     "Keep client records of colours, formulas and preferences in your booking app so every visit starts right."
+    ],
+    "project": "Turn on online booking with reminders and deposits for two months and compare no-shows and empty slots with before."
+   },
+   {
+    "title": "Help clients choose with visual tools",
+    "items": [
+     "Use virtual try-on or AI hairstyle apps in consultations to show options, and explain what will really suit their hair.",
+     "Track which products and services clients rebook, and suggest them at the right time.",
+     "Follow new techniques and colour trends with AI summaries, then practise them on mannequins."
+    ],
+    "project": "Use a virtual try-on app in 20 consultations and record how often the client chose a different style than planned."
+   },
+   {
+    "title": "Grow your craft and clientele",
+    "items": [
+     "Keep sharpening cutting and colour skills, the craft no app can deliver.",
+     "Get better at consultations: listening, reading the person and being honest about what will work.",
+     "Grow toward salon owner, educator or colour specialist, or look at related roles: barber or skincare specialist."
+    ],
+    "project": "Take one advanced colour or cutting course and track how many clients book the new service in the following two months."
+   }
+  ],
+  "aiTools": [
+   "Salon booking app with reminders and client records",
+   "Virtual try-on or AI hairstyle apps",
+   "ChatGPT or Claude for social posts"
+  ],
+  "humanEdge": [
+   "Cutting and colouring skill",
+   "Listening and reading what suits each client",
+   "Building loyal, long-term clients"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-9011.00": {
+  "roadmap": [
+   {
+    "title": "Use parent apps and activity ideas",
+    "items": [
+     "Use your centre's parent app for daily updates, photos and messages, and follow its privacy rules for children's images.",
+     "Get activity ideas from AI for crafts, songs and games, and adapt them to the children's ages and interests.",
+     "Record naps, meals and incidents in the app as they happen instead of at the end of the day."
+    ],
+    "project": "Plan one month of activities with AI ideas, measure planning time, and note which activities the children enjoyed most."
+   },
+   {
+    "title": "Observation and healthy habits",
+    "items": [
+     "Use simple observation notes to track each child's development, and share them with parents.",
+     "Teach health habits with songs and routines, and use AI to find age-appropriate ideas.",
+     "Translate key messages for parents who speak another language with AI, and have them checked when possible."
+    ],
+    "project": "Keep observation notes for each child for two months and use them in one conversation with every family."
+   },
+   {
+    "title": "Grow care and development skills",
+    "items": [
+     "Get better at supporting children's feelings and friendships, which matter most at this age.",
+     "Learn first aid for children and the early signs of developmental delays.",
+     "Grow toward preschool teacher or room leader, or look at related roles: nanny or kindergarten teacher."
+    ],
+    "project": "Complete paediatric first aid and an early development course, and use one new technique with your group for a month."
+   }
+  ],
+  "aiTools": [
+   "Childcare parent communication app",
+   "ChatGPT or Claude for activity ideas",
+   "Translation apps for parent messages"
+  ],
+  "humanEdge": [
+   "Comforting children and helping them feel safe",
+   "Keeping play safe and fair",
+   "Building trust with parents"
+  ],
+  "model": "claude-opus-5-5 (Claude Code session)"
+ },
+ "39-9031.00": {
+  "roadmap": [
+   {
+    "title": "AI for programs and playlists",
+    "items": [
+     "Draft training programs and class plans with AI from each client's goals and limits, then adjust them with your own judgement.",
+     "Build class playlists and routines that match tempo and intensity with music and planning apps.",
+     "Use client apps to share workouts, track sessions and send reminders between visits."
+    ],
+    "project": "Plan four weeks of classes with AI help, measure planning time, and compare attendance with the previous four weeks."
+   },
+   {
+    "title": "Use data without losing the coaching",
+    "items": [
+     "Read wearable and app data such as heart rate, sleep and steps, and use it to adjust training load sensibly.",
+     "Use video to show clients their technique, and give corrections they can feel, not just see.",
+     "Write social posts and offers with AI to promote classes, using real clients' stories with their permission."
+    ],
+    "project": "Use video technique feedback with ten clients for a month and record the improvement in one lift or movement each."
+   },
+   {
+    "title": "Grow coaching and motivation",
+    "items": [
+     "Get better at spotting poor form and fatigue in a live class, which no app sees.",
+     "Build motivation and community; that is why people keep coming back.",
+     "Grow toward specialist coaching, studio ownership or exercise physiology, or related roles: wellness coordinator."
+    ],
+    "project": "Take one certification in a specialty such as older adults or strength training and launch a class for that group."
+   }
+  ],
+  "aiTools": [
+   "ChatGPT or Claude for programs and class plans",
+   "Client training apps with tracking",
+   "Wearables and heart-rate monitors"
+  ],
+  "humanEdge": [
+   "Spotting poor form and fatigue in a live class",
+   "Motivating people to keep coming back",
+   "Building a friendly training community"
   ],
   "model": "claude-opus-5-5 (Claude Code session)"
  },
