@@ -1,4 +1,11 @@
-# Report – feature/your-week
+# Report – feature/your-week, feature/team-report, feature/share-and-measure
+
+All three branches are local only.
+
+- **Part 1** covers steps 1–4 from `docs/claude-next.md`.
+- **Part 2** covers steps 5–10: the earning model and `docs/superpowers/specs/2026-10-14-team-mode-design.md`.
+
+# Part 1 – feature/your-week (steps 1–4)
 
 Steps 1–4 from `docs/claude-next.md` (sections 0–3 in that file). The branch is local only: nothing is pushed, nothing is merged, and `overnight/rbai-gap` is not touched or rebased. `frontend/`, `old-ui/` and `frontend/uus/` are not touched.
 
@@ -85,6 +92,167 @@ Steps 1–4 from `docs/claude-next.md` (sections 0–3 in that file). The branch
 
 ## Open points for you
 
-- **Privacy page.** "Cookies and browser storage" still lists only the last test result. The browser now also keeps the answers, task shares, roadmap ticks and AI marks. Section 0 said to change only one bullet, so this paragraph is left as it was.
+- **Privacy page.** "Cookies and browser storage" listed only the last test result. Fixed in step 6: the list now names everything the browser keeps.
 - **The other session's uncommitted work.** It should be committed on its own branch before or after this one; expect conflicts in the three files named above.
-- **Not started**, as section 3 asks: the team report, sharing, or anything else.
+- **Team report and sharing.** These were left out of part 1, as section 3 asks. They are done in part 2.
+
+# Part 2 – feature/team-report and feature/share-and-measure (steps 5–10)
+
+Nothing is pushed or merged. `overnight/rbai-gap`, `frontend/`, `old-ui/` and `frontend/uus/` are not touched. There is no payment or Stripe code. The personal test stays free and needs no account.
+
+## Branches and commits
+
+The branches are stacked: `feature/your-week` → `feature/team-report` → `feature/share-and-measure`. Merging the last one brings in all three.
+
+| # | Branch | Commit | Step |
+|---|--------|--------|------|
+| 5a | `feature/team-report` | `f5a3020` Add the anonymous team report backend | 5 |
+| 5b | `feature/team-report` | `36887d1` Add the team report pages and invite flow | 5 |
+| 6 | `feature/team-report` | `eb253a6` Add the team report to the privacy policy and a DPA template | 6 |
+| 7 | `feature/share-and-measure` | `35d594f` Add a shareable result link without an account | 7 |
+| 8 | `feature/share-and-measure` | `f29eb34` Add FAQPage and BreadcrumbList JSON-LD to job pages | 8 |
+| 9 | `feature/share-and-measure` | `671b517` Track search gaps, printing, the AI comment, sliders and team steps | 9 |
+| 10 | `feature/share-and-measure` | this update | 10 |
+
+Step 5 is two commits, backend first and then the pages, so each diff can be reviewed on its own.
+
+## What was built
+
+### Step 5 – team report
+
+- **Database.** A new Liquibase changeset, `2026-10-14-create-team-tables.xml`, adds two tables:
+  - `team`: invite code, SHA-256 of the admin token, name, owner email and `max_members` (default 50);
+  - `team_submission`: profession, scores, band, answers, tasks and `submitted_on` (a date with no time). It stores no name, email, IP address or browser ID.
+- **API** (`/api/teams`, public):
+  - `POST /api/teams` creates a team and returns the invite link and the secret report link.
+  - `GET /join/{code}` returns the team name for the invite banner.
+  - `GET` and `DELETE /report/{token}` read and delete the report. A wrong token gives 404.
+- **Storing answers.** `POST /api/ai-readiness/assess` takes an optional `teamCode` and `teamEditToken`.
+  - The answer is stored after scoring.
+  - The AI comment gets no team information.
+  - A slider move or a retake from the same browser updates the same anonymous answer and keeps the first date.
+  - If the team is full, the response says `"full"` and the person still gets their result.
+- **Report.** It opens only at 5 answers; below 5 the page shows only "N of 5 answers".
+  - Contents: bands, the top 10 tasks, AI use, readiness levels, roadmap stages and a rule-based focus.
+  - A task is counted only if at least 5 respondents have it.
+  - The profession breakdown is dropped when the remaining group has 1–4 people or no profession reaches 5. This stops anyone finding a small group by subtraction.
+- **Pages:**
+  - `/teams`: Article 4 framing, steps, anonymity rules, a sample report, prices, the create form and "Book a call";
+  - `/teams/report#token`: the report, print, and delete with an inline confirmation;
+  - an invite banner on `/ai-test`;
+  - a "For teams" link in the footer.
+- **Prices on the page.**
+  - Pilot: 490 € for up to 50 people.
+  - Team: 1 490 € for up to 200 people.
+  - Annual: 6 € per person, shown as "coming later".
+  - There is no checkout. "Book a call" opens an email.
+
+### Step 6 – privacy and DPA
+
+- **`privacy.page.ts`**, dated 16 October 2026, now has:
+  - a new "Team reports" section: we are the processor for the answers and the controller for the creator's contact data, plus retention and deletion;
+  - the share link;
+  - the full list of what the browser stores;
+  - the analytics event list.
+- **`docs/legal/dpa-template.md`**: a GDPR Article 28 template.
+  - It has sections 1–12, Annex 1 (technical and organisational measures) and Annex 2 (Contabo GmbH).
+  - **It is a template, not legal advice.** The fields in brackets must be filled in.
+
+### Step 7 – share link
+
+- **The link.** "Share your result" on the result page copies `/ai-test#share=p:<profession>;a:<question>.<option>,…;s:<shares>`.
+- **What it carries.** Only IDs and numbers, never free text. The part after `#` (the fragment) is never sent to the server, so it stays out of logs and analytics.
+- **Opening it.** The page runs the normal assessment again (`personalize: false`) and shows a banner.
+- **Nothing is saved**, on the server or in the viewer's browser. The viewer's own saved result stays as it was.
+- **Not shared:** the AI comment.
+
+### Step 8 – JSON-LD
+
+- **What is added.** Every `/jobs/{slug}` page has one `<script type="application/ld+json">` with:
+  - a `FAQPage` ("Will AI replace {occupation}?");
+  - a `BreadcrumbList` (Jobs → occupation).
+- **The FAQ answer** reuses sentences already visible on the page, so the structured data never claims more than the page does.
+- **Escaping.** `<`, `>` and `&` are escaped, so an occupation name cannot close the script tag.
+
+### Step 9 – analytics (Umami)
+
+| Event | When | Data |
+|---|---|---|
+| `search-empty` | a search finds nothing (once per query) | typed text up to 60 characters, category |
+| `print` | print button | `page`: result or team-report |
+| `ai-comment-toggle` | AI comment checkbox | on/off |
+| `shares-first-move` | first slider move on a result | none |
+| `team-created` | team created | none |
+| `team-joined` | invite link opened | `full` |
+| `team-submitted` | answer saved to a team | `status`, `band` |
+| `team-report-viewed` | report page opened | `ready` |
+
+No token, invite code or answer is sent.
+
+## Tests run (on `671b517`)
+
+- **Backend** `./gradlew test`: 409 tests, 0 failures. The new or changed test classes:
+  - `TeamServiceIntegrationTest` (14 tests, H2 with Liquibase) covers:
+    - the thresholds;
+    - hiding small task and profession groups;
+    - no single answers in the report;
+    - the edit token;
+    - a full team;
+    - deletion.
+  - `TeamControllerWebMvcTest` (5).
+  - `AiReadinessAssessWebMvcTest` (3) and `AiReadinessScorerTest` (12).
+  - `JobPagesTest` (13). The 3 new tests cover the FAQ answer, the JSON-LD structure and the escaping.
+  - `JobPageWebMvcTest` (7).
+- **Frontend** `ng test`: 120 of 120 pass. The new specs are `share-link.spec.ts` and `team.service.spec.ts`.
+- **Production build** `ng build`: passes, 1.56 MB initial.
+
+## Checked in a browser (local backend with in-memory H2, `ng serve`)
+
+- **Team flow:**
+  - created a team and copied both links;
+  - opened the invite: banner, test, "added" notice;
+  - a slider move updated the same answer and did not add a row;
+  - the report page showed "1 of 5", then the full report at 5;
+  - after the 6th answer, the profession breakdown stayed hidden;
+  - the report JSON had no single answers;
+  - checked the print view;
+  - deleted the team; after that, both the report link and the invite link give 404;
+  - a broken invite link shows a message and the test still works.
+- **Share link:**
+  - In a fresh browser it reproduced the score of 44, showed the banner and saved nothing.
+  - Moving from one share link to another on the same page loads the new shared result.
+- **Analytics.** Every event above fired once with the data listed, except `ai-comment-toggle` (see below).
+
+## Not checked
+
+- `ai-comment-toggle`: the checkbox appears only when a language model key is set, so this was checked in the code only.
+- Google's Rich Results Test on the JSON-LD. Only the structure is unit-tested.
+- Keyboard-only use and screen readers on the new pages.
+- The `max_members` lock under real PostgreSQL load. It is tested on H2 only.
+- A real sale: an invoice, an email to the customer, a signed DPA.
+- Production. Nothing is deployed.
+
+## Choices made
+
+1. **The report token is in the URL fragment** (`/teams/report#token`) instead of the path the spec shows. The fragment does not reach server logs, proxies or analytics.
+2. **Edit token.** Slider moves and retakes from the same browser update the same anonymous answer and keep the first date. One person cannot fill the team alone by trying again.
+3. **Small groups.** A task needs 5 respondents. The profession breakdown is dropped when the remaining group has 1–4 people or no profession reaches 5. The spec says "minimum 5"; this is the stricter reading.
+4. **Row lock.** `SELECT … FOR UPDATE` from JPA failed on H2 in Postgres mode, so the lock is an `UPDATE` on the team row that changes nothing.
+5. **Team size.** New teams get 50. Raising a team to 200 after a Team purchase is a manual database change.
+6. **No rate limit on `POST /api/teams`.** Creating a team makes no LLM call. Add a limit if spam shows up.
+7. **Prices** are shown without a VAT statement.
+8. **The share link** carries only IDs and shares. The AI comment is left out because it is free text from the language model.
+9. **`search-empty`** sends the typed text (up to 60 characters), which shows which jobs are missing.
+   - People could type something personal there.
+   - If that is a concern, send only the category.
+
+## Open points for you
+
+- **Have a lawyer read the DPA** before you sign it with a customer, and fill in the fields in brackets (address, notice times, court).
+- **Decide how to sell.** There is no checkout, so a pilot means an email, an invoice and a manual `max_members` change.
+- **Merge order.** Merge `feature/share-and-measure`; it contains the other two branches.
+  - The main checkout's uncommitted work in `AiReadinessService.java`, `auth.service.ts` and `privacy.page.ts` will conflict.
+  - `AiReadinessService` now also has the constructor that takes `TeamService`.
+- **After deploying:**
+  - run Google's Rich Results Test on one `/jobs/...` page;
+  - check in Umami that the new events arrive.
