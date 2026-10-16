@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, of, switchMap } from 'rxjs';
+import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, switchMap } from 'rxjs';
 
 import { AiReadinessService } from '../../services/ai-readiness.service';
 import { AnalyticsService } from '../../services/analytics.service';
 import {
+  AssessmentRequest,
   AssessmentResult,
   CategorySummary,
   ProfessionSummary,
@@ -17,6 +18,12 @@ import {
   TaskExposure
 } from '../../models/ai-readiness.model';
 import { buildReminderIcs, nextSessionStart } from './reminder';
+import { previewResult, rescaleShares, sharesOf, TaskShares } from './task-shares';
+
+function sameShares(a: TaskShares, b: TaskShares): boolean {
+  const keys = Object.keys(a);
+  return keys.length === Object.keys(b).length && keys.every(k => a[k] === b[k]);
+}
 
 type Step = 'profession' | 'questions' | 'loading' | 'result';
 
@@ -331,18 +338,33 @@ export function firstStep(r: AssessmentResult): FirstStep | null {
           <p class="font-mono text-sm text-accent">02</p>
           <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Which tasks AI can take on</h2>
           <p class="mt-3 text-[15px] leading-relaxed text-muted">Typical tasks in this profession, their share of working time, and estimated automation with today's tools.</p>
+          <p class="mt-3 text-[15px] leading-relaxed text-muted print:hidden">
+            Your week is not the typical one? Drag a share to match it. Automation stays the same, and the other
+            tasks adjust so the week still adds up to 100%. Your answers still set the adjustment.
+          </p>
+          <p *ngIf="customShares" class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] print:hidden">
+            <span class="kicker !text-accent">Your week</span>
+            <button *ngIf="canRecalculate(r)" (click)="resetShares(r)" class="link text-muted">Reset to the typical week</button>
+          </p>
         </div>
         <div class="lg:col-span-8">
           <div class="kicker hidden grid-cols-[minmax(0,1fr)_5rem_10rem_3rem] gap-4 border-b border-line pb-3 sm:grid">
             <span>Task</span><span class="text-right">Of week</span><span>Automatable</span><span></span>
           </div>
-          <div *ngFor="let t of visibleTasks(r); let i = index"
+          <div *ngFor="let t of visibleTasks(r); let i = index; trackBy: trackTask"
                class="grid grid-cols-[minmax(0,1fr)_3rem] items-center gap-x-4 gap-y-2 border-b border-line py-4 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_5rem_10rem_3rem]">
-            <p class="text-[15px] leading-snug">
-              {{ t.name }}
-              <span *ngIf="t.observedUse" class="observed-pill" title="People already use AI for this task at work (Anthropic Economic Index, 2025 usage data).">AI already used</span>
-              <span class="num ml-1 font-mono text-[12px] text-faint sm:hidden">{{ t.share }}% of week</span>
-            </p>
+            <div class="min-w-0">
+              <p class="text-[15px] leading-snug">
+                {{ t.name }}
+                <span *ngIf="t.observedUse" class="observed-pill" title="People already use AI for this task at work (Anthropic Economic Index, 2025 usage data).">AI already used</span>
+                <span class="num ml-1 font-mono text-[12px] text-faint sm:hidden">{{ t.share }}% of week</span>
+              </p>
+              <input type="range" min="0" max="100" step="1" class="share-slider mt-2 w-full max-w-sm accent-[#c6f432] print:hidden"
+                     [value]="t.share" [disabled]="r.tasks.length < 2"
+                     (input)="onShareInput(r, t.name, $any($event.target).valueAsNumber)"
+                     [attr.aria-label]="'Share of your week: ' + t.name"
+                     [attr.aria-valuetext]="t.share + '% of your week'" />
+            </div>
             <span class="num hidden text-right font-mono text-[13px] text-muted sm:block">{{ t.share }}%</span>
             <div class="order-last col-span-2 h-2 overflow-hidden rounded-full bg-line sm:order-none sm:col-span-1">
               <div class="grow-x h-full rounded-full" [style.--i]="i" [style.width.%]="t.automationPercent" [style.background]="taskColor(t.automationPercent)"></div>
@@ -517,6 +539,9 @@ export class AiCheckPageComponent implements OnInit {
   personalNoteRequested = false;
   /** The open result was saved without its answers, so it may show an older plan. */
   savedResultOutdated = false;
+  /** The task shares on screen are the user's own week, not the catalog's typical week. */
+  customShares = false;
+  private readonly sharesRequest$ = new Subject<AssessmentRequest>();
 
   result: AssessmentResult | null = null;
   lastResult: AssessmentResult | null = null;
@@ -564,6 +589,22 @@ export class AiCheckPageComponent implements OnInit {
     ).subscribe(results => {
       this.results = results;
       this.searching = false;
+    });
+
+    // Share sliders: one request after ~300 ms of quiet; switchMap drops an older answer. A reply
+    // is used only if the shares on screen are still the ones it was asked for, so a late reply
+    // cannot pull a slider back while the user keeps dragging.
+    this.sharesRequest$.pipe(
+      debounceTime(300),
+      switchMap(request => this.api.assess(request).pipe(
+        map(fresh => ({ fresh, request })),
+        catchError(() => of(null)))),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(reply => {
+      if (!reply || !this.result || !sameShares(sharesOf(this.result), reply.request.taskShares ?? {})) {
+        return;
+      }
+      this.applyServerResult(reply.fresh, reply.request.answers, reply.request.taskShares);
     });
   }
 
@@ -689,6 +730,8 @@ export class AiCheckPageComponent implements OnInit {
         this.lastResult = result;
         this.personalNoteRequested = personalize;
         this.savedResultOutdated = false;
+        this.customShares = false;
+        this.pinnedTop = null;
         this.api.saveLastResult(result, this.answers);
         this.showAllTasks = false;
         this.step = 'result';
@@ -714,16 +757,22 @@ export class AiCheckPageComponent implements OnInit {
     this.result = saved;
     this.showAllTasks = false;
     this.personalNoteRequested = false;
+    this.pinnedTop = null;
     this.step = 'result';
     const stored = this.api.loadLastAnswers();
     this.savedResultOutdated = !stored || stored.professionId !== saved.professionId;
+    this.customShares = !!stored?.taskShares && !this.savedResultOutdated;
     if (this.savedResultOutdated || !stored) {
       return;
     }
-    this.api.assess({ professionId: stored.professionId, answers: stored.answers, personalize: false }).subscribe({
+    // the user's own shares are sent again; if the catalog has renamed a task the server says 400
+    // and the saved result stays as it is
+    this.api.assess({
+      professionId: stored.professionId, answers: stored.answers, personalize: false, taskShares: stored.taskShares
+    }).subscribe({
       next: fresh => {
         const refreshed = { ...fresh, personalNote: saved.personalNote };
-        this.api.saveLastResult(refreshed, stored.answers);
+        this.api.saveLastResult(refreshed, stored.answers, stored.taskShares);
         this.lastResult = refreshed;
         // the user may have left the result while the request was running
         if (this.result === saved) {
@@ -748,6 +797,8 @@ export class AiCheckPageComponent implements OnInit {
     this.personalize = false;
     this.personalNoteRequested = false;
     this.savedResultOutdated = false;
+    this.customShares = false;
+    this.pinnedTop = null;
     this.expanded = {};
     this.step = 'profession';
     window.scrollTo({ top: 0 });
@@ -755,14 +806,15 @@ export class AiCheckPageComponent implements OnInit {
 
   /**
    * The TOP_TASKS largest tasks by share, in the server's order (most automatable first);
-   * all tasks once expanded.
+   * all tasks once expanded. The set is fixed when the result opens, so a row does not vanish
+   * from under the user's finger while they drag its share down.
    */
   visibleTasks(r: AssessmentResult): TaskExposure[] {
     if (this.showAllTasks || r.tasks.length <= this.TOP_TASKS) {
       return r.tasks;
     }
-    const top = new Set([...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS));
-    return r.tasks.filter(t => top.has(t));
+    const top = this.topTaskNames(r);
+    return r.tasks.filter(t => top.has(t.name));
   }
 
   /** Count and week share of the tasks hidden behind "+ N more tasks"; null when nothing is hidden. */
@@ -770,9 +822,88 @@ export class AiCheckPageComponent implements OnInit {
     if (r.tasks.length <= this.TOP_TASKS) {
       return null;
     }
-    const top = new Set([...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS));
-    const rest = r.tasks.filter(t => !top.has(t));
+    const top = this.topTaskNames(r);
+    const rest = r.tasks.filter(t => !top.has(t.name));
     return { count: rest.length, share: rest.reduce((sum, t) => sum + t.share, 0) };
+  }
+
+  private pinnedTop: { professionId: string; names: Set<string> } | null = null;
+
+  private topTaskNames(r: AssessmentResult): Set<string> {
+    if (this.pinnedTop?.professionId !== r.professionId) {
+      const names = [...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS).map(t => t.name);
+      this.pinnedTop = { professionId: r.professionId, names: new Set(names) };
+    }
+    return this.pinnedTop.names;
+  }
+
+  trackTask(_: number, t: TaskExposure): string {
+    return t.name;
+  }
+
+  /** The answers behind the result on screen: this test's, or the saved ones for that profession. */
+  private answersFor(r: AssessmentResult): Record<string, string> | null {
+    if (this.professionId === r.professionId && Object.keys(this.answers).length) {
+      return this.answers;
+    }
+    const saved = this.api.loadLastAnswers();
+    return saved && saved.professionId === r.professionId ? saved.answers : null;
+  }
+
+  canRecalculate(r: AssessmentResult): boolean {
+    return !!this.answersFor(r);
+  }
+
+  /**
+   * A share slider moved: rescale the other shares, update the score at once with the same
+   * formula as the server, then (debounced) ask the server with the same answers and no AI
+   * comment. Without saved answers the local preview is kept and saved as it is.
+   */
+  onShareInput(r: AssessmentResult, name: string, value: number): void {
+    if (!Number.isFinite(value)) {
+      return;
+    }
+    this.topTaskNames(r);
+    const taskShares = rescaleShares(sharesOf(r), name, value);
+    const preview = previewResult(r, taskShares);
+    this.result = preview;
+    this.customShares = true;
+    const answers = this.answersFor(r);
+    if (answers) {
+      this.sharesRequest$.next({ professionId: r.professionId, answers, personalize: false, taskShares });
+    } else {
+      this.lastResult = preview;
+      this.api.saveLastResult(preview);
+    }
+  }
+
+  /** Back to the catalog's typical week (needs the answers, as the server recalculates it). */
+  resetShares(r: AssessmentResult): void {
+    const answers = this.answersFor(r);
+    if (!answers) {
+      return;
+    }
+    this.api.assess({ professionId: r.professionId, answers, personalize: false }).subscribe({
+      next: fresh => this.applyServerResult(fresh, answers, undefined),
+      error: () => { /* keep the current shares */ }
+    });
+  }
+
+  /** Shows a recalculated result, keeping the AI comment, and saves it with the shares behind it. */
+  private applyServerResult(fresh: AssessmentResult, answers: Record<string, string>,
+                            taskShares: Record<string, number> | undefined): void {
+    const current = this.result;
+    if (!current || current.professionId !== fresh.professionId) {
+      return;
+    }
+    const updated = { ...fresh, personalNote: current.personalNote };
+    this.result = updated;
+    this.lastResult = updated;
+    this.customShares = !!taskShares;
+    if (!taskShares) {
+      this.pinnedTop = null;
+    }
+    this.api.saveLastResult(updated, answers, taskShares);
   }
 
   firstStep(r: AssessmentResult): FirstStep | null {

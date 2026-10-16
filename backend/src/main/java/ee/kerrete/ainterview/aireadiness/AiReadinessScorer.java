@@ -14,8 +14,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Deterministlik ja seletatav skoorimine.
@@ -37,8 +40,17 @@ public class AiReadinessScorer {
     }
 
     public AssessmentResult score(Profession profession, Map<String, String> answers) {
+        return score(profession, answers, null);
+    }
+
+    /**
+     * Nagu score(profession, answers), aga taskShares (kui antud) asendab kataloogi osakaalud selle
+     * inimese nädalaga. Automatiseeritavus ja vastustest tulev nihe ei muutu.
+     */
+    public AssessmentResult score(Profession profession, Map<String, String> answers, Map<String, Integer> taskShares) {
+        Map<String, Integer> shares = shares(profession, taskShares);
         int exposure = (int) Math.round(profession.tasks().stream()
-                .mapToDouble(t -> t.share() * t.automation())
+                .mapToDouble(t -> shares.get(t.name()) * t.automation())
                 .sum());
 
         int riskDelta = 0;
@@ -79,7 +91,7 @@ public class AiReadinessScorer {
 
         List<TaskExposure> tasks = profession.tasks().stream()
                 .sorted(Comparator.comparingDouble(ProfessionTask::automation).reversed())
-                .map(t -> new TaskExposure(t.name(), t.share(), (int) Math.round(t.automation() * 100), t.observedUse()))
+                .map(t -> new TaskExposure(t.name(), shares.get(t.name()), (int) Math.round(t.automation() * 100), t.observedUse()))
                 .toList();
 
         return new AssessmentResult(
@@ -101,6 +113,41 @@ public class AiReadinessScorer {
                 remainingWeeks,
                 null
         );
+    }
+
+    /**
+     * Ülesande nimi -> osakaal. Ilma override'ita kataloogi osakaalud. Override peab sisaldama täpselt
+     * selle ameti ülesandeid, iga osakaal on 0..100 ja summa 100; muidu IllegalArgumentException (400).
+     */
+    static Map<String, Integer> shares(Profession profession, Map<String, Integer> taskShares) {
+        Map<String, Integer> shares = new LinkedHashMap<>();
+        if (taskShares == null) {
+            profession.tasks().forEach(t -> shares.put(t.name(), t.share()));
+            return shares;
+        }
+        Set<String> names = new HashSet<>();
+        profession.tasks().forEach(t -> names.add(t.name()));
+        for (String name : taskShares.keySet()) {
+            if (!names.contains(name)) {
+                throw new IllegalArgumentException("Unknown task '" + name + "' for profession '" + profession.id() + "'");
+            }
+        }
+        int sum = 0;
+        for (ProfessionTask t : profession.tasks()) {
+            Integer share = taskShares.get(t.name());
+            if (share == null) {
+                throw new IllegalArgumentException("Missing share for task '" + t.name() + "'");
+            }
+            if (share < 0 || share > 100) {
+                throw new IllegalArgumentException("Share for task '" + t.name() + "' must be 0..100");
+            }
+            shares.put(t.name(), share);
+            sum += share;
+        }
+        if (sum != 100) {
+            throw new IllegalArgumentException("Task shares must add up to 100, not " + sum);
+        }
+        return shares;
     }
 
     private List<GeneralStageResult> generalRoadmap(int readiness, int weeklyHours) {

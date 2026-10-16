@@ -149,7 +149,7 @@ public class AiReadinessService {
     public AssessmentResult assess(AssessmentRequest request) {
         Profession profession = catalog.profession(request.professionId())
                 .orElseThrow(() -> new IllegalArgumentException("Unknown profession '" + request.professionId() + "'"));
-        AssessmentResult result = scorer.score(profession, request.answers());
+        AssessmentResult result = scorer.score(profession, request.answers(), request.taskShares());
         if (!request.personalize()) {
             return result;
         }

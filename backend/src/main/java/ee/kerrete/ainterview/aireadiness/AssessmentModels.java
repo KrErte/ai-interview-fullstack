@@ -16,12 +16,20 @@ public final class AssessmentModels {
     private AssessmentModels() {
     }
 
-    /** answers: questionId -> optionId. Puuduvad vastused loetakse neutraalseks. */
+    /**
+     * answers: questionId -> optionId. Puuduvad vastused loetakse neutraalseks.
+     * taskShares: valikuline, ülesande nimi -> osakaal nädalast (0..100, summa 100), kui inimese nädal
+     * erineb kataloogist. Puudumisel kasutatakse kataloogi osakaale.
+     */
     public record AssessmentRequest(
             @NotBlank String professionId,
             @NotNull Map<String, String> answers,
-            boolean personalize
+            boolean personalize,
+            Map<String, Integer> taskShares
     ) {
+        public AssessmentRequest(String professionId, Map<String, String> answers, boolean personalize) {
+            this(professionId, answers, personalize, null);
+        }
     }
 
     /** featured: käsitsi kirjutatud amet (näidatakse ilma otsinguta). */

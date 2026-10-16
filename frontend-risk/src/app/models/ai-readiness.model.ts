@@ -65,12 +65,16 @@ export interface AssessmentRequest {
   professionId: string;
   answers: Record<string, string>;
   personalize: boolean;
+  /** Task name -> share of this person's week (all tasks, 0..100, total 100); omitted = catalog shares. */
+  taskShares?: Record<string, number>;
 }
 
 /** The answers behind the last saved result, kept so it can be recalculated with the current catalog. */
 export interface SavedAnswers {
   professionId: string;
   answers: Record<string, string>;
+  /** The user's own task shares, when they moved the sliders; absent in older saves. */
+  taskShares?: Record<string, number>;
 }
 
 /** A returning visitor's saved plan, for the "continue your plan" card. */
