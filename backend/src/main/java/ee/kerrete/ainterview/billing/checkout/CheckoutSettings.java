@@ -67,6 +67,11 @@ public class CheckoutSettings {
         return frontendBaseUrl + "/ai-test?resume=paywall&canceled=1";
     }
 
+    /** Resolved app.public-base-url without a trailing slash; empty when explicitly unset (prod has no default). */
+    public String publicBaseUrl() {
+        return frontendBaseUrl;
+    }
+
     public int connectTimeoutMs() {
         return connectTimeoutMs;
     }

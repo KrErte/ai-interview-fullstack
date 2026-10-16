@@ -197,7 +197,7 @@ class CheckoutWebMvcTest {
     @Test
     @WithMockUser(username = ME)
     void waiverMustBeTrue() throws Exception {
-        for (String waiver : new String[]{"false", "null"}) {
+        for (String waiver : new String[]{"false", "null", "\"true\"", "\"TRUE\"", "1", "\"yes\"", "{}", "[true]"}) {
             checkout("{\"product\":\"roadmap\",\"withdrawalWaiverAccepted\":" + waiver
                     + ",\"withdrawalWaiverVersion\":\"waiver-v1-2026-10-16\"}")
                     .andExpect(status().isBadRequest())

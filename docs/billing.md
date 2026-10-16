@@ -63,8 +63,10 @@ frontend knows whether to expect the teaser shape from `/assess`.
 
 `{"roadmap": true|false}`; always `true` while billing is off. 401 without login.
 
-Production fail-fast: with the `prod` profile and `BILLING_ENABLED=true` the app refuses to start unless both
-`STRIPE_SECRET_KEY` and `STRIPE_PRICE_ID` are set (production always charges the Stripe Price, never `price_data`).
+Production fail-fast: with the `prod` profile and `BILLING_ENABLED=true` the app refuses to start unless
+`STRIPE_SECRET_KEY` and `STRIPE_PRICE_ID` are set (production always charges the Stripe Price, never `price_data`) and
+`APP_PUBLIC_BASE_URL` (or `FRONTEND_BASE_URL`) is an explicit `https` url whose host is not localhost/127.0.0.1. The
+prod profile has no localhost default for it, so an unset url fails startup instead of sending buyers to localhost.
 
 ### `POST /api/billing/checkout` (login required, FP-61)
 
@@ -75,7 +77,7 @@ Response `{"url": "https://checkout.stripe.com/…"}`; the frontend redirects th
 |---|---|
 | 200 `{"url": …}` | Stripe Checkout session created |
 | 400 `{"error": "unknown_product"}` | `product` missing or not `roadmap` |
-| 400 `{"error": "waiver_required"}` | `withdrawalWaiverAccepted` is not `true` |
+| 400 `{"error": "waiver_required"}` | `withdrawalWaiverAccepted` is not the JSON boolean `true` (the string `"true"` or `1` do not count) |
 | 400 `{"error": "invalid_waiver_version"}` | version is not exactly `BillingSettings.CURRENT_WAIVER_VERSION` |
 | 400 `{"error": "invalid_request"}` | unreadable JSON |
 | 401 | no valid login |

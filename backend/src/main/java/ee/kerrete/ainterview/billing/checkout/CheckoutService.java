@@ -8,6 +8,11 @@ import ee.kerrete.ainterview.billing.PurchaseRepository;
 import ee.kerrete.ainterview.billing.PurchaseStatus;
 import ee.kerrete.ainterview.model.AppUser;
 import ee.kerrete.ainterview.repository.AppUserRepository;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +46,26 @@ public class CheckoutService {
         this.gateway = gateway;
     }
 
-    public record CheckoutRequest(String product, Boolean withdrawalWaiverAccepted, String withdrawalWaiverVersion) {
+    /** withdrawalWaiverAccepted must be a JSON boolean; "true" (string), 1 etc. read as null -> waiver_required. */
+    public record CheckoutRequest(String product,
+                                  @JsonDeserialize(using = StrictBoolean.class) Boolean withdrawalWaiverAccepted,
+                                  String withdrawalWaiverVersion) {
+    }
+
+    /** Accepts only JSON true/false; any other token (string, number, object) becomes null, never coerced. */
+    static final class StrictBoolean extends JsonDeserializer<Boolean> {
+        @Override
+        public Boolean deserialize(JsonParser p, DeserializationContext ctxt) throws java.io.IOException {
+            JsonToken t = p.currentToken();
+            if (t == JsonToken.VALUE_TRUE) {
+                return Boolean.TRUE;
+            }
+            if (t == JsonToken.VALUE_FALSE) {
+                return Boolean.FALSE;
+            }
+            p.skipChildren();
+            return null;
+        }
     }
 
     public record CheckoutResponse(String url) {
