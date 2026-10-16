@@ -56,7 +56,16 @@ public final class AssessmentModels {
     }
 
     /** Valikulised funktsioonid, mis sõltuvad serveri seadistusest (nt AI kommentaar vajab API võtit). */
-    public record Features(boolean aiComment) {
+    public record Features(boolean aiComment, boolean billingEnabled) {
+
+        public Features(boolean aiComment) {
+            this(aiComment, false);
+        }
+
+        /** FP-60: the paywall flag, as decided by EntitlementService. */
+        public Features withBillingEnabled(boolean enabled) {
+            return new Features(aiComment, enabled);
+        }
     }
 
     /** SOC peagrupp ja selle ametite arv (ametite sirvimiseks). */

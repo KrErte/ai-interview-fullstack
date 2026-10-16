@@ -87,6 +87,15 @@ class AiReadinessBillingWebMvcTest {
         }
 
         @Test
+        void featuresSayBillingIsOff() throws Exception {
+            JsonNode f = JSON.readTree(mvc.perform(get("/api/ai-readiness/features")).andExpect(status().isOk())
+                    .andReturn().getResponse().getContentAsString());
+            assertThat(f.get("billingEnabled").asBoolean()).isFalse();
+            assertThat(f.has("aiComment")).isTrue();
+            assertThat(f.size()).isEqualTo(2);
+        }
+
+        @Test
         void catalogUnchanged() throws Exception {
             catalogHasNoRoadmap();
         }
@@ -152,6 +161,15 @@ class AiReadinessBillingWebMvcTest {
             assertThat(r.has("totalWeeks")).isFalse();
             assertThat(r.get("roadmapLocked").asBoolean()).isTrue();
             assertThat(r.get("billingEnabled").asBoolean()).isTrue();
+        }
+
+        @Test
+        void featuresSayBillingIsOn() throws Exception {
+            JsonNode f = JSON.readTree(mvc.perform(get("/api/ai-readiness/features")).andExpect(status().isOk())
+                    .andReturn().getResponse().getContentAsString());
+            assertThat(f.get("billingEnabled").asBoolean()).isTrue();
+            assertThat(f.get("aiComment").isBoolean()).isTrue();
+            assertThat(f.size()).isEqualTo(2);
         }
 
         @Test

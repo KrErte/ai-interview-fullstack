@@ -60,7 +60,7 @@ public class AiReadinessController {
 
     @GetMapping("/features")
     public Features features() {
-        return service.features();
+        return service.features().withBillingEnabled(entitlements.billingEnabled());
     }
 
     @GetMapping("/questions")

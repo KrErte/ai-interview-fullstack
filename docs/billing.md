@@ -49,6 +49,11 @@ Response `{"generalRoadmap": […], "professionRoadmap": […], "totalWeeks": 37
 | 401 | no valid login |
 | 402 `{"error": "payment_required"}` | billing on and not entitled |
 
+### `GET /api/ai-readiness/features` (public)
+
+`{"aiComment": true|false, "billingEnabled": true|false}`; `billingEnabled` mirrors `BILLING_ENABLED`, so the
+frontend knows whether to expect the teaser shape from `/assess`.
+
 ### `GET /api/billing/entitlement` (login required)
 
 `{"roadmap": true|false}`; always `true` while billing is off. 401 without login.
