@@ -31,10 +31,18 @@ describe('TermsPageComponent', () => {
     const { el } = setup();
     expect(el.textContent).toContain('What the test is, and what it is not');
     expect(sale(el)).toBeNull();
+    expect(el.querySelector('[data-test="terms-sale-loading"]')!.getAttribute('aria-busy')).toBe('true');
+  }));
+
+  it('resolved: the sale-slot skeleton is replaced (true: section, false: nothing)', withEnv(FILLED_SALE_CONFIG, () => {
+    const el = render({ aiComment: false, billingEnabled: false });
+    expect(el.querySelector('[data-test="terms-sale-loading"]')).toBeNull();
+    expect(sale(el)).toBeNull();
   }));
 
   it('billingEnabled true + config filled: sale section with config values and the shared waiver', withEnv(FILLED_SALE_CONFIG, () => {
     const el = render({ aiComment: false, billingEnabled: true });
+    expect(el.querySelector('[data-test="terms-sale-loading"]')).toBeNull();
     expect(sale(el)!.textContent).toContain('Terms of sale – Personal AI roadmap');
     expect(sale(el)!.textContent).toContain(environment.sellerName);
     expect(sale(el)!.textContent).toContain('EE123456789');

@@ -76,6 +76,12 @@ import { WAIVER_LABEL, WAIVER_TEXT } from '../../models/billing.model';
       </p>
 
       <!-- FP-65 round 3 (drafts/terms-refund.md Part A). Rendered only when billing is on and the seller/VAT config is set. -->
+<div *ngIf="!loaded" data-test="terms-sale-loading" aria-busy="true" role="status" class="mt-6 space-y-3">
+        <span class="sr-only">Loading…</span>
+        <div class="h-4 w-2/3 animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
+        <div class="h-4 w-full animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
+        <div class="h-4 w-5/6 animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
+      </div>
       <section *ngIf="sale as c" id="terms-of-sale" aria-labelledby="terms-of-sale-title" data-test="terms-of-sale">
       <h2 id="terms-of-sale-title">Terms of sale – Personal AI roadmap</h2>
       <p><em>Last updated: {{ c.lastUpdated }} · {{ waiverLabel }}</em></p>
@@ -227,13 +233,18 @@ export class TermsPageComponent implements OnInit {
   /** Terms of sale config; null hides the sale section (billing off or seller/VAT config missing). */
   /** null while loading and when billing is off or the seller/VAT config is incomplete. */
   sale: SaleConfig | null = null;
+  /** /features has answered (true, false or failed); until then a neutral skeleton is shown. */
+  loaded = false;
 
   constructor(private billingStatus: BillingStatusService, private destroyRef: DestroyRef) {}
 
   ngOnInit(): void {
     // the general content renders at once; the sale content appears once /features has answered
     this.billingStatus.billingEnabled().pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(on => (this.sale = saleConfig(on)));
+      .subscribe(on => {
+        this.sale = saleConfig(on);
+        this.loaded = true;
+      });
   }
   readonly waiverText = WAIVER_TEXT;
   readonly waiverLabel = WAIVER_LABEL;

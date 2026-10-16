@@ -15,6 +15,14 @@ import { BillingStatusService } from '../../services/billing-status.service';
   imports: [CommonModule, RouterModule],
   template: `
     <article class="legal mx-auto max-w-3xl pb-16 pt-4 lg:pt-10">
+      <h1 *ngIf="!loaded" class="display mt-4 text-[clamp(2.5rem,6vw,4.5rem)]">Refunds and withdrawal</h1>
+      <div *ngIf="!loaded" data-test="refund-loading" aria-busy="true" role="status" class="mt-6 space-y-3">
+        <span class="sr-only">Loading…</span>
+        <div class="h-4 w-2/3 animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
+        <div class="h-4 w-full animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
+        <div class="h-4 w-5/6 animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
+      </div>
+      <ng-container *ngIf="loaded">
       <ng-container *ngIf="sale as c; else noSale">
       <p class="kicker">Last updated: {{ c.lastUpdated }}</p>
       <h1 class="display mt-4 text-[clamp(2.5rem,6vw,4.5rem)]">Refunds and withdrawal</h1>
@@ -63,6 +71,7 @@ import { BillingStatusService } from '../../services/billing-status.service';
       <p>If you are not satisfied with our answer, see <a routerLink="/terms" fragment="terms-of-sale">Terms section 8</a> (Tarbijavaidluste komisjon / TTJA).</p>
       </div>
       </ng-container>
+      </ng-container>
 
       <ng-template #noSale>
         <h1 class="display mt-4 text-[clamp(2.5rem,6vw,4.5rem)]">Refunds and withdrawal</h1>
@@ -79,12 +88,17 @@ export class RefundPageComponent implements OnInit {
   /** Refund config; null shows the "nothing is sold yet" text (billing off or seller/VAT config missing). */
   /** null while loading and when billing is off or the seller/VAT config is incomplete. */
   sale: SaleConfig | null = null;
+  /** /features has answered (true, false or failed); until then a neutral skeleton is shown. */
+  loaded = false;
 
   constructor(private billingStatus: BillingStatusService, private destroyRef: DestroyRef) {}
 
   ngOnInit(): void {
     // the general content renders at once; the sale content appears once /features has answered
     this.billingStatus.billingEnabled().pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(on => (this.sale = saleConfig(on)));
+      .subscribe(on => {
+        this.sale = saleConfig(on);
+        this.loaded = true;
+      });
   }
 }
