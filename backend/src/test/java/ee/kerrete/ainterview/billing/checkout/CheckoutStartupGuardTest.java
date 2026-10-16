@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-/** FP-61: prod + billing on needs STRIPE_SECRET_KEY and STRIPE_PRICE_ID. */
+/** FP-61/62: prod + billing on needs STRIPE_SECRET_KEY, STRIPE_PRICE_ID and STRIPE_WEBHOOK_SECRET. */
 class CheckoutStartupGuardTest {
 
     private static MockEnvironment env(String... profiles) {
@@ -75,7 +75,11 @@ class CheckoutStartupGuardTest {
                 .hasMessageContaining("STRIPE_SECRET_KEY").hasMessageNotContaining("STRIPE_PRICE_ID");
         assertThatThrownBy(() -> new CheckoutStartupGuard(billing(true, ""), checkout("sk_live_x"), env("prod")))
                 .hasMessageContaining("STRIPE_PRICE_ID").hasMessageNotContaining("sk_live_x");
-        assertThatCode(() -> new CheckoutStartupGuard(billing(true, "price_1"), checkout("sk_live_x"), env("prod")))
+        assertThatThrownBy(() -> new CheckoutStartupGuard(billing(true, "price_1"), checkout("sk_live_x"), env("prod")))
+                .hasMessageContaining("STRIPE_WEBHOOK_SECRET").hasMessageNotContaining("STRIPE_PRICE_ID");
+        assertThatCode(() -> new CheckoutStartupGuard(billing(true, "price_1"), checkout("sk_live_x"),
+                env("prod").withProperty("billing.stripe.webhook-secret", "whsec_x"))).doesNotThrowAnyException();
+        assertThatCode(() -> new CheckoutStartupGuard(billing(true, "price_1"), checkout("sk_live_x"), "whsec_x", env("prod")))
                 .doesNotThrowAnyException();
     }
 

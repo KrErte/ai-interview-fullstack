@@ -10,4 +10,7 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
     /** FP-61: the latest pending row of a user's product, reused by the next checkout. */
     Optional<Purchase> findFirstByUserIdAndProductAndStatusOrderByIdDesc(Long userId, String product, PurchaseStatus status);
+
+    /** FP-62: the purchase of a Stripe Checkout session. */
+    Optional<Purchase> findByStripeSessionId(String stripeSessionId);
 }
