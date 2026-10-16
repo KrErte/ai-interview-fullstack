@@ -256,3 +256,82 @@ No token, invite code or answer is sent.
 - **After deploying:**
   - run Google's Rich Results Test on one `/jobs/...` page;
   - check in Umami that the new events arrive.
+
+# Part 3 – the main checkout's uncommitted work, merged with feature/share-and-measure
+
+Nothing is pushed or deployed. The files in the main checkout (`feat/occupation-roadmaps`) are not changed. They were copied, not moved, so that checkout still has its uncommitted work.
+
+## Branches
+
+| Branch | Base | Commits |
+|---|---|---|
+| `feature/llm-limit-and-search` | `origin/main` `5a208a4` | `76b2c1c` Cap language model calls at 8 per client and 60 per hour |
+| | | `e75829b` Rank occupations whose own name matches the search first |
+| | | `eb65921` Keep the test result on logout |
+| | | `a7debd1` Give the no-key WebMvc test the rate limiter bean (new, see below) |
+| `feature/limit-and-share` | `feature/llm-limit-and-search` | `179614a`: merge of `feature/share-and-measure` |
+
+- **Worktree:** both branches are in `.claude/worktrees/llm-limit`.
+- **Why two branches:**
+  - `feature/llm-limit-and-search` holds only the copied work, so it can be reviewed on its own.
+  - `feature/limit-and-share` is where the merge happened. `feature/share-and-measure` itself is unchanged.
+
+**Copied from the main checkout, as the other session left it:**
+- `LlmRateLimiter` and its three tests;
+- `AiReadinessCoach` and `OpenAiClient` with the limiter;
+- `application.yml` (`app.llm.per-client-per-hour: 8`, `global-per-hour: 60`);
+- the search ranking in `AiReadinessService`, with the "coder" and "truck driver" tests;
+- `"alternateTitles": ["Coder"]` for Software developer in `professions.json`;
+- the logout change in `auth.service.ts` and `privacy.page.ts`, with `auth.service.spec.ts`.
+
+The patch applied cleanly to `origin/main`. Of these files, only `privacy.page.ts` had changed there, and only in another paragraph.
+
+**Not copied, because they are not part of this work:**
+- the `CLAUDE.md` edit;
+- `AGENTS.md`;
+- the `docs/` drafts;
+- `overnight.md`;
+- `.gradle/` and `build/` files.
+
+## Conflicts and what was kept
+
+| File | Conflict | Kept |
+|---|---|---|
+| `AiReadinessService.java` | none: it merged on its own | Both. The new search order (`nameOverlap`) and the `TeamService` constructor, `taskShares` and team recording in `assess`. |
+| `auth.service.ts` | both sides replaced `USER_DATA_KEYS` and the clean-up on a different sign-in | `feature/share-and-measure`'s version (see below). |
+| `privacy.page.ts` | both sides rewrote the "Taking the test" paragraph | `feature/share-and-measure`'s paragraph, plus the limit branch's sentence "Logging out does not remove it." |
+| `AiReadinessAssessWebMvcTest.java` | no text conflict; the test (from the share branch) loads the real `AiReadinessCoach`, which now needs `LlmRateLimiter` | `LlmRateLimiter.class` added to its `@Import`. This is in the merge commit. |
+| `auth.service.spec.ts` | both sides added the file | Both. The limit branch's tests go through the real `login()` HTTP call; the share branch's tests cover every test key and a sign-in with the same email in different case. |
+
+**Why the `auth.service.ts` choice.** Both sides keep the result on logout. The share branch's version is the wider one:
+- it removes all five test keys (result, answers, roadmap ticks, AI marks, team tokens) when a different person signs in;
+- the limit branch removed only the result;
+- the limit branch's `clearLastResult()` / `RESULT_KEY` were dropped because nothing calls them any more.
+
+**Why the `privacy.page.ts` choice.** The limit branch had removed "your task shares" from the paragraph because `origin/main` has no sliders. With the merge the sliders are back, so the sentence stays. The share-link and team sentences stay as well.
+
+## A test that was broken in the copied work
+
+The first full backend run had 4 failures in two classes:
+- `AiReadinessAssessWebMvcTest` (fixed in the merge, see the table above);
+- `AiUnavailableWebMvcTest$WithTheRealClientAndNoKey`.
+
+The second class already failed with the other session's uncommitted work on its own. It loads the real `OpenAiClient`, whose Spring constructor now needs `LlmRateLimiter`, but the test did not provide one. The fix adds `LlmRateLimiter.class` to its `@Import`, as its own commit `a7debd1` on `feature/llm-limit-and-search`. The limiter itself is unchanged: the test has no key, so no call is made.
+
+## Tests after the merge (on `feature/limit-and-share`)
+
+- **Backend** `./gradlew test`: 414 tests, 0 failures. That includes:
+  - `LlmRateLimiterTest` (2), `AiReadinessCoachRateLimitTest` (1), `OpenAiClientRateLimitTest` (1);
+  - `AiReadinessSearchTest` (15), with "coder" giving Software developer first and "truck driver" giving Heavy and Tractor-Trailer Truck Drivers first;
+  - `AiReadinessAssessWebMvcTest` (3), `TeamServiceIntegrationTest` (14), `TeamControllerWebMvcTest` (5), `JobPagesTest` (13), `JobPageWebMvcTest` (7).
+- **Backend on `feature/llm-limit-and-search` alone:** 385 tests, 0 failures.
+- **Frontend** `ng test`: 122 of 122 pass. That is 120 from part 2, plus the two `login()` tests from the limit branch.
+- **Production build** `npm run build`: passes.
+
+No browser check was done for this merge.
+
+## Open points
+
+- **The main checkout still has the same changes, uncommitted.** Once this branch is accepted, those edits in the main checkout can be thrown away, because they are now committed here. Nothing was deleted there.
+- **Merge order.** Merging `feature/limit-and-share` into `main` brings everything: the limit, the search, the sliders, the team report, sharing, JSON-LD and analytics. Merging `feature/share-and-measure` directly no longer makes sense, because the limit would be missing.
+- **The `CLAUDE.md` edit** in the main checkout ("the user-facing app is fully in English") is not committed anywhere.
