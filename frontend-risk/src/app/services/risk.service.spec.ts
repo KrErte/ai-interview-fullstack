@@ -8,6 +8,7 @@ import {
   roundPercent,
   toMatchPercent,
   cleanStrings,
+  cleanUniqueStrings,
   buildGaps,
   MISSING_SKILL_PREFIX
 } from './risk.service';
@@ -154,6 +155,22 @@ describe('cleanStrings', () => {
   });
 });
 
+describe('cleanUniqueStrings', () => {
+  it("cleans and dedupes case/whitespace-insensitively: ['Java', 'java ', ''] -> ['Java']", () => {
+    expect(cleanUniqueStrings(['Java', 'java ', ''])).toEqual(['Java']);
+  });
+
+  it('keeps the first occurrence (trimmed, original casing) and collapses inner whitespace for the key', () => {
+    expect(cleanUniqueStrings(['  Spring Boot ', 'spring   boot', 'SPRING\tBOOT', 'Docker', 'docker'])).toEqual(['Spring Boot', 'Docker']);
+  });
+
+  it('tolerates null, non-arrays and non-string entries', () => {
+    expect(cleanUniqueStrings(null)).toEqual([]);
+    expect(cleanUniqueStrings('Java')).toEqual([]);
+    expect(cleanUniqueStrings(['Java', null, 42, 'JAVA'])).toEqual(['Java']);
+  });
+});
+
 describe('buildGaps', () => {
   it('returns an empty list when every source is empty, null or missing', () => {
     expect(buildGaps({})).toEqual([]);
@@ -250,6 +267,37 @@ describe('RiskService', () => {
   });
 
   afterEach(() => http.verify());
+
+  describe('uploadCv (POST /api/cv/extract-text)', () => {
+    it('POSTs multipart FormData with the file under field "file" and no email param', () => {
+      const file = new File(['Jane Doe\nAngular developer'], 'cv.txt', { type: 'text/plain' });
+      let response: unknown;
+      service.uploadCv(file).subscribe(r => (response = r));
+
+      const req = http.expectOne(`${environment.apiBaseUrl}/api/cv/extract-text`);
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body instanceof FormData).toBeTrue();
+      const body = req.request.body as FormData;
+      expect(body.get('file')).toBe(file);
+      expect(body.getAll('file').length).toBe(1);
+      expect(body.has('email')).toBeFalse();
+      expect(req.request.params.keys()).toEqual([]);
+      // Content-Type must be left to the browser (multipart boundary).
+      expect(req.request.headers.has('Content-Type')).toBeFalse();
+
+      req.flush({ text: 'Jane Doe\nAngular developer', headline: 'Jane Doe', skills: ['angular'] });
+      expect(response).toEqual({ text: 'Jane Doe\nAngular developer', headline: 'Jane Doe', skills: ['angular'] });
+    });
+
+    it('propagates HTTP errors to the caller', () => {
+      const file = new File(['%PDF-1.4'], 'cv.pdf', { type: 'application/pdf' });
+      let status: number | undefined;
+      service.uploadCv(file).subscribe({ error: e => (status = e.status) });
+      http.expectOne(`${environment.apiBaseUrl}/api/cv/extract-text`)
+        .flush(null, { status: 500, statusText: 'Internal Server Error' });
+      expect(status).toBe(500);
+    });
+  });
 
   describe('match percent scale (0-1 vs 0-100)', () => {
     it('multiplies 0-1 fractions by 100', () => {
@@ -372,6 +420,20 @@ describe('RiskService', () => {
       // weaknesses, missingSkills, gaps present -> 3 of 6
       expect(a.coverage).toBeCloseTo(50, 10);
       expect(a.roadmapPrecision).toBe('MEDIUM');
+    });
+
+    it('cleans and dedupes strengths and counts only the cleaned ones', () => {
+      const a = transform({ strengths: ['Java', 'java ', '', ' Angular', 'ANGULAR', '  '] });
+      expect(a.strengths).toEqual(['Java', 'Angular']);
+      expect(a.signalsCount).toBe(2);
+      expect(a.confidence).toBeCloseTo(0.6, 10);
+      expect(a.coverage).toBeCloseTo((1 / 6) * 100, 10);
+    });
+
+    it("maps ['Java', 'java ', ''] to ['Java'] with signalsCount 1", () => {
+      const a = transform({ strengths: ['Java', 'java ', ''] });
+      expect(a.strengths).toEqual(['Java']);
+      expect(a.signalsCount).toBe(1);
     });
 
     it('does not count blank strengths, roadmap steps or summary', () => {

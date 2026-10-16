@@ -40,6 +40,7 @@ export function clampPercent(value: number): number {
  * product back to 28.5 first. Do not "fix" this by double rounding
  * (Math.round(raw * 1000) / 10 and then Math.round again): that turns 0.6949
  * (69.49) into 69.5 -> 70 and moves it into the wrong band.
+ * Caveat: toPrecision(12) can mis-round inputs with 12+ significant digits (0.6949999999999 -> 70); not realistic for backend scores.
  */
 export function roundPercent(value: number): number {
   return Math.round(Number(value.toPrecision(12)));
@@ -91,6 +92,21 @@ export function cleanStrings(list: unknown): string[] {
     .filter((v): v is string => typeof v === 'string')
     .map(v => v.trim())
     .filter(v => v !== '');
+}
+
+/**
+ * cleanStrings() plus a case-insensitive, whitespace-normalised dedupe (same
+ * key as the gaps list); the first occurrence wins and keeps its original
+ * casing. ['Java', 'java ', ''] -> ['Java'].
+ */
+export function cleanUniqueStrings(list: unknown): string[] {
+  const seen = new Set<string>();
+  return cleanStrings(list).filter(v => {
+    const key = gapKey(v);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 /**
@@ -197,7 +213,8 @@ export class RiskService {
 
     // Gap entries exactly as shown in "Areas to Improve" (cleaned + deduped).
     const gaps = buildGaps(result);
-    const strengths = cleanStrings(result.strengths);
+    // Strengths shown in the card: cleaned + deduped like the gaps.
+    const strengths = cleanUniqueStrings(result.strengths);
     const roadmapSteps = cleanStrings(result.roadmap);
     const hasSummary = typeof result.summary === 'string' && result.summary.trim() !== '';
 
@@ -232,7 +249,7 @@ export class RiskService {
       confidence,
       signalsCount,
       coverage,
-      strengths: result.strengths || [],
+      strengths,
       weaknesses: gaps,
       roadmapAllowedByDepth: coverage >= 30,
       roadmapPrecision,
