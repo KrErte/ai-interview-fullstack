@@ -89,7 +89,7 @@ import { RouterModule } from '@angular/router';
       <h2>How long we keep data</h2>
       <ul>
         <li>Test answers: not stored on our server.</li>
-        <li>Browser storage: until you clear it or log out.</li>
+        <li>Browser storage: until you clear it, or until a different person logs in on the same browser. Logging out alone does not remove your test result.</li>
         <li>Account data: until you ask us to delete it. Nightly database backups are kept for 14 days, so deleted data also disappears from backups within 14 days.</li>
         <li>Server logs: as described above.</li>
       </ul>
