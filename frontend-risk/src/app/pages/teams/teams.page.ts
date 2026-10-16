@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 
 import { TeamService } from '../../services/team.service';
 import { CreatedTeam } from '../../models/team.model';
+import { AnalyticsService } from '../../services/analytics.service';
 
 const CONTACT = 'm6rnaja@gmail.com';
 
@@ -225,7 +226,7 @@ export class TeamsPageComponent {
   created: CreatedTeam | null = null;
   copied: 'invite' | 'report' | null = null;
 
-  constructor(private teams: TeamService) {}
+  constructor(private teams: TeamService, private analytics: AnalyticsService) {}
 
   create(): void {
     if (this.creating) {
@@ -237,6 +238,7 @@ export class TeamsPageComponent {
       next: created => {
         this.created = created;
         this.creating = false;
+        this.analytics.track('team-created');
       },
       error: () => {
         this.error = 'Could not create the report. Check the name and email and try again.';

@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 
 import { TeamService } from '../../services/team.service';
 import { TeamReport } from '../../models/team.model';
+import { AnalyticsService } from '../../services/analytics.service';
 
 const BAND_COLORS: Record<string, string> = {
   LOW: 'var(--band-low)',
@@ -207,7 +208,7 @@ export class TeamReportPageComponent implements OnInit {
   error: string | null = null;
   private token = '';
 
-  constructor(private teams: TeamService) {}
+  constructor(private teams: TeamService, private analytics: AnalyticsService) {}
 
   ngOnInit(): void {
     this.token = decodeURIComponent(window.location.hash.replace(/^#/, '')).trim();
@@ -220,6 +221,8 @@ export class TeamReportPageComponent implements OnInit {
       next: report => {
         this.report = report;
         this.loading = false;
+        // never the token or the team code: only whether the report is open yet
+        this.analytics.track('team-report-viewed', { ready: report.ready ? 'yes' : 'no' });
       },
       error: () => {
         this.loading = false;
@@ -242,6 +245,7 @@ export class TeamReportPageComponent implements OnInit {
   }
 
   print(): void {
+    this.analytics.track('print', { page: 'team-report' });
     window.print();
   }
 

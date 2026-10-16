@@ -219,7 +219,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           </div>
 
           <label *ngIf="isLastQuestion() && aiCommentAvailable" class="mt-8 flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-muted">
-            <input type="checkbox" [(ngModel)]="personalize" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]" />
+            <input type="checkbox" [(ngModel)]="personalize" (ngModelChange)="trackAiComment($event)" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]" />
             <span>Add an AI-written comment. Your answers are sent to a language model (OpenAI) without your name or email. The score does not depend on it. <a routerLink="/privacy" class="underline hover:text-fg">Privacy</a></span>
           </label>
 
@@ -608,6 +608,11 @@ export class AiCheckPageComponent implements OnInit {
   teamLinkInvalid = false;
   /** What happened to the anonymous team answer, shown under the result title. */
   teamNotice: string | null = null;
+  /** "shares-first-move" is sent once per result on screen. */
+  private slidersMoved = false;
+  /** Queries already reported as empty, so each is sent once. */
+  private readonly emptySearches = new Set<string>();
+
   /** Showing someone else's result from a share link: nothing is saved in this browser. */
   sharedView = false;
   shareCopied = false;
@@ -664,6 +669,7 @@ export class AiCheckPageComponent implements OnInit {
     ).subscribe(results => {
       this.results = results;
       this.searching = false;
+      this.trackEmptySearch(results);
     });
 
     // Share sliders: one request after ~300 ms of quiet; switchMap drops an older answer. A reply
@@ -685,6 +691,23 @@ export class AiCheckPageComponent implements OnInit {
 
   get currentQuestion(): Question | null {
     return this.questions[this.questionIndex] ?? null;
+  }
+
+  /**
+   * A search with no result tells which job titles are missing. Only the title typed into the job
+   * search is sent (lower case, at most 60 characters), once per query.
+   */
+  private trackEmptySearch(results: ProfessionSummary[] | null): void {
+    const q = this.search.trim().toLowerCase().slice(0, 60);
+    if (!results || results.length || !q || this.emptySearches.has(q)) {
+      return;
+    }
+    this.emptySearches.add(q);
+    this.analytics.track('search-empty', { query: q, category: this.category ?? 'all' });
+  }
+
+  trackAiComment(on: boolean): void {
+    this.analytics.track('ai-comment-toggle', { on: on ? 'yes' : 'no' });
   }
 
   onSearchChange(value: string): void {
@@ -769,6 +792,7 @@ export class AiCheckPageComponent implements OnInit {
     this.teams.join(code).subscribe({
       next: invite => {
         this.team = { code, name: invite.name, full: invite.full };
+        this.analytics.track('team-joined', { full: invite.full ? 'yes' : 'no' });
       },
       error: () => {
         this.teamLinkInvalid = true;
@@ -826,6 +850,7 @@ export class AiCheckPageComponent implements OnInit {
         this.result = result;
         this.customShares = custom;
         this.pinnedTop = null;
+        this.slidersMoved = false;
         this.step = 'result';
       },
       error: () => {
@@ -924,7 +949,11 @@ export class AiCheckPageComponent implements OnInit {
         this.savedResultOutdated = false;
         this.customShares = false;
         this.pinnedTop = null;
+        this.slidersMoved = false;
         this.teamNotice = this.teamNoticeFor(result.team);
+        if (result.team?.status === 'added' || result.team?.status === 'updated') {
+          this.analytics.track('team-submitted', { status: result.team.status, band: result.band });
+        }
         if (teamCode && result.team?.status === 'added' && result.team.editToken) {
           this.teams.rememberAnswer(teamCode, result.team.editToken);
         }
@@ -955,6 +984,7 @@ export class AiCheckPageComponent implements OnInit {
     this.showAllTasks = false;
     this.personalNoteRequested = false;
     this.pinnedTop = null;
+    this.slidersMoved = false;
     this.teamNotice = null;
     this.sharedView = false;
     this.step = 'result';
@@ -1067,6 +1097,10 @@ export class AiCheckPageComponent implements OnInit {
       return;
     }
     this.topTaskNames(r);
+    if (!this.slidersMoved) {
+      this.slidersMoved = true;
+      this.analytics.track('shares-first-move', { profession: r.professionId });
+    }
     const taskShares = rescaleShares(sharesOf(r), name, value);
     const preview = previewResult(r, taskShares);
     this.result = preview;
@@ -1247,6 +1281,9 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   print(): void {
+    if (this.result) {
+      this.analytics.track('print', { page: 'result', profession: this.result.professionId });
+    }
     window.print();
   }
 }

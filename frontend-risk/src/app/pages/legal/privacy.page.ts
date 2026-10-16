@@ -92,9 +92,12 @@ import { RouterModule } from '@angular/router';
       <p>
         We run Umami on our own server. It sets no cookies and does not store your IP address. It records which pages are
         visited, the referring site, browser, operating system, device type and country (derived from the IP address at the
-        time of the visit), plus a few events: starting the test, finishing it (with the profession and result band) and
-        clicking from a job page to the test. We use this to understand how the site is used. Legal basis: legitimate
-        interest. Analytics data is not shared with anyone.
+        time of the visit), plus a few events: starting the test, finishing it (with the profession and result band),
+        clicking from a job page to the test, a job search that finds nothing (with the job title typed, up to 60
+        characters), ticking the AI comment box, the first move of a task share slider, printing, downloading the weekly
+        reminder, ticking a roadmap step, and for team reports: creating a team, opening an invite link, adding an answer
+        and viewing the report (never the team code, the report key or anyone's answers). We use this to understand how
+        the site is used. Legal basis: legitimate interest. Analytics data is not shared with anyone.
       </p>
 
       <h3>Server logs</h3>
