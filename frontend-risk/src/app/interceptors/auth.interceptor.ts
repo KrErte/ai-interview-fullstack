@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { paywallResumeUrl } from '../services/return-url';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
@@ -21,7 +22,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401 || error.status === 403) {
+      if (error.status === 401 && isBillingUrl(req.url)) {
+        // checkout / entitlement: back to the paywall with the same answers after logging in again
+        authService.logout();
+        router.navigate(['/login'], { queryParams: { reason: 'session-expired', returnUrl: paywallResumeUrl(router.url) } });
+      } else if (error.status === 401 || error.status === 403) {
         authService.logout();
         router.navigate(['/login'], { queryParams: { reason: 'session-expired' } });
       }
@@ -40,4 +45,8 @@ export function needsToken(url: string): boolean {
     return true;
   }
   return !path.includes('/auth') && !path.includes('/api/ai-readiness');
+}
+
+export function isBillingUrl(url: string): boolean {
+  return /\/api\/billing\//.test(url.split('?')[0]);
 }

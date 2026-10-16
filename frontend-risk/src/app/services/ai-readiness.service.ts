@@ -27,6 +27,8 @@ export class AiReadinessService {
   private readonly PROGRESS_KEY = 'ai_readiness_roadmap_progress';
   private readonly AI_MARKS_KEY = 'ai_readiness_ai_marks';
   static readonly PENDING_PURCHASE_KEY = 'ai_readiness_pending_purchase';
+  /** Set once the "Payment confirmed" banner was shown in this tab session. */
+  static readonly PAYMENT_CONFIRMED_KEY = 'ai_readiness_payment_confirmed_shown';
 
   constructor(private http: HttpClient) {}
 
@@ -92,6 +94,17 @@ export class AiReadinessService {
     }
   }
 
+  /** True the first time per tab session (then remembered), so the banner is not shown on every visit. */
+  takePaymentConfirmedOnce(): boolean {
+    try {
+      if (sessionStorage.getItem(AiReadinessService.PAYMENT_CONFIRMED_KEY)) return false;
+      sessionStorage.setItem(AiReadinessService.PAYMENT_CONFIRMED_KEY, '1');
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   clearPendingPurchase(): void {
     try {
       sessionStorage.removeItem(AiReadinessService.PENDING_PURCHASE_KEY);
@@ -113,10 +126,6 @@ export class AiReadinessService {
       const withoutTeam: AssessmentResult = { ...rest, billingMarker: 'v1', billingEnabled: !!result.billingEnabled };
       // unpaid (roadmapLocked): only the teaser is stored; this also overwrites a stale full roadmap
       localStorage.setItem(this.RESULT_KEY, JSON.stringify(withoutTeam));
-      if (result.roadmapLocked || result.billingEnabled) {
-        // ticked steps are roadmap step texts, so they are dropped for a locked profession too
-        this.saveProgress(result.professionId, []);
-      }
       if (answers) {
         const saved: SavedAnswers = { professionId: result.professionId, answers };
         if (taskShares) {

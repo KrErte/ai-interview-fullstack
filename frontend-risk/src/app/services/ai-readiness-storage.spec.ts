@@ -37,7 +37,8 @@ describe('AiReadinessService storage for locked results (FP-63)', () => {
     expect(raw).not.toContain('Learn prompts');
     expect(raw).not.toContain('Build Y');
     expect(raw).toContain('Teaser');
-    expect(localStorage.getItem(PROGRESS_KEY) ?? '').not.toContain('Do X');
+    // progress (ticked step texts) is kept, so a paying user who re-takes the test keeps the ticks (QA #8)
+    expect(api.loadProgress('onet-1')).toEqual(['Do X']);
   });
 
   it('loadLastResult strips and rewrites a full roadmap stored with a locked result', () => {

@@ -93,6 +93,30 @@ describe('PaywallCardComponent', () => {
     expect(q(el, 'price')!.textContent!.trim()).toBe('€19 · one-off payment · no subscription, nothing renews.');
   });
 
+  it('a11y: waiver ID is visible but not in the checkbox name; a disabled Pay button has a linked hint', () => {
+    const el = create();
+    const box = q(el, 'waiver') as HTMLInputElement;
+    const label = el.querySelector('label[for="paywall-waiver"]')!;
+    expect(label.textContent).not.toContain(WAIVER_TEXT_VERSION);
+    expect(q(el, 'waiver-label')!.textContent).toContain(WAIVER_TEXT_VERSION);
+    expect(label.contains(q(el, 'waiver-label'))).toBeFalse();
+    const buy = q(el, 'buy') as HTMLButtonElement;
+    expect(buy.getAttribute('aria-describedby')).toBe('paywall-buy-hint');
+    expect(el.querySelector('#paywall-buy-hint')!.textContent).toContain('Tick the box to continue.');
+    box.click();
+    fixture.detectChanges();
+    expect(buy.hasAttribute('aria-describedby')).toBeFalse();
+    expect(el.querySelector('#paywall-buy-hint')).toBeNull();
+  });
+
+  it('legal links have a target of at least 24px', () => {
+    const el = create();
+    for (const a of Array.from(el.querySelectorAll('a'))) {
+      expect(a.className).toContain('min-h-6');
+      expect(a.className).toContain('inline-block');
+    }
+  });
+
   it('price line takes the VAT label from config; empty means no VAT wording', () => {
     expect(paywallPriceLine('')).toBe('€19 · one-off payment · no subscription, nothing renews.');
     expect(paywallPriceLine('incl. VAT')).toBe('€19 incl. VAT · one-off payment · no subscription, nothing renews.');

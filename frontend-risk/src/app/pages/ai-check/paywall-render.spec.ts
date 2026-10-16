@@ -8,6 +8,7 @@ import { AiCheckPageComponent } from './ai-check.page';
 import { AssessmentResult } from '../../models/ai-readiness.model';
 import { AuthService } from '../../services/auth.service';
 import { environment } from '../../../environments/environment';
+import { FILLED_SALE_CONFIG } from '../legal/legal-test-config';
 
 const API = `${environment.apiBaseUrl}/api/ai-readiness`;
 
@@ -27,7 +28,12 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
   let http: HttpTestingController;
   let queryParams: Record<string, string>;
 
+  let savedEnv: Record<string, unknown>;
+  const env = environment as unknown as Record<string, unknown>;
   beforeEach(() => {
+    // most specs run with a complete legal config (sale ready); the "config empty" spec resets it
+    savedEnv = Object.fromEntries(Object.keys(FILLED_SALE_CONFIG).map(k => [k, env[k]]));
+    Object.assign(env, FILLED_SALE_CONFIG);
     localStorage.clear();
     sessionStorage.clear();
     queryParams = {};
@@ -50,6 +56,7 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     http = TestBed.inject(HttpTestingController);
   });
   afterEach(() => {
+    Object.assign(env, savedEnv);
     localStorage.clear();
     sessionStorage.clear();
   });
@@ -284,6 +291,64 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     const saved = JSON.parse(localStorage.getItem('ai_readiness_last_result')!);
     expect(saved.billingMarker).toBe('v1');
     expect(saved.professionRoadmap).toEqual([]);
+  });
+
+  it('server billing on + legal config empty: teaser and a neutral note, no card, no Pay button, no full roadmap', () => {
+    Object.assign(env, savedEnv);
+    const el = show(result({ billingEnabled: true, roadmapLocked: true, roadmapTeaser: ['Phase 1: AI basics'] }));
+    expect(el.querySelector('[data-test="roadmap-teaser"]')).not.toBeNull();
+    expect(el.querySelector('[data-test="roadmap-soon"]')!.textContent).toContain('The full roadmap will be available soon.');
+    expect(el.querySelector('app-paywall-card')).toBeNull();
+    expect(el.textContent).not.toContain('Pay €19');
+    expect(el.textContent).not.toContain('Learn prompts');
+    expect(el.textContent).not.toContain('General AI learning path');
+  });
+
+  it('server billing on + legal config complete: the card with the Pay button', () => {
+    const el = show(result({ billingEnabled: true, roadmapLocked: true, roadmapTeaser: ['Phase 1: AI basics'] }));
+    expect(el.querySelector('[data-test="roadmap-soon"]')).toBeNull();
+    expect(el.querySelector('app-paywall-card')!.textContent).toContain('Pay €19');
+  });
+
+  it('"Payment confirmed" shows once per tab session, not on every entitled visit', () => {
+    const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
+    const full = { generalRoadmap: [], professionRoadmap: [{ title: 'Paid phase', items: ['p'], project: 'pp' }], totalWeeks: 3 };
+    let el = show(r);
+    fixture.componentInstance.loadFullRoadmap(r);
+    http.expectOne(`${environment.apiBaseUrl}/api/billing/entitlement`).flush({ roadmap: true });
+    http.expectOne(`${API}/roadmap`).flush(full);
+    fixture.detectChanges();
+    expect(el.querySelector('[data-test="payment-confirmed"]')).not.toBeNull();
+    fixture.destroy();
+    el = show(r);
+    fixture.componentInstance.loadFullRoadmap(r);
+    http.expectOne(`${environment.apiBaseUrl}/api/billing/entitlement`).flush({ roadmap: true });
+    http.expectOne(`${API}/roadmap`).flush(full);
+    fixture.detectChanges();
+    expect(el.textContent).toContain('Paid phase');
+    expect(el.querySelector('[data-test="payment-confirmed"]')).toBeNull();
+  });
+
+  it('"Payment confirmed" shows right after a purchase (?paid=1) even later in the session', () => {
+    sessionStorage.setItem('ai_readiness_payment_confirmed_shown', '1');
+    queryParams = { paid: '1' };
+    const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
+    const el = show(r);
+    fixture.componentInstance.loadFullRoadmap(r);
+    http.expectOne(`${environment.apiBaseUrl}/api/billing/entitlement`).flush({ roadmap: true });
+    http.expectOne(`${API}/roadmap`).flush({ generalRoadmap: [], professionRoadmap: [{ title: 'Paid phase', items: ['p'], project: 'pp' }], totalWeeks: 3 });
+    fixture.detectChanges();
+    expect(el.querySelector('[data-test="payment-confirmed"]')).not.toBeNull();
+  });
+
+  it('a paying user who re-takes the test keeps their ticks (progress is never cleared on save)', () => {
+    localStorage.setItem('ai_readiness_roadmap_progress', JSON.stringify({ 'onet-1': ['p'] }));
+    boot();
+    const c = fixture.componentInstance;
+    c.professionId = 'onet-1';
+    c.submit();
+    http.expectOne(`${API}/assess`).flush(result({ billingEnabled: true, roadmapLocked: true }));
+    expect(JSON.parse(localStorage.getItem('ai_readiness_roadmap_progress')!)['onet-1']).toEqual(['p']);
   });
 
   it('billingEnabled missing counts as billing off', () => {

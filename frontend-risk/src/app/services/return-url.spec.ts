@@ -1,4 +1,5 @@
 import { DEFAULT_AFTER_LOGIN, safeReturnUrl } from './return-url';
+import { paywallResumeUrl } from './return-url';
 
 describe('safeReturnUrl', () => {
   it('keeps same-app paths with their query', () => {
@@ -8,5 +9,14 @@ describe('safeReturnUrl', () => {
     for (const bad of [undefined, null, '', 'https://evil.example', '//evil.example', '/\\evil.example', 42]) {
       expect(safeReturnUrl(bad)).toBe(DEFAULT_AFTER_LOGIN);
     }
+  });
+});
+
+describe('paywallResumeUrl', () => {
+  it('adds resume=paywall to the current in-app url and rejects unsafe ones', () => {
+    expect(paywallResumeUrl('/ai-test')).toBe('/ai-test?resume=paywall');
+    expect(paywallResumeUrl('/ai-test?resume=roadmap&x=1')).toBe('/ai-test?resume=paywall&x=1');
+    expect(paywallResumeUrl('//evil.example')).toBe('/ai-test?resume=paywall');
+    expect(paywallResumeUrl(undefined)).toBe('/ai-test?resume=paywall');
   });
 });

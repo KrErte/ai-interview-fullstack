@@ -36,6 +36,7 @@ export const PAYWALL_COPY = {
   waiver: WAIVER_TEXT,
   waiverVersion: WAIVER_TEXT_VERSION,
   waiverError: 'Please tick the box to continue.',
+  buyHint: 'Tick the box to continue.',
   buy: 'Pay €19',
   buyLoggedOut: 'Pay €19',
   loggedOutNote: 'You will log in or create an account before paying. The purchase is linked to your account email.',
@@ -100,29 +101,33 @@ type State = 'checking' | 'paywall' | 'entitled';
         <p class="mt-5 text-[15px] font-semibold text-slate-100" data-test="price">{{ priceLine }}</p>
 
         <div class="mt-5">
+          <!-- the waiver ID stays visible but outside the checkbox's accessible name -->
+          <p class="text-[12px] font-semibold text-slate-400" data-test="waiver-label">{{ copy.waiverLabel }} (ID {{ copy.waiverVersion }})</p>
           <label for="paywall-waiver" class="flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-slate-300">
             <input id="paywall-waiver" type="checkbox" required data-test="waiver" [attr.data-waiver-version]="copy.waiverVersion"
                    class="mt-1 h-5 w-5 shrink-0 accent-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                    [checked]="waiver" (change)="onWaiver($any($event.target).checked)"
                    [attr.aria-invalid]="waiverError" [attr.aria-describedby]="waiverError ? 'paywall-waiver-error' : null" />
-            <span><span class="block text-[12px] font-semibold text-slate-400" data-test="waiver-label">{{ copy.waiverLabel }} (ID {{ copy.waiverVersion }})</span><span data-test="waiver-text">{{ copy.waiver }}</span></span>
+            <span data-test="waiver-text">{{ copy.waiver }}</span>
           </label>
           <p *ngIf="waiverError" id="paywall-waiver-error" data-test="waiver-error" class="mt-2 text-sm text-rose-400" role="alert">{{ copy.waiverError }}</p>
         </div>
 
         <button type="button" data-test="buy" (click)="buy()" [disabled]="!waiver || busy" [attr.aria-busy]="busy"
+                [attr.aria-describedby]="!waiver ? 'paywall-buy-hint' : null"
                 class="mt-5 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-semibold text-white transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto">
           {{ busy ? copy.busy : loggedIn ? copy.buy : copy.buyLoggedOut }}
         </button>
+        <p *ngIf="!waiver" id="paywall-buy-hint" data-test="buy-hint" class="mt-2 text-[13px] text-slate-300">{{ copy.buyHint }}</p>
         <p *ngIf="!loggedIn" class="mt-2 text-[13px] text-slate-400">{{ copy.loggedOutNote }}</p>
 
         <p class="mt-4 text-[13px] leading-relaxed text-slate-400"><span *ngIf="sellerName">{{ copy.soldBy(sellerName) }} </span>{{ copy.smallPrint }}</p>
         <p class="mt-2 text-[13px] text-slate-400">
-          <a routerLink="/terms" class="text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.terms }}</a>
+          <a routerLink="/terms" class="inline-block min-h-6 py-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.terms }}</a>
           &middot;
-          <a routerLink="/refund" class="text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.refund }}</a>
+          <a routerLink="/refund" class="inline-block min-h-6 py-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.refund }}</a>
           &middot;
-          <a routerLink="/privacy" class="text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.privacy }}</a>
+          <a routerLink="/privacy" class="inline-block min-h-6 py-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.privacy }}</a>
         </p>
 
         <div *ngIf="error" data-test="error" class="mt-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4" role="alert">
@@ -209,6 +214,11 @@ export class PaywallCardComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       error: err => {
         this.busy = false;
+        if (err?.status === 401) {
+          // the interceptor sends the user to /login with resume=paywall; keep the answers for that
+          this.api.savePendingPurchase({ professionId: this.professionId, answers: this.answers });
+          return;
+        }
         const kind = BillingService.classifyCheckoutError(err);
         if (kind === 'already_paid') {
           this.refreshEntitlement(true);
@@ -228,7 +238,12 @@ export class PaywallCardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.billing.getEntitlement().subscribe({
       next: e => this.setState(e.roadmap || alreadyPaid ? 'entitled' : 'paywall'),
       // a failed check must not hide the offer; the checkout answers 409 if it was paid after all
-      error: () => this.setState(alreadyPaid ? 'entitled' : 'paywall')
+      error: err => {
+        if (err?.status === 401) {
+          this.api.savePendingPurchase({ professionId: this.professionId, answers: this.answers });
+        }
+        this.setState(alreadyPaid ? 'entitled' : 'paywall');
+      }
     });
   }
 

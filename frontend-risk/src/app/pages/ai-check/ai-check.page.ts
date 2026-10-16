@@ -8,6 +8,7 @@ import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map,
 
 import { AiReadinessService, isGrandfathered, lockedResultView, roadmapTeaserLines, roadmapTeaserPhases } from '../../services/ai-readiness.service';
 import { BillingService, isPaymentRequired } from '../../services/billing.service';
+import { saleConfig } from '../legal/legal-config';
 import { PaywallCardComponent } from '../../components/paywall-card/paywall-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
 import {
@@ -491,7 +492,10 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
             <p class="text-sm text-rose-200">{{ fullRoadmapError }}</p>
             <button type="button" (click)="loadFullRoadmap(r)" class="mt-2 text-sm text-rose-300 underline">Try again</button>
           </div>
-          <app-paywall-card [professionId]="r.professionId" [professionName]="r.professionName" [answers]="paywallAnswers(r)"
+          <p *ngIf="!saleReady" data-test="roadmap-soon" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 text-[15px] text-slate-300 sm:p-8">
+            The full roadmap will be available soon.
+          </p>
+          <app-paywall-card *ngIf="saleReady" [professionId]="r.professionId" [professionName]="r.professionName" [answers]="paywallAnswers(r)"
                             (viewRoadmap)="loadFullRoadmap(r)"></app-paywall-card>
         </section>
       </ng-container>
@@ -499,7 +503,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
       <!-- Billing off, or the paid roadmap from POST /api/ai-readiness/roadmap (never the locked result) -->
       <ng-template #fullRoadmaps>
       <ng-container *ngIf="planOf(r) as p">
-      <p *ngIf="entitledRoadmap" data-test="payment-confirmed" role="status"
+      <p *ngIf="entitledRoadmap && showPaymentConfirmed" data-test="payment-confirmed" role="status"
          class="rounded-3xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-[15px] font-semibold text-emerald-200">
         Payment confirmed. Your full roadmap is below.
       </p>
@@ -690,6 +694,14 @@ export class AiCheckPageComponent implements OnInit {
   sharedView = false;
   /** The saved result on screen predates billing (isGrandfathered): shown as it is, never re-saved. */
   grandfathered = false;
+  /**
+   * Paywall card and checkout only with a complete legal config: the same predicate as the /terms sale section
+   * (billing on in the environment, seller and VAT set). Otherwise a locked result shows the teaser and a note.
+   */
+  readonly saleReady = !!saleConfig();
+  /** Show "Payment confirmed" only right after a purchase (?paid=1, resume flow) or once per tab session. */
+  showPaymentConfirmed = false;
+  private justPaid = false;
   shareCopied = false;
   /** The share link, shown in a field when the clipboard is not available. */
   shareFallback: string | null = null;
@@ -831,6 +843,7 @@ export class AiCheckPageComponent implements OnInit {
   private preselectFromLink(): void {
     // back from /login or /register (?resume=paywall) or from /roadmap (?resume=roadmap) with the saved answers
     const resume = this.route.snapshot.queryParamMap.get('resume');
+    this.justPaid = resume === 'roadmap' || this.route.snapshot.queryParamMap.get('paid') === '1';
     if ((resume === 'paywall' || resume === 'roadmap') && this.resumePurchase(resume)) {
       return;
     }
@@ -1181,6 +1194,8 @@ export class AiCheckPageComponent implements OnInit {
         this.fullRoadmapLoading = false;
         // kept apart from the result, so saveLastResult never sees the paid roadmap
         this.entitledRoadmap = { professionId: r.professionId, roadmap: full };
+        this.showPaymentConfirmed = this.api.takePaymentConfirmedOnce() || this.justPaid;
+        this.justPaid = false;
       },
       error: err => {
         this.fullRoadmapLoading = false;

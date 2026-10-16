@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideRouter } from '@angular/router';
+import { Router, provideRouter } from '@angular/router';
 import { authInterceptor, needsToken } from './auth.interceptor';
 import { AuthService } from '../services/auth.service';
 
@@ -42,5 +42,31 @@ describe('authInterceptor', () => {
       expect(http.expectOne(anon).request.headers.has('Authorization')).withContext(anon).toBeFalse();
     }
     http.verify();
+  });
+
+  it('401 from checkout or entitlement: login with reason=session-expired and returnUrl with resume=paywall', () => {
+    const logout = jasmine.createSpy('logout');
+    TestBed.configureTestingModule({
+      providers: [
+        provideRouter([]),
+        provideHttpClient(withInterceptors([authInterceptor])),
+        provideHttpClientTesting(),
+        { provide: AuthService, useValue: { getToken: () => 'tkn', logout } }
+      ]
+    });
+    const router = TestBed.inject(Router);
+    spyOnProperty(router, 'url', 'get').and.returnValue('/ai-test?team=ABC');
+    const nav = spyOn(router, 'navigate').and.resolveTo(true);
+    const client = TestBed.inject(HttpClient);
+    const http = TestBed.inject(HttpTestingController);
+    for (const url of ['/api/billing/checkout', '/api/billing/entitlement']) {
+      nav.calls.reset();
+      client.get(url).subscribe({ error: () => {} });
+      http.expectOne(url).flush(null, { status: 401, statusText: 'Unauthorized' });
+      expect(nav).toHaveBeenCalledWith(['/login'], {
+        queryParams: { reason: 'session-expired', returnUrl: '/ai-test?team=ABC&resume=paywall' }
+      });
+    }
+    expect(logout).toHaveBeenCalled();
   });
 });
