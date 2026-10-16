@@ -241,8 +241,10 @@ export class TeamsPageComponent {
         this.creating = false;
         this.analytics.track('team-created');
       },
-      error: () => {
-        this.error = 'Could not create the report. Check the name and email and try again.';
+      error: (err: { status?: number }) => {
+        this.error = err?.status === 429
+          ? 'Too many team reports were created. Try again in an hour.'
+          : 'Could not create the report. Check the name and email and try again.';
         this.creating = false;
       }
     });
