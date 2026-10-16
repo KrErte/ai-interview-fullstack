@@ -1,7 +1,9 @@
 package ee.kerrete.ainterview.billing.checkout;
 
+import com.stripe.Stripe;
 import com.stripe.StripeClient;
 import com.stripe.exception.StripeException;
+import com.stripe.net.RequestOptions;
 import com.stripe.param.checkout.SessionCreateParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +31,7 @@ public class StripeCheckoutGateway implements CheckoutGateway {
             throw new CheckoutGatewayException("STRIPE_SECRET_KEY is not set", null);
         }
         try {
-            com.stripe.model.checkout.Session s = client().v1().checkout().sessions().create(toParams(request));
+            com.stripe.model.checkout.Session s = client().v1().checkout().sessions().create(toParams(request), requestOptions());
             return new Session(s.getId(), s.getUrl());
         } catch (StripeException e) {
             // type/code/request id only: Stripe messages can echo request params (the email)
@@ -40,6 +42,16 @@ public class StripeCheckoutGateway implements CheckoutGateway {
             log.warn("Stripe checkout session failed: {}", e.getClass().getSimpleName());
             throw new CheckoutGatewayException("Stripe checkout session failed", e);
         }
+    }
+
+    /**
+     * Stripe API version, pinned explicitly to the version this SDK release is generated for. Upgrading stripe-java
+     * moves it; check the Stripe changelog then. The webhook does not depend on it (it reads raw JSON).
+     */
+    static final String API_VERSION = Stripe.API_VERSION;
+
+    static RequestOptions requestOptions() {
+        return RequestOptions.RequestOptionsBuilder.unsafeSetStripeVersionOverride(RequestOptions.builder(), API_VERSION).build();
     }
 
     private StripeClient client() {
@@ -61,8 +73,8 @@ public class StripeCheckoutGateway implements CheckoutGateway {
     }
 
     /**
-     * mode=payment; Stripe Price when set, else price_data. invoice_creation (allowed only with mode=payment) makes
-     * Stripe issue an invoice/receipt whose footer repeats the waiver confirmation.
+     * mode=payment; Stripe Price when set, else price_data. The waiver confirmation is the PaymentIntent description,
+     * which Stripe prints on the receipt it emails to receipt_email (no invoice_creation: TEAM_LEAD, extra Stripe fee).
      */
     static SessionCreateParams toParams(SessionRequest r) {
         SessionCreateParams.LineItem.Builder item = SessionCreateParams.LineItem.builder().setQuantity(1L);
@@ -84,14 +96,8 @@ public class StripeCheckoutGateway implements CheckoutGateway {
                 .putAllMetadata(r.metadata())
                 .setPaymentIntentData(SessionCreateParams.PaymentIntentData.builder()
                         .setDescription(r.description())
+                        .setReceiptEmail(r.customerEmail())
                         .putAllMetadata(r.metadata())
-                        .build())
-                .setInvoiceCreation(SessionCreateParams.InvoiceCreation.builder()
-                        .setEnabled(true)
-                        .setInvoiceData(SessionCreateParams.InvoiceCreation.InvoiceData.builder()
-                                .setFooter(r.description())
-                                .putAllMetadata(r.metadata())
-                                .build())
                         .build())
                 .setSuccessUrl(r.successUrl())
                 .setCancelUrl(r.cancelUrl())

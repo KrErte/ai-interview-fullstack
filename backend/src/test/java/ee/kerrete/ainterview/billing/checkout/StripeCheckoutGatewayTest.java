@@ -29,8 +29,8 @@ class StripeCheckoutGatewayTest {
         assertThat(p.getClientReferenceId()).isEqualTo("7");
         assertThat(p.getMetadata()).containsEntry("purchase_id", "42").containsEntry("product", "roadmap");
         assertThat(p.getPaymentIntentData().getDescription()).isEqualTo("Roadmap. waiver text");
-        assertThat(p.getInvoiceCreation().getEnabled()).isTrue();
-        assertThat(p.getInvoiceCreation().getInvoiceData().getFooter()).isEqualTo("Roadmap. waiver text");
+        assertThat(p.getPaymentIntentData().getReceiptEmail()).isEqualTo("buyer@example.com");
+        assertThat(p.getInvoiceCreation()).as("no invoice_creation (TEAM_LEAD)").isNull();
         assertThat(p.getSuccessUrl()).isEqualTo("https://app.example.test/roadmap?paid=1");
         assertThat(p.getCancelUrl()).isEqualTo("https://app.example.test/risk");
     }
@@ -42,6 +42,13 @@ class StripeCheckoutGatewayTest {
         assertThat(item.getPriceData().getUnitAmount()).isEqualTo(1900L);
         assertThat(item.getPriceData().getCurrency()).isEqualTo("eur");
         assertThat(item.getPriceData().getProductData().getName()).isEqualTo("Roadmap");
+    }
+
+    @Test
+    void apiVersionIsPinnedToTheSdkVersion() {
+        assertThat(StripeCheckoutGateway.API_VERSION).isEqualTo(com.stripe.Stripe.API_VERSION).isNotBlank();
+        assertThat(com.stripe.net.RequestOptions.unsafeGetStripeVersionOverride(StripeCheckoutGateway.requestOptions()))
+                .isEqualTo(com.stripe.Stripe.API_VERSION);
     }
 
     @Test

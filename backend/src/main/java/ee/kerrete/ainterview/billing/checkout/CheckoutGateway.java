@@ -7,7 +7,7 @@ public interface CheckoutGateway {
 
     /**
      * @param priceId     Stripe Price id; when null, {@code amountCents}/{@code currency} are sent as price_data
-     * @param description waiver confirmation, used as PaymentIntent description and invoice footer
+     * @param description waiver confirmation, used as PaymentIntent description (shown on the receipt)
      */
     record SessionRequest(String customerEmail, String clientReferenceId, String priceId, int amountCents,
                           String currency, String productName, String description, String successUrl,

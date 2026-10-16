@@ -90,16 +90,21 @@ Checks run in that order (billing, product, waiver, version, entitlement). Then:
    expected `amount_cents`/`currency`.
 2. A Stripe Checkout session is created: `mode=payment`, one line item (`price` = `STRIPE_PRICE_ID`, or `price_data`
    from the fallback amount/currency), `customer_email` = the user's email, `client_reference_id` = the user id,
-   `metadata` `{purchase_id, product}` (also on the PaymentIntent and invoice),
+   `metadata` `{purchase_id, product}` (also on the PaymentIntent), `payment_intent_data.receipt_email` = the
+   user's email (Stripe emails the receipt),
    `success_url` `{FRONTEND_BASE_URL}/roadmap?paid=1`, `cancel_url` `{FRONTEND_BASE_URL}/risk`.
 3. The session id is stored in `purchase.stripe_session_id`. A reused row gets the new id; a payment of its older
    session is still matched by `metadata.purchase_id`.
 
 The waiver confirmation (`WithdrawalWaiver`, one fixed text per version, e.g. "Roadmap. Customer agreed to immediate
 delivery and waived the 14-day right of withdrawal (waiver-v1-2026-10-16).") is sent as
-`payment_intent_data.description` and, with `invoice_creation.enabled=true` (supported only for `mode=payment`), as the
-invoice footer, so Stripe's receipt/invoice records it. Note: Stripe charges a fee for post-payment invoices on
-Checkout; drop `invoice_creation` if that is unwanted (the description alone shows on the receipt).
+`payment_intent_data.description`, which Stripe prints on the emailed receipt. No `invoice_creation` (no invoice, no
+invoice fee). **The waiver wording is still pending legal review**; a changed wording needs a new version.
+
+Stripe API version: pinned explicitly to the version bundled with stripe-java (`Stripe.API_VERSION`, currently
+`2026-09-30.endive` for 34.0.0) on every checkout request (`StripeCheckoutGateway.API_VERSION`). Upgrading the SDK
+moves it, so read the Stripe changelog then. The webhook reads raw JSON and does not depend on it; set the webhook
+endpoint's API version in the Stripe dashboard to the same value.
 
 The success redirect never unlocks anything; `/roadmap?paid=1` should poll `GET /api/billing/entitlement`. Only the
 webhook (FP-62) marks a purchase `paid`.
