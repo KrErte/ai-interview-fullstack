@@ -25,7 +25,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
             <span class="h-2 w-2 rounded-full bg-accent"></span>careerrisk.ee
           </p>
           <p class="kicker">
-            <a href="/jobs" class="hover:text-fg">All jobs</a> &middot; <a routerLink="/why" class="hover:text-fg">Why I built this</a>
+            <a href="/jobs" class="hover:text-fg">All jobs</a> &middot; <a routerLink="/teams" class="hover:text-fg">For teams</a>
+            &middot; <a routerLink="/why" class="hover:text-fg">Why I built this</a>
             &middot; a catalog model, not a forecast
             &middot; <a routerLink="/privacy" class="hover:text-fg">Privacy</a> &middot; <a routerLink="/terms" class="hover:text-fg">Terms</a>
           </p>

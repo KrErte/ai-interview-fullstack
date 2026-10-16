@@ -44,7 +44,9 @@ class JobPageWebMvcTest {
                 .andExpect(content().string(containsString("<meta name=\"description\"")))
                 .andExpect(content().string(containsString("href=\"/ai-test?profession=onet-35-2014-00\"")))
                 .andExpect(content().string(containsString("data-umami-event=\"seo-cta\"")))
-                .andExpect(content().string(containsString("O*NET 29.3")));
+                .andExpect(content().string(containsString("O*NET 29.3")))
+                .andExpect(content().string(containsString("<script type=\"application/ld+json\">[{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\"")))
+                .andExpect(content().string(containsString("\"@type\":\"BreadcrumbList\"")));
     }
 
     @Test

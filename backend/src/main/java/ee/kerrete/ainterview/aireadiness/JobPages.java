@@ -1,5 +1,7 @@
 package ee.kerrete.ainterview.aireadiness;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentResult;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.TaskExposure;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
@@ -28,6 +30,7 @@ import java.util.stream.Collectors;
 public class JobPages {
 
     static final int TOP_TASKS = 6;
+    private static final ObjectMapper JSON = new ObjectMapper();
     private static final Set<String> NO_PAGE = Set.of("other");
 
     private final AiReadinessCatalog catalog;
@@ -120,6 +123,70 @@ public class JobPages {
         grouped.forEach((group, list) -> sorted.put(group,
                 list.stream().sorted(Comparator.comparing(Profession::name)).toList()));
         return sorted;
+    }
+
+    /** Sama methodology lause, mis on lehe jaluses nähtav. */
+    static final String METHOD_SENTENCE = "A high score means those tasks will change, not that the job disappears.";
+
+    /**
+     * Vastus küsimusele "Will AI replace {amet}?" täpselt nende lausetega, mis lehel juba on: skoor,
+     * peamine automatiseeritav ülesanne (kui see on piisavalt automatiseeritav), inimlikud tugevused ja
+     * metoodika lause.
+     */
+    public String faqAnswer(JobPage page) {
+        Profession p = page.profession();
+        StringBuilder answer = new StringBuilder("Not entirely. Today's AI tools can take on about ")
+                .append(page.result().taskExposureScore())
+                .append("% of the typical work in this occupation");
+        if (page.leadTask() != null) {
+            answer.append(", mostly: ").append(page.leadTask().name().toLowerCase(Locale.ROOT));
+            if (!page.leadTask().name().endsWith(".")) {
+                answer.append('.');
+            }
+        } else {
+            answer.append(". None of the largest tasks is highly automatable; AI mostly helps around the core work.");
+        }
+        if (!p.humanEdge().isEmpty()) {
+            answer.append(" The parts that stay human include: ").append(String.join("; ", p.humanEdge())).append('.');
+        }
+        return answer.append(' ').append(METHOD_SENTENCE).toString();
+    }
+
+    /**
+     * FAQPage ja BreadcrumbList JSON-LD ({@code <script type="application/ld+json">} jaoks). "<", ">" ja "&"
+     * on JSON-escape'itud, nii et ametinimi ega ülesanne ei saa skriptiplokki sulgeda.
+     */
+    public String jsonLd(JobPage page) {
+        String name = page.profession().name();
+        String canonical = url("/jobs/" + page.slug());
+        Map<String, Object> faq = new LinkedHashMap<>();
+        faq.put("@context", "https://schema.org");
+        faq.put("@type", "FAQPage");
+        faq.put("mainEntity", List.of(Map.of(
+                "@type", "Question",
+                "name", "Will AI replace " + name + "?",
+                "acceptedAnswer", Map.of("@type", "Answer", "text", faqAnswer(page)))));
+        Map<String, Object> crumbs = new LinkedHashMap<>();
+        crumbs.put("@context", "https://schema.org");
+        crumbs.put("@type", "BreadcrumbList");
+        crumbs.put("itemListElement", List.of(
+                crumb(1, "Jobs", url("/jobs")),
+                crumb(2, name, canonical)));
+        try {
+            return JSON.writeValueAsString(List.of(faq, crumbs))
+                    .replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026");
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    private static Map<String, Object> crumb(int position, String name, String item) {
+        Map<String, Object> crumb = new LinkedHashMap<>();
+        crumb.put("@type", "ListItem");
+        crumb.put("position", position);
+        crumb.put("name", name);
+        crumb.put("item", item);
+        return crumb;
     }
 
     /** Absoluutne aadress (canonical, sitemap). */

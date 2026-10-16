@@ -3,6 +3,8 @@
       th:with="p=${page.profession()}, r=${page.result()}, score=${page.result().taskExposureScore()}">
 <head th:replace="~{jobs/layout :: head(title=${title}, description=${description}, canonical=${canonical})}"></head>
 <body>
+<!-- FAQPage + BreadcrumbList for search engines; built and escaped in JobPages.jsonLd() -->
+<script type="application/ld+json" th:utext="${jsonLd}"></script>
 <header th:replace="~{jobs/layout :: header}"></header>
 
 <main>

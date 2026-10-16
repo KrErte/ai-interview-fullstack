@@ -29,10 +29,17 @@ export class AuthService {
   private readonly TOKEN_KEY = 'risk_token';
   private readonly EMAIL_KEY = 'risk_email';
   private readonly NAME_KEY = 'risk_name';
-  // CV text belongs to the account. The anonymous test result stays in the browser across logout
-  // (the privacy policy says so) and is removed only when a different person signs in.
+  // CV text belongs to the account and is wiped on logout.
   private readonly ACCOUNT_DATA_KEYS = ['risk_cv_text'];
-  private readonly RESULT_KEY = 'ai_readiness_last_result';
+  // The anonymous test result (with its answers and roadmap ticks) stays in the browser across
+  // logout, as the privacy policy says, and is wiped only when a different person signs in.
+  private readonly TEST_DATA_KEYS = [
+    'ai_readiness_last_result',
+    'ai_readiness_last_answers',
+    'ai_readiness_roadmap_progress',
+    'ai_readiness_ai_marks',
+    'ai_readiness_teams'
+  ];
   private readonly baseUrl = `${environment.apiBaseUrl}/auth`;
 
   constructor(
@@ -79,7 +86,7 @@ export class AuthService {
     const previousEmail = this.getCurrentUserEmail();
     if (previousEmail && previousEmail.toLowerCase() !== (email || '').toLowerCase()) {
       this.clearAccountData();
-      this.clearLastResult();
+      this.TEST_DATA_KEYS.forEach(key => localStorage.removeItem(key));
     }
     localStorage.setItem(this.TOKEN_KEY, res.token);
 
@@ -105,10 +112,6 @@ export class AuthService {
   private clearAccountData(): void {
     this.ACCOUNT_DATA_KEYS.forEach(key => localStorage.removeItem(key));
     this.riskState.reset();
-  }
-
-  private clearLastResult(): void {
-    localStorage.removeItem(this.RESULT_KEY);
   }
 
   isLoggedIn(): boolean {

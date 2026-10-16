@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+      Team report (docs/superpowers/specs/2026-10-14-team-mode-design.md, 4.1).
+      Only the test content is stored: no name, email, IP or browser id of the people who answer,
+      and the date instead of a timestamp. The report token itself is never stored, only its SHA-256.
+    -->
+    <changeSet id="2026-10-14-create-team-table" author="careerrisk">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="team"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="team">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="code" type="VARCHAR(16)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uk_team_code"/>
+            </column>
+            <column name="admin_token_hash" type="VARCHAR(64)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uk_team_admin_token_hash"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <!-- for the invoice and contact only; never shown to the people who answer -->
+            <column name="owner_email" type="VARCHAR(254)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_members" type="INT" defaultValueNumeric="50">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2026-10-14-create-team-submission-table" author="careerrisk">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="team_submission"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="team_submission">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="team_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_team_submission_team"
+                             references="team(id)" deleteCascade="true"/>
+            </column>
+            <!-- SHA-256 of a random token kept only in the answering browser, so that browser can
+                 update its own answer (e.g. after moving the task share sliders); not an identity -->
+            <column name="edit_token_hash" type="VARCHAR(64)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uk_team_submission_edit_token"/>
+            </column>
+            <column name="profession_id" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="replaceability" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_exposure" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="readiness" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="band" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+            <!-- JSON: questionId -> optionId -->
+            <column name="answers" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <!-- JSON: [{name, share, automationPercent, observedUse}], with the person's own shares if they set them -->
+            <column name="tasks" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="submitted_on" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="team_submission" indexName="idx_team_submission_team">
+            <column name="team_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

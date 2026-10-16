@@ -96,6 +96,15 @@ describe('AiReadinessService storage', () => {
     expect(service.savedPlan()).toBeNull();
   });
 
+  it('keeps "already done with AI" marks per profession and clears them', () => {
+    service.saveAiMarks('cook', ['plan menus']);
+    service.saveAiMarks('nurse', ['write notes']);
+    expect(service.loadAiMarks('cook')).toEqual(['plan menus']);
+    service.saveAiMarks('cook', []);
+    expect(service.loadAiMarks('cook')).toEqual([]);
+    expect(service.loadAiMarks('nurse')).toEqual(['write notes']);
+  });
+
   it('starts empty when stored progress is not an object', () => {
     localStorage.setItem('ai_readiness_roadmap_progress', '["oops"]');
     expect(service.loadProgress('cook')).toEqual([]);

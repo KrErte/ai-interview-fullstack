@@ -31,6 +31,19 @@ export const appRoutes: Routes = [
       import('./pages/ai-check/ai-check.page').then(m => m.AiCheckPageComponent)
   },
   {
+    path: 'teams',
+    title: 'Team AI report – careerrisk.ee',
+    loadComponent: () =>
+      import('./pages/teams/teams.page').then(m => m.TeamsPageComponent)
+  },
+  {
+    // the report token is in the URL fragment (#token), see TeamReportPageComponent
+    path: 'teams/report',
+    title: 'Team report – careerrisk.ee',
+    loadComponent: () =>
+      import('./pages/teams/team-report.page').then(m => m.TeamReportPageComponent)
+  },
+  {
     path: 'why',
     title: 'Why I built careerrisk.ee',
     loadComponent: () =>

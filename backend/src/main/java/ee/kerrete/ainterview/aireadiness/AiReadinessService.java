@@ -7,6 +7,8 @@ import ee.kerrete.ainterview.aireadiness.AssessmentModels.Features;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.ProfessionSummary;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
+import ee.kerrete.ainterview.team.TeamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -26,11 +28,20 @@ public class AiReadinessService {
     private final AiReadinessCatalog catalog;
     private final AiReadinessScorer scorer;
     private final AiReadinessCoach coach;
+    /** Meeskonnaraport; null testides, mis ei vaja andmebaasi. */
+    private final TeamService teams;
 
-    public AiReadinessService(AiReadinessCatalog catalog, AiReadinessScorer scorer, AiReadinessCoach coach) {
+    @Autowired
+    public AiReadinessService(AiReadinessCatalog catalog, AiReadinessScorer scorer, AiReadinessCoach coach,
+                              TeamService teams) {
         this.catalog = catalog;
         this.scorer = scorer;
         this.coach = coach;
+        this.teams = teams;
+    }
+
+    public AiReadinessService(AiReadinessCatalog catalog, AiReadinessScorer scorer, AiReadinessCoach coach) {
+        this(catalog, scorer, coach, null);
     }
 
     static final int MAX_SEARCH_RESULTS = 50;
@@ -169,13 +180,17 @@ public class AiReadinessService {
     public AssessmentResult assess(AssessmentRequest request) {
         Profession profession = catalog.profession(request.professionId())
                 .orElseThrow(() -> new IllegalArgumentException("Unknown profession '" + request.professionId() + "'"));
-        AssessmentResult result = scorer.score(profession, request.answers());
-        if (!request.personalize()) {
+        AssessmentResult scored = scorer.score(profession, request.answers(), request.taskShares());
+        // the language model never gets anything about a team: the note is made from the result alone
+        AssessmentResult result = request.personalize()
+                ? coach.personalNote(scored, answerLabels(request.answers())).map(note -> withNote(scored, note)).orElse(scored)
+                : scored;
+        boolean forTeam = (request.teamCode() != null && !request.teamCode().isBlank())
+                || (request.teamEditToken() != null && !request.teamEditToken().isBlank());
+        if (!forTeam || teams == null) {
             return result;
         }
-        return coach.personalNote(result, answerLabels(request.answers()))
-                .map(note -> withNote(result, note))
-                .orElse(result);
+        return result.withTeam(teams.record(scored, request.answers(), request.teamCode(), request.teamEditToken()));
     }
 
     private Map<String, String> answerLabels(Map<String, String> answers) {
