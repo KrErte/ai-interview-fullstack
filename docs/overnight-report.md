@@ -178,7 +178,7 @@ Step 5 is two commits, backend first and then the pages, so each diff can be rev
 
 | Event | When | Data |
 |---|---|---|
-| `search-empty` | a search finds nothing (once per query) | typed text up to 60 characters, category |
+| `search-empty` | a search finds nothing (once per query) | category, if one is picked (never the typed text) |
 | `print` | print button | `page`: result or team-report |
 | `ai-comment-toggle` | AI comment checkbox | on/off |
 | `shares-first-move` | first slider move on a result | none |
