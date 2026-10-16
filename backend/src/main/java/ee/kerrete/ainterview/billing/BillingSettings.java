@@ -1,8 +1,6 @@
 package ee.kerrete.ainterview.billing;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
-import org.springframework.core.env.Profiles;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -17,8 +15,9 @@ import java.util.stream.Collectors;
  *   stripped from public responses, so deployments without Stripe behave exactly as before.</li>
  *   <li>{@code billing.stripe-price-id} (env STRIPE_PRICE_ID): the Stripe Price used at checkout (FP-61). No amount
  *   or currency is configured in code; purchase.amount_cents/currency only record what Stripe charged.</li>
- *   <li>{@code billing.dev-entitled-emails} / {@code billing.dev-entitled-roles}: users treated as entitled, honoured
- *   ONLY when the local or dev profile is active and prod is not (set in application-local.yml / -dev.yml).</li>
+ *   <li>{@code billing.dev-entitlement} (env BILLING_DEV_ENTITLEMENT, default false, independent of the profile):
+ *   when true, ADMIN users and the emails in {@code billing.dev-entitled-emails} (env BILLING_DEV_ENTITLED_EMAILS)
+ *   count as entitled; when false, nobody does. Never set in a committed application*.yml.</li>
  * </ul>
  */
 @Component
@@ -32,20 +31,20 @@ public class BillingSettings {
 
     private final boolean enabled;
     private final String stripePriceId;
-    private final boolean devProfile;
+    /** Role that is entitled when the dev entitlement is switched on. */
+    static final String DEV_ENTITLED_ROLE = "ADMIN";
+
+    private final boolean devEntitlement;
     private final Set<String> devEntitledEmails;
-    private final Set<String> devEntitledRoles;
 
     public BillingSettings(@Value("${billing.enabled:false}") boolean enabled,
                            @Value("${billing.dev-entitled-emails:}") String devEntitledEmails,
-                           @Value("${billing.dev-entitled-roles:}") String devEntitledRoles,
-                           @Value("${billing.stripe-price-id:}") String stripePriceId,
-                           Environment environment) {
+                           @Value("${billing.dev-entitlement:false}") boolean devEntitlement,
+                           @Value("${billing.stripe-price-id:}") String stripePriceId) {
         this.enabled = enabled;
         this.stripePriceId = stripePriceId == null ? "" : stripePriceId.trim();
-        this.devProfile = environment.acceptsProfiles(Profiles.of("(local | dev) & !prod"));
-        this.devEntitledEmails = split(devEntitledEmails);
-        this.devEntitledRoles = split(devEntitledRoles);
+        this.devEntitlement = devEntitlement;
+        this.devEntitledEmails = split(devEntitledEmails == null ? "" : devEntitledEmails);
     }
 
     private static Set<String> split(String csv) {
@@ -68,12 +67,12 @@ public class BillingSettings {
         return stripePriceId;
     }
 
-    /** Dev entitlement: only in local/dev (never with prod), for listed emails or roles (e.g. "admin"). */
+    /** Dev entitlement: only when billing.dev-entitlement=true; then ADMIN users and the listed emails. */
     public boolean devEntitled(String email, String role) {
-        if (!devProfile) {
+        if (!devEntitlement) {
             return false;
         }
-        return (email != null && devEntitledEmails.contains(email.toLowerCase(Locale.ROOT)))
-                || (role != null && devEntitledRoles.contains(role.toLowerCase(Locale.ROOT)));
+        return DEV_ENTITLED_ROLE.equals(role)
+                || (email != null && devEntitledEmails.contains(email.toLowerCase(Locale.ROOT)));
     }
 }

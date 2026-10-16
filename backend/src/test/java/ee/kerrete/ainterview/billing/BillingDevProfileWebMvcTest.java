@@ -11,6 +11,7 @@ import ee.kerrete.ainterview.config.SecurityConfig;
 import ee.kerrete.ainterview.model.UserRole;
 import ee.kerrete.ainterview.repository.AppUserRepository;
 import ee.kerrete.ainterview.team.TeamService;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
@@ -31,41 +33,74 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/** Local profile + billing on: application-local.yml makes ADMIN users entitled without a purchase; others still pay. */
-@ActiveProfiles("local")
-@WebMvcTest(controllers = {BillingController.class, AiReadinessRoadmapController.class},
-        properties = "billing.enabled=true")
-@Import({SecurityConfig.class, BillingSettings.class, EntitlementService.class, BillingExceptionHandler.class,
-        AiReadinessCatalog.class, AiReadinessScorer.class, AiReadinessService.class, AiReadinessCoach.class,
-        LlmRateLimiter.class})
+/**
+ * Dev entitlement (billing on) depends only on billing.dev-entitlement: false (default) means nobody, also under the
+ * local profile; true means ADMIN users and BILLING_DEV_ENTITLED_EMAILS, under any profile.
+ */
 class BillingDevProfileWebMvcTest {
 
-    @Autowired
-    MockMvc mvc;
+    @WebMvcTest(controllers = {BillingController.class, AiReadinessRoadmapController.class})
+    @Import({SecurityConfig.class, BillingSettings.class, EntitlementService.class, BillingExceptionHandler.class,
+            AiReadinessCatalog.class, AiReadinessScorer.class, AiReadinessService.class, AiReadinessCoach.class,
+            LlmRateLimiter.class})
+    abstract static class Base {
+        @Autowired
+        MockMvc mvc;
+        @MockBean
+        JwtService jwtService;
+        @MockBean
+        AppUserRepository appUserRepository;
+        @MockBean
+        PurchaseRepository purchaseRepository;
+        @MockBean
+        TeamService teamService;
 
-    @MockBean
-    JwtService jwtService;
-    @MockBean
-    AppUserRepository appUserRepository;
-    @MockBean
-    PurchaseRepository purchaseRepository;
-    @MockBean
-    TeamService teamService;
-
-    @Test
-    @WithMockUser(username = "admin@demo.local", roles = "ADMIN")
-    void localAdminIsEntitledWithoutPurchase() throws Exception {
-        when(appUserRepository.findByEmail("admin@demo.local")).thenReturn(Optional.of(user(1L, "admin@demo.local", UserRole.ADMIN)));
-        mvc.perform(get("/api/billing/entitlement")).andExpect(jsonPath("$.roadmap").value(true));
-        mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON).content(ROADMAP_BODY))
-                .andExpect(status().isOk());
+        void known(long id, String email, UserRole role) {
+            when(appUserRepository.findByEmail(email)).thenReturn(Optional.of(user(id, email, role)));
+        }
     }
 
-    @Test
-    @WithMockUser(username = "candidate@demo.local")
-    void localCandidateStillNeedsToPay() throws Exception {
-        when(appUserRepository.findByEmail("candidate@demo.local")).thenReturn(Optional.of(user(2L, "candidate@demo.local", UserRole.CANDIDATE)));
-        mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON).content(ROADMAP_BODY))
-                .andExpect(status().isPaymentRequired());
+    @Nested
+    @ActiveProfiles("local")
+    @TestPropertySource(properties = "billing.enabled=true")
+    class DefaultOffEvenUnderLocal extends Base {
+        @Test
+        @WithMockUser(username = "admin@demo.local", roles = "ADMIN")
+        void adminIsNotEntitled() throws Exception {
+            known(1L, "admin@demo.local", UserRole.ADMIN);
+            mvc.perform(get("/api/billing/entitlement")).andExpect(jsonPath("$.roadmap").value(false));
+            mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON).content(ROADMAP_BODY))
+                    .andExpect(status().isPaymentRequired());
+        }
+    }
+
+    @Nested
+    @ActiveProfiles("prod-like")
+    @TestPropertySource(properties = {"billing.enabled=true", "billing.dev-entitlement=true",
+            "billing.dev-entitled-emails=tester@example.com"})
+    class SwitchedOnUnderAnyProfile extends Base {
+        @Test
+        @WithMockUser(username = "admin@demo.local", roles = "ADMIN")
+        void adminIsEntitled() throws Exception {
+            known(1L, "admin@demo.local", UserRole.ADMIN);
+            mvc.perform(get("/api/billing/entitlement")).andExpect(jsonPath("$.roadmap").value(true));
+            mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON).content(ROADMAP_BODY))
+                    .andExpect(status().isOk());
+        }
+
+        @Test
+        @WithMockUser(username = "tester@example.com")
+        void listedEmailIsEntitled() throws Exception {
+            known(3L, "tester@example.com", UserRole.CANDIDATE);
+            mvc.perform(get("/api/billing/entitlement")).andExpect(jsonPath("$.roadmap").value(true));
+        }
+
+        @Test
+        @WithMockUser(username = "candidate@demo.local")
+        void otherCandidateStillNeedsToPay() throws Exception {
+            known(2L, "candidate@demo.local", UserRole.CANDIDATE);
+            mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON).content(ROADMAP_BODY))
+                    .andExpect(status().isPaymentRequired());
+        }
     }
 }

@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.mock.env.MockEnvironment;
 
 import java.time.LocalDateTime;
 
@@ -151,7 +150,7 @@ class EntitlementServiceIntegrationTest {
     @Test
     void billingDisabledEntitlesEveryone() {
         EntitlementService off = new EntitlementService(
-                new BillingSettings(false, "", "", "", new MockEnvironment()), users, purchases);
+                new BillingSettings(false, "", false, ""), users, purchases);
         assertThat(off.hasRoadmap("bob@example.com")).isTrue();
         assertThat(off.isLocked(Feature.ROADMAP, null)).isFalse();
     }

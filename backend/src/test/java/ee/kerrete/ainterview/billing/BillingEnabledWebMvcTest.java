@@ -40,7 +40,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * FP-60 with billing.enabled=true: entitlement endpoint and the gated roadmap, through the real SecurityConfig.
- * Profile "test" (not the default "local"), so the dev entitlement for ADMIN does not apply.
  */
 @ActiveProfiles("test")
 @WebMvcTest(controllers = {BillingController.class, AiReadinessRoadmapController.class},
@@ -102,8 +101,8 @@ class BillingEnabledWebMvcTest {
 
     @Test
     @WithMockUser(username = ME)
-    void devRolesAreIgnoredWithoutLocalOrDevProfile() throws Exception {
-        // the user is ADMIN, but this test runs without the local/dev profile: no dev entitlement
+    void adminIsNotEntitledWithoutTheDevEntitlementSwitch() throws Exception {
+        // the user is ADMIN, but billing.dev-entitlement is not set: no dev entitlement
         paid(false);
         mvc.perform(get("/api/billing/entitlement")).andExpect(jsonPath("$.roadmap").value(false));
     }
@@ -154,6 +153,16 @@ class BillingEnabledWebMvcTest {
                         .content("{\"professionId\":\"no-such-job\",\"answers\":{}}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error").value("Unknown profession 'no-such-job'"));
+    }
+
+    @Test
+    @WithMockUser(username = ME)
+    void overlongProfessionIdIsAGeneric400() throws Exception {
+        String longId = "x".repeat(129);
+        mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"professionId\":\"" + longId + "\",\"answers\":{}}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("invalid professionId"));
     }
 
     @Test

@@ -26,8 +26,3 @@ spring:
     console:
       # FP-30: the H2 console is only enabled by the local profile (application-local.yml)
       enabled: false
-
-# FP-60: dev-only entitlement (ignored unless the local/dev profile is active and prod is not)
-billing:
-  dev-entitled-emails: ${BILLING_DEV_ENTITLED_EMAILS:}
-  dev-entitled-roles: ADMIN
