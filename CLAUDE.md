@@ -1,6 +1,6 @@
 # careerrisk.ee (endine nimi Futureproof) – projekti kontekst
 
-- Toode: AI asendatavuse test + isiklikud AI õppimise roadmapid (eesti keel esmane).
+- Toode: AI asendatavuse test + isiklikud AI õppimise roadmapid. Kasutajale nähtav rakendus on täielikult inglise keeles: `frontend-risk`, `/api/ai-readiness`, ametilehed ja kataloogi tekst. Eesti keele pinda ei lisata.
 - Backend: Java 17, Spring Boot 3.3, Spring Security + JWT, JPA, Liquibase, PostgreSQL (H2 lokaalselt), Gradle – kaust `backend/`.
 - Frontend: Angular 19 standalone + Tailwind – kaust `frontend-risk/` (vana `frontend/` ära puutu).
 - Ametite/küsimuste/roadmapide sisu: `backend/src/main/resources/ai-readiness/*.json`.
