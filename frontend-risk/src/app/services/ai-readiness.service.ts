@@ -10,6 +10,7 @@ import {
   FullRoadmap,
   PendingPurchase,
   RoadmapTeaser,
+  TeaserPhaseView,
   ProfessionSummary,
   Question,
   SavedAnswers,
@@ -267,4 +268,26 @@ function hasFullRoadmap(r: AssessmentResult): boolean {
 export function lockedResultView(r: AssessmentResult): AssessmentResult {
   if (!r || !(r.roadmapLocked || r.billingEnabled)) return r;
   return { ...r, generalRoadmap: [], professionRoadmap: [], totalWeeks: 0 };
+}
+
+/**
+ * The phased teaser ([{phase:1,title,items,project},{phase:2,title},{phase:3,title}]) as views; null when the
+ * teaser is in one of the old shapes (use roadmapTeaserLines then). Phase 1 is open; later phases are locked
+ * and never carry items or a project, even if the backend sent them.
+ */
+export function roadmapTeaserPhases(teaser: RoadmapTeaser | null | undefined): TeaserPhaseView[] | null {
+  if (!Array.isArray(teaser)) return null;
+  const phased = teaser.filter((t): t is Exclude<typeof t, string> =>
+    !!t && typeof t === 'object' && typeof t.phase === 'number' && typeof t.title === 'string' && !!t.title.trim());
+  if (!phased.length) return null;
+  return [...phased].sort((a, b) => a.phase! - b.phase!).map(t => {
+    const locked = t.phase !== 1;
+    return {
+      phase: t.phase!,
+      title: t.title!.trim(),
+      items: locked || !Array.isArray(t.items) ? [] : t.items.filter(i => typeof i === 'string' && !!i.trim()),
+      project: !locked && typeof t.project === 'string' && t.project.trim() ? t.project.trim() : null,
+      locked
+    };
+  });
 }

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { AiReadinessService, roadmapTeaserLines } from './ai-readiness.service';
+import { AiReadinessService, roadmapTeaserLines, roadmapTeaserPhases } from './ai-readiness.service';
 import { isPaymentRequired } from './billing.service';
 import { environment } from '../../environments/environment';
 
@@ -59,5 +59,16 @@ describe('AiReadinessService paid roadmap', () => {
     expect(roadmapTeaserLines('  Week 1: prompts ')).toEqual(['Week 1: prompts']);
     expect(roadmapTeaserLines(['a', ' ', 'b'])).toEqual(['a', 'b']);
     expect(roadmapTeaserLines([{ title: 'Phase 1' }, {}, 'x'])).toEqual(['Phase 1', 'x']);
+  });
+
+  it('roadmapTeaserPhases: phased shape sorted, later phases locked without items; old shapes give null', () => {
+    const v = roadmapTeaserPhases([{ phase: 3, title: 'C' }, { phase: 1, title: 'A', items: ['i'], project: 'p' }, { phase: 2, title: 'B', items: ['x'] }])!;
+    expect(v.map(p => p.phase)).toEqual([1, 2, 3]);
+    expect(v[0]).toEqual({ phase: 1, title: 'A', items: ['i'], project: 'p', locked: false });
+    expect(v[1]).toEqual({ phase: 2, title: 'B', items: [], project: null, locked: true });
+    expect(roadmapTeaserPhases('x')).toBeNull();
+    expect(roadmapTeaserPhases(['a'])).toBeNull();
+    expect(roadmapTeaserPhases([{ title: 'a' }])).toBeNull();
+    expect(roadmapTeaserPhases(null)).toBeNull();
   });
 });

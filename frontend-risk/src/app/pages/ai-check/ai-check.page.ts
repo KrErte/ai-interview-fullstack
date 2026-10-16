@@ -6,7 +6,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
 
-import { AiReadinessService, lockedResultView, roadmapTeaserLines } from '../../services/ai-readiness.service';
+import { AiReadinessService, lockedResultView, roadmapTeaserLines, roadmapTeaserPhases } from '../../services/ai-readiness.service';
 import { BillingService, isPaymentRequired } from '../../services/billing.service';
 import { PaywallCardComponent } from '../../components/paywall-card/paywall-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
@@ -19,7 +19,8 @@ import {
   Question,
   RiskBand,
   RoadmapPhase,
-  TaskExposure
+  TaskExposure,
+  TeaserPhaseView
 } from '../../models/ai-readiness.model';
 import { buildReminderIcs, nextSessionStart } from './reminder';
 import { previewResult, rescaleShares, sharesOf, TaskShares } from './task-shares';
@@ -453,6 +454,30 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
       <!-- Billing on and not unlocked: teaser + price card instead of the roadmaps (FP-63) -->
       <ng-container *ngIf="!planOf(r); else fullRoadmaps">
         <section id="roadmap-paywall" class="space-y-6 scroll-mt-6">
+          <div *ngIf="teaserPhases(r) as phases; else teaserLinesTpl" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 sm:p-8" data-test="roadmap-teaser">
+            <p class="font-mono text-sm text-accent">06</p>
+            <h2 class="mt-3 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">A preview of your roadmap</h2>
+            <ol class="mt-5 space-y-4">
+              <li *ngFor="let ph of phases" class="rounded-2xl border border-slate-800/50 p-4 sm:p-5"
+                  [attr.data-test]="'teaser-phase-' + ph.phase" [attr.aria-label]="'Phase ' + ph.phase + (ph.locked ? ', locked' : '')">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="text-lg font-bold leading-tight tracking-tight text-slate-100">Phase {{ ph.phase }}: {{ ph.title }}</h3>
+                  <span *ngIf="ph.locked" data-test="teaser-locked" class="rounded-full border border-slate-700 px-2.5 py-0.5 text-[12px] font-semibold text-slate-300">
+                    <span aria-hidden="true">&#128274;</span> Locked: included in the personal roadmap
+                  </span>
+                </div>
+                <ng-container *ngIf="!ph.locked">
+                  <ul *ngIf="ph.items.length" class="mt-3 space-y-1.5 text-[15px] leading-relaxed text-slate-300" data-test="teaser-items">
+                    <li *ngFor="let it of ph.items" class="flex gap-3"><span class="text-faint" aria-hidden="true">&ndash;</span><span>{{ it }}</span></li>
+                  </ul>
+                  <p *ngIf="ph.project" class="mt-3 text-[15px] leading-relaxed text-slate-300" data-test="teaser-project">
+                    <span class="font-semibold text-slate-100">Project:</span> {{ ph.project }}
+                  </p>
+                </ng-container>
+              </li>
+            </ol>
+          </div>
+          <ng-template #teaserLinesTpl>
           <div *ngIf="teaserLines(r).length" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 sm:p-8" data-test="roadmap-teaser">
             <p class="font-mono text-sm text-accent">06</p>
             <h2 class="mt-3 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">A preview of your roadmap</h2>
@@ -460,6 +485,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
               <li *ngFor="let t of teaserLines(r)" class="flex gap-3"><span class="text-faint">&ndash;</span><span>{{ t }}</span></li>
             </ul>
           </div>
+          </ng-template>
           <p *ngIf="fullRoadmapLoading" class="text-[15px] text-muted" role="status">Loading your roadmap…</p>
           <div *ngIf="fullRoadmapError" class="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4" role="alert" data-test="roadmap-error">
             <p class="text-sm text-rose-200">{{ fullRoadmapError }}</p>
@@ -1063,6 +1089,16 @@ export class AiCheckPageComponent implements OnInit {
       },
       error: () => { /* keep showing the saved result */ }
     });
+  }
+
+  /** Phased teaser views, cached per teaser object so change detection keeps the same array. */
+  private teaserCache: { teaser: unknown; phases: TeaserPhaseView[] | null } | null = null;
+
+  teaserPhases(r: AssessmentResult): TeaserPhaseView[] | null {
+    if (!this.teaserCache || this.teaserCache.teaser !== r.roadmapTeaser) {
+      this.teaserCache = { teaser: r.roadmapTeaser, phases: roadmapTeaserPhases(r.roadmapTeaser) };
+    }
+    return this.teaserCache.phases;
   }
 
   teaserLines(r: AssessmentResult): string[] {

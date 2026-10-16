@@ -42,7 +42,7 @@ describe('No visible placeholders on the paywall card and teaser (FP-65)', () =>
       professionId: 'onet-1', professionName: 'Accountant', replaceabilityScore: 40, taskExposureScore: 35,
       personalAdjustment: 5, band: 'MODERATE', headline: 'h', readinessScore: 20, readinessLevel: 'Explorer',
       tasks: [], humanEdge: [], aiTools: [], pivotRoles: [], generalRoadmap: [], professionRoadmap: [], totalWeeks: 0,
-      personalNote: null, billingEnabled: true, roadmapLocked: true, roadmapTeaser: ['Phase 1: AI basics', 'Phase 2: Automate']
+      personalNote: null, billingEnabled: true, roadmapLocked: true, roadmapTeaser: [{ phase: 1, title: 'AI basics', items: ['Learn prompts'], project: 'Build a report' }, { phase: 2, title: 'Automate' }, { phase: 3, title: 'Lead' }]
     } as AssessmentResult;
     f.componentInstance.result = r;
     f.componentInstance.step = 'result';

@@ -128,7 +128,27 @@ export interface AssessmentResult {
   billingEnabled?: boolean;
 }
 
-export type RoadmapTeaser = string | Array<string | { title?: string }>;
+/**
+ * Teaser phase (confirmed by TEAM_LEAD): phase 1 carries title, items and project; phases 2–3 only phase + title.
+ * The older shapes (a string, string[] or {title}[]) are still accepted.
+ */
+export interface RoadmapTeaserPhase {
+  phase?: number;
+  title?: string;
+  items?: string[];
+  project?: string;
+}
+
+export type RoadmapTeaser = string | Array<string | RoadmapTeaserPhase>;
+
+/** A teaser phase ready to render: open phases show items and project, locked ones only the title. */
+export interface TeaserPhaseView {
+  phase: number;
+  title: string;
+  items: string[];
+  project: string | null;
+  locked: boolean;
+}
 
 /** POST /api/ai-readiness/roadmap (auth only) body. */
 export interface FullRoadmapRequest {

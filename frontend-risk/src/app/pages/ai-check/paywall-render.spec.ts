@@ -182,6 +182,50 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     expect(el.querySelector('[data-test="roadmap-error"]')!.textContent).toContain('not unlocked yet');
   });
 
+  const PHASED = [
+    { phase: 1, title: 'AI basics', items: ['Learn prompts for invoices', 'Try a summary tool'], project: 'Automate one report' },
+    { phase: 2, title: 'Automate routine work' },
+    { phase: 3, title: 'Lead AI adoption' }
+  ];
+
+  it('phased teaser: phase 1 shows title, all items and the project', () => {
+    const el = show(result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [], roadmapTeaser: PHASED }));
+    const p1 = el.querySelector('[data-test="teaser-phase-1"]')!;
+    expect(p1.textContent).toContain('Phase 1: AI basics');
+    expect(p1.textContent).toContain('Learn prompts for invoices');
+    expect(p1.textContent).toContain('Try a summary tool');
+    expect(p1.querySelector('[data-test="teaser-project"]')!.textContent).toContain('Automate one report');
+    expect(p1.querySelector('[data-test="teaser-locked"]')).toBeNull();
+  });
+
+  it('phased teaser: phases 2-3 show titles only, marked locked in text, with no items in the DOM', () => {
+    const teaser = [PHASED[0], { ...PHASED[1], items: ['Leaked item'], project: 'Leaked project' }, PHASED[2]];
+    const el = show(result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [], roadmapTeaser: teaser }));
+    for (const n of [2, 3]) {
+      const ph = el.querySelector(`[data-test="teaser-phase-${n}"]`)!;
+      expect(ph.textContent).toContain(`Phase ${n}:`);
+      expect(ph.querySelector('[data-test="teaser-locked"]')!.textContent).toContain('Locked');
+      expect(ph.getAttribute('aria-label')).toContain('locked');
+      expect(ph.querySelector('[data-test="teaser-items"]')).toBeNull();
+      expect(ph.querySelector('[data-test="teaser-project"]')).toBeNull();
+    }
+    expect(el.textContent).not.toContain('Leaked item');
+    expect(el.textContent).not.toContain('Leaked project');
+  });
+
+  it('old teaser shapes still render: string, string[] and {title}[]', () => {
+    for (const [teaser, expected] of [
+      ['Week 1: prompts', 'Week 1: prompts'],
+      [['Line A', 'Line B'], 'Line B'],
+      [[{ title: 'Titled stage' }], 'Titled stage']
+    ] as const) {
+      fixture?.destroy();
+      const el = show(result({ roadmapLocked: true, generalRoadmap: [], professionRoadmap: [], roadmapTeaser: teaser as never }));
+      expect(el.querySelector('[data-test="roadmap-teaser"]')!.textContent).toContain(expected);
+      expect(el.querySelector('[data-test="teaser-phase-1"]')).toBeNull();
+    }
+  });
+
   it('billingEnabled missing counts as billing off', () => {
     const el = show(result({ billingEnabled: undefined }));
     expect(el.textContent).toContain('General AI learning path');
