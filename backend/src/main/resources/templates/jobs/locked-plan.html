@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<!--
+  FP-66: the "A 3-phase AI learning plan" section when the roadmap is locked (EntitlementService).
+  Phase 1 in full (title, items, project); phases 2+ as titles only, so their items/projects never reach the HTML.
+-->
+<section class="card" th:fragment="plan">
+      <h2>A 3-phase AI learning plan</h2>
+      <div class="grid grid-3">
+        <div class="phase" th:each="ph : ${roadmapTeaser}" th:classappend="${ph.items() == null} ? 'phase-locked'">
+          <p class="kicker" th:text="'Phase ' + ${ph.phase()}">Phase 1</p>
+          <h3 th:text="${ph.title()}">Title</h3>
+          <ul class="dots" th:if="${ph.items() != null}"><li th:each="it : ${ph.items()}" th:text="${it}">Item</li></ul>
+          <div class="project" th:if="${ph.project() != null}"><p class="kicker" style="color:var(--accent);margin:0 0 6px">Project</p><span th:text="${ph.project()}">Project</span></div>
+        </div>
+      </div>
+      <a class="card locked-teaser" th:href="@{/ai-test(profession=${p.id()})}" data-umami-event="seo-paywall-teaser"
+         th:attr="data-umami-event-profession=${p.id()}">
+        <p class="kicker">Locked</p>
+        <h3 th:text="'Your full 3-phase plan with projects: ' + ${displayPrice}">Your full 3-phase plan with projects</h3>
+      </a>
+      <a class="btn" th:href="@{/ai-test(profession=${p.id()})}" data-umami-event="seo-cta"
+         th:attr="data-umami-event-profession=${p.id()}">Take the free 11-question test <span aria-hidden="true">&rarr;</span></a>
+    </section>
+</body>
+</html>

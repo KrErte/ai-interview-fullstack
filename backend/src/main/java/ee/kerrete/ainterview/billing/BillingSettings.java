@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  *   stripped from public responses, so deployments without Stripe behave exactly as before.</li>
  *   <li>{@code billing.stripe-price-id} (env STRIPE_PRICE_ID): the Stripe Price used at checkout (FP-61). No amount
  *   or currency is configured in code; purchase.amount_cents/currency only record what Stripe charged.</li>
+ *   <li>{@code billing.display-price} (env BILLING_DISPLAY_PRICE, default "€19"): teaser text only.</li>
  *   <li>{@code billing.dev-entitlement} (env BILLING_DEV_ENTITLEMENT, default false, independent of the profile):
  *   when true, ADMIN users and the emails in {@code billing.dev-entitled-emails} (env BILLING_DEV_ENTITLED_EMAILS)
  *   count as entitled; when false, nobody does. Never set in a committed application*.yml.</li>
@@ -34,13 +35,16 @@ public class BillingSettings {
     /** Role that is entitled when the dev entitlement is switched on. */
     static final String DEV_ENTITLED_ROLE = "ADMIN";
 
+    private final String displayPrice;
     private final boolean devEntitlement;
     private final Set<String> devEntitledEmails;
 
     public BillingSettings(@Value("${billing.enabled:false}") boolean enabled,
                            @Value("${billing.dev-entitled-emails:}") String devEntitledEmails,
                            @Value("${billing.dev-entitlement:false}") boolean devEntitlement,
-                           @Value("${billing.stripe-price-id:}") String stripePriceId) {
+                           @Value("${billing.stripe-price-id:}") String stripePriceId,
+                           @Value("${billing.display-price:€19}") String displayPrice) {
+        this.displayPrice = displayPrice;
         this.enabled = enabled;
         this.stripePriceId = stripePriceId == null ? "" : stripePriceId.trim();
         this.devEntitlement = devEntitlement;
@@ -60,6 +64,11 @@ public class BillingSettings {
 
     public static boolean isKnownWaiverVersion(String version) {
         return version != null && WAIVER_VERSIONS.contains(version);
+    }
+
+    /** Price text shown on public teasers (display only; the charged price comes from the Stripe Price). */
+    public String displayPrice() {
+        return displayPrice;
     }
 
     /** Stripe Price id for checkout (FP-61); empty when unset. */

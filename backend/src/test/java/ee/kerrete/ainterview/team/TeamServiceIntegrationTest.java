@@ -40,7 +40,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 })
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ImportAutoConfiguration(JacksonAutoConfiguration.class)
-@Import({TeamService.class, AiReadinessCatalog.class, AiReadinessScorer.class})
+@Import({TeamService.class, AiReadinessCatalog.class, AiReadinessScorer.class,
+        ee.kerrete.ainterview.billing.BillingSettings.class, ee.kerrete.ainterview.billing.EntitlementService.class})
 class TeamServiceIntegrationTest {
 
     private static final Map<String, String> ANSWERS = Map.of("ai_usage", "never", "ai_depth", "none", "learning", "slow");

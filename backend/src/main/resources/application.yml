@@ -43,6 +43,8 @@ billing:
   enabled: ${BILLING_ENABLED:false}
   # Price lives in Stripe only (no amounts in code/config); FP-61 checkout uses this Price id.
   stripe-price-id: ${STRIPE_PRICE_ID:}
+  # FP-66: price text on public teasers only (keep in sync with the Stripe Price)
+  display-price: ${BILLING_DISPLAY_PRICE:€19}
 
 openai:
   base-url: https://api.openai.com/v1
