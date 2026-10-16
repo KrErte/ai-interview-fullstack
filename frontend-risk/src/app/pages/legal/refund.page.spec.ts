@@ -14,7 +14,8 @@ describe('RefundPageComponent', () => {
   it('config empty: no sale-specific content, says nothing is sold yet', () => {
     const el = render();
     expect(el.querySelector('[data-test="refund-sale"]')).toBeNull();
-    expect(el.querySelector('[data-test="refund-no-sale"]')).not.toBeNull();
+    expect(el.querySelector('[data-test="refund-no-sale"]')!.textContent!.trim())
+      .toBe('careerrisk.ee does not sell anything yet. The test is free.');
   });
 
   it('config filled: round-3 refund content with the seller email', withEnv(FILLED_SALE_CONFIG, () => {

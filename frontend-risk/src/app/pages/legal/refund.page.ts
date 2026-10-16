@@ -65,7 +65,7 @@ import { SaleConfig, saleConfig } from './legal-config';
       <ng-template #noSale>
         <h1 class="display mt-4 text-[clamp(2.5rem,6vw,4.5rem)]">Refunds and withdrawal</h1>
         <p data-test="refund-no-sale">
-          careerrisk.ee does not sell anything yet. The test is free, so there is nothing to refund.
+          careerrisk.ee does not sell anything yet. The test is free.
         </p>
         <p>Questions: <a href="mailto:m6rnaja@gmail.com">m6rnaja&#64;gmail.com</a>. See also the <a routerLink="/terms">terms of use</a>.</p>
       </ng-template>

@@ -244,6 +244,30 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     expect(localStorage.getItem('ai_readiness_last_result')).toBe(raw);
   });
 
+  it('grandfathered: ticks save to ai_readiness_roadmap_progress and survive a reload; Reset hidden; record not re-saved', () => {
+    queryParams = { view: 'saved' };
+    const raw = JSON.stringify(result());
+    localStorage.setItem('ai_readiness_last_result', raw);
+    localStorage.setItem('ai_readiness_last_answers', JSON.stringify({ professionId: 'onet-1', answers: { q1: 'a' }, taskShares: { t: 100 } }));
+    let el = boot();
+    fixture.detectChanges();
+    const box = Array.from(el.querySelectorAll('label')).find(l => l.textContent!.includes('Do X'))!.querySelector('input')!;
+    expect(box.checked).toBeFalse();
+    box.click();
+    fixture.detectChanges();
+    expect(JSON.parse(localStorage.getItem('ai_readiness_roadmap_progress')!)['onet-1']).toEqual(['Do X']);
+    expect(el.textContent).not.toContain('Reset to the typical week');
+    // reload
+    fixture.destroy();
+    el = boot();
+    fixture.detectChanges();
+    const again = Array.from(el.querySelectorAll('label')).find(l => l.textContent!.includes('Do X'))!.querySelector('input')!;
+    expect(again.checked).toBeTrue();
+    expect(el.textContent).toContain('1 / 2 done');
+    expect(localStorage.getItem('ai_readiness_last_result')).toBe(raw);
+    http.expectNone(`${API}/assess`);
+  });
+
   it('a new locked assessment after a grandfathered plan is gated and overwrites the saved result', () => {
     localStorage.setItem('ai_readiness_last_result', JSON.stringify(result()));
     boot();

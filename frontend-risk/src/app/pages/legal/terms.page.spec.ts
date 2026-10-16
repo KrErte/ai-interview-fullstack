@@ -35,5 +35,7 @@ describe('TermsPageComponent', () => {
     expect(w).toContain(WAIVER_LABEL);
     expect(w).toContain(WAIVER_TEXT_VERSION);
     expect(el.textContent).toContain('What the test is, and what it is not');
+    expect(el.querySelector('[data-test="withdrawal-kept"]')!.textContent!.trim())
+      .toBe('You keep your right of withdrawal until we have sent you the confirmation of your consent.');
   }));
 });

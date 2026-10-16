@@ -140,6 +140,7 @@ import { WAIVER_LABEL, WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/bil
         After payment, Stripe sends a receipt email on our behalf to the address you gave at checkout. It contains the seller,
         the product, the price, the date, a link to these terms of sale and this text:
       </p>
+      <p data-test="withdrawal-kept">You keep your right of withdrawal until we have sent you the confirmation of your consent.</p>
       <blockquote><p data-test="receipt-waiver"><strong>{{ waiverLabel }}</strong> (ID {{ waiverVersion }}) – <strong>&#9745; {{ waiverText }}</strong></p></blockquote>
 
       <h3>6. Right of withdrawal (14 days) and how it is lost</h3>
