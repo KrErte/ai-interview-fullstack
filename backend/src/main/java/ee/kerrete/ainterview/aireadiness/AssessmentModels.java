@@ -95,11 +95,15 @@ public final class AssessmentModels {
             List<String> humanEdge,
             List<String> aiTools,
             List<String> pivotRoles,
-            List<GeneralStageResult> generalRoadmap,
-            List<RoadmapPhase> professionRoadmap,
+            // FP-60: null (omitted) when the roadmap is locked behind the paywall, see locked()
+            @JsonInclude(JsonInclude.Include.NON_NULL) List<GeneralStageResult> generalRoadmap,
+            @JsonInclude(JsonInclude.Include.NON_NULL) List<RoadmapPhase> professionRoadmap,
             int totalWeeks,
             String personalNote,
-            @JsonInclude(JsonInclude.Include.NON_NULL) TeamStatus team
+            @JsonInclude(JsonInclude.Include.NON_NULL) TeamStatus team,
+            /* FP-60: first professionRoadmap phase, only when locked */
+            @JsonInclude(JsonInclude.Include.NON_NULL) RoadmapPhase roadmapTeaser,
+            boolean roadmapLocked
     ) {
         public AssessmentResult(String professionId, String professionName, int replaceabilityScore,
                                 int taskExposureScore, int personalAdjustment, RiskBand band, String headline,
@@ -109,13 +113,36 @@ public final class AssessmentModels {
                                 int totalWeeks, String personalNote) {
             this(professionId, professionName, replaceabilityScore, taskExposureScore, personalAdjustment, band,
                     headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools, pivotRoles, generalRoadmap,
-                    professionRoadmap, totalWeeks, personalNote, null);
+                    professionRoadmap, totalWeeks, personalNote, null, null, false);
+        }
+
+        public AssessmentResult(String professionId, String professionName, int replaceabilityScore,
+                                int taskExposureScore, int personalAdjustment, RiskBand band, String headline,
+                                int readinessScore, String readinessLevel, List<TaskExposure> tasks,
+                                List<String> humanEdge, List<String> aiTools, List<String> pivotRoles,
+                                List<GeneralStageResult> generalRoadmap, List<RoadmapPhase> professionRoadmap,
+                                int totalWeeks, String personalNote, TeamStatus team) {
+            this(professionId, professionName, replaceabilityScore, taskExposureScore, personalAdjustment, band,
+                    headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools, pivotRoles, generalRoadmap,
+                    professionRoadmap, totalWeeks, personalNote, team, null, false);
+        }
+
+        /**
+         * FP-60 (billing enabled): the public result without the roadmap; only the first profession phase stays
+         * as a teaser. The full roadmap is POST /api/ai-readiness/roadmap.
+         */
+        public AssessmentResult locked() {
+            RoadmapPhase teaser = professionRoadmap == null || professionRoadmap.isEmpty() ? null : professionRoadmap.get(0);
+            return new AssessmentResult(professionId, professionName, replaceabilityScore, taskExposureScore,
+                    personalAdjustment, band, headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools,
+                    pivotRoles, null, null, totalWeeks, personalNote, team, teaser, true);
         }
 
         public AssessmentResult withTeam(TeamStatus team) {
             return new AssessmentResult(professionId, professionName, replaceabilityScore, taskExposureScore,
                     personalAdjustment, band, headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools,
-                    pivotRoles, generalRoadmap, professionRoadmap, totalWeeks, personalNote, team);
+                    pivotRoles, generalRoadmap, professionRoadmap, totalWeeks, personalNote, team, roadmapTeaser,
+                    roadmapLocked);
         }
     }
 }

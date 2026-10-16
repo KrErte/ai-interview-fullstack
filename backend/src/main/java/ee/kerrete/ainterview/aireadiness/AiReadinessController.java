@@ -6,6 +6,7 @@ import ee.kerrete.ainterview.aireadiness.AssessmentModels.CategorySummary;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.Features;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.ProfessionSummary;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
+import ee.kerrete.ainterview.billing.BillingSettings;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,9 +29,11 @@ import java.util.Map;
 public class AiReadinessController {
 
     private final AiReadinessService service;
+    private final BillingSettings billing;
 
-    public AiReadinessController(AiReadinessService service) {
+    public AiReadinessController(AiReadinessService service, BillingSettings billing) {
         this.service = service;
+        this.billing = billing;
     }
 
     @GetMapping("/professions")
@@ -67,7 +70,9 @@ public class AiReadinessController {
 
     @PostMapping("/assess")
     public AssessmentResult assess(@Valid @RequestBody AssessmentRequest request) {
-        return service.assess(request);
+        AssessmentResult result = service.assess(request);
+        // FP-60: with billing on, the public result carries only a teaser; unchanged while billing is off
+        return billing.enabled() ? result.locked() : result;
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /** POST /api/ai-readiness/assess with and without taskShares, through JSON and the real SecurityConfig. */
 @WebMvcTest(controllers = AiReadinessController.class)
-@Import({SecurityConfig.class, AiReadinessCatalog.class, AiReadinessScorer.class, AiReadinessService.class,
+@Import({SecurityConfig.class, ee.kerrete.ainterview.billing.BillingSettings.class, AiReadinessCatalog.class, AiReadinessScorer.class, AiReadinessService.class,
         AiReadinessCoach.class, LlmRateLimiter.class})
 class AiReadinessAssessWebMvcTest {
 

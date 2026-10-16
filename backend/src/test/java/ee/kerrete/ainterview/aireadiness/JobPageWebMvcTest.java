@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /** Job pages are public (no login), server-rendered HTML with SEO tags; real SecurityConfig. */
 @WebMvcTest(controllers = JobPageController.class)
-@Import({SecurityConfig.class, AiReadinessCatalog.class, AiReadinessScorer.class, JobPages.class})
+@Import({SecurityConfig.class, ee.kerrete.ainterview.billing.BillingSettings.class, AiReadinessCatalog.class, AiReadinessScorer.class, JobPages.class})
 @TestPropertySource(properties = "app.public-base-url=https://futureproof.example")
 class JobPageWebMvcTest {
 
