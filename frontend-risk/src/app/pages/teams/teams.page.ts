@@ -142,6 +142,7 @@ const SAMPLE = {
           <p class="mt-3 text-[15px] leading-relaxed text-muted">Per person per year, with a quarterly re-test. Not available yet.</p>
         </article>
       </div>
+      <p class="mt-4 text-[13px] text-faint">Prices are in euros. VAT is stated on the invoice.</p>
     </section>
 
     <!-- Create -->
