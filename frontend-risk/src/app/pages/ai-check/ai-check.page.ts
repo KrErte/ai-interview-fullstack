@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
 
 import { AiReadinessService, lockedResultView, roadmapTeaserLines } from '../../services/ai-readiness.service';
-import { isPaymentRequired } from '../../services/billing.service';
+import { BillingService, isPaymentRequired } from '../../services/billing.service';
 import { PaywallCardComponent } from '../../components/paywall-card/paywall-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
 import {
@@ -464,7 +465,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
             <p class="text-sm text-rose-200">{{ fullRoadmapError }}</p>
             <button type="button" (click)="loadFullRoadmap(r)" class="mt-2 text-sm text-rose-300 underline">Try again</button>
           </div>
-          <app-paywall-card [professionId]="r.professionId" [answers]="paywallAnswers(r)"
+          <app-paywall-card [professionId]="r.professionId" [professionName]="r.professionName" [answers]="paywallAnswers(r)"
                             (viewRoadmap)="loadFullRoadmap(r)"></app-paywall-card>
         </section>
       </ng-container>
@@ -472,6 +473,10 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
       <!-- Billing off, or the paid roadmap from POST /api/ai-readiness/roadmap (never the locked result) -->
       <ng-template #fullRoadmaps>
       <ng-container *ngIf="planOf(r) as p">
+      <p *ngIf="entitledRoadmap" data-test="payment-confirmed" role="status"
+         class="rounded-3xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-[15px] font-semibold text-emerald-200">
+        Payment confirmed. Your full roadmap is below.
+      </p>
       <!-- General roadmap -->
       <section class="card grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
         <div class="lg:col-span-4 lg:pr-6">
@@ -665,6 +670,7 @@ export class AiCheckPageComponent implements OnInit {
     private api: AiReadinessService,
     private teams: TeamService,
     private analytics: AnalyticsService,
+    private billing: BillingService,
     private route: ActivatedRoute,
     private router: Router,
     private destroyRef: DestroyRef
@@ -1119,7 +1125,15 @@ export class AiCheckPageComponent implements OnInit {
     this.fullRoadmapLoading = true;
     this.fullRoadmapError = null;
     this.fullRoadmapLocked = false;
-    this.api.fullRoadmap(r.professionId, this.paywallAnswers(r)).subscribe({
+    // unlock only after the entitlement endpoint confirms the payment; then fetch the paid roadmap
+    this.billing.getEntitlement().pipe(
+      switchMap(e => {
+        if (!e?.roadmap) {
+          throw new HttpErrorResponse({ status: 402, error: { error: 'payment_required' } });
+        }
+        return this.api.fullRoadmap(r.professionId, this.paywallAnswers(r));
+      })
+    ).subscribe({
       next: full => {
         this.fullRoadmapLoading = false;
         // kept apart from the result, so saveLastResult never sees the paid roadmap

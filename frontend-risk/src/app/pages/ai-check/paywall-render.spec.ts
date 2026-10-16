@@ -97,12 +97,14 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     const el = show(locked);
     fixture.componentInstance.answers = { q1: 'a' };
     fixture.componentInstance.loadFullRoadmap(locked);
+    http.expectOne(`${environment.apiBaseUrl}/api/billing/entitlement`).flush({ roadmap: true });
     const req = http.expectOne(`${API}/roadmap`);
     expect(req.request.body).toEqual({ professionId: 'onet-1', answers: { q1: 'a' } });
     req.flush({ generalRoadmap: result().generalRoadmap, professionRoadmap: [{ title: 'Paid phase', items: ['p'], project: 'pp' }], totalWeeks: 7 });
     fixture.detectChanges();
     expect(el.querySelector('app-paywall-card')).toBeNull();
     expect(el.textContent).toContain('Paid phase');
+    expect(el.querySelector('[data-test="payment-confirmed"]')!.textContent).toContain('Payment confirmed');
     expect(fixture.componentInstance.planOf(fixture.componentInstance.result!)!.totalWeeks).toBe(7);
     // the PDF and .ics controls come back only with the entitled roadmap
     expect(el.querySelector('[data-test="pdf"]')).not.toBeNull();
@@ -162,9 +164,22 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
     const el = show(r);
     fixture.componentInstance.loadFullRoadmap(r);
+    http.expectOne(`${environment.apiBaseUrl}/api/billing/entitlement`).flush({ roadmap: true });
     http.expectOne(`${API}/roadmap`).flush({ generalRoadmap: [], professionRoadmap: [{ title: 'Paid phase', items: ['p'], project: 'pp' }], totalWeeks: 3 });
     fixture.detectChanges();
     expect(el.textContent).toContain('Paid phase');
+  });
+
+  it('does not unlock when the entitlement endpoint says not paid: no /roadmap request, paywall stays', () => {
+    const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
+    const el = show(r);
+    fixture.componentInstance.loadFullRoadmap(r);
+    http.expectOne(`${environment.apiBaseUrl}/api/billing/entitlement`).flush({ roadmap: false });
+    http.expectNone(`${API}/roadmap`);
+    fixture.detectChanges();
+    expect(el.querySelector('app-paywall-card')).not.toBeNull();
+    expect(el.querySelector('[data-test="payment-confirmed"]')).toBeNull();
+    expect(el.querySelector('[data-test="roadmap-error"]')!.textContent).toContain('not unlocked yet');
   });
 
   it('billingEnabled missing counts as billing off', () => {
@@ -182,6 +197,7 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     const locked = result({ roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
     const el = show(locked);
     fixture.componentInstance.loadFullRoadmap(locked);
+    http.expectOne(`${environment.apiBaseUrl}/api/billing/entitlement`).flush({ roadmap: true });
     http.expectOne(`${API}/roadmap`).flush({ error: 'payment_required' }, { status: 402, statusText: 'Payment Required' });
     fixture.detectChanges();
     expect(el.querySelector('app-paywall-card')).not.toBeNull();

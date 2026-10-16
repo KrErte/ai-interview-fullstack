@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { WAIVER_TEXT } from '../../models/billing.model';
+import { WAIVER_LABEL, WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/billing.model';
 
 /** Terms of use. Keep the description of the score in line with the home page and AiReadinessScorer. */
 @Component({
@@ -154,7 +154,7 @@ import { WAIVER_TEXT } from '../../models/billing.model';
         Directive (EU) 2019/2161; Võlaõigusseadus &sect; 53 lg 4 p 7&sup1; and &sect; 55 lg 1–2).
       </p>
       <p>At checkout we ask for this with an unticked checkbox. <strong>You cannot buy without ticking it.</strong> The exact wording is:</p>
-      <blockquote><p data-test="terms-waiver"><strong>&#9744; {{ waiverText }}</strong></p></blockquote>
+      <blockquote><p data-test="terms-waiver"><strong>{{ waiverLabel }}</strong> (ID {{ waiverVersion }}) – <strong>&#9744; {{ waiverText }}</strong></p></blockquote>
       <p>
         <strong>If supply has not started</strong> (for example, payment went through but the roadmap was never made
         available), you can still withdraw within 14 days. Use the form in Annex 1 or any clear statement sent to [EMAIL].
@@ -212,4 +212,6 @@ import { WAIVER_TEXT } from '../../models/billing.model';
 export class TermsPageComponent {
   /** Same constant as the paywall checkbox (FP-65: one versioned waiver text). */
   readonly waiverText = WAIVER_TEXT;
+  readonly waiverLabel = WAIVER_LABEL;
+  readonly waiverVersion = WAIVER_TEXT_VERSION;
 }

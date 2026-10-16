@@ -19,6 +19,8 @@ export interface CheckoutRequest {
  * Change the version id whenever the wording changes.
  */
 export const WAIVER_TEXT_VERSION = 'waiver-v1-2026-10-16';
+/** Human label shown with the waiver in the checkbox, Terms §6 and the receipt. */
+export const WAIVER_LABEL = 'Waiver v1, 2026-10-16';
 export const WAIVER_TEXT =
   'I want my personal AI roadmap delivered immediately, and I agree that delivery starts before the 14-day withdrawal ' +
   'period ends. I understand that I lose my right of withdrawal once delivery has started.';

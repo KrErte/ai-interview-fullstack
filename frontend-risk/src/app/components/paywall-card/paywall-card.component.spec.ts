@@ -3,7 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router, provideRouter } from '@angular/router';
 
-import { PAYWALL_COPY, PAYWALL_RETURN_URL, PaywallCardComponent } from './paywall-card.component';
+import { PAYWALL_COPY, PAYWALL_RETURN_URL, PaywallCardComponent, paywallPriceLine } from './paywall-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
 import { AuthService } from '../../services/auth.service';
 import { BrowserRedirectService } from '../../services/browser-redirect.service';
@@ -60,6 +60,7 @@ describe('PaywallCardComponent', () => {
   function create(entitled: boolean | null = false): HTMLElement {
     fixture = TestBed.createComponent(PaywallCardComponent);
     fixture.componentRef.setInput('professionId', 'onet-1');
+    fixture.componentRef.setInput('professionName', 'Accountant');
     fixture.componentRef.setInput('answers', { q1: 'a' });
     fixture.detectChanges();
     if (loggedIn && entitled !== null) {
@@ -80,16 +81,26 @@ describe('PaywallCardComponent', () => {
     const el = create();
     expect(q(el, 'buy')!.textContent!.trim()).toBe('Pay €19');
     expect(PAYWALL_COPY.waiver).toBe(WAIVER_TEXT);
-    expect(el.querySelector('label[for="paywall-waiver"]')!.textContent!.trim()).toBe(WAIVER_TEXT);
+    expect(el.querySelector('[data-test="waiver-text"]')!.textContent!.trim()).toBe(WAIVER_TEXT);
+    expect(el.querySelector('[data-test="waiver-label"]')!.textContent).toContain('Waiver v1, 2026-10-16 (ID waiver-v1-2026-10-16)');
     expect(q(el, 'waiver')!.getAttribute('data-waiver-version')).toBe(WAIVER_TEXT_VERSION);
     expect(WAIVER_TEXT_VERSION).toBe('waiver-v1-2026-10-16');
     expect((q(el, 'waiver') as HTMLInputElement).checked).toBeFalse();
-    expect(el.textContent).not.toMatch(/12-week|12 weeks|saved to your account/i);
+    expect(el.textContent).not.toMatch(/12-week|12 weeks|saved to your account|re-take the test/i);
+    expect(el.textContent).toContain('Save as PDF');
+    // neutral copy: no fear/risk wording, no score or percentage
+    expect(el.textContent).not.toMatch(/risk|replace|lose your job|threat|%/i);
+    expect(q(el, 'price')!.textContent!.trim()).toBe('€19 · one-off payment · no subscription, nothing renews.');
+  });
+
+  it('price line takes the VAT label from config; empty means no VAT wording', () => {
+    expect(paywallPriceLine('')).toBe('€19 · one-off payment · no subscription, nothing renews.');
+    expect(paywallPriceLine('incl. VAT')).toBe('€19 incl. VAT · one-off payment · no subscription, nothing renews.');
   });
 
   it('shows title, bullets, waiver label and links; buy is disabled until the box is ticked', () => {
     const el = create();
-    expect(el.textContent).toContain(PAYWALL_COPY.title);
+    expect(el.textContent).toContain(PAYWALL_COPY.title('Accountant'));
     expect(el.querySelectorAll('li').length).toBe(PAYWALL_COPY.bullets.length);
     const label = el.querySelector('label[for="paywall-waiver"]')!;
     expect(label.textContent).toContain(PAYWALL_COPY.waiver);
@@ -159,7 +170,7 @@ describe('PaywallCardComponent', () => {
     const el = create(true);
     let viewed = 0;
     fixture.componentInstance.viewRoadmap.subscribe(() => viewed++);
-    expect(el.textContent).not.toContain(PAYWALL_COPY.title);
+    expect(el.textContent).not.toContain(PAYWALL_COPY.title('Accountant'));
     q(el, 'view-roadmap')!.click();
     expect(viewed).toBe(1);
     expect(ioCallbacks.length).toBe(0);
