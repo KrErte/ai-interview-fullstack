@@ -22,7 +22,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
       <footer class="site-footer border-t border-line">
         <div class="mx-auto flex max-w-[1680px] flex-col gap-2 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-10 xl:px-16">
           <p class="flex items-center gap-2 font-extrabold tracking-tight">
-            <span class="h-2 w-2 rounded-full bg-accent"></span>Futureproof
+            <span class="h-2 w-2 rounded-full bg-accent"></span>careerrisk.ee
           </p>
           <p class="kicker">
             <a href="/jobs" class="hover:text-fg">All jobs</a> &middot; <a routerLink="/why" class="hover:text-fg">Why I built this</a>

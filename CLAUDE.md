@@ -1,4 +1,4 @@
-# Futureproof – projekti kontekst
+# careerrisk.ee (endine nimi Futureproof) – projekti kontekst
 
 - Toode: AI asendatavuse test + isiklikud AI õppimise roadmapid (eesti keel esmane).
 - Backend: Java 17, Spring Boot 3.3, Spring Security + JWT, JPA, Liquibase, PostgreSQL (H2 lokaalselt), Gradle – kaust `backend/`.

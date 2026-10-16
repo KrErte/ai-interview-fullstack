@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 
       <h2>About these terms</h2>
       <p>
-        Futureproof at careerrisk.ee is provided by Kristo Erte, a private individual in Estonia. By using the site you
+        careerrisk.ee is provided by Kristo Erte, a private individual in Estonia. By using the site you
         agree to these terms. Contact: <a href="mailto:m6rnaja@gmail.com">m6rnaja&#64;gmail.com</a>.
       </p>
 
@@ -54,7 +54,7 @@ import { RouterModule } from '@angular/router';
         Occupation and task data come from O*NET 29.3 (U.S. Department of Labor / ETA, CC BY 4.0). Task time shares and
         observed AI use come from the Anthropic Economic Index (CC BY). Human exposure labels come from Eloundou et al.
         (2024), <em>Science</em>. Automation estimates combine a language-model rating with those labels and are our own
-        estimates, not those of the data providers. The rest of the site's text and design belong to Futureproof.
+        estimates, not those of the data providers. The rest of the site's text and design belong to careerrisk.ee.
       </p>
 
       <h2>AI-generated text</h2>

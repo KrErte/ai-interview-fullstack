@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-/** The founder's story: why Futureproof exists. Personal text; change it only with the founder. */
+/** The founder's story: why careerrisk.ee exists. Personal text; change it only with the founder. */
 @Component({
   selector: 'app-why-page',
   standalone: true,
@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
     <article class="mx-auto max-w-3xl pb-16 pt-4 lg:pt-10">
       <p class="kicker rise" style="--i:0">Why this exists</p>
       <h1 class="display rise mt-4 text-[clamp(2.5rem,6vw,4.5rem)]" style="--i:1">
-        Why I built <span class="text-accent">Futureproof</span>
+        Why I built <span class="text-accent">careerrisk.ee</span>
       </h1>
 
       <div class="rise mt-10 space-y-6 text-[clamp(1.1rem,1.6vw,1.3rem)] leading-relaxed text-muted" style="--i:2">
@@ -31,7 +31,7 @@ import { RouterModule } from '@angular/router';
           or to worry. It is to learn to use AI in your own job, step by step.
         </p>
         <p>
-          Futureproof is the starting point I wished I had. Pick your profession, answer 11 questions, and see which of
+          careerrisk.ee is the starting point I wished I had. Pick your profession, answer 11 questions, and see which of
           your tasks are changing, where you stand, and a learning path for your job. It is free and you don't need an
           account.
         </p>

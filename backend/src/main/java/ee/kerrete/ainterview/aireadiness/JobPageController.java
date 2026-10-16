@@ -47,7 +47,7 @@ public class JobPageController {
         model.addAttribute("slugs", pages.slugs());
         model.addAttribute("count", count);
         model.addAttribute("canonical", pages.url("/jobs"));
-        model.addAttribute("title", "Will AI replace your job? AI exposure for " + count + " occupations | Futureproof");
+        model.addAttribute("title", "Will AI replace your job? AI exposure for " + count + " occupations | careerrisk.ee");
         model.addAttribute("description", "How exposed is your job to today's AI? Task-level AI exposure, your human edge "
                 + "and an AI learning plan for " + count + " occupations. Free, no signup.");
         return "jobs/index";
@@ -74,7 +74,7 @@ public class JobPageController {
         model.addAttribute("page", page);
         model.addAttribute("band", band);
         model.addAttribute("canonical", pages.url("/jobs/" + page.slug()));
-        model.addAttribute("title", "Will AI replace " + profession.name() + "? AI exposure " + score + "/100 | Futureproof");
+        model.addAttribute("title", "Will AI replace " + profession.name() + "? AI exposure " + score + "/100 | careerrisk.ee");
         model.addAttribute("description", profession.name() + ": today's AI tools can take on about " + score
                 + "% of the typical work (" + band.get("label") + " exposure). See which tasks, your human edge and a "
                 + "3-phase AI learning plan. Free 11-question test.");

@@ -12,10 +12,10 @@ import { AuthService } from '../../services/auth.service';
     <div class="mx-auto flex min-h-[80vh] max-w-md flex-col justify-center py-6">
       <a routerLink="/" class="rise flex items-center gap-2 text-[19px] font-extrabold tracking-tight" style="--i:0">
         <span class="h-2.5 w-2.5 rounded-full bg-accent"></span>
-        Futureproof
+        careerrisk.ee
       </a>
       <h1 class="display rise mt-10 text-[clamp(2.5rem,8vw,3.5rem)]" style="--i:1">Welcome <span class="text-accent">back.</span></h1>
-      <p class="rise mt-4 text-[16px] leading-relaxed text-muted" style="--i:2">Sign in to your Futureproof account.</p>
+      <p class="rise mt-4 text-[16px] leading-relaxed text-muted" style="--i:2">Sign in to your careerrisk.ee account.</p>
 
       <p *ngIf="sessionExpired" class="rise mt-6 rounded-xl border border-band-moderate px-4 py-3 text-[14px] text-band-moderate" style="--i:2">
         Your session has expired. Please sign in again.
