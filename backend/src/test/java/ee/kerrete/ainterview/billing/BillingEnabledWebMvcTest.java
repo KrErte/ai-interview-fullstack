@@ -148,6 +148,16 @@ class BillingEnabledWebMvcTest {
 
     @Test
     @WithMockUser(username = ME)
+    void unknownProfessionIs400BeforeThePaymentCheck() throws Exception {
+        paid(false);
+        mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"professionId\":\"no-such-job\",\"answers\":{}}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("Unknown profession 'no-such-job'"));
+    }
+
+    @Test
+    @WithMockUser(username = ME)
     void missingFieldsAndBadJsonAre400() throws Exception {
         mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON)
                         .content("{\"answers\":{}}"))

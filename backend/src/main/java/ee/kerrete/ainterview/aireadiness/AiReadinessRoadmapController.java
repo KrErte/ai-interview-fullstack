@@ -33,8 +33,10 @@ public class AiReadinessRoadmapController {
 
     @PostMapping("/api/ai-readiness/roadmap")
     public RoadmapResponse roadmap(@Valid @RequestBody RoadmapRequest request) {
+        // validation first (400 for bad input or an unknown profession), then the 402 entitlement check
+        RoadmapResponse roadmap = service.roadmap(request.professionId(), request.answers());
         entitlements.require(Feature.ROADMAP, CurrentUser.email());
-        return service.roadmap(request.professionId(), request.answers());
+        return roadmap;
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
