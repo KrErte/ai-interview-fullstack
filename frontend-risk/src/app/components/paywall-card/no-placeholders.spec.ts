@@ -8,13 +8,16 @@ import { PaywallCardComponent } from './paywall-card.component';
 import { AuthService } from '../../services/auth.service';
 import { AiCheckPageComponent } from '../../pages/ai-check/ai-check.page';
 import { AssessmentResult } from '../../models/ai-readiness.model';
+import { TermsPageComponent } from '../../pages/legal/terms.page';
+import { RefundPageComponent } from '../../pages/legal/refund.page';
+import { FILLED_SALE_CONFIG, withEnv } from '../../pages/legal/legal-test-config';
 
 /**
- * No raw "[PLACEHOLDER]" text may reach users on the paywall card or the teaser. /terms and /refund are
- * excluded on purpose: they are FP-65 legal drafts whose [SELLER NAME], [EMAIL], [DATE] … placeholders must
- * stay visible until Olen/legal fill them in.
+ * No raw "[PLACEHOLDER]" text, "re-take", "VAT TBD" or "PLANNED" may reach users on the paywall card, the teaser,
+ * /terms or /refund, with the seller/VAT config empty and filled.
  */
 const PLACEHOLDER = /\[[A-Z]/;
+const BANNED = /re-take|VAT TBD|PLANNED/i;
 
 describe('No visible placeholders on the paywall card and teaser (FP-65)', () => {
   beforeEach(() => {
@@ -34,6 +37,7 @@ describe('No visible placeholders on the paywall card and teaser (FP-65)', () =>
     f.componentRef.setInput('answers', {});
     f.detectChanges();
     expect((f.nativeElement as HTMLElement).textContent).not.toMatch(PLACEHOLDER);
+    expect((f.nativeElement as HTMLElement).textContent).not.toMatch(BANNED);
   });
 
   it('teaser section on the locked result', () => {
@@ -50,5 +54,19 @@ describe('No visible placeholders on the paywall card and teaser (FP-65)', () =>
     const section = (f.nativeElement as HTMLElement).querySelector('#roadmap-paywall')!;
     expect(section).not.toBeNull();
     expect(section.textContent).not.toMatch(PLACEHOLDER);
+    expect(section.textContent).not.toMatch(BANNED);
   });
+
+  for (const [name, values] of [['config empty', {}], ['config filled', FILLED_SALE_CONFIG]] as const) {
+    for (const page of [TermsPageComponent, RefundPageComponent]) {
+      it(`${page.name} with ${name}`, withEnv(values, () => {
+        const f = TestBed.createComponent(page as never);
+        (f as { detectChanges(): void }).detectChanges();
+        const text = ((f as { nativeElement: HTMLElement }).nativeElement).textContent ?? '';
+        expect(text.length).toBeGreaterThan(50);
+        expect(text).not.toMatch(PLACEHOLDER);
+        expect(text).not.toMatch(BANNED);
+      }));
+    }
+  }
 });

@@ -1,16 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { RefundPageComponent } from './refund.page';
+import { FILLED_SALE_CONFIG, withEnv } from './legal-test-config';
+
+function render(): HTMLElement {
+  TestBed.configureTestingModule({ imports: [RefundPageComponent], providers: [provideRouter([])] });
+  const f = TestBed.createComponent(RefundPageComponent);
+  f.detectChanges();
+  return f.nativeElement as HTMLElement;
+}
 
 describe('RefundPageComponent', () => {
-  it('shows the FP-65 draft with its placeholders visible and no unbuilt features', () => {
-    TestBed.configureTestingModule({ imports: [RefundPageComponent], providers: [provideRouter([])] });
-    const f = TestBed.createComponent(RefundPageComponent);
-    f.detectChanges();
-    const text = (f.nativeElement as HTMLElement).textContent ?? '';
-    expect(text).toContain('Refunds and withdrawal');
-    expect(text).toContain('[EMAIL]');
-    expect(text).toContain('[DATE]');
-    expect(text).not.toMatch(/12-week|saved to your account|saved in your account/i);
+  it('config empty: no sale-specific content, says nothing is sold yet', () => {
+    const el = render();
+    expect(el.querySelector('[data-test="refund-sale"]')).toBeNull();
+    expect(el.querySelector('[data-test="refund-no-sale"]')).not.toBeNull();
   });
+
+  it('config filled: round-3 refund content with the seller email', withEnv(FILLED_SALE_CONFIG, () => {
+    const el = render();
+    expect(el.querySelector('[data-test="refund-sale"]')!.textContent).toContain('sales@example.test');
+    expect(el.textContent).toContain('Last updated: 16 October 2026');
+  }));
 });
