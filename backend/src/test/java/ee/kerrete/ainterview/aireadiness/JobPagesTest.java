@@ -100,4 +100,47 @@ class JobPagesTest {
         assertTrue(page.leadTask().automationPercent() >= JobPages.LEAD_TASK_MIN_AUTOMATION);
         assertEquals(page.topTasks().get(0), page.leadTask());
     }
+
+    @Test
+    void faqAnswerUsesTheSentencesOnThePage() {
+        JobPages.JobPage cook = PAGES.page(PAGES.bySlug("cooks-restaurant").orElseThrow());
+        String answer = PAGES.faqAnswer(cook);
+        assertTrue(answer.startsWith("Not entirely. Today's AI tools can take on about "
+                + cook.result().taskExposureScore() + "% of the typical work in this occupation."));
+        assertTrue(answer.contains("None of the largest tasks is highly automatable"));
+        assertTrue(answer.contains("The parts that stay human include: "));
+        assertTrue(answer.endsWith(JobPages.METHOD_SENTENCE));
+    }
+
+    @Test
+    void jsonLdHasFaqAndBreadcrumbs() throws Exception {
+        JobPages.JobPage page = PAGES.page(PAGES.bySlug("data-entry-keyers").orElseThrow());
+        var json = new ObjectMapper().readTree(PAGES.jsonLd(page));
+        assertEquals(2, json.size());
+        assertEquals("FAQPage", json.get(0).get("@type").asText());
+        var question = json.get(0).get("mainEntity").get(0);
+        assertEquals("Will AI replace Data Entry Keyers?", question.get("name").asText());
+        assertEquals(PAGES.faqAnswer(page), question.get("acceptedAnswer").get("text").asText());
+        assertEquals("BreadcrumbList", json.get(1).get("@type").asText());
+        var items = json.get(1).get("itemListElement");
+        assertEquals("https://example.org/jobs", items.get(0).get("item").asText());
+        assertEquals(2, items.get(1).get("position").asInt());
+        assertEquals("https://example.org/jobs/data-entry-keyers", items.get(1).get("item").asText());
+    }
+
+    @Test
+    void jsonLdCannotCloseTheScriptTag() throws Exception {
+        JobPages.JobPage real = PAGES.page(PAGES.bySlug("cooks-restaurant").orElseThrow());
+        Profession p = real.profession();
+        Profession evil = new Profession(p.id(), "Cook </script><img src=x> & co", p.category(), p.tasks(), p.humanEdge(),
+                p.aiTools(), p.pivotRoles(), p.roadmap(), p.onetCode(), p.onetCodes(), p.alternateTitles());
+        JobPages.JobPage page = new JobPages.JobPage(evil, real.slug(), real.result(), real.topTasks(), real.moreTasks(),
+                real.moreShare(), real.related(), real.group(), real.leadTask());
+        String ld = PAGES.jsonLd(page);
+        assertFalse(ld.contains("<"));
+        assertFalse(ld.contains(">"));
+        assertFalse(ld.contains("&"));
+        assertEquals("Will AI replace Cook </script><img src=x> & co?",
+                new ObjectMapper().readTree(ld).get(0).get("mainEntity").get(0).get("name").asText());
+    }
 }
