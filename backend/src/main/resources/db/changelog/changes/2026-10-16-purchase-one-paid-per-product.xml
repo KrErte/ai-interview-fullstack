@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+      FP-60 (QA #3): at most one paid purchase per user and product. PostgreSQL only: H2 has no partial
+      indexes, so on H2 this changeset is skipped (dbms filter). FP-62's webhook must still be idempotent
+      (stripe_session_id is unique) and treat a unique violation here as "already paid".
+    -->
+    <changeSet id="2026-10-16-purchase-one-paid-per-product" author="careerrisk" dbms="postgresql">
+        <sql>CREATE UNIQUE INDEX uk_purchase_user_product_paid ON purchase (user_id, product) WHERE status = 'paid'</sql>
+        <rollback>
+            <sql>DROP INDEX uk_purchase_user_product_paid</sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

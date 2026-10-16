@@ -59,5 +59,11 @@
             <column name="product"/>
             <column name="status"/>
         </createIndex>
+
+        <!-- the raw CHECK above has no automatic inverse; dropping the table removes it and the index too -->
+        <rollback>
+            <sql>ALTER TABLE purchase DROP CONSTRAINT ck_purchase_status</sql>
+            <dropTable tableName="purchase"/>
+        </rollback>
     </changeSet>
 </databaseChangeLog>
