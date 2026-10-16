@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
   template: `
     <article class="legal mx-auto max-w-3xl pb-16 pt-4 lg:pt-10">
-      <p class="kicker">Last updated 14 October 2026</p>
+      <p class="kicker">Last updated 16 October 2026</p>
       <h1 class="display mt-4 text-[clamp(2.5rem,6vw,4.5rem)]">Privacy policy</h1>
 
       <section class="card mt-8 p-6 sm:p-7">
@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
         <ul>
           <li>You can take the test without an account, without an email address and without cookies.</li>
           <li>Your answers are scored on our server and are not stored there. Your last result is kept only in your browser.</li>
+          <li>If you take the test through a team invite link, your answers are stored anonymously for that team's totals. Your employer sees only totals for groups of 5 or more people.</li>
           <li>We use self-hosted, cookieless analytics. We do not sell data and we do not show ads.</li>
         </ul>
       </section>
@@ -34,8 +35,9 @@ import { RouterModule } from '@angular/router';
       <h3>Taking the test</h3>
       <p>
         Your profession, your answers to the 11 questions and, if you change them, your task shares are sent to our server
-        to calculate the result. They are not saved in our database. Your last result is saved in your browser's local
-        storage so you can open it again; clearing your browser data removes it.
+        to calculate the result. They are not saved in our database, unless you take the test through a team invite link
+        (see "Team reports" below). Your last result is saved in your browser's local storage so you can open it
+        again; clearing your browser data removes it.
       </p>
 
       <h3>Optional AI comment</h3>
@@ -56,6 +58,34 @@ import { RouterModule } from '@angular/router';
         ask us to delete it.
       </p>
 
+      <h3 id="teams">Team reports</h3>
+      <p>
+        An organisation can create a team report and share an invite link with its staff. If you take the test through
+        such a link, we store your profession, your answers, your scores, your task shares and the date (not the time) for
+        that team. We do not store your name, email address, IP address or any browser identifier with it. Your browser
+        keeps a random key so it can update your own answer, for example when you move the task share sliders; that key is
+        not linked to you on our side.
+      </p>
+      <p>
+        The person who created the team sees only totals, and only once at least 5 people have answered. Groups of
+        professions and tasks with fewer than 5 people are merged or left out, and no single answer is ever shown or
+        returned by our API. The report never ranks people or says that anyone will lose their job.
+      </p>
+      <p>
+        For these team answers, the organisation that created the team is the controller and careerrisk.ee is its
+        processor: we process the answers only to produce that team's report, under a data processing agreement. The
+        organisation's legal basis is its own (for example its obligation under Article 4 of the EU AI Act to ensure AI
+        literacy, or its legitimate interest). The data is kept until the team is deleted, which the team's creator can do at
+        any time from the report page, or until the organisation asks us to delete it. If you want your answer removed,
+        contact the organisation or us.
+      </p>
+      <p>
+        For the person who creates a team, we store the team name, their email address (for the invoice and to contact them
+        about the report) and the creation date. careerrisk.ee is the controller for this contact data. Legal basis: taking
+        steps to enter into and performing a contract. The email address is never shown to the people who answer. The
+        report link is the only key to the report; we store only a one-way hash of it.
+      </p>
+
       <h3>Analytics</h3>
       <p>
         We run Umami on our own server. It sets no cookies and does not store your IP address. It records which pages are
@@ -74,9 +104,10 @@ import { RouterModule } from '@angular/router';
 
       <h2>Cookies and browser storage</h2>
       <p>
-        We use no cookies. We use your browser's local storage only for your last test result and, if you log in, your
-        login session. Both are needed for features you use, so we do not ask for separate consent. You can delete them at
-        any time in your browser settings.
+        We use no cookies. We use your browser's local storage only for features you use: your last test result with its
+        answers and task shares, the roadmap steps you tick, the tasks you mark as already done with AI, the key to your own
+        team answer if you answered through a team link and, if you log in, your login session. We do not ask for separate
+        consent for this. You can delete it at any time in your browser settings.
       </p>
 
       <h2>Who else processes data</h2>
@@ -88,7 +119,8 @@ import { RouterModule } from '@angular/router';
 
       <h2>How long we keep data</h2>
       <ul>
-        <li>Test answers: not stored on our server.</li>
+        <li>Test answers: not stored on our server, except answers given through a team invite link, which are kept until the team is deleted.</li>
+        <li>Team contact data (team name and the creator's email): until the team is deleted, and longer only if an invoice requires it under accounting law.</li>
         <li>Browser storage: until you clear it, or until a different person logs in on the same browser. Logging out alone does not remove your test result.</li>
         <li>Account data: until you ask us to delete it. Nightly database backups are kept for 14 days, so deleted data also disappears from backups within 14 days.</li>
         <li>Server logs: as described above.</li>
