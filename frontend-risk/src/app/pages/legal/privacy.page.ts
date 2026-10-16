@@ -33,9 +33,9 @@ import { RouterModule } from '@angular/router';
 
       <h3>Taking the test</h3>
       <p>
-        Your profession, your answers to the 11 questions and, if you change them, your task shares are sent to our server
+        Your profession and your answers to the 11 questions are sent to our server
         to calculate the result. They are not saved in our database. Your last result is saved in your browser's local
-        storage so you can open it again; clearing your browser data removes it.
+        storage so you can open it again; clearing your browser data removes it. Logging out does not remove it.
       </p>
 
       <h3>Optional AI comment</h3>
