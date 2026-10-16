@@ -1,11 +1,16 @@
 package ee.kerrete.ainterview.billing.webhook;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
 import ee.kerrete.ainterview.billing.EntitlementService;
 import ee.kerrete.ainterview.config.DataSeeder;
 import ee.kerrete.ainterview.config.ProdDataSeeder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -166,6 +171,41 @@ class StripeWebhookIntegrationTest {
         String payload = completed("cs_test_older", "paid");
         deliver(payload, sign(payload)).andExpect(status().isOk());
         assertThat(row()).containsEntry("status", "paid").containsEntry("stripe_session_id", "cs_test_older");
+    }
+
+    @Test
+    void secondPaidSessionOfAnEntitledUserIsLoggedAsDuplicateAtError() throws Exception {
+        String first = completed("cs_test_paid", "paid");
+        deliver(first, sign(first)).andExpect(status().isOk());
+        long userId = jdbc.queryForObject("SELECT user_id FROM purchase WHERE id = ?", Long.class, purchaseId);
+        jdbc.update("INSERT INTO purchase (user_id, email, product, status, stripe_session_id, amount_cents, currency, "
+                + "withdrawal_waiver_accepted, created_at) VALUES (?, ?, 'roadmap', 'pending', 'cs_test_second', 1900, 'EUR', true, CURRENT_TIMESTAMP)",
+                userId, EMAIL);
+        long second = jdbc.queryForObject("SELECT id FROM purchase WHERE stripe_session_id = 'cs_test_second'", Long.class);
+
+        Logger logger = (Logger) LoggerFactory.getLogger(PurchasePaymentRecorder.class);
+        ListAppender<ILoggingEvent> logs = new ListAppender<>();
+        logs.start();
+        logger.addAppender(logs);
+        try {
+            String dup = sessionEvent("evt_dup", "checkout.session.completed", "cs_test_second", "paid", String.valueOf(second));
+            deliver(dup, sign(dup)).andExpect(status().isOk());
+            // an older session of the already paid row, matched via metadata.purchase_id
+            String older = completed("cs_test_older", "paid");
+            deliver(older, sign(older)).andExpect(status().isOk());
+        } finally {
+            logger.detachAppender(logs);
+        }
+
+        assertThat(jdbc.queryForObject("SELECT status FROM purchase WHERE id = ?", String.class, second)).isEqualTo("pending");
+        assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM purchase WHERE status = 'paid'", Integer.class)).isEqualTo(1);
+        assertThat(row()).containsEntry("stripe_session_id", "cs_test_paid");
+        assertThat(logs.list).filteredOn(e -> e.getLevel() == Level.ERROR).extracting(ILoggingEvent::getFormattedMessage)
+                .containsExactly(
+                        "duplicate payment, refund manually via the Stripe dashboard: session cs_test_second purchase " + second,
+                        "duplicate payment, refund manually via the Stripe dashboard: session cs_test_older purchase " + purchaseId);
+        assertThat(logs.list).extracting(ILoggingEvent::getFormattedMessage)
+                .noneMatch(m -> m.contains("@") || m.contains("Pat Payer"));
     }
 
     @Test

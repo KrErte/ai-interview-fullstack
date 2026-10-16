@@ -130,8 +130,10 @@ Handled: `checkout.session.completed` and `checkout.session.async_payment_succee
 The purchase is found by `stripe_session_id` (fallback: `metadata.purchase_id`) and, if `pending`, set to `paid` with
 `paid_at`, `buyer_country` (`customer_details.address.country`), and `amount_cents`/`currency` from the session's
 `amount_total`/`currency`. Already `paid` → no change. `refunded` → no change. Unknown session → 200, logged by
-session id only. On PostgreSQL, a clash with the one-paid-row-per-user+product index (a second payment) is treated
-as already paid and logged for a manual refund. Other events and `payment_status` `unpaid` → 200, ignored.
+session id only. A duplicate payment (the user already has another paid
+roadmap purchase, an older session of an already paid row, or on PostgreSQL a clash with the one-paid-row index) leaves
+the row unchanged, answers 200 and logs at ERROR `duplicate payment, refund manually via the Stripe dashboard: session
+… purchase …` (ids only); refund it in the Stripe dashboard. Other events and `payment_status` `unpaid` → 200, ignored.
 Logs carry event/session/purchase ids only, never email, name or keys.
 
 Configure the endpoint in Stripe (test mode) for `https://<backend>/api/billing/webhook` with at least the two
