@@ -40,6 +40,8 @@ services:
       # Billing (FP-60, docs/billing.md): off unless set in .env
       BILLING_ENABLED: ${BILLING_ENABLED:-false}
       STRIPE_PRICE_ID: ${STRIPE_PRICE_ID:-}
+      # FP-61: Stripe TEST key (sk_test_...) outside production; empty = checkout answers 503
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
       BILLING_DISPLAY_PRICE: ${BILLING_DISPLAY_PRICE:-€19}
       BILLING_DEV_ENTITLEMENT: ${BILLING_DEV_ENTITLEMENT:-false}
       BILLING_DEV_ENTITLED_EMAILS: ${BILLING_DEV_ENTITLED_EMAILS:-}
