@@ -113,4 +113,33 @@ export interface AssessmentResult {
   personalNote: string | null;
   /** Only when the request had a team code or edit token. */
   team?: TeamStatus;
+  /**
+   * BILLING_ENABLED=true only: the full roadmaps are left out (empty or missing) and this short preview is
+   * sent instead. Shape not final in the backend contract; a string, a list of strings or a list of
+   * phases/stages with a title are all rendered (see roadmapTeaserLines).
+   */
+  roadmapTeaser?: RoadmapTeaser | null;
+  /** BILLING_ENABLED=true and the roadmap is not unlocked: show the teaser and the price card. Absent/false = billing off. */
+  roadmapLocked?: boolean;
+}
+
+export type RoadmapTeaser = string | Array<string | { title?: string }>;
+
+/** POST /api/ai-readiness/roadmap (auth only) body. */
+export interface FullRoadmapRequest {
+  professionId: string;
+  answers: Record<string, string>;
+}
+
+/** POST /api/ai-readiness/roadmap response; 402 {error:'payment_required'} when not entitled. */
+export interface FullRoadmap {
+  generalRoadmap: GeneralStage[];
+  professionRoadmap: RoadmapPhase[];
+  totalWeeks: number;
+}
+
+/** Saved in sessionStorage when "buy" sends the user to log in, so the paywall comes back with the same answers. */
+export interface PendingPurchase {
+  professionId: string;
+  answers: Record<string, string>;
 }

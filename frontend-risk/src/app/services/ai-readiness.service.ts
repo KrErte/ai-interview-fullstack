@@ -7,6 +7,9 @@ import {
   AssessmentResult,
   CategorySummary,
   Features,
+  FullRoadmap,
+  PendingPurchase,
+  RoadmapTeaser,
   ProfessionSummary,
   Question,
   SavedAnswers,
@@ -22,6 +25,7 @@ export class AiReadinessService {
   private readonly ANSWERS_KEY = 'ai_readiness_last_answers';
   private readonly PROGRESS_KEY = 'ai_readiness_roadmap_progress';
   private readonly AI_MARKS_KEY = 'ai_readiness_ai_marks';
+  static readonly PENDING_PURCHASE_KEY = 'ai_readiness_pending_purchase';
 
   constructor(private http: HttpClient) {}
 
@@ -57,6 +61,41 @@ export class AiReadinessService {
 
   assess(request: AssessmentRequest): Observable<AssessmentResult> {
     return this.http.post<AssessmentResult>(`${this.baseUrl}/assess`, request);
+  }
+
+  /**
+   * The paid, full roadmap for these answers (auth only). 402 {error:'payment_required'} when the user
+   * has not bought it. FP-64 polls the entitlement after payment and then calls this.
+   */
+  fullRoadmap(professionId: string, answers: Record<string, string>): Observable<FullRoadmap> {
+    return this.http.post<FullRoadmap>(`${this.baseUrl}/roadmap`, { professionId, answers });
+  }
+
+  /** Keeps the answers across the login/register detour before checkout (this tab only). */
+  savePendingPurchase(pending: PendingPurchase): void {
+    try {
+      sessionStorage.setItem(AiReadinessService.PENDING_PURCHASE_KEY, JSON.stringify(pending));
+    } catch {
+      // storage unavailable – the user retakes the test after login
+    }
+  }
+
+  loadPendingPurchase(): PendingPurchase | null {
+    try {
+      const raw = sessionStorage.getItem(AiReadinessService.PENDING_PURCHASE_KEY);
+      const p = raw ? (JSON.parse(raw) as PendingPurchase) : null;
+      return p && typeof p.professionId === 'string' && p.answers && typeof p.answers === 'object' ? p : null;
+    } catch {
+      return null;
+    }
+  }
+
+  clearPendingPurchase(): void {
+    try {
+      sessionStorage.removeItem(AiReadinessService.PENDING_PURCHASE_KEY);
+    } catch {
+      // ignore
+    }
   }
 
   /**
@@ -190,4 +229,15 @@ export class AiReadinessService {
       // ignore
     }
   }
+}
+
+/** The teaser as display lines, whatever shape the backend sends. */
+export function roadmapTeaserLines(teaser: RoadmapTeaser | null | undefined): string[] {
+  if (!teaser) return [];
+  if (typeof teaser === 'string') return teaser.trim() ? [teaser.trim()] : [];
+  if (!Array.isArray(teaser)) return [];
+  return teaser
+    .map(t => (typeof t === 'string' ? t : t && typeof t.title === 'string' ? t.title : ''))
+    .map(t => t.trim())
+    .filter(t => !!t);
 }

@@ -5,7 +5,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
 
-import { AiReadinessService } from '../../services/ai-readiness.service';
+import { AiReadinessService, roadmapTeaserLines } from '../../services/ai-readiness.service';
+import { isPaymentRequired } from '../../services/billing.service';
+import { PaywallCardComponent } from '../../components/paywall-card/paywall-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
 import {
   AssessmentRequest,
@@ -83,7 +85,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
 @Component({
   selector: 'app-ai-check-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, PaywallCardComponent],
   template: `
     <div *ngIf="error" class="mb-8 rounded-xl border border-band-very-high bg-surface px-4 py-3 text-[15px] text-band-very-high" role="alert">
       {{ error }}
@@ -444,6 +446,27 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
         </div>
       </section>
 
+      <!-- Billing on and not unlocked: teaser + price card instead of the roadmaps (FP-63) -->
+      <ng-container *ngIf="r.roadmapLocked; else fullRoadmaps">
+        <section id="roadmap-paywall" class="space-y-6 scroll-mt-6">
+          <div *ngIf="teaserLines(r).length" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 sm:p-8" data-test="roadmap-teaser">
+            <p class="font-mono text-sm text-accent">06</p>
+            <h2 class="mt-3 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">A preview of your roadmap</h2>
+            <ul class="mt-4 space-y-2 text-[15px] leading-relaxed text-slate-300">
+              <li *ngFor="let t of teaserLines(r)" class="flex gap-3"><span class="text-faint">&ndash;</span><span>{{ t }}</span></li>
+            </ul>
+          </div>
+          <p *ngIf="fullRoadmapLoading" class="text-[15px] text-muted" role="status">Loading your roadmap…</p>
+          <div *ngIf="fullRoadmapError" class="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4" role="alert" data-test="roadmap-error">
+            <p class="text-sm text-rose-200">{{ fullRoadmapError }}</p>
+            <button type="button" (click)="loadFullRoadmap(r)" class="mt-2 text-sm text-rose-300 underline">Try again</button>
+          </div>
+          <app-paywall-card [professionId]="r.professionId" [answers]="paywallAnswers(r)"
+                            (viewRoadmap)="loadFullRoadmap(r)"></app-paywall-card>
+        </section>
+      </ng-container>
+
+      <ng-template #fullRoadmaps>
       <!-- General roadmap -->
       <section class="card grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
         <div class="lg:col-span-4 lg:pr-6">
@@ -526,6 +549,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           </div>
         </div>
       </section>
+      </ng-template>
 
       <footer class="grid gap-4 pt-4 lg:grid-cols-12">
         <p class="kicker lg:col-span-3">Method</p>
@@ -612,6 +636,12 @@ export class AiCheckPageComponent implements OnInit {
   private slidersMoved = false;
   /** Queries already reported as empty, so each is sent once. */
   private readonly emptySearches = new Set<string>();
+
+  /** Paid roadmap (FP-63): loading / error state of POST /api/ai-readiness/roadmap. */
+  fullRoadmapLoading = false;
+  fullRoadmapError: string | null = null;
+  /** The last roadmap request said 402 payment_required. */
+  fullRoadmapLocked = false;
 
   /** Showing someone else's result from a share link: nothing is saved in this browser. */
   sharedView = false;
@@ -753,6 +783,11 @@ export class AiCheckPageComponent implements OnInit {
    * /ai-test?view=saved opens the saved result.
    */
   private preselectFromLink(): void {
+    // back from /login or /register (?resume=paywall) or from /roadmap (?resume=roadmap) with the saved answers
+    const resume = this.route.snapshot.queryParamMap.get('resume');
+    if ((resume === 'paywall' || resume === 'roadmap') && this.resumePurchase(resume)) {
+      return;
+    }
     const shared = parseShareFragment(this.route.snapshot.fragment);
     if (shared) {
       this.openShared(shared);
@@ -1012,6 +1047,89 @@ export class AiCheckPageComponent implements OnInit {
     });
   }
 
+  teaserLines(r: AssessmentResult): string[] {
+    return roadmapTeaserLines(r.roadmapTeaser);
+  }
+
+  /** The answers behind the result on screen, for the paywall's login detour and the roadmap request. */
+  paywallAnswers(r: AssessmentResult): Record<string, string> {
+    if (Object.keys(this.answers).length) {
+      return this.answers;
+    }
+    const stored = this.api.loadLastAnswers();
+    return stored && stored.professionId === r.professionId ? stored.answers : {};
+  }
+
+  /**
+   * Restores the result from the answers saved before the login detour and shows the paywall again
+   * (or, for 'roadmap', loads the paid roadmap at once). False when nothing is saved.
+   */
+  resumePurchase(mode: 'paywall' | 'roadmap'): boolean {
+    const pending = this.api.loadPendingPurchase();
+    this.router.navigate([], { relativeTo: this.route, queryParams: {}, replaceUrl: true });
+    if (!pending) {
+      return false;
+    }
+    this.professionId = pending.professionId;
+    this.answers = pending.answers;
+    this.sharedView = false;
+    this.step = 'loading';
+    this.api.assess({ professionId: pending.professionId, answers: pending.answers, personalize: false }).subscribe({
+      next: result => {
+        this.api.clearPendingPurchase();
+        this.result = result;
+        this.customShares = false;
+        this.pinnedTop = null;
+        this.slidersMoved = false;
+        this.step = 'result';
+        if (mode === 'roadmap' || !result.roadmapLocked) {
+          if (result.roadmapLocked) {
+            this.loadFullRoadmap(result);
+          }
+          return;
+        }
+        setTimeout(() => document.getElementById('roadmap-paywall')?.scrollIntoView({ block: 'start' }));
+      },
+      error: () => {
+        this.error = 'Could not restore your result. Please take the test again.';
+        this.step = 'profession';
+      }
+    });
+    return true;
+  }
+
+  /**
+   * Replaces the locked result's roadmaps with the paid ones from POST /api/ai-readiness/roadmap and
+   * renders them with the existing plan view. FP-64 calls this after polling the entitlement.
+   */
+  loadFullRoadmap(r: AssessmentResult): void {
+    if (this.fullRoadmapLoading) return;
+    this.fullRoadmapLoading = true;
+    this.fullRoadmapError = null;
+    this.fullRoadmapLocked = false;
+    this.api.fullRoadmap(r.professionId, this.paywallAnswers(r)).subscribe({
+      next: full => {
+        this.fullRoadmapLoading = false;
+        if (this.result === r) {
+          this.result = {
+            ...r,
+            generalRoadmap: full.generalRoadmap ?? [],
+            professionRoadmap: full.professionRoadmap ?? [],
+            totalWeeks: full.totalWeeks,
+            roadmapLocked: false
+          };
+        }
+      },
+      error: err => {
+        this.fullRoadmapLoading = false;
+        this.fullRoadmapLocked = isPaymentRequired(err);
+        this.fullRoadmapError = this.fullRoadmapLocked
+          ? 'Your roadmap is not unlocked yet. If you just paid, wait a moment and try again.'
+          : 'We could not load your roadmap. Check your connection and try again.';
+      }
+    });
+  }
+
   restart(): void {
     this.answers = {};
     this.professionId = null;
@@ -1023,6 +1141,8 @@ export class AiCheckPageComponent implements OnInit {
     this.showAllTasks = false;
     this.questionIndex = 0;
     this.result = null;
+    this.fullRoadmapError = null;
+    this.fullRoadmapLocked = false;
     this.personalize = false;
     this.personalNoteRequested = false;
     this.savedResultOutdated = false;

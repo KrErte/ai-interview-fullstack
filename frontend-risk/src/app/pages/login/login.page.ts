@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { safeReturnUrl } from '../../services/return-url';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -43,7 +44,7 @@ import { AuthService } from '../../services/auth.service';
 
       <p class="rise mt-6 text-center text-[14px] text-muted" style="--i:4">
         Don't have an account?
-        <a routerLink="/register" class="ml-1 font-semibold text-accent hover:underline">Create one</a>
+        <a routerLink="/register" queryParamsHandling="preserve" class="ml-1 font-semibold text-accent hover:underline">Create one</a>
       </p>
     </div>
   `
@@ -82,7 +83,7 @@ export class LoginPageComponent {
       password: this.form.value.password || ''
     }).subscribe({
       next: () => {
-        this.router.navigate(['/ai-test']);
+        this.router.navigateByUrl(safeReturnUrl(this.route.snapshot.queryParams['returnUrl']));
       },
       error: (err) => {
         this.loading = false;

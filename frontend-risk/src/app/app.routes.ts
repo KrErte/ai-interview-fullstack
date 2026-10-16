@@ -62,6 +62,21 @@ export const appRoutes: Routes = [
       import('./pages/legal/terms.page').then(m => m.TermsPageComponent)
   },
   {
+    // placeholder until Growth delivers the copy (FP-63)
+    path: 'refund',
+    title: 'Refund policy – careerrisk.ee',
+    loadComponent: () =>
+      import('./pages/legal/refund.page').then(m => m.RefundPageComponent)
+  },
+  {
+    // paid AI roadmap (FP-63): locked state on 402; the plan itself renders on the /ai-test result
+    path: 'roadmap',
+    title: 'Your AI roadmap – careerrisk.ee',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./pages/roadmap/roadmap.page').then(m => m.RoadmapPageComponent)
+  },
+  {
     path: 'risk',
     title: HOME_TITLE,
     canActivate: [authGuard],

@@ -9,8 +9,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const token = authService.getToken();
 
-  // Auth endpoints and the public AI readiness test don't need the token
-  if (!token || req.url.includes('/auth') || req.url.includes('/api/ai-readiness')) {
+  if (!token || !needsToken(req.url)) {
     return next(req);
   }
 
@@ -30,3 +29,15 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     })
   );
 };
+
+/**
+ * Auth endpoints and the public AI readiness test don't get the token; everything else does,
+ * including /api/billing/* and the paid POST /api/ai-readiness/roadmap.
+ */
+export function needsToken(url: string): boolean {
+  const path = url.split('?')[0];
+  if (/\/api\/ai-readiness\/roadmap\/?$/.test(path)) {
+    return true;
+  }
+  return !path.includes('/auth') && !path.includes('/api/ai-readiness');
+}
