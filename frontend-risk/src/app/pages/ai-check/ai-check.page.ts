@@ -16,6 +16,7 @@ import {
   RoadmapPhase,
   TaskExposure
 } from '../../models/ai-readiness.model';
+import { buildReminderIcs, nextSessionStart } from './reminder';
 
 type Step = 'profession' | 'questions' | 'loading' | 'result';
 
@@ -291,6 +292,12 @@ export function firstStep(r: AssessmentResult): FirstStep | null {
           <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Your first step</h2>
           <p class="mt-3 text-[15px] leading-relaxed text-muted">
             One real try this week beats a course you never finish.
+          </p>
+          <button (click)="downloadReminder(r, s)" class="btn-ghost mt-5 !px-4 !py-2 !text-[14px] print:hidden">
+            Add a weekly reminder
+          </button>
+          <p class="mt-2 text-[12px] leading-relaxed text-faint print:hidden">
+            A calendar file: one session every Monday at 18:00 for 12 weeks. Move it to a time that suits you.
           </p>
         </div>
         <div class="space-y-5 lg:col-span-8">
@@ -770,6 +777,30 @@ export class AiCheckPageComponent implements OnInit {
 
   firstStep(r: AssessmentResult): FirstStep | null {
     return firstStep(r);
+  }
+
+  /**
+   * Downloads a weekly .ics reminder for practising the plan. Session length follows the weekly
+   * hours answer (1 h → 60 min, 3 h → 90 min, more → 120 min); 60 min when it is not known.
+   */
+  downloadReminder(r: AssessmentResult, s: FirstStep): void {
+    const saved = this.api.loadLastAnswers();
+    const hours = Number(saved?.professionId === r.professionId ? saved.answers['hours'] : NaN);
+    const minutes = hours >= 6 ? 120 : hours >= 3 ? 90 : 60;
+    const ics = buildReminderIcs({
+      professionName: r.professionName,
+      firstStep: s.task ? `Do this task once with AI help: ${s.task.name}` : (s.firstItem ?? 'Start the first phase of your plan.'),
+      planUrl: `${window.location.origin}/ai-test?view=saved`,
+      start: nextSessionStart(new Date()),
+      minutes
+    });
+    const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'ai-practice-reminder.ics';
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    this.analytics.track('reminder-download', { profession: r.professionId });
   }
 
   /** Ticked roadmap steps (items and projects, by text) for the profession on screen. */
