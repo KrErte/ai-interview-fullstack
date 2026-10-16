@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, switchMap } from 'rxjs';
+import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
 
 import { AiReadinessService } from '../../services/ai-readiness.service';
 import { AnalyticsService } from '../../services/analytics.service';
@@ -21,6 +21,7 @@ import { buildReminderIcs, nextSessionStart } from './reminder';
 import { previewResult, rescaleShares, sharesOf, TaskShares } from './task-shares';
 import { TeamService } from '../../services/team.service';
 import { TeamStatus } from '../../models/team.model';
+import { buildShareFragment, parseShareFragment, SharedResult } from './share-link';
 
 function sameShares(a: TaskShares, b: TaskShares): boolean {
   const keys = Object.keys(a);
@@ -251,6 +252,10 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           <button (click)="restart()" class="link text-accent">Take the test again for the latest plan</button>
         </p>
         <p *ngIf="teamNotice" class="mt-4 text-[15px] text-muted print:hidden" role="status">{{ teamNotice }}</p>
+        <p *ngIf="sharedView" class="mt-4 flex flex-wrap items-center gap-3 text-[15px] text-muted print:hidden" role="note">
+          This is a shared result. Nothing from it is saved in your browser.
+          <button (click)="restart()" class="link text-accent">Take the test yourself</button>
+        </p>
       </header>
 
       <!-- Scores -->
@@ -543,8 +548,19 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
 
       <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-end print:hidden">
         <button (click)="restart()" class="btn-ghost">Take the test again</button>
+        <button *ngIf="shareUrl(r) as url" (click)="copyShareLink(url)" class="btn-ghost">
+          {{ shareCopied ? 'Link copied' : 'Copy share link' }}
+        </button>
         <button (click)="print()" class="btn-accent">Print / save as PDF</button>
       </div>
+      <div *ngIf="shareFallback" class="print:hidden">
+        <p class="kicker">Share link</p>
+        <input readonly [value]="shareFallback" class="field mt-2 font-mono !text-[13px]" aria-label="Share link" />
+      </div>
+      <p class="text-[13px] leading-relaxed text-faint print:hidden">
+        The share link holds your profession, answers and task shares, so anyone with it sees this result. It is not
+        saved on our server; opening it calculates the result again. The AI comment is not included.
+      </p>
     </article>
   `
 })
@@ -592,6 +608,11 @@ export class AiCheckPageComponent implements OnInit {
   teamLinkInvalid = false;
   /** What happened to the anonymous team answer, shown under the result title. */
   teamNotice: string | null = null;
+  /** Showing someone else's result from a share link: nothing is saved in this browser. */
+  sharedView = false;
+  shareCopied = false;
+  /** The share link, shown in a field when the clipboard is not available. */
+  shareFallback: string | null = null;
 
   constructor(
     private api: AiReadinessService,
@@ -618,6 +639,13 @@ export class AiCheckPageComponent implements OnInit {
         this.categories = categories;
         this.loadingCatalog = false;
         this.preselectFromLink();
+        // a share link opened while this page is already showing (only the #fragment changes)
+        this.route.fragment.pipe(skip(1), takeUntilDestroyed(this.destroyRef)).subscribe(fragment => {
+          const shared = parseShareFragment(fragment);
+          if (shared) {
+            this.openShared(shared);
+          }
+        });
       },
       error: () => {
         this.loadingCatalog = false;
@@ -702,6 +730,11 @@ export class AiCheckPageComponent implements OnInit {
    * /ai-test?view=saved opens the saved result.
    */
   private preselectFromLink(): void {
+    const shared = parseShareFragment(this.route.snapshot.fragment);
+    if (shared) {
+      this.openShared(shared);
+      return;
+    }
     this.joinTeamFromLink();
     // /ai-test?view=saved (the "continue your plan" card on the home page) opens the saved result
     if (this.route.snapshot.queryParamMap.get('view') === 'saved') {
@@ -768,6 +801,67 @@ export class AiCheckPageComponent implements OnInit {
     }
   }
 
+  /**
+   * Opens a shared result: the same assessment runs again from the ids in the link (first without
+   * shares to learn the task order, then with the shares if the link has them). Nothing is saved.
+   */
+  private openShared(shared: SharedResult): void {
+    this.sharedView = true;
+    this.professionId = shared.professionId;
+    this.answers = shared.answers;
+    this.step = 'loading';
+    const base = { professionId: shared.professionId, answers: shared.answers, personalize: false };
+    this.api.assess(base).pipe(
+      switchMap(plain => {
+        if (!shared.shares || shared.shares.length !== plain.tasks.length) {
+          return of({ result: plain, custom: false });
+        }
+        const taskShares = Object.fromEntries(plain.tasks.map((t, i) => [t.name, shared.shares![i]]));
+        return this.api.assess({ ...base, taskShares }).pipe(
+          map(result => ({ result, custom: true })),
+          catchError(() => of({ result: plain, custom: false })));
+      })
+    ).subscribe({
+      next: ({ result, custom }) => {
+        this.result = result;
+        this.customShares = custom;
+        this.pinnedTop = null;
+        this.step = 'result';
+      },
+      error: () => {
+        this.sharedView = false;
+        this.answers = {};
+        this.professionId = null;
+        this.step = 'profession';
+        this.error = 'This shared link could not be opened. You can take the test yourself.';
+      }
+    });
+  }
+
+  /** A link that recalculates this result elsewhere; null when the answers behind it are not known. */
+  shareUrl(r: AssessmentResult): string | null {
+    const answers = this.answersFor(r);
+    if (!answers || !Object.keys(answers).length) {
+      return null;
+    }
+    const shares = this.customShares ? r.tasks.map(t => t.share) : undefined;
+    return `${window.location.origin}/ai-test#${buildShareFragment({ professionId: r.professionId, answers, shares })}`;
+  }
+
+  copyShareLink(url: string): void {
+    const fallback = () => {
+      this.shareFallback = url;
+    };
+    if (!navigator.clipboard) {
+      fallback();
+      return;
+    }
+    navigator.clipboard.writeText(url).then(() => {
+      this.shareCopied = true;
+      this.shareFallback = null;
+    }).catch(fallback);
+  }
+
   selectProfession(p: ProfessionSummary, source: 'picker' | 'job-page' = 'picker'): void {
     this.analytics.track('test-start', { profession: p.id, source });
     this.selectedProfession = p;
@@ -816,6 +910,7 @@ export class AiCheckPageComponent implements OnInit {
     }
     this.error = null;
     this.step = 'loading';
+    this.sharedView = false;
     const personalize = this.personalize && this.aiCommentAvailable;
     // a team answer is sent unless the team is full; a browser that already answered updates its answer
     const teamCode = this.team && !this.team.full ? this.team.code : undefined;
@@ -861,6 +956,7 @@ export class AiCheckPageComponent implements OnInit {
     this.personalNoteRequested = false;
     this.pinnedTop = null;
     this.teamNotice = null;
+    this.sharedView = false;
     this.step = 'result';
     const stored = this.api.loadLastAnswers();
     this.savedResultOutdated = !stored || stored.professionId !== saved.professionId;
@@ -903,6 +999,9 @@ export class AiCheckPageComponent implements OnInit {
     this.customShares = false;
     this.pinnedTop = null;
     this.teamNotice = null;
+    this.sharedView = false;
+    this.shareCopied = false;
+    this.shareFallback = null;
     this.expanded = {};
     this.step = 'profession';
     window.scrollTo({ top: 0 });
@@ -978,8 +1077,10 @@ export class AiCheckPageComponent implements OnInit {
         professionId: r.professionId, answers, personalize: false, taskShares, teamEditToken: this.teamEditTokenFor(r)
       });
     } else {
-      this.lastResult = preview;
-      this.api.saveLastResult(preview);
+      if (!this.sharedView) {
+        this.lastResult = preview;
+        this.api.saveLastResult(preview);
+      }
     }
   }
 
@@ -1004,16 +1105,23 @@ export class AiCheckPageComponent implements OnInit {
     }
     const updated = { ...fresh, personalNote: current.personalNote };
     this.result = updated;
-    this.lastResult = updated;
     this.customShares = !!taskShares;
     if (!taskShares) {
       this.pinnedTop = null;
     }
+    if (this.sharedView) {
+      return;
+    }
+    this.lastResult = updated;
     this.api.saveLastResult(updated, answers, taskShares, this.teamCodeFor(current) ?? undefined);
   }
 
   /** Edit token of this browser's team answer for the result on screen, so slider moves update it. */
   private teamEditTokenFor(r: AssessmentResult): string | undefined {
+    if (this.sharedView) {
+      // someone else's shared result must never update this browser's own team answer
+      return undefined;
+    }
     const code = this.teamCodeFor(r);
     return code ? this.teams.editToken(code) ?? undefined : undefined;
   }

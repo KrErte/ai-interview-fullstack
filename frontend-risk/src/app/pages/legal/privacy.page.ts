@@ -37,7 +37,9 @@ import { RouterModule } from '@angular/router';
         Your profession, your answers to the 11 questions and, if you change them, your task shares are sent to our server
         to calculate the result. They are not saved in our database, unless you take the test through a team invite link
         (see "Team reports" below). Your last result is saved in your browser's local storage so you can open it
-        again; clearing your browser data removes it.
+        again; clearing your browser data removes it. If you copy a share link, it contains your profession, the ids of your
+        answers and your task shares (not the AI comment), so anyone with the link can see that result. This is in the part
+        of the link after #, which browsers do not send to our server, and we do not store it.
       </p>
 
       <h3>Optional AI comment</h3>
