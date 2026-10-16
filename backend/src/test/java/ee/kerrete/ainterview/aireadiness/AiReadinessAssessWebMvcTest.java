@@ -85,4 +85,13 @@ class AiReadinessAssessWebMvcTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error", containsString("Unknown task")));
     }
+
+    @Test
+    void unknownLongProfessionIdIsTruncatedInThe400() throws Exception {
+        String longId = "y".repeat(500);
+        mvc.perform(post("/api/ai-readiness/assess").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"professionId\":\"" + longId + "\",\"answers\":{},\"personalize\":false}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("Unknown profession '" + "y".repeat(64) + "\u2026'"));
+    }
 }
