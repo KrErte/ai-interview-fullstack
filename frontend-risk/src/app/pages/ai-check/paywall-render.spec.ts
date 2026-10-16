@@ -226,6 +226,42 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     }
   });
 
+  it('grandfathered saved plan: rendered with progress, PDF and .ics, no paywall, never re-saved', () => {
+    queryParams = { view: 'saved' };
+    const raw = JSON.stringify(result({ tasks: [{ name: 'Bookkeeping', share: 50, automationPercent: 80 }] }));
+    localStorage.setItem('ai_readiness_last_result', raw);
+    localStorage.setItem('ai_readiness_last_answers', JSON.stringify({ professionId: 'onet-1', answers: { q1: 'a' } }));
+    localStorage.setItem('ai_readiness_roadmap_progress', JSON.stringify({ 'onet-1': ['Do X'] }));
+    const el = boot();
+    http.expectNone(`${API}/assess`);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.grandfathered).toBeTrue();
+    expect(el.textContent).toContain('Starter plan: Accountant');
+    expect(el.textContent).toContain('1 / 2 done');
+    expect(el.querySelector('[data-test="pdf"]')).not.toBeNull();
+    expect(el.querySelector('[data-test="ics"]')).not.toBeNull();
+    expect(el.querySelector('app-paywall-card')).toBeNull();
+    expect(localStorage.getItem('ai_readiness_last_result')).toBe(raw);
+  });
+
+  it('a new locked assessment after a grandfathered plan is gated and overwrites the saved result', () => {
+    localStorage.setItem('ai_readiness_last_result', JSON.stringify(result()));
+    boot();
+    const c = fixture.componentInstance;
+    c.professionId = 'onet-1';
+    c.answers = {};
+    c.submit();
+    http.expectOne(`${API}/assess`).flush(result({ billingEnabled: true, roadmapLocked: true, roadmapTeaser: ['T'] }));
+    fixture.detectChanges();
+    const el = fixture.nativeElement as HTMLElement;
+    expect(c.grandfathered).toBeFalse();
+    expect(el.querySelector('app-paywall-card')).not.toBeNull();
+    expect(el.textContent).not.toContain('Learn prompts');
+    const saved = JSON.parse(localStorage.getItem('ai_readiness_last_result')!);
+    expect(saved.billingMarker).toBe('v1');
+    expect(saved.professionRoadmap).toEqual([]);
+  });
+
   it('billingEnabled missing counts as billing off', () => {
     const el = show(result({ billingEnabled: undefined }));
     expect(el.textContent).toContain('General AI learning path');

@@ -126,6 +126,12 @@ export interface AssessmentResult {
    * roadmap comes only from POST /api/ai-readiness/roadmap. Missing = billing off (older backends).
    */
   billingEnabled?: boolean;
+  /**
+   * Written by saveLastResult on every save from FP-63 on ('v1', together with an explicit billingEnabled).
+   * A saved full roadmap without it (and without billingEnabled/roadmapLocked) predates billing and is
+   * grandfathered: it keeps rendering with progress, PDF, .ics and "Continue your plan".
+   */
+  billingMarker?: 'v1';
 }
 
 /**

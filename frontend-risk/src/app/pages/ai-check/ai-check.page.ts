@@ -6,7 +6,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
 
-import { AiReadinessService, lockedResultView, roadmapTeaserLines, roadmapTeaserPhases } from '../../services/ai-readiness.service';
+import { AiReadinessService, isGrandfathered, lockedResultView, roadmapTeaserLines, roadmapTeaserPhases } from '../../services/ai-readiness.service';
 import { BillingService, isPaymentRequired } from '../../services/billing.service';
 import { PaywallCardComponent } from '../../components/paywall-card/paywall-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
@@ -688,6 +688,8 @@ export class AiCheckPageComponent implements OnInit {
 
   /** Showing someone else's result from a share link: nothing is saved in this browser. */
   sharedView = false;
+  /** The saved result on screen predates billing (isGrandfathered): shown as it is, never re-saved. */
+  grandfathered = false;
   shareCopied = false;
   /** The share link, shown in a field when the clipboard is not available. */
   shareFallback: string | null = null;
@@ -910,6 +912,7 @@ export class AiCheckPageComponent implements OnInit {
    */
   private openShared(shared: SharedResult): void {
     this.sharedView = true;
+    this.grandfathered = false;
     this.professionId = shared.professionId;
     this.answers = shared.answers;
     this.step = 'loading';
@@ -1022,6 +1025,7 @@ export class AiCheckPageComponent implements OnInit {
     this.api.assess({ professionId: this.professionId, answers: this.answers, personalize, teamCode, teamEditToken }).subscribe({
       next: result => {
         this.result = result;
+        this.grandfathered = false;
         this.analytics.track('test-complete', { profession: result.professionId, band: result.band });
         this.lastResult = result;
         this.personalNoteRequested = personalize;
@@ -1060,6 +1064,7 @@ export class AiCheckPageComponent implements OnInit {
       return;
     }
     this.result = saved;
+    this.grandfathered = isGrandfathered(saved);
     this.showAllTasks = false;
     this.personalNoteRequested = false;
     this.pinnedTop = null;
@@ -1070,7 +1075,8 @@ export class AiCheckPageComponent implements OnInit {
     const stored = this.api.loadLastAnswers();
     this.savedResultOutdated = !stored || stored.professionId !== saved.professionId;
     this.customShares = !!stored?.taskShares && !this.savedResultOutdated;
-    if (this.savedResultOutdated || !stored) {
+    if (this.savedResultOutdated || !stored || this.grandfathered) {
+      // a grandfathered plan is not recalculated, so it is never overwritten by a locked result
       return;
     }
     // the user's own shares are sent again; if the catalog has renamed a task the server says 400
@@ -1132,6 +1138,7 @@ export class AiCheckPageComponent implements OnInit {
       next: result => {
         this.api.clearPendingPurchase();
         this.result = result;
+        this.grandfathered = false;
         this.customShares = false;
         this.pinnedTop = null;
         this.slidersMoved = false;
@@ -1199,6 +1206,7 @@ export class AiCheckPageComponent implements OnInit {
     this.fullRoadmapError = null;
     this.fullRoadmapLocked = false;
     this.entitledRoadmap = null;
+    this.grandfathered = false;
     this.personalize = false;
     this.personalNoteRequested = false;
     this.savedResultOutdated = false;
@@ -1260,7 +1268,7 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   canRecalculate(r: AssessmentResult): boolean {
-    return !!this.answersFor(r);
+    return !this.grandfathered && !!this.answersFor(r);
   }
 
   /**
@@ -1281,6 +1289,10 @@ export class AiCheckPageComponent implements OnInit {
     const preview = previewResult(r, taskShares);
     this.result = preview;
     this.customShares = true;
+    if (this.grandfathered) {
+      // local preview only: a server reply (billing on) or a save would replace the grandfathered plan
+      return;
+    }
     const answers = this.answersFor(r);
     if (answers) {
       this.sharesRequest$.next({
@@ -1297,7 +1309,7 @@ export class AiCheckPageComponent implements OnInit {
   /** Back to the catalog's typical week (needs the answers, as the server recalculates it). */
   resetShares(r: AssessmentResult): void {
     const answers = this.answersFor(r);
-    if (!answers) {
+    if (!answers || this.grandfathered) {
       return;
     }
     this.api.assess({ professionId: r.professionId, answers, personalize: false, teamEditToken: this.teamEditTokenFor(r) }).subscribe({

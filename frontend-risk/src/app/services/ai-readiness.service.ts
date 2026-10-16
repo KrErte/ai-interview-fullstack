@@ -108,7 +108,9 @@ export class AiReadinessService {
                  teamCode?: string): void {
     try {
       // the team status (with its edit token) belongs to TeamService storage, not to the saved result
-      const { team: _team, ...withoutTeam } = lockedResultView(result);
+      const { team: _team, ...rest } = lockedResultView(result);
+      // explicit marker on every save, also with billing off; only unmarked old records are grandfathered
+      const withoutTeam: AssessmentResult = { ...rest, billingMarker: 'v1', billingEnabled: !!result.billingEnabled };
       // unpaid (roadmapLocked): only the teaser is stored; this also overwrites a stale full roadmap
       localStorage.setItem(this.RESULT_KEY, JSON.stringify(withoutTeam));
       if (result.roadmapLocked || result.billingEnabled) {
@@ -290,4 +292,14 @@ export function roadmapTeaserPhases(teaser: RoadmapTeaser | null | undefined): T
       locked
     };
   });
+}
+
+/**
+ * A saved result from before billing (Olen, via TEAM_LEAD): it has a full roadmap and no billing marker at all
+ * (no billingMarker, billingEnabled or roadmapLocked). It is rendered as it is and never stripped, migrated,
+ * re-saved or copied, and its progress is kept.
+ */
+export function isGrandfathered(r: AssessmentResult | null | undefined): boolean {
+  return !!r && r.billingMarker === undefined && r.billingEnabled === undefined && r.roadmapLocked === undefined
+    && hasFullRoadmap(r);
 }

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
-import { AiReadinessService, lockedResultView } from './ai-readiness.service';
+import { AiReadinessService, isGrandfathered, lockedResultView } from './ai-readiness.service';
 import { AssessmentResult } from '../models/ai-readiness.model';
 
 const RESULT_KEY = 'ai_readiness_last_result';
@@ -57,5 +57,35 @@ describe('AiReadinessService storage for locked results (FP-63)', () => {
   it('lockedResultView leaves unlocked results unchanged', () => {
     const r = full();
     expect(lockedResultView(r)).toBe(r);
+  });
+
+  it('every save writes the billing marker, also with billing off', () => {
+    api.saveLastResult(full());
+    let saved = JSON.parse(localStorage.getItem(RESULT_KEY)!);
+    expect(saved.billingMarker).toBe('v1');
+    expect(saved.billingEnabled).toBeFalse();
+    api.saveLastResult(full({ billingEnabled: true, roadmapLocked: true }));
+    saved = JSON.parse(localStorage.getItem(RESULT_KEY)!);
+    expect(saved.billingMarker).toBe('v1');
+    expect(saved.billingEnabled).toBeTrue();
+    expect(isGrandfathered(saved)).toBeFalse();
+  });
+
+  it('grandfathered (pre-billing, unmarked) record: kept as it is, with progress and "Continue your plan"', () => {
+    const raw = JSON.stringify(full());
+    localStorage.setItem(RESULT_KEY, raw);
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify({ 'onet-1': ['Do X'] }));
+    const r = api.loadLastResult()!;
+    expect(isGrandfathered(r)).toBeTrue();
+    expect(r.professionRoadmap.length).toBe(1);
+    expect(localStorage.getItem(RESULT_KEY)).toBe(raw);
+    expect(api.loadProgress('onet-1')).toEqual(['Do X']);
+    expect(api.savedPlan()).toEqual(jasmine.objectContaining({ done: 1, total: 2 }));
+  });
+
+  it('a marked stale record is still cleaned', () => {
+    localStorage.setItem(RESULT_KEY, JSON.stringify(full({ billingMarker: 'v1', billingEnabled: true })));
+    expect(api.loadLastResult()!.professionRoadmap).toEqual([]);
+    expect(localStorage.getItem(RESULT_KEY)).not.toContain('Learn prompts');
   });
 });

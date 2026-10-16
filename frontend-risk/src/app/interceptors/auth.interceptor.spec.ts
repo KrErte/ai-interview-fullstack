@@ -30,9 +30,17 @@ describe('authInterceptor', () => {
     client.get('/api/billing/entitlement').subscribe();
     client.post('/api/ai-readiness/roadmap', {}).subscribe();
     client.post('/api/ai-readiness/assess', {}).subscribe();
+    client.post('/api/billing/checkout', {}).subscribe();
+    client.get('/api/ai-readiness/professions').subscribe();
+    client.get('/api/ai-readiness/questions').subscribe();
+    client.get('/api/ai-readiness/features').subscribe();
     expect(http.expectOne('/api/billing/entitlement').request.headers.get('Authorization')).toBe('Bearer tkn');
     expect(http.expectOne('/api/ai-readiness/roadmap').request.headers.get('Authorization')).toBe('Bearer tkn');
     expect(http.expectOne('/api/ai-readiness/assess').request.headers.has('Authorization')).toBeFalse();
+    expect(http.expectOne('/api/billing/checkout').request.headers.get('Authorization')).toBe('Bearer tkn');
+    for (const anon of ['/api/ai-readiness/professions', '/api/ai-readiness/questions', '/api/ai-readiness/features']) {
+      expect(http.expectOne(anon).request.headers.has('Authorization')).withContext(anon).toBeFalse();
+    }
     http.verify();
   });
 });
