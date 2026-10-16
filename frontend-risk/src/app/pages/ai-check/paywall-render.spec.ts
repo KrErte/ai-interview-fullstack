@@ -391,7 +391,7 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     http.expectNone(ENT_URL);
   }));
 
-  it('resume flow: no roadmap:true within 15 s shows "unlocking can take a minute" with a Retry button that polls again', fakeAsync(() => {
+  it('resume flow: no roadmap:true within 15 s shows the neutral "no confirmation yet" note with a Retry button that polls again', fakeAsync(() => {
     queryParams = { paid: '1' };
     const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
     const el = show(r);
@@ -402,7 +402,10 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     }
     fixture.detectChanges();
     const pending = el.querySelector('[data-test="payment-pending"]')!;
-    expect(pending.textContent).toContain('Payment received, unlocking can take a minute.');
+    expect(pending.querySelector('[data-test="pending-text"]')!.textContent!.trim()).toBe(
+      "We haven't received a payment confirmation yet. If you completed the payment, this can take a moment, so press Retry. If the problem continues, contact us.");
+    // 'Payment received' only after roadmap:true; never after a timeout
+    expect(el.textContent).not.toMatch(/payment received|won't be charged/i);
     expect(el.querySelector('app-paywall-card')).not.toBeNull();
     const retry = el.querySelector('[data-test="pending-retry"]') as HTMLButtonElement;
     expect(retry.tagName).toBe('BUTTON');
@@ -413,6 +416,21 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     fixture.detectChanges();
     expect(el.querySelector('[data-test="payment-pending"]')).toBeNull();
     expect(el.textContent).toContain('Paid phase');
+  }));
+
+  it('stops polling the entitlement when /ai-test is destroyed', fakeAsync(() => {
+    queryParams = { paid: '1' };
+    const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
+    show(r);
+    fixture.componentInstance.loadFullRoadmap(r);
+    tick(0);
+    http.expectOne(ENT_URL).flush({ roadmap: false });
+    tick(1000);
+    http.expectOne(ENT_URL).flush({ roadmap: false });
+    fixture.destroy();
+    tick(15000);
+    http.expectNone(ENT_URL);
+    http.expectNone(`${API}/roadmap`);
   }));
 
   it('cancel return (?canceled=1): neutral note, paywall still offered', () => {

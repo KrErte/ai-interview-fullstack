@@ -18,7 +18,7 @@ type State = 'empty' | 'loading' | 'locked' | 'ready' | 'error' | 'confirming' |
  * - Checkout return (?paid=1[&session_id=…]): polls GET /api/billing/entitlement every 1 s for up to 15 s and
  *   unlocks ONLY on roadmap:true: then the full roadmap is loaded (POST /api/ai-readiness/roadmap), the
  *   'purchase' event is sent once per checkout session, and "Payment confirmed" is shown with a link to the
- *   plan view. Time up: "Payment received, unlocking can take a minute" with Retry. Polling stops on destroy.
+ *   plan view. Time up: a neutral "no confirmation yet" note with Retry (never "Payment received"). Polling stops on destroy.
  */
 @Component({
   selector: 'app-roadmap-page',
@@ -35,8 +35,7 @@ type State = 'empty' | 'loading' | 'locked' | 'ready' | 'error' | 'confirming' |
 
       <div *ngIf="state === 'pending'" data-test="pending" role="status" aria-live="polite"
            class="mt-6 rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 sm:p-8">
-        <p class="text-[15px] font-semibold text-slate-100">Payment received, unlocking can take a minute.</p>
-        <p class="mt-2 text-[14px] text-slate-400">You won't be charged again. Try again in a moment.</p>
+        <p class="text-[15px] text-slate-100" data-test="pending-text">We haven't received a payment confirmation yet. If you completed the payment, this can take a moment, so press Retry. If the problem continues, contact us.</p>
         <button type="button" data-test="retry" (click)="retryConfirm()"
                 class="mt-5 min-h-11 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 font-semibold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 sm:w-auto">
           Retry

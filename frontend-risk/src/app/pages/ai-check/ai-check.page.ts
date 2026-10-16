@@ -496,7 +496,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           <p *ngIf="fullRoadmapLoading" class="text-[15px] text-muted" role="status">{{ justPaid ? 'Confirming your payment…' : 'Loading your roadmap…' }}</p>
           <div *ngIf="paymentPending" data-test="payment-pending" role="status"
                class="rounded-2xl border border-slate-700 bg-slate-800/40 p-4">
-            <p class="text-[15px] text-slate-200">Payment received, unlocking can take a minute.</p>
+            <p class="text-[15px] text-slate-200" data-test="pending-text">We haven't received a payment confirmation yet. If you completed the payment, this can take a moment, so press Retry. If the problem continues, contact us.</p>
             <button type="button" data-test="pending-retry" (click)="loadFullRoadmap(r)"
                     class="mt-3 min-h-11 rounded-xl border border-emerald-500/50 px-4 text-sm font-semibold text-emerald-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">Retry</button>
           </div>

@@ -80,7 +80,7 @@ describe('RoadmapPageComponent checkout return (?paid=1, FP-64)', () => {
     f.destroy();
   }));
 
-  it('15 s without roadmap:true: "Payment received, unlocking can take a minute" + Retry button that polls again', fakeAsync(() => {
+  it('15 s without roadmap:true: neutral "no confirmation yet" note + Retry button that polls again', fakeAsync(() => {
     const { f, el } = render();
     for (let i = 0; i <= 15; i++) {
       tick(i === 0 ? 0 : 1000);
@@ -89,7 +89,10 @@ describe('RoadmapPageComponent checkout return (?paid=1, FP-64)', () => {
     tick(5000);
     http.expectNone(ENT);
     f.detectChanges();
-    expect(q(el, 'pending')!.textContent).toContain('Payment received, unlocking can take a minute.');
+    expect(q(el, 'pending')!.querySelector('[data-test="pending-text"]')!.textContent!.trim()).toBe(
+      "We haven't received a payment confirmation yet. If you completed the payment, this can take a moment, so press Retry. If the problem continues, contact us.");
+    // 'Payment received' only after roadmap:true; never after a timeout
+    expect(el.textContent).not.toMatch(/payment received|won't be charged/i);
     expect(umami).not.toHaveBeenCalled();
     const retry = q(el, 'retry') as HTMLButtonElement;
     expect(retry.tagName).toBe('BUTTON');
@@ -99,6 +102,24 @@ describe('RoadmapPageComponent checkout return (?paid=1, FP-64)', () => {
     http.expectOne(ROADMAP).flush(FULL);
     f.detectChanges();
     expect(q(el, 'payment-confirmed')).not.toBeNull();
+  }));
+
+  it('session_id never unlocks: with a session_id but no roadmap:true there is no roadmap request and no confirmation', fakeAsync(() => {
+    params = { paid: '1', session_id: 'cs_live_looks_valid' };
+    const { f, el } = render();
+    for (let i = 0; i <= 15; i++) {
+      tick(i === 0 ? 0 : 1000);
+      const req = http.expectOne(ENT);
+      // the entitlement check does not carry the session id either
+      expect(req.request.urlWithParams).toBe(ENT);
+      req.flush({ roadmap: false });
+    }
+    http.expectNone(ROADMAP);
+    f.detectChanges();
+    expect(q(el, 'payment-confirmed')).toBeNull();
+    expect(q(el, 'pending')).not.toBeNull();
+    expect(el.textContent).not.toMatch(/payment received/i);
+    expect(umami).not.toHaveBeenCalled();
   }));
 
   it('stops polling on destroy', fakeAsync(() => {
