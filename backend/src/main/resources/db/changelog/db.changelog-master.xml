@@ -33,6 +33,8 @@
     <include file="changes/2026-10-10-create-product-event-table.xml" relativeToChangelogFile="true"/>
     <!-- TEAM REPORT (anonymous team aggregate, docs/superpowers/specs/2026-10-14-team-mode-design.md) -->
     <include file="changes/2026-10-14-create-team-tables.xml" relativeToChangelogFile="true"/>
+    <!-- BILLING (FP-60): purchases and paid entitlements -->
+    <include file="changes/2026-10-16-create-purchase-table.xml" relativeToChangelogFile="true"/>
 
     <!-- DEMO DATA (FP-18): context "demo" only, see the file header -->
     <include file="changes/2026-10-10-seed-demo-data.xml" relativeToChangelogFile="true"/>

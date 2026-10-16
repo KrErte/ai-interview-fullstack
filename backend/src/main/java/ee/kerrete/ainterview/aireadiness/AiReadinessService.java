@@ -193,6 +193,14 @@ public class AiReadinessService {
         return result.withTeam(teams.record(scored, request.answers(), request.teamCode(), request.teamEditToken()));
     }
 
+    /** The full roadmap for a profession and answers (FP-60); same numbers as {@link #assess}. */
+    public RoadmapModels.RoadmapResponse roadmap(String professionId, Map<String, String> answers) {
+        Profession profession = catalog.profession(professionId)
+                .orElseThrow(() -> new IllegalArgumentException("Unknown profession '" + professionId + "'"));
+        AssessmentResult scored = scorer.score(profession, answers, null);
+        return new RoadmapModels.RoadmapResponse(scored.generalRoadmap(), scored.professionRoadmap(), scored.totalWeeks());
+    }
+
     private Map<String, String> answerLabels(Map<String, String> answers) {
         Map<String, String> labels = new LinkedHashMap<>();
         for (Question q : catalog.questions()) {

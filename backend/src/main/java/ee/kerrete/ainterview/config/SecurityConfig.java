@@ -61,6 +61,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     // CORS preflight peab ALATI läbi minema
                     auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                            // FP-60: the full roadmap needs a login; must stay ahead of the public /api/ai-readiness/**
+                            .requestMatchers("/api/ai-readiness/roadmap", "/api/ai-readiness/roadmap/**")
+                            .hasAnyRole("ADMIN", "USER", "CANDIDATE")
                             .requestMatchers(
                                     "/auth/**",
                                     "/api/auth/**",

@@ -38,6 +38,10 @@ app:
     per-client-per-hour: 8
     global-per-hour: 60
 
+billing:
+  # FP-60: false = no paywall (roadmap free for logged-in users, /assess unchanged). true needs Stripe (FP-61/62).
+  enabled: ${BILLING_ENABLED:false}
+
 openai:
   base-url: https://api.openai.com/v1
   # FP-20: empty = no-key mode (no OpenAI calls; AI-only endpoints answer 503 ai_unavailable)

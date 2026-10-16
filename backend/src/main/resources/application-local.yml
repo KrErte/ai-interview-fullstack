@@ -36,3 +36,8 @@ logging:
     liquibase: INFO
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# FP-60: dev-only entitlement (ignored unless the local/dev profile is active and prod is not)
+billing:
+  dev-entitled-emails: ${BILLING_DEV_ENTITLED_EMAILS:}
+  dev-entitled-roles: ADMIN
