@@ -63,13 +63,20 @@ export class AiReadinessService {
    * Remembers the result and, when given, the answers (and the user's own task shares) behind it,
    * so a saved result can later be recalculated with the current catalog (see loadLastAnswers).
    */
-  saveLastResult(result: AssessmentResult, answers?: Record<string, string>, taskShares?: Record<string, number>): void {
+  saveLastResult(result: AssessmentResult, answers?: Record<string, string>, taskShares?: Record<string, number>,
+                 teamCode?: string): void {
     try {
-      localStorage.setItem(this.RESULT_KEY, JSON.stringify(result));
+      // the team status (with its edit token) belongs to TeamService storage, not to the saved result
+      const { team: _team, ...withoutTeam } = result;
+      localStorage.setItem(this.RESULT_KEY, JSON.stringify(withoutTeam));
       if (answers) {
-        const saved: SavedAnswers = taskShares
-          ? { professionId: result.professionId, answers, taskShares }
-          : { professionId: result.professionId, answers };
+        const saved: SavedAnswers = { professionId: result.professionId, answers };
+        if (taskShares) {
+          saved.taskShares = taskShares;
+        }
+        if (teamCode) {
+          saved.teamCode = teamCode;
+        }
         localStorage.setItem(this.ANSWERS_KEY, JSON.stringify(saved));
       }
     } catch {

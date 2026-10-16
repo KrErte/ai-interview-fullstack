@@ -19,6 +19,8 @@ import {
 } from '../../models/ai-readiness.model';
 import { buildReminderIcs, nextSessionStart } from './reminder';
 import { previewResult, rescaleShares, sharesOf, TaskShares } from './task-shares';
+import { TeamService } from '../../services/team.service';
+import { TeamStatus } from '../../models/team.model';
 
 function sameShares(a: TaskShares, b: TaskShares): boolean {
   const keys = Object.keys(a);
@@ -85,6 +87,22 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
     <div *ngIf="error" class="mb-8 rounded-xl border border-band-very-high bg-surface px-4 py-3 text-[15px] text-band-very-high" role="alert">
       {{ error }}
     </div>
+
+    <!-- Team invite (/ai-test?team=CODE): shown before and during the test -->
+    <div *ngIf="team && (step === 'profession' || step === 'questions')"
+         class="card mb-8 border-l-4 !border-l-accent p-5 text-[15px] leading-relaxed" role="note">
+      <ng-container *ngIf="!team.full">
+        Your result is added anonymously to <span class="font-semibold text-fg">{{ team.name }}</span>.
+        Your employer sees only totals for groups of 5 or more people, never your answers.
+      </ng-container>
+      <ng-container *ngIf="team.full">
+        <span class="font-semibold text-fg">{{ team.name }}</span> is full, so your answers will not be added.
+        You can still take the test and see your own result.
+      </ng-container>
+    </div>
+    <p *ngIf="teamLinkInvalid && (step === 'profession' || step === 'questions')" class="mb-8 text-[15px] text-muted" role="note">
+      This team link is not valid any more, so your answers will not be added to a team. The test works as usual.
+    </p>
 
     <!-- STEP 1: profession -->
     <section *ngIf="step === 'profession'">
@@ -232,6 +250,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           This result was saved before the plans were updated.
           <button (click)="restart()" class="link text-accent">Take the test again for the latest plan</button>
         </p>
+        <p *ngIf="teamNotice" class="mt-4 text-[15px] text-muted print:hidden" role="status">{{ teamNotice }}</p>
       </header>
 
       <!-- Scores -->
@@ -518,6 +537,10 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
         </p>
       </footer>
 
+      <p class="text-[14px] text-muted print:hidden">
+        Want this for your team? <a routerLink="/teams" class="link text-accent">Anonymous team report &rarr;</a>
+      </p>
+
       <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-end print:hidden">
         <button (click)="restart()" class="btn-ghost">Take the test again</button>
         <button (click)="print()" class="btn-accent">Print / save as PDF</button>
@@ -564,8 +587,15 @@ export class AiCheckPageComponent implements OnInit {
   lastResult: AssessmentResult | null = null;
   expanded: Record<string, boolean> = {};
 
+  /** Team from an invite link (/ai-test?team=CODE). */
+  team: { code: string; name: string; full: boolean } | null = null;
+  teamLinkInvalid = false;
+  /** What happened to the anonymous team answer, shown under the result title. */
+  teamNotice: string | null = null;
+
   constructor(
     private api: AiReadinessService,
+    private teams: TeamService,
     private analytics: AnalyticsService,
     private route: ActivatedRoute,
     private router: Router,
@@ -672,6 +702,7 @@ export class AiCheckPageComponent implements OnInit {
    * /ai-test?view=saved opens the saved result.
    */
   private preselectFromLink(): void {
+    this.joinTeamFromLink();
     // /ai-test?view=saved (the "continue your plan" card on the home page) opens the saved result
     if (this.route.snapshot.queryParamMap.get('view') === 'saved') {
       // drop the parameter, so a reload after "Take the test again" does not reopen the result
@@ -689,6 +720,52 @@ export class AiCheckPageComponent implements OnInit {
       next: p => this.selectProfession(p, 'job-page'),
       error: () => { /* unknown id: stay on the picker */ }
     });
+  }
+
+  /** /ai-test?team=CODE (a team invite): show whose report the anonymous result goes to. */
+  private joinTeamFromLink(): void {
+    const raw = this.route.snapshot.queryParamMap.get('team');
+    if (raw === null) {
+      return;
+    }
+    const code = TeamService.normalizeCode(raw);
+    if (!code) {
+      this.teamLinkInvalid = true;
+      return;
+    }
+    this.teams.join(code).subscribe({
+      next: invite => {
+        this.team = { code, name: invite.name, full: invite.full };
+      },
+      error: () => {
+        this.teamLinkInvalid = true;
+      }
+    });
+  }
+
+  /** The team the result on screen belongs to: this invite, or the one saved with the result. */
+  private teamCodeFor(r: AssessmentResult): string | null {
+    if (this.team && this.professionId === r.professionId) {
+      return this.team.code;
+    }
+    const saved = this.api.loadLastAnswers();
+    return saved && saved.professionId === r.professionId ? saved.teamCode ?? null : null;
+  }
+
+  /** Line under the result title about the anonymous team answer; null when there was no team. */
+  private teamNoticeFor(status: TeamStatus | undefined): string | null {
+    switch (status?.status) {
+      case 'added':
+        return `Your anonymous result was added to ${status.teamName}.`;
+      case 'updated':
+        return `Your anonymous answer in ${status.teamName} was updated.`;
+      case 'full':
+        return `${status.teamName} is full, so your result was not added. Your own result is below.`;
+      case 'not-found':
+        return 'The team link is not valid any more, so your result was not added to a team.';
+      default:
+        return null;
+    }
   }
 
   selectProfession(p: ProfessionSummary, source: 'picker' | 'job-page' = 'picker'): void {
@@ -740,7 +817,10 @@ export class AiCheckPageComponent implements OnInit {
     this.error = null;
     this.step = 'loading';
     const personalize = this.personalize && this.aiCommentAvailable;
-    this.api.assess({ professionId: this.professionId, answers: this.answers, personalize }).subscribe({
+    // a team answer is sent unless the team is full; a browser that already answered updates its answer
+    const teamCode = this.team && !this.team.full ? this.team.code : undefined;
+    const teamEditToken = teamCode ? this.teams.editToken(teamCode) ?? undefined : undefined;
+    this.api.assess({ professionId: this.professionId, answers: this.answers, personalize, teamCode, teamEditToken }).subscribe({
       next: result => {
         this.result = result;
         this.analytics.track('test-complete', { profession: result.professionId, band: result.band });
@@ -749,7 +829,12 @@ export class AiCheckPageComponent implements OnInit {
         this.savedResultOutdated = false;
         this.customShares = false;
         this.pinnedTop = null;
-        this.api.saveLastResult(result, this.answers);
+        this.teamNotice = this.teamNoticeFor(result.team);
+        if (teamCode && result.team?.status === 'added' && result.team.editToken) {
+          this.teams.rememberAnswer(teamCode, result.team.editToken);
+        }
+        const savedTeam = teamCode && (result.team?.status === 'added' || result.team?.status === 'updated') ? teamCode : undefined;
+        this.api.saveLastResult(result, this.answers, undefined, savedTeam);
         this.showAllTasks = false;
         this.step = 'result';
         window.scrollTo({ top: 0 });
@@ -775,6 +860,7 @@ export class AiCheckPageComponent implements OnInit {
     this.showAllTasks = false;
     this.personalNoteRequested = false;
     this.pinnedTop = null;
+    this.teamNotice = null;
     this.step = 'result';
     const stored = this.api.loadLastAnswers();
     this.savedResultOutdated = !stored || stored.professionId !== saved.professionId;
@@ -789,7 +875,7 @@ export class AiCheckPageComponent implements OnInit {
     }).subscribe({
       next: fresh => {
         const refreshed = { ...fresh, personalNote: saved.personalNote };
-        this.api.saveLastResult(refreshed, stored.answers, stored.taskShares);
+        this.api.saveLastResult(refreshed, stored.answers, stored.taskShares, stored.teamCode);
         this.lastResult = refreshed;
         // the user may have left the result while the request was running
         if (this.result === saved) {
@@ -816,6 +902,7 @@ export class AiCheckPageComponent implements OnInit {
     this.savedResultOutdated = false;
     this.customShares = false;
     this.pinnedTop = null;
+    this.teamNotice = null;
     this.expanded = {};
     this.step = 'profession';
     window.scrollTo({ top: 0 });
@@ -887,7 +974,9 @@ export class AiCheckPageComponent implements OnInit {
     this.customShares = true;
     const answers = this.answersFor(r);
     if (answers) {
-      this.sharesRequest$.next({ professionId: r.professionId, answers, personalize: false, taskShares });
+      this.sharesRequest$.next({
+        professionId: r.professionId, answers, personalize: false, taskShares, teamEditToken: this.teamEditTokenFor(r)
+      });
     } else {
       this.lastResult = preview;
       this.api.saveLastResult(preview);
@@ -900,7 +989,7 @@ export class AiCheckPageComponent implements OnInit {
     if (!answers) {
       return;
     }
-    this.api.assess({ professionId: r.professionId, answers, personalize: false }).subscribe({
+    this.api.assess({ professionId: r.professionId, answers, personalize: false, teamEditToken: this.teamEditTokenFor(r) }).subscribe({
       next: fresh => this.applyServerResult(fresh, answers, undefined),
       error: () => { /* keep the current shares */ }
     });
@@ -920,7 +1009,13 @@ export class AiCheckPageComponent implements OnInit {
     if (!taskShares) {
       this.pinnedTop = null;
     }
-    this.api.saveLastResult(updated, answers, taskShares);
+    this.api.saveLastResult(updated, answers, taskShares, this.teamCodeFor(current) ?? undefined);
+  }
+
+  /** Edit token of this browser's team answer for the result on screen, so slider moves update it. */
+  private teamEditTokenFor(r: AssessmentResult): string | undefined {
+    const code = this.teamCodeFor(r);
+    return code ? this.teams.editToken(code) ?? undefined : undefined;
   }
 
   firstStep(r: AssessmentResult): FirstStep | null {

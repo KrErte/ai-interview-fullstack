@@ -83,7 +83,7 @@ class TeamServiceIntegrationTest {
         assertThat(created.code()).matches("[A-Z2-7]{10}");
         assertThat(created.adminToken()).hasSizeGreaterThanOrEqualTo(43);
         assertThat(created.inviteUrl()).isEqualTo("https://example.org/ai-test?team=" + created.code());
-        assertThat(created.reportUrl()).isEqualTo("https://example.org/teams/r/" + created.adminToken());
+        assertThat(created.reportUrl()).isEqualTo("https://example.org/teams/report#" + created.adminToken());
         assertThat(created.maxMembers()).isEqualTo(50);
 
         Team stored = teams.findByCode(created.code()).orElseThrow();
@@ -219,6 +219,12 @@ class TeamServiceIntegrationTest {
         answers(smallRest, "translator", 2);
         // 2 others could be derived from the total minus the accountants, so no breakdown at all
         assertThat(service.report(smallRest.adminToken()).orElseThrow().professions()).isEmpty();
+
+        CreatedTeam noGroup = team();
+        answers(noGroup, "accountant", 4);
+        answers(noGroup, "translator", 2);
+        // no profession reaches 5, and "Other professions" alone would only repeat the totals
+        assertThat(service.report(noGroup.adminToken()).orElseThrow().professions()).isEmpty();
 
         CreatedTeam other = team();
         answers(other, "accountant", 5);

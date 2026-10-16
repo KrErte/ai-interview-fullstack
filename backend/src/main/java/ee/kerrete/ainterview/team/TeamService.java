@@ -120,7 +120,7 @@ public class TeamService {
         team.setMaxMembers(DEFAULT_MAX_MEMBERS);
         team.setCreatedAt(LocalDateTime.now(clock));
         teams.save(team);
-        return new CreatedTeam(team.getName(), code, token, inviteUrl(code), baseUrl + "/teams/r/" + token,
+        return new CreatedTeam(team.getName(), code, token, inviteUrl(code), baseUrl + "/teams/report#" + token,
                 team.getMaxMembers());
     }
 
@@ -182,7 +182,10 @@ public class TeamService {
         s.setTasks(write(result.tasks().stream()
                 .map(t -> new StoredTask(t.name(), t.share(), t.automationPercent(), t.observedUse()))
                 .toList()));
-        s.setSubmittedOn(LocalDate.now(clock));
+        if (s.getSubmittedOn() == null) {
+            // an update (e.g. after moving the sliders) keeps the date of the first answer
+            s.setSubmittedOn(LocalDate.now(clock));
+        }
     }
 
     @Transactional(readOnly = true)
@@ -364,7 +367,9 @@ public class TeamService {
                 rest.addAll(list);
             }
         });
-        if (!rest.isEmpty() && rest.size() < MIN_RESPONDENTS) {
+        if (groups.isEmpty() || (!rest.isEmpty() && rest.size() < MIN_RESPONDENTS)) {
+            // no group of 5 (only "Other professions" would repeat the totals), or a small rest that
+            // could be derived by subtraction
             return List.of();
         }
         groups.sort(Comparator.comparingInt(ProfessionGroup::respondents).reversed()

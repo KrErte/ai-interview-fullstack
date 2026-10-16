@@ -37,7 +37,8 @@ export class AuthService {
     'ai_readiness_last_result',
     'ai_readiness_last_answers',
     'ai_readiness_roadmap_progress',
-    'ai_readiness_ai_marks'
+    'ai_readiness_ai_marks',
+    'ai_readiness_teams'
   ];
   private readonly baseUrl = `${environment.apiBaseUrl}/auth`;
 

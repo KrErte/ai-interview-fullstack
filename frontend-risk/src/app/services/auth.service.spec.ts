@@ -4,7 +4,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { AuthService } from './auth.service';
 
 const TEST_KEYS = ['ai_readiness_last_result', 'ai_readiness_last_answers', 'ai_readiness_roadmap_progress',
-  'ai_readiness_ai_marks'];
+  'ai_readiness_ai_marks', 'ai_readiness_teams'];
 
 describe('AuthService browser data', () => {
   let auth: AuthService;

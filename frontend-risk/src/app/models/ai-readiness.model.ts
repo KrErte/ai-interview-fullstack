@@ -1,3 +1,5 @@
+import { TeamStatus } from './team.model';
+
 export interface ProfessionSummary {
   id: string;
   name: string;
@@ -67,6 +69,10 @@ export interface AssessmentRequest {
   personalize: boolean;
   /** Task name -> share of this person's week (all tasks, 0..100, total 100); omitted = catalog shares. */
   taskShares?: Record<string, number>;
+  /** Invite code: the result is added anonymously to that team's report. */
+  teamCode?: string;
+  /** Updates this browser's earlier team answer instead of adding a new one. */
+  teamEditToken?: string;
 }
 
 /** The answers behind the last saved result, kept so it can be recalculated with the current catalog. */
@@ -75,6 +81,8 @@ export interface SavedAnswers {
   answers: Record<string, string>;
   /** The user's own task shares, when they moved the sliders; absent in older saves. */
   taskShares?: Record<string, number>;
+  /** Team the result was added to, so later slider moves update that anonymous answer. */
+  teamCode?: string;
 }
 
 /** A returning visitor's saved plan, for the "continue your plan" card. */
@@ -103,4 +111,6 @@ export interface AssessmentResult {
   professionRoadmap: RoadmapPhase[];
   totalWeeks: number;
   personalNote: string | null;
+  /** Only when the request had a team code or edit token. */
+  team?: TeamStatus;
 }
