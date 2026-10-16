@@ -335,3 +335,47 @@ No browser check was done for this merge.
 - **The main checkout still has the same changes, uncommitted.** Once this branch is accepted, those edits in the main checkout can be thrown away, because they are now committed here. Nothing was deleted there.
 - **Merge order.** Merging `feature/limit-and-share` into `main` brings everything: the limit, the search, the sliders, the team report, sharing, JSON-LD and analytics. Merging `feature/share-and-measure` directly no longer makes sense, because the limit would be missing.
 - **The `CLAUDE.md` edit** in the main checkout ("the user-facing app is fully in English") is not committed anywhere.
+
+# Part 4 – night of 2026-10-16 (`docs/night-2026-10-16.md`)
+
+## The plan was out of date
+
+- `feature/limit-and-share` was **already merged into `main` in #59**, and the `CLAUDE.md` English-only line in #60. The plan still said "last merged PR is #58".
+- The branch tip `cfb72b7` is an ancestor of `origin/main`, so the branch was **fast-forwarded** to `origin/main` (`881ab94`, including #61 CV upload). Nothing was merged into `main`.
+- **Step 2.1 (`CLAUDE.md`) needed no commit**, because #60 already has that exact sentence.
+- The four small fixes were done before the browser walk, so the walk ran on the final code.
+
+## Commits (on `feature/limit-and-share`, on top of `881ab94`)
+
+| Commit | What |
+|---|---|
+| `7f807bc` | "Book a call" → "Email us" on `/teams` (mailto unchanged) |
+| `4f133f3` | "Prices are in euros. VAT is stated on the invoice." under the prices |
+| `6db0644` | `POST /api/teams`: 5 per client and 30 in total per hour, then 429 + English message; teams page shows that message; new `TeamCreateLimitTest` |
+| `4f77ec0` | `search-empty` sends no typed text, only `category` when one is picked; privacy page and event table updated |
+
+The limit uses its own `LlmRateLimiter` instance inside `TeamController`, with separate counters. The LLM limit and the personal test are unchanged.
+
+## Tests
+
+- Backend `./gradlew -p backend test`: **416 tests, 0 failures, 0 errors** (414 + 2 new).
+- Frontend `ng test --watch=false --browsers=ChromeHeadless`: **148 of 148 pass**.
+- Frontend `ng build`: **passes**.
+
+## Checked in the browser (backend 8080 + `ng serve` 4200 from this worktree, both stopped afterwards)
+
+- Search: `coder` → Software developer first; `truck driver` → Heavy and Tractor-Trailer Truck Drivers first.
+- Test to the end → 58. Slider: score 58 → 78 at once. The debounced server call has `personalize: false`, so the language model is not called. The "this week" box moved to the new top task. "I already do this with AI" kept 78 and sent no request.
+- Share link in a second tab: shows 78. The saved own result stayed 58, also after moving a slider there.
+- `/teams`: create → copy invite ("Copied") → test via invite → report "1 / 5". The API gives no scores below 5. A report with 5 answers (filled through the API) renders. Delete: report link → "Report not found", invite → "This team link is not valid any more". Test teams removed.
+- 390 px (same-origin iframe, because the window would not shrink): `/teams`, the result and a full team report have no horizontal page scroll. The category chips scroll in their own row, as designed.
+- Live: the 6th creation from one client got 429, and the form showed "Too many team reports were created. Try again in an hour."
+- `search-empty` with a stubbed `window.umami`: sent with no data.
+
+**Bugs found in the browser: none**, so there are no extra fix commits. Two small things noticed but not changed:
+- On a shared result, the "this week" box uses the *viewer's own* "I already do this with AI" marks from this browser. In someone else's browser this does not happen.
+- On `/teams/report`, changing only the `#token` inside the app does not reload the component. Opening the link fresh works.
+
+## Pull request
+
+**#66**: https://github.com/KrErte/ai-interview-fullstack/pull/66 (`feature/limit-and-share` → `main`). It holds only the four fixes above and this report. **Merge and deploy wait for tomorrow's decision.**
