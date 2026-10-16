@@ -40,3 +40,29 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+.legal ol {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+  list-style: decimal;
+}
+
+.legal blockquote {
+  margin-top: 0.75rem;
+  border-left: 3px solid var(--accent, #c6f432);
+  padding-left: 1rem;
+}
+
+.legal table {
+  margin-top: 0.75rem;
+  width: 100%;
+  font-size: 15px;
+}
+
+.legal th,
+.legal td {
+  padding: 0.4rem 0.75rem 0.4rem 0;
+  text-align: left;
+  vertical-align: top;
+  color: var(--muted, #9aa2b1);
+}

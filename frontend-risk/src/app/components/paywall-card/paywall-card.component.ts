@@ -9,22 +9,28 @@ import { AuthService } from '../../services/auth.service';
 import { BillingService } from '../../services/billing.service';
 import { BrowserRedirectService } from '../../services/browser-redirect.service';
 import { AiReadinessService } from '../../services/ai-readiness.service';
+import { WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/billing.model';
 
 /** Where the paywall lives; /login and /register come back here with ?resume=paywall. */
 export const PAYWALL_RETURN_URL = '/ai-test?resume=paywall';
 
+/** FP-65 copy (drafts/paywall-copy.md, headline variant A). Unbuilt [PLANNED] claims are left out. */
 export const PAYWALL_COPY = {
-  title: 'Your personal AI roadmap: €19, one-off',
+  title: 'Turn your result into a plan you can start this week',
+  subline: 'Your free result shows which tasks AI tools can already do. The personal roadmap shows what to practise next.',
   bullets: [
-    'A five-stage AI learning path that starts at your readiness level and is paced to your weekly hours',
-    'A phased starter plan for your profession, with a practice project in every phase',
-    'Hand-picked learning resources for each stage',
-    'Tick off steps as you go; your progress is saved in this browser'
+    'A step-by-step learning plan for your profession',
+    "Practice projects based on your occupation's real tasks (written with AI, so treat them as suggestions)",
+    'Download as PDF and update it when you re-take the test'
   ],
-  waiver: 'I agree that the roadmap is delivered immediately and I lose my 14-day right of withdrawal once delivery starts',
+  price: 'EUR 19 – one-off payment, no subscription. [VAT TBD: "incl. VAT"]',
+  waiver: WAIVER_TEXT,
+  waiverVersion: WAIVER_TEXT_VERSION,
   waiverError: 'Please tick the box to continue.',
-  buy: 'Get my roadmap for €19',
-  buyLoggedOut: 'Log in and get my roadmap for €19',
+  buy: 'Pay €19',
+  buyLoggedOut: 'Pay €19',
+  loggedOutNote: 'You will log in or create an account before paying.',
+  smallPrint: 'Secure payment by Stripe. We never see your card details. Not a forecast, and not career advice.',
   busy: 'Opening secure checkout…',
   checking: 'Checking your purchase…',
   error: "We couldn't start the checkout. Check your connection and try again.",
@@ -32,8 +38,9 @@ export const PAYWALL_COPY = {
   entitledTitle: 'Your personal AI roadmap is unlocked',
   entitledText: 'You have already bought the roadmap. Open it any time.',
   view: 'View your roadmap',
-  terms: 'Terms of Service',
-  refund: 'Refund policy'
+  terms: 'Terms',
+  refund: 'Refunds',
+  privacy: 'Privacy'
 } as const;
 
 type State = 'checking' | 'paywall' | 'entitled';
@@ -67,15 +74,17 @@ type State = 'checking' | 'paywall' | 'entitled';
 
       <ng-container *ngIf="state === 'paywall'">
         <h2 id="paywall-title" class="text-2xl font-bold tracking-tight text-slate-100 sm:text-3xl">{{ copy.title }}</h2>
+        <p class="mt-2 text-[15px] leading-relaxed text-slate-400">{{ copy.subline }}</p>
         <ul class="mt-4 space-y-2 text-[15px] leading-relaxed text-slate-300">
           <li *ngFor="let b of copy.bullets" class="flex gap-3">
             <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" aria-hidden="true"></span><span>{{ b }}</span>
           </li>
         </ul>
+        <p class="mt-5 text-[15px] font-semibold text-slate-100" data-test="price">{{ copy.price }}</p>
 
-        <div class="mt-6">
+        <div class="mt-5">
           <label for="paywall-waiver" class="flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-slate-300">
-            <input id="paywall-waiver" type="checkbox" required data-test="waiver"
+            <input id="paywall-waiver" type="checkbox" required data-test="waiver" [attr.data-waiver-version]="copy.waiverVersion"
                    class="mt-1 h-5 w-5 shrink-0 accent-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                    [checked]="waiver" (change)="onWaiver($any($event.target).checked)"
                    [attr.aria-invalid]="waiverError" [attr.aria-describedby]="waiverError ? 'paywall-waiver-error' : null" />
@@ -84,16 +93,20 @@ type State = 'checking' | 'paywall' | 'entitled';
           <p *ngIf="waiverError" id="paywall-waiver-error" data-test="waiver-error" class="mt-2 text-sm text-rose-400" role="alert">{{ copy.waiverError }}</p>
         </div>
 
-        <p class="mt-4 text-[13px] text-slate-400">
-          <a routerLink="/terms" class="text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.terms }}</a>
-          &middot;
-          <a routerLink="/refund" class="text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.refund }}</a>
-        </p>
-
         <button type="button" data-test="buy" (click)="buy()" [disabled]="!waiver || busy" [attr.aria-busy]="busy"
                 class="mt-5 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-semibold text-white transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto">
           {{ busy ? copy.busy : loggedIn ? copy.buy : copy.buyLoggedOut }}
         </button>
+        <p *ngIf="!loggedIn" class="mt-2 text-[13px] text-slate-400">{{ copy.loggedOutNote }}</p>
+
+        <p class="mt-4 text-[13px] leading-relaxed text-slate-400">{{ copy.smallPrint }}</p>
+        <p class="mt-2 text-[13px] text-slate-400">
+          <a routerLink="/terms" class="text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.terms }}</a>
+          &middot;
+          <a routerLink="/refund" class="text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.refund }}</a>
+          &middot;
+          <a routerLink="/privacy" class="text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.privacy }}</a>
+        </p>
 
         <div *ngIf="error" data-test="error" class="mt-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4" role="alert">
           <p class="text-sm text-rose-200">{{ copy.error }}</p>

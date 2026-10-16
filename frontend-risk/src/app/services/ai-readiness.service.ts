@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {
   AssessmentRequest,
@@ -60,7 +60,8 @@ export class AiReadinessService {
   }
 
   assess(request: AssessmentRequest): Observable<AssessmentResult> {
-    return this.http.post<AssessmentResult>(`${this.baseUrl}/assess`, request);
+    // a locked result never carries the paid roadmaps into the app, whatever the backend sends
+    return this.http.post<AssessmentResult>(`${this.baseUrl}/assess`, request).pipe(map(lockedResultView));
   }
 
   /**
@@ -106,8 +107,13 @@ export class AiReadinessService {
                  teamCode?: string): void {
     try {
       // the team status (with its edit token) belongs to TeamService storage, not to the saved result
-      const { team: _team, ...withoutTeam } = result;
+      const { team: _team, ...withoutTeam } = lockedResultView(result);
+      // unpaid (roadmapLocked): only the teaser is stored; this also overwrites a stale full roadmap
       localStorage.setItem(this.RESULT_KEY, JSON.stringify(withoutTeam));
+      if (result.roadmapLocked) {
+        // ticked steps are roadmap step texts, so they are dropped for a locked profession too
+        this.saveProgress(result.professionId, []);
+      }
       if (answers) {
         const saved: SavedAnswers = { professionId: result.professionId, answers };
         if (taskShares) {
@@ -137,7 +143,14 @@ export class AiReadinessService {
   loadLastResult(): AssessmentResult | null {
     try {
       const raw = localStorage.getItem(this.RESULT_KEY);
-      return raw ? (JSON.parse(raw) as AssessmentResult) : null;
+      const saved = raw ? (JSON.parse(raw) as AssessmentResult) : null;
+      if (saved?.roadmapLocked && hasFullRoadmap(saved)) {
+        // stale full roadmap stored for a locked result (older build): clear it in storage too
+        const clean = lockedResultView(saved);
+        localStorage.setItem(this.RESULT_KEY, JSON.stringify(clean));
+        return clean;
+      }
+      return saved;
     } catch {
       return null;
     }
@@ -171,7 +184,8 @@ export class AiReadinessService {
    */
   savedPlan(): SavedPlan | null {
     const result = this.loadLastResult();
-    const phases = result?.professionRoadmap ?? [];
+    // unpaid: no "Continue your plan" entry point
+    const phases = result && !result.roadmapLocked ? result.professionRoadmap ?? [] : [];
     if (!result || !phases.length) {
       return null;
     }
@@ -240,4 +254,17 @@ export function roadmapTeaserLines(teaser: RoadmapTeaser | null | undefined): st
     .map(t => (typeof t === 'string' ? t : t && typeof t.title === 'string' ? t.title : ''))
     .map(t => t.trim())
     .filter(t => !!t);
+}
+
+function hasFullRoadmap(r: AssessmentResult): boolean {
+  return !!(r.generalRoadmap?.length || r.professionRoadmap?.length);
+}
+
+/**
+ * A locked (unpaid) result without the paid roadmaps: only the teaser is kept. The full plan for paying
+ * users comes from fullRoadmap() and is held in memory only. Results that are not locked pass unchanged.
+ */
+export function lockedResultView(r: AssessmentResult): AssessmentResult {
+  if (!r || !r.roadmapLocked) return r;
+  return { ...r, generalRoadmap: [], professionRoadmap: [], totalWeeks: 0 };
 }

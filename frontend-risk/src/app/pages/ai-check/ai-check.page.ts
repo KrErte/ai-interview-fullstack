@@ -5,7 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
 
-import { AiReadinessService, roadmapTeaserLines } from '../../services/ai-readiness.service';
+import { AiReadinessService, lockedResultView, roadmapTeaserLines } from '../../services/ai-readiness.service';
 import { isPaymentRequired } from '../../services/billing.service';
 import { PaywallCardComponent } from '../../components/paywall-card/paywall-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
@@ -13,6 +13,7 @@ import {
   AssessmentRequest,
   AssessmentResult,
   CategorySummary,
+  FullRoadmap,
   ProfessionSummary,
   Question,
   RiskBand,
@@ -308,9 +309,9 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           <div class="mt-6 h-2.5 overflow-hidden rounded-full bg-line">
             <div class="grow-x h-full rounded-full bg-accent" style="--i:4" [style.width.%]="r.readinessScore"></div>
           </div>
-          <p class="mt-auto pt-6 text-[15px] leading-relaxed text-muted">
+          <p *ngIf="planOf(r) as p" class="mt-auto pt-6 text-[15px] leading-relaxed text-muted">
             At your weekly pace, the remaining stages of the general learning path take about
-            <span class="font-semibold text-fg">{{ r.totalWeeks }} weeks</span>.
+            <span class="font-semibold text-fg">{{ p.totalWeeks }} weeks</span>.
           </p>
         </div>
       </section>
@@ -331,12 +332,14 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           <p class="mt-3 text-[15px] leading-relaxed text-muted">
             One real try this week beats a course you never finish.
           </p>
-          <button (click)="downloadReminder(r, s)" class="btn-ghost mt-5 !px-4 !py-2 !text-[14px] print:hidden">
+          <ng-container *ngIf="planOf(r)">
+          <button (click)="downloadReminder(r, s)" data-test="ics" class="btn-ghost mt-5 !px-4 !py-2 !text-[14px] print:hidden">
             Add a weekly reminder
           </button>
           <p class="mt-2 text-[12px] leading-relaxed text-faint print:hidden">
             A calendar file: one session every Monday at 18:00 for 12 weeks. Move it to a time that suits you.
           </p>
+          </ng-container>
         </div>
         <div class="space-y-5 lg:col-span-8">
           <div class="rounded-xl bg-surface-2 p-5">
@@ -447,7 +450,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
       </section>
 
       <!-- Billing on and not unlocked: teaser + price card instead of the roadmaps (FP-63) -->
-      <ng-container *ngIf="r.roadmapLocked; else fullRoadmaps">
+      <ng-container *ngIf="!planOf(r); else fullRoadmaps">
         <section id="roadmap-paywall" class="space-y-6 scroll-mt-6">
           <div *ngIf="teaserLines(r).length" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 sm:p-8" data-test="roadmap-teaser">
             <p class="font-mono text-sm text-accent">06</p>
@@ -466,7 +469,9 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
         </section>
       </ng-container>
 
+      <!-- Billing off, or the paid roadmap from POST /api/ai-readiness/roadmap (never the locked result) -->
       <ng-template #fullRoadmaps>
+      <ng-container *ngIf="planOf(r) as p">
       <!-- General roadmap -->
       <section class="card grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
         <div class="lg:col-span-4 lg:pr-6">
@@ -475,7 +480,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           <p class="mt-3 text-[15px] leading-relaxed text-muted">The same five stages for every profession. Your readiness sets where you start and your weekly hours set how long each stage takes. Stages you already cover are checked.</p>
         </div>
         <ol class="space-y-3 lg:col-span-8">
-          <li *ngFor="let s of r.generalRoadmap; let i = index"
+          <li *ngFor="let s of p.generalRoadmap; let i = index"
               class="avoid-break grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-4 rounded-xl border p-5"
               [ngClass]="s.status === 'CURRENT' ? 'border-accent bg-surface-2' : 'border-line'">
             <span class="flex h-11 w-11 items-center justify-center rounded-full font-mono text-sm font-medium"
@@ -511,9 +516,9 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
       <!-- Profession roadmap -->
       <section class="card p-6 sm:p-8">
         <p class="font-mono text-sm text-accent">07</p>
-        <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Starter plan: {{ r.professionName }}</h2>
+        <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Starter plan: {{ p.professionName }}</h2>
         <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">The same steps for everyone in this profession, with a practice project in each phase. Tick off what you have done; your progress is saved in this browser.</p>
-        <div *ngIf="roadmapProgress(r) as p" class="mt-5 flex max-w-md items-center gap-4">
+        <div *ngIf="roadmapProgress(p) as p" class="mt-5 flex max-w-md items-center gap-4">
           <div class="h-2 flex-1 overflow-hidden rounded-full bg-line" role="progressbar"
                [attr.aria-valuenow]="p.done" aria-valuemin="0" [attr.aria-valuemax]="p.total" aria-label="Roadmap progress">
             <div class="h-full rounded-full bg-accent transition-[width] duration-300" [style.width.%]="p.total ? (p.done / p.total) * 100 : 0"></div>
@@ -522,18 +527,18 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
         </div>
 
         <div class="mt-8 grid gap-4 md:grid-cols-3">
-          <div *ngFor="let ph of r.professionRoadmap; let i = index" class="avoid-break flex flex-col rounded-xl border border-line p-5">
+          <div *ngFor="let ph of p.professionRoadmap; let i = index" class="avoid-break flex flex-col rounded-xl border border-line p-5">
             <div class="flex items-baseline justify-between gap-3">
               <p class="kicker">Phase {{ i + 1 }}</p>
-              <span class="num font-mono text-[12px] text-faint">{{ phaseDone(r, ph) }} / {{ ph.items.length + 1 }}</span>
+              <span class="num font-mono text-[12px] text-faint">{{ phaseDone(p, ph) }} / {{ ph.items.length + 1 }}</span>
             </div>
             <h3 class="mt-2 text-xl font-bold leading-tight tracking-tight">{{ ph.title }}</h3>
             <ul class="mt-4 flex-1 space-y-2 text-[15px] leading-relaxed">
               <li *ngFor="let it of ph.items">
                 <label class="flex cursor-pointer gap-3">
                   <input type="checkbox" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]"
-                         [checked]="isDone(r, it)" (change)="toggleDone(r, it)" />
-                  <span [class.text-muted]="isDone(r, it)" [class.line-through]="isDone(r, it)">{{ it }}</span>
+                         [checked]="isDone(p, it)" (change)="toggleDone(p, it)" />
+                  <span [class.text-muted]="isDone(p, it)" [class.line-through]="isDone(p, it)">{{ it }}</span>
                 </label>
               </li>
             </ul>
@@ -542,13 +547,14 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
               <p class="mt-2 text-[15px] leading-relaxed">{{ ph.project }}</p>
               <label class="mt-3 flex cursor-pointer items-center gap-2 text-[14px] text-muted">
                 <input type="checkbox" class="h-4 w-4 accent-[#c6f432]"
-                       [checked]="isDone(r, ph.project)" (change)="toggleDone(r, ph.project)" />
+                       [checked]="isDone(p, ph.project)" (change)="toggleDone(p, ph.project)" />
                 Project done
               </label>
             </div>
           </div>
         </div>
       </section>
+      </ng-container>
       </ng-template>
 
       <footer class="grid gap-4 pt-4 lg:grid-cols-12">
@@ -575,7 +581,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
         <button *ngIf="shareUrl(r) as url" (click)="copyShareLink(url)" class="btn-ghost">
           {{ shareCopied ? 'Link copied' : 'Copy share link' }}
         </button>
-        <button (click)="print()" class="btn-accent">Print / save as PDF</button>
+        <button *ngIf="planOf(r)" (click)="print()" data-test="pdf" class="btn-accent">Print / save as PDF</button>
       </div>
       <div *ngIf="shareFallback" class="print:hidden">
         <p class="kicker">Share link</p>
@@ -642,6 +648,12 @@ export class AiCheckPageComponent implements OnInit {
   fullRoadmapError: string | null = null;
   /** The last roadmap request said 402 payment_required. */
   fullRoadmapLocked = false;
+  /**
+   * The paid roadmap from POST /api/ai-readiness/roadmap, for one profession. Held in memory only: it is
+   * never written to localStorage/sessionStorage, and a locked result never carries its own roadmaps.
+   */
+  entitledRoadmap: { professionId: string; roadmap: FullRoadmap } | null = null;
+  private planCache: { source: AssessmentResult; roadmap: FullRoadmap | null; plan: AssessmentResult } | null = null;
 
   /** Showing someone else's result from a share link: nothing is saved in this browser. */
   sharedView = false;
@@ -1099,8 +1111,8 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   /**
-   * Replaces the locked result's roadmaps with the paid ones from POST /api/ai-readiness/roadmap and
-   * renders them with the existing plan view. FP-64 calls this after polling the entitlement.
+   * Loads the paid roadmap from POST /api/ai-readiness/roadmap (in memory only) and renders it with the
+   * existing plan view (see planOf). FP-64 calls this after polling the entitlement.
    */
   loadFullRoadmap(r: AssessmentResult): void {
     if (this.fullRoadmapLoading) return;
@@ -1110,15 +1122,8 @@ export class AiCheckPageComponent implements OnInit {
     this.api.fullRoadmap(r.professionId, this.paywallAnswers(r)).subscribe({
       next: full => {
         this.fullRoadmapLoading = false;
-        if (this.result === r) {
-          this.result = {
-            ...r,
-            generalRoadmap: full.generalRoadmap ?? [],
-            professionRoadmap: full.professionRoadmap ?? [],
-            totalWeeks: full.totalWeeks,
-            roadmapLocked: false
-          };
-        }
+        // kept apart from the result, so saveLastResult never sees the paid roadmap
+        this.entitledRoadmap = { professionId: r.professionId, roadmap: full };
       },
       error: err => {
         this.fullRoadmapLoading = false;
@@ -1143,6 +1148,7 @@ export class AiCheckPageComponent implements OnInit {
     this.result = null;
     this.fullRoadmapError = null;
     this.fullRoadmapLocked = false;
+    this.entitledRoadmap = null;
     this.personalize = false;
     this.personalNoteRequested = false;
     this.savedResultOutdated = false;
@@ -1281,7 +1287,24 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   firstStep(r: AssessmentResult): FirstStep | null {
-    return firstStep(r, this.aiMarks(r));
+    return firstStep(this.planOf(r) ?? lockedResultView(r), this.aiMarks(r));
+  }
+
+  /**
+   * The result with the roadmaps to show: the result itself when it is not locked (billing off), the
+   * paid roadmap from POST /roadmap merged in when locked and entitled, and null when locked and unpaid.
+   */
+  planOf(r: AssessmentResult): AssessmentResult | null {
+    if (!r.roadmapLocked) return r;
+    const paid = this.entitledRoadmap?.professionId === r.professionId ? this.entitledRoadmap.roadmap : null;
+    if (!paid) return null;
+    if (this.planCache?.source !== r || this.planCache.roadmap !== paid) {
+      this.planCache = {
+        source: r, roadmap: paid,
+        plan: { ...r, generalRoadmap: paid.generalRoadmap ?? [], professionRoadmap: paid.professionRoadmap ?? [], totalWeeks: paid.totalWeeks }
+      };
+    }
+    return this.planCache.plan;
   }
 
   /** Tasks marked "I already do this with AI" for the profession on screen; used only by the first-step box. */

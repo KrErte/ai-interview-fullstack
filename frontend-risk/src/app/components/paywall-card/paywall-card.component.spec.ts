@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
 import { BrowserRedirectService } from '../../services/browser-redirect.service';
 import { AiReadinessService } from '../../services/ai-readiness.service';
 import { environment } from '../../../environments/environment';
+import { WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/billing.model';
 
 const ENT = `${environment.apiBaseUrl}/api/billing/entitlement`;
 const CHECKOUT = `${environment.apiBaseUrl}/api/billing/checkout`;
@@ -75,6 +76,16 @@ describe('PaywallCardComponent', () => {
   }
   const events = (name: string) => track.calls.allArgs().filter(a => a[0] === name).length;
 
+  it('FP-65 copy: button text is exactly "Pay €19", waiver is the one versioned text, no unbuilt features', () => {
+    const el = create();
+    expect(q(el, 'buy')!.textContent!.trim()).toBe('Pay €19');
+    expect(PAYWALL_COPY.waiver).toBe(WAIVER_TEXT);
+    expect(el.querySelector('label[for="paywall-waiver"]')!.textContent!.trim()).toBe(WAIVER_TEXT);
+    expect(q(el, 'waiver')!.getAttribute('data-waiver-version')).toBe(WAIVER_TEXT_VERSION);
+    expect((q(el, 'waiver') as HTMLInputElement).checked).toBeFalse();
+    expect(el.textContent).not.toMatch(/12-week|12 weeks|saved to your account/i);
+  });
+
   it('shows title, bullets, waiver label and links; buy is disabled until the box is ticked', () => {
     const el = create();
     expect(el.textContent).toContain(PAYWALL_COPY.title);
@@ -82,7 +93,7 @@ describe('PaywallCardComponent', () => {
     const label = el.querySelector('label[for="paywall-waiver"]')!;
     expect(label.textContent).toContain(PAYWALL_COPY.waiver);
     const hrefs = Array.from(el.querySelectorAll('a')).map(a => a.getAttribute('href'));
-    expect(hrefs).toEqual(['/terms', '/refund']);
+    expect(hrefs).toEqual(['/terms', '/refund', '/privacy']);
     const buy = q(el, 'buy') as HTMLButtonElement;
     expect(buy.tagName).toBe('BUTTON');
     expect(buy.disabled).toBeTrue();
@@ -97,7 +108,7 @@ describe('PaywallCardComponent', () => {
     fixture.detectChanges();
     expect(events('checkout_start')).toBe(1);
     const req = http.expectOne(CHECKOUT);
-    expect(req.request.body).toEqual({ product: 'roadmap', withdrawalWaiverAccepted: true });
+    expect(req.request.body).toEqual({ product: 'roadmap', withdrawalWaiverAccepted: true, withdrawalWaiverVersion: WAIVER_TEXT_VERSION });
     expect(q(el, 'buy')!.textContent).toContain(PAYWALL_COPY.busy);
     expect((q(el, 'buy') as HTMLButtonElement).disabled).toBeTrue();
     req.flush({ url: 'https://pay.example/s/1' });

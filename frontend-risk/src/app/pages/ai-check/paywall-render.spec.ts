@@ -103,7 +103,57 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     fixture.detectChanges();
     expect(el.querySelector('app-paywall-card')).toBeNull();
     expect(el.textContent).toContain('Paid phase');
-    expect(fixture.componentInstance.result!.totalWeeks).toBe(7);
+    expect(fixture.componentInstance.planOf(fixture.componentInstance.result!)!.totalWeeks).toBe(7);
+    // the PDF and .ics controls come back only with the entitled roadmap
+    expect(el.querySelector('[data-test="pdf"]')).not.toBeNull();
+    // the paid roadmap is never persisted
+    expect(localStorage.getItem('ai_readiness_last_result') ?? '').not.toContain('Paid phase');
+    expect(sessionStorage.getItem('ai_readiness_pending_purchase') ?? '').not.toContain('Paid phase');
+  });
+
+  it('locked: no full roadmap in the DOM, no PDF / .ics controls', () => {
+    const locked = result({
+      roadmapLocked: true, roadmapTeaser: ['Phase 1: AI basics'],
+      tasks: [{ name: 'Bookkeeping', share: 50, automationPercent: 80 }]
+    });
+    const el = show(locked);
+    const text = el.textContent ?? '';
+    expect(text).not.toContain('General AI learning path');
+    expect(text).not.toContain('Starter plan');
+    expect(text).not.toContain('Learn prompts');
+    expect(text).not.toContain('Do X');
+    expect(text).not.toContain('Build Y');
+    expect(el.querySelector('[data-test="pdf"]')).toBeNull();
+    expect(el.querySelector('[data-test="ics"]')).toBeNull();
+    expect(text).not.toContain('Print / save as PDF');
+    expect(text).not.toContain('Add a weekly reminder');
+    expect(el.querySelector('a[href*="view=saved"]')).toBeNull();
+    expect(el.querySelector('app-paywall-card')!.textContent).toContain('Pay €19');
+  });
+
+  it('locked result from /assess: the full roadmap is never kept or written to storage, only the teaser', () => {
+    queryParams = { resume: 'paywall' };
+    sessionStorage.setItem('ai_readiness_pending_purchase', JSON.stringify({ professionId: 'onet-1', answers: { q1: 'a' } }));
+    boot();
+    // even if the backend wrongly sent the roadmaps along with roadmapLocked
+    http.expectOne(`${API}/assess`).flush(result({ roadmapLocked: true, roadmapTeaser: ['Teaser line'] }));
+    fixture.detectChanges();
+    expect(fixture.componentInstance.result!.professionRoadmap).toEqual([]);
+    expect(fixture.componentInstance.result!.generalRoadmap).toEqual([]);
+    expect((fixture.nativeElement as HTMLElement).textContent).not.toContain('Learn prompts');
+    for (const store of [localStorage, sessionStorage]) {
+      for (let i = 0; i < store.length; i++) {
+        const v = store.getItem(store.key(i)!) ?? '';
+        expect(v).not.toContain('Learn prompts');
+        expect(v).not.toContain('Build Y');
+      }
+    }
+  });
+
+  it('billing off: the PDF and .ics controls are still shown', () => {
+    const el = show(result({ tasks: [{ name: 'Bookkeeping', share: 50, automationPercent: 80 }] }));
+    expect(el.querySelector('[data-test="pdf"]')).not.toBeNull();
+    expect(el.querySelector('[data-test="ics"]')).not.toBeNull();
   });
 
   it('a 402 from POST /roadmap keeps the locked state and explains it', () => {

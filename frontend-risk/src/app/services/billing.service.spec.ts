@@ -3,6 +3,7 @@ import { HttpErrorResponse, provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { BillingService, isPaymentRequired } from './billing.service';
 import { environment } from '../../environments/environment';
+import { WAIVER_TEXT_VERSION } from '../models/billing.model';
 
 describe('BillingService', () => {
   let service: BillingService;
@@ -30,7 +31,7 @@ describe('BillingService', () => {
     service.startCheckout().subscribe(r => (url = r.url));
     const req = http.expectOne(`${base}/checkout`);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ product: 'roadmap', withdrawalWaiverAccepted: true });
+    expect(req.request.body).toEqual({ product: 'roadmap', withdrawalWaiverAccepted: true, withdrawalWaiverVersion: WAIVER_TEXT_VERSION });
     req.flush({ url: 'https://pay.example/session' });
     expect(url).toBe('https://pay.example/session');
   });

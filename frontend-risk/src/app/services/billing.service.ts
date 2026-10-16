@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { CheckoutFailure, CheckoutResponse, Entitlement } from '../models/billing.model';
+import { CheckoutFailure, CheckoutRequest, CheckoutResponse, Entitlement, WAIVER_TEXT_VERSION } from '../models/billing.model';
 
 /** Billing API (auth only). Contract: FP-63 brief; the backend side is not built yet. */
 @Injectable({ providedIn: 'root' })
@@ -16,10 +16,12 @@ export class BillingService {
   }
 
   startCheckout(): Observable<CheckoutResponse> {
-    return this.http.post<CheckoutResponse>(`${this.baseUrl}/checkout`, {
+    const body: CheckoutRequest = {
       product: 'roadmap',
-      withdrawalWaiverAccepted: true
-    });
+      withdrawalWaiverAccepted: true,
+      withdrawalWaiverVersion: WAIVER_TEXT_VERSION
+    };
+    return this.http.post<CheckoutResponse>(`${this.baseUrl}/checkout`, body);
   }
 
   /** 409 = already paid, 400 waiver_required = checkbox missing, anything else (incl. network) = other. */
