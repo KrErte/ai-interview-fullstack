@@ -192,7 +192,8 @@ public class AiReadinessScorer {
         };
     }
 
-    private static String readinessLevel(int readiness) {
+    /** Valmisoleku taseme nimi; sama skaala ka meeskonnaraportis. */
+    public static String readinessLevel(int readiness) {
         if (readiness < 25) {
             return "Beginner";
         }

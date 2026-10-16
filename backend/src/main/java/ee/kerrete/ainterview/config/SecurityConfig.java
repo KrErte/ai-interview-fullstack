@@ -66,6 +66,8 @@ public class SecurityConfig {
                                     "/api/auth/**",
                                     "/api/ping",
                                     "/api/ai-readiness/**",
+                                    // team report: access comes from the secret report token, not from a login
+                                    "/api/teams/**",
                                     "/error"
                             ).permitAll()
                             // FP-30: liveness/readiness for docker/load balancers; status only, no details

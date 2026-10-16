@@ -29,6 +29,8 @@ class AiReadinessAssessWebMvcTest {
     JwtService jwtService;
     @MockBean
     AppUserRepository appUserRepository;
+    @MockBean
+    ee.kerrete.ainterview.team.TeamService teamService;
 
     @Autowired
     AiReadinessCatalog catalog;
