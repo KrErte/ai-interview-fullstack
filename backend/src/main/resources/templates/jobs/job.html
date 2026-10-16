@@ -32,8 +32,9 @@
       <section class="card">
         <h2 th:text="'Will AI replace ' + ${p.name()} + '?'">Will AI replace this job?</h2>
         <p class="muted" style="font-size:15px">
-          Not entirely. Today's AI tools can take on about [[${score}]]% of the typical work in this occupation, mostly:
-          [[${#strings.toLowerCase(page.topTasks()[0].name())}]]
+          Not entirely. Today's AI tools can take on about [[${score}]]% of the typical work in this occupation<th:block
+            th:if="${page.leadTask() != null}">, mostly: [[${#strings.toLowerCase(page.leadTask().name())}]]</th:block><th:block
+            th:if="${page.leadTask() == null}">. None of the largest tasks is highly automatable; AI mostly helps around the core work.</th:block>
           <th:block th:if="${!p.humanEdge().isEmpty()}">The parts that stay human include: [[${#strings.listJoin(p.humanEdge(), '; ')}]].</th:block>
         </p>
         <p class="muted" style="font-size:15px">People who learn to use AI for the automatable parts keep the edge. The 3-phase plan below shows where to start.</p>
