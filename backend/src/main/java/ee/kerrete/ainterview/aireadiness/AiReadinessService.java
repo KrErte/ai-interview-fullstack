@@ -201,9 +201,15 @@ public class AiReadinessService {
         return new RoadmapModels.RoadmapResponse(scored.generalRoadmap(), scored.professionRoadmap(), scored.totalWeeks());
     }
 
-    /** The id as echoed in a 400 message: at most 64 characters, then an ellipsis. */
+    /**
+     * The id as echoed in a 400 message: at most 64 code points, then an ellipsis. Cut by code point so a
+     * surrogate pair (e.g. an emoji) is never split into an unpaired surrogate.
+     */
     static String shortId(String id) {
-        return id.length() <= 64 ? id : id.substring(0, 64) + "…";
+        if (id.codePointCount(0, id.length()) <= 64) {
+            return id;
+        }
+        return id.substring(0, id.offsetByCodePoints(0, 64)) + "…";
     }
 
     private Map<String, String> answerLabels(Map<String, String> answers) {

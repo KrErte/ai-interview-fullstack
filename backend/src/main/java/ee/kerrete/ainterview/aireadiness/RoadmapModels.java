@@ -15,6 +15,7 @@ public final class RoadmapModels {
     private RoadmapModels() {
     }
 
+    /** professionId: @Size counts UTF-16 code units (an emoji counts 2), not code points; real ids are ASCII. */
     public record RoadmapRequest(@NotBlank @Size(max = 128) String professionId, @NotNull Map<String, String> answers) {
     }
 

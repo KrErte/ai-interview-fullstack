@@ -39,7 +39,8 @@ Phases 2+ carry only `phase` and `title` (no `items`/`project` keys). Fewer phas
 
 ### `POST /api/ai-readiness/roadmap` (login required)
 
-Body `{"professionId": "translator", "answers": {…}}` (`professionId` required, max 128 chars; `answers` required).
+Body `{"professionId": "translator", "answers": {…}}` (`professionId` required, max 128 UTF-16 code units, so a character outside the BMP such as an emoji counts as 2; `answers` required).
+An unknown profession is echoed in the 400 message cut to 64 code points plus "…".
 Response `{"generalRoadmap": […], "professionRoadmap": […], "totalWeeks": 37}`.
 
 | Status | When |
