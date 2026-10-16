@@ -8,7 +8,8 @@ import {
   CategorySummary,
   Features,
   ProfessionSummary,
-  Question
+  Question,
+  SavedAnswers
 } from '../models/ai-readiness.model';
 
 @Injectable({
@@ -17,6 +18,8 @@ import {
 export class AiReadinessService {
   private readonly baseUrl = `${environment.apiBaseUrl}/api/ai-readiness`;
   private readonly RESULT_KEY = 'ai_readiness_last_result';
+  private readonly ANSWERS_KEY = 'ai_readiness_last_answers';
+  private readonly PROGRESS_KEY = 'ai_readiness_roadmap_progress';
 
   constructor(private http: HttpClient) {}
 
@@ -54,11 +57,30 @@ export class AiReadinessService {
     return this.http.post<AssessmentResult>(`${this.baseUrl}/assess`, request);
   }
 
-  saveLastResult(result: AssessmentResult): void {
+  /**
+   * Remembers the result and, when given, the answers behind it, so a saved result can later be
+   * recalculated with the current catalog (see loadLastAnswers).
+   */
+  saveLastResult(result: AssessmentResult, answers?: Record<string, string>): void {
     try {
       localStorage.setItem(this.RESULT_KEY, JSON.stringify(result));
+      if (answers) {
+        const saved: SavedAnswers = { professionId: result.professionId, answers };
+        localStorage.setItem(this.ANSWERS_KEY, JSON.stringify(saved));
+      }
     } catch {
       // storage unavailable – result just won't be remembered
+    }
+  }
+
+  /** The answers behind the saved result; null for results saved before answers were stored. */
+  loadLastAnswers(): SavedAnswers | null {
+    try {
+      const raw = localStorage.getItem(this.ANSWERS_KEY);
+      const saved = raw ? (JSON.parse(raw) as SavedAnswers) : null;
+      return saved && typeof saved.professionId === 'string' && saved.answers ? saved : null;
+    } catch {
+      return null;
     }
   }
 
@@ -71,9 +93,42 @@ export class AiReadinessService {
     }
   }
 
+  /**
+   * Roadmap steps the user has ticked off for one profession. Steps are keyed by their text, so
+   * a step that is reworded in the catalog simply starts unticked.
+   */
+  loadProgress(professionId: string): string[] {
+    return this.readProgress()[professionId] ?? [];
+  }
+
+  saveProgress(professionId: string, done: string[]): void {
+    const all = this.readProgress();
+    if (done.length) {
+      all[professionId] = done;
+    } else {
+      delete all[professionId];
+    }
+    try {
+      localStorage.setItem(this.PROGRESS_KEY, JSON.stringify(all));
+    } catch {
+      // storage unavailable – ticks last only for this visit
+    }
+  }
+
+  private readProgress(): Record<string, string[]> {
+    try {
+      const raw = localStorage.getItem(this.PROGRESS_KEY);
+      const parsed = raw ? JSON.parse(raw) : null;
+      return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+    } catch {
+      return {};
+    }
+  }
+
   clearLastResult(): void {
     try {
       localStorage.removeItem(this.RESULT_KEY);
+      localStorage.removeItem(this.ANSWERS_KEY);
     } catch {
       // ignore
     }

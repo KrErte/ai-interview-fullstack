@@ -13,6 +13,7 @@ import {
   ProfessionSummary,
   Question,
   RiskBand,
+  RoadmapPhase,
   TaskExposure
 } from '../../models/ai-readiness.model';
 
@@ -32,6 +33,36 @@ const SCALE = [
   { from: 50, to: 70, color: 'var(--band-high)' },
   { from: 70, to: 100, color: 'var(--band-very-high)' }
 ];
+
+/**
+ * A task is only suggested as "try it with AI" when AI can really do a good part of it; below this,
+ * the first step is the roadmap's first item instead (phase 1 starts where AI already helps).
+ */
+const FIRST_STEP_MIN_AUTOMATION = 40;
+
+export interface FirstStep {
+  /** The task with the most automatable time, if any task passes FIRST_STEP_MIN_AUTOMATION. */
+  task: TaskExposure | null;
+  firstItem: string | null;
+  tool: string | null;
+  project: string | null;
+}
+
+/**
+ * One concrete start: the task with the most automatable time (share × automation), the first
+ * suggested tool and the first roadmap project. Null when there is neither a task nor a roadmap.
+ */
+export function firstStep(r: AssessmentResult): FirstStep | null {
+  const task = (r.tasks ?? [])
+    .filter(t => t.automationPercent >= FIRST_STEP_MIN_AUTOMATION)
+    .reduce<TaskExposure | null>((best, t) =>
+      !best || t.share * t.automationPercent > best.share * best.automationPercent ? t : best, null);
+  const firstItem = r.professionRoadmap?.[0]?.items?.[0] ?? null;
+  if (!task && !firstItem) {
+    return null;
+  }
+  return { task, firstItem, tool: r.aiTools?.[0] ?? null, project: r.professionRoadmap?.[0]?.project ?? null };
+}
 
 @Component({
   selector: 'app-ai-check-page',
@@ -184,6 +215,10 @@ const SCALE = [
       <header class="rise pb-2" style="--i:0">
         <p class="kicker">Exposure report</p>
         <h1 class="display mt-3 text-[clamp(2rem,4.5vw,3.5rem)]">{{ r.professionName }}</h1>
+        <p *ngIf="savedResultOutdated" class="mt-4 flex flex-wrap items-center gap-3 text-[15px] text-muted print:hidden">
+          This result was saved before the plans were updated.
+          <button (click)="restart()" class="link text-accent">Take the test again for the latest plan</button>
+        </p>
       </header>
 
       <!-- Scores -->
@@ -248,6 +283,40 @@ const SCALE = [
       <p *ngIf="!r.personalNote && personalNoteRequested" class="text-[14px] text-muted">
         The AI comment is not available right now. The rest of the result does not depend on it.
       </p>
+
+      <!-- One concrete start -->
+      <section *ngIf="firstStep(r) as s" class="card avoid-break grid gap-6 border-accent p-6 sm:p-8 lg:grid-cols-12">
+        <div class="lg:col-span-4 lg:pr-6">
+          <p class="kicker !text-accent">Start this week</p>
+          <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Your first step</h2>
+          <p class="mt-3 text-[15px] leading-relaxed text-muted">
+            One real try this week beats a course you never finish.
+          </p>
+        </div>
+        <div class="space-y-5 lg:col-span-8">
+          <div class="rounded-xl bg-surface-2 p-5">
+            <p class="kicker">This week</p>
+            <ng-container *ngIf="s.task; else roadmapStart">
+              <p class="mt-2 text-[17px] font-semibold leading-snug">Do this task once with AI help: {{ s.task.name }}</p>
+              <p class="num mt-2 font-mono text-[12px] text-faint">{{ s.task.share }}% of the week &middot; {{ s.task.automationPercent }}% automatable</p>
+              <p *ngIf="s.tool" class="mt-3 text-[15px] leading-relaxed text-muted">A tool to try: <span class="font-semibold text-fg">{{ s.tool }}</span>. Check the result yourself before you use it.</p>
+            </ng-container>
+            <ng-template #roadmapStart>
+              <p class="mt-2 text-[17px] font-semibold leading-snug">{{ s.firstItem }}</p>
+              <p class="mt-3 text-[15px] leading-relaxed text-muted">Most of your work stays hands-on, so start where AI helps around it: records, planning and learning.</p>
+            </ng-template>
+          </div>
+          <div *ngIf="s.project" class="rounded-xl border border-line p-5">
+            <p class="kicker">Then your first project</p>
+            <p class="mt-2 text-[15px] leading-relaxed">{{ s.project }}</p>
+            <label class="mt-3 flex cursor-pointer items-center gap-2 text-[14px] text-muted print:hidden">
+              <input type="checkbox" class="h-4 w-4 accent-[#c6f432]"
+                     [checked]="isDone(r, s.project)" (change)="toggleDone(r, s.project)" />
+              Project done
+            </label>
+          </div>
+        </div>
+      </section>
 
       <!-- Tasks -->
       <section class="card grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
@@ -350,18 +419,39 @@ const SCALE = [
       <section class="card p-6 sm:p-8">
         <p class="font-mono text-sm text-accent">07</p>
         <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Starter plan: {{ r.professionName }}</h2>
-        <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">The same steps for everyone in this profession, with a practice project in each phase.</p>
+        <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">The same steps for everyone in this profession, with a practice project in each phase. Tick off what you have done; your progress is saved in this browser.</p>
+        <div *ngIf="roadmapProgress(r) as p" class="mt-5 flex max-w-md items-center gap-4">
+          <div class="h-2 flex-1 overflow-hidden rounded-full bg-line" role="progressbar"
+               [attr.aria-valuenow]="p.done" aria-valuemin="0" [attr.aria-valuemax]="p.total" aria-label="Roadmap progress">
+            <div class="h-full rounded-full bg-accent transition-[width] duration-300" [style.width.%]="p.total ? (p.done / p.total) * 100 : 0"></div>
+          </div>
+          <span class="num shrink-0 font-mono text-[13px] text-muted">{{ p.done }} / {{ p.total }} done</span>
+        </div>
 
         <div class="mt-8 grid gap-4 md:grid-cols-3">
           <div *ngFor="let ph of r.professionRoadmap; let i = index" class="avoid-break flex flex-col rounded-xl border border-line p-5">
-            <p class="kicker">Phase {{ i + 1 }}</p>
+            <div class="flex items-baseline justify-between gap-3">
+              <p class="kicker">Phase {{ i + 1 }}</p>
+              <span class="num font-mono text-[12px] text-faint">{{ phaseDone(r, ph) }} / {{ ph.items.length + 1 }}</span>
+            </div>
             <h3 class="mt-2 text-xl font-bold leading-tight tracking-tight">{{ ph.title }}</h3>
-            <ul class="mt-4 flex-1 space-y-1.5 text-[15px] leading-relaxed">
-              <li *ngFor="let it of ph.items" class="flex gap-3"><span class="text-faint">&ndash;</span><span>{{ it }}</span></li>
+            <ul class="mt-4 flex-1 space-y-2 text-[15px] leading-relaxed">
+              <li *ngFor="let it of ph.items">
+                <label class="flex cursor-pointer gap-3">
+                  <input type="checkbox" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]"
+                         [checked]="isDone(r, it)" (change)="toggleDone(r, it)" />
+                  <span [class.text-muted]="isDone(r, it)" [class.line-through]="isDone(r, it)">{{ it }}</span>
+                </label>
+              </li>
             </ul>
             <div class="mt-6 rounded-xl bg-surface-2 p-4">
               <p class="kicker !text-accent">Project</p>
               <p class="mt-2 text-[15px] leading-relaxed">{{ ph.project }}</p>
+              <label class="mt-3 flex cursor-pointer items-center gap-2 text-[14px] text-muted">
+                <input type="checkbox" class="h-4 w-4 accent-[#c6f432]"
+                       [checked]="isDone(r, ph.project)" (change)="toggleDone(r, ph.project)" />
+                Project done
+              </label>
             </div>
           </div>
         </div>
@@ -418,6 +508,8 @@ export class AiCheckPageComponent implements OnInit {
   /** Shown only when the server has an LLM key; otherwise the checkbox would promise a comment that never comes. */
   aiCommentAvailable = false;
   personalNoteRequested = false;
+  /** The open result was saved without its answers, so it may show an older plan. */
+  savedResultOutdated = false;
 
   result: AssessmentResult | null = null;
   lastResult: AssessmentResult | null = null;
@@ -576,7 +668,8 @@ export class AiCheckPageComponent implements OnInit {
         this.analytics.track('test-complete', { profession: result.professionId, band: result.band });
         this.lastResult = result;
         this.personalNoteRequested = personalize;
-        this.api.saveLastResult(result);
+        this.savedResultOutdated = false;
+        this.api.saveLastResult(result, this.answers);
         this.showAllTasks = false;
         this.step = 'result';
         window.scrollTo({ top: 0 });
@@ -588,11 +681,37 @@ export class AiCheckPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Shows the saved result at once, then recalculates it from the saved answers so the tasks and
+   * roadmaps match today's catalog. The AI comment is kept, not requested again. Results saved
+   * before answers were stored cannot be recalculated; those get a hint to retake the test.
+   */
   showLastResult(): void {
-    this.result = this.lastResult;
+    const saved = this.lastResult;
+    if (!saved) {
+      return;
+    }
+    this.result = saved;
     this.showAllTasks = false;
     this.personalNoteRequested = false;
     this.step = 'result';
+    const stored = this.api.loadLastAnswers();
+    this.savedResultOutdated = !stored || stored.professionId !== saved.professionId;
+    if (this.savedResultOutdated || !stored) {
+      return;
+    }
+    this.api.assess({ professionId: stored.professionId, answers: stored.answers, personalize: false }).subscribe({
+      next: fresh => {
+        const refreshed = { ...fresh, personalNote: saved.personalNote };
+        this.api.saveLastResult(refreshed, stored.answers);
+        this.lastResult = refreshed;
+        // the user may have left the result while the request was running
+        if (this.result === saved) {
+          this.result = refreshed;
+        }
+      },
+      error: () => { /* keep showing the saved result */ }
+    });
   }
 
   restart(): void {
@@ -606,6 +725,9 @@ export class AiCheckPageComponent implements OnInit {
     this.showAllTasks = false;
     this.questionIndex = 0;
     this.result = null;
+    this.personalize = false;
+    this.personalNoteRequested = false;
+    this.savedResultOutdated = false;
     this.expanded = {};
     this.step = 'profession';
     window.scrollTo({ top: 0 });
@@ -631,6 +753,52 @@ export class AiCheckPageComponent implements OnInit {
     const top = new Set([...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS));
     const rest = r.tasks.filter(t => !top.has(t));
     return { count: rest.length, share: rest.reduce((sum, t) => sum + t.share, 0) };
+  }
+
+  firstStep(r: AssessmentResult): FirstStep | null {
+    return firstStep(r);
+  }
+
+  /** Ticked roadmap steps (items and projects, by text) for the profession on screen. */
+  private progress: { professionId: string; done: Set<string> } | null = null;
+
+  private doneSet(r: AssessmentResult): Set<string> {
+    if (this.progress?.professionId !== r.professionId) {
+      this.progress = { professionId: r.professionId, done: new Set(this.api.loadProgress(r.professionId)) };
+    }
+    return this.progress.done;
+  }
+
+  isDone(r: AssessmentResult, step: string): boolean {
+    return this.doneSet(r).has(step);
+  }
+
+  toggleDone(r: AssessmentResult, step: string): void {
+    const done = this.doneSet(r);
+    if (done.has(step)) {
+      done.delete(step);
+    } else {
+      done.add(step);
+      this.analytics.track('roadmap-step-done', { profession: r.professionId });
+    }
+    this.api.saveProgress(r.professionId, [...done]);
+  }
+
+  /** Ticked steps in one phase, counting its project as a step. */
+  phaseDone(r: AssessmentResult, phase: RoadmapPhase): number {
+    return [...phase.items, phase.project].filter(step => this.isDone(r, step)).length;
+  }
+
+  /** Ticked and total steps over the whole profession roadmap; null when it has none. */
+  roadmapProgress(r: AssessmentResult): { done: number; total: number } | null {
+    const phases = r.professionRoadmap ?? [];
+    if (!phases.length) {
+      return null;
+    }
+    return {
+      done: phases.reduce((sum, ph) => sum + this.phaseDone(r, ph), 0),
+      total: phases.reduce((sum, ph) => sum + ph.items.length + 1, 0)
+    };
   }
 
   band(r: AssessmentResult) {
