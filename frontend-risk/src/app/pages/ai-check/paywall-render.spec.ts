@@ -150,6 +150,28 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     }
   });
 
+  it('billingEnabled true never renders the roadmap from /assess, even when roadmapLocked is false', () => {
+    const el = show(result({ billingEnabled: true, roadmapLocked: false }));
+    expect(el.textContent).not.toContain('General AI learning path');
+    expect(el.textContent).not.toContain('Learn prompts');
+    expect(el.querySelector('[data-test="pdf"]')).toBeNull();
+    expect(el.querySelector('app-paywall-card')).not.toBeNull();
+  });
+
+  it('billingEnabled true: the plan renders only from POST /roadmap', () => {
+    const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
+    const el = show(r);
+    fixture.componentInstance.loadFullRoadmap(r);
+    http.expectOne(`${API}/roadmap`).flush({ generalRoadmap: [], professionRoadmap: [{ title: 'Paid phase', items: ['p'], project: 'pp' }], totalWeeks: 3 });
+    fixture.detectChanges();
+    expect(el.textContent).toContain('Paid phase');
+  });
+
+  it('billingEnabled missing counts as billing off', () => {
+    const el = show(result({ billingEnabled: undefined }));
+    expect(el.textContent).toContain('General AI learning path');
+  });
+
   it('billing off: the PDF and .ics controls are still shown', () => {
     const el = show(result({ tasks: [{ name: 'Bookkeeping', share: 50, automationPercent: 80 }] }));
     expect(el.querySelector('[data-test="pdf"]')).not.toBeNull();

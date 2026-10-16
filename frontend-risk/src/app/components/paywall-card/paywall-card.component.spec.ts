@@ -82,6 +82,7 @@ describe('PaywallCardComponent', () => {
     expect(PAYWALL_COPY.waiver).toBe(WAIVER_TEXT);
     expect(el.querySelector('label[for="paywall-waiver"]')!.textContent!.trim()).toBe(WAIVER_TEXT);
     expect(q(el, 'waiver')!.getAttribute('data-waiver-version')).toBe(WAIVER_TEXT_VERSION);
+    expect(WAIVER_TEXT_VERSION).toBe('waiver-v1-2026-10-16');
     expect((q(el, 'waiver') as HTMLInputElement).checked).toBeFalse();
     expect(el.textContent).not.toMatch(/12-week|12 weeks|saved to your account/i);
   });

@@ -110,7 +110,7 @@ export class AiReadinessService {
       const { team: _team, ...withoutTeam } = lockedResultView(result);
       // unpaid (roadmapLocked): only the teaser is stored; this also overwrites a stale full roadmap
       localStorage.setItem(this.RESULT_KEY, JSON.stringify(withoutTeam));
-      if (result.roadmapLocked) {
+      if (result.roadmapLocked || result.billingEnabled) {
         // ticked steps are roadmap step texts, so they are dropped for a locked profession too
         this.saveProgress(result.professionId, []);
       }
@@ -144,7 +144,7 @@ export class AiReadinessService {
     try {
       const raw = localStorage.getItem(this.RESULT_KEY);
       const saved = raw ? (JSON.parse(raw) as AssessmentResult) : null;
-      if (saved?.roadmapLocked && hasFullRoadmap(saved)) {
+      if ((saved?.roadmapLocked || saved?.billingEnabled) && hasFullRoadmap(saved)) {
         // stale full roadmap stored for a locked result (older build): clear it in storage too
         const clean = lockedResultView(saved);
         localStorage.setItem(this.RESULT_KEY, JSON.stringify(clean));
@@ -185,7 +185,7 @@ export class AiReadinessService {
   savedPlan(): SavedPlan | null {
     const result = this.loadLastResult();
     // unpaid: no "Continue your plan" entry point
-    const phases = result && !result.roadmapLocked ? result.professionRoadmap ?? [] : [];
+    const phases = result && !result.roadmapLocked && !result.billingEnabled ? result.professionRoadmap ?? [] : [];
     if (!result || !phases.length) {
       return null;
     }
@@ -265,6 +265,6 @@ function hasFullRoadmap(r: AssessmentResult): boolean {
  * users comes from fullRoadmap() and is held in memory only. Results that are not locked pass unchanged.
  */
 export function lockedResultView(r: AssessmentResult): AssessmentResult {
-  if (!r || !r.roadmapLocked) return r;
+  if (!r || !(r.roadmapLocked || r.billingEnabled)) return r;
   return { ...r, generalRoadmap: [], professionRoadmap: [], totalWeeks: 0 };
 }

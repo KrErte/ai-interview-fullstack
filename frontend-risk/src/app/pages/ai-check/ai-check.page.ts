@@ -1291,11 +1291,13 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   /**
-   * The result with the roadmaps to show: the result itself when it is not locked (billing off), the
-   * paid roadmap from POST /roadmap merged in when locked and entitled, and null when locked and unpaid.
+   * The result with the roadmaps to show: the result itself when billing is off (billingEnabled missing/false and
+   * not locked); with billing on, only the paid roadmap from POST /roadmap merged in, else null (teaser + paywall,
+   * whose entitlement check offers "View your roadmap" or the price).
    */
   planOf(r: AssessmentResult): AssessmentResult | null {
-    if (!r.roadmapLocked) return r;
+    // billing on: never the /assess roadmaps, only the paid one from POST /roadmap
+    if (!r.billingEnabled && !r.roadmapLocked) return r;
     const paid = this.entitledRoadmap?.professionId === r.professionId ? this.entitledRoadmap.roadmap : null;
     if (!paid) return null;
     if (this.planCache?.source !== r || this.planCache.roadmap !== paid) {
@@ -1339,7 +1341,7 @@ export class AiCheckPageComponent implements OnInit {
     const ics = buildReminderIcs({
       professionName: r.professionName,
       firstStep: s.task ? `Do this task once with AI help: ${s.task.name}` : (s.firstItem ?? 'Start the first phase of your plan.'),
-      planUrl: `${window.location.origin}/ai-test?view=saved`,
+      planUrl: `${window.location.origin}/roadmap`,
       start: nextSessionStart(new Date()),
       minutes
     });

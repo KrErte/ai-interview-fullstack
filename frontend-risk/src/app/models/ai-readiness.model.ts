@@ -121,6 +121,11 @@ export interface AssessmentResult {
   roadmapTeaser?: RoadmapTeaser | null;
   /** BILLING_ENABLED=true and the roadmap is not unlocked: show the teaser and the price card. Absent/false = billing off. */
   roadmapLocked?: boolean;
+  /**
+   * Billing on: /assess always answers roadmapLocked:true with only the teaser, even for paid users; the full
+   * roadmap comes only from POST /api/ai-readiness/roadmap. Missing = billing off (older backends).
+   */
+  billingEnabled?: boolean;
 }
 
 export type RoadmapTeaser = string | Array<string | { title?: string }>;

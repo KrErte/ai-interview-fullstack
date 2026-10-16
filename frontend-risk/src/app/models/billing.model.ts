@@ -18,7 +18,7 @@ export interface CheckoutRequest {
  * exactly WAIVER_TEXT, /terms section 6 quotes the same constant, and the checkout sends WAIVER_TEXT_VERSION.
  * Change the version id whenever the wording changes.
  */
-export const WAIVER_TEXT_VERSION = 'fp65-2026-10-16';
+export const WAIVER_TEXT_VERSION = 'waiver-v1-2026-10-16';
 export const WAIVER_TEXT =
   'I want my personal AI roadmap delivered immediately, and I agree that delivery starts before the 14-day withdrawal ' +
   'period ends. I understand that I lose my right of withdrawal once delivery has started.';
