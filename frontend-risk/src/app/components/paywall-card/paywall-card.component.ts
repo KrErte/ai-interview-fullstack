@@ -84,7 +84,7 @@ type State = 'checking' | 'paywall' | 'entitled';
         <h2 id="paywall-title" class="text-2xl font-bold tracking-tight text-slate-100">{{ copy.entitledTitle }}</h2>
         <p class="mt-2 text-[15px] text-slate-400">{{ copy.entitledText }}</p>
         <button type="button" data-test="view-roadmap" (click)="viewRoadmap.emit()"
-                class="mt-5 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-semibold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 sm:w-auto">
+                class="mt-5 min-h-11 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-semibold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 sm:w-auto">
           {{ copy.view }}
         </button>
       </ng-container>
@@ -101,9 +101,9 @@ type State = 'checking' | 'paywall' | 'entitled';
         <p class="mt-5 text-[15px] font-semibold text-slate-100" data-test="price">{{ priceLine }}</p>
 
         <div class="mt-5">
-          <!-- the waiver ID stays visible but outside the checkbox's accessible name -->
-          <p class="text-[12px] font-semibold text-slate-400" data-test="waiver-label">{{ copy.waiverLabel }} (ID {{ copy.waiverVersion }})</p>
-          <label for="paywall-waiver" class="flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-slate-300">
+          <!-- human-readable version, outside the checkbox's accessible name; the ID is only sent with the checkout -->
+          <p class="text-[12px] font-semibold text-slate-400" data-test="waiver-label">Waiver, {{ copy.waiverLabel }}</p>
+          <label for="paywall-waiver" class="flex min-h-11 cursor-pointer items-start gap-3 py-2 text-[14px] leading-relaxed text-slate-300">
             <input id="paywall-waiver" type="checkbox" required data-test="waiver" [attr.data-waiver-version]="copy.waiverVersion"
                    class="mt-1 h-5 w-5 shrink-0 accent-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                    [checked]="waiver" (change)="onWaiver($any($event.target).checked)"
@@ -115,7 +115,7 @@ type State = 'checking' | 'paywall' | 'entitled';
 
         <button type="button" data-test="buy" (click)="buy()" [disabled]="!waiver || busy" [attr.aria-busy]="busy"
                 [attr.aria-describedby]="!waiver ? 'paywall-buy-hint' : null"
-                class="mt-5 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-semibold text-white transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto">
+                class="mt-5 min-h-11 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-semibold text-white transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto">
           {{ busy ? copy.busy : loggedIn ? copy.buy : copy.buyLoggedOut }}
         </button>
         <p *ngIf="!waiver" id="paywall-buy-hint" data-test="buy-hint" class="mt-2 text-[13px] text-slate-300">{{ copy.buyHint }}</p>
@@ -123,17 +123,17 @@ type State = 'checking' | 'paywall' | 'entitled';
 
         <p class="mt-4 text-[13px] leading-relaxed text-slate-400"><span *ngIf="sellerName">{{ copy.soldBy(sellerName) }} </span>{{ copy.smallPrint }}</p>
         <p class="mt-2 text-[13px] text-slate-400">
-          <a routerLink="/terms" class="inline-block min-h-6 py-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.terms }}</a>
+          <a routerLink="/terms" class="inline-flex min-h-11 min-w-11 items-center px-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.terms }}</a>
           &middot;
-          <a routerLink="/refund" class="inline-block min-h-6 py-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.refund }}</a>
+          <a routerLink="/refund" class="inline-flex min-h-11 min-w-11 items-center px-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.refund }}</a>
           &middot;
-          <a routerLink="/privacy" class="inline-block min-h-6 py-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.privacy }}</a>
+          <a routerLink="/privacy" class="inline-flex min-h-11 min-w-11 items-center px-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.privacy }}</a>
         </p>
 
         <div *ngIf="error" data-test="error" class="mt-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4" role="alert">
           <p class="text-sm text-rose-200">{{ copy.error }}</p>
           <button type="button" data-test="retry" (click)="buy()" [disabled]="!waiver || busy"
-                  class="mt-2 text-sm text-rose-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300">{{ copy.retry }}</button>
+                  class="mt-2 min-h-11 px-1 text-sm text-rose-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300">{{ copy.retry }}</button>
         </div>
       </ng-container>
     </section>

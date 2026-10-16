@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
-import { AiReadinessService, isGrandfathered, lockedResultView } from './ai-readiness.service';
+import { AiReadinessService, isGrandfathered, isValidSavedPlan, lockedResultView } from './ai-readiness.service';
 import { AssessmentResult } from '../models/ai-readiness.model';
 
 const RESULT_KEY = 'ai_readiness_last_result';
@@ -88,5 +88,35 @@ describe('AiReadinessService storage for locked results (FP-63)', () => {
     localStorage.setItem(RESULT_KEY, JSON.stringify(full({ billingMarker: 'v1', billingEnabled: true })));
     expect(api.loadLastResult()!.professionRoadmap).toEqual([]);
     expect(localStorage.getItem(RESULT_KEY)).not.toContain('Learn prompts');
+  });
+
+  it('re-take with the same profession keeps the ticks; another profession clears the old ones', () => {
+    api.saveLastResult(full({ billingEnabled: true, roadmapLocked: true }));
+    api.saveProgress('onet-1', ['Do X']);
+    api.saveLastResult(full({ billingEnabled: true, roadmapLocked: true }));
+    expect(api.loadProgress('onet-1')).toEqual(['Do X']);
+    api.saveLastResult(full({ professionId: 'onet-2', billingEnabled: true, roadmapLocked: true }));
+    expect(api.loadProgress('onet-1')).toEqual([]);
+  });
+
+  it('an invalid grandfathered record is ignored (not rendered) but not deleted', () => {
+    for (const bad of [
+      { ...full(), professionId: '' },
+      { ...full(), professionRoadmap: [{ title: 'A', items: [1, 2], project: 'p' }] },
+      { ...full(), professionRoadmap: 'nope' },
+      { ...full(), generalRoadmap: [{ id: 'g', title: 't', status: 'WEIRD', items: [] }] },
+      { ...full(), tasks: null }
+    ]) {
+      const raw = JSON.stringify(bad);
+      localStorage.setItem(RESULT_KEY, raw);
+      expect(api.loadLastResult()).withContext(raw).toBeNull();
+      expect(api.savedPlan()).toBeNull();
+      expect(localStorage.getItem(RESULT_KEY)).toBe(raw);
+    }
+  });
+
+  it('a valid grandfathered record passes the shape check', () => {
+    expect(isValidSavedPlan(full())).toBeTrue();
+    expect(isValidSavedPlan(null)).toBeFalse();
   });
 });

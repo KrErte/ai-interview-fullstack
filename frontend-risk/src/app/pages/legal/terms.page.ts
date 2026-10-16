@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SaleConfig, saleConfig } from './legal-config';
-import { WAIVER_LABEL, WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/billing.model';
+import { BillingStatusService } from '../../services/billing-status.service';
+import { WAIVER_LABEL, WAIVER_TEXT } from '../../models/billing.model';
 
 /** Terms of use. Keep the description of the score in line with the home page and AiReadinessScorer. */
 @Component({
@@ -76,7 +77,7 @@ import { WAIVER_LABEL, WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/bil
       <!-- FP-65 round 3 (drafts/terms-refund.md Part A). Rendered only when billing is on and the seller/VAT config is set. -->
       <section *ngIf="sale as c" id="terms-of-sale" aria-labelledby="terms-of-sale-title" data-test="terms-of-sale">
       <h2 id="terms-of-sale-title">Terms of sale – Personal AI roadmap</h2>
-      <p><em>Last updated: {{ c.lastUpdated }} · {{ waiverLabel }} (ID {{ waiverVersion }})</em></p>
+      <p><em>Last updated: {{ c.lastUpdated }} · {{ waiverLabel }}</em></p>
 
       <h3>1. Who you are buying from</h3>
       <div class="overflow-x-auto">
@@ -141,7 +142,7 @@ import { WAIVER_LABEL, WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/bil
         the product, the price, the date, a link to these terms of sale and this text:
       </p>
       <p data-test="withdrawal-kept">You keep your right of withdrawal until we have sent you the confirmation of your consent.</p>
-      <blockquote><p data-test="receipt-waiver"><strong>{{ waiverLabel }}</strong> (ID {{ waiverVersion }}) – <strong>&#9745; {{ waiverText }}</strong></p></blockquote>
+      <blockquote><p data-test="receipt-waiver"><strong>Waiver, {{ waiverLabel }}</strong> – <strong>&#9745; {{ waiverText }}</strong></p></blockquote>
 
       <h3>6. Right of withdrawal (14 days) and how it is lost</h3>
       <p>
@@ -163,8 +164,8 @@ import { WAIVER_LABEL, WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/bil
       </p>
       <p>At checkout we ask for this with an unticked checkbox. <strong>You cannot buy without ticking it.</strong> The exact wording is:</p>
       <blockquote>
-        <p data-test="terms-waiver"><strong>{{ waiverLabel }}</strong> (ID {{ waiverVersion }}) – <strong>&#9744; {{ waiverText }}</strong></p>
-        <p>We store the waiver ID ({{ waiverVersion }}) and the time you ticked it with your order. The same text appears in your receipt (&sect;5).</p>
+        <p data-test="terms-waiver"><strong>Waiver, {{ waiverLabel }}</strong> – <strong>&#9744; {{ waiverText }}</strong></p>
+        <p>We store the waiver version and the time you ticked it with your order. The same text appears in your receipt (&sect;5).</p>
       </blockquote>
       <p>
         <strong>If supply has not started</strong> (for example, payment went through but the roadmap was never made
@@ -223,8 +224,11 @@ import { WAIVER_LABEL, WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/bil
 export class TermsPageComponent {
   /** Same constant as the paywall checkbox (FP-65: one versioned waiver text). */
   /** Terms of sale config; null hides the sale section (billing off or seller/VAT config missing). */
-  readonly sale: SaleConfig | null = saleConfig();
+  readonly sale: SaleConfig | null;
+
+  constructor(billingStatus: BillingStatusService) {
+    this.sale = saleConfig(billingStatus.serverBillingEnabled());
+  }
   readonly waiverText = WAIVER_TEXT;
   readonly waiverLabel = WAIVER_LABEL;
-  readonly waiverVersion = WAIVER_TEXT_VERSION;
 }

@@ -492,10 +492,10 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
             <p class="text-sm text-rose-200">{{ fullRoadmapError }}</p>
             <button type="button" (click)="loadFullRoadmap(r)" class="mt-2 text-sm text-rose-300 underline">Try again</button>
           </div>
-          <p *ngIf="!saleReady" data-test="roadmap-soon" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 text-[15px] text-slate-300 sm:p-8">
+          <p *ngIf="!saleReady(r)" data-test="roadmap-soon" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 text-[15px] text-slate-300 sm:p-8">
             The full roadmap will be available soon.
           </p>
-          <app-paywall-card *ngIf="saleReady" [professionId]="r.professionId" [professionName]="r.professionName" [answers]="paywallAnswers(r)"
+          <app-paywall-card *ngIf="saleReady(r)" [professionId]="r.professionId" [professionName]="r.professionName" [answers]="paywallAnswers(r)"
                             (viewRoadmap)="loadFullRoadmap(r)"></app-paywall-card>
         </section>
       </ng-container>
@@ -695,10 +695,12 @@ export class AiCheckPageComponent implements OnInit {
   /** The saved result on screen predates billing (isGrandfathered): shown as it is, never re-saved. */
   grandfathered = false;
   /**
-   * Paywall card and checkout only with a complete legal config: the same predicate as the /terms sale section
-   * (billing on in the environment, seller and VAT set). Otherwise a locked result shows the teaser and a note.
+   * Paywall card and checkout: the server's billingEnabled (single source of truth) plus a complete seller/VAT
+   * config, the same predicate as the /terms sale section. Otherwise a locked result shows the teaser and a note.
    */
-  readonly saleReady = !!saleConfig();
+  saleReady(r: AssessmentResult): boolean {
+    return !!saleConfig(r.billingEnabled === true);
+  }
   /** Show "Payment confirmed" only right after a purchase (?paid=1, resume flow) or once per tab session. */
   showPaymentConfirmed = false;
   private justPaid = false;

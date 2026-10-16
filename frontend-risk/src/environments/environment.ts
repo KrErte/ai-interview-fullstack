@@ -7,11 +7,6 @@ export const environment = {
   vatLabel: '',
   /** Seller name for the paywall small print ("Sold by …"). Empty = the line is left out until it is decided. */
   sellerName: '',
-  /**
-   * Client-side billing flag for the legal pages: the /terms sale section and the sale-specific /refund
-   * content render only when this is true AND the seller fields below are filled in. Default false.
-   */
-  billingEnabled: false,
   /** Seller details for /terms §1, /refund and the withdrawal form; empty = not decided (sale content hidden). */
   sellerAddress: '',
   sellerEmail: '',

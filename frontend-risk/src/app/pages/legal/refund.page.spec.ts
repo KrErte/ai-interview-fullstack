@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 import { RefundPageComponent } from './refund.page';
-import { FILLED_SALE_CONFIG, withEnv } from './legal-test-config';
+import { FILLED_SALE_CONFIG, withSale } from './legal-test-config';
 
 function render(): HTMLElement {
-  TestBed.configureTestingModule({ imports: [RefundPageComponent], providers: [provideRouter([])] });
+  TestBed.configureTestingModule({ imports: [RefundPageComponent], providers: [provideRouter([]), provideHttpClient()] });
   const f = TestBed.createComponent(RefundPageComponent);
   f.detectChanges();
   return f.nativeElement as HTMLElement;
@@ -18,7 +19,7 @@ describe('RefundPageComponent', () => {
       .toBe('careerrisk.ee does not sell anything yet. The test is free.');
   });
 
-  it('config filled: round-3 refund content with the seller email', withEnv(FILLED_SALE_CONFIG, () => {
+  it('config filled: round-3 refund content with the seller email', withSale(FILLED_SALE_CONFIG, true, () => {
     const el = render();
     expect(el.querySelector('[data-test="refund-sale"]')!.textContent).toContain('sales@example.test');
     expect(el.textContent).toContain('Last updated: 16 October 2026');

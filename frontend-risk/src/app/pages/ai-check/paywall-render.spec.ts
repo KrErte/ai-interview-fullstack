@@ -93,14 +93,14 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
   });
 
   it('roadmapLocked true: shows the teaser and the price card instead of the roadmaps', () => {
-    const el = show(result({ roadmapLocked: true, generalRoadmap: [], professionRoadmap: [], roadmapTeaser: ['Phase 1: AI basics'] }));
+    const el = show(result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [], roadmapTeaser: ['Phase 1: AI basics'] }));
     expect(el.querySelector('app-paywall-card')).not.toBeNull();
     expect(el.querySelector('[data-test="roadmap-teaser"]')!.textContent).toContain('Phase 1: AI basics');
     expect(el.textContent).not.toContain('General AI learning path');
   });
 
   it('loadFullRoadmap renders the paid roadmap from POST /roadmap with the existing plan view', () => {
-    const locked = result({ roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
+    const locked = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
     const el = show(locked);
     fixture.componentInstance.answers = { q1: 'a' };
     fixture.componentInstance.loadFullRoadmap(locked);
@@ -122,7 +122,7 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
 
   it('locked: no full roadmap in the DOM, no PDF / .ics controls', () => {
     const locked = result({
-      roadmapLocked: true, roadmapTeaser: ['Phase 1: AI basics'],
+      billingEnabled: true, roadmapLocked: true, roadmapTeaser: ['Phase 1: AI basics'],
       tasks: [{ name: 'Bookkeeping', share: 50, automationPercent: 80 }]
     });
     const el = show(locked);
@@ -363,7 +363,7 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
   });
 
   it('a 402 from POST /roadmap keeps the locked state and explains it', () => {
-    const locked = result({ roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
+    const locked = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
     const el = show(locked);
     fixture.componentInstance.loadFullRoadmap(locked);
     http.expectOne(`${environment.apiBaseUrl}/api/billing/entitlement`).flush({ roadmap: true });
@@ -379,7 +379,7 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     const el = boot();
     const req = http.expectOne(`${API}/assess`);
     expect(req.request.body).toEqual({ professionId: 'onet-1', answers: { q1: 'a' }, personalize: false });
-    req.flush(result({ roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] }));
+    req.flush(result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] }));
     fixture.detectChanges();
     expect(fixture.componentInstance.step).toBe('result');
     expect(fixture.componentInstance.answers).toEqual({ q1: 'a' });

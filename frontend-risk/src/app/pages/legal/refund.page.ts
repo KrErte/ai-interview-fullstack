@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SaleConfig, saleConfig } from './legal-config';
+import { BillingStatusService } from '../../services/billing-status.service';
 
 /**
  * Refunds and withdrawal (FP-65 round 3, drafts/terms-refund.md Part B). The sale-specific content renders only
@@ -75,5 +76,9 @@ import { SaleConfig, saleConfig } from './legal-config';
 })
 export class RefundPageComponent {
   /** Refund config; null shows the "nothing is sold yet" text (billing off or seller/VAT config missing). */
-  readonly sale: SaleConfig | null = saleConfig();
+  readonly sale: SaleConfig | null;
+
+  constructor(billingStatus: BillingStatusService) {
+    this.sale = saleConfig(billingStatus.serverBillingEnabled());
+  }
 }

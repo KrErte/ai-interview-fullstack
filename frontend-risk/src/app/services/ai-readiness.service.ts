@@ -121,6 +121,11 @@ export class AiReadinessService {
                  teamCode?: string): void {
     try {
       // the team status (with its edit token) belongs to TeamService storage, not to the saved result
+      // re-take with another profession: the old profession's ticks go; the same profession keeps them
+      const previous = this.loadLastResult();
+      if (previous && previous.professionId !== result.professionId) {
+        this.saveProgress(previous.professionId, []);
+      }
       const { team: _team, ...rest } = lockedResultView(result);
       // explicit marker on every save, also with billing off; only unmarked old records are grandfathered
       const withoutTeam: AssessmentResult = { ...rest, billingMarker: 'v1', billingEnabled: !!result.billingEnabled };
@@ -156,6 +161,10 @@ export class AiReadinessService {
     try {
       const raw = localStorage.getItem(this.RESULT_KEY);
       const saved = raw ? (JSON.parse(raw) as AssessmentResult) : null;
+      if (isGrandfathered(saved) && !isValidSavedPlan(saved)) {
+        // malformed pre-billing record: ignored (not rendered), but left in storage
+        return null;
+      }
       if ((saved?.roadmapLocked || saved?.billingEnabled) && hasFullRoadmap(saved)) {
         // stale full roadmap stored for a locked result (older build): clear it in storage too
         const clean = lockedResultView(saved);
@@ -311,4 +320,35 @@ export function roadmapTeaserPhases(teaser: RoadmapTeaser | null | undefined): T
 export function isGrandfathered(r: AssessmentResult | null | undefined): boolean {
   return !!r && r.billingMarker === undefined && r.billingEnabled === undefined && r.roadmapLocked === undefined
     && hasFullRoadmap(r);
+}
+
+const isStr = (v: unknown): v is string => typeof v === 'string';
+const isStrArray = (v: unknown): v is string[] => Array.isArray(v) && v.every(isStr);
+const STAGE_STATUS = ['DONE', 'CURRENT', 'UPCOMING'];
+
+/**
+ * Shape check for a saved result before it is rendered from storage (used for grandfathered records): a valid
+ * profession, tasks, and roadmaps made of phases/stages with string items.
+ */
+export function isValidSavedPlan(r: unknown): r is AssessmentResult {
+  if (!r || typeof r !== 'object') return false;
+  const x = r as Record<string, unknown>;
+  if (!isStr(x['professionId']) || !x['professionId'].trim() || !isStr(x['professionName']) || !x['professionName'].trim()) return false;
+  if (typeof x['replaceabilityScore'] !== 'number' || !isStr(x['band']) || !Array.isArray(x['tasks'])) return false;
+  if (!(x['tasks'] as unknown[]).every(t => !!t && typeof t === 'object' && isStr((t as Record<string, unknown>)['name'])
+    && typeof (t as Record<string, unknown>)['share'] === 'number')) return false;
+  for (const k of ['humanEdge', 'aiTools', 'pivotRoles']) {
+    if (x[k] !== undefined && !isStrArray(x[k])) return false;
+  }
+  const phases = x['professionRoadmap'];
+  if (!Array.isArray(phases) || !phases.every(ph => !!ph && typeof ph === 'object'
+    && isStr((ph as Record<string, unknown>)['title']) && isStrArray((ph as Record<string, unknown>)['items'])
+    && isStr((ph as Record<string, unknown>)['project']))) return false;
+  const stages = x['generalRoadmap'];
+  if (!Array.isArray(stages) || !stages.every(st => {
+    const s = st as Record<string, unknown>;
+    return !!st && typeof st === 'object' && isStr(s['id']) && isStr(s['title']) && isStrArray(s['items'])
+      && STAGE_STATUS.includes(s['status'] as string) && (s['resources'] === undefined || Array.isArray(s['resources']));
+  })) return false;
+  return true;
 }
