@@ -77,6 +77,25 @@ describe('AiReadinessService storage', () => {
     expect(localStorage.getItem('ai_readiness_roadmap_progress')).toBe('{}');
   });
 
+  it('summarises the saved plan for the home page', () => {
+    const saved = {
+      ...result('cook'),
+      professionName: 'Cook',
+      professionRoadmap: [
+        { title: 'One', items: ['a', 'b'], project: 'p1' },
+        { title: 'Two', items: ['c'], project: 'p2' }
+      ]
+    };
+    service.saveLastResult(saved);
+    // 'gone' was reworded out of the catalog and must not count
+    service.saveProgress('cook', ['a', 'p1', 'gone']);
+    expect(service.savedPlan()).toEqual({ professionName: 'Cook', score: 40, done: 2, total: 5 });
+  });
+
+  it('has no saved plan without a saved result', () => {
+    expect(service.savedPlan()).toBeNull();
+  });
+
   it('starts empty when stored progress is not an object', () => {
     localStorage.setItem('ai_readiness_roadmap_progress', '["oops"]');
     expect(service.loadProgress('cook')).toEqual([]);

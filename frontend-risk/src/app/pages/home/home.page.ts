@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AiReadinessService } from '../../services/ai-readiness.service';
+import { SavedPlan } from '../../models/ai-readiness.model';
 
 /** Bands as in AiReadinessScorer.band(): the scale on this page shows the real cut-offs. */
 const SCALE = [
@@ -32,13 +34,24 @@ const SCALE = [
           Everyone is learning AI, most of us at random. Pick your profession, answer 11 questions and see where to
           start: which of your tasks AI is already changing, and what to learn first.
         </p>
+        <a *ngIf="plan" routerLink="/ai-test" [queryParams]="{ view: 'saved' }"
+           class="card rise mt-8 block p-5 transition-colors hover:border-accent" style="--i:3">
+          <span class="kicker !text-accent">Continue your plan</span>
+          <span class="mt-2 block text-[17px] font-semibold leading-snug">{{ plan.professionName }}</span>
+          <span class="mt-3 flex items-center gap-3">
+            <span class="h-1.5 flex-1 overflow-hidden rounded-full bg-line">
+              <span class="block h-full rounded-full bg-accent" [style.width.%]="plan.total ? (plan.done / plan.total) * 100 : 0"></span>
+            </span>
+            <span class="num shrink-0 font-mono text-[12px] text-muted">{{ plan.done }} / {{ plan.total }} steps</span>
+          </span>
+        </a>
         <div class="rise mt-8" style="--i:3">
           <a routerLink="/ai-test" class="btn-accent w-full sm:w-auto">
             Find your starting point
             <span class="arrow" aria-hidden="true">&rarr;</span>
           </a>
           <!-- plain href: /jobs pages are rendered by the backend, not by Angular -->
-          <a href="/jobs" class="mt-4 block text-[15px] text-muted underline-offset-4 hover:text-fg hover:underline sm:ml-4 sm:mt-0 sm:inline">
+          <a href="/jobs" class="mt-4 block whitespace-nowrap text-[15px] text-muted underline-offset-4 hover:text-fg hover:underline sm:ml-4 sm:mt-0 sm:inline">
             Browse 900+ jobs
           </a>
         </div>
@@ -120,6 +133,13 @@ const SCALE = [
 })
 export class HomePageComponent {
   readonly scale = SCALE;
+
+  /** A returning visitor's saved plan and progress; null for first-time visitors. */
+  readonly plan: SavedPlan | null;
+
+  constructor(api: AiReadinessService) {
+    this.plan = api.savedPlan();
+  }
 
   readonly features = [
     {
