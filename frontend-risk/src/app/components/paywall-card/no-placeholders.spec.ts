@@ -10,7 +10,8 @@ import { AiCheckPageComponent } from '../../pages/ai-check/ai-check.page';
 import { AssessmentResult } from '../../models/ai-readiness.model';
 import { TermsPageComponent } from '../../pages/legal/terms.page';
 import { RefundPageComponent } from '../../pages/legal/refund.page';
-import { FILLED_SALE_CONFIG, withSale } from '../../pages/legal/legal-test-config';
+import { FEATURES_URL, FILLED_SALE_CONFIG, withEnv } from '../../pages/legal/legal-test-config';
+import { HttpTestingController } from '@angular/common/http/testing';
 
 /**
  * No raw "[PLACEHOLDER]" text, "re-take", "VAT TBD" or "PLANNED" may reach users on the paywall card, the teaser,
@@ -59,8 +60,11 @@ describe('No visible placeholders on the paywall card and teaser (FP-65)', () =>
 
   for (const [name, values] of [['config empty', {}], ['config filled', FILLED_SALE_CONFIG]] as const) {
     for (const page of [TermsPageComponent, RefundPageComponent]) {
-      it(`${page.name} with ${name}`, withSale(values, true, () => {
+      it(`${page.name} with ${name}`, withEnv(values, () => {
+        spyOn(console, 'error');
         const f = TestBed.createComponent(page as never);
+        (f as { detectChanges(): void }).detectChanges();
+        TestBed.inject(HttpTestingController).expectOne(FEATURES_URL).flush({ aiComment: false, billingEnabled: true });
         (f as { detectChanges(): void }).detectChanges();
         const text = ((f as { nativeElement: HTMLElement }).nativeElement).textContent ?? '';
         expect(text.length).toBeGreaterThan(50);

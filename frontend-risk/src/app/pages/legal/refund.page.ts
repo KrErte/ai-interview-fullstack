@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SaleConfig, saleConfig } from './legal-config';
@@ -74,11 +75,16 @@ import { BillingStatusService } from '../../services/billing-status.service';
   `,
   styleUrl: './legal.css'
 })
-export class RefundPageComponent {
+export class RefundPageComponent implements OnInit {
   /** Refund config; null shows the "nothing is sold yet" text (billing off or seller/VAT config missing). */
-  readonly sale: SaleConfig | null;
+  /** null while loading and when billing is off or the seller/VAT config is incomplete. */
+  sale: SaleConfig | null = null;
 
-  constructor(billingStatus: BillingStatusService) {
-    this.sale = saleConfig(billingStatus.serverBillingEnabled());
+  constructor(private billingStatus: BillingStatusService, private destroyRef: DestroyRef) {}
+
+  ngOnInit(): void {
+    // the general content renders at once; the sale content appears once /features has answered
+    this.billingStatus.billingEnabled().pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(on => (this.sale = saleConfig(on)));
   }
 }

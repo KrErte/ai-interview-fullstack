@@ -11,6 +11,8 @@ export interface ProfessionSummary {
 /** Optional features this server has configured (the AI comment needs an LLM API key). */
 export interface Features {
   aiComment: boolean;
+  /** FP-60: server billing flag, the single source of truth for the paywall and the sale terms. Missing = off. */
+  billingEnabled?: boolean;
 }
 
 /** SOC major group with the number of professions in it, for browsing. */

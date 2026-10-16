@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SaleConfig, saleConfig } from './legal-config';
@@ -221,13 +222,18 @@ import { WAIVER_LABEL, WAIVER_TEXT } from '../../models/billing.model';
   `,
   styleUrl: './legal.css'
 })
-export class TermsPageComponent {
+export class TermsPageComponent implements OnInit {
   /** Same constant as the paywall checkbox (FP-65: one versioned waiver text). */
   /** Terms of sale config; null hides the sale section (billing off or seller/VAT config missing). */
-  readonly sale: SaleConfig | null;
+  /** null while loading and when billing is off or the seller/VAT config is incomplete. */
+  sale: SaleConfig | null = null;
 
-  constructor(billingStatus: BillingStatusService) {
-    this.sale = saleConfig(billingStatus.serverBillingEnabled());
+  constructor(private billingStatus: BillingStatusService, private destroyRef: DestroyRef) {}
+
+  ngOnInit(): void {
+    // the general content renders at once; the sale content appears once /features has answered
+    this.billingStatus.billingEnabled().pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(on => (this.sale = saleConfig(on)));
   }
   readonly waiverText = WAIVER_TEXT;
   readonly waiverLabel = WAIVER_LABEL;

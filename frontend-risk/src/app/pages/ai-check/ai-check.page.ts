@@ -8,6 +8,7 @@ import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map,
 
 import { AiReadinessService, isGrandfathered, lockedResultView, roadmapTeaserLines, roadmapTeaserPhases } from '../../services/ai-readiness.service';
 import { BillingService, isPaymentRequired } from '../../services/billing.service';
+import { BillingStatusService } from '../../services/billing-status.service';
 import { saleConfig } from '../legal/legal-config';
 import { PaywallCardComponent } from '../../components/paywall-card/paywall-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
@@ -695,12 +696,15 @@ export class AiCheckPageComponent implements OnInit {
   /** The saved result on screen predates billing (isGrandfathered): shown as it is, never re-saved. */
   grandfathered = false;
   /**
-   * Paywall card and checkout: the server's billingEnabled (single source of truth) plus a complete seller/VAT
+   * Paywall card and checkout: the server's billingEnabled from /features (single source of truth) plus a complete seller/VAT
    * config, the same predicate as the /terms sale section. Otherwise a locked result shows the teaser and a note.
    */
-  saleReady(r: AssessmentResult): boolean {
-    return !!saleConfig(r.billingEnabled === true);
+  saleReady(_r: AssessmentResult): boolean {
+    return !!saleConfig(this.serverBillingEnabled);
   }
+
+  /** billingEnabled from GET /features; false until it answers, and on error or a missing value (fail closed). */
+  serverBillingEnabled = false;
   /** Show "Payment confirmed" only right after a purchase (?paid=1, resume flow) or once per tab session. */
   showPaymentConfirmed = false;
   private justPaid = false;
@@ -713,6 +717,7 @@ export class AiCheckPageComponent implements OnInit {
     private teams: TeamService,
     private analytics: AnalyticsService,
     private billing: BillingService,
+    private billingStatus: BillingStatusService,
     private route: ActivatedRoute,
     private router: Router,
     private destroyRef: DestroyRef
@@ -725,10 +730,12 @@ export class AiCheckPageComponent implements OnInit {
       questions: this.api.questions(),
       // browsing by field is optional; the test still works without it
       categories: this.api.categories().pipe(catchError(() => of([] as CategorySummary[]))),
-      features: this.api.features().pipe(catchError(() => of({ aiComment: false })))
+      // one cached /features request per app session, shared with /terms and /refund (BillingStatusService)
+      features: this.billingStatus.features()
     }).subscribe({
       next: ({ professions, questions, categories, features }) => {
-        this.aiCommentAvailable = features.aiComment;
+        this.aiCommentAvailable = features?.aiComment === true;
+        this.serverBillingEnabled = features?.billingEnabled === true;
         this.featured = professions;
         this.questions = questions;
         this.categories = categories;

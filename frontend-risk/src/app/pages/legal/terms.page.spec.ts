@@ -1,35 +1,43 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TermsPageComponent } from './terms.page';
 import { WAIVER_LABEL, WAIVER_TEXT, WAIVER_TEXT_VERSION } from '../../models/billing.model';
 import { environment } from '../../../environments/environment';
-import { FILLED_SALE_CONFIG, withSale } from './legal-test-config';
+import { FEATURES_URL, FILLED_SALE_CONFIG, withEnv } from './legal-test-config';
 
-function render(): HTMLElement {
-  TestBed.configureTestingModule({ imports: [TermsPageComponent], providers: [provideRouter([]), provideHttpClient()] });
+function setup() {
+  TestBed.configureTestingModule({
+    imports: [TermsPageComponent], providers: [provideRouter([]), provideHttpClient(), provideHttpClientTesting()]
+  });
   const f = TestBed.createComponent(TermsPageComponent);
   f.detectChanges();
-  return f.nativeElement as HTMLElement;
+  return { f, el: f.nativeElement as HTMLElement, http: TestBed.inject(HttpTestingController) };
 }
+/** Renders /terms and answers /features with body (or an error when body is 'error'). */
+function render(body: unknown): HTMLElement {
+  const { f, el, http } = setup();
+  const req = http.expectOne(FEATURES_URL);
+  expect(req.request.headers.has('Authorization')).toBeFalse();
+  if (body === 'error') req.flush(null, { status: 500, statusText: 'Server Error' }); else req.flush(body as object);
+  f.detectChanges();
+  return el;
+}
+const sale = (el: HTMLElement) => el.querySelector('[data-test="terms-of-sale"]');
 
 describe('TermsPageComponent', () => {
-  it('config empty: keeps the terms of use and hides the sale section', () => {
-    const el = render();
+  it('loading: general terms render at once, the sale section waits for /features', withEnv(FILLED_SALE_CONFIG, () => {
+    const { el } = setup();
     expect(el.textContent).toContain('What the test is, and what it is not');
-    expect(el.querySelector('[data-test="terms-of-sale"]')).toBeNull();
-  });
-
-  it('billing on but seller config missing: sale section stays hidden', withSale({}, true, () => {
-    expect(render().querySelector('[data-test="terms-of-sale"]')).toBeNull();
+    expect(sale(el)).toBeNull();
   }));
 
-  it('config filled: renders the sale section with config values and the shared waiver', withSale(FILLED_SALE_CONFIG, true, () => {
-    const el = render();
-    const sale = el.querySelector('[data-test="terms-of-sale"]')!;
-    expect(sale.textContent).toContain('Terms of sale – Personal AI roadmap');
-    expect(sale.textContent).toContain(environment.sellerName);
-    expect(sale.textContent).toContain('EE123456789');
+  it('billingEnabled true + config filled: sale section with config values and the shared waiver', withEnv(FILLED_SALE_CONFIG, () => {
+    const el = render({ aiComment: false, billingEnabled: true });
+    expect(sale(el)!.textContent).toContain('Terms of sale – Personal AI roadmap');
+    expect(sale(el)!.textContent).toContain(environment.sellerName);
+    expect(sale(el)!.textContent).toContain('EE123456789');
     expect(el.querySelector('[data-test="sale-price"]')!.textContent).toContain('EUR 19 incl. VAT');
     const w = el.querySelector('[data-test="terms-waiver"]')!.textContent!;
     expect(w).toContain(WAIVER_TEXT);
@@ -40,7 +48,21 @@ describe('TermsPageComponent', () => {
       .toBe('You keep your right of withdrawal until we have sent you the confirmation of your consent.');
   }));
 
-  it('config filled but server billing off (saved result says off, or none): sale section hidden', withSale(FILLED_SALE_CONFIG, false, () => {
-    expect(render().querySelector('[data-test="terms-of-sale"]')).toBeNull();
-  }));
+  for (const [name, body] of [
+    ['false', { aiComment: false, billingEnabled: false }],
+    ['missing', { aiComment: false }],
+    ['not a boolean', { aiComment: false, billingEnabled: 'true' }],
+    ['an error', 'error']
+  ] as const) {
+    it(`billingEnabled ${name}: sale section hidden (fail closed), terms of use kept`, withEnv(FILLED_SALE_CONFIG, () => {
+      const el = render(body);
+      expect(sale(el)).toBeNull();
+      expect(el.textContent).toContain('What the test is, and what it is not');
+    }));
+  }
+
+  it('billingEnabled true but seller config missing: sale section stays hidden', () => {
+    spyOn(console, 'error');
+    expect(sale(render({ aiComment: false, billingEnabled: true }))).toBeNull();
+  });
 });

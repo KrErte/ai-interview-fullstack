@@ -23,16 +23,5 @@ export function withEnv(values: Record<string, unknown>, fn: () => void): () => 
   };
 }
 
-/**
- * Env values plus the server's billingEnabled as /terms and /refund see it today (interim: the last saved /assess
- * result, see BillingStatusService).
- */
-export function withSale(values: Record<string, unknown>, serverBilling: boolean, fn: () => void): () => void {
-  return withEnv(values, () => {
-    localStorage.setItem('ai_readiness_last_result', JSON.stringify({
-      professionId: 'onet-1', professionName: 'Accountant', billingMarker: 'v1', billingEnabled: serverBilling,
-      roadmapLocked: serverBilling, generalRoadmap: [], professionRoadmap: [], tasks: []
-    }));
-    try { fn(); } finally { localStorage.removeItem('ai_readiness_last_result'); }
-  });
-}
+/** The anonymous /features URL that BillingStatusService reads billingEnabled from. */
+export const FEATURES_URL = `${environment.apiBaseUrl}/api/ai-readiness/features`;

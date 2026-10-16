@@ -27,6 +27,8 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
   let fixture: ComponentFixture<AiCheckPageComponent>;
   let http: HttpTestingController;
   let queryParams: Record<string, string>;
+  /** billingEnabled in the /features answer (the card's single source of truth). */
+  let serverBilling: boolean | undefined;
 
   let savedEnv: Record<string, unknown>;
   const env = environment as unknown as Record<string, unknown>;
@@ -37,6 +39,7 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     localStorage.clear();
     sessionStorage.clear();
     queryParams = {};
+    serverBilling = true;
     TestBed.configureTestingModule({
       imports: [AiCheckPageComponent],
       providers: [
@@ -67,7 +70,8 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     http.expectOne(`${API}/professions`).flush([]);
     http.expectOne(`${API}/questions`).flush([]);
     http.expectOne(`${API}/professions/categories`).flush([]);
-    http.expectOne(`${API}/features`).flush({ aiComment: false });
+    // cached per app session: a second boot in the same spec (a "reload") makes no new request
+    http.match(`${API}/features`).forEach(r => r.flush({ aiComment: false, billingEnabled: serverBilling }));
     fixture.detectChanges();
     return fixture.nativeElement as HTMLElement;
   }
@@ -302,6 +306,29 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     expect(el.textContent).not.toContain('Pay €19');
     expect(el.textContent).not.toContain('Learn prompts');
     expect(el.textContent).not.toContain('General AI learning path');
+  });
+
+  for (const [name, flag] of [['false', false], ['missing', undefined]] as const) {
+    it(`/features billingEnabled ${name} + config complete: no card, no Pay button (fail closed)`, () => {
+      serverBilling = flag;
+      const el = show(result({ billingEnabled: true, roadmapLocked: true, roadmapTeaser: ['Phase 1: AI basics'] }));
+      expect(el.querySelector('app-paywall-card')).toBeNull();
+      expect(el.querySelector('[data-test="roadmap-soon"]')).not.toBeNull();
+      expect(el.textContent).not.toContain('Learn prompts');
+    });
+  }
+
+  it('/features error + config complete: no card (fail closed), the test still loads', () => {
+    fixture = TestBed.createComponent(AiCheckPageComponent);
+    fixture.detectChanges();
+    http.expectOne(`${API}/professions`).flush([]);
+    http.expectOne(`${API}/questions`).flush([]);
+    http.expectOne(`${API}/professions/categories`).flush([]);
+    http.expectOne(`${API}/features`).flush(null, { status: 500, statusText: 'Server Error' });
+    fixture.componentInstance.result = result({ billingEnabled: true, roadmapLocked: true });
+    fixture.componentInstance.step = 'result';
+    fixture.detectChanges();
+    expect((fixture.nativeElement as HTMLElement).querySelector('app-paywall-card')).toBeNull();
   });
 
   it('server billing on + legal config complete: the card with the Pay button', () => {
