@@ -49,8 +49,10 @@ const SCALE = [
 const FIRST_STEP_MIN_AUTOMATION = 40;
 
 export interface FirstStep {
-  /** The task with the most automatable time, if any task passes FIRST_STEP_MIN_AUTOMATION. */
+  /** The unmarked task with the most automatable time, if any passes FIRST_STEP_MIN_AUTOMATION. */
   task: TaskExposure | null;
+  /** Every task that would qualify is marked "I already do this with AI"; no task is suggested. */
+  allMarked: boolean;
   firstItem: string | null;
   tool: string | null;
   project: string | null;
@@ -58,18 +60,21 @@ export interface FirstStep {
 
 /**
  * One concrete start: the task with the most automatable time (share × automation), the first
- * suggested tool and the first roadmap project. Null when there is neither a task nor a roadmap.
+ * suggested tool and the first roadmap project. Tasks the user marked "I already do this with AI"
+ * are skipped; the marks never change the score. Null when there is neither a task nor a roadmap.
  */
-export function firstStep(r: AssessmentResult): FirstStep | null {
-  const task = (r.tasks ?? [])
-    .filter(t => t.automationPercent >= FIRST_STEP_MIN_AUTOMATION)
+export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new Set()): FirstStep | null {
+  const candidates = (r.tasks ?? []).filter(t => t.automationPercent >= FIRST_STEP_MIN_AUTOMATION);
+  const task = candidates
+    .filter(t => !marked.has(t.name))
     .reduce<TaskExposure | null>((best, t) =>
       !best || t.share * t.automationPercent > best.share * best.automationPercent ? t : best, null);
+  const allMarked = candidates.length > 0 && !task;
   const firstItem = r.professionRoadmap?.[0]?.items?.[0] ?? null;
-  if (!task && !firstItem) {
+  if (!task && !allMarked && !firstItem) {
     return null;
   }
-  return { task, firstItem, tool: r.aiTools?.[0] ?? null, project: r.professionRoadmap?.[0]?.project ?? null };
+  return { task, allMarked, firstItem, tool: r.aiTools?.[0] ?? null, project: r.professionRoadmap?.[0]?.project ?? null };
 }
 
 @Component({
@@ -310,15 +315,27 @@ export function firstStep(r: AssessmentResult): FirstStep | null {
         <div class="space-y-5 lg:col-span-8">
           <div class="rounded-xl bg-surface-2 p-5">
             <p class="kicker">This week</p>
-            <ng-container *ngIf="s.task; else roadmapStart">
+            <ng-container *ngIf="s.task; else noTask">
               <p class="mt-2 text-[17px] font-semibold leading-snug">Do this task once with AI help: {{ s.task.name }}</p>
               <p class="num mt-2 font-mono text-[12px] text-faint">{{ s.task.share }}% of the week &middot; {{ s.task.automationPercent }}% automatable</p>
               <p *ngIf="s.tool" class="mt-3 text-[15px] leading-relaxed text-muted">A tool to try: <span class="font-semibold text-fg">{{ s.tool }}</span>. Check the result yourself before you use it.</p>
+              <button (click)="markDoneWithAi(r, s.task.name)" class="link mt-3 text-[14px] text-muted print:hidden">
+                I already do this with AI
+              </button>
             </ng-container>
-            <ng-template #roadmapStart>
-              <p class="mt-2 text-[17px] font-semibold leading-snug">{{ s.firstItem }}</p>
-              <p class="mt-3 text-[15px] leading-relaxed text-muted">Most of your work stays hands-on, so start where AI helps around it: records, planning and learning.</p>
+            <ng-template #noTask>
+              <p *ngIf="s.allMarked" class="mt-2 text-[17px] font-semibold leading-snug">
+                You already use AI for every task where it helps most; keep going with the roadmap below.
+              </p>
+              <ng-container *ngIf="!s.allMarked">
+                <p class="mt-2 text-[17px] font-semibold leading-snug">{{ s.firstItem }}</p>
+                <p class="mt-3 text-[15px] leading-relaxed text-muted">Most of your work stays hands-on, so start where AI helps around it: records, planning and learning.</p>
+              </ng-container>
             </ng-template>
+            <p *ngIf="aiMarks(r).size" class="mt-4 flex flex-wrap items-center gap-x-3 text-[13px] text-faint print:hidden">
+              <span>{{ aiMarks(r).size }} {{ aiMarks(r).size === 1 ? 'task' : 'tasks' }} marked as already done with AI. This does not change your score.</span>
+              <button (click)="clearAiMarks(r)" class="link text-muted">Clear</button>
+            </p>
           </div>
           <div *ngIf="s.project" class="rounded-xl border border-line p-5">
             <p class="kicker">Then your first project</p>
@@ -907,7 +924,28 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   firstStep(r: AssessmentResult): FirstStep | null {
-    return firstStep(r);
+    return firstStep(r, this.aiMarks(r));
+  }
+
+  /** Tasks marked "I already do this with AI" for the profession on screen; used only by the first-step box. */
+  private marks: { professionId: string; names: Set<string> } | null = null;
+
+  aiMarks(r: AssessmentResult): Set<string> {
+    if (this.marks?.professionId !== r.professionId) {
+      this.marks = { professionId: r.professionId, names: new Set(this.api.loadAiMarks(r.professionId)) };
+    }
+    return this.marks.names;
+  }
+
+  markDoneWithAi(r: AssessmentResult, taskName: string): void {
+    const names = this.aiMarks(r);
+    names.add(taskName);
+    this.api.saveAiMarks(r.professionId, [...names]);
+  }
+
+  clearAiMarks(r: AssessmentResult): void {
+    this.aiMarks(r).clear();
+    this.api.saveAiMarks(r.professionId, []);
   }
 
   /**

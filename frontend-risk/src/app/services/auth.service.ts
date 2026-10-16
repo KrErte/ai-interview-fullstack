@@ -36,7 +36,8 @@ export class AuthService {
   private readonly TEST_DATA_KEYS = [
     'ai_readiness_last_result',
     'ai_readiness_last_answers',
-    'ai_readiness_roadmap_progress'
+    'ai_readiness_roadmap_progress',
+    'ai_readiness_ai_marks'
   ];
   private readonly baseUrl = `${environment.apiBaseUrl}/auth`;
 
