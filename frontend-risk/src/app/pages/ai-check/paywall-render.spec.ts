@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
@@ -356,16 +356,70 @@ describe('AiCheckPageComponent paid roadmap rendering (FP-63)', () => {
     expect(el.querySelector('[data-test="payment-confirmed"]')).toBeNull();
   });
 
-  it('"Payment confirmed" shows right after a purchase (?paid=1) even later in the session', () => {
+  const ENT_URL = `${environment.apiBaseUrl}/api/billing/entitlement`;
+  const PAID_FULL = { generalRoadmap: [], professionRoadmap: [{ title: 'Paid phase', items: ['p'], project: 'pp' }], totalWeeks: 3 };
+
+  it('"Payment confirmed" shows right after a purchase (?paid=1) even later in the session', fakeAsync(() => {
     sessionStorage.setItem('ai_readiness_payment_confirmed_shown', '1');
     queryParams = { paid: '1' };
     const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
     const el = show(r);
     fixture.componentInstance.loadFullRoadmap(r);
-    http.expectOne(`${environment.apiBaseUrl}/api/billing/entitlement`).flush({ roadmap: true });
-    http.expectOne(`${API}/roadmap`).flush({ generalRoadmap: [], professionRoadmap: [{ title: 'Paid phase', items: ['p'], project: 'pp' }], totalWeeks: 3 });
+    tick(0);
+    http.expectOne(ENT_URL).flush({ roadmap: true });
+    http.expectOne(`${API}/roadmap`).flush(PAID_FULL);
     fixture.detectChanges();
     expect(el.querySelector('[data-test="payment-confirmed"]')).not.toBeNull();
+  }));
+
+  it('resume flow after payment polls every 1 s and unlocks only on roadmap:true', fakeAsync(() => {
+    queryParams = { paid: '1' };
+    const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
+    const el = show(r);
+    fixture.componentInstance.loadFullRoadmap(r);
+    tick(0);
+    http.expectOne(ENT_URL).flush({ roadmap: false });
+    tick(1000);
+    http.expectOne(ENT_URL).flush({ roadmap: false });
+    http.expectNone(`${API}/roadmap`);
+    tick(1000);
+    http.expectOne(ENT_URL).flush({ roadmap: true });
+    http.expectOne(`${API}/roadmap`).flush(PAID_FULL);
+    fixture.detectChanges();
+    expect(el.textContent).toContain('Paid phase');
+    tick(20000);
+    http.expectNone(ENT_URL);
+  }));
+
+  it('resume flow: no roadmap:true within 15 s shows "unlocking can take a minute" with a Retry button that polls again', fakeAsync(() => {
+    queryParams = { paid: '1' };
+    const r = result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] });
+    const el = show(r);
+    fixture.componentInstance.loadFullRoadmap(r);
+    for (let i = 0; i <= 15; i++) {
+      tick(i === 0 ? 0 : 1000);
+      http.expectOne(ENT_URL).flush({ roadmap: false });
+    }
+    fixture.detectChanges();
+    const pending = el.querySelector('[data-test="payment-pending"]')!;
+    expect(pending.textContent).toContain('Payment received, unlocking can take a minute.');
+    expect(el.querySelector('app-paywall-card')).not.toBeNull();
+    const retry = el.querySelector('[data-test="pending-retry"]') as HTMLButtonElement;
+    expect(retry.tagName).toBe('BUTTON');
+    retry.click();
+    tick(0);
+    http.expectOne(ENT_URL).flush({ roadmap: true });
+    http.expectOne(`${API}/roadmap`).flush(PAID_FULL);
+    fixture.detectChanges();
+    expect(el.querySelector('[data-test="payment-pending"]')).toBeNull();
+    expect(el.textContent).toContain('Paid phase');
+  }));
+
+  it('cancel return (?canceled=1): neutral note, paywall still offered', () => {
+    queryParams = { canceled: '1' };
+    const el = show(result({ billingEnabled: true, roadmapLocked: true, generalRoadmap: [], professionRoadmap: [] }));
+    expect(el.querySelector('[data-test="payment-cancelled"]')!.textContent).toContain('Payment cancelled. Nothing was charged.');
+    expect(el.querySelector('app-paywall-card')).not.toBeNull();
   });
 
   it('a paying user who re-takes the test keeps their ticks (progress is never cleared on save)', () => {
