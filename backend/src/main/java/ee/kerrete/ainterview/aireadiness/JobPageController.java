@@ -72,6 +72,7 @@ public class JobPageController {
         int score = page.result().taskExposureScore();
         response.setHeader("Cache-Control", CACHE);
         model.addAttribute("page", page);
+        model.addAttribute("jsonLd", pages.jsonLd(page));
         model.addAttribute("band", band);
         model.addAttribute("canonical", pages.url("/jobs/" + page.slug()));
         model.addAttribute("title", "Will AI replace " + profession.name() + "? AI exposure " + score + "/100 | careerrisk.ee");

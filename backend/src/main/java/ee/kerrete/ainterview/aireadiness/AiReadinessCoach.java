@@ -2,8 +2,10 @@ package ee.kerrete.ainterview.aireadiness;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.kerrete.ainterview.ai.LlmRateLimiter;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +29,7 @@ public class AiReadinessCoach {
 
     private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate;
+    private final LlmRateLimiter rateLimiter;
 
     @Value("${openai.api-key:${OPENAI_API_KEY:}}")
     private String apiKey;
@@ -37,8 +40,15 @@ public class AiReadinessCoach {
     @Value("${openai.model:gpt-4.1-mini}")
     private String model;
 
+    /** Tests that do not exercise the rate limit. */
     public AiReadinessCoach(ObjectMapper objectMapper) {
+        this(objectMapper, LlmRateLimiter.unlimited());
+    }
+
+    @Autowired
+    public AiReadinessCoach(ObjectMapper objectMapper, LlmRateLimiter rateLimiter) {
         this.objectMapper = objectMapper;
+        this.rateLimiter = rateLimiter;
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
         factory.setConnectTimeout(5_000);
         factory.setReadTimeout(25_000);
@@ -51,6 +61,10 @@ public class AiReadinessCoach {
 
     public Optional<String> personalNote(AssessmentResult result, Map<String, String> answerLabels) {
         if (!isEnabled()) {
+            return Optional.empty();
+        }
+        if (!rateLimiter.tryAcquire(LlmRateLimiter.clientKey())) {
+            log.info("AI comment skipped: rate limit");
             return Optional.empty();
         }
         try {

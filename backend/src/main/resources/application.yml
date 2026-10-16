@@ -33,6 +33,10 @@ app:
   jwt:
     # FP-28: JWT signing key. Unset outside prod -> random key per run (logged as such, key never logged).
     secret: ${JWT_SECRET:}
+  llm:
+    # Public assess (personalize) and the legacy OpenAI client share this cap.
+    per-client-per-hour: 8
+    global-per-hour: 60
 
 openai:
   base-url: https://api.openai.com/v1

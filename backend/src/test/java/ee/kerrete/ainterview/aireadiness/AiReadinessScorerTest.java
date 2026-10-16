@@ -103,6 +103,55 @@ class AiReadinessScorerTest {
         assertThrows(IllegalArgumentException.class, () -> scorer.score(dev, Map.of("nope", "lt20")));
     }
 
+    private static Profession twoTasks() {
+        return new Profession("x", "X", "c",
+                List.of(new ProfessionTask("write", 50, 0.8), new ProfessionTask("meet", 50, 0.2)),
+                List.of(), List.of(), List.of(), List.of());
+    }
+
+    private static final Map<String, String> SOME_ANSWERS = Map.of("routine", "lt20", "people", "lot", "ai_usage", "daily");
+
+    @Test
+    void missingTaskSharesKeepTodaysScore() {
+        for (Profession p : catalog.professions()) {
+            AssessmentResult today = scorer.score(p, SOME_ANSWERS);
+            AssessmentResult withNull = scorer.score(p, SOME_ANSWERS, null);
+            assertEquals(today, withNull, p.id());
+        }
+    }
+
+    @Test
+    void validTaskSharesChangeExposureButNotTheAdjustment() {
+        AssessmentResult typical = scorer.score(twoTasks(), SOME_ANSWERS);
+        AssessmentResult mine = scorer.score(twoTasks(), SOME_ANSWERS, Map.of("write", 100, "meet", 0));
+
+        assertEquals(50, typical.taskExposureScore());
+        assertEquals(80, mine.taskExposureScore());
+        assertEquals(typical.personalAdjustment(), mine.personalAdjustment());
+        assertEquals(typical.readinessScore(), mine.readinessScore());
+        assertEquals(mine.taskExposureScore() + mine.personalAdjustment(), mine.replaceabilityScore());
+        assertEquals(100, mine.tasks().stream().filter(t -> t.name().equals("write")).findFirst().orElseThrow().share());
+    }
+
+    @Test
+    void overriddenSharesThatEqualTheCatalogGiveTheSameResult() {
+        Profession dev = catalog.profession("software-developer").orElseThrow();
+        Map<String, Integer> catalogShares = new java.util.HashMap<>();
+        dev.tasks().forEach(t -> catalogShares.put(t.name(), t.share()));
+        assertEquals(scorer.score(dev, SOME_ANSWERS), scorer.score(dev, SOME_ANSWERS, catalogShares));
+    }
+
+    @Test
+    void invalidTaskSharesAreRejected() {
+        Profession p = twoTasks();
+        assertThrows(IllegalArgumentException.class, () -> scorer.score(p, Map.of(), Map.of("write", 60, "meet", 60)));
+        assertThrows(IllegalArgumentException.class, () -> scorer.score(p, Map.of(), Map.of("write", 50, "nope", 50)));
+        assertThrows(IllegalArgumentException.class, () -> scorer.score(p, Map.of(), Map.of("write", 100)));
+        assertThrows(IllegalArgumentException.class, () -> scorer.score(p, Map.of(), Map.of("write", 101, "meet", -1)));
+        assertThrows(IllegalArgumentException.class,
+                () -> scorer.score(p, Map.of(), Map.of("write", 50, "meet", 50, "extra", 0)));
+    }
+
     @Test
     void bandsHaveExpectedBoundaries() {
         assertEquals(RiskBand.LOW, AiReadinessScorer.band(29));

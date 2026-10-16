@@ -21,6 +21,7 @@ export class AiReadinessService {
   private readonly RESULT_KEY = 'ai_readiness_last_result';
   private readonly ANSWERS_KEY = 'ai_readiness_last_answers';
   private readonly PROGRESS_KEY = 'ai_readiness_roadmap_progress';
+  private readonly AI_MARKS_KEY = 'ai_readiness_ai_marks';
 
   constructor(private http: HttpClient) {}
 
@@ -59,14 +60,23 @@ export class AiReadinessService {
   }
 
   /**
-   * Remembers the result and, when given, the answers behind it, so a saved result can later be
-   * recalculated with the current catalog (see loadLastAnswers).
+   * Remembers the result and, when given, the answers (and the user's own task shares) behind it,
+   * so a saved result can later be recalculated with the current catalog (see loadLastAnswers).
    */
-  saveLastResult(result: AssessmentResult, answers?: Record<string, string>): void {
+  saveLastResult(result: AssessmentResult, answers?: Record<string, string>, taskShares?: Record<string, number>,
+                 teamCode?: string): void {
     try {
-      localStorage.setItem(this.RESULT_KEY, JSON.stringify(result));
+      // the team status (with its edit token) belongs to TeamService storage, not to the saved result
+      const { team: _team, ...withoutTeam } = result;
+      localStorage.setItem(this.RESULT_KEY, JSON.stringify(withoutTeam));
       if (answers) {
         const saved: SavedAnswers = { professionId: result.professionId, answers };
+        if (taskShares) {
+          saved.taskShares = taskShares;
+        }
+        if (teamCode) {
+          saved.teamCode = teamCode;
+        }
         localStorage.setItem(this.ANSWERS_KEY, JSON.stringify(saved));
       }
     } catch {
@@ -136,9 +146,35 @@ export class AiReadinessService {
     };
   }
 
-  private readProgress(): Record<string, string[]> {
+  /**
+   * Tasks the user marked "I already do this with AI", per profession. They only steer the
+   * first-step suggestion and never change the score.
+   */
+  loadAiMarks(professionId: string): string[] {
+    return this.readMap(this.AI_MARKS_KEY)[professionId] ?? [];
+  }
+
+  saveAiMarks(professionId: string, taskNames: string[]): void {
+    const all = this.readMap(this.AI_MARKS_KEY);
+    if (taskNames.length) {
+      all[professionId] = taskNames;
+    } else {
+      delete all[professionId];
+    }
     try {
-      const raw = localStorage.getItem(this.PROGRESS_KEY);
+      localStorage.setItem(this.AI_MARKS_KEY, JSON.stringify(all));
+    } catch {
+      // storage unavailable – marks last only for this visit
+    }
+  }
+
+  private readProgress(): Record<string, string[]> {
+    return this.readMap(this.PROGRESS_KEY);
+  }
+
+  private readMap(key: string): Record<string, string[]> {
+    try {
+      const raw = localStorage.getItem(key);
       const parsed = raw ? JSON.parse(raw) : null;
       return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
     } catch {

@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, of, switchMap } from 'rxjs';
+import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
 
 import { AiReadinessService } from '../../services/ai-readiness.service';
 import { AnalyticsService } from '../../services/analytics.service';
 import {
+  AssessmentRequest,
   AssessmentResult,
   CategorySummary,
   ProfessionSummary,
@@ -17,6 +18,15 @@ import {
   TaskExposure
 } from '../../models/ai-readiness.model';
 import { buildReminderIcs, nextSessionStart } from './reminder';
+import { previewResult, rescaleShares, sharesOf, TaskShares } from './task-shares';
+import { TeamService } from '../../services/team.service';
+import { TeamStatus } from '../../models/team.model';
+import { buildShareFragment, parseShareFragment, SharedResult } from './share-link';
+
+function sameShares(a: TaskShares, b: TaskShares): boolean {
+  const keys = Object.keys(a);
+  return keys.length === Object.keys(b).length && keys.every(k => a[k] === b[k]);
+}
 
 type Step = 'profession' | 'questions' | 'loading' | 'result';
 
@@ -42,8 +52,10 @@ const SCALE = [
 const FIRST_STEP_MIN_AUTOMATION = 40;
 
 export interface FirstStep {
-  /** The task with the most automatable time, if any task passes FIRST_STEP_MIN_AUTOMATION. */
+  /** The unmarked task with the most automatable time, if any passes FIRST_STEP_MIN_AUTOMATION. */
   task: TaskExposure | null;
+  /** Every task that would qualify is marked "I already do this with AI"; no task is suggested. */
+  allMarked: boolean;
   firstItem: string | null;
   tool: string | null;
   project: string | null;
@@ -51,18 +63,21 @@ export interface FirstStep {
 
 /**
  * One concrete start: the task with the most automatable time (share × automation), the first
- * suggested tool and the first roadmap project. Null when there is neither a task nor a roadmap.
+ * suggested tool and the first roadmap project. Tasks the user marked "I already do this with AI"
+ * are skipped; the marks never change the score. Null when there is neither a task nor a roadmap.
  */
-export function firstStep(r: AssessmentResult): FirstStep | null {
-  const task = (r.tasks ?? [])
-    .filter(t => t.automationPercent >= FIRST_STEP_MIN_AUTOMATION)
+export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new Set()): FirstStep | null {
+  const candidates = (r.tasks ?? []).filter(t => t.automationPercent >= FIRST_STEP_MIN_AUTOMATION);
+  const task = candidates
+    .filter(t => !marked.has(t.name))
     .reduce<TaskExposure | null>((best, t) =>
       !best || t.share * t.automationPercent > best.share * best.automationPercent ? t : best, null);
+  const allMarked = candidates.length > 0 && !task;
   const firstItem = r.professionRoadmap?.[0]?.items?.[0] ?? null;
-  if (!task && !firstItem) {
+  if (!task && !allMarked && !firstItem) {
     return null;
   }
-  return { task, firstItem, tool: r.aiTools?.[0] ?? null, project: r.professionRoadmap?.[0]?.project ?? null };
+  return { task, allMarked, firstItem, tool: r.aiTools?.[0] ?? null, project: r.professionRoadmap?.[0]?.project ?? null };
 }
 
 @Component({
@@ -73,6 +88,22 @@ export function firstStep(r: AssessmentResult): FirstStep | null {
     <div *ngIf="error" class="mb-8 rounded-xl border border-band-very-high bg-surface px-4 py-3 text-[15px] text-band-very-high" role="alert">
       {{ error }}
     </div>
+
+    <!-- Team invite (/ai-test?team=CODE): shown before and during the test -->
+    <div *ngIf="team && (step === 'profession' || step === 'questions')"
+         class="card mb-8 border-l-4 !border-l-accent p-5 text-[15px] leading-relaxed" role="note">
+      <ng-container *ngIf="!team.full">
+        Your result is added anonymously to <span class="font-semibold text-fg">{{ team.name }}</span>.
+        Your employer sees only totals for groups of 5 or more people, never your answers.
+      </ng-container>
+      <ng-container *ngIf="team.full">
+        <span class="font-semibold text-fg">{{ team.name }}</span> is full, so your answers will not be added.
+        You can still take the test and see your own result.
+      </ng-container>
+    </div>
+    <p *ngIf="teamLinkInvalid && (step === 'profession' || step === 'questions')" class="mb-8 text-[15px] text-muted" role="note">
+      This team link is not valid any more, so your answers will not be added to a team. The test works as usual.
+    </p>
 
     <!-- STEP 1: profession -->
     <section *ngIf="step === 'profession'">
@@ -188,7 +219,7 @@ export function firstStep(r: AssessmentResult): FirstStep | null {
           </div>
 
           <label *ngIf="isLastQuestion() && aiCommentAvailable" class="mt-8 flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-muted">
-            <input type="checkbox" [(ngModel)]="personalize" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]" />
+            <input type="checkbox" [(ngModel)]="personalize" (ngModelChange)="trackAiComment($event)" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]" />
             <span>Add an AI-written comment. Your answers are sent to a language model (OpenAI) without your name or email. The score does not depend on it. <a routerLink="/privacy" class="underline hover:text-fg">Privacy</a></span>
           </label>
 
@@ -219,6 +250,11 @@ export function firstStep(r: AssessmentResult): FirstStep | null {
         <p *ngIf="savedResultOutdated" class="mt-4 flex flex-wrap items-center gap-3 text-[15px] text-muted print:hidden">
           This result was saved before the plans were updated.
           <button (click)="restart()" class="link text-accent">Take the test again for the latest plan</button>
+        </p>
+        <p *ngIf="teamNotice" class="mt-4 text-[15px] text-muted print:hidden" role="status">{{ teamNotice }}</p>
+        <p *ngIf="sharedView" class="mt-4 flex flex-wrap items-center gap-3 text-[15px] text-muted print:hidden" role="note">
+          This is a shared result. Nothing from it is saved in your browser.
+          <button (click)="restart()" class="link text-accent">Take the test yourself</button>
         </p>
       </header>
 
@@ -303,15 +339,27 @@ export function firstStep(r: AssessmentResult): FirstStep | null {
         <div class="space-y-5 lg:col-span-8">
           <div class="rounded-xl bg-surface-2 p-5">
             <p class="kicker">This week</p>
-            <ng-container *ngIf="s.task; else roadmapStart">
+            <ng-container *ngIf="s.task; else noTask">
               <p class="mt-2 text-[17px] font-semibold leading-snug">Do this task once with AI help: {{ s.task.name }}</p>
               <p class="num mt-2 font-mono text-[12px] text-faint">{{ s.task.share }}% of the week &middot; {{ s.task.automationPercent }}% automatable</p>
               <p *ngIf="s.tool" class="mt-3 text-[15px] leading-relaxed text-muted">A tool to try: <span class="font-semibold text-fg">{{ s.tool }}</span>. Check the result yourself before you use it.</p>
+              <button (click)="markDoneWithAi(r, s.task.name)" class="link mt-3 text-[14px] text-muted print:hidden">
+                I already do this with AI
+              </button>
             </ng-container>
-            <ng-template #roadmapStart>
-              <p class="mt-2 text-[17px] font-semibold leading-snug">{{ s.firstItem }}</p>
-              <p class="mt-3 text-[15px] leading-relaxed text-muted">Most of your work stays hands-on, so start where AI helps around it: records, planning and learning.</p>
+            <ng-template #noTask>
+              <p *ngIf="s.allMarked" class="mt-2 text-[17px] font-semibold leading-snug">
+                You already use AI for every task where it helps most; keep going with the roadmap below.
+              </p>
+              <ng-container *ngIf="!s.allMarked">
+                <p class="mt-2 text-[17px] font-semibold leading-snug">{{ s.firstItem }}</p>
+                <p class="mt-3 text-[15px] leading-relaxed text-muted">Most of your work stays hands-on, so start where AI helps around it: records, planning and learning.</p>
+              </ng-container>
             </ng-template>
+            <p *ngIf="aiMarks(r).size" class="mt-4 flex flex-wrap items-center gap-x-3 text-[13px] text-faint print:hidden">
+              <span>{{ aiMarks(r).size }} {{ aiMarks(r).size === 1 ? 'task' : 'tasks' }} marked as already done with AI. This does not change your score.</span>
+              <button (click)="clearAiMarks(r)" class="link text-muted">Clear</button>
+            </p>
           </div>
           <div *ngIf="s.project" class="rounded-xl border border-line p-5">
             <p class="kicker">Then your first project</p>
@@ -331,18 +379,33 @@ export function firstStep(r: AssessmentResult): FirstStep | null {
           <p class="font-mono text-sm text-accent">02</p>
           <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Which tasks AI can take on</h2>
           <p class="mt-3 text-[15px] leading-relaxed text-muted">Typical tasks in this profession, their share of working time, and estimated automation with today's tools.</p>
+          <p class="mt-3 text-[15px] leading-relaxed text-muted print:hidden">
+            Your week is not the typical one? Drag a share to match it. Automation stays the same, and the other
+            tasks adjust so the week still adds up to 100%. Your answers still set the adjustment.
+          </p>
+          <p *ngIf="customShares" class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] print:hidden">
+            <span class="kicker !text-accent">Your week</span>
+            <button *ngIf="canRecalculate(r)" (click)="resetShares(r)" class="link text-muted">Reset to the typical week</button>
+          </p>
         </div>
         <div class="lg:col-span-8">
           <div class="kicker hidden grid-cols-[minmax(0,1fr)_5rem_10rem_3rem] gap-4 border-b border-line pb-3 sm:grid">
             <span>Task</span><span class="text-right">Of week</span><span>Automatable</span><span></span>
           </div>
-          <div *ngFor="let t of visibleTasks(r); let i = index"
+          <div *ngFor="let t of visibleTasks(r); let i = index; trackBy: trackTask"
                class="grid grid-cols-[minmax(0,1fr)_3rem] items-center gap-x-4 gap-y-2 border-b border-line py-4 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_5rem_10rem_3rem]">
-            <p class="text-[15px] leading-snug">
-              {{ t.name }}
-              <span *ngIf="t.observedUse" class="observed-pill" title="People already use AI for this task at work (Anthropic Economic Index, 2025 usage data).">AI already used</span>
-              <span class="num ml-1 font-mono text-[12px] text-faint sm:hidden">{{ t.share }}% of week</span>
-            </p>
+            <div class="min-w-0">
+              <p class="text-[15px] leading-snug">
+                {{ t.name }}
+                <span *ngIf="t.observedUse" class="observed-pill" title="People already use AI for this task at work (Anthropic Economic Index, 2025 usage data).">AI already used</span>
+                <span class="num ml-1 font-mono text-[12px] text-faint sm:hidden">{{ t.share }}% of week</span>
+              </p>
+              <input type="range" min="0" max="100" step="1" class="share-slider mt-2 w-full max-w-sm accent-[#c6f432] print:hidden"
+                     [value]="t.share" [disabled]="r.tasks.length < 2"
+                     (input)="onShareInput(r, t.name, $any($event.target).valueAsNumber)"
+                     [attr.aria-label]="'Share of your week: ' + t.name"
+                     [attr.aria-valuetext]="t.share + '% of your week'" />
+            </div>
             <span class="num hidden text-right font-mono text-[13px] text-muted sm:block">{{ t.share }}%</span>
             <div class="order-last col-span-2 h-2 overflow-hidden rounded-full bg-line sm:order-none sm:col-span-1">
               <div class="grow-x h-full rounded-full" [style.--i]="i" [style.width.%]="t.automationPercent" [style.background]="taskColor(t.automationPercent)"></div>
@@ -479,10 +542,25 @@ export function firstStep(r: AssessmentResult): FirstStep | null {
         </p>
       </footer>
 
+      <p class="text-[14px] text-muted print:hidden">
+        Want this for your team? <a routerLink="/teams" class="link text-accent">Anonymous team report &rarr;</a>
+      </p>
+
       <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-end print:hidden">
         <button (click)="restart()" class="btn-ghost">Take the test again</button>
+        <button *ngIf="shareUrl(r) as url" (click)="copyShareLink(url)" class="btn-ghost">
+          {{ shareCopied ? 'Link copied' : 'Copy share link' }}
+        </button>
         <button (click)="print()" class="btn-accent">Print / save as PDF</button>
       </div>
+      <div *ngIf="shareFallback" class="print:hidden">
+        <p class="kicker">Share link</p>
+        <input readonly [value]="shareFallback" class="field mt-2 font-mono !text-[13px]" aria-label="Share link" />
+      </div>
+      <p class="text-[13px] leading-relaxed text-faint print:hidden">
+        The share link holds your profession, answers and task shares, so anyone with it sees this result. It is not
+        saved on our server; opening it calculates the result again. The AI comment is not included.
+      </p>
     </article>
   `
 })
@@ -517,13 +595,33 @@ export class AiCheckPageComponent implements OnInit {
   personalNoteRequested = false;
   /** The open result was saved without its answers, so it may show an older plan. */
   savedResultOutdated = false;
+  /** The task shares on screen are the user's own week, not the catalog's typical week. */
+  customShares = false;
+  private readonly sharesRequest$ = new Subject<AssessmentRequest>();
 
   result: AssessmentResult | null = null;
   lastResult: AssessmentResult | null = null;
   expanded: Record<string, boolean> = {};
 
+  /** Team from an invite link (/ai-test?team=CODE). */
+  team: { code: string; name: string; full: boolean } | null = null;
+  teamLinkInvalid = false;
+  /** What happened to the anonymous team answer, shown under the result title. */
+  teamNotice: string | null = null;
+  /** "shares-first-move" is sent once per result on screen. */
+  private slidersMoved = false;
+  /** Queries already reported as empty, so each is sent once. */
+  private readonly emptySearches = new Set<string>();
+
+  /** Showing someone else's result from a share link: nothing is saved in this browser. */
+  sharedView = false;
+  shareCopied = false;
+  /** The share link, shown in a field when the clipboard is not available. */
+  shareFallback: string | null = null;
+
   constructor(
     private api: AiReadinessService,
+    private teams: TeamService,
     private analytics: AnalyticsService,
     private route: ActivatedRoute,
     private router: Router,
@@ -546,6 +644,13 @@ export class AiCheckPageComponent implements OnInit {
         this.categories = categories;
         this.loadingCatalog = false;
         this.preselectFromLink();
+        // a share link opened while this page is already showing (only the #fragment changes)
+        this.route.fragment.pipe(skip(1), takeUntilDestroyed(this.destroyRef)).subscribe(fragment => {
+          const shared = parseShareFragment(fragment);
+          if (shared) {
+            this.openShared(shared);
+          }
+        });
       },
       error: () => {
         this.loadingCatalog = false;
@@ -564,11 +669,45 @@ export class AiCheckPageComponent implements OnInit {
     ).subscribe(results => {
       this.results = results;
       this.searching = false;
+      this.trackEmptySearch(results);
+    });
+
+    // Share sliders: one request after ~300 ms of quiet; switchMap drops an older answer. A reply
+    // is used only if the shares on screen are still the ones it was asked for, so a late reply
+    // cannot pull a slider back while the user keeps dragging.
+    this.sharesRequest$.pipe(
+      debounceTime(300),
+      switchMap(request => this.api.assess(request).pipe(
+        map(fresh => ({ fresh, request })),
+        catchError(() => of(null)))),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(reply => {
+      if (!reply || !this.result || !sameShares(sharesOf(this.result), reply.request.taskShares ?? {})) {
+        return;
+      }
+      this.applyServerResult(reply.fresh, reply.request.answers, reply.request.taskShares);
     });
   }
 
   get currentQuestion(): Question | null {
     return this.questions[this.questionIndex] ?? null;
+  }
+
+  /**
+   * A search with no result tells which job titles are missing. Only the title typed into the job
+   * search is sent (lower case, at most 60 characters), once per query.
+   */
+  private trackEmptySearch(results: ProfessionSummary[] | null): void {
+    const q = this.search.trim().toLowerCase().slice(0, 60);
+    if (!results || results.length || !q || this.emptySearches.has(q)) {
+      return;
+    }
+    this.emptySearches.add(q);
+    this.analytics.track('search-empty', { query: q, category: this.category ?? 'all' });
+  }
+
+  trackAiComment(on: boolean): void {
+    this.analytics.track('ai-comment-toggle', { on: on ? 'yes' : 'no' });
   }
 
   onSearchChange(value: string): void {
@@ -614,6 +753,12 @@ export class AiCheckPageComponent implements OnInit {
    * /ai-test?view=saved opens the saved result.
    */
   private preselectFromLink(): void {
+    const shared = parseShareFragment(this.route.snapshot.fragment);
+    if (shared) {
+      this.openShared(shared);
+      return;
+    }
+    this.joinTeamFromLink();
     // /ai-test?view=saved (the "continue your plan" card on the home page) opens the saved result
     if (this.route.snapshot.queryParamMap.get('view') === 'saved') {
       // drop the parameter, so a reload after "Take the test again" does not reopen the result
@@ -631,6 +776,115 @@ export class AiCheckPageComponent implements OnInit {
       next: p => this.selectProfession(p, 'job-page'),
       error: () => { /* unknown id: stay on the picker */ }
     });
+  }
+
+  /** /ai-test?team=CODE (a team invite): show whose report the anonymous result goes to. */
+  private joinTeamFromLink(): void {
+    const raw = this.route.snapshot.queryParamMap.get('team');
+    if (raw === null) {
+      return;
+    }
+    const code = TeamService.normalizeCode(raw);
+    if (!code) {
+      this.teamLinkInvalid = true;
+      return;
+    }
+    this.teams.join(code).subscribe({
+      next: invite => {
+        this.team = { code, name: invite.name, full: invite.full };
+        this.analytics.track('team-joined', { full: invite.full ? 'yes' : 'no' });
+      },
+      error: () => {
+        this.teamLinkInvalid = true;
+      }
+    });
+  }
+
+  /** The team the result on screen belongs to: this invite, or the one saved with the result. */
+  private teamCodeFor(r: AssessmentResult): string | null {
+    if (this.team && this.professionId === r.professionId) {
+      return this.team.code;
+    }
+    const saved = this.api.loadLastAnswers();
+    return saved && saved.professionId === r.professionId ? saved.teamCode ?? null : null;
+  }
+
+  /** Line under the result title about the anonymous team answer; null when there was no team. */
+  private teamNoticeFor(status: TeamStatus | undefined): string | null {
+    switch (status?.status) {
+      case 'added':
+        return `Your anonymous result was added to ${status.teamName}.`;
+      case 'updated':
+        return `Your anonymous answer in ${status.teamName} was updated.`;
+      case 'full':
+        return `${status.teamName} is full, so your result was not added. Your own result is below.`;
+      case 'not-found':
+        return 'The team link is not valid any more, so your result was not added to a team.';
+      default:
+        return null;
+    }
+  }
+
+  /**
+   * Opens a shared result: the same assessment runs again from the ids in the link (first without
+   * shares to learn the task order, then with the shares if the link has them). Nothing is saved.
+   */
+  private openShared(shared: SharedResult): void {
+    this.sharedView = true;
+    this.professionId = shared.professionId;
+    this.answers = shared.answers;
+    this.step = 'loading';
+    const base = { professionId: shared.professionId, answers: shared.answers, personalize: false };
+    this.api.assess(base).pipe(
+      switchMap(plain => {
+        if (!shared.shares || shared.shares.length !== plain.tasks.length) {
+          return of({ result: plain, custom: false });
+        }
+        const taskShares = Object.fromEntries(plain.tasks.map((t, i) => [t.name, shared.shares![i]]));
+        return this.api.assess({ ...base, taskShares }).pipe(
+          map(result => ({ result, custom: true })),
+          catchError(() => of({ result: plain, custom: false })));
+      })
+    ).subscribe({
+      next: ({ result, custom }) => {
+        this.result = result;
+        this.customShares = custom;
+        this.pinnedTop = null;
+        this.slidersMoved = false;
+        this.step = 'result';
+      },
+      error: () => {
+        this.sharedView = false;
+        this.answers = {};
+        this.professionId = null;
+        this.step = 'profession';
+        this.error = 'This shared link could not be opened. You can take the test yourself.';
+      }
+    });
+  }
+
+  /** A link that recalculates this result elsewhere; null when the answers behind it are not known. */
+  shareUrl(r: AssessmentResult): string | null {
+    const answers = this.answersFor(r);
+    if (!answers || !Object.keys(answers).length) {
+      return null;
+    }
+    const shares = this.customShares ? r.tasks.map(t => t.share) : undefined;
+    return `${window.location.origin}/ai-test#${buildShareFragment({ professionId: r.professionId, answers, shares })}`;
+  }
+
+  copyShareLink(url: string): void {
+    const fallback = () => {
+      this.shareFallback = url;
+    };
+    if (!navigator.clipboard) {
+      fallback();
+      return;
+    }
+    navigator.clipboard.writeText(url).then(() => {
+      this.shareCopied = true;
+      this.shareFallback = null;
+    }).catch(fallback);
   }
 
   selectProfession(p: ProfessionSummary, source: 'picker' | 'job-page' = 'picker'): void {
@@ -681,15 +935,30 @@ export class AiCheckPageComponent implements OnInit {
     }
     this.error = null;
     this.step = 'loading';
+    this.sharedView = false;
     const personalize = this.personalize && this.aiCommentAvailable;
-    this.api.assess({ professionId: this.professionId, answers: this.answers, personalize }).subscribe({
+    // a team answer is sent unless the team is full; a browser that already answered updates its answer
+    const teamCode = this.team && !this.team.full ? this.team.code : undefined;
+    const teamEditToken = teamCode ? this.teams.editToken(teamCode) ?? undefined : undefined;
+    this.api.assess({ professionId: this.professionId, answers: this.answers, personalize, teamCode, teamEditToken }).subscribe({
       next: result => {
         this.result = result;
         this.analytics.track('test-complete', { profession: result.professionId, band: result.band });
         this.lastResult = result;
         this.personalNoteRequested = personalize;
         this.savedResultOutdated = false;
-        this.api.saveLastResult(result, this.answers);
+        this.customShares = false;
+        this.pinnedTop = null;
+        this.slidersMoved = false;
+        this.teamNotice = this.teamNoticeFor(result.team);
+        if (result.team?.status === 'added' || result.team?.status === 'updated') {
+          this.analytics.track('team-submitted', { status: result.team.status, band: result.band });
+        }
+        if (teamCode && result.team?.status === 'added' && result.team.editToken) {
+          this.teams.rememberAnswer(teamCode, result.team.editToken);
+        }
+        const savedTeam = teamCode && (result.team?.status === 'added' || result.team?.status === 'updated') ? teamCode : undefined;
+        this.api.saveLastResult(result, this.answers, undefined, savedTeam);
         this.showAllTasks = false;
         this.step = 'result';
         window.scrollTo({ top: 0 });
@@ -714,16 +983,25 @@ export class AiCheckPageComponent implements OnInit {
     this.result = saved;
     this.showAllTasks = false;
     this.personalNoteRequested = false;
+    this.pinnedTop = null;
+    this.slidersMoved = false;
+    this.teamNotice = null;
+    this.sharedView = false;
     this.step = 'result';
     const stored = this.api.loadLastAnswers();
     this.savedResultOutdated = !stored || stored.professionId !== saved.professionId;
+    this.customShares = !!stored?.taskShares && !this.savedResultOutdated;
     if (this.savedResultOutdated || !stored) {
       return;
     }
-    this.api.assess({ professionId: stored.professionId, answers: stored.answers, personalize: false }).subscribe({
+    // the user's own shares are sent again; if the catalog has renamed a task the server says 400
+    // and the saved result stays as it is
+    this.api.assess({
+      professionId: stored.professionId, answers: stored.answers, personalize: false, taskShares: stored.taskShares
+    }).subscribe({
       next: fresh => {
         const refreshed = { ...fresh, personalNote: saved.personalNote };
-        this.api.saveLastResult(refreshed, stored.answers);
+        this.api.saveLastResult(refreshed, stored.answers, stored.taskShares, stored.teamCode);
         this.lastResult = refreshed;
         // the user may have left the result while the request was running
         if (this.result === saved) {
@@ -748,6 +1026,12 @@ export class AiCheckPageComponent implements OnInit {
     this.personalize = false;
     this.personalNoteRequested = false;
     this.savedResultOutdated = false;
+    this.customShares = false;
+    this.pinnedTop = null;
+    this.teamNotice = null;
+    this.sharedView = false;
+    this.shareCopied = false;
+    this.shareFallback = null;
     this.expanded = {};
     this.step = 'profession';
     window.scrollTo({ top: 0 });
@@ -755,14 +1039,15 @@ export class AiCheckPageComponent implements OnInit {
 
   /**
    * The TOP_TASKS largest tasks by share, in the server's order (most automatable first);
-   * all tasks once expanded.
+   * all tasks once expanded. The set is fixed when the result opens, so a row does not vanish
+   * from under the user's finger while they drag its share down.
    */
   visibleTasks(r: AssessmentResult): TaskExposure[] {
     if (this.showAllTasks || r.tasks.length <= this.TOP_TASKS) {
       return r.tasks;
     }
-    const top = new Set([...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS));
-    return r.tasks.filter(t => top.has(t));
+    const top = this.topTaskNames(r);
+    return r.tasks.filter(t => top.has(t.name));
   }
 
   /** Count and week share of the tasks hidden behind "+ N more tasks"; null when nothing is hidden. */
@@ -770,13 +1055,134 @@ export class AiCheckPageComponent implements OnInit {
     if (r.tasks.length <= this.TOP_TASKS) {
       return null;
     }
-    const top = new Set([...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS));
-    const rest = r.tasks.filter(t => !top.has(t));
+    const top = this.topTaskNames(r);
+    const rest = r.tasks.filter(t => !top.has(t.name));
     return { count: rest.length, share: rest.reduce((sum, t) => sum + t.share, 0) };
   }
 
+  private pinnedTop: { professionId: string; names: Set<string> } | null = null;
+
+  private topTaskNames(r: AssessmentResult): Set<string> {
+    if (this.pinnedTop?.professionId !== r.professionId) {
+      const names = [...r.tasks].sort((a, b) => b.share - a.share).slice(0, this.TOP_TASKS).map(t => t.name);
+      this.pinnedTop = { professionId: r.professionId, names: new Set(names) };
+    }
+    return this.pinnedTop.names;
+  }
+
+  trackTask(_: number, t: TaskExposure): string {
+    return t.name;
+  }
+
+  /** The answers behind the result on screen: this test's, or the saved ones for that profession. */
+  private answersFor(r: AssessmentResult): Record<string, string> | null {
+    if (this.professionId === r.professionId && Object.keys(this.answers).length) {
+      return this.answers;
+    }
+    const saved = this.api.loadLastAnswers();
+    return saved && saved.professionId === r.professionId ? saved.answers : null;
+  }
+
+  canRecalculate(r: AssessmentResult): boolean {
+    return !!this.answersFor(r);
+  }
+
+  /**
+   * A share slider moved: rescale the other shares, update the score at once with the same
+   * formula as the server, then (debounced) ask the server with the same answers and no AI
+   * comment. Without saved answers the local preview is kept and saved as it is.
+   */
+  onShareInput(r: AssessmentResult, name: string, value: number): void {
+    if (!Number.isFinite(value)) {
+      return;
+    }
+    this.topTaskNames(r);
+    if (!this.slidersMoved) {
+      this.slidersMoved = true;
+      this.analytics.track('shares-first-move', { profession: r.professionId });
+    }
+    const taskShares = rescaleShares(sharesOf(r), name, value);
+    const preview = previewResult(r, taskShares);
+    this.result = preview;
+    this.customShares = true;
+    const answers = this.answersFor(r);
+    if (answers) {
+      this.sharesRequest$.next({
+        professionId: r.professionId, answers, personalize: false, taskShares, teamEditToken: this.teamEditTokenFor(r)
+      });
+    } else {
+      if (!this.sharedView) {
+        this.lastResult = preview;
+        this.api.saveLastResult(preview);
+      }
+    }
+  }
+
+  /** Back to the catalog's typical week (needs the answers, as the server recalculates it). */
+  resetShares(r: AssessmentResult): void {
+    const answers = this.answersFor(r);
+    if (!answers) {
+      return;
+    }
+    this.api.assess({ professionId: r.professionId, answers, personalize: false, teamEditToken: this.teamEditTokenFor(r) }).subscribe({
+      next: fresh => this.applyServerResult(fresh, answers, undefined),
+      error: () => { /* keep the current shares */ }
+    });
+  }
+
+  /** Shows a recalculated result, keeping the AI comment, and saves it with the shares behind it. */
+  private applyServerResult(fresh: AssessmentResult, answers: Record<string, string>,
+                            taskShares: Record<string, number> | undefined): void {
+    const current = this.result;
+    if (!current || current.professionId !== fresh.professionId) {
+      return;
+    }
+    const updated = { ...fresh, personalNote: current.personalNote };
+    this.result = updated;
+    this.customShares = !!taskShares;
+    if (!taskShares) {
+      this.pinnedTop = null;
+    }
+    if (this.sharedView) {
+      return;
+    }
+    this.lastResult = updated;
+    this.api.saveLastResult(updated, answers, taskShares, this.teamCodeFor(current) ?? undefined);
+  }
+
+  /** Edit token of this browser's team answer for the result on screen, so slider moves update it. */
+  private teamEditTokenFor(r: AssessmentResult): string | undefined {
+    if (this.sharedView) {
+      // someone else's shared result must never update this browser's own team answer
+      return undefined;
+    }
+    const code = this.teamCodeFor(r);
+    return code ? this.teams.editToken(code) ?? undefined : undefined;
+  }
+
   firstStep(r: AssessmentResult): FirstStep | null {
-    return firstStep(r);
+    return firstStep(r, this.aiMarks(r));
+  }
+
+  /** Tasks marked "I already do this with AI" for the profession on screen; used only by the first-step box. */
+  private marks: { professionId: string; names: Set<string> } | null = null;
+
+  aiMarks(r: AssessmentResult): Set<string> {
+    if (this.marks?.professionId !== r.professionId) {
+      this.marks = { professionId: r.professionId, names: new Set(this.api.loadAiMarks(r.professionId)) };
+    }
+    return this.marks.names;
+  }
+
+  markDoneWithAi(r: AssessmentResult, taskName: string): void {
+    const names = this.aiMarks(r);
+    names.add(taskName);
+    this.api.saveAiMarks(r.professionId, [...names]);
+  }
+
+  clearAiMarks(r: AssessmentResult): void {
+    this.aiMarks(r).clear();
+    this.api.saveAiMarks(r.professionId, []);
   }
 
   /**
@@ -875,6 +1281,9 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   print(): void {
+    if (this.result) {
+      this.analytics.track('print', { page: 'result', profession: this.result.professionId });
+    }
     window.print();
   }
 }

@@ -7,6 +7,8 @@ import ee.kerrete.ainterview.aireadiness.AssessmentModels.Features;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.ProfessionSummary;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
+import ee.kerrete.ainterview.team.TeamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -26,11 +28,20 @@ public class AiReadinessService {
     private final AiReadinessCatalog catalog;
     private final AiReadinessScorer scorer;
     private final AiReadinessCoach coach;
+    /** Meeskonnaraport; null testides, mis ei vaja andmebaasi. */
+    private final TeamService teams;
 
-    public AiReadinessService(AiReadinessCatalog catalog, AiReadinessScorer scorer, AiReadinessCoach coach) {
+    @Autowired
+    public AiReadinessService(AiReadinessCatalog catalog, AiReadinessScorer scorer, AiReadinessCoach coach,
+                              TeamService teams) {
         this.catalog = catalog;
         this.scorer = scorer;
         this.coach = coach;
+        this.teams = teams;
+    }
+
+    public AiReadinessService(AiReadinessCatalog catalog, AiReadinessScorer scorer, AiReadinessCoach coach) {
+        this(catalog, scorer, coach, null);
     }
 
     static final int MAX_SEARCH_RESULTS = 50;
@@ -49,8 +60,10 @@ public class AiReadinessService {
      * Otsib ameti nimest ja alternatiivnimetustest, tõstutundetult. Tühi päring tagastab käsitsi
      * kirjutatud ametid. Järjestus: täpne nimi, nime algus, täpne alternatiivnimetus, nime sõna
      * algus, alternatiivnimetuse algus, nime sisaldus, alternatiivnimetuse sisaldus, kõik päringu
-     * sõnad nimes, kõik päringu sõnad alternatiivnimetuses; viigi korral
-     * käsitsi kirjutatud ees, siis tähestik.
+     * sõnad nimes, kõik päringu sõnad alternatiivnimetuses. Sama astme sees eelistatakse ametit,
+     * mille oma nimi päringut katab, siis käsitsi kirjutatud ametit, siis tähestikku. Nii ei jää
+     * „Heavy and Tractor-Trailer Truck Drivers“ alternatiivnimetuse „Truck Driver“ tõttu
+     * ekspedeerijast tahapoole.
      */
     public List<ProfessionSummary> search(String query, int limit) {
         return search(query, null, limit);
@@ -65,18 +78,36 @@ public class AiReadinessService {
             return professions().stream().limit(max).toList();
         }
         Set<String> featuredIds = catalog.featured().stream().map(Profession::id).collect(Collectors.toSet());
-        record Hit(Profession profession, int rank, boolean featured) {
+        record Hit(Profession profession, int rank, int nameOverlap, boolean featured) {
         }
         return catalog.professions().stream()
                 .filter(p -> anyGroup || catalog.group(p).map(category::equals).orElse(false))
-                .map(p -> new Hit(p, q.isEmpty() ? 0 : rank(p, q), featuredIds.contains(p.id())))
+                .map(p -> new Hit(p, q.isEmpty() ? 0 : rank(p, q), q.isEmpty() ? 0 : nameOverlap(p, q),
+                        featuredIds.contains(p.id())))
                 .filter(h -> h.rank() < Integer.MAX_VALUE)
                 .sorted(Comparator.comparingInt(Hit::rank)
+                        .thenComparing(Comparator.comparingInt(Hit::nameOverlap).reversed())
                         .thenComparing(h -> !h.featured())
                         .thenComparing(h -> h.profession().name()))
                 .limit(max)
                 .map(h -> summary(h.profession()))
                 .toList();
+    }
+
+    /**
+     * 2 when the profession's own name contains the query, 1 when every query word starts a word
+     * in that name, 0 when the hit is only an alternate title.
+     */
+    private static int nameOverlap(Profession p, String q) {
+        String name = p.name().toLowerCase(Locale.ROOT);
+        if (name.equals(q) || name.startsWith(q) || name.contains(q)) {
+            return 2;
+        }
+        List<String> queryWords = words(q);
+        if (!queryWords.isEmpty() && allWordsMatch(queryWords, name)) {
+            return 1;
+        }
+        return 0;
     }
 
     /** SOC peagrupid koos ametite arvuga, nime järgi; "other" ei kuulu ühtegi gruppi. */
@@ -149,13 +180,17 @@ public class AiReadinessService {
     public AssessmentResult assess(AssessmentRequest request) {
         Profession profession = catalog.profession(request.professionId())
                 .orElseThrow(() -> new IllegalArgumentException("Unknown profession '" + request.professionId() + "'"));
-        AssessmentResult result = scorer.score(profession, request.answers());
-        if (!request.personalize()) {
+        AssessmentResult scored = scorer.score(profession, request.answers(), request.taskShares());
+        // the language model never gets anything about a team: the note is made from the result alone
+        AssessmentResult result = request.personalize()
+                ? coach.personalNote(scored, answerLabels(request.answers())).map(note -> withNote(scored, note)).orElse(scored)
+                : scored;
+        boolean forTeam = (request.teamCode() != null && !request.teamCode().isBlank())
+                || (request.teamEditToken() != null && !request.teamEditToken().isBlank());
+        if (!forTeam || teams == null) {
             return result;
         }
-        return coach.personalNote(result, answerLabels(request.answers()))
-                .map(note -> withNote(result, note))
-                .orElse(result);
+        return result.withTeam(teams.record(scored, request.answers(), request.teamCode(), request.teamEditToken()));
     }
 
     private Map<String, String> answerLabels(Map<String, String> answers) {
