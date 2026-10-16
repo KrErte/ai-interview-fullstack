@@ -37,7 +37,7 @@ class CheckoutStartupGuardTest {
                     .as(bad).isInstanceOf(IllegalStateException.class).hasMessageContaining("APP_PUBLIC_BASE_URL")
                     .hasMessageNotContaining("STRIPE_PRICE_ID");
         }
-        assertThatCode(() -> new CheckoutStartupGuard(billing(true, "price_1"), checkout("sk_x", "https://careerrisk.ee/"), env("prod")))
+        assertThatCode(() -> new CheckoutStartupGuard(billing(true, "price_1"), checkout("sk_x", "https://careerrisk.ee/"), "whsec_x", env("prod")))
                 .doesNotThrowAnyException();
         // non-prod keeps the localhost default
         assertThatCode(() -> new CheckoutStartupGuard(billing(true, ""), checkout("", "http://localhost:4200"), env("local")))

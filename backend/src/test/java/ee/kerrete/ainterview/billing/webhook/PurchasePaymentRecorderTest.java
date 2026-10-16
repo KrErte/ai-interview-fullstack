@@ -41,6 +41,8 @@ class PurchasePaymentRecorderTest {
         Purchase p = new Purchase();
         p.setId(3L);
         p.setStatus(PurchaseStatus.PENDING);
+        p.setAmountCents(1900);
+        p.setCurrency("EUR");
         when(repo.findByStripeSessionId("cs_dup")).thenReturn(Optional.of(p));
         when(repo.saveAndFlush(any())).thenThrow(new DataIntegrityViolationException("uq_purchase_one_paid_per_product"));
         TransactionTemplate tx = new TransactionTemplate() {
@@ -51,7 +53,7 @@ class PurchasePaymentRecorderTest {
         };
 
         PurchasePaymentRecorder.Outcome outcome = new PurchasePaymentRecorder(repo, tx)
-                .recordPaid(new PurchasePaymentRecorder.Payment("cs_dup", 3L, "EE", 1900, "EUR"));
+                .recordPaid(new PurchasePaymentRecorder.Payment("cs_dup", 3L, null, "EE", 1900, "EUR"));
 
         assertThat(outcome).isEqualTo(PurchasePaymentRecorder.Outcome.DUPLICATE_PAYMENT);
         assertThat(logs.list).singleElement().satisfies(e -> {
@@ -59,6 +61,31 @@ class PurchasePaymentRecorderTest {
             assertThat(e.getFormattedMessage())
                     .isEqualTo("duplicate payment, refund manually via the Stripe dashboard: session cs_dup purchase 3");
         });
+    }
+
+    @Test
+    void matchRules() {
+        Purchase own = new Purchase();
+        own.setUserId(7L);
+        own.setAmountCents(1900);
+        own.setCurrency("EUR");
+        assertThat(PurchasePaymentRecorder.matches(pay("7", 1900, "eur"), own)).isTrue();
+        assertThat(PurchasePaymentRecorder.matches(pay(null, 1900, "EUR"), own)).isTrue();
+        assertThat(PurchasePaymentRecorder.matches(pay("8", 1900, "eur"), own)).as("other user").isFalse();
+        assertThat(PurchasePaymentRecorder.matches(pay("x", 1900, "eur"), own)).isFalse();
+        assertThat(PurchasePaymentRecorder.matches(pay("7", 1, "eur"), own)).as("amount").isFalse();
+        assertThat(PurchasePaymentRecorder.matches(pay("7", 0, "eur"), own)).isFalse();
+        assertThat(PurchasePaymentRecorder.matches(pay("7", 1900, "usd"), own)).as("currency").isFalse();
+        assertThat(PurchasePaymentRecorder.matches(pay("7", null, "eur"), own)).isFalse();
+        assertThat(PurchasePaymentRecorder.matches(pay("7", 1900, null), own)).isFalse();
+        own.setPriceId("price_1"); // amount lives in Stripe: any positive amount, same currency
+        assertThat(PurchasePaymentRecorder.matches(pay("7", 2500, "eur"), own)).isTrue();
+        assertThat(PurchasePaymentRecorder.matches(pay("7", 0, "eur"), own)).isFalse();
+        assertThat(PurchasePaymentRecorder.matches(pay("7", 2500, "usd"), own)).isFalse();
+    }
+
+    private static PurchasePaymentRecorder.Payment pay(String clientRef, Integer amount, String currency) {
+        return new PurchasePaymentRecorder.Payment("cs_1", 1L, clientRef, "EE", amount, currency);
     }
 
     @AfterEach

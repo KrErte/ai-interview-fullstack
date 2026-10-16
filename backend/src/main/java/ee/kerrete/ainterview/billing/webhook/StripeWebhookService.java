@@ -68,7 +68,8 @@ public class StripeWebhookService {
         }
         Integer amount = session.path("amount_total").isIntegralNumber() ? session.path("amount_total").intValue() : null;
         String currency = text(session.path("currency"));
-        recorder.recordPaid(new PurchasePaymentRecorder.Payment(sessionId, purchaseId, country, amount,
+        recorder.recordPaid(new PurchasePaymentRecorder.Payment(sessionId, purchaseId,
+                text(session.path("client_reference_id")), country, amount,
                 currency == null ? null : currency.toUpperCase(Locale.ROOT)));
     }
 

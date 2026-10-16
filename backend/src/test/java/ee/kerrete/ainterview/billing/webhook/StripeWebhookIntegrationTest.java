@@ -221,6 +221,49 @@ class StripeWebhookIntegrationTest {
     }
 
     @Test
+    void mismatchedSessionsChangeNothingAndLogErrorWithIdsOnly() throws Exception {
+        long userId = jdbc.queryForObject("SELECT user_id FROM purchase WHERE id = ?", Long.class, purchaseId);
+        Logger logger = (Logger) LoggerFactory.getLogger(PurchasePaymentRecorder.class);
+        ListAppender<ILoggingEvent> logs = new ListAppender<>();
+        logs.start();
+        logger.addAppender(logs);
+        try {
+            // QA attack: unknown session + another user's purchase_id + 1 USD
+            String attack = sessionEvent("evt_a", "checkout.session.completed", "cs_other_acct", "paid",
+                    String.valueOf(purchaseId), "x", 1, "usd");
+            deliver(attack, sign(attack)).andExpect(status().isOk());
+            String otherUser = sessionEvent("evt_b", "checkout.session.completed", "cs_test_paid", "paid",
+                    String.valueOf(purchaseId), String.valueOf(userId + 1000), 1900, "eur");
+            deliver(otherUser, sign(otherUser)).andExpect(status().isOk());
+            String wrongAmount = sessionEvent("evt_c", "checkout.session.completed", "cs_test_paid", "paid",
+                    String.valueOf(purchaseId), String.valueOf(userId), 0, "eur");
+            deliver(wrongAmount, sign(wrongAmount)).andExpect(status().isOk());
+            String wrongCurrency = sessionEvent("evt_d", "checkout.session.completed", "cs_test_paid", "paid",
+                    String.valueOf(purchaseId), String.valueOf(userId), 1900, "usd");
+            deliver(wrongCurrency, sign(wrongCurrency)).andExpect(status().isOk());
+        } finally {
+            logger.detachAppender(logs);
+        }
+
+        assertThat(jdbc.queryForMap("SELECT status, amount_cents, currency, buyer_country, stripe_session_id FROM purchase WHERE id = ?", purchaseId))
+                .containsEntry("status", "pending").containsEntry("amount_cents", 1900).containsEntry("currency", "EUR")
+                .containsEntry("buyer_country", null).containsEntry("stripe_session_id", "cs_test_paid");
+        assertThat(entitlements.hasRoadmap(EMAIL)).isFalse();
+        assertThat(logs.list).filteredOn(e -> e.getLevel() == Level.ERROR).extracting(ILoggingEvent::getFormattedMessage)
+                .containsExactly(
+                        "payment mismatch, not marked paid: session cs_other_acct purchase " + purchaseId,
+                        "payment mismatch, not marked paid: session cs_test_paid purchase " + purchaseId,
+                        "payment mismatch, not marked paid: session cs_test_paid purchase " + purchaseId,
+                        "payment mismatch, not marked paid: session cs_test_paid purchase " + purchaseId);
+
+        // the genuine session with the right user, amount and currency still goes through (EUR, case-insensitive)
+        String ok = sessionEvent("evt_ok", "checkout.session.completed", "cs_test_paid", "paid",
+                String.valueOf(purchaseId), String.valueOf(userId), 1900, "EUR");
+        deliver(ok, sign(ok)).andExpect(status().isOk());
+        assertThat(entitlements.hasRoadmap(EMAIL)).isTrue();
+    }
+
+    @Test
     void refundedPurchaseIsNotRevived() throws Exception {
         jdbc.update("UPDATE purchase SET status = 'refunded' WHERE id = ?", purchaseId);
         String payload = completed("cs_test_paid", "paid");

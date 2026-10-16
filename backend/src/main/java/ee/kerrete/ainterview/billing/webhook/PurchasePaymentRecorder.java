@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -19,10 +20,11 @@ import java.util.Optional;
 @Component
 public class PurchasePaymentRecorder {
 
-    public enum Outcome { MARKED_PAID, ALREADY_PAID, DUPLICATE_PAYMENT, NOT_PAYABLE, UNKNOWN_SESSION }
+    public enum Outcome { MARKED_PAID, ALREADY_PAID, DUPLICATE_PAYMENT, PAYMENT_MISMATCH, NOT_PAYABLE, UNKNOWN_SESSION }
 
-    /** Values from a verified, paid Checkout session; country/amount/currency may be null. */
-    public record Payment(String sessionId, Long purchaseId, String buyerCountry, Integer amountCents, String currency) {
+    /** Values from a verified, paid Checkout session; clientReferenceId/country/amount/currency may be null. */
+    public record Payment(String sessionId, Long purchaseId, String clientReferenceId, String buyerCountry,
+                          Integer amountCents, String currency) {
     }
 
     private static final Logger log = LoggerFactory.getLogger(PurchasePaymentRecorder.class);
@@ -60,6 +62,10 @@ public class PurchasePaymentRecorder {
             return Outcome.UNKNOWN_SESSION;
         }
         Purchase p = found.get();
+        if (!matches(payment, p)) {
+            log.error("payment mismatch, not marked paid: session {} purchase {}", payment.sessionId(), p.getId());
+            return Outcome.PAYMENT_MISMATCH;
+        }
         if (p.getStatus() == PurchaseStatus.PAID) {
             if (payment.sessionId().equals(p.getStripeSessionId())) {
                 return Outcome.ALREADY_PAID; // redelivery of the same event/session
@@ -83,14 +89,29 @@ public class PurchasePaymentRecorder {
         if (payment.buyerCountry() != null) {
             p.setBuyerCountry(payment.buyerCountry());
         }
-        if (payment.amountCents() != null) {
-            p.setAmountCents(payment.amountCents());
-        }
-        if (payment.currency() != null && payment.currency().length() == 3) {
-            p.setCurrency(payment.currency());
-        }
+        p.setAmountCents(payment.amountCents());
+        p.setCurrency(payment.currency().toUpperCase(Locale.ROOT));
         purchases.saveAndFlush(p);
         log.info("Stripe session {}: purchase {} marked paid", payment.sessionId(), p.getId());
         return Outcome.MARKED_PAID;
+    }
+
+    /**
+     * The session must belong to this purchase: client_reference_id (when present) is the purchase's user id, the
+     * currency equals the stored one (case-insensitive), and the charged amount equals the stored amount when we
+     * set it (no price_id: price_data from our config). With a Stripe Price the amount lives in Stripe, so any
+     * positive amount_total is accepted there.
+     */
+    static boolean matches(Payment payment, Purchase p) {
+        if (payment.clientReferenceId() != null && !payment.clientReferenceId().equals(String.valueOf(p.getUserId()))) {
+            return false;
+        }
+        if (payment.currency() == null || p.getCurrency() == null || !payment.currency().equalsIgnoreCase(p.getCurrency())) {
+            return false;
+        }
+        if (payment.amountCents() == null || payment.amountCents() <= 0) {
+            return false;
+        }
+        return p.getPriceId() != null || payment.amountCents() == p.getAmountCents();
     }
 }

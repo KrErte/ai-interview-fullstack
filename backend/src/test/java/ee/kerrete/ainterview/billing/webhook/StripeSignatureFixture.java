@@ -22,13 +22,20 @@ final class StripeSignatureFixture {
         }
     }
 
+    /** No client_reference_id, 1900 eur: matches the test purchases. */
     static String sessionEvent(String eventId, String type, String sessionId, String paymentStatus, String purchaseId) {
+        return sessionEvent(eventId, type, sessionId, paymentStatus, purchaseId, null, 1900, "eur");
+    }
+
+    static String sessionEvent(String eventId, String type, String sessionId, String paymentStatus, String purchaseId,
+                               String clientReferenceId, long amountTotal, String currency) {
+        String clientRef = clientReferenceId == null ? "" : "\"client_reference_id\":\"" + clientReferenceId + "\",";
         return """
                 {"id":"%s","object":"event","api_version":"2024-06-20","created":1760600000,"livemode":false,
                  "type":"%s","data":{"object":{"id":"%s","object":"checkout.session","mode":"payment",
-                 "payment_status":"%s","amount_total":1900,"currency":"eur","client_reference_id":"1",
+                 "payment_status":"%s","amount_total":%d,"currency":"%s",%s
                  "metadata":{"purchase_id":"%s","product":"roadmap"},
                  "customer_details":{"email":"payer@example.com","name":"Pat Payer","address":{"country":"ee"}}}}}
-                """.formatted(eventId, type, sessionId, paymentStatus, purchaseId);
+                """.formatted(eventId, type, sessionId, paymentStatus, amountTotal, currency, clientRef, purchaseId);
     }
 }
