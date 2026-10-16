@@ -16,8 +16,9 @@ import { BillingStatusService } from '../../services/billing-status.service';
   template: `
     <article class="legal mx-auto max-w-3xl pb-16 pt-4 lg:pt-10">
       <h1 *ngIf="!loaded" class="display mt-4 text-[clamp(2.5rem,6vw,4.5rem)]">Refunds and withdrawal</h1>
-      <div *ngIf="!loaded" data-test="refund-loading" aria-busy="true" role="status" class="mt-6 space-y-3">
-        <span class="sr-only">Loading…</span>
+      <!-- min-height reserves roughly the resolved content, so the page does not jump (CLS) -->
+      <div *ngIf="!loaded" data-test="refund-loading" aria-busy="true" role="status" aria-live="polite" class="mt-6 min-h-[40rem] space-y-3">
+        <span class="sr-only" data-test="refund-live">Loading…</span>
         <div class="h-4 w-2/3 animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
         <div class="h-4 w-full animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
         <div class="h-4 w-5/6 animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>

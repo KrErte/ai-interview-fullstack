@@ -76,8 +76,9 @@ import { WAIVER_LABEL, WAIVER_TEXT } from '../../models/billing.model';
       </p>
 
       <!-- FP-65 round 3 (drafts/terms-refund.md Part A). Rendered only when billing is on and the seller/VAT config is set. -->
-<div *ngIf="!loaded" data-test="terms-sale-loading" aria-busy="true" role="status" class="mt-6 space-y-3">
-        <span class="sr-only">Loading…</span>
+<!-- min-height reserves roughly the resolved content, so the page does not jump (CLS) -->
+      <div *ngIf="!loaded" data-test="terms-sale-loading" aria-busy="true" role="status" aria-live="polite" class="mt-6 min-h-[60rem] space-y-3">
+        <span class="sr-only" data-test="terms-sale-live">Loading…</span>
         <div class="h-4 w-2/3 animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
         <div class="h-4 w-full animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>
         <div class="h-4 w-5/6 animate-pulse rounded bg-slate-800/60" aria-hidden="true"></div>

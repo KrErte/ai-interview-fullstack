@@ -20,3 +20,11 @@ describe('paywallResumeUrl', () => {
     expect(paywallResumeUrl(undefined)).toBe('/ai-test?resume=paywall');
   });
 });
+
+describe('paywallResumeUrl fallback', () => {
+  for (const unsafe of ['//evil.example/x', 'https://evil.example', 'javascript:alert(1)', '/\\evil', '', 42]) {
+    it(`unsafe ${JSON.stringify(unsafe)} gives /ai-test?resume=paywall`, () => {
+      expect(paywallResumeUrl(unsafe)).toBe('/ai-test?resume=paywall');
+    });
+  }
+});
