@@ -16,6 +16,20 @@ def write_csv(path, header, rows):
         w.writerows(rows)
 
 
+def written_roadmap():
+    """A roadmap that passes the quality gate (roadmap_quality.py)."""
+    return {'roadmap': [{'title': f'Cook phase {i}: costing and prep with AI',
+                         'items': [f'Step {i}.{j}: cost one dish from supplier invoices with AI and check every price.'
+                                   for j in (1, 2, 3)],
+                         'project': f'Project {i}: cost the full menu with AI, check it against invoices, '
+                                    f'and fix three dishes with a weak margin.'}
+                        for i in (1, 2, 3)],
+            'aiTools': ['Recipe costing app with AI', 'Voice notes for prep lists', 'ChatGPT or Claude for menus'],
+            'humanEdge': ['Tasting and adjusting every plate', 'Running a busy line through service',
+                          'Training new cooks on the station'],
+            'model': 'claude-opus-5'}
+
+
 def template(tag):
     return {'aiTools': [f'{tag} tool 1', f'{tag} tool 2', f'{tag} tool 3'],
             'roadmap': [{'title': f'{tag} phase {i}', 'items': ['a', 'b', 'c'], 'project': f'{tag} project {i}'}
@@ -94,6 +108,32 @@ class BuildCatalogTest(unittest.TestCase):
         # occupations without written projects keep the template's, and the template itself is not modified
         self.assertEqual(by_code['15-1252.00']['roadmap'][0]['project'], 'IT project 1')
         self.assertEqual(self.templates['35']['roadmap'][0]['project'], 'Food project 1')
+
+    def test_written_roadmaps_replace_template_projects_and_human_edge(self):
+        written = written_roadmap()
+        catalog = build_catalog(self.out, self.templates, hidden_codes=set(),
+                                projects={'35-2014.00': ['P1.', 'P2.', 'P3.']}, roadmaps={'35-2014.00': written})
+        by_code = {p['onetCode']: p for p in catalog}
+        cook = by_code['35-2014.00']
+        self.assertEqual(cook['roadmap'], written['roadmap'])
+        self.assertEqual(cook['aiTools'], written['aiTools'])
+        self.assertEqual(cook['humanEdge'], written['humanEdge'])
+        self.assertNotIn('model', cook)
+        # others keep the template and the task-statement human edge
+        self.assertEqual(by_code['15-1252.00']['roadmap'][0]['title'], 'IT phase 1')
+        self.assertEqual(by_code['15-1252.00']['humanEdge'], ['Talk to users.', 'Write code.', 'Review code.'])
+
+    def test_thin_written_roadmap_is_ignored_and_template_kept(self):
+        thin = {'roadmap': [{'title': 'Cooking', 'items': ['Set rules.', 'Cook food.', 'Taste it.'],
+                             'project': 'Cook more.'} for _ in (1, 2, 3)],
+                'aiTools': ['Chat', 'Apps', 'Notes'], 'humanEdge': ['Taste', 'Lead', 'Teach']}
+        catalog = build_catalog(self.out, self.templates, hidden_codes=set(),
+                                projects={'35-2014.00': ['Cook 1.', 'Cook 2.', 'Cook 3.']},
+                                roadmaps={'35-2014.00': thin})
+        cook = {p['onetCode']: p for p in catalog}['35-2014.00']
+        self.assertEqual(cook['roadmap'][0]['title'], 'Food phase 1')
+        self.assertEqual([ph['project'] for ph in cook['roadmap']], ['Cook 1.', 'Cook 2.', 'Cook 3.'])
+        self.assertEqual(cook['humanEdge'], ['Cook food.'])
 
     def test_aliases_carry_titles_of_hidden_occupations(self):
         aliases = build_aliases(self.out, {'software-developer': ['15-1252.00', '15-1253.00'], 'other': []})

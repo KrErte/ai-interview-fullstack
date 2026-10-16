@@ -13,6 +13,7 @@ import json
 from pathlib import Path
 
 from build import HERE, OUT
+from roadmap_quality import quality_problems
 
 RESOURCES = HERE.parent.parent / 'backend' / 'src' / 'main' / 'resources' / 'ai-readiness'
 TEMPLATES = HERE / 'templates.json'
@@ -27,13 +28,18 @@ def _rows(path):
         return list(csv.DictReader(f))
 
 
-def build_catalog(out_dir, templates, hidden_codes, projects=None):
+def build_catalog(out_dir, templates, hidden_codes, projects=None, roadmaps=None):
     """Professions for every O*NET occupation not in hidden_codes, sorted by name.
 
     projects: {code: [phase 1, 2, 3 sentence]} from write_projects.py; replaces the template's
     project per phase for that occupation (spec O2). Others keep the template's project.
+    roadmaps: {code: {'roadmap', 'aiTools', 'humanEdge'}} from write_roadmaps.py (spec O3); when present
+    for an occupation they replace the template, the O2 projects and the task-statement humanEdge.
+    Roadmaps that fail the quality gate (roadmap_quality.py) are ignored, so a thin one never replaces
+    the template.
     """
     projects = projects or {}
+    roadmaps = {code: r for code, r in (roadmaps or {}).items() if not quality_problems(r)}
     out_dir = Path(out_dir)
     occupations = _rows(out_dir / 'onet_occupations.csv')
     titles = {o['onetsoc_code']: o['title'] for o in occupations}
@@ -55,17 +61,19 @@ def build_catalog(out_dir, templates, hidden_codes, projects=None):
                      for t in tasks[code]]
         edge = sorted(tasks[code], key=lambda t: -int(t['share_pct']) * (1 - float(automation[t['task_id']]['automation'])))
         template = templates[occ['soc_major']]
+        written = roadmaps.get(code)
         catalog.append({
             'id': 'onet-' + code.replace('.', '-'),
             'name': occ['title'],
             'category': occ['soc_major_title'],
             'onetCode': code,
             'tasks': task_list,
-            'humanEdge': [t['task_statement'] for t in edge[:3]],
-            'aiTools': template['aiTools'],
+            'humanEdge': written['humanEdge'] if written else [t['task_statement'] for t in edge[:3]],
+            'aiTools': written['aiTools'] if written else template['aiTools'],
             'pivotRoles': [titles[c] for c in occ['related_codes'].split(';') if c in titles][:3],
-            'roadmap': [{**phase, 'project': projects[code][i]} if code in projects else phase
-                        for i, phase in enumerate(template['roadmap'])],
+            'roadmap': written['roadmap'] if written else
+            [{**phase, 'project': projects[code][i]} if code in projects else phase
+             for i, phase in enumerate(template['roadmap'])],
             'alternateTitles': alternates.get(code, []),
         })
     return sorted(catalog, key=lambda p: p['name'])
@@ -129,7 +137,11 @@ def projects_from(path):
 if __name__ == '__main__':
     templates = json.loads(TEMPLATES.read_text(encoding='utf-8'))
     projects = projects_from(OUT / 'projects_llm.csv')
-    print(f'occupation-specific projects: {len(projects)}')
-    _write_json(TARGET, build_catalog(OUT, templates, hidden_codes_from(PROFESSIONS), projects))
+    roadmaps_path = OUT / 'roadmaps_llm.json'
+    roadmaps = json.loads(roadmaps_path.read_text(encoding='utf-8')) if roadmaps_path.exists() else {}
+    thin = sum(1 for r in roadmaps.values() if quality_problems(r))
+    print(f'occupation-specific projects: {len(projects)}, whole roadmaps: {len(roadmaps) - thin}'
+          f' ({thin} below the quality gate, ignored)')
+    _write_json(TARGET, build_catalog(OUT, templates, hidden_codes_from(PROFESSIONS), projects, roadmaps))
     _write_json(ALIASES, build_aliases(OUT, curated_codes_from(PROFESSIONS)))
     _write_json(HIDDEN, build_hidden(OUT, curated_codes_from(PROFESSIONS)))

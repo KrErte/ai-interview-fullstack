@@ -117,6 +117,21 @@ Lesson: cancelling a batch does not stop requests that are already being process
 
 The backend loads both files. `GET /api/ai-readiness/professions` still returns only the hand-written professions. `GET /api/ai-readiness/professions/search?q=&limit=` searches all of them by name and alternate title.
 
+## Whole occupation-specific roadmaps (spec O3)
+
+O2 left the phase titles and items on the 22 group templates, so an actuary got the IT template ("Pair programming with AI") and `humanEdge` was three raw task statements. `write_roadmaps.py` asks Claude for the whole thing from the occupation's 10 largest tasks (share and automation) and its related occupations: three phases (start where AI already helps, make it repeatable, grow what AI cannot do), each with a title, three items and a project, plus three `aiTools` and three `humanEdge` strengths. Answers with the wrong count or an over-long field are rejected and retried.
+
+```bash
+python tools/onet-import/write_roadmaps.py direct --pilot --max-usd 4   # the 30 PILOT occupations
+python tools/onet-import/catalog.py                                     # picks up out/roadmaps_llm.json
+```
+
+The 30 pilot roadmaps (2026-10-15) were written in a Claude Code session (Opus 5.5) from the same prompts and `GUIDE`, and checked with `parse_roadmap`; their `model` field says so. The rest can come from the API run above or the same way.
+
+**Quality gate (`roadmap_quality.py`).** A first bulk run in the same session drifted: the average item went from 84 characters in the pilot to 34 ("Set rules.", "Advise students."), which is the generic-template problem O3 exists to fix. The gate is calibrated on the pilot (shortest item 48 characters, project 99, title 23) and rejects items under 45 characters or averaging under 65, projects under 90, titles under 20, short tools and human-edge strengths, filler such as "stays human", and the same item twice. `parse_roadmap` applies it, so the API run retries thin answers, and `catalog.py` ignores any roadmap that fails it. 380 thin entries from that run were dropped, not published.
+
+`catalog.py` uses `out/roadmaps_llm.json` where it has an occupation and falls back to the template plus the O2 project elsewhere. The file is resumable: a later run without `--pilot` writes only the missing occupations.
+
 ## Attribution
 
 Products using these files must show:
