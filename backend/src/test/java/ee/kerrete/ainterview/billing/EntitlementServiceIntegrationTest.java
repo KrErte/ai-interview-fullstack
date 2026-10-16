@@ -122,9 +122,37 @@ class EntitlementServiceIntegrationTest {
     }
 
     @Test
+    void anonymousIsLockedWhenBillingIsOn() {
+        assertThat(entitlements.isLocked(Feature.ROADMAP, null)).isTrue();
+        purchase(alice, "alice@example.com", "roadmap", PurchaseStatus.PAID, null);
+        assertThat(entitlements.isLocked(Feature.ROADMAP, "alice@example.com")).isFalse();
+    }
+
+    @Test
+    void followUpColumnsRoundTripAndAreNullable() {
+        Purchase p = purchase(alice, "alice@example.com", "roadmap", PurchaseStatus.REFUNDED, "cs_r");
+        assertThat(p.getBuyerCountry()).isNull();
+        assertThat(jdbc.queryForObject("SELECT refund_amount_cents FROM purchase WHERE id = ?", Integer.class, p.getId())).isNull();
+        p.setWaiverTextVersion("2026-10-16");
+        p.setBuyerCountry("EE");
+        p.setRefundStatus("succeeded");
+        p.setRefundedAt(LocalDateTime.now());
+        p.setPriceId("price_test_123");
+        p.setRefundAmountCents(1900);
+        purchases.saveAndFlush(p);
+        assertThat(jdbc.queryForObject("SELECT refund_amount_cents FROM purchase WHERE id = ?", Integer.class, p.getId())).isEqualTo(1900);
+        assertThat(jdbc.queryForMap("SELECT waiver_text_version, buyer_country, refund_status, price_id FROM purchase WHERE id = ?", p.getId()))
+                .containsEntry("waiver_text_version", "2026-10-16").containsEntry("buyer_country", "EE")
+                .containsEntry("refund_status", "succeeded").containsEntry("price_id", "price_test_123");
+        assertThatThrownBy(() -> jdbc.update("UPDATE purchase SET buyer_country = 'EST' WHERE id = ?", p.getId()))
+                .isInstanceOf(DataIntegrityViolationException.class);
+    }
+
+    @Test
     void billingDisabledEntitlesEveryone() {
         EntitlementService off = new EntitlementService(
-                new BillingSettings(false, "", "", new MockEnvironment()), users, purchases);
+                new BillingSettings(false, "", "", "", new MockEnvironment()), users, purchases);
         assertThat(off.hasRoadmap("bob@example.com")).isTrue();
+        assertThat(off.isLocked(Feature.ROADMAP, null)).isFalse();
     }
 }

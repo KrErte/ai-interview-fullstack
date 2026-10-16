@@ -81,6 +81,31 @@ public final class AssessmentModels {
     ) {
     }
 
+    /**
+     * FP-60 public roadmap teaser: phase 1 with title, items and project; phases 2+ with title only (items and
+     * project omitted from JSON, not null). Used by /assess and the public job pages.
+     */
+    public record RoadmapTeaserPhase(
+            int phase,
+            String title,
+            @JsonInclude(JsonInclude.Include.NON_NULL) List<String> items,
+            @JsonInclude(JsonInclude.Include.NON_NULL) String project
+    ) {
+        public static List<RoadmapTeaserPhase> of(List<RoadmapPhase> phases) {
+            if (phases == null) {
+                return List.of();
+            }
+            List<RoadmapTeaserPhase> teaser = new java.util.ArrayList<>();
+            for (int i = 0; i < phases.size(); i++) {
+                RoadmapPhase ph = phases.get(i);
+                teaser.add(i == 0
+                        ? new RoadmapTeaserPhase(1, ph.title(), ph.items() == null ? List.of() : List.copyOf(ph.items()), ph.project())
+                        : new RoadmapTeaserPhase(i + 1, ph.title(), null, null));
+            }
+            return List.copyOf(teaser);
+        }
+    }
+
     public record AssessmentResult(
             String professionId,
             String professionName,
@@ -98,12 +123,13 @@ public final class AssessmentModels {
             // FP-60: null (omitted) when the roadmap is locked behind the paywall, see locked()
             @JsonInclude(JsonInclude.Include.NON_NULL) List<GeneralStageResult> generalRoadmap,
             @JsonInclude(JsonInclude.Include.NON_NULL) List<RoadmapPhase> professionRoadmap,
-            int totalWeeks,
+            @JsonInclude(JsonInclude.Include.NON_NULL) Integer totalWeeks,
             String personalNote,
             @JsonInclude(JsonInclude.Include.NON_NULL) TeamStatus team,
-            /* FP-60: first professionRoadmap phase, only when locked */
-            @JsonInclude(JsonInclude.Include.NON_NULL) RoadmapPhase roadmapTeaser,
-            boolean roadmapLocked
+            /* FP-60: professionRoadmap teaser (phase 1 in full, later phases titles only), only when locked */
+            @JsonInclude(JsonInclude.Include.NON_NULL) List<RoadmapTeaserPhase> roadmapTeaser,
+            boolean roadmapLocked,
+            boolean billingEnabled
     ) {
         public AssessmentResult(String professionId, String professionName, int replaceabilityScore,
                                 int taskExposureScore, int personalAdjustment, RiskBand band, String headline,
@@ -113,7 +139,7 @@ public final class AssessmentModels {
                                 int totalWeeks, String personalNote) {
             this(professionId, professionName, replaceabilityScore, taskExposureScore, personalAdjustment, band,
                     headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools, pivotRoles, generalRoadmap,
-                    professionRoadmap, totalWeeks, personalNote, null, null, false);
+                    professionRoadmap, totalWeeks, personalNote, null, null, false, false);
         }
 
         public AssessmentResult(String professionId, String professionName, int replaceabilityScore,
@@ -124,25 +150,25 @@ public final class AssessmentModels {
                                 int totalWeeks, String personalNote, TeamStatus team) {
             this(professionId, professionName, replaceabilityScore, taskExposureScore, personalAdjustment, band,
                     headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools, pivotRoles, generalRoadmap,
-                    professionRoadmap, totalWeeks, personalNote, team, null, false);
+                    professionRoadmap, totalWeeks, personalNote, team, null, false, false);
         }
 
         /**
-         * FP-60 (billing enabled): the public result without the roadmap; only the first profession phase stays
-         * as a teaser. The full roadmap is POST /api/ai-readiness/roadmap.
+         * FP-60 (billing enabled): the public result without generalRoadmap, professionRoadmap and totalWeeks; only
+         * the first profession phase stays as roadmapTeaser. The full roadmap is POST /api/ai-readiness/roadmap.
          */
         public AssessmentResult locked() {
-            RoadmapPhase teaser = professionRoadmap == null || professionRoadmap.isEmpty() ? null : professionRoadmap.get(0);
+            List<RoadmapTeaserPhase> teaser = RoadmapTeaserPhase.of(professionRoadmap);
             return new AssessmentResult(professionId, professionName, replaceabilityScore, taskExposureScore,
                     personalAdjustment, band, headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools,
-                    pivotRoles, null, null, totalWeeks, personalNote, team, teaser, true);
+                    pivotRoles, null, null, null, personalNote, team, teaser, true, true);
         }
 
         public AssessmentResult withTeam(TeamStatus team) {
             return new AssessmentResult(professionId, professionName, replaceabilityScore, taskExposureScore,
                     personalAdjustment, band, headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools,
                     pivotRoles, generalRoadmap, professionRoadmap, totalWeeks, personalNote, team, roadmapTeaser,
-                    roadmapLocked);
+                    roadmapLocked, billingEnabled);
         }
     }
 }

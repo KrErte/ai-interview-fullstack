@@ -3,7 +3,8 @@ package ee.kerrete.ainterview.aireadiness;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.RiskBand;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.RoadmapPhase;
-import ee.kerrete.ainterview.billing.BillingSettings;
+import ee.kerrete.ainterview.billing.EntitlementService;
+import ee.kerrete.ainterview.billing.Feature;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -37,11 +38,11 @@ public class JobPageController {
             RiskBand.VERY_HIGH, Map.of("label", "Very high", "color", "#ff4d6d"));
 
     private final JobPages pages;
-    private final BillingSettings billing;
+    private final EntitlementService entitlements;
 
-    public JobPageController(JobPages pages, BillingSettings billing) {
+    public JobPageController(JobPages pages, EntitlementService entitlements) {
         this.pages = pages;
-        this.billing = billing;
+        this.entitlements = entitlements;
     }
 
     @GetMapping("/jobs")
@@ -78,9 +79,9 @@ public class JobPageController {
         response.setHeader("Cache-Control", CACHE);
         model.addAttribute("page", page);
         model.addAttribute("jsonLd", pages.jsonLd(page));
-        // FP-60: with billing on, the public page shows only the first roadmap phase (same teaser as /assess)
+        // FP-60: publicly cached page, so always the anonymous decision; locked -> only the first phase (as /assess)
         List<RoadmapPhase> phases = profession.roadmap() == null ? List.of() : profession.roadmap();
-        boolean locked = billing.enabled() && phases.size() > 1;
+        boolean locked = entitlements.isLocked(Feature.ROADMAP, null) && phases.size() > 1;
         model.addAttribute("roadmapPhases", locked ? phases.subList(0, 1) : phases);
         model.addAttribute("roadmapLocked", locked);
         model.addAttribute("band", band);

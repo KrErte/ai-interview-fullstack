@@ -6,7 +6,7 @@ import ee.kerrete.ainterview.aireadiness.AssessmentModels.CategorySummary;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.Features;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.ProfessionSummary;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
-import ee.kerrete.ainterview.billing.BillingSettings;
+import ee.kerrete.ainterview.billing.EntitlementService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,11 +29,11 @@ import java.util.Map;
 public class AiReadinessController {
 
     private final AiReadinessService service;
-    private final BillingSettings billing;
+    private final EntitlementService entitlements;
 
-    public AiReadinessController(AiReadinessService service, BillingSettings billing) {
+    public AiReadinessController(AiReadinessService service, EntitlementService entitlements) {
         this.service = service;
-        this.billing = billing;
+        this.entitlements = entitlements;
     }
 
     @GetMapping("/professions")
@@ -71,8 +71,9 @@ public class AiReadinessController {
     @PostMapping("/assess")
     public AssessmentResult assess(@Valid @RequestBody AssessmentRequest request) {
         AssessmentResult result = service.assess(request);
-        // FP-60: with billing on, the public result carries only a teaser; unchanged while billing is off
-        return billing.enabled() ? result.locked() : result;
+        // FP-60: EntitlementService decides; billing on -> always only the teaser (billingEnabled:true), even for
+        // paying users (they use POST /roadmap); billing off -> unchanged shape with billingEnabled:false
+        return entitlements.lockPublicAssessment() ? result.locked() : result;
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

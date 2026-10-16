@@ -2,6 +2,7 @@ package ee.kerrete.ainterview.aireadiness;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import ee.kerrete.ainterview.ai.LlmRateLimiter;
 import ee.kerrete.ainterview.auth.JwtService;
@@ -39,7 +40,7 @@ class AiReadinessBillingWebMvcTest {
             "/api/ai-readiness/professions/categories", "/api/ai-readiness/features", "/api/ai-readiness/questions");
 
     @WebMvcTest(controllers = {AiReadinessController.class, JobPageController.class})
-    @Import({SecurityConfig.class, BillingSettings.class, AiReadinessCatalog.class, AiReadinessScorer.class,
+    @Import({SecurityConfig.class, BillingSettings.class, ee.kerrete.ainterview.billing.EntitlementService.class, AiReadinessCatalog.class, AiReadinessScorer.class,
             AiReadinessService.class, AiReadinessCoach.class, LlmRateLimiter.class, JobPages.class})
     @TestPropertySource(properties = "app.public-base-url=https://futureproof.example")
     abstract static class Base {
@@ -51,6 +52,8 @@ class AiReadinessBillingWebMvcTest {
         JwtService jwtService;
         @MockBean
         AppUserRepository appUserRepository;
+        @MockBean
+        ee.kerrete.ainterview.billing.PurchaseRepository purchaseRepository;
         @MockBean
         TeamService teamService;
 
@@ -78,6 +81,8 @@ class AiReadinessBillingWebMvcTest {
             assertThat(r.get("professionRoadmap").size()).isEqualTo(3);
             assertThat(r.get("generalRoadmap").isArray()).isTrue();
             assertThat(r.get("roadmapLocked").asBoolean()).isFalse();
+            assertThat(r.get("billingEnabled").asBoolean()).isFalse();
+            assertThat(r.get("totalWeeks").isInt()).isTrue();
             assertThat(r.has("roadmapTeaser")).isFalse();
         }
 
@@ -106,14 +111,47 @@ class AiReadinessBillingWebMvcTest {
                     .score(catalog.profession("translator").orElseThrow(), java.util.Map.of()));
             assertThat(r.has("generalRoadmap")).isFalse();
             assertThat(r.has("professionRoadmap")).isFalse();
+            assertThat(r.has("totalWeeks")).isFalse();
             assertThat(r.get("roadmapLocked").asBoolean()).isTrue();
-            assertThat(r.get("roadmapTeaser")).isEqualTo(full.get("professionRoadmap").get(0));
+            assertThat(r.get("billingEnabled").asBoolean()).isTrue();
+            JsonNode phases = full.get("professionRoadmap");
+            ArrayNode expected = JSON.createArrayNode();
+            for (int i = 0; i < phases.size(); i++) {
+                ObjectNode ph = expected.addObject().put("phase", i + 1).put("title", phases.get(i).get("title").asText());
+                if (i == 0) {
+                    ph.set("items", phases.get(0).get("items"));
+                    ph.put("project", phases.get(0).get("project").asText());
+                }
+            }
+            // exact shape: [{phase:1,title,items,project},{phase:2,title},{phase:3,title}]
+            assertThat(r.get("roadmapTeaser")).isEqualTo(expected);
+            assertThat(r.get("roadmapTeaser").size()).isEqualTo(3);
+            assertThat(r.get("roadmapTeaser").get(1).has("items")).isFalse();
+            assertThat(r.get("roadmapTeaser").get(1).has("project")).isFalse();
+            assertThat(r.get("roadmapTeaser").get(2).size()).isEqualTo(2);
             // everything else is the same as the unlocked result
             ObjectNode rest = r.deepCopy();
-            rest.remove(List.of("roadmapTeaser", "roadmapLocked"));
+            rest.remove(List.of("roadmapTeaser", "roadmapLocked", "billingEnabled"));
             ObjectNode fullRest = ((ObjectNode) full).deepCopy();
-            fullRest.remove(List.of("generalRoadmap", "professionRoadmap", "roadmapTeaser", "roadmapLocked", "team"));
+            fullRest.remove(List.of("generalRoadmap", "professionRoadmap", "totalWeeks", "roadmapTeaser", "roadmapLocked",
+                    "billingEnabled", "team"));
             assertThat(rest).isEqualTo(fullRest);
+        }
+
+        @Test
+        @org.springframework.security.test.context.support.WithMockUser(username = "payer@example.com")
+        void evenAPayingLoggedInCallerGetsOnlyTheTeaser() throws Exception {
+            org.mockito.Mockito.when(appUserRepository.findByEmail("payer@example.com")).thenReturn(java.util.Optional.of(
+                    ee.kerrete.ainterview.model.AppUser.builder().id(5L).email("payer@example.com")
+                            .role(ee.kerrete.ainterview.model.UserRole.CANDIDATE).build()));
+            org.mockito.Mockito.when(purchaseRepository.existsByUserIdAndProductAndStatus(5L, "roadmap",
+                    ee.kerrete.ainterview.billing.PurchaseStatus.PAID)).thenReturn(true);
+            JsonNode r = assess();
+            assertThat(r.has("professionRoadmap")).isFalse();
+            assertThat(r.has("generalRoadmap")).isFalse();
+            assertThat(r.has("totalWeeks")).isFalse();
+            assertThat(r.get("roadmapLocked").asBoolean()).isTrue();
+            assertThat(r.get("billingEnabled").asBoolean()).isTrue();
         }
 
         @Test

@@ -11,7 +11,7 @@ class BillingSettingsTest {
     private static BillingSettings settings(String... profiles) {
         MockEnvironment env = new MockEnvironment();
         env.setActiveProfiles(profiles);
-        return new BillingSettings(true, "dev@demo.local, Other@Demo.local", "ADMIN", env);
+        return new BillingSettings(true, "dev@demo.local, Other@Demo.local", "ADMIN", "", env);
     }
 
     @Test
@@ -36,6 +36,15 @@ class BillingSettingsTest {
     void emptyListsEntitleNobody() {
         MockEnvironment env = new MockEnvironment();
         env.setActiveProfiles("local");
-        assertThat(new BillingSettings(true, "", "", env).devEntitled("a@b.c", "ADMIN")).isFalse();
+        assertThat(new BillingSettings(true, "", "", "", env).devEntitled("a@b.c", "ADMIN")).isFalse();
+    }
+
+    @Test
+    void onlyTheCurrentWaiverVersionIsAccepted() {
+        assertThat(BillingSettings.CURRENT_WAIVER_VERSION).isEqualTo("waiver-v1-2026-10-16");
+        assertThat(BillingSettings.WAIVER_VERSIONS).containsExactly("waiver-v1-2026-10-16");
+        assertThat(BillingSettings.isKnownWaiverVersion("waiver-v1-2026-10-16")).isTrue();
+        assertThat(BillingSettings.isKnownWaiverVersion("waiver-v0")).isFalse();
+        assertThat(BillingSettings.isKnownWaiverVersion(null)).isFalse();
     }
 }

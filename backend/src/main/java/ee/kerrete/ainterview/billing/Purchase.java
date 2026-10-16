@@ -31,9 +31,13 @@ public class Purchase {
     @Column(name = "email", nullable = false)
     private String email;
 
-    /** e.g. {@link EntitlementService#ROADMAP}. */
+    /** The product/plan bought, e.g. {@link Feature#ROADMAP}'s "roadmap"; a later subscription plan gets its own code. */
     @Column(name = "product", nullable = false, length = 32)
     private String product;
+
+    /** Stripe Price that was charged (from STRIPE_PRICE_ID at checkout); recorded only. */
+    @Column(name = "price_id")
+    private String priceId;
 
     @Convert(converter = PurchaseStatusConverter.class)
     @Column(name = "status", nullable = false, length = 16)
@@ -42,6 +46,7 @@ public class Purchase {
     @Column(name = "stripe_session_id", unique = true)
     private String stripeSessionId;
 
+    /** Recorded amount actually charged (from Stripe); never a configured price. */
     @Column(name = "amount_cents", nullable = false)
     private int amountCents;
 
@@ -53,6 +58,24 @@ public class Purchase {
 
     @Column(name = "withdrawal_waiver_accepted_at")
     private LocalDateTime withdrawalWaiverAcceptedAt;
+
+    /** Version of the withdrawal-waiver text the buyer accepted; one of {@link BillingSettings#WAIVER_VERSIONS}. */
+    @Column(name = "waiver_text_version", length = 32)
+    private String waiverTextVersion;
+
+    /** ISO 3166-1 alpha-2 country from Stripe, nullable. */
+    @Column(name = "buyer_country", length = 2)
+    private String buyerCountry;
+
+    @Column(name = "refund_status", length = 32)
+    private String refundStatus;
+
+    @Column(name = "refunded_at")
+    private LocalDateTime refundedAt;
+
+    /** Recorded refunded amount (from Stripe), nullable. */
+    @Column(name = "refund_amount_cents")
+    private Integer refundAmountCents;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

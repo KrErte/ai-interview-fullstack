@@ -4,6 +4,7 @@ import ee.kerrete.ainterview.aireadiness.RoadmapModels.RoadmapRequest;
 import ee.kerrete.ainterview.aireadiness.RoadmapModels.RoadmapResponse;
 import ee.kerrete.ainterview.auth.CurrentUser;
 import ee.kerrete.ainterview.billing.EntitlementService;
+import ee.kerrete.ainterview.billing.Feature;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -32,7 +33,7 @@ public class AiReadinessRoadmapController {
 
     @PostMapping("/api/ai-readiness/roadmap")
     public RoadmapResponse roadmap(@Valid @RequestBody RoadmapRequest request) {
-        entitlements.requireRoadmap(CurrentUser.email());
+        entitlements.require(Feature.ROADMAP, CurrentUser.email());
         return service.roadmap(request.professionId(), request.answers());
     }
 
