@@ -112,6 +112,18 @@ class StripeWebhookIntegrationTest {
     }
 
     @Test
+    @WithMockUser(username = EMAIL)
+    void paidStatusIsCommittedBeforeThe200SoTheNextEntitlementCallIsTrue() throws Exception {
+        mvc.perform(get("/api/billing/entitlement")).andExpect(jsonPath("$.roadmap").value(false));
+        String payload = completed("cs_test_paid", "paid");
+
+        deliver(payload, sign(payload)).andExpect(status().isOk());
+        // no waiting/polling: the webhook committed synchronously before answering
+        mvc.perform(get("/api/billing/entitlement")).andExpect(status().isOk()).andExpect(jsonPath("$.roadmap").value(true));
+        assertThat(jdbc.queryForObject("SELECT status FROM purchase WHERE id = ?", String.class, purchaseId)).isEqualTo("paid");
+    }
+
+    @Test
     void duplicateDeliveryIsIdempotent() throws Exception {
         String payload = completed("cs_test_paid", "paid");
         deliver(payload, sign(payload)).andExpect(status().isOk());
@@ -220,9 +232,9 @@ class StripeWebhookIntegrationTest {
     @WithMockUser(username = EMAIL)
     void successRedirectDoesNotUnlock() throws Exception {
         // the browser lands on {FRONTEND_BASE_URL}/roadmap?paid=1 and asks for the entitlement: still locked
-        mvc.perform(get("/api/billing/entitlement").param("paid", "1"))
+        mvc.perform(get("/api/billing/entitlement").param("paid", "1").param("session_id", "cs_test_paid"))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.roadmap").value(false));
-        mvc.perform(post("/api/ai-readiness/roadmap").param("paid", "1").contentType(MediaType.APPLICATION_JSON)
+        mvc.perform(post("/api/ai-readiness/roadmap").param("paid", "1").param("session_id", "cs_test_paid").contentType(MediaType.APPLICATION_JSON)
                         .content("{\"professionId\":\"translator\",\"answers\":{}}"))
                 .andExpect(status().isPaymentRequired());
         assertThat(row()).containsEntry("status", "pending");
