@@ -20,3 +20,7 @@ skills-lock.json
 # Raw O*NET / AEI downloads for tools/onet-import (fetch.py re-downloads them)
 tools/onet-import/.cache/
 tools/onet-import/__pycache__/
+
+# Local H2 database files (dev/local profiles); live uses PostgreSQL
+backend/data/*.mv.db
+backend/data/*.trace.db
