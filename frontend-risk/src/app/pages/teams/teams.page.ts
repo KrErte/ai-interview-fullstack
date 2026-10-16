@@ -152,7 +152,7 @@ const SAMPLE = {
           You get two links: one to share with your team and a private one for the report. No account needed.
           A new report holds up to 50 people (Pilot). We send the invoice by email; for up to 200 people, write to us.
         </p>
-        <a [href]="mailto" class="btn-ghost mt-6 w-full sm:w-auto">Book a call</a>
+        <a [href]="mailto" class="btn-ghost mt-6 w-full sm:w-auto">Email us</a>
       </div>
 
       <div class="lg:col-span-7">
