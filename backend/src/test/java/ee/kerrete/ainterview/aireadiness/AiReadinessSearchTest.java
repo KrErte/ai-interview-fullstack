@@ -49,8 +49,15 @@ class AiReadinessSearchTest {
     @Test
     void coderFindsAProgrammingOccupationViaAlternateTitle() {
         List<String> top = ids(SERVICE.search("coder", 5));
-        assertTrue(top.stream().anyMatch(id -> id.startsWith("onet-15-") || id.equals("software-developer")),
-                top.toString());
+        assertEquals("software-developer", top.get(0));
+        assertTrue(top.contains("onet-29-2072-00"), top.toString());
+    }
+
+    @Test
+    void truckDriverPrefersTheOccupationWhoseNameMatches() {
+        List<ProfessionSummary> results = SERVICE.search("truck driver", 5);
+        assertEquals("onet-53-3032-00", results.get(0).id());
+        assertEquals("Heavy and Tractor-Trailer Truck Drivers", results.get(0).name());
     }
 
     @Test

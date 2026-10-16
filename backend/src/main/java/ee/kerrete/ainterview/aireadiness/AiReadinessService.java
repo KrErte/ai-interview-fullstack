@@ -49,8 +49,10 @@ public class AiReadinessService {
      * Otsib ameti nimest ja alternatiivnimetustest, tõstutundetult. Tühi päring tagastab käsitsi
      * kirjutatud ametid. Järjestus: täpne nimi, nime algus, täpne alternatiivnimetus, nime sõna
      * algus, alternatiivnimetuse algus, nime sisaldus, alternatiivnimetuse sisaldus, kõik päringu
-     * sõnad nimes, kõik päringu sõnad alternatiivnimetuses; viigi korral
-     * käsitsi kirjutatud ees, siis tähestik.
+     * sõnad nimes, kõik päringu sõnad alternatiivnimetuses. Sama astme sees eelistatakse ametit,
+     * mille oma nimi päringut katab, siis käsitsi kirjutatud ametit, siis tähestikku. Nii ei jää
+     * „Heavy and Tractor-Trailer Truck Drivers“ alternatiivnimetuse „Truck Driver“ tõttu
+     * ekspedeerijast tahapoole.
      */
     public List<ProfessionSummary> search(String query, int limit) {
         return search(query, null, limit);
@@ -65,18 +67,36 @@ public class AiReadinessService {
             return professions().stream().limit(max).toList();
         }
         Set<String> featuredIds = catalog.featured().stream().map(Profession::id).collect(Collectors.toSet());
-        record Hit(Profession profession, int rank, boolean featured) {
+        record Hit(Profession profession, int rank, int nameOverlap, boolean featured) {
         }
         return catalog.professions().stream()
                 .filter(p -> anyGroup || catalog.group(p).map(category::equals).orElse(false))
-                .map(p -> new Hit(p, q.isEmpty() ? 0 : rank(p, q), featuredIds.contains(p.id())))
+                .map(p -> new Hit(p, q.isEmpty() ? 0 : rank(p, q), q.isEmpty() ? 0 : nameOverlap(p, q),
+                        featuredIds.contains(p.id())))
                 .filter(h -> h.rank() < Integer.MAX_VALUE)
                 .sorted(Comparator.comparingInt(Hit::rank)
+                        .thenComparing(Comparator.comparingInt(Hit::nameOverlap).reversed())
                         .thenComparing(h -> !h.featured())
                         .thenComparing(h -> h.profession().name()))
                 .limit(max)
                 .map(h -> summary(h.profession()))
                 .toList();
+    }
+
+    /**
+     * 2 when the profession's own name contains the query, 1 when every query word starts a word
+     * in that name, 0 when the hit is only an alternate title.
+     */
+    private static int nameOverlap(Profession p, String q) {
+        String name = p.name().toLowerCase(Locale.ROOT);
+        if (name.equals(q) || name.startsWith(q) || name.contains(q)) {
+            return 2;
+        }
+        List<String> queryWords = words(q);
+        if (!queryWords.isEmpty() && allWordsMatch(queryWords, name)) {
+            return 1;
+        }
+        return 0;
     }
 
     /** SOC peagrupid koos ametite arvuga, nime järgi; "other" ei kuulu ühtegi gruppi. */

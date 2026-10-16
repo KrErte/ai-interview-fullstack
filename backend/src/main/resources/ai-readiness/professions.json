@@ -4,6 +4,7 @@
     "name": "Software developer",
     "category": "IT",
     "onetCodes": ["15-1252.00"],
+    "alternateTitles": ["Coder"],
     "tasks": [
       { "name": "Writing routine code (CRUD, boilerplate, integrations)", "share": 25, "automation": 0.8 },
       { "name": "Debugging and code review", "share": 15, "automation": 0.55 },
