@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.kerrete.ainterview.ai.AiUnavailableException;
+import ee.kerrete.ainterview.ai.LlmRateLimiter;
 import ee.kerrete.ainterview.ai.OpenAiKey;
 import ee.kerrete.ainterview.config.OpenAiProperties;
 import ee.kerrete.ainterview.model.Question;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -27,11 +29,19 @@ import java.util.List;
 public class OpenAiClient {
 
     private final OpenAiProperties properties;
+    private final LlmRateLimiter rateLimiter;
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    /** Tests that do not exercise the rate limit. */
     public OpenAiClient(OpenAiProperties properties) {
+        this(properties, LlmRateLimiter.unlimited());
+    }
+
+    @Autowired
+    public OpenAiClient(OpenAiProperties properties, LlmRateLimiter rateLimiter) {
         this.properties = properties;
+        this.rateLimiter = rateLimiter;
     }
 
     /* =======================================================================
@@ -46,6 +56,9 @@ public class OpenAiClient {
                             Integer maxTokens,
                             Double temperature) {
         OpenAiKey.require(properties.getApiKey());
+        if (!rateLimiter.tryAcquire(LlmRateLimiter.clientKey())) {
+            throw new AiUnavailableException("AI rate limit reached");
+        }
 
         String url = properties.getBaseUrl() + "/chat/completions";
 
