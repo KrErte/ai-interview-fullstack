@@ -35,6 +35,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -43,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = CheckoutController.class, properties = {
         "billing.enabled=true",
         "billing.stripe-price-id=price_test_roadmap",
-        "billing.frontend-base-url=https://app.example.test/",
+        "app.public-base-url=https://app.example.test/",
         "billing.fallback-amount-cents=1900",
         "billing.currency=eur"})
 @Import({SecurityConfig.class, BillingSettings.class, EntitlementService.class, CheckoutSettings.class,
@@ -125,8 +126,8 @@ class CheckoutWebMvcTest {
         assertThat(r.customerEmail()).isEqualTo(ME);
         assertThat(r.clientReferenceId()).isEqualTo("7");
         assertThat(r.description()).isEqualTo("Roadmap. " + WAIVER_TEXT);
-        assertThat(r.successUrl()).isEqualTo("https://app.example.test/roadmap?paid=1");
-        assertThat(r.cancelUrl()).isEqualTo("https://app.example.test/risk");
+        assertThat(r.successUrl()).isEqualTo("https://app.example.test/roadmap?paid=1&session_id={CHECKOUT_SESSION_ID}");
+        assertThat(r.cancelUrl()).isEqualTo("https://app.example.test/ai-test?resume=paywall&canceled=1");
         assertThat(r.metadata()).containsEntry("purchase_id", "42").containsEntry("product", "roadmap").hasSize(2);
 
         // first save: pending row with the waiver, before the session exists; second: the session id
@@ -144,6 +145,29 @@ class CheckoutWebMvcTest {
         assertThat(first.getCurrency()).isEqualTo("EUR");
         assertThat(saved.get(1).getStripeSessionId()).isEqualTo("cs_test_1");
         assertThat(saved.get(1).getStatus()).isEqualTo(PurchaseStatus.PENDING);
+    }
+
+    @Test
+    @WithMockUser(username = ME)
+    void urlsComeOnlyFromConfigNeverFromOriginOrHost() throws Exception {
+        mvc.perform(post("/api/billing/checkout").contentType(MediaType.APPLICATION_JSON).content(OK_BODY)
+                        // an allowed CORS origin that differs from app.public-base-url (an unknown origin is a CORS 403)
+                        .header("Origin", "http://localhost:4200").header("Host", "evil.example")
+                        .header("X-Forwarded-Host", "evil.example").header("X-Forwarded-Proto", "http"))
+                .andExpect(status().isOk());
+        ArgumentCaptor<CheckoutGateway.SessionRequest> req = ArgumentCaptor.forClass(CheckoutGateway.SessionRequest.class);
+        verify(gateway).createSession(req.capture());
+        assertThat(req.getValue().successUrl()).isEqualTo("https://app.example.test/roadmap?paid=1&session_id={CHECKOUT_SESSION_ID}");
+        assertThat(req.getValue().cancelUrl()).isEqualTo("https://app.example.test/ai-test?resume=paywall&canceled=1");
+    }
+
+    @Test
+    @WithMockUser(username = ME)
+    void unknownOriginIsRejectedByCorsBeforeAnySession() throws Exception {
+        mvc.perform(post("/api/billing/checkout").contentType(MediaType.APPLICATION_JSON).content(OK_BODY)
+                        .header("Origin", "https://evil.example"))
+                .andExpect(status().isForbidden());
+        verifyNoInteractions(gateway);
     }
 
     @Test
@@ -176,7 +200,8 @@ class CheckoutWebMvcTest {
         for (String waiver : new String[]{"false", "null"}) {
             checkout("{\"product\":\"roadmap\",\"withdrawalWaiverAccepted\":" + waiver
                     + ",\"withdrawalWaiverVersion\":\"waiver-v1-2026-10-16\"}")
-                    .andExpect(status().isBadRequest()).andExpect(jsonPath("$.error").value("waiver_required"));
+                    .andExpect(status().isBadRequest())
+                    .andExpect(content().json("{\"error\":\"waiver_required\"}", true));
         }
         checkout("{\"product\":\"roadmap\",\"withdrawalWaiverVersion\":\"waiver-v1-2026-10-16\"}")
                 .andExpect(status().isBadRequest()).andExpect(jsonPath("$.error").value("waiver_required"));
@@ -209,7 +234,8 @@ class CheckoutWebMvcTest {
     @WithMockUser(username = ME)
     void alreadyPaidIs409() throws Exception {
         when(purchaseRepository.existsByUserIdAndProductAndStatus(7L, "roadmap", PurchaseStatus.PAID)).thenReturn(true);
-        checkout(OK_BODY).andExpect(status().isConflict()).andExpect(jsonPath("$.error").value("already_paid"));
+        checkout(OK_BODY).andExpect(status().isConflict())
+                .andExpect(content().json("{\"error\":\"already_paid\"}", true));
         verifyNoInteractions(gateway);
         verify(purchaseRepository, never()).saveAndFlush(any());
     }
@@ -219,7 +245,7 @@ class CheckoutWebMvcTest {
     void providerFailureIs503AndKeepsThePendingRow() throws Exception {
         when(gateway.createSession(any())).thenThrow(new CheckoutGatewayException("down", null));
         checkout(OK_BODY).andExpect(status().isServiceUnavailable())
-                .andExpect(jsonPath("$.error").value("payment_provider_unavailable"));
+                .andExpect(content().json("{\"error\":\"payment_provider_unavailable\"}", true));
         assertThat(saved).hasSize(1);
         assertThat(saved.get(0).getStripeSessionId()).isNull();
     }

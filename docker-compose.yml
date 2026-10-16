@@ -29,6 +29,8 @@ services:
       # FP-28: required (compose refuses to start without it); the backend refuses a key shorter than 32 bytes, a placeholder or the old built-in key.
       JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set in .env (see .env.example)}
       FRONTEND_BASE_URL: http://localhost:4200
+      # FP-61: public frontend URL for links and Stripe Checkout return urls (never taken from request headers)
+      APP_PUBLIC_BASE_URL: ${APP_PUBLIC_BASE_URL:-http://localhost:4200}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       # Login users seeded at startup by ProdDataSeeder (FP-19/FP-22). Values come from the
       # gitignored .env next to this file (template: .env.example). A user is created only when

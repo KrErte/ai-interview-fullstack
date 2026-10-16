@@ -35,6 +35,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -43,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = CheckoutController.class, properties = {
         "billing.enabled=false",
         "billing.stripe-price-id=price_test_roadmap",
-        "billing.frontend-base-url=https://app.example.test/",
+        "app.public-base-url=https://app.example.test/",
         "billing.fallback-amount-cents=1900",
         "billing.currency=eur"})
 @Import({SecurityConfig.class, BillingSettings.class, EntitlementService.class, CheckoutSettings.class,
@@ -109,7 +110,8 @@ class CheckoutBillingOffWebMvcTest {
     @Test
     @WithMockUser(username = ME)
     void checkoutIs404WhenBillingIsOff() throws Exception {
-        checkout(OK_BODY).andExpect(status().isNotFound()).andExpect(jsonPath("$.error").value("billing_disabled"));
+        checkout(OK_BODY).andExpect(status().isNotFound())
+                .andExpect(content().json("{\"error\":\"billing_disabled\"}", true));
         verifyNoInteractions(gateway);
         verify(purchaseRepository, never()).saveAndFlush(any());
     }

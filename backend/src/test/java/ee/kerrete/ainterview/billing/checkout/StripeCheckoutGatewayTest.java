@@ -13,7 +13,7 @@ class StripeCheckoutGatewayTest {
 
     private static CheckoutGateway.SessionRequest request(String priceId) {
         return new CheckoutGateway.SessionRequest("buyer@example.com", "7", priceId, 1900, "eur", "Roadmap",
-                "Roadmap. waiver text", "https://app.example.test/roadmap?paid=1", "https://app.example.test/risk",
+                "Roadmap. waiver text", "https://app.example.test/roadmap?paid=1&session_id={CHECKOUT_SESSION_ID}", "https://app.example.test/ai-test?resume=paywall&canceled=1",
                 Map.of("purchase_id", "42", "product", "roadmap"));
     }
 
@@ -31,8 +31,8 @@ class StripeCheckoutGatewayTest {
         assertThat(p.getPaymentIntentData().getDescription()).isEqualTo("Roadmap. waiver text");
         assertThat(p.getPaymentIntentData().getReceiptEmail()).isEqualTo("buyer@example.com");
         assertThat(p.getInvoiceCreation()).as("no invoice_creation (TEAM_LEAD)").isNull();
-        assertThat(p.getSuccessUrl()).isEqualTo("https://app.example.test/roadmap?paid=1");
-        assertThat(p.getCancelUrl()).isEqualTo("https://app.example.test/risk");
+        assertThat(p.getSuccessUrl()).isEqualTo("https://app.example.test/roadmap?paid=1&session_id={CHECKOUT_SESSION_ID}");
+        assertThat(p.getCancelUrl()).isEqualTo("https://app.example.test/ai-test?resume=paywall&canceled=1");
     }
 
     @Test
@@ -65,7 +65,8 @@ class StripeCheckoutGatewayTest {
         CheckoutSettings s = new CheckoutSettings("sk_test_secret", 1900, "EUR", "https://x.test/", 5000, 20000);
         assertThat(s.toString()).doesNotContain("sk_test_secret");
         assertThat(s.currency()).isEqualTo("eur");
-        assertThat(s.successUrl()).isEqualTo("https://x.test/roadmap?paid=1");
+        assertThat(s.successUrl()).isEqualTo("https://x.test/roadmap?paid=1&session_id={CHECKOUT_SESSION_ID}");
+        assertThat(s.cancelUrl()).isEqualTo("https://x.test/ai-test?resume=paywall&canceled=1");
         assertThat(s.connectTimeoutMs()).isEqualTo(5000);
         assertThat(s.readTimeoutMs()).isEqualTo(20000);
     }

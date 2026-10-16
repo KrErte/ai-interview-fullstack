@@ -43,7 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = CheckoutController.class, properties = {
         "billing.enabled=true",
         "billing.stripe-price-id=",
-        "billing.frontend-base-url=https://app.example.test/",
+        "app.public-base-url=https://app.example.test/",
         "billing.fallback-amount-cents=1900",
         "billing.currency=eur"})
 @Import({SecurityConfig.class, BillingSettings.class, EntitlementService.class, CheckoutSettings.class,

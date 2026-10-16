@@ -11,7 +11,7 @@ While it is `false`, the API behaves as before billing existed.
 | `STRIPE_PRICE_ID` | empty | Stripe Price charged by checkout (FP-61). Required in production (see below). |
 | `STRIPE_SECRET_KEY` | empty | Stripe secret key. TEST mode (`sk_test_…`) everywhere but production. Empty: checkout answers 503. Never logged. |
 | `BILLING_FALLBACK_AMOUNT_CENTS` / `BILLING_CURRENCY` | `1900` / `eur` | Only while `STRIPE_PRICE_ID` is empty (local/dev): sent as Stripe `price_data`. Also the expected amount stored on the pending purchase until the webhook (FP-62) records what Stripe charged. |
-| `FRONTEND_BASE_URL` | `http://localhost:4200` | Base of the checkout success/cancel urls. |
+| `APP_PUBLIC_BASE_URL` (`app.public-base-url`) | `http://localhost:4200` (falls back to `FRONTEND_BASE_URL`) | The only base of the checkout success/cancel urls (trailing slash stripped); never taken from the request `Origin`/`Host`. |
 | `STRIPE_CONNECT_TIMEOUT_MS` / `STRIPE_READ_TIMEOUT_MS` | `5000` / `20000` | Stripe HTTP timeouts; no automatic retries. |
 | `BILLING_DISPLAY_PRICE` | `€19` | Price text on public teasers (job pages, FP-66). Display only; keep it in sync with the Stripe Price. |
 | `BILLING_DEV_ENTITLEMENT` | `false` | Test/dev switch, independent of the Spring profile. `true`: ADMIN users and `BILLING_DEV_ENTITLED_EMAILS` count as paid. `false`: nobody gets access without a paid purchase. Never set it in production. |
@@ -92,7 +92,8 @@ Checks run in that order (billing, product, waiver, version, entitlement). Then:
    from the fallback amount/currency), `customer_email` = the user's email, `client_reference_id` = the user id,
    `metadata` `{purchase_id, product}` (also on the PaymentIntent), `payment_intent_data.receipt_email` = the
    user's email (Stripe emails the receipt),
-   `success_url` `{FRONTEND_BASE_URL}/roadmap?paid=1`, `cancel_url` `{FRONTEND_BASE_URL}/risk`.
+   `success_url` `{APP_PUBLIC_BASE_URL}/roadmap?paid=1&session_id={CHECKOUT_SESSION_ID}` (Stripe's literal
+   placeholder, filled in by Stripe), `cancel_url` `{APP_PUBLIC_BASE_URL}/ai-test?resume=paywall&canceled=1`.
 3. The session id is stored in `purchase.stripe_session_id`. A reused row gets the new id; a payment of its older
    session is still matched by `metadata.purchase_id`.
 
@@ -106,7 +107,8 @@ Stripe API version: pinned explicitly to the version bundled with stripe-java (`
 moves it, so read the Stripe changelog then. The webhook reads raw JSON and does not depend on it; set the webhook
 endpoint's API version in the Stripe dashboard to the same value.
 
-The success redirect never unlocks anything; `/roadmap?paid=1` should poll `GET /api/billing/entitlement`. Only the
+The success redirect never unlocks anything and the backend never reads `session_id`; `/roadmap?paid=1` should
+poll `GET /api/billing/entitlement`. Only the
 webhook (FP-62) marks a purchase `paid`.
 
 ## Not built yet
