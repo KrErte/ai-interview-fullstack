@@ -1,6 +1,7 @@
 package ee.kerrete.ainterview.api;
 
 import ee.kerrete.ainterview.ai.AiUnavailableException;
+import ee.kerrete.ainterview.ai.LlmRateLimiter;
 import ee.kerrete.ainterview.auth.JwtService;
 import ee.kerrete.ainterview.config.OpenAiProperties;
 import ee.kerrete.ainterview.config.SecurityConfig;
@@ -163,7 +164,8 @@ class AiUnavailableWebMvcTest {
             "openai.api-key=",
             "openai.base-url=http://127.0.0.1:9/v1"
     })
-    @Import({SecurityConfig.class, OpenAiClient.class, AiUnavailableWebMvcTest.OpenAiPropertiesConfig.class})
+    @Import({SecurityConfig.class, OpenAiClient.class, LlmRateLimiter.class,
+            AiUnavailableWebMvcTest.OpenAiPropertiesConfig.class})
     @WithMockUser(username = "u@example.com", roles = "USER")
     class WithTheRealClientAndNoKey {
 
