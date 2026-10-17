@@ -1,10 +1,11 @@
 package ee.kerrete.ainterview.team;
 
+import ee.kerrete.ainterview.ai.LlmRateLimiter;
 import ee.kerrete.ainterview.team.TeamModels.CreateTeamRequest;
-import ee.kerrete.ainterview.team.TeamModels.CreatedTeam;
 import ee.kerrete.ainterview.team.TeamModels.TeamInvite;
 import ee.kerrete.ainterview.team.TeamModels.TeamReport;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 /**
  * Meeskonnaraport ilma kontota. Õigus tuleb raportitokenist (salajane link), mitte JWT-st;
  * kõik teed on SecurityConfig-is avalikud.
@@ -24,14 +27,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/teams")
 public class TeamController {
 
-    private final TeamService service;
+    static final Map<String, String> TOO_MANY = Map.of(
+            "error", "rate_limited",
+            "message", "Too many team reports were created. Try again in an hour.");
 
-    public TeamController(TeamService service) {
+    private final TeamService service;
+    /** Oma aken meeskondade loomiseks (sama sliding-window loogika kui LLM-i piiril, eraldi loendurid). */
+    private final LlmRateLimiter createLimiter;
+
+    public TeamController(
+            TeamService service,
+            @Value("${app.teams.create-per-client-per-hour:5}") int createPerClientPerHour,
+            @Value("${app.teams.create-global-per-hour:30}") int createGlobalPerHour) {
         this.service = service;
+        this.createLimiter = new LlmRateLimiter(createPerClientPerHour, createGlobalPerHour);
     }
 
     @PostMapping
-    public ResponseEntity<CreatedTeam> create(@Valid @RequestBody CreateTeamRequest request) {
+    public ResponseEntity<?> create(@Valid @RequestBody CreateTeamRequest request) {
+        if (!createLimiter.tryAcquire(LlmRateLimiter.clientKey())) {
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(TOO_MANY);
+        }
         return ResponseEntity.status(HttpStatus.CREATED).cacheControl(CacheControl.noStore()).body(service.create(request));
     }
 

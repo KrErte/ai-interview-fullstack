@@ -142,6 +142,7 @@ const SAMPLE = {
           <p class="mt-3 text-[15px] leading-relaxed text-muted">Per person per year, with a quarterly re-test. Not available yet.</p>
         </article>
       </div>
+      <p class="mt-4 text-[13px] text-faint">Prices are in euros. VAT is stated on the invoice.</p>
     </section>
 
     <!-- Create -->
@@ -152,7 +153,7 @@ const SAMPLE = {
           You get two links: one to share with your team and a private one for the report. No account needed.
           A new report holds up to 50 people (Pilot). We send the invoice by email; for up to 200 people, write to us.
         </p>
-        <a [href]="mailto" class="btn-ghost mt-6 w-full sm:w-auto">Book a call</a>
+        <a [href]="mailto" class="btn-ghost mt-6 w-full sm:w-auto">Email us</a>
       </div>
 
       <div class="lg:col-span-7">
@@ -240,8 +241,10 @@ export class TeamsPageComponent {
         this.creating = false;
         this.analytics.track('team-created');
       },
-      error: () => {
-        this.error = 'Could not create the report. Check the name and email and try again.';
+      error: (err: { status?: number }) => {
+        this.error = err?.status === 429
+          ? 'Too many team reports were created. Try again in an hour.'
+          : 'Could not create the report. Check the name and email and try again.';
         this.creating = false;
       }
     });

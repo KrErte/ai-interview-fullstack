@@ -807,8 +807,8 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   /**
-   * A search with no result tells which job titles are missing. Only the title typed into the job
-   * search is sent (lower case, at most 60 characters), once per query.
+   * Counts searches with no result, once per query. The typed text is never sent, because people may
+   * type a name; only the selected category goes along when there is one.
    */
   private trackEmptySearch(results: ProfessionSummary[] | null): void {
     const q = this.search.trim().toLowerCase().slice(0, 60);
@@ -816,7 +816,7 @@ export class AiCheckPageComponent implements OnInit {
       return;
     }
     this.emptySearches.add(q);
-    this.analytics.track('search-empty', { query: q, category: this.category ?? 'all' });
+    this.analytics.track('search-empty', this.category ? { category: this.category } : undefined);
   }
 
   trackAiComment(on: boolean): void {
