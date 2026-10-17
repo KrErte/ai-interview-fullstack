@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
+import { Subject, Subscription, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
 
 import { AiReadinessService, isGrandfathered, lockedResultView, roadmapTeaserLines, roadmapTeaserPhases } from '../../services/ai-readiness.service';
 import { BillingService, isPaymentRequired } from '../../services/billing.service';
@@ -34,6 +34,9 @@ function sameShares(a: TaskShares, b: TaskShares): boolean {
   const keys = Object.keys(a);
   return keys.length === Object.keys(b).length && keys.every(k => a[k] === b[k]);
 }
+
+/** The entitlement did not confirm the payment within the polling window (FP-64). */
+class PaymentPendingError extends Error {}
 
 type Step = 'profession' | 'questions' | 'loading' | 'result';
 
@@ -488,7 +491,15 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
             </ul>
           </div>
           </ng-template>
-          <p *ngIf="fullRoadmapLoading" class="text-[15px] text-muted" role="status">Loading your roadmap…</p>
+          <p *ngIf="paymentCancelled" data-test="payment-cancelled" role="status"
+             class="rounded-2xl border border-slate-700 bg-slate-800/40 p-4 text-[15px] text-slate-300">Payment cancelled. Nothing was charged.</p>
+          <p *ngIf="fullRoadmapLoading" class="text-[15px] text-muted" role="status">{{ justPaid ? 'Confirming your payment…' : 'Loading your roadmap…' }}</p>
+          <div *ngIf="paymentPending" data-test="payment-pending" role="status"
+               class="rounded-2xl border border-slate-700 bg-slate-800/40 p-4">
+            <p class="text-[15px] text-slate-200" data-test="pending-text">We haven't received a payment confirmation yet. If you completed the payment, this can take a moment, so press Retry. If the problem continues, contact us.</p>
+            <button type="button" data-test="pending-retry" (click)="loadFullRoadmap(r)"
+                    class="mt-3 min-h-11 rounded-xl border border-emerald-500/50 px-4 text-sm font-semibold text-emerald-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">Retry</button>
+          </div>
           <div *ngIf="fullRoadmapError" class="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4" role="alert" data-test="roadmap-error">
             <p class="text-sm text-rose-200">{{ fullRoadmapError }}</p>
             <button type="button" (click)="loadFullRoadmap(r)" class="mt-2 text-sm text-rose-300 underline">Try again</button>
@@ -684,6 +695,11 @@ export class AiCheckPageComponent implements OnInit {
   fullRoadmapError: string | null = null;
   /** The last roadmap request said 402 payment_required. */
   fullRoadmapLocked = false;
+  /** Paid, but the entitlement did not say roadmap:true within the 15 s polling window. */
+  paymentPending = false;
+  /** Back from a cancelled checkout (?canceled=1). */
+  paymentCancelled = false;
+  private fullRoadmapSub?: Subscription;
   /**
    * The paid roadmap from POST /api/ai-readiness/roadmap, for one profession. Held in memory only: it is
    * never written to localStorage/sessionStorage, and a locked result never carries its own roadmaps.
@@ -707,7 +723,7 @@ export class AiCheckPageComponent implements OnInit {
   serverBillingEnabled = false;
   /** Show "Payment confirmed" only right after a purchase (?paid=1, resume flow) or once per tab session. */
   showPaymentConfirmed = false;
-  private justPaid = false;
+  justPaid = false;
   shareCopied = false;
   /** The share link, shown in a field when the clipboard is not available. */
   shareFallback: string | null = null;
@@ -853,6 +869,7 @@ export class AiCheckPageComponent implements OnInit {
     // back from /login or /register (?resume=paywall) or from /roadmap (?resume=roadmap) with the saved answers
     const resume = this.route.snapshot.queryParamMap.get('resume');
     this.justPaid = resume === 'roadmap' || this.route.snapshot.queryParamMap.get('paid') === '1';
+    this.paymentCancelled = this.route.snapshot.queryParamMap.get('canceled') === '1';
     if ((resume === 'paywall' || resume === 'roadmap') && this.resumePurchase(resume)) {
       return;
     }
@@ -1190,14 +1207,25 @@ export class AiCheckPageComponent implements OnInit {
     this.fullRoadmapLoading = true;
     this.fullRoadmapError = null;
     this.fullRoadmapLocked = false;
-    // unlock only after the entitlement endpoint confirms the payment; then fetch the paid roadmap
-    this.billing.getEntitlement().pipe(
-      switchMap(e => {
-        if (!e?.roadmap) {
+    this.paymentPending = false;
+    // unlock only after the entitlement endpoint confirms the payment; then fetch the paid roadmap. Right after
+    // a checkout (resume=roadmap / ?paid=1) the webhook may lag, so it polls every 1 s for up to 15 s.
+    const paidJustNow = this.justPaid;
+    const entitled$ = paidJustNow
+      ? this.billing.pollEntitlement()
+      : this.billing.getEntitlement().pipe(map(e => e?.roadmap === true));
+    this.fullRoadmapSub?.unsubscribe();
+    this.fullRoadmapSub = entitled$.pipe(
+      switchMap(ok => {
+        if (!ok) {
+          if (paidJustNow) {
+            throw new PaymentPendingError();
+          }
           throw new HttpErrorResponse({ status: 402, error: { error: 'payment_required' } });
         }
         return this.api.fullRoadmap(r.professionId, this.paywallAnswers(r));
-      })
+      }),
+      takeUntilDestroyed(this.destroyRef)
     ).subscribe({
       next: full => {
         this.fullRoadmapLoading = false;
@@ -1208,6 +1236,11 @@ export class AiCheckPageComponent implements OnInit {
       },
       error: err => {
         this.fullRoadmapLoading = false;
+        if (err instanceof PaymentPendingError) {
+          // paid, but the entitlement has not arrived within 15 s: keep justPaid so Retry polls again
+          this.paymentPending = true;
+          return;
+        }
         this.fullRoadmapLocked = isPaymentRequired(err);
         this.fullRoadmapError = this.fullRoadmapLocked
           ? 'Your roadmap is not unlocked yet. If you just paid, wait a moment and try again.'

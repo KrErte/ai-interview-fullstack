@@ -1,5 +1,5 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -45,6 +45,8 @@ export const PAYWALL_COPY = {
   busy: 'Opening secure checkout…',
   checking: 'Checking your purchase…',
   error: "We couldn't start the checkout. Check your connection and try again.",
+  unavailable: 'Payment is unavailable right now, try again later.',
+  waiverRequired: 'Please tick the box to agree before paying.',
   retry: 'Try again',
   entitledTitle: 'Your personal AI roadmap is unlocked',
   entitledText: 'You have already bought the roadmap. Open it any time.',
@@ -104,13 +106,14 @@ type State = 'checking' | 'paywall' | 'entitled';
           <!-- human-readable version, outside the checkbox's accessible name; the ID is only sent with the checkout -->
           <p class="text-[12px] font-semibold text-slate-400" data-test="waiver-label">Waiver, {{ copy.waiverLabel }}</p>
           <label for="paywall-waiver" class="flex min-h-11 cursor-pointer items-start gap-3 py-2 text-[14px] leading-relaxed text-slate-300">
-            <input id="paywall-waiver" type="checkbox" required data-test="waiver" [attr.data-waiver-version]="copy.waiverVersion"
+            <input #waiverBox id="paywall-waiver" type="checkbox" required data-test="waiver" [attr.data-waiver-version]="copy.waiverVersion"
+                   [class.ring-2]="waiverError" [class.ring-rose-400]="waiverError"
                    class="mt-1 h-5 w-5 shrink-0 accent-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                    [checked]="waiver" (change)="onWaiver($any($event.target).checked)"
                    [attr.aria-invalid]="waiverError" [attr.aria-describedby]="waiverError ? 'paywall-waiver-error' : null" />
             <span data-test="waiver-text">{{ copy.waiver }}</span>
           </label>
-          <p *ngIf="waiverError" id="paywall-waiver-error" data-test="waiver-error" class="mt-2 text-sm text-rose-400" role="alert">{{ copy.waiverError }}</p>
+          <p *ngIf="waiverError" id="paywall-waiver-error" data-test="waiver-error" class="mt-2 text-sm text-rose-400" role="alert">{{ waiverServerError ? copy.waiverRequired : copy.waiverError }}</p>
         </div>
 
         <button type="button" data-test="buy" (click)="buy()" [disabled]="!waiver || busy" [attr.aria-busy]="busy"
@@ -129,6 +132,9 @@ type State = 'checking' | 'paywall' | 'entitled';
           &middot;
           <a routerLink="/privacy" class="inline-flex min-h-11 min-w-11 items-center px-1 text-teal-300 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{{ copy.privacy }}</a>
         </p>
+
+        <p *ngIf="unavailable" data-test="unavailable" role="status"
+           class="mt-4 rounded-2xl border border-slate-700 bg-slate-800/40 p-4 text-sm text-slate-300">{{ copy.unavailable }}</p>
 
         <div *ngIf="error" data-test="error" class="mt-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4" role="alert">
           <p class="text-sm text-rose-200">{{ copy.error }}</p>
@@ -154,6 +160,11 @@ export class PaywallCardComponent implements OnInit, AfterViewInit, OnDestroy {
   waiverError = false;
   busy = false;
   error = false;
+  /** 404 billing_disabled / 503 payment_provider_unavailable from the checkout. */
+  unavailable = false;
+  /** The checkout answered 400 waiver_required (the server did not accept the consent). */
+  waiverServerError = false;
+  @ViewChild('waiverBox') waiverBox?: ElementRef<HTMLInputElement>;
 
   private viewSent = false;
   private viewReady = false;
@@ -207,6 +218,8 @@ export class PaywallCardComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.busy = true;
     this.error = false;
+    this.unavailable = false;
+    this.waiverServerError = false;
     this.billing.startCheckout().subscribe({
       next: ({ url }) => {
         // stays busy while the browser leaves the page
@@ -221,10 +234,16 @@ export class PaywallCardComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         const kind = BillingService.classifyCheckoutError(err);
         if (kind === 'already_paid') {
-          this.refreshEntitlement(true);
+          // already bought: the paid roadmap lives behind /roadmap
+          this.router.navigate(['/roadmap']);
         } else if (kind === 'waiver_required') {
           this.waiver = false;
           this.waiverError = true;
+          this.waiverServerError = true;
+          this.cdr.detectChanges();
+          this.waiverBox?.nativeElement.focus();
+        } else if (kind === 'unavailable') {
+          this.unavailable = true;
         } else {
           this.error = true;
         }

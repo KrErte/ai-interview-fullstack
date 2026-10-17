@@ -62,3 +62,13 @@ describe('BillingService', () => {
     expect(isPaymentRequired(new Error('x'))).toBeFalse();
   });
 });
+
+describe('BillingService.classifyCheckoutError (FP-64)', () => {
+  it('404 billing_disabled and 503 payment_provider_unavailable are "unavailable"; plain 404/503 are "other"', async () => {
+    const { HttpErrorResponse: E } = await import('@angular/common/http');
+    expect(BillingService.classifyCheckoutError(new E({ status: 404, error: { error: 'billing_disabled' } }))).toBe('unavailable');
+    expect(BillingService.classifyCheckoutError(new E({ status: 503, error: { error: 'payment_provider_unavailable' } }))).toBe('unavailable');
+    expect(BillingService.classifyCheckoutError(new E({ status: 404 }))).toBe('other');
+    expect(BillingService.classifyCheckoutError(new E({ status: 503 }))).toBe('other');
+  });
+});

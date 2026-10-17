@@ -155,16 +155,38 @@ describe('PaywallCardComponent', () => {
     expect(assign).toHaveBeenCalledOnceWith('https://pay.example/s/1');
   });
 
-  it('409: refreshes the entitlement and shows View your roadmap', () => {
+  it('409 (already paid): navigates to /roadmap, no checkout redirect', () => {
     const el = create();
+    const nav = spyOn(TestBed.inject(Router), 'navigate').and.resolveTo(true);
     tick(el);
     q(el, 'buy')!.click();
     http.expectOne(CHECKOUT).flush(null, { status: 409, statusText: 'Conflict' });
-    http.expectOne(ENT).flush({ roadmap: true });
-    fixture.detectChanges();
-    expect(q(el, 'view-roadmap')!.textContent).toContain(PAYWALL_COPY.view);
-    expect(q(el, 'buy')).toBeNull();
+    expect(nav).toHaveBeenCalledWith(['/roadmap']);
     expect(assign).not.toHaveBeenCalled();
+  });
+
+  for (const [status, code] of [[404, 'billing_disabled'], [503, 'payment_provider_unavailable']] as const) {
+    it(`${status} ${code}: neutral "unavailable" note, not the generic error`, () => {
+      const el = create();
+      tick(el);
+      q(el, 'buy')!.click();
+      http.expectOne(CHECKOUT).flush({ error: code }, { status, statusText: 'x' });
+      fixture.detectChanges();
+      expect(q(el, 'unavailable')!.textContent).toContain('Payment is unavailable right now, try again later.');
+      expect(q(el, 'unavailable')!.getAttribute('role')).toBe('status');
+      expect(q(el, 'error')).toBeNull();
+      expect(assign).not.toHaveBeenCalled();
+    });
+  }
+
+  it('other errors (e.g. 404 without billing_disabled, 500) keep the generic message', () => {
+    const el = create();
+    tick(el);
+    q(el, 'buy')!.click();
+    http.expectOne(CHECKOUT).flush(null, { status: 404, statusText: 'Not Found' });
+    fixture.detectChanges();
+    expect(q(el, 'error')!.textContent).toContain(PAYWALL_COPY.error);
+    expect(q(el, 'unavailable')).toBeNull();
   });
 
   it('400 waiver_required: shows the checkbox error and unticks it', () => {
@@ -173,8 +195,13 @@ describe('PaywallCardComponent', () => {
     q(el, 'buy')!.click();
     http.expectOne(CHECKOUT).flush({ error: 'waiver_required' }, { status: 400, statusText: 'Bad Request' });
     fixture.detectChanges();
-    expect(q(el, 'waiver-error')!.textContent).toContain(PAYWALL_COPY.waiverError);
-    expect((q(el, 'waiver') as HTMLInputElement).checked).toBeFalse();
+    const box = q(el, 'waiver') as HTMLInputElement;
+    expect(q(el, 'waiver-error')!.textContent).toContain(PAYWALL_COPY.waiverRequired);
+    expect(box.checked).toBeFalse();
+    expect(box.getAttribute('aria-invalid')).toBe('true');
+    expect(box.getAttribute('aria-describedby')).toBe('paywall-waiver-error');
+    expect(box.classList).toContain('ring-rose-400');
+    expect(document.activeElement).toBe(box);
     expect((q(el, 'buy') as HTMLButtonElement).disabled).toBeTrue();
   });
 
