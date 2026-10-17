@@ -43,7 +43,8 @@ class InterviewQuestionsWebMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(6)))
                 .andExpect(jsonPath("$[0].question").value("How do you use AI in your work today?"))
-                .andExpect(jsonPath("$[1].question", containsString("Walk us through how you would use AI for")))
+                .andExpect(jsonPath("$[1].question").value("Walk us through how you would use AI for this part of your work: "
+                        + "season and cook food according to recipes or personal judgment and experience."))
                 .andExpect(jsonPath("$[2].strongAnswer", containsString("contained a factual error")));
     }
 
