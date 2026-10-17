@@ -58,7 +58,7 @@
     .num { font: 13px ui-monospace, monospace; text-align: right; font-variant-numeric: tabular-nums; }
     .muted { color: var(--muted); }
     .observed { margin-left: 8px; border: 1px solid rgba(198,244,50,.45); color: var(--accent); border-radius: 99px; padding: 1px 8px; font: 10px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
-    @media (max-width: 640px) { .task { grid-template-columns: minmax(0,1fr) 3rem; } .task .share { display: none; } .task .bar { grid-column: 1 / -1; order: 3; } }
+    @media (max-width: 640px) { .task { grid-template-columns: minmax(0,1fr) 3rem; } .task .share { display: none; } .task .bar { grid-column: 1 / -1; order: 3; } .task.kicker { display: flex; justify-content: space-between; } .task.kicker > span:empty { display: none; } }
     ul.dots { list-style: none; padding: 0; margin: 0; }
     ul.dots li { position: relative; padding-left: 18px; margin: 10px 0; font-size: 15px; }
     ul.dots li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
