@@ -11,6 +11,8 @@ export interface ProfessionSummary {
 /** Optional features this server has configured (the AI comment needs an LLM API key). */
 export interface Features {
   aiComment: boolean;
+  /** FP-60: server billing flag, the single source of truth for the paywall and the sale terms. Missing = off. */
+  billingEnabled?: boolean;
 }
 
 /** SOC major group with the number of professions in it, for browsing. */
@@ -113,4 +115,64 @@ export interface AssessmentResult {
   personalNote: string | null;
   /** Only when the request had a team code or edit token. */
   team?: TeamStatus;
+  /**
+   * BILLING_ENABLED=true only: the full roadmaps are left out (empty or missing) and this short preview is
+   * sent instead. Shape not final in the backend contract; a string, a list of strings or a list of
+   * phases/stages with a title are all rendered (see roadmapTeaserLines).
+   */
+  roadmapTeaser?: RoadmapTeaser | null;
+  /** BILLING_ENABLED=true and the roadmap is not unlocked: show the teaser and the price card. Absent/false = billing off. */
+  roadmapLocked?: boolean;
+  /**
+   * Billing on: /assess always answers roadmapLocked:true with only the teaser, even for paid users; the full
+   * roadmap comes only from POST /api/ai-readiness/roadmap. Missing = billing off (older backends).
+   */
+  billingEnabled?: boolean;
+  /**
+   * Written by saveLastResult on every save from FP-63 on ('v1', together with an explicit billingEnabled).
+   * A saved full roadmap without it (and without billingEnabled/roadmapLocked) predates billing and is
+   * grandfathered: it keeps rendering with progress, PDF, .ics and "Continue your plan".
+   */
+  billingMarker?: 'v1';
+}
+
+/**
+ * Teaser phase (confirmed by TEAM_LEAD): phase 1 carries title, items and project; phases 2–3 only phase + title.
+ * The older shapes (a string, string[] or {title}[]) are still accepted.
+ */
+export interface RoadmapTeaserPhase {
+  phase?: number;
+  title?: string;
+  items?: string[];
+  project?: string;
+}
+
+export type RoadmapTeaser = string | Array<string | RoadmapTeaserPhase>;
+
+/** A teaser phase ready to render: open phases show items and project, locked ones only the title. */
+export interface TeaserPhaseView {
+  phase: number;
+  title: string;
+  items: string[];
+  project: string | null;
+  locked: boolean;
+}
+
+/** POST /api/ai-readiness/roadmap (auth only) body. */
+export interface FullRoadmapRequest {
+  professionId: string;
+  answers: Record<string, string>;
+}
+
+/** POST /api/ai-readiness/roadmap response; 402 {error:'payment_required'} when not entitled. */
+export interface FullRoadmap {
+  generalRoadmap: GeneralStage[];
+  professionRoadmap: RoadmapPhase[];
+  totalWeeks: number;
+}
+
+/** Saved in sessionStorage when "buy" sends the user to log in, so the paywall comes back with the same answers. */
+export interface PendingPurchase {
+  professionId: string;
+  answers: Record<string, string>;
 }

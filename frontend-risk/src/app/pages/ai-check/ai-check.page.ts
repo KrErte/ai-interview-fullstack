@@ -3,19 +3,26 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, map, of, skip, switchMap } from 'rxjs';
 
-import { AiReadinessService } from '../../services/ai-readiness.service';
+import { AiReadinessService, isGrandfathered, lockedResultView, roadmapTeaserLines, roadmapTeaserPhases } from '../../services/ai-readiness.service';
+import { BillingService, isPaymentRequired } from '../../services/billing.service';
+import { BillingStatusService } from '../../services/billing-status.service';
+import { saleConfig } from '../legal/legal-config';
+import { PaywallCardComponent } from '../../components/paywall-card/paywall-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
 import {
   AssessmentRequest,
   AssessmentResult,
   CategorySummary,
+  FullRoadmap,
   ProfessionSummary,
   Question,
   RiskBand,
   RoadmapPhase,
-  TaskExposure
+  TaskExposure,
+  TeaserPhaseView
 } from '../../models/ai-readiness.model';
 import { buildReminderIcs, nextSessionStart } from './reminder';
 import { previewResult, rescaleShares, sharesOf, TaskShares } from './task-shares';
@@ -83,7 +90,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
 @Component({
   selector: 'app-ai-check-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, PaywallCardComponent],
   template: `
     <div *ngIf="error" class="mb-8 rounded-xl border border-band-very-high bg-surface px-4 py-3 text-[15px] text-band-very-high" role="alert">
       {{ error }}
@@ -306,9 +313,9 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           <div class="mt-6 h-2.5 overflow-hidden rounded-full bg-line">
             <div class="grow-x h-full rounded-full bg-accent" style="--i:4" [style.width.%]="r.readinessScore"></div>
           </div>
-          <p class="mt-auto pt-6 text-[15px] leading-relaxed text-muted">
+          <p *ngIf="planOf(r) as p" class="mt-auto pt-6 text-[15px] leading-relaxed text-muted">
             At your weekly pace, the remaining stages of the general learning path take about
-            <span class="font-semibold text-fg">{{ r.totalWeeks }} weeks</span>.
+            <span class="font-semibold text-fg">{{ p.totalWeeks }} weeks</span>.
           </p>
         </div>
       </section>
@@ -329,12 +336,14 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           <p class="mt-3 text-[15px] leading-relaxed text-muted">
             One real try this week beats a course you never finish.
           </p>
-          <button (click)="downloadReminder(r, s)" class="btn-ghost mt-5 !px-4 !py-2 !text-[14px] print:hidden">
+          <ng-container *ngIf="planOf(r)">
+          <button (click)="downloadReminder(r, s)" data-test="ics" class="btn-ghost mt-5 !px-4 !py-2 !text-[14px] print:hidden">
             Add a weekly reminder
           </button>
           <p class="mt-2 text-[12px] leading-relaxed text-faint print:hidden">
             A calendar file: one session every Monday at 18:00 for 12 weeks. Move it to a time that suits you.
           </p>
+          </ng-container>
         </div>
         <div class="space-y-5 lg:col-span-8">
           <div class="rounded-xl bg-surface-2 p-5">
@@ -444,6 +453,61 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
         </div>
       </section>
 
+      <!-- Billing on and not unlocked: teaser + price card instead of the roadmaps (FP-63) -->
+      <ng-container *ngIf="!planOf(r); else fullRoadmaps">
+        <section id="roadmap-paywall" class="space-y-6 scroll-mt-6">
+          <div *ngIf="teaserPhases(r) as phases; else teaserLinesTpl" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 sm:p-8" data-test="roadmap-teaser">
+            <p class="font-mono text-sm text-accent">06</p>
+            <h2 class="mt-3 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">A preview of your roadmap</h2>
+            <ol class="mt-5 space-y-4">
+              <li *ngFor="let ph of phases" class="rounded-2xl border border-slate-800/50 p-4 sm:p-5"
+                  [attr.data-test]="'teaser-phase-' + ph.phase" [attr.aria-label]="'Phase ' + ph.phase + (ph.locked ? ', locked' : '')">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="text-lg font-bold leading-tight tracking-tight text-slate-100">Phase {{ ph.phase }}: {{ ph.title }}</h3>
+                  <span *ngIf="ph.locked" data-test="teaser-locked" class="rounded-full border border-slate-700 px-2.5 py-0.5 text-[12px] font-semibold text-slate-300">
+                    <span aria-hidden="true">&#128274;</span> Locked: included in the personal roadmap
+                  </span>
+                </div>
+                <ng-container *ngIf="!ph.locked">
+                  <ul *ngIf="ph.items.length" class="mt-3 space-y-1.5 text-[15px] leading-relaxed text-slate-300" data-test="teaser-items">
+                    <li *ngFor="let it of ph.items" class="flex gap-3"><span class="text-faint" aria-hidden="true">&ndash;</span><span>{{ it }}</span></li>
+                  </ul>
+                  <p *ngIf="ph.project" class="mt-3 text-[15px] leading-relaxed text-slate-300" data-test="teaser-project">
+                    <span class="font-semibold text-slate-100">Project:</span> {{ ph.project }}
+                  </p>
+                </ng-container>
+              </li>
+            </ol>
+          </div>
+          <ng-template #teaserLinesTpl>
+          <div *ngIf="teaserLines(r).length" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 sm:p-8" data-test="roadmap-teaser">
+            <p class="font-mono text-sm text-accent">06</p>
+            <h2 class="mt-3 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">A preview of your roadmap</h2>
+            <ul class="mt-4 space-y-2 text-[15px] leading-relaxed text-slate-300">
+              <li *ngFor="let t of teaserLines(r)" class="flex gap-3"><span class="text-faint">&ndash;</span><span>{{ t }}</span></li>
+            </ul>
+          </div>
+          </ng-template>
+          <p *ngIf="fullRoadmapLoading" class="text-[15px] text-muted" role="status">Loading your roadmap…</p>
+          <div *ngIf="fullRoadmapError" class="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4" role="alert" data-test="roadmap-error">
+            <p class="text-sm text-rose-200">{{ fullRoadmapError }}</p>
+            <button type="button" (click)="loadFullRoadmap(r)" class="mt-2 text-sm text-rose-300 underline">Try again</button>
+          </div>
+          <p *ngIf="!saleReady(r)" data-test="roadmap-soon" class="rounded-3xl border border-slate-800/50 bg-slate-900/50 p-5 text-[15px] text-slate-300 sm:p-8">
+            The full roadmap will be available soon.
+          </p>
+          <app-paywall-card *ngIf="saleReady(r)" [professionId]="r.professionId" [professionName]="r.professionName" [answers]="paywallAnswers(r)"
+                            (viewRoadmap)="loadFullRoadmap(r)"></app-paywall-card>
+        </section>
+      </ng-container>
+
+      <!-- Billing off, or the paid roadmap from POST /api/ai-readiness/roadmap (never the locked result) -->
+      <ng-template #fullRoadmaps>
+      <ng-container *ngIf="planOf(r) as p">
+      <p *ngIf="entitledRoadmap && showPaymentConfirmed" data-test="payment-confirmed" role="status"
+         class="rounded-3xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-[15px] font-semibold text-emerald-200">
+        Payment confirmed. Your full roadmap is below.
+      </p>
       <!-- General roadmap -->
       <section class="card grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
         <div class="lg:col-span-4 lg:pr-6">
@@ -452,7 +516,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           <p class="mt-3 text-[15px] leading-relaxed text-muted">The same five stages for every profession. Your readiness sets where you start and your weekly hours set how long each stage takes. Stages you already cover are checked.</p>
         </div>
         <ol class="space-y-3 lg:col-span-8">
-          <li *ngFor="let s of r.generalRoadmap; let i = index"
+          <li *ngFor="let s of p.generalRoadmap; let i = index"
               class="avoid-break grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-4 rounded-xl border p-5"
               [ngClass]="s.status === 'CURRENT' ? 'border-accent bg-surface-2' : 'border-line'">
             <span class="flex h-11 w-11 items-center justify-center rounded-full font-mono text-sm font-medium"
@@ -488,9 +552,9 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
       <!-- Profession roadmap -->
       <section class="card p-6 sm:p-8">
         <p class="font-mono text-sm text-accent">07</p>
-        <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Starter plan: {{ r.professionName }}</h2>
+        <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Starter plan: {{ p.professionName }}</h2>
         <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">The same steps for everyone in this profession, with a practice project in each phase. Tick off what you have done; your progress is saved in this browser.</p>
-        <div *ngIf="roadmapProgress(r) as p" class="mt-5 flex max-w-md items-center gap-4">
+        <div *ngIf="roadmapProgress(p) as p" class="mt-5 flex max-w-md items-center gap-4">
           <div class="h-2 flex-1 overflow-hidden rounded-full bg-line" role="progressbar"
                [attr.aria-valuenow]="p.done" aria-valuemin="0" [attr.aria-valuemax]="p.total" aria-label="Roadmap progress">
             <div class="h-full rounded-full bg-accent transition-[width] duration-300" [style.width.%]="p.total ? (p.done / p.total) * 100 : 0"></div>
@@ -499,18 +563,18 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
         </div>
 
         <div class="mt-8 grid gap-4 md:grid-cols-3">
-          <div *ngFor="let ph of r.professionRoadmap; let i = index" class="avoid-break flex flex-col rounded-xl border border-line p-5">
+          <div *ngFor="let ph of p.professionRoadmap; let i = index" class="avoid-break flex flex-col rounded-xl border border-line p-5">
             <div class="flex items-baseline justify-between gap-3">
               <p class="kicker">Phase {{ i + 1 }}</p>
-              <span class="num font-mono text-[12px] text-faint">{{ phaseDone(r, ph) }} / {{ ph.items.length + 1 }}</span>
+              <span class="num font-mono text-[12px] text-faint">{{ phaseDone(p, ph) }} / {{ ph.items.length + 1 }}</span>
             </div>
             <h3 class="mt-2 text-xl font-bold leading-tight tracking-tight">{{ ph.title }}</h3>
             <ul class="mt-4 flex-1 space-y-2 text-[15px] leading-relaxed">
               <li *ngFor="let it of ph.items">
                 <label class="flex cursor-pointer gap-3">
                   <input type="checkbox" class="mt-1 h-4 w-4 shrink-0 accent-[#c6f432]"
-                         [checked]="isDone(r, it)" (change)="toggleDone(r, it)" />
-                  <span [class.text-muted]="isDone(r, it)" [class.line-through]="isDone(r, it)">{{ it }}</span>
+                         [checked]="isDone(p, it)" (change)="toggleDone(p, it)" />
+                  <span [class.text-muted]="isDone(p, it)" [class.line-through]="isDone(p, it)">{{ it }}</span>
                 </label>
               </li>
             </ul>
@@ -519,13 +583,15 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
               <p class="mt-2 text-[15px] leading-relaxed">{{ ph.project }}</p>
               <label class="mt-3 flex cursor-pointer items-center gap-2 text-[14px] text-muted">
                 <input type="checkbox" class="h-4 w-4 accent-[#c6f432]"
-                       [checked]="isDone(r, ph.project)" (change)="toggleDone(r, ph.project)" />
+                       [checked]="isDone(p, ph.project)" (change)="toggleDone(p, ph.project)" />
                 Project done
               </label>
             </div>
           </div>
         </div>
       </section>
+      </ng-container>
+      </ng-template>
 
       <footer class="grid gap-4 pt-4 lg:grid-cols-12">
         <p class="kicker lg:col-span-3">Method</p>
@@ -551,7 +617,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
         <button *ngIf="shareUrl(r) as url" (click)="copyShareLink(url)" class="btn-ghost">
           {{ shareCopied ? 'Link copied' : 'Copy share link' }}
         </button>
-        <button (click)="print()" class="btn-accent">Print / save as PDF</button>
+        <button *ngIf="planOf(r)" (click)="print()" data-test="pdf" class="btn-accent">Print / save as PDF</button>
       </div>
       <div *ngIf="shareFallback" class="print:hidden">
         <p class="kicker">Share link</p>
@@ -613,8 +679,35 @@ export class AiCheckPageComponent implements OnInit {
   /** Queries already reported as empty, so each is sent once. */
   private readonly emptySearches = new Set<string>();
 
+  /** Paid roadmap (FP-63): loading / error state of POST /api/ai-readiness/roadmap. */
+  fullRoadmapLoading = false;
+  fullRoadmapError: string | null = null;
+  /** The last roadmap request said 402 payment_required. */
+  fullRoadmapLocked = false;
+  /**
+   * The paid roadmap from POST /api/ai-readiness/roadmap, for one profession. Held in memory only: it is
+   * never written to localStorage/sessionStorage, and a locked result never carries its own roadmaps.
+   */
+  entitledRoadmap: { professionId: string; roadmap: FullRoadmap } | null = null;
+  private planCache: { source: AssessmentResult; roadmap: FullRoadmap | null; plan: AssessmentResult } | null = null;
+
   /** Showing someone else's result from a share link: nothing is saved in this browser. */
   sharedView = false;
+  /** The saved result on screen predates billing (isGrandfathered): shown as it is, never re-saved. */
+  grandfathered = false;
+  /**
+   * Paywall card and checkout: the server's billingEnabled from /features (single source of truth) plus a complete seller/VAT
+   * config, the same predicate as the /terms sale section. Otherwise a locked result shows the teaser and a note.
+   */
+  saleReady(_r: AssessmentResult): boolean {
+    return !!saleConfig(this.serverBillingEnabled);
+  }
+
+  /** billingEnabled from GET /features; false until it answers, and on error or a missing value (fail closed). */
+  serverBillingEnabled = false;
+  /** Show "Payment confirmed" only right after a purchase (?paid=1, resume flow) or once per tab session. */
+  showPaymentConfirmed = false;
+  private justPaid = false;
   shareCopied = false;
   /** The share link, shown in a field when the clipboard is not available. */
   shareFallback: string | null = null;
@@ -623,6 +716,8 @@ export class AiCheckPageComponent implements OnInit {
     private api: AiReadinessService,
     private teams: TeamService,
     private analytics: AnalyticsService,
+    private billing: BillingService,
+    private billingStatus: BillingStatusService,
     private route: ActivatedRoute,
     private router: Router,
     private destroyRef: DestroyRef
@@ -635,10 +730,12 @@ export class AiCheckPageComponent implements OnInit {
       questions: this.api.questions(),
       // browsing by field is optional; the test still works without it
       categories: this.api.categories().pipe(catchError(() => of([] as CategorySummary[]))),
-      features: this.api.features().pipe(catchError(() => of({ aiComment: false })))
+      // one cached /features request per app session, shared with /terms and /refund (BillingStatusService)
+      features: this.billingStatus.features()
     }).subscribe({
       next: ({ professions, questions, categories, features }) => {
-        this.aiCommentAvailable = features.aiComment;
+        this.aiCommentAvailable = features?.aiComment === true;
+        this.serverBillingEnabled = features?.billingEnabled === true;
         this.featured = professions;
         this.questions = questions;
         this.categories = categories;
@@ -753,6 +850,12 @@ export class AiCheckPageComponent implements OnInit {
    * /ai-test?view=saved opens the saved result.
    */
   private preselectFromLink(): void {
+    // back from /login or /register (?resume=paywall) or from /roadmap (?resume=roadmap) with the saved answers
+    const resume = this.route.snapshot.queryParamMap.get('resume');
+    this.justPaid = resume === 'roadmap' || this.route.snapshot.queryParamMap.get('paid') === '1';
+    if ((resume === 'paywall' || resume === 'roadmap') && this.resumePurchase(resume)) {
+      return;
+    }
     const shared = parseShareFragment(this.route.snapshot.fragment);
     if (shared) {
       this.openShared(shared);
@@ -831,6 +934,7 @@ export class AiCheckPageComponent implements OnInit {
    */
   private openShared(shared: SharedResult): void {
     this.sharedView = true;
+    this.grandfathered = false;
     this.professionId = shared.professionId;
     this.answers = shared.answers;
     this.step = 'loading';
@@ -943,6 +1047,7 @@ export class AiCheckPageComponent implements OnInit {
     this.api.assess({ professionId: this.professionId, answers: this.answers, personalize, teamCode, teamEditToken }).subscribe({
       next: result => {
         this.result = result;
+        this.grandfathered = false;
         this.analytics.track('test-complete', { profession: result.professionId, band: result.band });
         this.lastResult = result;
         this.personalNoteRequested = personalize;
@@ -981,6 +1086,7 @@ export class AiCheckPageComponent implements OnInit {
       return;
     }
     this.result = saved;
+    this.grandfathered = isGrandfathered(saved);
     this.showAllTasks = false;
     this.personalNoteRequested = false;
     this.pinnedTop = null;
@@ -991,7 +1097,8 @@ export class AiCheckPageComponent implements OnInit {
     const stored = this.api.loadLastAnswers();
     this.savedResultOutdated = !stored || stored.professionId !== saved.professionId;
     this.customShares = !!stored?.taskShares && !this.savedResultOutdated;
-    if (this.savedResultOutdated || !stored) {
+    if (this.savedResultOutdated || !stored || this.grandfathered) {
+      // a grandfathered plan is not recalculated, so it is never overwritten by a locked result
       return;
     }
     // the user's own shares are sent again; if the catalog has renamed a task the server says 400
@@ -1012,6 +1119,103 @@ export class AiCheckPageComponent implements OnInit {
     });
   }
 
+  /** Phased teaser views, cached per teaser object so change detection keeps the same array. */
+  private teaserCache: { teaser: unknown; phases: TeaserPhaseView[] | null } | null = null;
+
+  teaserPhases(r: AssessmentResult): TeaserPhaseView[] | null {
+    if (!this.teaserCache || this.teaserCache.teaser !== r.roadmapTeaser) {
+      this.teaserCache = { teaser: r.roadmapTeaser, phases: roadmapTeaserPhases(r.roadmapTeaser) };
+    }
+    return this.teaserCache.phases;
+  }
+
+  teaserLines(r: AssessmentResult): string[] {
+    return roadmapTeaserLines(r.roadmapTeaser);
+  }
+
+  /** The answers behind the result on screen, for the paywall's login detour and the roadmap request. */
+  paywallAnswers(r: AssessmentResult): Record<string, string> {
+    if (Object.keys(this.answers).length) {
+      return this.answers;
+    }
+    const stored = this.api.loadLastAnswers();
+    return stored && stored.professionId === r.professionId ? stored.answers : {};
+  }
+
+  /**
+   * Restores the result from the answers saved before the login detour and shows the paywall again
+   * (or, for 'roadmap', loads the paid roadmap at once). False when nothing is saved.
+   */
+  resumePurchase(mode: 'paywall' | 'roadmap'): boolean {
+    const pending = this.api.loadPendingPurchase();
+    this.router.navigate([], { relativeTo: this.route, queryParams: {}, replaceUrl: true });
+    if (!pending) {
+      return false;
+    }
+    this.professionId = pending.professionId;
+    this.answers = pending.answers;
+    this.sharedView = false;
+    this.step = 'loading';
+    this.api.assess({ professionId: pending.professionId, answers: pending.answers, personalize: false }).subscribe({
+      next: result => {
+        this.api.clearPendingPurchase();
+        this.result = result;
+        this.grandfathered = false;
+        this.customShares = false;
+        this.pinnedTop = null;
+        this.slidersMoved = false;
+        this.step = 'result';
+        if (mode === 'roadmap' || !result.roadmapLocked) {
+          if (result.roadmapLocked) {
+            this.loadFullRoadmap(result);
+          }
+          return;
+        }
+        setTimeout(() => document.getElementById('roadmap-paywall')?.scrollIntoView({ block: 'start' }));
+      },
+      error: () => {
+        this.error = 'Could not restore your result. Please take the test again.';
+        this.step = 'profession';
+      }
+    });
+    return true;
+  }
+
+  /**
+   * Loads the paid roadmap from POST /api/ai-readiness/roadmap (in memory only) and renders it with the
+   * existing plan view (see planOf). FP-64 calls this after polling the entitlement.
+   */
+  loadFullRoadmap(r: AssessmentResult): void {
+    if (this.fullRoadmapLoading) return;
+    this.fullRoadmapLoading = true;
+    this.fullRoadmapError = null;
+    this.fullRoadmapLocked = false;
+    // unlock only after the entitlement endpoint confirms the payment; then fetch the paid roadmap
+    this.billing.getEntitlement().pipe(
+      switchMap(e => {
+        if (!e?.roadmap) {
+          throw new HttpErrorResponse({ status: 402, error: { error: 'payment_required' } });
+        }
+        return this.api.fullRoadmap(r.professionId, this.paywallAnswers(r));
+      })
+    ).subscribe({
+      next: full => {
+        this.fullRoadmapLoading = false;
+        // kept apart from the result, so saveLastResult never sees the paid roadmap
+        this.entitledRoadmap = { professionId: r.professionId, roadmap: full };
+        this.showPaymentConfirmed = this.api.takePaymentConfirmedOnce() || this.justPaid;
+        this.justPaid = false;
+      },
+      error: err => {
+        this.fullRoadmapLoading = false;
+        this.fullRoadmapLocked = isPaymentRequired(err);
+        this.fullRoadmapError = this.fullRoadmapLocked
+          ? 'Your roadmap is not unlocked yet. If you just paid, wait a moment and try again.'
+          : 'We could not load your roadmap. Check your connection and try again.';
+      }
+    });
+  }
+
   restart(): void {
     this.answers = {};
     this.professionId = null;
@@ -1023,6 +1227,10 @@ export class AiCheckPageComponent implements OnInit {
     this.showAllTasks = false;
     this.questionIndex = 0;
     this.result = null;
+    this.fullRoadmapError = null;
+    this.fullRoadmapLocked = false;
+    this.entitledRoadmap = null;
+    this.grandfathered = false;
     this.personalize = false;
     this.personalNoteRequested = false;
     this.savedResultOutdated = false;
@@ -1084,7 +1292,7 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   canRecalculate(r: AssessmentResult): boolean {
-    return !!this.answersFor(r);
+    return !this.grandfathered && !!this.answersFor(r);
   }
 
   /**
@@ -1105,6 +1313,10 @@ export class AiCheckPageComponent implements OnInit {
     const preview = previewResult(r, taskShares);
     this.result = preview;
     this.customShares = true;
+    if (this.grandfathered) {
+      // local preview only: a server reply (billing on) or a save would replace the grandfathered plan
+      return;
+    }
     const answers = this.answersFor(r);
     if (answers) {
       this.sharesRequest$.next({
@@ -1121,7 +1333,7 @@ export class AiCheckPageComponent implements OnInit {
   /** Back to the catalog's typical week (needs the answers, as the server recalculates it). */
   resetShares(r: AssessmentResult): void {
     const answers = this.answersFor(r);
-    if (!answers) {
+    if (!answers || this.grandfathered) {
       return;
     }
     this.api.assess({ professionId: r.professionId, answers, personalize: false, teamEditToken: this.teamEditTokenFor(r) }).subscribe({
@@ -1161,7 +1373,26 @@ export class AiCheckPageComponent implements OnInit {
   }
 
   firstStep(r: AssessmentResult): FirstStep | null {
-    return firstStep(r, this.aiMarks(r));
+    return firstStep(this.planOf(r) ?? lockedResultView(r), this.aiMarks(r));
+  }
+
+  /**
+   * The result with the roadmaps to show: the result itself when billing is off (billingEnabled missing/false and
+   * not locked); with billing on, only the paid roadmap from POST /roadmap merged in, else null (teaser + paywall,
+   * whose entitlement check offers "View your roadmap" or the price).
+   */
+  planOf(r: AssessmentResult): AssessmentResult | null {
+    // billing on: never the /assess roadmaps, only the paid one from POST /roadmap
+    if (!r.billingEnabled && !r.roadmapLocked) return r;
+    const paid = this.entitledRoadmap?.professionId === r.professionId ? this.entitledRoadmap.roadmap : null;
+    if (!paid) return null;
+    if (this.planCache?.source !== r || this.planCache.roadmap !== paid) {
+      this.planCache = {
+        source: r, roadmap: paid,
+        plan: { ...r, generalRoadmap: paid.generalRoadmap ?? [], professionRoadmap: paid.professionRoadmap ?? [], totalWeeks: paid.totalWeeks }
+      };
+    }
+    return this.planCache.plan;
   }
 
   /** Tasks marked "I already do this with AI" for the profession on screen; used only by the first-step box. */
@@ -1196,7 +1427,7 @@ export class AiCheckPageComponent implements OnInit {
     const ics = buildReminderIcs({
       professionName: r.professionName,
       firstStep: s.task ? `Do this task once with AI help: ${s.task.name}` : (s.firstItem ?? 'Start the first phase of your plan.'),
-      planUrl: `${window.location.origin}/ai-test?view=saved`,
+      planUrl: `${window.location.origin}/roadmap`,
       start: nextSessionStart(new Date()),
       minutes
     });
