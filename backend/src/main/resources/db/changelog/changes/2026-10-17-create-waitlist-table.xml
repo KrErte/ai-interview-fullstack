@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+    <!--
+      Waitlist for a product that is not sold yet (fake door, docs/vajadus-ai-ajastul-2026-10-17.md).
+      Only the email, the product, the profession and source it came from, and the time. One row per email and product.
+    -->
+    <changeSet id="2026-10-17-create-waitlist-table" author="careerrisk">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="waitlist_signup"/>
+            </not>
+        </preConditions>
+        <createTable tableName="waitlist_signup">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(254)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profession_id" type="VARCHAR(128)"/>
+            <column name="source" type="VARCHAR(32)"/>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="waitlist_signup" columnNames="email, product"
+                             constraintName="uk_waitlist_signup_email_product"/>
+    </changeSet>
+</databaseChangeLog>
