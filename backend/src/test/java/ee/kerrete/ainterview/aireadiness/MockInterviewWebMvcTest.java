@@ -23,6 +23,7 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,6 +63,16 @@ class MockInterviewWebMvcTest {
         verify(coach).evaluate(eq("Lawyer"),
                 argThat(q -> q.question().equals("Tell us about a time AI gave you a wrong or poor result. What did you do?")),
                 eq(ANSWER));
+    }
+
+    @Test
+    void statusSaysWhichModelScoresOrNull() throws Exception {
+        when(coach.provider()).thenReturn(MockInterviewCoach.Provider.ANTHROPIC);
+        mvc.perform(get("/api/ai-readiness/mock-interview/status")).andExpect(status().isOk())
+                .andExpect(jsonPath("$.provider").value("anthropic"));
+        when(coach.provider()).thenReturn(null);
+        mvc.perform(get("/api/ai-readiness/mock-interview/status")).andExpect(status().isOk())
+                .andExpect(jsonPath("$.provider").doesNotExist());
     }
 
     @Test

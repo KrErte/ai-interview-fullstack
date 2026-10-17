@@ -13,16 +13,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
  * POST /api/ai-readiness/mock-interview: hinnang ühele vastusele. Küsimus võetakse serverist ameti ja indeksi järgi
- * (sama, mis /prep lehel), kasutaja saadab ainult vastuse. Vastus läheb OpenAI-le, midagi ei salvestata.
+ * (sama, mis /prep lehel), kasutaja saadab ainult vastuse. Vastus läheb keelemudelile (Claude või OpenAI), midagi ei salvestata.
  * Võtmeta 503 {"error":"ai_unavailable"} (AiUnavailableAdvice), piiri peal 429.
  */
 @RestController
@@ -43,6 +46,13 @@ public class MockInterviewController {
         this.catalog = catalog;
         this.pages = pages;
         this.coach = coach;
+    }
+
+    /** Kas proovivestlus on sees ja kumb teenus hindab: {"provider":"anthropic"|"openai"|null}. Leht ja privaatsus näitavad nime. */
+    @GetMapping("/api/ai-readiness/mock-interview/status")
+    public Map<String, String> status() {
+        MockInterviewCoach.Provider p = coach.provider();
+        return Collections.singletonMap("provider", p == null ? null : p.name().toLowerCase(Locale.ROOT));
     }
 
     @PostMapping("/api/ai-readiness/mock-interview")
