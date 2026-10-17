@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withServerError;
@@ -59,8 +60,11 @@ class MockInterviewCoachTest {
                 .andExpect(header("x-api-key", "sk-ant"))
                 .andExpect(header("anthropic-version", "2023-06-01"))
                 .andExpect(content().string(containsString("\"model\":\"claude-test\"")))
-                .andExpect(content().string(containsString("\"tool_choice\":{\"type\":\"tool\",\"name\":\"record_evaluation\"}")))
-                .andExpect(content().string(containsString("\"enum\":[\"Unacceptable\",\"Capable\",\"Adoptive\",\"Transformative\"]")))
+                // Map.of has no fixed key order, so the JSON is checked by path, not as a string
+                .andExpect(jsonPath("$.tool_choice.type").value("tool"))
+                .andExpect(jsonPath("$.tool_choice.name").value("record_evaluation"))
+                .andExpect(jsonPath("$.tools[0].input_schema.properties.level.enum")
+                        .value(org.hamcrest.Matchers.contains("Unacceptable", "Capable", "Adoptive", "Transformative")))
                 .andExpect(content().string(containsString("Never invent tools, numbers")))
                 .andExpect(content().string(containsString("check every total against the bank")))
                 .andRespond(withSuccess("""
