@@ -29,6 +29,23 @@ class JobPagesTest {
     }
 
     @Test
+    void everyHandWrittenProfessionHasSixInterviewQuestionsBuiltFromItsOwnTasks() {
+        CATALOG.professions().stream().filter(p -> p.onetCode() == null && !p.id().equals("other")).forEach(p -> {
+            List<JobPages.InterviewQuestion> qs = PAGES.interviewQuestions(p);
+            assertEquals(6, qs.size(), p.id());
+            qs.forEach(q -> {
+                assertFalse(q.question().isBlank(), p.id());
+                assertFalse(q.lookFor().isBlank(), p.id());
+                assertFalse(q.strongAnswer().isBlank(), p.id());
+            });
+            // the task questions name this profession's own tasks and tool, not generic ones
+            assertTrue(p.tasks().stream().anyMatch(t -> qs.get(1).question().toLowerCase().contains(t.name().toLowerCase())), p.id());
+            assertTrue(qs.get(0).strongAnswer().contains(p.aiTools().get(0)), p.id());
+        });
+        assertTrue(PAGES.interviewQuestions(PAGES.bySlug("cooks-restaurant").orElseThrow()).isEmpty());
+    }
+
+    @Test
     void handWrittenProfessionsUseTheirIdAndOnetUseTheirName() {
         assertEquals("accountant", PAGES.slugOf("accountant"));
         assertEquals("cooks-restaurant", PAGES.slugOf("onet-35-2014-00"));

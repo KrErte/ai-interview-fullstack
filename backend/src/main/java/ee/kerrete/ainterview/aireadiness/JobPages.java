@@ -1,13 +1,19 @@
 package ee.kerrete.ainterview.aireadiness;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.AssessmentResult;
 import ee.kerrete.ainterview.aireadiness.AssessmentModels.TaskExposure;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UncheckedIOException;
 
 import java.text.Normalizer;
 import java.util.Comparator;
@@ -41,6 +47,7 @@ public class JobPages {
     private final Map<String, Profession> bySlug = new HashMap<>();
     private final Map<String, Profession> byName = new HashMap<>();
     private final Map<String, String> redirects = new HashMap<>();
+    private final Map<String, List<InterviewQuestion>> interviewQuestions;
 
     /**
      * Ülesanne, mida kokkuvõte nimetab "AI teeb peamiselt seda", peab olema vähemalt nii palju
@@ -58,6 +65,10 @@ public class JobPages {
 
     /** Seotud amet; slug on null, kui sellel pole oma lehte. */
     public record Related(String name, String slug) {
+    }
+
+    /** AI-oskuse intervjuuküsimus ametilehel: küsimus, mida sellega hinnatakse, ja mida tugev vastus sisaldab. */
+    public record InterviewQuestion(String question, String lookFor, String strongAnswer) {
     }
 
     @Autowired
@@ -82,6 +93,25 @@ public class JobPages {
                 redirects.putIfAbsent(slug, slugById.get(id));
             }
         });
+        interviewQuestions = readInterviewQuestions();
+        interviewQuestions.keySet().forEach(id -> {
+            if (!slugById.containsKey(id)) {
+                throw new IllegalStateException("interview-questions.json: no job page for profession '" + id + "'");
+            }
+        });
+    }
+
+    private static Map<String, List<InterviewQuestion>> readInterviewQuestions() {
+        try (InputStream in = new ClassPathResource("ai-readiness/interview-questions.json").getInputStream()) {
+            return new ObjectMapper().readValue(in, new TypeReference<Map<String, List<InterviewQuestion>>>() { });
+        } catch (IOException e) {
+            throw new UncheckedIOException("Cannot load ai-readiness/interview-questions.json", e);
+        }
+    }
+
+    /** Ameti AI-oskuse intervjuuküsimused; tühi, kui ametile pole neid kirjutatud (praegu O*NET ametid). */
+    public List<InterviewQuestion> interviewQuestions(Profession p) {
+        return interviewQuestions.getOrDefault(p.id(), List.of());
     }
 
     static String slugify(String text) {
