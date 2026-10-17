@@ -8,7 +8,8 @@ import { environment } from '../../../environments/environment';
 
 const URL = `${environment.apiBaseUrl}/api/waitlist`;
 
-function setup() {
+/** /features is answered at once: its 5 s timeout would otherwise keep whenStable waiting. */
+function setup(aiComment = false) {
   TestBed.configureTestingModule({
     imports: [PrepWaitlistCardComponent], providers: [provideRouter([{ path: 'prep', children: [] }]), provideHttpClient(), provideHttpClientTesting()]
   });
@@ -18,7 +19,10 @@ function setup() {
   f.componentInstance.professionName = 'Accountants and Auditors';
   f.componentInstance.professionId = 'onet-13-2011-00';
   f.detectChanges();
-  return { f, el: f.nativeElement as HTMLElement, http: TestBed.inject(HttpTestingController), track };
+  const http = TestBed.inject(HttpTestingController);
+  http.expectOne(`${environment.apiBaseUrl}/api/ai-readiness/features`).flush({ aiComment, billingEnabled: false });
+  f.detectChanges();
+  return { f, el: f.nativeElement as HTMLElement, http, track };
 }
 
 async function openAndType(f: ReturnType<typeof setup>['f'], el: HTMLElement, email: string) {
@@ -44,6 +48,12 @@ describe('PrepWaitlistCardComponent', () => {
     start.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
     expect(track).toHaveBeenCalledWith('prep-cta-click', { profession: 'onet-13-2011-00', source: 'result' });
     expect(el.querySelector('[data-test="prep-email"]')).toBeNull();
+  });
+
+  it('when the mock interview is live it is listed and the email list for it is gone', () => {
+    const { el } = setup(true);
+    expect(el.querySelector('[data-test="prep-mock-bullet"]')).not.toBeNull();
+    expect(el.querySelector('[data-test="prep-open"]')).toBeNull();
   });
 
   it('opening the email list counts it; joining posts the email with product, profession and source, then thanks', async () => {

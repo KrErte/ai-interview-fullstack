@@ -22,6 +22,17 @@ export interface InterviewQuestion {
   strongAnswer: string;
 }
 
+/** The AI mock interview's score for one answer (four levels of public AI fluency rubrics). */
+export interface MockEvaluation {
+  level: 'Unacceptable' | 'Capable' | 'Adoptive' | 'Transformative';
+  /** 1-4, in the order of the levels. */
+  score: number;
+  strengths: string[];
+  missing: string[];
+  /** A stronger version that uses only the person's own facts, with [placeholders] for missing ones. */
+  improvedAnswer: string;
+}
+
 /** SOC major group with the number of professions in it, for browsing. */
 export interface CategorySummary {
   name: string;

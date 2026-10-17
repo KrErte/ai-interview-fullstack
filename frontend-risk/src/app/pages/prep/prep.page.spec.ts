@@ -21,8 +21,11 @@ const RESULT = {
 } as unknown as AssessmentResult;
 
 const QUESTIONS_URL = `${environment.apiBaseUrl}/api/ai-readiness/professions/accountant/interview-questions`;
+const FEATURES_URL = `${environment.apiBaseUrl}/api/ai-readiness/features`; // answered in setup()
+const MOCK_URL = `${environment.apiBaseUrl}/api/ai-readiness/mock-interview`;
+const SIX = [0, 1, 2, 3, 4, 5].map(i => ({ question: `Question ${i + 1}?`, lookFor: 'x', strongAnswer: 'y' }));
 
-function setup(saved: AssessmentResult | null) {
+function setup(saved: AssessmentResult | null, aiComment = false) {
   localStorage.removeItem('ai_prep_drafts');
   TestBed.configureTestingModule({
     imports: [PrepPageComponent], providers: [provideRouter([]), provideHttpClient(), provideHttpClientTesting()]
@@ -31,11 +34,17 @@ function setup(saved: AssessmentResult | null) {
   const track = spyOn(TestBed.inject(AnalyticsService), 'track');
   const f = TestBed.createComponent(PrepPageComponent);
   f.detectChanges();
-  return { f, el: f.nativeElement as HTMLElement, http: TestBed.inject(HttpTestingController), track };
+  const http = TestBed.inject(HttpTestingController);
+  if (saved) {
+    http.expectOne(FEATURES_URL).flush({ aiComment, billingEnabled: false });
+    f.detectChanges();
+  }
+  return { f, el: f.nativeElement as HTMLElement, http, track };
 }
 
 async function type(f: ReturnType<typeof setup>['f'], el: HTMLElement, field: string, value: string) {
-  const input = el.querySelector(`[data-test="prep-${field}"]`) as HTMLInputElement;
+  const selector = field === 'mock-answer-field' ? '[data-test="mock-answer"]' : `[data-test="prep-${field}"]`;
+  const input = el.querySelector(selector) as HTMLInputElement;
   input.value = value;
   input.dispatchEvent(new Event('input'));
   f.detectChanges();
@@ -85,5 +94,69 @@ describe('PrepPageComponent', () => {
 
     const saved = JSON.parse(localStorage.getItem('ai_prep_drafts')!)['accountant'];
     expect(saved.stories[0].tool).toBe('Excel Copilot');
+  });
+
+  it('without the language model the mock interview says it is not switched on and sends nothing', async () => {
+    const { f, el, http } = setup(RESULT);
+    http.expectOne(QUESTIONS_URL).flush(SIX);
+    f.detectChanges();
+    expect(el.querySelector('[data-test="mock-off"]')).not.toBeNull();
+    expect(el.querySelector('[data-test="mock-score"]')).toBeNull();
+    http.expectNone(MOCK_URL);
+  });
+
+  it('with the language model: prefills Q1 from the story, scores it and shows the level, gaps and a stronger version', async () => {
+    const { f, el, http, track } = setup(RESULT, true);
+    http.expectOne(QUESTIONS_URL).flush(SIX);
+    f.detectChanges();
+    await f.whenStable();
+    expect((el.querySelector('[data-test="mock-answer"]') as HTMLTextAreaElement).value).toBe('');
+    await type(f, el, 'tool-0', 'Excel Copilot');
+    await type(f, el, 'before-0', '120');
+    await type(f, el, 'after-0', '45');
+    await type(f, el, 'check-0', 'I compare every total with the bank statement');
+
+    const answer = el.querySelector('[data-test="mock-answer"]') as HTMLTextAreaElement;
+    expect(answer.value).toContain('I use Excel Copilot for this part of my work');
+    (el.querySelector('[data-test="mock-score"]') as HTMLButtonElement).click();
+    const req = http.expectOne(MOCK_URL);
+    expect(req.request.body.professionId).toBe('accountant');
+    expect(req.request.body.questionIndex).toBe(0);
+    expect(req.request.body.answer).toContain('so I save around 1.3 hours');
+    req.flush({ level: 'Adoptive', score: 3, strengths: ['Real tool'], missing: ['Say who uses the result'],
+      improvedAnswer: 'I use Excel Copilot for reconciliations and save [minutes] each week.' });
+    f.detectChanges();
+
+    const result = el.querySelector('[data-test="mock-result"]')!.textContent!;
+    expect(result).toContain('Level 3/4: Adoptive');
+    expect(result).toContain('Say who uses the result');
+    expect(el.querySelector('[data-test="mock-q-0"]')!.textContent).toContain('3/4');
+    expect(track).toHaveBeenCalledWith('mock-score', { profession: 'accountant', question: 1, level: 'Adoptive' });
+
+    (el.querySelector('[data-test="mock-use"]') as HTMLButtonElement).click();
+    f.detectChanges();
+    await f.whenStable();
+    expect((el.querySelector('[data-test="mock-answer"]') as HTMLTextAreaElement).value).toContain('save [minutes] each week');
+    const saved = JSON.parse(localStorage.getItem('ai_prep_drafts')!)['accountant'];
+    expect(saved.mock.results[0].level).toBe('Adoptive');
+  });
+
+  it('a 503 or 429 from the mock interview gives a clear message and keeps the answer', async () => {
+    const { f, el, http } = setup(RESULT, true);
+    http.expectOne(QUESTIONS_URL).flush(SIX);
+    f.detectChanges();
+    await f.whenStable();
+    await type(f, el, 'mock-answer-field', 'I use ChatGPT to draft client emails and I always edit them myself.');
+
+    (el.querySelector('[data-test="mock-score"]') as HTMLButtonElement).click();
+    http.expectOne(MOCK_URL).flush({ error: 'ai_unavailable' }, { status: 503, statusText: 'Service Unavailable' });
+    f.detectChanges();
+    expect(el.querySelector('[role="alert"]')!.textContent).toContain('not available right now');
+
+    (el.querySelector('[data-test="mock-score"]') as HTMLButtonElement).click();
+    http.expectOne(MOCK_URL).flush({ error: 'rate_limited' }, { status: 429, statusText: 'Too Many Requests' });
+    f.detectChanges();
+    expect(el.querySelector('[role="alert"]')!.textContent).toContain('Try again in an hour');
+    expect((el.querySelector('[data-test="mock-answer"]') as HTMLTextAreaElement).value).toContain('draft client emails');
   });
 });
