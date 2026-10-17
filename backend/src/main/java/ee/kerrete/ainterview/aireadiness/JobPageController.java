@@ -91,6 +91,7 @@ public class JobPageController {
             model.addAttribute("displayPrice", billing.displayPrice());
         }
         model.addAttribute("band", band);
+        model.addAttribute("interviewQuestions", pages.interviewQuestions(profession));
         model.addAttribute("canonical", pages.url("/jobs/" + page.slug()));
         model.addAttribute("title", "Will AI replace " + profession.name() + "? AI exposure " + score + "/100 | careerrisk.ee");
         model.addAttribute("description", profession.name() + ": today's AI tools can take on about " + score

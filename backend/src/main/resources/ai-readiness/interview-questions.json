@@ -1,0 +1,578 @@
+{
+  "software-developer": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Claude Code), one real task such as “Writing routine code (CRUD, boilerplate, integrations)”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for writing routine code (CRUD, boilerplate, integrations).",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example code that looked fine but missed an edge case or called an API that does not exist, and how your tests or review caught it. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Clarifying requirements and talking to stakeholders”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Source code, API keys and customer data can leak through an AI tool. Never paste secrets or production data. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "qa-tester": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Playwright + AI), one real task such as “Running manual tests”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for running manual tests.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example generated test cases that looked complete but skipped the risky paths, or an AI-written script that turned out flaky. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Bug triage and working with developers”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Test environments often hold copies of real customer data. Use masked or synthetic data in prompts. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "data-analyst": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example ChatGPT/Claude data analysis), one real task such as “Cleaning and preparing data”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for cleaning and preparing data.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example a query or chart that looked right but joined tables wrongly or answered a slightly different question, and how you checked it against known totals. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Working with business users”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Customer and financial data are sensitive. Work with aggregated or anonymised data in the tools your company allows. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "devops-engineer": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Claude Code / Copilot for IaC), one real task such as “IaC and configuration scripts (Terraform, Helm, YAML)”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for iaC and configuration scripts (Terraform, Helm, YAML).",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example generated Terraform or YAML with insecure defaults or outdated versions, caught in plan review or a policy check. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Working with development teams”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Credentials, infrastructure details and logs with personal data must never go into a public AI tool. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "designer": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Figma AI), one real task such as “Wireframes and mockups”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for wireframes and mockups.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example generated visuals that broke the brand, failed contrast checks or had unclear usage rights. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Workshops and stakeholder management”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Unreleased product designs and user research recordings are confidential, and research participants have agreed only to specific uses. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "marketing": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example ChatGPT/Claude for content), one real task such as “Creating content (posts, banners, copy)”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for creating content (posts, banners, copy).",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example AI copy with a claim you could not back up or a tone that did not fit the brand, caught before publishing. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Partnerships and relationships”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Customer lists and campaign data are personal data. Marketing use needs a legal basis such as consent. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "copywriter": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Claude/ChatGPT), one real task such as “Writing first drafts”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for writing first drafts.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example a confident draft with an invented fact or quote, and how you fact-checked it against sources. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Interviews and original stories”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Client briefs and unpublished material are confidential. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "customer-support": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Intercom Fin / Zendesk AI), one real task such as “Answering standard questions”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for answering standard questions.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example an AI-drafted reply that promised something the policy does not allow, caught before sending. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Empathetic communication and customer retention”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Tickets are full of customer personal data. Use the AI features inside your support tool rather than pasting tickets into a chatbot. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "sales": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Clay / Apollo AI), one real task such as “Finding and researching prospects”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for finding and researching prospects.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example a personalised email that got a fact about the prospect wrong, caught before it went out. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Discovery and negotiation”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "CRM and contact data are personal data, and outreach has to follow GDPR. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "accountant": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Accounting software automation (e.g. Merit, SmartAccounts)), one real task such as “Bookkeeping entries and invoice processing”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for bookkeeping entries and invoice processing.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example a misread invoice amount or VAT rate, or a wrong account mapping, caught in reconciliation. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Working with clients”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Client financial data is confidential. Use the AI features of approved accounting software. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "lawyer": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Harvey / Legora), one real task such as “Document review (due diligence)”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for document review (due diligence).",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example a citation or case that did not exist, or a missed clause, caught by checking the official databases. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Representation in court and negotiation”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Client confidentiality and legal privilege apply to anything you put into a tool. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "hr-recruiter": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example ATS AI features), one real task such as “Screening CVs”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for screening CVs.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example a CV screening summary that dropped a strong candidate or reflected a bias, and how you reviewed the criteria. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Employee relations and conflicts”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Candidate data is personal data, and under the EU AI Act AI used in recruitment counts as high-risk, so a person must stay in control. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "project-manager": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Jira/Confluence AI), one real task such as “Status reports”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for status reports.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example a meeting summary that missed a decision or named the wrong owner, caught by checking with the people involved. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Leading the team”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Meeting notes often contain confidential plans and information about people. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "teacher": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example ChatGPT/Claude for lesson plans), one real task such as “Preparing lessons and materials”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for preparing lessons and materials.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example lesson material with a factual error or the wrong level for the class, caught before you used it. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Mentoring and pastoral care”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Student data and grades are personal data, and for children extra care applies. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "healthcare": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Speech recognition and AI notes (ambient scribe)), one real task such as “Documentation”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for documentation.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example an AI note that recorded something the patient did not say or missed a key symptom, caught before signing. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Physical patient care and procedures”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Health data is a special category of personal data under the GDPR. Use only the clinical tools your organisation has approved. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "translator": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example DeepL), one real task such as “First-draft translation”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for first-draft translation.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example fluent machine output with a wrong term or a shifted meaning, caught in post-editing against the termbase. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Working with clients”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Client documents are often confidential. Use engines with clear data guarantees, as agreed with the client. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "skilled-trades": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example ChatGPT for quotes and emails), one real task such as “Documentation and admin”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for documentation and admin.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example a quote with wrong materials or quantities, or a wrong reference to a regulation, caught on site. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Physical installation and repair”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Customers' addresses and photos of their homes are personal data. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ],
+  "manager": [
+    {
+      "question": "How do you use AI in your work today?",
+      "lookFor": "That you use AI on purpose, with real examples, not just out of curiosity.",
+      "strongAnswer": "Name a specific tool (for example Claude/ChatGPT as a strategy sparring partner), one real task such as “Operations and admin”, roughly how much time it saves, and what you still check yourself."
+    },
+    {
+      "question": "Walk us through how you would use AI for operations and admin.",
+      "lookFor": "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+      "strongAnswer": "Describe the steps: the context you provide, the first draft from the AI, how you verify it and what you change. Give one example with the time it took before and after."
+    },
+    {
+      "question": "Tell us about a time AI gave you a wrong or poor result. What did you do?",
+      "lookFor": "Judgment and accountability: you own the result, not the tool.",
+      "strongAnswer": "A concrete case, for example an analysis or plan built on a wrong assumption or number, caught before you acted on it. Say how you noticed it and what you now do differently."
+    },
+    {
+      "question": "Where would you not use AI in this job, and why?",
+      "lookFor": "That you know the limits and where people matter most.",
+      "strongAnswer": "Name the part where human judgment counts most, such as “Managing people”, and explain what could go wrong if a tool did it."
+    },
+    {
+      "question": "How do you handle confidential data when you use AI tools?",
+      "lookFor": "That the company can trust you with its own and its customers' data.",
+      "strongAnswer": "Company financials and employee information are confidential. Say that you use the tools your employer has approved and remove or anonymise personal data before you share anything."
+    },
+    {
+      "question": "How has the way you use AI changed in the last six months?",
+      "lookFor": "That you keep learning: AI fluency rubrics look at how your use has developed.",
+      "strongAnswer": "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, and the result it gave."
+    }
+  ]
+}
