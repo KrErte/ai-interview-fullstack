@@ -65,7 +65,7 @@ class MockInterviewCoachTest {
                 .andExpect(jsonPath("$.tool_choice.name").value("record_evaluation"))
                 .andExpect(jsonPath("$.tools[0].input_schema.properties.level.enum")
                         .value(org.hamcrest.Matchers.contains("Unacceptable", "Capable", "Adoptive", "Transformative")))
-                .andExpect(content().string(containsString("Never invent tools, numbers")))
+                .andExpect(content().string(containsString("Add NOTHING the candidate did not say")))
                 .andExpect(content().string(containsString("check every total against the bank")))
                 .andRespond(withSuccess("""
                         {"content":[{"type":"text","text":"Here you go"},
