@@ -55,6 +55,8 @@ billing:
   stripe:
     # test-mode key (sk_test_...) outside production; never commit a key
     secret-key: ${STRIPE_SECRET_KEY:}
+    # FP-62: signing secret of the webhook endpoint (whsec_...); empty = every webhook is rejected with 400
+    webhook-secret: ${STRIPE_WEBHOOK_SECRET:}
     connect-timeout-ms: ${STRIPE_CONNECT_TIMEOUT_MS:5000}
     read-timeout-ms: ${STRIPE_READ_TIMEOUT_MS:20000}
 

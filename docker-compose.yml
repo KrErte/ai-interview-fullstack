@@ -44,6 +44,8 @@ services:
       STRIPE_PRICE_ID: ${STRIPE_PRICE_ID:-}
       # FP-61: Stripe TEST key (sk_test_...) outside production; empty = checkout answers 503
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      # FP-62: webhook signing secret (whsec_...); empty = webhooks rejected with 400
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
       BILLING_DISPLAY_PRICE: ${BILLING_DISPLAY_PRICE:-€19}
       BILLING_DEV_ENTITLEMENT: ${BILLING_DEV_ENTITLEMENT:-false}
       BILLING_DEV_ENTITLED_EMAILS: ${BILLING_DEV_ENTITLED_EMAILS:-}

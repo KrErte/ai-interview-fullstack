@@ -12,6 +12,7 @@ While it is `false`, the API behaves as before billing existed.
 | `STRIPE_SECRET_KEY` | empty | Stripe secret key. TEST mode (`sk_test_…`) everywhere but production. Empty: checkout answers 503. Never logged. |
 | `BILLING_FALLBACK_AMOUNT_CENTS` / `BILLING_CURRENCY` | `1900` / `eur` | Only while `STRIPE_PRICE_ID` is empty (local/dev): sent as Stripe `price_data`. Also the expected amount stored on the pending purchase until the webhook (FP-62) records what Stripe charged. |
 | `APP_PUBLIC_BASE_URL` (`app.public-base-url`) | `http://localhost:4200` (falls back to `FRONTEND_BASE_URL`) | The only base of the checkout success/cancel urls (trailing slash stripped); never taken from the request `Origin`/`Host`. |
+| `STRIPE_WEBHOOK_SECRET` | empty | Signing secret (`whsec_…`) of the webhook endpoint (FP-62). Empty: every webhook is rejected with 400. Never logged. |
 | `STRIPE_CONNECT_TIMEOUT_MS` / `STRIPE_READ_TIMEOUT_MS` | `5000` / `20000` | Stripe HTTP timeouts; no automatic retries. |
 | `BILLING_DISPLAY_PRICE` | `€19` | Price text on public teasers (job pages, FP-66). Display only; keep it in sync with the Stripe Price. |
 | `BILLING_DEV_ENTITLEMENT` | `false` | Test/dev switch, independent of the Spring profile. `true`: ADMIN users and `BILLING_DEV_ENTITLED_EMAILS` count as paid. `false`: nobody gets access without a paid purchase. Never set it in production. |
@@ -64,9 +65,10 @@ frontend knows whether to expect the teaser shape from `/assess`.
 `{"roadmap": true|false}`; always `true` while billing is off. 401 without login.
 
 Production fail-fast: with the `prod` profile and `BILLING_ENABLED=true` the app refuses to start unless
-`STRIPE_SECRET_KEY` and `STRIPE_PRICE_ID` are set (production always charges the Stripe Price, never `price_data`) and
-`APP_PUBLIC_BASE_URL` (or `FRONTEND_BASE_URL`) is an explicit `https` url whose host is not localhost/127.0.0.1. The
-prod profile has no localhost default for it, so an unset url fails startup instead of sending buyers to localhost.
+`STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` and `STRIPE_WEBHOOK_SECRET` are set (production always charges the Stripe Price,
+never `price_data`) and `APP_PUBLIC_BASE_URL` (or `FRONTEND_BASE_URL`) is an explicit `https` url whose host is not
+localhost/127.0.0.1. The prod profile has no localhost default for it, so an unset url fails startup instead of
+sending buyers to localhost.
 
 ### `POST /api/billing/checkout` (login required, FP-61)
 
@@ -113,6 +115,56 @@ The success redirect never unlocks anything and the backend never reads `session
 poll `GET /api/billing/entitlement`. Only the
 webhook (FP-62) marks a purchase `paid`.
 
-## Not built yet
+### `POST /api/billing/webhook` (public, Stripe only, FP-62)
 
-- FP-62 webhook: marks the purchase paid, idempotent on `stripe_session_id`.
+Listed as `permitAll` in `SecurityConfig` (POST only); CSRF is disabled app-wide (stateless JWT). The raw body is
+verified against the `Stripe-Signature` header with `STRIPE_WEBHOOK_SECRET` (`Webhook.constructEvent`, default
+300 s tolerance).
+
+| Status | When |
+|---|---|
+| 400 `{"error": "invalid_signature"}` | missing/invalid/expired signature, or no secret configured. No details. |
+| 200 `{"received": true}` | every verified event, also unknown sessions, duplicates and ignored types |
+
+Handled: `checkout.session.completed` and `checkout.session.async_payment_succeeded` with `payment_status = "paid"`.
+The purchase is found by `stripe_session_id` (fallback: `metadata.purchase_id`) and, if `pending`, set to `paid` with
+`paid_at`, `buyer_country` (`customer_details.address.country`), and `amount_cents`/`currency` from the session's
+`amount_total`/`currency`. Before that the session must match the purchase: `client_reference_id` (when present) equals
+the purchase's user id, `currency` equals the stored currency (case-insensitive), and `amount_total` equals the stored
+`amount_cents` when the row has no `price_id` (price_data from our config; with a Stripe Price any positive amount is
+accepted). A mismatch changes nothing, answers 200 and logs at ERROR `payment mismatch, not marked paid: session …
+purchase …` (ids only). Already `paid` → no change. `refunded` → no change. Unknown session → 200, logged by
+session id only. A duplicate payment (the user already has another paid
+roadmap purchase, an older session of an already paid row, or on PostgreSQL a clash with the one-paid-row index) leaves
+the row unchanged, answers 200 and logs at ERROR `duplicate payment, refund manually via the Stripe dashboard: session
+… purchase …` (ids only); refund it in the Stripe dashboard. Other events and `payment_status` `unpaid` → 200, ignored.
+Logs carry event/session/purchase ids only, never email, name or keys.
+
+Configure the endpoint in Stripe (test mode) for `https://<backend>/api/billing/webhook` with at least the two
+event types above.
+
+## Local testing (Stripe test mode)
+
+```bash
+# .env: BILLING_ENABLED=true, STRIPE_SECRET_KEY=sk_test_..., STRIPE_PRICE_ID=price_... (test mode)
+stripe login
+stripe listen --forward-to localhost:8080/api/billing/webhook   # prints whsec_... -> STRIPE_WEBHOOK_SECRET, restart
+# log in, then
+curl -s -X POST localhost:8080/api/billing/checkout -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
+  -d '{"product":"roadmap","withdrawalWaiverAccepted":true,"withdrawalWaiverVersion":"waiver-v1-2026-10-16"}'
+# open the url, pay with 4242 4242 4242 4242; then
+curl -s localhost:8080/api/billing/entitlement -H "Authorization: Bearer $TOKEN"   # {"roadmap":true}
+```
+
+Without the Stripe CLI, a signed event can be faked with the same secret the backend uses:
+
+```bash
+SECRET=whsec_local_test   # = STRIPE_WEBHOOK_SECRET of the running backend
+BODY='{"id":"evt_local","object":"event","type":"checkout.session.completed","data":{"object":{"id":"cs_test_...","object":"checkout.session","payment_status":"paid","amount_total":1900,"currency":"eur","metadata":{"purchase_id":"1"},"customer_details":{"address":{"country":"EE"}}}}}'
+T=$(date +%s)
+SIG=$(printf '%s' "$T.$BODY" | openssl dgst -sha256 -hmac "$SECRET" -hex | sed 's/^.* //')
+curl -s -X POST localhost:8080/api/billing/webhook -H "Stripe-Signature: t=$T,v1=$SIG" \
+  -H 'Content-Type: application/json' --data-raw "$BODY"
+```
+
+Tests do the same in `StripeSignatureFixture` (no network).
