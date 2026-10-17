@@ -10,7 +10,7 @@ const URL = `${environment.apiBaseUrl}/api/waitlist`;
 
 function setup() {
   TestBed.configureTestingModule({
-    imports: [PrepWaitlistCardComponent], providers: [provideRouter([]), provideHttpClient(), provideHttpClientTesting()]
+    imports: [PrepWaitlistCardComponent], providers: [provideRouter([{ path: 'prep', children: [] }]), provideHttpClient(), provideHttpClientTesting()]
   });
   const analytics = TestBed.inject(AnalyticsService);
   const track = spyOn(analytics, 'track');
@@ -34,18 +34,22 @@ async function openAndType(f: ReturnType<typeof setup>['f'], el: HTMLElement, em
 }
 
 describe('PrepWaitlistCardComponent', () => {
-  it('shows the offer, the price and that it is not available yet; no form until opened', () => {
-    const { el } = setup();
+  it('shows the offer, that it is a free beta with the later price, and links to /prep; no form until opened', () => {
+    const { el, track } = setup();
     expect(el.textContent).toContain('Interview or review coming up?');
     expect(el.textContent).toContain('Accountants and Auditors');
-    expect(el.querySelector('[data-test="prep-price"]')!.textContent).toContain('not available yet');
+    expect(el.querySelector('[data-test="prep-price"]')!.textContent).toContain('Free while in beta');
+    const start = el.querySelector('[data-test="prep-start"]') as HTMLAnchorElement;
+    expect(start.getAttribute('href')).toBe('/prep');
+    start.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    expect(track).toHaveBeenCalledWith('prep-cta-click', { profession: 'onet-13-2011-00', source: 'result' });
     expect(el.querySelector('[data-test="prep-email"]')).toBeNull();
   });
 
-  it('opening counts a click; joining posts the email with product, profession and source, then thanks', async () => {
+  it('opening the email list counts it; joining posts the email with product, profession and source, then thanks', async () => {
     const { f, el, http, track } = setup();
     await openAndType(f, el, ' pat@example.org ');
-    expect(track).toHaveBeenCalledWith('prep-cta-click', { profession: 'onet-13-2011-00', source: 'result' });
+    expect(track).toHaveBeenCalledWith('prep-waitlist-open', { profession: 'onet-13-2011-00', source: 'result' });
 
     (el.querySelector('[data-test="prep-submit"]') as HTMLButtonElement).click();
     const req = http.expectOne(URL);
