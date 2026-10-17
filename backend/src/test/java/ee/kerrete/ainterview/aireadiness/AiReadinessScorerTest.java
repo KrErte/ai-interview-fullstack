@@ -73,7 +73,7 @@ class AiReadinessScorerTest {
         assertTrue(result.generalRoadmap().stream().limit(4).allMatch(s -> s.status() == StageStatus.DONE));
         assertEquals(StageStatus.CURRENT, result.generalRoadmap().get(4).status());
         // 40h / 8h per week
-        assertEquals(5, result.totalWeeks());
+        assertEquals(5, result.totalWeeks().intValue());
     }
 
     @Test

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+      FP-60 follow-up (new changeset; 2026-10-16-create-purchase-table stays untouched).
+      waiver_text_version: which withdrawal-waiver wording the buyer accepted (FP-61).
+      buyer_country: ISO 3166-1 alpha-2 from Stripe (FP-62), nullable.
+      refund_status / refunded_at / refund_amount_cents: refund bookkeeping from Stripe, nullable.
+      No preconditions: on H2 (DATABASE_TO_UPPER=false) a positive tableExists/columnExists check of a
+      lowercase table reports "does not exist", which would silently MARK_RAN this changeset.
+      price_id: the Stripe Price that was charged; amounts are recorded, never configured in code.
+    -->
+    <changeSet id="2026-10-16-purchase-refund-waiver-columns" author="careerrisk">
+        <addColumn tableName="purchase">
+            <column name="waiver_text_version" type="VARCHAR(32)"/>
+            <column name="buyer_country" type="VARCHAR(2)"/>
+            <column name="refund_status" type="VARCHAR(32)"/>
+            <column name="refunded_at" type="TIMESTAMP"/>
+            <column name="refund_amount_cents" type="INT"/>
+            <column name="price_id" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

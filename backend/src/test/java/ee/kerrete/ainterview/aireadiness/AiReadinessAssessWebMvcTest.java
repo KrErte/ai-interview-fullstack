@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /** POST /api/ai-readiness/assess with and without taskShares, through JSON and the real SecurityConfig. */
 @WebMvcTest(controllers = AiReadinessController.class)
-@Import({SecurityConfig.class, AiReadinessCatalog.class, AiReadinessScorer.class, AiReadinessService.class,
+@Import({SecurityConfig.class, ee.kerrete.ainterview.billing.BillingSettings.class, ee.kerrete.ainterview.billing.EntitlementService.class, AiReadinessCatalog.class, AiReadinessScorer.class, AiReadinessService.class,
         AiReadinessCoach.class, LlmRateLimiter.class})
 class AiReadinessAssessWebMvcTest {
 
@@ -30,6 +30,8 @@ class AiReadinessAssessWebMvcTest {
     JwtService jwtService;
     @MockBean
     AppUserRepository appUserRepository;
+    @MockBean
+    ee.kerrete.ainterview.billing.PurchaseRepository purchaseRepository;
     @MockBean
     ee.kerrete.ainterview.team.TeamService teamService;
 
@@ -82,5 +84,14 @@ class AiReadinessAssessWebMvcTest {
                         .content(request("{\"no such task\":100}")))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error", containsString("Unknown task")));
+    }
+
+    @Test
+    void unknownLongProfessionIdIsTruncatedInThe400() throws Exception {
+        String longId = "y".repeat(500);
+        mvc.perform(post("/api/ai-readiness/assess").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"professionId\":\"" + longId + "\",\"answers\":{},\"personalize\":false}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("Unknown profession '" + "y".repeat(64) + "\u2026'"));
     }
 }

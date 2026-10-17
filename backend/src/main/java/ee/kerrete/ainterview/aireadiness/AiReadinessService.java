@@ -179,7 +179,7 @@ public class AiReadinessService {
 
     public AssessmentResult assess(AssessmentRequest request) {
         Profession profession = catalog.profession(request.professionId())
-                .orElseThrow(() -> new IllegalArgumentException("Unknown profession '" + request.professionId() + "'"));
+                .orElseThrow(() -> new IllegalArgumentException("Unknown profession '" + shortId(request.professionId()) + "'"));
         AssessmentResult scored = scorer.score(profession, request.answers(), request.taskShares());
         // the language model never gets anything about a team: the note is made from the result alone
         AssessmentResult result = request.personalize()
@@ -191,6 +191,19 @@ public class AiReadinessService {
             return result;
         }
         return result.withTeam(teams.record(scored, request.answers(), request.teamCode(), request.teamEditToken()));
+    }
+
+    /** The full roadmap for a profession and answers (FP-60); same numbers as {@link #assess}. */
+    public RoadmapModels.RoadmapResponse roadmap(String professionId, Map<String, String> answers) {
+        Profession profession = catalog.profession(professionId)
+                .orElseThrow(() -> new IllegalArgumentException("Unknown profession '" + shortId(professionId) + "'"));
+        AssessmentResult scored = scorer.score(profession, answers, null);
+        return new RoadmapModels.RoadmapResponse(scored.generalRoadmap(), scored.professionRoadmap(), scored.totalWeeks());
+    }
+
+    /** The id as echoed in a 400 message: at most 64 characters, then an ellipsis. */
+    static String shortId(String id) {
+        return id.length() <= 64 ? id : id.substring(0, 64) + "…";
     }
 
     private Map<String, String> answerLabels(Map<String, String> answers) {

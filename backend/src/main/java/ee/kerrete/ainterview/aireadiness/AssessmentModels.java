@@ -56,7 +56,16 @@ public final class AssessmentModels {
     }
 
     /** Valikulised funktsioonid, mis sõltuvad serveri seadistusest (nt AI kommentaar vajab API võtit). */
-    public record Features(boolean aiComment) {
+    public record Features(boolean aiComment, boolean billingEnabled) {
+
+        public Features(boolean aiComment) {
+            this(aiComment, false);
+        }
+
+        /** FP-60: the paywall flag, as decided by EntitlementService. */
+        public Features withBillingEnabled(boolean enabled) {
+            return new Features(aiComment, enabled);
+        }
     }
 
     /** SOC peagrupp ja selle ametite arv (ametite sirvimiseks). */
@@ -81,6 +90,31 @@ public final class AssessmentModels {
     ) {
     }
 
+    /**
+     * FP-60 public roadmap teaser: phase 1 with title, items and project; phases 2+ with title only (items and
+     * project omitted from JSON, not null). Used by /assess and the public job pages.
+     */
+    public record RoadmapTeaserPhase(
+            int phase,
+            String title,
+            @JsonInclude(JsonInclude.Include.NON_NULL) List<String> items,
+            @JsonInclude(JsonInclude.Include.NON_NULL) String project
+    ) {
+        public static List<RoadmapTeaserPhase> of(List<RoadmapPhase> phases) {
+            if (phases == null) {
+                return List.of();
+            }
+            List<RoadmapTeaserPhase> teaser = new java.util.ArrayList<>();
+            for (int i = 0; i < phases.size(); i++) {
+                RoadmapPhase ph = phases.get(i);
+                teaser.add(i == 0
+                        ? new RoadmapTeaserPhase(1, ph.title(), ph.items() == null ? List.of() : List.copyOf(ph.items()), ph.project())
+                        : new RoadmapTeaserPhase(i + 1, ph.title(), null, null));
+            }
+            return List.copyOf(teaser);
+        }
+    }
+
     public record AssessmentResult(
             String professionId,
             String professionName,
@@ -95,11 +129,16 @@ public final class AssessmentModels {
             List<String> humanEdge,
             List<String> aiTools,
             List<String> pivotRoles,
-            List<GeneralStageResult> generalRoadmap,
-            List<RoadmapPhase> professionRoadmap,
-            int totalWeeks,
+            // FP-60: null (omitted) when the roadmap is locked behind the paywall, see locked()
+            @JsonInclude(JsonInclude.Include.NON_NULL) List<GeneralStageResult> generalRoadmap,
+            @JsonInclude(JsonInclude.Include.NON_NULL) List<RoadmapPhase> professionRoadmap,
+            @JsonInclude(JsonInclude.Include.NON_NULL) Integer totalWeeks,
             String personalNote,
-            @JsonInclude(JsonInclude.Include.NON_NULL) TeamStatus team
+            @JsonInclude(JsonInclude.Include.NON_NULL) TeamStatus team,
+            /* FP-60: professionRoadmap teaser (phase 1 in full, later phases titles only), only when locked */
+            @JsonInclude(JsonInclude.Include.NON_NULL) List<RoadmapTeaserPhase> roadmapTeaser,
+            boolean roadmapLocked,
+            boolean billingEnabled
     ) {
         public AssessmentResult(String professionId, String professionName, int replaceabilityScore,
                                 int taskExposureScore, int personalAdjustment, RiskBand band, String headline,
@@ -109,13 +148,36 @@ public final class AssessmentModels {
                                 int totalWeeks, String personalNote) {
             this(professionId, professionName, replaceabilityScore, taskExposureScore, personalAdjustment, band,
                     headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools, pivotRoles, generalRoadmap,
-                    professionRoadmap, totalWeeks, personalNote, null);
+                    professionRoadmap, totalWeeks, personalNote, null, null, false, false);
+        }
+
+        public AssessmentResult(String professionId, String professionName, int replaceabilityScore,
+                                int taskExposureScore, int personalAdjustment, RiskBand band, String headline,
+                                int readinessScore, String readinessLevel, List<TaskExposure> tasks,
+                                List<String> humanEdge, List<String> aiTools, List<String> pivotRoles,
+                                List<GeneralStageResult> generalRoadmap, List<RoadmapPhase> professionRoadmap,
+                                int totalWeeks, String personalNote, TeamStatus team) {
+            this(professionId, professionName, replaceabilityScore, taskExposureScore, personalAdjustment, band,
+                    headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools, pivotRoles, generalRoadmap,
+                    professionRoadmap, totalWeeks, personalNote, team, null, false, false);
+        }
+
+        /**
+         * FP-60 (billing enabled): the public result without generalRoadmap, professionRoadmap and totalWeeks; only
+         * the first profession phase stays as roadmapTeaser. The full roadmap is POST /api/ai-readiness/roadmap.
+         */
+        public AssessmentResult locked() {
+            List<RoadmapTeaserPhase> teaser = RoadmapTeaserPhase.of(professionRoadmap);
+            return new AssessmentResult(professionId, professionName, replaceabilityScore, taskExposureScore,
+                    personalAdjustment, band, headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools,
+                    pivotRoles, null, null, null, personalNote, team, teaser, true, true);
         }
 
         public AssessmentResult withTeam(TeamStatus team) {
             return new AssessmentResult(professionId, professionName, replaceabilityScore, taskExposureScore,
                     personalAdjustment, band, headline, readinessScore, readinessLevel, tasks, humanEdge, aiTools,
-                    pivotRoles, generalRoadmap, professionRoadmap, totalWeeks, personalNote, team);
+                    pivotRoles, generalRoadmap, professionRoadmap, totalWeeks, personalNote, team, roadmapTeaser,
+                    roadmapLocked, billingEnabled);
         }
     }
 }

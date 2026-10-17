@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <!--
+      FP-60: purchases behind paid entitlements (product "roadmap").
+      Only status "paid" grants the entitlement. stripe_session_id is set by FP-61/FP-62 (null for non-Stripe rows).
+      withdrawal_waiver_accepted(_at) are written by FP-61 checkout (EU right of withdrawal waiver).
+    -->
+    <changeSet id="2026-10-16-create-purchase-table" author="careerrisk">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="purchase"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="purchase">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_purchase_app_user" references="app_users(id)"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stripe_session_id" type="VARCHAR(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="uk_purchase_stripe_session_id"/>
+            </column>
+            <column name="amount_cents" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency" type="VARCHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="withdrawal_waiver_accepted" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="withdrawal_waiver_accepted_at" type="TIMESTAMP"/>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="paid_at" type="TIMESTAMP"/>
+        </createTable>
+
+        <sql>ALTER TABLE purchase ADD CONSTRAINT ck_purchase_status CHECK (status IN ('pending', 'paid', 'refunded'))</sql>
+
+        <createIndex tableName="purchase" indexName="idx_purchase_user_product_status">
+            <column name="user_id"/>
+            <column name="product"/>
+            <column name="status"/>
+        </createIndex>
+
+        <!-- the raw CHECK above has no automatic inverse; dropping the table removes it and the index too -->
+        <rollback>
+            <sql>ALTER TABLE purchase DROP CONSTRAINT ck_purchase_status</sql>
+            <dropTable tableName="purchase"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
