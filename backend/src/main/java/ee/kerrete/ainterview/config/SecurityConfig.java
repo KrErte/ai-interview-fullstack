@@ -73,6 +73,8 @@ public class SecurityConfig {
                                     "/api/teams/**",
                                     "/error"
                             ).permitAll()
+                            // waitlist for products not sold yet: public, rate limited in WaitlistController
+                            .requestMatchers(HttpMethod.POST, "/api/waitlist").permitAll()
                             // FP-62: Stripe calls this without a login; the Stripe-Signature header is the authentication
                             .requestMatchers(HttpMethod.POST, "/api/billing/webhook").permitAll()
                             // FP-30: liveness/readiness for docker/load balancers; status only, no details

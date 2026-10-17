@@ -38,6 +38,8 @@
     <include file="changes/2026-10-16-purchase-refund-waiver-columns.xml" relativeToChangelogFile="true"/>
     <include file="changes/2026-10-16-purchase-one-paid-per-product.xml" relativeToChangelogFile="true"/>
     <include file="changes/2026-10-17-purchase-payment-intent.xml" relativeToChangelogFile="true"/>
+    <!-- WAITLIST (fake door for products not sold yet) -->
+    <include file="changes/2026-10-17-create-waitlist-table.xml" relativeToChangelogFile="true"/>
 
     <!-- DEMO DATA (FP-18): context "demo" only, see the file header -->
     <include file="changes/2026-10-10-seed-demo-data.xml" relativeToChangelogFile="true"/>

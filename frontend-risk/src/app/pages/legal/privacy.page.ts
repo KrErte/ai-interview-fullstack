@@ -93,6 +93,14 @@ import { BillingStatusService } from '../../services/billing-status.service';
         report link is the only key to the report; we store only a one-way hash of it.
       </p>
 
+      <h3 id="waitlist">Early-access list</h3>
+      <p>
+        If you join the early-access list for a product we are still building (for example the AI interview prep), we
+        store your email address, which product it is, the profession and page you joined from, and the time. We use it
+        only to email you once when that product is ready. Legal basis: your consent, which you give by joining; you can
+        withdraw it at any time by emailing us. The list is not linked to your test answers or to an account.
+      </p>
+
       <ng-container *ngIf="sale as c">
         <h3 id="payments" data-test="privacy-payments">Buying the full roadmap</h3>
         <p>
@@ -119,7 +127,8 @@ import { BillingStatusService } from '../../services/billing-status.service';
         time of the visit), plus a few events: starting the test, finishing it (with the profession and result band),
         clicking from a job page to the test, a job search that finds nothing (only the field you picked, never
         the text you typed), ticking the AI comment box, the first move of a task share slider, printing, downloading the weekly
-        reminder, ticking a roadmap step, and for team reports: creating a team, opening an invite link, adding an answer
+        reminder, ticking a roadmap step, opening the interview prep offer and joining its early-access list (with the
+        profession), and for team reports: creating a team, opening an invite link, adding an answer
         and viewing the report (never the team code, the report key or anyone's answers). We use this to understand how
         the site is used. Legal basis: legitimate interest. Analytics data is not shared with anyone.
       </p>
@@ -151,6 +160,7 @@ import { BillingStatusService } from '../../services/billing-status.service';
       <ul>
         <li>Test answers: not stored on our server, except answers given through a team invite link, which are kept until the team is deleted.</li>
         <li>Team contact data (team name and the creator's email): until the team is deleted, and longer only if an invoice requires it under accounting law.</li>
+        <li>Early-access list: until we send the launch email, or until you ask us to delete it. If we decide not to build the product, we delete the list.</li>
         <li>Browser storage: until you clear it, or until a different person logs in on the same browser. Logging out alone does not remove your test result.</li>
         <li *ngIf="sale" data-test="privacy-purchase-retention">Purchase records: as long as accounting law requires, also if you delete your account.</li>
         <li>Account data: until you ask us to delete it. Nightly database backups are kept for 14 days, so deleted data also disappears from backups within 14 days.</li>

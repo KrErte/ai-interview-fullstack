@@ -35,7 +35,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 /**
  * FP-66: with billing on, no anonymous surface carries roadmap items or projects beyond the /assess teaser
  * (asserted with the real catalog strings); with billing off the job HTML is byte-identical to origin/main
- * (fixtures in src/test/resources/fp66-golden, rendered from origin/main c4e4edc).
+ * (fixtures in src/test/resources/fp66-golden, rendered from origin/main c4e4edc, plus the interview prep card
+ * added after the learning plan on 2026-10-17).
  */
 class PublicRoadmapGatingTest {
 

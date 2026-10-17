@@ -42,8 +42,9 @@ class PurchaseChangesetRollbackTest {
             assertThat(md5(c, "2026-10-16-purchase-one-paid-per-product")).as("postgresql only").isNull();
             assertThat(columnExists(c, "stripe_payment_intent_id")).isTrue();
 
-            // the three purchase changesets are the last ones applied under the prod context on H2
-            liquibase.rollback(3, prod, new LabelExpression());
+            // the three purchase changesets and the waitlist table after them are the last ones applied under the
+            // prod context on H2
+            liquibase.rollback(4, prod, new LabelExpression());
             assertThat(tableExists(c)).isFalse();
             assertThat(md5(c, "2026-10-16-create-purchase-table")).isNull();
 
