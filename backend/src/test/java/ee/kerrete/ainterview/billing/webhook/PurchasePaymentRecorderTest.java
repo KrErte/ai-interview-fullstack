@@ -21,6 +21,8 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /** FP-62: a clash with the PostgreSQL one-paid-row-per-user+product index is a duplicate payment (H2 has no such index). */
@@ -61,6 +63,29 @@ class PurchasePaymentRecorderTest {
             assertThat(e.getFormattedMessage())
                     .isEqualTo("duplicate payment, refund manually via the Stripe dashboard: session cs_dup purchase 3");
         });
+    }
+
+    @Test
+    void refundOfAPurchaseThatIsNotPaidChangesNothing() {
+        PurchaseRepository repo = mock(PurchaseRepository.class);
+        Purchase p = new Purchase();
+        p.setId(4L);
+        p.setStatus(PurchaseStatus.PENDING);
+        when(repo.findByStripePaymentIntentId("pi_pending")).thenReturn(Optional.of(p));
+        TransactionTemplate tx = new TransactionTemplate() {
+            @Override
+            public <T> T execute(TransactionCallback<T> action) {
+                return action.doInTransaction(new SimpleTransactionStatus());
+            }
+        };
+
+        PurchasePaymentRecorder.RefundOutcome outcome = new PurchasePaymentRecorder(repo, tx)
+                .recordRefund(new PurchasePaymentRecorder.Refund("pi_pending", 1900, true));
+
+        assertThat(outcome).isEqualTo(PurchasePaymentRecorder.RefundOutcome.NOT_REFUNDABLE);
+        assertThat(p.getStatus()).isEqualTo(PurchaseStatus.PENDING);
+        assertThat(p.getRefundStatus()).isNull();
+        verify(repo, never()).saveAndFlush(any());
     }
 
     @Test

@@ -11,13 +11,15 @@ import java.util.Set;
 
 /**
  * Handles verified Stripe events (FP-62). Fields are read from the verified raw JSON, so the result does not depend
- * on the SDK's API version. Only checkout.session.completed / async_payment_succeeded with payment_status=paid act;
- * everything else is acknowledged and ignored. Logs carry event/session/purchase ids only, never email or name.
+ * on the SDK's API version. Only checkout.session.completed / async_payment_succeeded with payment_status=paid and
+ * charge.refunded act; everything else is acknowledged and ignored. Logs carry event/session/purchase ids only,
+ * never email or name.
  */
 @Service
 public class StripeWebhookService {
 
     static final Set<String> PAID_EVENTS = Set.of("checkout.session.completed", "checkout.session.async_payment_succeeded");
+    static final String REFUND_EVENT = "charge.refunded";
 
     private static final Logger log = LoggerFactory.getLogger(StripeWebhookService.class);
     private static final ObjectMapper JSON = new ObjectMapper();
@@ -37,6 +39,10 @@ public class StripeWebhookService {
             return;
         }
         String type = event.path("type").asText("");
+        if (REFUND_EVENT.equals(type)) {
+            handleRefund(event.path("data").path("object"));
+            return;
+        }
         if (!PAID_EVENTS.contains(type)) {
             return;
         }
@@ -70,7 +76,18 @@ public class StripeWebhookService {
         String currency = text(session.path("currency"));
         recorder.recordPaid(new PurchasePaymentRecorder.Payment(sessionId, purchaseId,
                 text(session.path("client_reference_id")), country, amount,
-                currency == null ? null : currency.toUpperCase(Locale.ROOT)));
+                currency == null ? null : currency.toUpperCase(Locale.ROOT), text(session.path("payment_intent"))));
+    }
+
+    /** charge.refunded: the charge's PaymentIntent, the refunded total so far and whether the whole charge is refunded. */
+    private void handleRefund(JsonNode charge) {
+        String paymentIntentId = text(charge.path("payment_intent"));
+        if (paymentIntentId == null || !charge.path("amount_refunded").isIntegralNumber()) {
+            log.warn("Stripe webhook {}: no payment intent or refunded amount", REFUND_EVENT);
+            return;
+        }
+        recorder.recordRefund(new PurchasePaymentRecorder.Refund(paymentIntentId,
+                charge.path("amount_refunded").longValue(), charge.path("refunded").asBoolean(false)));
     }
 
     private static String text(JsonNode node) {

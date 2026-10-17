@@ -40,15 +40,17 @@ class PurchaseChangesetRollbackTest {
             assertThat(md5(c, "2026-10-16-create-purchase-table")).isEqualTo("9:f88a59b157c7da1a5883f751e4ae1fe1");
             assertThat(md5(c, "2026-10-16-purchase-refund-waiver-columns")).isEqualTo("9:05f889140d6d83f4fa0c11fcfdc34cbf");
             assertThat(md5(c, "2026-10-16-purchase-one-paid-per-product")).as("postgresql only").isNull();
+            assertThat(columnExists(c, "stripe_payment_intent_id")).isTrue();
 
-            // the two purchase changesets are the last ones applied under the prod context on H2
-            liquibase.rollback(2, prod, new LabelExpression());
+            // the three purchase changesets are the last ones applied under the prod context on H2
+            liquibase.rollback(3, prod, new LabelExpression());
             assertThat(tableExists(c)).isFalse();
             assertThat(md5(c, "2026-10-16-create-purchase-table")).isNull();
 
             liquibase.update(prod, new LabelExpression());
             assertThat(tableExists(c)).isTrue();
             assertThat(columnExists(c, "refund_amount_cents")).isTrue();
+            assertThat(columnExists(c, "stripe_payment_intent_id")).isTrue();
         }
     }
 

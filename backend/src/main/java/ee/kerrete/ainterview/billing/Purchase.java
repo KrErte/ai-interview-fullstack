@@ -46,6 +46,10 @@ public class Purchase {
     @Column(name = "stripe_session_id", unique = true)
     private String stripeSessionId;
 
+    /** PaymentIntent of the paid session, set by the webhook; a refund event names the purchase by it. */
+    @Column(name = "stripe_payment_intent_id", unique = true)
+    private String stripePaymentIntentId;
+
     /** Recorded amount actually charged (from Stripe); never a configured price. */
     @Column(name = "amount_cents", nullable = false)
     private int amountCents;

@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SaleConfig, saleConfig } from './legal-config';
+import { BillingStatusService } from '../../services/billing-status.service';
 
 /**
  * Privacy policy. Every statement here describes what the code and the server actually do;
  * update this page together with any change to data collection (ops/VPS.md has the server side).
+ * The payment parts show only while the server sells something (same rule as the terms of sale).
  */
 @Component({
   selector: 'app-privacy-page',
   standalone: true,
-  imports: [RouterModule],
+  imports: [CommonModule, RouterModule],
   template: `
     <article class="legal mx-auto max-w-3xl pb-16 pt-4 lg:pt-10">
-      <p class="kicker">Last updated 16 October 2026</p>
+      <p class="kicker">Last updated 17 October 2026</p>
       <h1 class="display mt-4 text-[clamp(2.5rem,6vw,4.5rem)]">Privacy policy</h1>
 
       <section class="card mt-8 p-6 sm:p-7">
@@ -88,6 +93,25 @@ import { RouterModule } from '@angular/router';
         report link is the only key to the report; we store only a one-way hash of it.
       </p>
 
+      <ng-container *ngIf="sale as c">
+        <h3 id="payments" data-test="privacy-payments">Buying the full roadmap</h3>
+        <p>
+          To buy the full roadmap you need an account. For each order we store a purchase record linked to your account:
+          your account email address, the product, the amount and currency charged, the Stripe Checkout session id, the
+          payment status, that you agreed to get the digital content at once (with the date and the version of that
+          text), the country of your billing address as reported by Stripe, refund details if there is a refund, and the
+          dates of the order and the payment. The seller, {{ c.sellerName }}, is the controller for this data. Legal
+          basis: performing the contract and keeping the accounting records the law requires.
+        </p>
+        <p>
+          The payment is processed by Stripe. We send Stripe your email address, an internal id of your account and the
+          order number. You enter your card or other payment details on Stripe's own page; we never see or store them.
+          Stripe handles payment data under its own
+          <a href="https://stripe.com/privacy" target="_blank" rel="noopener">privacy policy</a>, may process it outside
+          the European Economic Area, and is itself responsible for its own legal duties, such as fraud prevention.
+        </p>
+      </ng-container>
+
       <h3>Analytics</h3>
       <p>
         We run Umami on our own server. It sets no cookies and does not store your IP address. It records which pages are
@@ -119,6 +143,7 @@ import { RouterModule } from '@angular/router';
       <ul>
         <li><strong>Contabo GmbH</strong> (Germany) provides the server the service runs on.</li>
         <li><strong>OpenAI</strong> receives data only for the optional AI comment, as described above.</li>
+        <li *ngIf="sale"><strong>Stripe</strong> processes payments for the full roadmap, as described above.</li>
       </ul>
       <p>Nobody else receives your data. We do not sell it and do not use it for advertising.</p>
 
@@ -127,6 +152,7 @@ import { RouterModule } from '@angular/router';
         <li>Test answers: not stored on our server, except answers given through a team invite link, which are kept until the team is deleted.</li>
         <li>Team contact data (team name and the creator's email): until the team is deleted, and longer only if an invoice requires it under accounting law.</li>
         <li>Browser storage: until you clear it, or until a different person logs in on the same browser. Logging out alone does not remove your test result.</li>
+        <li *ngIf="sale" data-test="privacy-purchase-retention">Purchase records: as long as accounting law requires, also if you delete your account.</li>
         <li>Account data: until you ask us to delete it. Nightly database backups are kept for 14 days, so deleted data also disappears from backups within 14 days.</li>
         <li>Server logs: as described above.</li>
       </ul>
@@ -163,4 +189,14 @@ import { RouterModule } from '@angular/router';
   `,
   styleUrl: './legal.css'
 })
-export class PrivacyPageComponent {}
+export class PrivacyPageComponent implements OnInit {
+  /** Seller config while billing is on; null hides the payment parts (billing off, unknown or seller config missing). */
+  sale: SaleConfig | null = null;
+
+  constructor(private billingStatus: BillingStatusService, private destroyRef: DestroyRef) {}
+
+  ngOnInit(): void {
+    this.billingStatus.billingEnabled().pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(on => (this.sale = saleConfig(on)));
+  }
+}
