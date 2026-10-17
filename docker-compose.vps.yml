@@ -25,6 +25,9 @@ services:
     ports: !reset []
     environment:
       FRONTEND_BASE_URL: ${FRONTEND_BASE_URL:?FRONTEND_BASE_URL must be set in .env}
+      # Job pages, sitemap, robots.txt, team links and Stripe return urls use APP_PUBLIC_BASE_URL first; the base
+      # compose file defaults it to localhost, so on the VPS it must be the public address too.
+      APP_PUBLIC_BASE_URL: ${APP_PUBLIC_BASE_URL:-${FRONTEND_BASE_URL:?FRONTEND_BASE_URL must be set in .env}}
     restart: unless-stopped
 
   frontend-risk:
