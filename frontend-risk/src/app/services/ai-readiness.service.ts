@@ -9,6 +9,7 @@ import {
   Features,
   FullRoadmap,
   InterviewQuestion,
+  MockEvaluation,
   PendingPurchase,
   RoadmapTeaser,
   TeaserPhaseView,
@@ -54,6 +55,11 @@ export class AiReadinessService {
   /** AI fluency interview questions for a profession (written ones, or a set built from its tasks). */
   interviewQuestions(professionId: string): Observable<InterviewQuestion[]> {
     return this.http.get<InterviewQuestion[]>(`${this.baseUrl}/professions/${encodeURIComponent(professionId)}/interview-questions`);
+  }
+
+  /** Scores one answer in the AI mock interview; 503 without AI, 429 over the limit. */
+  mockInterview(professionId: string, questionIndex: number, answer: string): Observable<MockEvaluation> {
+    return this.http.post<MockEvaluation>(`${this.baseUrl}/mock-interview`, { professionId, questionIndex, answer });
   }
 
   features(): Observable<Features> {

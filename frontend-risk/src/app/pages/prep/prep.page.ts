@@ -5,14 +5,29 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AiReadinessService } from '../../services/ai-readiness.service';
 import { AnalyticsService } from '../../services/analytics.service';
-import { AssessmentResult, InterviewQuestion } from '../../models/ai-readiness.model';
+import { AssessmentResult, InterviewQuestion, MockEvaluation } from '../../models/ai-readiness.model';
+import { BillingStatusService } from '../../services/billing-status.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ProofStory, answerFor, emptyStory, isComplete, notAiSuggestion, proofTasks } from './prep-answers';
 
 const DRAFTS_KEY = 'ai_prep_drafts';
 
+interface MockDraft {
+  answers: string[];
+  results: (MockEvaluation | null)[];
+}
+
 interface Draft {
   stories: ProofStory[];
   notAi: string;
+  mock: MockDraft;
+}
+
+const QUESTION_COUNT = 6;
+const LEVEL_COLORS = ['#ff4d6d', '#ffd23f', '#3ddc97', '#c6f432'];
+
+function emptyMock(): MockDraft {
+  return { answers: Array(QUESTION_COUNT).fill(''), results: Array(QUESTION_COUNT).fill(null) };
 }
 
 /**
@@ -117,9 +132,67 @@ interface Draft {
         </div>
       </section>
 
-      <!-- 3. Portfolio -->
+      <!-- 3. Mock interview -->
+      <section class="card p-6 sm:p-8 print:hidden" data-test="prep-mock">
+        <p class="font-mono text-sm text-accent">03</p>
+        <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Mock interview</h2>
+        <p class="mt-3 text-[15px] leading-relaxed text-muted">
+          Answer a question the way you would say it in the interview. An AI interviewer scores it on the four levels of
+          public AI fluency rubrics (Unacceptable, Capable, Adoptive, Transformative), tells you what is missing and
+          rewrites it using only your own facts.
+        </p>
+        <p *ngIf="mockAvailable === false" class="mt-4 rounded-xl bg-surface-2 p-4 text-[15px]" data-test="mock-off">
+          The mock interview is not switched on yet. Your questions and answers above already work.
+        </p>
+        <ng-container *ngIf="mockAvailable">
+          <div class="mt-5 flex flex-wrap gap-2" role="tablist" aria-label="Interview questions">
+            <button *ngFor="let q of questions; let i = index" type="button" role="tab" class="chip"
+                    [class.is-active]="mockIndex === i" [attr.aria-selected]="mockIndex === i" (click)="selectMock(i)"
+                    [attr.data-test]="'mock-q-' + i">
+              Q{{ i + 1 }}<span *ngIf="draft.mock.results[i] as e" class="num ml-1 opacity-70">· {{ e.score }}/4</span>
+            </button>
+          </div>
+          <p class="mt-4 text-[17px] font-semibold leading-snug">{{ mockQuestion() }}</p>
+          <textarea name="mockAnswer" [(ngModel)]="draft.mock.answers[mockIndex]" (ngModelChange)="changed()" rows="6"
+                    maxlength="2000" class="field mt-3" data-test="mock-answer"
+                    placeholder="Say what you would say: the tool, a real task, the result, what you check."></textarea>
+          <p class="mt-2 text-[12px] leading-relaxed text-faint">
+            {{ (draft.mock.answers[mockIndex] || '').length }}/2000 · Your answer is sent to OpenAI to be scored and we do
+            not store it. Leave out names and confidential details.
+          </p>
+          <button type="button" class="btn-accent mt-4" (click)="score(r)" data-test="mock-score"
+                  [disabled]="scoring || (draft.mock.answers[mockIndex] || '').trim().length < 20">
+            {{ scoring ? 'Scoring…' : 'Score my answer' }}
+          </button>
+          <p *ngIf="mockError" class="mt-3 text-[14px] text-band-very-high" role="alert">{{ mockError }}</p>
+
+          <div *ngIf="draft.mock.results[mockIndex] as e" class="mt-6 space-y-4" aria-live="polite" data-test="mock-result">
+            <p class="text-[20px] font-bold" [style.color]="levelColor(e.score)">Level {{ e.score }}/4: {{ e.level }}</p>
+            <div *ngIf="e.strengths.length">
+              <p class="kicker">What works</p>
+              <ul class="mt-2 space-y-1 text-[15px] leading-relaxed">
+                <li *ngFor="let s of e.strengths" class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>{{ s }}</span></li>
+              </ul>
+            </div>
+            <div *ngIf="e.missing.length">
+              <p class="kicker">To make it stronger</p>
+              <ul class="mt-2 space-y-1 text-[15px] leading-relaxed">
+                <li *ngFor="let s of e.missing" class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-band-high"></span><span>{{ s }}</span></li>
+              </ul>
+            </div>
+            <div class="rounded-xl bg-surface-2 p-4">
+              <p class="kicker">A stronger version, with your facts</p>
+              <p class="mt-2 text-[15px] leading-relaxed" data-test="mock-improved">{{ e.improvedAnswer }}</p>
+              <p class="mt-2 text-[12px] text-faint">Fill in anything in [brackets] with your real numbers. Check it says only what is true.</p>
+              <button type="button" class="link mt-3 text-[14px]" (click)="useImproved(e)" data-test="mock-use">Use this as my answer</button>
+            </div>
+          </div>
+        </ng-container>
+      </section>
+
+      <!-- 4. Portfolio -->
       <section class="card avoid-break p-6 sm:p-8" data-test="prep-portfolio">
-        <p class="font-mono text-sm text-accent print:hidden">03</p>
+        <p class="font-mono text-sm text-accent print:hidden">04</p>
         <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">My AI work: {{ r.professionName }}</h2>
         <p class="mt-3 text-[15px] leading-relaxed text-muted print:hidden">
           Your answers on one page. Print it or save it as PDF for the interview, your application or your review.
@@ -147,7 +220,7 @@ interface Draft {
       </section>
 
       <p class="text-[13px] leading-relaxed text-faint print:hidden">
-        Your drafts stay in this browser only; we do not store them. A mock interview that scores your answers is coming next.
+        Your drafts stay in this browser only; we do not store them.
       </p>
     </article>
   `
@@ -156,13 +229,18 @@ export class PrepPageComponent implements OnInit {
   result: AssessmentResult | null = null;
   questions: InterviewQuestion[] = [];
   questionsError = false;
-  draft: Draft = { stories: [], notAi: '' };
+  draft: Draft = { stories: [], notAi: '', mock: emptyMock() };
+  /** null until /features answers; the mock interview needs the language model (same switch as the AI comment). */
+  mockAvailable: boolean | null = null;
+  mockIndex = 0;
+  scoring = false;
+  mockError: string | null = null;
   copied = false;
   /** ?profession= from a job page, used for the test link when there is no saved result. */
   professionParam: string | null = null;
   private doneTasks = new Set<string>();
 
-  constructor(private api: AiReadinessService, private analytics: AnalyticsService,
+  constructor(private api: AiReadinessService, private analytics: AnalyticsService, private billingStatus: BillingStatusService,
               private route: ActivatedRoute, private destroyRef: DestroyRef) {}
 
   ngOnInit(): void {
@@ -179,6 +257,13 @@ export class PrepPageComponent implements OnInit {
     this.draft = this.loadDraft(r);
     this.draft.stories.filter(isComplete).forEach(s => this.doneTasks.add(s.task));
     this.analytics.track('prep-open', { profession: r.professionId });
+    this.billingStatus.features().pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(f => {
+        this.mockAvailable = f?.aiComment === true;
+        if (this.mockAvailable) {
+          this.selectMock(0);
+        }
+      });
     this.api.interviewQuestions(r.professionId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: qs => (this.questions = qs),
       error: () => (this.questionsError = true)
@@ -205,7 +290,69 @@ export class PrepPageComponent implements OnInit {
         this.analytics.track('prep-answer-done', { profession: r.professionId, count: this.doneTasks.size });
       }
     }
+    if (this.mockAvailable && !this.draft.mock.answers[this.mockIndex]?.trim()) {
+      this.draft.mock.answers[this.mockIndex] = this.prefill(r, this.mockIndex);
+    }
     this.saveDraft(r);
+  }
+
+  /** The selected question's text; empty until the questions have loaded. */
+  mockQuestion(): string {
+    const q: InterviewQuestion | undefined = this.questions[this.mockIndex];
+    return q ? q.question : '';
+  }
+
+  selectMock(i: number): void {
+    this.mockIndex = i;
+    this.mockError = null;
+    const r = this.result;
+    if (r && !this.draft.mock.answers[i]?.trim()) {
+      this.draft.mock.answers[i] = this.prefill(r, i);
+    }
+  }
+
+  /** A first answer from what the person already wrote: their stories for Q1/Q2, their limits for Q4. */
+  private prefill(r: AssessmentResult, i: number): string {
+    const stories = this.draft.stories.map(s => answerFor(r.professionName, s)).filter((a): a is string => !!a);
+    if (i === 0 || i === 1) {
+      return stories[i] ?? stories[0] ?? '';
+    }
+    return i === 3 ? this.draft.notAi : '';
+  }
+
+  score(r: AssessmentResult): void {
+    const i = this.mockIndex;
+    const answer = (this.draft.mock.answers[i] ?? '').trim();
+    if (this.scoring || answer.length < 20) {
+      return;
+    }
+    this.scoring = true;
+    this.mockError = null;
+    this.api.mockInterview(r.professionId, i, answer).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: e => {
+        this.scoring = false;
+        this.draft.mock.results[i] = e;
+        this.saveDraft(r);
+        this.analytics.track('mock-score', { profession: r.professionId, question: i + 1, level: e.level });
+      },
+      error: (err: unknown) => {
+        this.scoring = false;
+        const status = err instanceof HttpErrorResponse ? err.status : 0;
+        this.mockError = status === 429 ? 'Too many scored answers from here. Try again in an hour.'
+          : status === 503 ? 'The mock interview is not available right now. Try again later.'
+          : status === 400 ? 'Write a little more: at least a sentence or two.'
+          : 'Could not score the answer. Try again.';
+      }
+    });
+  }
+
+  useImproved(e: MockEvaluation): void {
+    this.draft.mock.answers[this.mockIndex] = e.improvedAnswer;
+    this.changed();
+  }
+
+  levelColor(score: number): string {
+    return LEVEL_COLORS[Math.min(Math.max(score, 1), 4) - 1];
   }
 
   print(): void {
@@ -234,7 +381,8 @@ export class PrepPageComponent implements OnInit {
   private loadDraft(r: AssessmentResult): Draft {
     const fresh: Draft = {
       stories: proofTasks(r.tasks).map(t => emptyStory(t.name)),
-      notAi: notAiSuggestion(r.tasks, r.humanEdge)
+      notAi: notAiSuggestion(r.tasks, r.humanEdge),
+      mock: emptyMock()
     };
     try {
       const all = JSON.parse(localStorage.getItem(DRAFTS_KEY) ?? '{}') as Record<string, Draft>;
@@ -245,7 +393,8 @@ export class PrepPageComponent implements OnInit {
       // keep the saved answers for the tasks that are still the top tasks of this result
       return {
         stories: fresh.stories.map(f => ({ ...f, ...(saved.stories.find(s => s && s.task === f.task) ?? {}) })),
-        notAi: typeof saved.notAi === 'string' ? saved.notAi : fresh.notAi
+        notAi: typeof saved.notAi === 'string' ? saved.notAi : fresh.notAi,
+        mock: validMock(saved.mock) ?? fresh.mock
       };
     } catch {
       return fresh;
@@ -261,4 +410,17 @@ export class PrepPageComponent implements OnInit {
       // storage full or blocked: the page still works, the draft is just not kept
     }
   }
+}
+
+/** A saved mock interview draft from this browser, or null when it is missing or not in the expected shape. */
+function validMock(m: unknown): MockDraft | null {
+  const d = m as MockDraft | null;
+  if (!d || !Array.isArray(d.answers) || !Array.isArray(d.results)
+      || d.answers.length !== QUESTION_COUNT || d.results.length !== QUESTION_COUNT) {
+    return null;
+  }
+  return {
+    answers: d.answers.map(a => (typeof a === 'string' ? a : '')),
+    results: d.results.map(e => (e && typeof e.level === 'string' && typeof e.improvedAnswer === 'string' ? e : null))
+  };
 }

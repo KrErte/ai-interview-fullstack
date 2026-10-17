@@ -1,9 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { WaitlistService } from '../../services/waitlist.service';
 import { AnalyticsService } from '../../services/analytics.service';
+import { BillingStatusService } from '../../services/billing-status.service';
 
 /**
  * The AI interview prep offer on the result (docs/vajadus-ai-ajastul-2026-10-17.md): a link to the free beta (/prep)
@@ -29,6 +31,7 @@ import { AnalyticsService } from '../../services/analytics.service';
         <ul class="mt-3 space-y-2 text-[15px] leading-relaxed text-muted">
           <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>the AI questions you are likely to get, with strong and weak answers;</span></li>
           <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>answers built from your own top tasks, with your own numbers;</span></li>
+          <li *ngIf="mockOn" class="flex gap-3" data-test="prep-mock-bullet"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>a mock interview that scores your answers and tells you what to fix;</span></li>
           <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>a one-page AI work portfolio to print or save as PDF.</span></li>
         </ul>
         <p class="num mt-4 font-mono text-[13px] text-faint" data-test="prep-price">Free while in beta &middot; later &euro;29 one-off</p>
@@ -37,7 +40,7 @@ import { AnalyticsService } from '../../services/analytics.service';
           <a routerLink="/prep" (click)="startBeta()" class="btn-accent" data-test="prep-start">
             Try the free beta <span class="arrow" aria-hidden="true">&rarr;</span>
           </a>
-          <button *ngIf="state === 'idle'" type="button" (click)="open()" class="link text-[14px] text-muted" data-test="prep-open">
+          <button *ngIf="state === 'idle' && !mockOn" type="button" (click)="open()" class="link text-[14px] text-muted" data-test="prep-open">
             Email me when the mock interview is ready
           </button>
         </div>
@@ -65,7 +68,7 @@ import { AnalyticsService } from '../../services/analytics.service';
     </section>
   `
 })
-export class PrepWaitlistCardComponent {
+export class PrepWaitlistCardComponent implements OnInit {
   @Input({ required: true }) professionName = '';
   @Input() professionId: string | null = null;
   /** Where the card is shown, for the waitlist row and the events. */
@@ -75,7 +78,16 @@ export class PrepWaitlistCardComponent {
   email = '';
   error: string | null = null;
 
-  constructor(private waitlist: WaitlistService, private analytics: AnalyticsService) {}
+  /** The mock interview is live (same switch as the AI comment): then there is nothing to wait for. */
+  mockOn = false;
+
+  constructor(private waitlist: WaitlistService, private analytics: AnalyticsService,
+              private billingStatus: BillingStatusService, private destroyRef: DestroyRef) {}
+
+  ngOnInit(): void {
+    this.billingStatus.features().pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(f => (this.mockOn = f?.aiComment === true));
+  }
 
   startBeta(): void {
     this.analytics.track('prep-cta-click', this.eventData());

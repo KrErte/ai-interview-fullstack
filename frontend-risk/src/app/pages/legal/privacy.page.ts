@@ -58,6 +58,17 @@ import { BillingStatusService } from '../../services/billing-status.service';
         and is kept for up to 30 days for abuse monitoring. Legal basis: your consent, which you give by ticking the box.
       </p>
 
+      <h3 id="mock-interview">AI mock interview</h3>
+      <p>
+        When you ask for an answer to be scored in the interview prep, we send OpenAI your profession, the interview
+        question and the answer you typed, so that a language model can score it and suggest a stronger version. Your name
+        and email address are not sent, and we do not store the answer or the score on our server; they stay in your
+        browser. Please leave out names and confidential details. OpenAI may process this data outside the European
+        Economic Area, including in the United States, and under its API terms keeps it for up to 30 days for abuse
+        monitoring and does not use it to train its models. Legal basis: your consent, which you give by pressing
+        "Score my answer".
+      </p>
+
       <h3>Account (optional)</h3>
       <p>
         If you create an account, we store your name, email address, your password as a one-way hash (we cannot read it)
@@ -130,8 +141,8 @@ import { BillingStatusService } from '../../services/billing-status.service';
         clicking from a job page to the test, a job search that finds nothing (only the field you picked, never
         the text you typed), ticking the AI comment box, the first move of a task share slider, printing, downloading the weekly
         reminder, ticking a roadmap step, opening the interview prep offer and joining its early-access list, using the
-        interview prep (opening it, finishing an answer, printing or copying; with the profession, never the text you
-        type), and for team reports: creating a team, opening an invite link, adding an answer
+        interview prep (opening it, finishing an answer, scoring an answer with its level, printing or copying; with the
+        profession, never the text you type), and for team reports: creating a team, opening an invite link, adding an answer
         and viewing the report (never the team code, the report key or anyone's answers). We use this to understand how
         the site is used. Legal basis: legitimate interest. Analytics data is not shared with anyone.
       </p>
@@ -154,7 +165,7 @@ import { BillingStatusService } from '../../services/billing-status.service';
       <h2>Who else processes data</h2>
       <ul>
         <li><strong>Contabo GmbH</strong> (Germany) provides the server the service runs on.</li>
-        <li><strong>OpenAI</strong> receives data only for the optional AI comment, as described above.</li>
+        <li><strong>OpenAI</strong> receives data only for the optional AI comment and the AI mock interview, as described above.</li>
         <li *ngIf="sale"><strong>Stripe</strong> processes payments for the full roadmap, as described above.</li>
       </ul>
       <p>Nobody else receives your data. We do not sell it and do not use it for advertising.</p>
