@@ -42,9 +42,11 @@ import { BillingStatusService } from '../../services/billing-status.service';
         Your profession, your answers to the 11 questions and, if you change them, your task shares are sent to our server
         to calculate the result. They are not saved in our database, unless you take the test through a team invite link
         (see "Team reports" below). Your last result is saved in your browser's local storage so you can open it
-        again; clearing your browser data removes it. Logging out does not remove it. If you copy a share link, it contains your profession, the ids of your
-        answers and your task shares (not the AI comment), so anyone with the link can see that result. This is in the part
-        of the link after #, which browsers do not send to our server, and we do not store it.
+        again; clearing your browser data removes it. Logging out does not remove it. If you copy or post a share link, it contains your profession, the ids of your
+        answers and your task shares (not the AI comment), so anyone with the link can see that result. When the link is
+        opened, or a site such as LinkedIn shows a preview of it, our server recalculates the result from the link to show
+        the preview title and picture. We do not store it; the web server log records the address like any request (see
+        "Server logs").
       </p>
 
       <h3>Optional AI comment</h3>

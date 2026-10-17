@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="${title}">careerrisk.ee</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" th:content="${description}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="careerrisk.ee">
+  <meta property="og:title" th:content="${title}">
+  <meta property="og:description" th:content="${description}">
+  <meta property="og:url" th:content="${shareUrl}">
+  <meta property="og:image" th:content="${imageUrl}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" th:content="${title}">
+  <meta name="twitter:description" th:content="${description}">
+  <meta name="twitter:image" th:content="${imageUrl}">
+  <meta http-equiv="refresh" th:content="'0;url=' + ${targetUrl}">
+  <style>body{margin:0;background:#0b0d12;color:#eef0f3;font:17px/1.5 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh}a{color:#c6f432}</style>
+</head>
+<body>
+  <p><a th:href="${targetUrl}">Open the result on careerrisk.ee</a></p>
+  <script th:inline="javascript">location.replace(/*[[${targetUrl}]]*/ '/ai-test');</script>
+</body>
+</html>

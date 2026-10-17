@@ -80,7 +80,9 @@ public class SecurityConfig {
                             // FP-30: liveness/readiness for docker/load balancers; status only, no details
                             .requestMatchers(HttpMethod.GET, "/actuator/health").permitAll()
                             // public, server-rendered SEO pages (JobPageController)
-                            .requestMatchers(HttpMethod.GET, "/jobs", "/jobs/**", "/sitemap.xml", "/robots.txt").permitAll();
+                            .requestMatchers(HttpMethod.GET, "/jobs", "/jobs/**", "/sitemap.xml", "/robots.txt").permitAll()
+                            // share link preview page and image (ShareController), nothing stored
+                            .requestMatchers(HttpMethod.GET, "/share", "/share/image.png").permitAll();
                     if (h2ConsoleEnabled) {
                         auth.requestMatchers(h2ConsolePath + "/**").permitAll();
                     }
