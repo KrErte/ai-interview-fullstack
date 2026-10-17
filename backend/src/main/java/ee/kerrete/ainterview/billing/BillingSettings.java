@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
  * <ul>
  *   <li>{@code billing.enabled} (env BILLING_ENABLED, default false): while false nothing is gated and nothing is
  *   stripped from public responses, so deployments without Stripe behave exactly as before.</li>
- *   <li>{@code billing.stripe-price-id} (env STRIPE_PRICE_ID): the Stripe Price used at checkout (FP-61). No amount
- *   or currency is configured in code; purchase.amount_cents/currency only record what Stripe charged.</li>
+ *   <li>{@code billing.stripe-price-id} (env STRIPE_PRICE_ID): the Stripe Price used at checkout (FP-61); when
+ *   empty, checkout falls back to price_data from billing.fallback-amount-cents/currency (CheckoutSettings).</li>
  *   <li>{@code billing.display-price} (env BILLING_DISPLAY_PRICE, default "€19"): teaser text only.</li>
  *   <li>{@code billing.dev-entitlement} (env BILLING_DEV_ENTITLEMENT, default false, independent of the profile):
  *   when true, ADMIN users and the emails in {@code billing.dev-entitled-emails} (env BILLING_DEV_ENTITLED_EMAILS)

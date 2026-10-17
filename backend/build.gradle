@@ -33,6 +33,8 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql:42.7.14'
     implementation 'org.apache.pdfbox:pdfbox:3.0.2'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    // FP-61/62: Stripe Checkout + webhook signature verification (test mode keys only in dev)
+    implementation 'com.stripe:stripe-java:34.0.0'
     implementation 'org.liquibase:liquibase-core'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'

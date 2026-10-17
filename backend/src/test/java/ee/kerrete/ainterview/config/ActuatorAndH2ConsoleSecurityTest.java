@@ -109,7 +109,9 @@ class ActuatorAndH2ConsoleSecurityTest {
             "spring.datasource.username=sa",
             // FP-28: the prod profile fails fast without a DB password and JWT secret
             "spring.datasource.password=test-only",
-            "JWT_SECRET=test-only-jwt-secret-0123456789abcdef0123456789abcdef"
+            "JWT_SECRET=test-only-jwt-secret-0123456789abcdef0123456789abcdef",
+            // FP-61: prod + billing on needs Stripe keys; pinned so BILLING_ENABLED=true in the env doesn't break this
+            "billing.enabled=false"
     })
     @AutoConfigureMockMvc
     @ActiveProfiles("prod")
