@@ -6,8 +6,8 @@ import { WaitlistService } from '../../services/waitlist.service';
 import { AnalyticsService } from '../../services/analytics.service';
 
 /**
- * Fake door for the AI interview prep (docs/vajadus-ai-ajastul-2026-10-17.md): the offer, a price and an email
- * waitlist. Nothing is sold; the card says so. Clicks and sign-ups are counted to decide whether to build it.
+ * The AI interview prep offer on the result (docs/vajadus-ai-ajastul-2026-10-17.md): a link to the free beta (/prep)
+ * and an email list for the mock interview that comes next. Clicks and sign-ups are counted.
  */
 @Component({
   selector: 'app-prep-waitlist-card',
@@ -16,7 +16,7 @@ import { AnalyticsService } from '../../services/analytics.service';
   template: `
     <section class="card avoid-break grid gap-6 p-6 sm:p-8 lg:grid-cols-12 print:hidden" data-test="prep-card">
       <div class="lg:col-span-5 lg:pr-6">
-        <p class="kicker !text-accent">Coming soon</p>
+        <p class="kicker !text-accent">Free beta</p>
         <h2 class="mt-3 text-3xl font-bold leading-tight tracking-tight">Interview or review coming up?</h2>
         <p class="mt-3 text-[15px] leading-relaxed text-muted">
           More and more employers ask how you use AI in your work, in job interviews and in performance reviews.
@@ -24,18 +24,23 @@ import { AnalyticsService } from '../../services/analytics.service';
       </div>
       <div class="lg:col-span-7">
         <p class="text-[15px] leading-relaxed">
-          We are building an AI interview prep for <span class="font-semibold">{{ professionName }}</span>:
+          AI interview prep for <span class="font-semibold">{{ professionName }}</span>:
         </p>
         <ul class="mt-3 space-y-2 text-[15px] leading-relaxed text-muted">
           <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>the AI questions you are likely to get, with strong and weak answers;</span></li>
-          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>short drills on your own top tasks, so you have real examples with your own numbers;</span></li>
-          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>a mock interview that scores your answers and tells you what to fix.</span></li>
+          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>answers built from your own top tasks, with your own numbers;</span></li>
+          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span><span>a one-page AI work portfolio to print or save as PDF.</span></li>
         </ul>
-        <p class="num mt-4 font-mono text-[13px] text-faint" data-test="prep-price">&euro;29 one-off &middot; not available yet</p>
+        <p class="num mt-4 font-mono text-[13px] text-faint" data-test="prep-price">Free while in beta &middot; later &euro;29 one-off</p>
 
-        <button *ngIf="state === 'idle'" type="button" (click)="open()" class="btn-accent mt-5" data-test="prep-open">
-          Get early access
-        </button>
+        <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <a routerLink="/prep" (click)="startBeta()" class="btn-accent" data-test="prep-start">
+            Try the free beta <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <button *ngIf="state === 'idle'" type="button" (click)="open()" class="link text-[14px] text-muted" data-test="prep-open">
+            Email me when the mock interview is ready
+          </button>
+        </div>
 
         <form *ngIf="state === 'form' || state === 'sending'" (ngSubmit)="submit()" #f="ngForm" class="mt-5 space-y-3" novalidate>
           <label class="block">
@@ -54,7 +59,7 @@ import { AnalyticsService } from '../../services/analytics.service';
         </form>
 
         <p *ngIf="state === 'done'" class="mt-5 rounded-xl bg-surface-2 p-4 text-[15px] font-semibold leading-relaxed" aria-live="polite" data-test="prep-done">
-          You are on the list. We will email you when the prep for {{ professionName }} is ready.
+          You are on the list. We will email you when the mock interview is ready.
         </p>
       </div>
     </section>
@@ -72,9 +77,13 @@ export class PrepWaitlistCardComponent {
 
   constructor(private waitlist: WaitlistService, private analytics: AnalyticsService) {}
 
+  startBeta(): void {
+    this.analytics.track('prep-cta-click', this.eventData());
+  }
+
   open(): void {
     this.state = 'form';
-    this.analytics.track('prep-cta-click', this.eventData());
+    this.analytics.track('prep-waitlist-open', this.eventData());
   }
 
   submit(): void {

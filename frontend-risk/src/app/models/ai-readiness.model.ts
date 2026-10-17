@@ -15,6 +15,13 @@ export interface Features {
   billingEnabled?: boolean;
 }
 
+/** An AI fluency interview question for a profession: what the interviewer looks for and what a strong answer has. */
+export interface InterviewQuestion {
+  question: string;
+  lookFor: string;
+  strongAnswer: string;
+}
+
 /** SOC major group with the number of professions in it, for browsing. */
 export interface CategorySummary {
   name: string;

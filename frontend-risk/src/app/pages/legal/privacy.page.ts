@@ -95,7 +95,7 @@ import { BillingStatusService } from '../../services/billing-status.service';
 
       <h3 id="waitlist">Early-access list</h3>
       <p>
-        If you join the early-access list for a product we are still building (for example the AI interview prep), we
+        If you join the early-access list for a feature we are still building (for example the mock interview of the AI interview prep), we
         store your email address, which product it is, the profession and page you joined from, and the time. We use it
         only to email you once when that product is ready. Legal basis: your consent, which you give by joining; you can
         withdraw it at any time by emailing us. The list is not linked to your test answers or to an account.
@@ -127,8 +127,9 @@ import { BillingStatusService } from '../../services/billing-status.service';
         time of the visit), plus a few events: starting the test, finishing it (with the profession and result band),
         clicking from a job page to the test, a job search that finds nothing (only the field you picked, never
         the text you typed), ticking the AI comment box, the first move of a task share slider, printing, downloading the weekly
-        reminder, ticking a roadmap step, opening the interview prep offer and joining its early-access list (with the
-        profession), and for team reports: creating a team, opening an invite link, adding an answer
+        reminder, ticking a roadmap step, opening the interview prep offer and joining its early-access list, using the
+        interview prep (opening it, finishing an answer, printing or copying; with the profession, never the text you
+        type), and for team reports: creating a team, opening an invite link, adding an answer
         and viewing the report (never the team code, the report key or anyone's answers). We use this to understand how
         the site is used. Legal basis: legitimate interest. Analytics data is not shared with anyone.
       </p>
@@ -143,7 +144,7 @@ import { BillingStatusService } from '../../services/billing-status.service';
       <h2>Cookies and browser storage</h2>
       <p>
         We use no cookies. We use your browser's local storage only for features you use: your last test result with its
-        answers and task shares, the roadmap steps you tick, the tasks you mark as already done with AI, the key to your own
+        answers and task shares, the roadmap steps you tick, the tasks you mark as already done with AI, your interview prep drafts, the key to your own
         team answer if you answered through a team link and, if you log in, your login session. We do not ask for separate
         consent for this. You can delete it at any time in your browser settings.
       </p>

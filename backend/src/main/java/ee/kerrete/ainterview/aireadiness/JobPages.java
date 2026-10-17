@@ -114,6 +114,60 @@ public class JobPages {
         return interviewQuestions.getOrDefault(p.id(), List.of());
     }
 
+    /**
+     * Käsitsi kirjutatud küsimused, kui need on; muidu samad kuus küsimust ameti enda ülesannetest ja esimesest
+     * AI-tööriistast, üldise vea- ja andmelausega (intervjuuks valmistumise leht, kõik ametid).
+     */
+    public List<InterviewQuestion> interviewQuestionsOrGeneric(Profession p) {
+        List<InterviewQuestion> written = interviewQuestions(p);
+        if (!written.isEmpty() || p.tasks().isEmpty()) {
+            return written;
+        }
+        var top = p.tasks().stream().max(Comparator.comparingDouble(t -> t.share() * t.automation())).orElseThrow();
+        var human = p.tasks().stream()
+                .min(Comparator.comparingDouble((CatalogModels.ProfessionTask t) -> t.automation())
+                        .thenComparing(t -> -t.share()))
+                .orElseThrow();
+        String tool = p.aiTools().isEmpty() ? "a general AI assistant such as ChatGPT or Claude" : p.aiTools().get(0);
+        String topTask = withoutFinalStop(top.name());
+        String humanTask = withoutFinalStop(human.name());
+        return List.of(
+                new InterviewQuestion("How do you use AI in your work today?",
+                        "That you use AI on purpose, with real examples, not just out of curiosity.",
+                        "Name a specific tool (for example " + tool + "), one real task such as “" + topTask
+                                + "”, roughly how much time it saves, and what you still check yourself."),
+                new InterviewQuestion("Walk us through how you would use AI for this part of your work: " + lowerFirst(topTask) + ".",
+                        "Your actual workflow: what you give the tool, how you check the result and when you redo it.",
+                        "Describe the steps: the context you provide, the first draft from the AI, how you verify it and "
+                                + "what you change. Give one example with the time it took before and after."),
+                new InterviewQuestion("Tell us about a time AI gave you a wrong or poor result. What did you do?",
+                        "Judgment and accountability: you own the result, not the tool.",
+                        "A concrete case, for example an AI draft that looked right but contained a factual error or "
+                                + "missed something important. Say how you noticed it and what you now do differently."),
+                new InterviewQuestion("Where would you not use AI in this job, and why?",
+                        "That you know the limits and where people matter most.",
+                        "Name the part where human judgment counts most, such as “" + humanTask
+                                + "”, and explain what could go wrong if a tool did it."),
+                new InterviewQuestion("How do you handle confidential data when you use AI tools?",
+                        "That the company can trust you with its own and its customers' data.",
+                        "Work documents and customer information are often confidential. Say that you use the tools your "
+                                + "employer has approved and remove or anonymise personal data before you share anything."),
+                new InterviewQuestion("How has the way you use AI changed in the last six months?",
+                        "That you keep learning: AI fluency rubrics look at how your use has developed.",
+                        "Show a progression: from one-off prompts to a repeatable workflow, a template or an automation, "
+                                + "and the result it gave."));
+    }
+
+    /** O*NET task names are sentences ending with a full stop. */
+    private static String withoutFinalStop(String s) {
+        return s.endsWith(".") ? s.substring(0, s.length() - 1) : s;
+    }
+
+    private static String lowerFirst(String s) {
+        return s.length() > 1 && Character.isLowerCase(s.charAt(1))
+                ? Character.toLowerCase(s.charAt(0)) + s.substring(1) : s;
+    }
+
     static String slugify(String text) {
         String ascii = Normalizer.normalize(text, Normalizer.Form.NFKD).replaceAll("\\p{M}", "");
         return ascii.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]+", "-").replaceAll("(^-+|-+$)", "");

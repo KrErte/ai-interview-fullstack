@@ -77,6 +77,13 @@ export const appRoutes: Routes = [
       import('./pages/roadmap/roadmap.page').then(m => m.RoadmapPageComponent)
   },
   {
+    // AI interview prep, free beta: questions, answers from the user's own work, printable portfolio
+    path: 'prep',
+    title: 'AI interview prep – careerrisk.ee',
+    loadComponent: () =>
+      import('./pages/prep/prep.page').then(m => m.PrepPageComponent)
+  },
+  {
     path: 'risk',
     title: HOME_TITLE,
     canActivate: [authGuard],

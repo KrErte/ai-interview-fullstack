@@ -8,6 +8,7 @@ import {
   CategorySummary,
   Features,
   FullRoadmap,
+  InterviewQuestion,
   PendingPurchase,
   RoadmapTeaser,
   TeaserPhaseView,
@@ -48,6 +49,11 @@ export class AiReadinessService {
   /** One profession by id, e.g. to preselect it when arriving from a /jobs page. 404 for unknown ids. */
   profession(id: string): Observable<ProfessionSummary> {
     return this.http.get<ProfessionSummary>(`${this.baseUrl}/professions/${encodeURIComponent(id)}`);
+  }
+
+  /** AI fluency interview questions for a profession (written ones, or a set built from its tasks). */
+  interviewQuestions(professionId: string): Observable<InterviewQuestion[]> {
+    return this.http.get<InterviewQuestion[]>(`${this.baseUrl}/professions/${encodeURIComponent(professionId)}/interview-questions`);
   }
 
   features(): Observable<Features> {
