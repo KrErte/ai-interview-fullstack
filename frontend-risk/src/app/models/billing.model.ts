@@ -36,4 +36,12 @@ export interface BillingErrorBody {
 }
 
 /** What a failed checkout means for the UI. */
-export type CheckoutFailure = 'already_paid' | 'waiver_required' | 'other';
+export type CheckoutFailure = 'already_paid' | 'waiver_required' | 'unavailable' | 'other';
+
+/**
+ * Where checkout sends the browser back (FP-64). ASSUMED: the backend builds the Stripe success/cancel URLs
+ * itself; the checkout request has no URL fields. Proposed: success_url = <origin>/roadmap?paid=1&session_id=
+ * {CHECKOUT_SESSION_ID}, cancel_url = <origin>/ai-test?resume=paywall&canceled=1.
+ */
+export const CHECKOUT_SUCCESS_PATH = '/roadmap';
+export const CHECKOUT_CANCEL_PATH = '/ai-test';
