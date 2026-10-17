@@ -92,8 +92,8 @@
     </section>
 
     <section class="card" th:unless="${#lists.isEmpty(interviewQuestions)}">
-      <p class="kicker" th:text="'Job interviews &middot; ' + ${p.name()}">Job interviews</p>
-      <h2>AI questions you may get in an interview</h2>
+      <p class="kicker">Job interviews</p>
+      <h2 th:text="'AI interview questions for ' + ${p.name()}">AI interview questions</h2>
       <p class="muted">More employers now ask how you work with AI. These are typical questions, based on public AI fluency hiring rubrics, not the questions of one employer.</p>
       <div class="phase" th:each="q, s : ${interviewQuestions}">
         <h3 th:text="${s.count} + '. ' + ${q.question()}">Question</h3>

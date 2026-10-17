@@ -52,12 +52,13 @@ class JobPageWebMvcTest {
     }
 
     @Test
-    void handWrittenJobPagesShowTheAiInterviewQuestionsAndOnetPagesDoNot() throws Exception {
+    void everyJobPageShowsAiInterviewQuestionsWrittenOrBuiltFromItsTasks() throws Exception {
         mvc.perform(get("/jobs/accountant"))
-                .andExpect(content().string(containsString("AI questions you may get in an interview")))
+                .andExpect(content().string(containsString("AI interview questions for Accountant")))
                 .andExpect(content().string(containsString("Walk us through how you would use AI for bookkeeping entries and invoice processing.")));
         mvc.perform(get("/jobs/cooks-restaurant"))
-                .andExpect(content().string(not(containsString("AI questions you may get in an interview"))));
+                .andExpect(content().string(containsString("AI interview questions for Cooks, Restaurant")))
+                .andExpect(content().string(containsString("Walk us through how you would use AI for this part of your work: season and cook food")));
     }
 
     @Test
