@@ -77,17 +77,16 @@
       </section>
     </div>
 
-    <section class="card">
+    <section class="card" th:replace="${roadmapLocked} ? ~{jobs/locked-plan :: plan} : _">
       <h2>A 3-phase AI learning plan</h2>
       <div class="grid grid-3">
-        <div class="phase" th:each="ph, s : ${roadmapPhases}">
+        <div class="phase" th:each="ph, s : ${p.roadmap()}">
           <p class="kicker" th:text="'Phase ' + ${s.count}">Phase 1</p>
           <h3 th:text="${ph.title()}">Title</h3>
           <ul class="dots"><li th:each="it : ${ph.items()}" th:text="${it}">Item</li></ul>
           <div class="project"><p class="kicker" style="color:var(--accent);margin:0 0 6px">Project</p><span th:text="${ph.project()}">Project</span></div>
         </div>
       </div>
-      <p class="muted" th:if="${roadmapLocked}">Phases 2 and 3 are part of your personal plan after the test.</p>
       <a class="btn" th:href="@{/ai-test(profession=${p.id()})}" data-umami-event="seo-cta"
          th:attr="data-umami-event-profession=${p.id()}">Take the free 11-question test <span aria-hidden="true">&rarr;</span></a>
     </section>

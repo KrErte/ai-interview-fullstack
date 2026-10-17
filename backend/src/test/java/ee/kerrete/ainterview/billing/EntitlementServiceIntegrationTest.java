@@ -150,7 +150,7 @@ class EntitlementServiceIntegrationTest {
     @Test
     void billingDisabledEntitlesEveryone() {
         EntitlementService off = new EntitlementService(
-                new BillingSettings(false, "", false, ""), users, purchases);
+                new BillingSettings(false, "", false, "", "€19"), users, purchases);
         assertThat(off.hasRoadmap("bob@example.com")).isTrue();
         assertThat(off.isLocked(Feature.ROADMAP, null)).isFalse();
     }

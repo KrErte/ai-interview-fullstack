@@ -30,6 +30,9 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 app:
+  # Public URL of the frontend: job pages, team report links and (FP-61) the Stripe Checkout success/cancel urls.
+  # Env APP_PUBLIC_BASE_URL; falls back to FRONTEND_BASE_URL (older deployments set only that).
+  public-base-url: ${APP_PUBLIC_BASE_URL:${FRONTEND_BASE_URL:http://localhost:4200}}
   jwt:
     # FP-28: JWT signing key. Unset outside prod -> random key per run (logged as such, key never logged).
     secret: ${JWT_SECRET:}
@@ -41,8 +44,19 @@ app:
 billing:
   # FP-60: false = no paywall (roadmap free for logged-in users, /assess unchanged). true needs Stripe (FP-61/62).
   enabled: ${BILLING_ENABLED:false}
-  # Price lives in Stripe only (no amounts in code/config); FP-61 checkout uses this Price id.
+  # FP-61 checkout charges this Stripe Price (required in prod); empty = price_data fallback below (local/dev)
   stripe-price-id: ${STRIPE_PRICE_ID:}
+  # FP-66: price text on public teasers only (keep in sync with the Stripe Price)
+  display-price: ${BILLING_DISPLAY_PRICE:€19}
+  # FP-61: only used as price_data while STRIPE_PRICE_ID is empty (local/dev), and as the expected amount on the
+  # pending purchase until Stripe reports the charged amount
+  fallback-amount-cents: ${BILLING_FALLBACK_AMOUNT_CENTS:1900}
+  currency: ${BILLING_CURRENCY:eur}
+  stripe:
+    # test-mode key (sk_test_...) outside production; never commit a key
+    secret-key: ${STRIPE_SECRET_KEY:}
+    connect-timeout-ms: ${STRIPE_CONNECT_TIMEOUT_MS:5000}
+    read-timeout-ms: ${STRIPE_READ_TIMEOUT_MS:20000}
 
 openai:
   base-url: https://api.openai.com/v1

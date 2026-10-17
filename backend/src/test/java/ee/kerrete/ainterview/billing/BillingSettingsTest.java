@@ -9,7 +9,7 @@ class BillingSettingsTest {
 
     @Test
     void switchedOnEntitlesAdminsAndListedEmails() {
-        BillingSettings s = new BillingSettings(true, "dev@demo.local, Other@Demo.local", true, "");
+        BillingSettings s = new BillingSettings(true, "dev@demo.local, Other@Demo.local", true, "", "€19");
         assertThat(s.devEntitled("someone@example.com", "ADMIN")).isTrue();
         assertThat(s.devEntitled("DEV@demo.local", "CANDIDATE")).isTrue();
         assertThat(s.devEntitled("other@demo.local", null)).isTrue();
@@ -19,7 +19,7 @@ class BillingSettingsTest {
 
     @Test
     void switchedOffEntitlesNobody() {
-        BillingSettings s = new BillingSettings(true, "dev@demo.local", false, "");
+        BillingSettings s = new BillingSettings(true, "dev@demo.local", false, "", "€19");
         assertThat(s.devEntitled("dev@demo.local", "ADMIN")).isFalse();
         assertThat(s.devEntitled("someone@example.com", "ADMIN")).isFalse();
     }

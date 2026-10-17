@@ -18,7 +18,7 @@ class BillingStartupGuardTest {
     }
 
     private static BillingSettings settings(boolean devEntitlement) {
-        return new BillingSettings(true, "secret.person@example.com", devEntitlement, "");
+        return new BillingSettings(true, "secret.person@example.com", devEntitlement, "", "");
     }
 
     @Test

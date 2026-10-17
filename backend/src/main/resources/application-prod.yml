@@ -41,6 +41,9 @@ logging:
     org.hibernate.SQL: WARN
 
 app:
+  # FP-61: no localhost default in prod. With billing on, CheckoutStartupGuard requires an explicit https,
+  # non-localhost APP_PUBLIC_BASE_URL (or FRONTEND_BASE_URL); Stripe returns buyers there.
+  public-base-url: ${APP_PUBLIC_BASE_URL:${FRONTEND_BASE_URL:}}
   jwt:
     # FP-28: required in prod, at least 32 bytes, not a placeholder; startup fails otherwise.
     # Raw string (e.g. output of `openssl rand -base64 48`) or 'base64:<base64 bytes>'.

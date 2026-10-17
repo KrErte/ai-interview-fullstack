@@ -105,7 +105,7 @@ class AiReadinessBillingWebMvcTest {
             String phase3 = catalog.profession("translator").orElseThrow().roadmap().get(2).project();
             mvc.perform(get("/jobs/translator")).andExpect(status().isOk())
                     .andExpect(content().string(containsString(phase3)))
-                    .andExpect(content().string(not(containsString("Phases 2 and 3 are part of"))));
+                    .andExpect(content().string(not(containsString("Your full 3-phase plan with projects"))));
         }
     }
 
@@ -184,7 +184,7 @@ class AiReadinessBillingWebMvcTest {
                     .andExpect(content().string(containsString(roadmap.get(0).title())))
                     .andExpect(content().string(not(containsString(roadmap.get(1).project()))))
                     .andExpect(content().string(not(containsString(roadmap.get(2).project()))))
-                    .andExpect(content().string(containsString("Phases 2 and 3 are part of")));
+                    .andExpect(content().string(containsString("Your full 3-phase plan with projects: €19")));
         }
     }
 }

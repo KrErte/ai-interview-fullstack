@@ -12,6 +12,8 @@ import ee.kerrete.ainterview.aireadiness.CatalogModels.GeneralStage;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Profession;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.Question;
 import ee.kerrete.ainterview.aireadiness.CatalogModels.QuestionOption;
+import ee.kerrete.ainterview.billing.EntitlementService;
+import ee.kerrete.ainterview.billing.Feature;
 import ee.kerrete.ainterview.team.TeamModels.AnswerDistribution;
 import ee.kerrete.ainterview.team.TeamModels.Count;
 import ee.kerrete.ainterview.team.TeamModels.CreateTeamRequest;
@@ -89,16 +91,19 @@ public class TeamService {
     private final String baseUrl;
     private final SecureRandom random = new SecureRandom();
     private final Clock clock;
+    private final EntitlementService entitlements;
 
     @Autowired
     public TeamService(TeamRepository teams, TeamSubmissionRepository submissions, AiReadinessCatalog catalog,
                        ObjectMapper json,
-                       @Value("${app.public-base-url:${FRONTEND_BASE_URL:http://localhost:4200}}") String baseUrl) {
-        this(teams, submissions, catalog, json, baseUrl, Clock.systemDefaultZone());
+                       @Value("${app.public-base-url:${FRONTEND_BASE_URL:http://localhost:4200}}") String baseUrl,
+                       EntitlementService entitlements) {
+        this(teams, submissions, catalog, json, baseUrl, Clock.systemDefaultZone(), entitlements);
     }
 
     TeamService(TeamRepository teams, TeamSubmissionRepository submissions, AiReadinessCatalog catalog,
-                ObjectMapper json, String baseUrl, Clock clock) {
+                ObjectMapper json, String baseUrl, Clock clock, EntitlementService entitlements) {
+        this.entitlements = entitlements;
         this.teams = teams;
         this.submissions = submissions;
         this.catalog = catalog;
@@ -345,7 +350,10 @@ public class TeamService {
                 .filter(c -> !c.key().equals("done") && c.count() > 0)
                 .max(Comparator.comparingInt(Count::count))
                 .flatMap(c -> catalog.generalRoadmap().stream().filter(s -> s.id().equals(c.key())).findFirst())
-                .ifPresent(stage -> focus.add("Training content: " + stageTitle(stage.title()) + ". "
+                // FP-66: the report is anonymous (token link); while the roadmap is locked, no roadmap items in it
+                .ifPresent(stage -> focus.add(entitlements.isLocked(Feature.ROADMAP, null)
+                        ? "Training content: " + stageTitle(stage.title()) + "."
+                        : "Training content: " + stageTitle(stage.title()) + ". "
                         + stage.items().stream().limit(2).collect(Collectors.joining(" "))));
         return focus;
     }
