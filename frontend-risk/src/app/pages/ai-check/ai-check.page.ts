@@ -11,6 +11,7 @@ import { BillingService, isPaymentRequired } from '../../services/billing.servic
 import { BillingStatusService } from '../../services/billing-status.service';
 import { saleConfig } from '../legal/legal-config';
 import { PaywallCardComponent } from '../../components/paywall-card/paywall-card.component';
+import { PrepWaitlistCardComponent } from '../../components/prep-waitlist-card/prep-waitlist-card.component';
 import { AnalyticsService } from '../../services/analytics.service';
 import {
   AssessmentRequest,
@@ -93,7 +94,7 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
 @Component({
   selector: 'app-ai-check-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, PaywallCardComponent],
+  imports: [CommonModule, FormsModule, RouterLink, PaywallCardComponent, PrepWaitlistCardComponent],
   template: `
     <div *ngIf="error" class="mb-8 rounded-xl border border-band-very-high bg-surface px-4 py-3 text-[15px] text-band-very-high" role="alert">
       {{ error }}
@@ -384,6 +385,9 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
           </div>
         </div>
       </section>
+
+      <!-- Fake door: AI interview prep waitlist (docs/vajadus-ai-ajastul-2026-10-17.md) -->
+      <app-prep-waitlist-card [professionName]="r.professionName" [professionId]="r.professionId"></app-prep-waitlist-card>
 
       <!-- Tasks -->
       <section class="card grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
