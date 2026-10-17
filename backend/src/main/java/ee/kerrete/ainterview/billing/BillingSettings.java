@@ -67,6 +67,11 @@ public class BillingSettings {
         return stripePriceId;
     }
 
+    /** Whether billing.dev-entitlement is switched on (see {@link BillingStartupGuard}). */
+    public boolean devEntitlementEnabled() {
+        return devEntitlement;
+    }
+
     /** Dev entitlement: only when billing.dev-entitlement=true; then ADMIN users and the listed emails. */
     public boolean devEntitled(String email, String role) {
         if (!devEntitlement) {

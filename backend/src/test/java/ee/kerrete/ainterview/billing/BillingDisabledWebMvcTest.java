@@ -28,7 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /** FP-60 with billing.enabled unset (default false): no gating, but the roadmap still needs a login. */
-@WebMvcTest(controllers = {BillingController.class, AiReadinessRoadmapController.class})
+@WebMvcTest(controllers = {BillingController.class, AiReadinessRoadmapController.class},
+        properties = "billing.enabled=false") // pinned: BILLING_ENABLED=true in the environment must not flip it
 @Import({SecurityConfig.class, BillingSettings.class, EntitlementService.class, BillingExceptionHandler.class,
         AiReadinessCatalog.class, AiReadinessScorer.class, AiReadinessService.class, AiReadinessCoach.class,
         LlmRateLimiter.class})

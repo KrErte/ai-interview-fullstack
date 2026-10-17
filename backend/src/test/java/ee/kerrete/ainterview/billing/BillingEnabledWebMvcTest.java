@@ -167,6 +167,21 @@ class BillingEnabledWebMvcTest {
 
     @Test
     @WithMockUser(username = ME)
+    void sizeLimitCountsUtf16UnitsSo64EmojiPass() throws Exception {
+        // 64 emoji = 128 UTF-16 units: within @Size(max=128) -> unknown profession (validated), not "invalid"
+        mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"professionId\":\"" + "\uD83D\uDE00".repeat(64) + "\",\"answers\":{}}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value(org.hamcrest.Matchers.startsWith("Unknown profession")));
+        // 65 emoji = 130 units: over the limit
+        mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"professionId\":\"" + "\uD83D\uDE00".repeat(65) + "\",\"answers\":{}}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("invalid professionId"));
+    }
+
+    @Test
+    @WithMockUser(username = ME)
     void missingFieldsAndBadJsonAre400() throws Exception {
         mvc.perform(post("/api/ai-readiness/roadmap").contentType(MediaType.APPLICATION_JSON)
                         .content("{\"answers\":{}}"))
