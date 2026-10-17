@@ -1,9 +1,8 @@
 /**
- * Shareable result link without an account. Everything needed to recalculate the result lives in the
- * URL fragment (/ai-test#share=...): the profession id, the option id of each answer and, if the person
- * set them, their task shares. Browsers never send the fragment to the server, so the answers do not
- * end up in server logs or analytics, and the server stores nothing: opening the link runs the same
- * assessment again.
+ * Shareable result link without an account. Everything needed to recalculate the result lives in the link:
+ * the profession id, the option id of each answer and, if the person set them, their task shares. The result
+ * page opens from the fragment (/ai-test#share=...); the copied link is /share?d=... so sites can show a
+ * preview (see buildSharePreviewPath). The server stores nothing: opening the link runs the same assessment.
  */
 
 export interface SharedResult {
@@ -17,6 +16,19 @@ const ID = /^[A-Za-z0-9_-]{1,64}$/;
 
 /** The fragment for a share link, e.g. "share=p:accountant;a:routine.lt20,people.lot;s:30,70". */
 export function buildShareFragment(shared: SharedResult): string {
+  return 'share=' + encodeURIComponent(shareBody(shared));
+}
+
+/**
+ * The link people copy or post: /share?d=<same content>. The server answers it with a preview (title and an
+ * image with the score, for LinkedIn, Slack and others) and sends the browser on to /ai-test#share=... .
+ * Nothing is stored; unlike the fragment, this address does reach the server and its log.
+ */
+export function buildSharePreviewPath(shared: SharedResult): string {
+  return '/share?d=' + encodeURIComponent(shareBody(shared));
+}
+
+function shareBody(shared: SharedResult): string {
   const answers = Object.entries(shared.answers)
     .filter(([q, o]) => ID.test(q) && ID.test(o))
     .map(([q, o]) => `${q}.${o}`)
@@ -25,7 +37,7 @@ export function buildShareFragment(shared: SharedResult): string {
   if (shared.shares?.length) {
     parts.push(`s:${shared.shares.join(',')}`);
   }
-  return 'share=' + encodeURIComponent(parts.join(';'));
+  return parts.join(';');
 }
 
 /** Reads a share fragment; null for anything that is not a well-formed share link. */

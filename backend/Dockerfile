@@ -18,6 +18,9 @@ WORKDIR /app
 
 ENV SPRING_PROFILES_ACTIVE=prod
 
+# fonts for the share preview image (ShareImageRenderer draws text with Java2D)
+RUN apk add --no-cache fontconfig ttf-dejavu
+
 RUN addgroup -S app && adduser -S app -G app
 
 COPY --from=builder /app/build/libs/*.jar /app/backend.jar

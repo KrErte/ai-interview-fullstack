@@ -29,7 +29,7 @@ import { buildReminderIcs, nextSessionStart } from './reminder';
 import { previewResult, rescaleShares, sharesOf, TaskShares } from './task-shares';
 import { TeamService } from '../../services/team.service';
 import { TeamStatus } from '../../models/team.model';
-import { buildShareFragment, parseShareFragment, SharedResult } from './share-link';
+import { buildSharePreviewPath, parseShareFragment, SharedResult } from './share-link';
 
 function sameShares(a: TaskShares, b: TaskShares): boolean {
   const keys = Object.keys(a);
@@ -629,9 +629,13 @@ export function firstStep(r: AssessmentResult, marked: ReadonlySet<string> = new
 
       <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-end print:hidden">
         <button (click)="restart()" class="btn-ghost">Take the test again</button>
-        <button *ngIf="shareUrl(r) as url" (click)="copyShareLink(url)" class="btn-ghost">
-          {{ shareCopied ? 'Link copied' : 'Copy share link' }}
-        </button>
+        <ng-container *ngIf="shareUrl(r) as url">
+          <a [href]="linkedInShareUrl(url)" target="_blank" rel="noopener" (click)="trackShare(r, 'linkedin')"
+             class="btn-ghost" data-test="share-linkedin">Share on LinkedIn</a>
+          <button (click)="copyShareLink(url); trackShare(r, 'copy')" class="btn-ghost" data-test="share-copy">
+            {{ shareCopied ? 'Link copied' : 'Copy share link' }}
+          </button>
+        </ng-container>
         <button *ngIf="planOf(r)" (click)="print()" data-test="pdf" class="btn-accent">Print / save as PDF</button>
       </div>
       <div *ngIf="shareFallback" class="print:hidden">
@@ -995,7 +999,16 @@ export class AiCheckPageComponent implements OnInit {
       return null;
     }
     const shares = this.customShares ? r.tasks.map(t => t.share) : undefined;
-    return `${window.location.origin}/ai-test#${buildShareFragment({ professionId: r.professionId, answers, shares })}`;
+    return `${window.location.origin}${buildSharePreviewPath({ professionId: r.professionId, answers, shares })}`;
+  }
+
+  /** LinkedIn's share dialog for the preview link; LinkedIn reads the title and image from /share. */
+  linkedInShareUrl(url: string): string {
+    return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+  }
+
+  trackShare(r: AssessmentResult, channel: 'linkedin' | 'copy'): void {
+    this.analytics.track('share', { channel, profession: r.professionId });
   }
 
   copyShareLink(url: string): void {

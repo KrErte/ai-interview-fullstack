@@ -1,6 +1,13 @@
-import { buildShareFragment, parseShareFragment } from './share-link';
+import { buildShareFragment, buildSharePreviewPath, parseShareFragment } from './share-link';
 
 describe('share link', () => {
+  it('the preview path carries the same content as the fragment, for /share on the server', () => {
+    const shared = { professionId: 'accountant', answers: { routine: 'lt20', ai_usage: 'daily' }, shares: [30, 70] };
+    const path = buildSharePreviewPath(shared);
+    expect(path).toBe('/share?d=' + buildShareFragment(shared).slice('share='.length));
+    expect(decodeURIComponent(path.slice('/share?d='.length))).toBe('p:accountant;a:routine.lt20,ai_usage.daily;s:30,70');
+  });
+
   it('round-trips profession, answers and shares', () => {
     const shared = { professionId: 'onet-43-9021-00', answers: { routine: 'lt20', ai_usage: 'daily' }, shares: [30, 70] };
     const fragment = buildShareFragment(shared);

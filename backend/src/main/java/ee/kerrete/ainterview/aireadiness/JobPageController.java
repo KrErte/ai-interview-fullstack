@@ -91,12 +91,12 @@ public class JobPageController {
             model.addAttribute("displayPrice", billing.displayPrice());
         }
         model.addAttribute("band", band);
-        model.addAttribute("interviewQuestions", pages.interviewQuestions(profession));
+        model.addAttribute("interviewQuestions", pages.interviewQuestionsOrGeneric(profession));
         model.addAttribute("canonical", pages.url("/jobs/" + page.slug()));
         model.addAttribute("title", "Will AI replace " + profession.name() + "? AI exposure " + score + "/100 | careerrisk.ee");
         model.addAttribute("description", profession.name() + ": today's AI tools can take on about " + score
-                + "% of the typical work (" + band.get("label") + " exposure). See which tasks, your human edge and a "
-                + "3-phase AI learning plan. Free 11-question test.");
+                + "% of the typical work (" + band.get("label") + " exposure). See which tasks, your human edge, a "
+                + "3-phase AI learning plan and the AI questions you may get in an interview. Free 11-question test.");
         return "jobs/job";
     }
 
