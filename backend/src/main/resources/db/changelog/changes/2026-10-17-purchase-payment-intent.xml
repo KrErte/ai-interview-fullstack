@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+    <!--
+      Refunds: Stripe's charge.refunded event names the PaymentIntent, not the Checkout session, so the webhook
+      stores the PaymentIntent id when it marks a purchase paid and finds the purchase by it on a refund.
+      Nullable: pending rows have none yet. No preconditions (see 2026-10-16-purchase-refund-waiver-columns.xml).
+    -->
+    <changeSet id="2026-10-17-purchase-payment-intent" author="careerrisk">
+        <addColumn tableName="purchase">
+            <column name="stripe_payment_intent_id" type="VARCHAR(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="uk_purchase_stripe_payment_intent_id"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

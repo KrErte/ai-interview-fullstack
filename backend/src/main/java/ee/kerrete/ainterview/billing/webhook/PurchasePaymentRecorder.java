@@ -16,15 +16,30 @@ import java.util.Optional;
 /**
  * Marks a purchase paid (FP-62), idempotently. The transaction is committed inside {@link #recordPaid}, so a clash
  * with the PostgreSQL "one paid row per user+product" index surfaces here and is treated as already paid.
+ * A full refund ({@link #recordRefund}) sets the purchase to refunded, which ends the entitlement.
  */
 @Component
 public class PurchasePaymentRecorder {
 
     public enum Outcome { MARKED_PAID, ALREADY_PAID, DUPLICATE_PAYMENT, PAYMENT_MISMATCH, NOT_PAYABLE, UNKNOWN_SESSION }
 
-    /** Values from a verified, paid Checkout session; clientReferenceId/country/amount/currency may be null. */
+    public enum RefundOutcome { REFUNDED, PARTIALLY_REFUNDED, UNKNOWN_PAYMENT, NOT_REFUNDABLE }
+
+    /**
+     * Values from a verified, paid Checkout session; clientReferenceId/country/amount/currency/paymentIntentId may
+     * be null.
+     */
     public record Payment(String sessionId, Long purchaseId, String clientReferenceId, String buyerCountry,
-                          Integer amountCents, String currency) {
+                          Integer amountCents, String currency, String paymentIntentId) {
+
+        public Payment(String sessionId, Long purchaseId, String clientReferenceId, String buyerCountry,
+                       Integer amountCents, String currency) {
+            this(sessionId, purchaseId, clientReferenceId, buyerCountry, amountCents, currency, null);
+        }
+    }
+
+    /** Values from a verified charge.refunded event: the refunded total so far, and whether that is the whole charge. */
+    public record Refund(String paymentIntentId, long amountRefundedCents, boolean fullyRefunded) {
     }
 
     private static final Logger log = LoggerFactory.getLogger(PurchasePaymentRecorder.class);
@@ -86,6 +101,9 @@ public class PurchasePaymentRecorder {
         p.setStatus(PurchaseStatus.PAID);
         p.setPaidAt(LocalDateTime.now());
         p.setStripeSessionId(payment.sessionId());
+        if (payment.paymentIntentId() != null) {
+            p.setStripePaymentIntentId(payment.paymentIntentId());
+        }
         if (payment.buyerCountry() != null) {
             p.setBuyerCountry(payment.buyerCountry());
         }
@@ -94,6 +112,39 @@ public class PurchasePaymentRecorder {
         purchases.saveAndFlush(p);
         log.info("Stripe session {}: purchase {} marked paid", payment.sessionId(), p.getId());
         return Outcome.MARKED_PAID;
+    }
+
+    /**
+     * Records a refund of the charge behind a purchase. Only a purchase whose PaymentIntent was stored when it was
+     * marked paid is touched, so refunding a duplicate payment (never recorded on a purchase) changes nothing.
+     * A full refund sets the status to refunded, which ends the entitlement; a partial refund is only recorded and
+     * the buyer keeps access. Redelivery is harmless: the amount is Stripe's running total.
+     */
+    public RefundOutcome recordRefund(Refund refund) {
+        return tx.execute(status -> markRefunded(refund));
+    }
+
+    private RefundOutcome markRefunded(Refund refund) {
+        Optional<Purchase> found = purchases.findByStripePaymentIntentId(refund.paymentIntentId());
+        if (found.isEmpty()) {
+            log.info("Stripe refund of payment {}: no purchase paid through it (e.g. a duplicate payment)", refund.paymentIntentId());
+            return RefundOutcome.UNKNOWN_PAYMENT;
+        }
+        Purchase p = found.get();
+        if (p.getStatus() != PurchaseStatus.PAID && p.getStatus() != PurchaseStatus.REFUNDED) {
+            log.warn("Stripe refund of payment {}: purchase {} is {}, not changed", refund.paymentIntentId(), p.getId(), p.getStatus());
+            return RefundOutcome.NOT_REFUNDABLE;
+        }
+        p.setRefundAmountCents((int) refund.amountRefundedCents());
+        p.setRefundedAt(LocalDateTime.now());
+        p.setRefundStatus(refund.fullyRefunded() ? "full" : "partial");
+        if (refund.fullyRefunded()) {
+            p.setStatus(PurchaseStatus.REFUNDED);
+        }
+        purchases.saveAndFlush(p);
+        log.info("Stripe refund of payment {}: purchase {} {}", refund.paymentIntentId(), p.getId(),
+                refund.fullyRefunded() ? "refunded, access removed" : "partially refunded, access kept");
+        return refund.fullyRefunded() ? RefundOutcome.REFUNDED : RefundOutcome.PARTIALLY_REFUNDED;
     }
 
     /**

@@ -13,4 +13,7 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
     /** FP-62: the purchase of a Stripe Checkout session. */
     Optional<Purchase> findByStripeSessionId(String stripeSessionId);
+
+    /** The purchase paid through a Stripe PaymentIntent (refund events name it). */
+    Optional<Purchase> findByStripePaymentIntentId(String stripePaymentIntentId);
 }

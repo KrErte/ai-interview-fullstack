@@ -27,6 +27,8 @@ import java.sql.Timestamp;
 import java.util.Map;
 
 import static ee.kerrete.ainterview.billing.webhook.StripeSignatureFixture.TEST_SECRET;
+import static ee.kerrete.ainterview.billing.webhook.StripeSignatureFixture.chargeRefundedEvent;
+import static ee.kerrete.ainterview.billing.webhook.StripeSignatureFixture.paidSessionEvent;
 import static ee.kerrete.ainterview.billing.webhook.StripeSignatureFixture.sessionEvent;
 import static ee.kerrete.ainterview.billing.webhook.StripeSignatureFixture.sign;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -281,6 +283,61 @@ class StripeWebhookIntegrationTest {
                         .content("{\"professionId\":\"translator\",\"answers\":{}}"))
                 .andExpect(status().isPaymentRequired());
         assertThat(row()).containsEntry("status", "pending");
+    }
+
+    @Test
+    void fullRefundEndsTheEntitlement(CapturedOutput output) throws Exception {
+        String paid = paidSessionEvent("evt_paid", "cs_test_paid", String.valueOf(purchaseId), "pi_test_1");
+        deliver(paid, sign(paid)).andExpect(status().isOk());
+        assertThat(entitlements.hasRoadmap(EMAIL)).isTrue();
+
+        String refund = chargeRefundedEvent("evt_refund", "pi_test_1", 1900, true);
+        deliver(refund, sign(refund)).andExpect(status().isOk());
+        deliver(refund, sign(refund)).andExpect(status().isOk()); // redelivery
+
+        Map<String, Object> r = jdbc.queryForMap("SELECT status, refund_status, refund_amount_cents, refunded_at, "
+                + "stripe_payment_intent_id FROM purchase WHERE id = ?", purchaseId);
+        assertThat(r).containsEntry("status", "refunded").containsEntry("refund_status", "full")
+                .containsEntry("refund_amount_cents", 1900).containsEntry("stripe_payment_intent_id", "pi_test_1");
+        assertThat(r.get("refunded_at")).isNotNull();
+        assertThat(entitlements.hasRoadmap(EMAIL)).isFalse();
+        assertThat(output.getAll()).doesNotContain("payer@example.com").doesNotContain("Pat Payer").doesNotContain(EMAIL);
+    }
+
+    @Test
+    void partialRefundIsRecordedAndKeepsAccess() throws Exception {
+        String paid = paidSessionEvent("evt_paid", "cs_test_paid", String.valueOf(purchaseId), "pi_test_1");
+        deliver(paid, sign(paid)).andExpect(status().isOk());
+
+        String refund = chargeRefundedEvent("evt_refund", "pi_test_1", 500, false);
+        deliver(refund, sign(refund)).andExpect(status().isOk());
+
+        assertThat(jdbc.queryForMap("SELECT status, refund_status, refund_amount_cents FROM purchase WHERE id = ?", purchaseId))
+                .containsEntry("status", "paid").containsEntry("refund_status", "partial").containsEntry("refund_amount_cents", 500);
+        assertThat(entitlements.hasRoadmap(EMAIL)).isTrue();
+    }
+
+    @Test
+    void refundOfAPaymentNotOnAPurchaseChangesNothing() throws Exception {
+        String paid = paidSessionEvent("evt_paid", "cs_test_paid", String.valueOf(purchaseId), "pi_test_1");
+        deliver(paid, sign(paid)).andExpect(status().isOk());
+
+        // e.g. the refund of a duplicate payment, which was never recorded on the purchase
+        String refund = chargeRefundedEvent("evt_refund", "pi_test_duplicate", 1900, true);
+        deliver(refund, sign(refund)).andExpect(status().isOk());
+
+        assertThat(row()).containsEntry("status", "paid");
+        assertThat(entitlements.hasRoadmap(EMAIL)).isTrue();
+    }
+
+    @Test
+    void unsignedRefundIsRejected() throws Exception {
+        String paid = paidSessionEvent("evt_paid", "cs_test_paid", String.valueOf(purchaseId), "pi_test_1");
+        deliver(paid, sign(paid)).andExpect(status().isOk());
+
+        deliver(chargeRefundedEvent("evt_refund", "pi_test_1", 1900, true), null).andExpect(status().isBadRequest());
+
+        assertThat(row()).containsEntry("status", "paid");
     }
 
     @Test

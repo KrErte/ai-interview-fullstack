@@ -128,8 +128,8 @@ verified against the `Stripe-Signature` header with `STRIPE_WEBHOOK_SECRET` (`We
 
 Handled: `checkout.session.completed` and `checkout.session.async_payment_succeeded` with `payment_status = "paid"`.
 The purchase is found by `stripe_session_id` (fallback: `metadata.purchase_id`) and, if `pending`, set to `paid` with
-`paid_at`, `buyer_country` (`customer_details.address.country`), and `amount_cents`/`currency` from the session's
-`amount_total`/`currency`. Before that the session must match the purchase: `client_reference_id` (when present) equals
+`paid_at`, `buyer_country` (`customer_details.address.country`), `stripe_payment_intent_id` (`payment_intent`), and
+`amount_cents`/`currency` from the session's `amount_total`/`currency`. Before that the session must match the purchase: `client_reference_id` (when present) equals
 the purchase's user id, `currency` equals the stored currency (case-insensitive), and `amount_total` equals the stored
 `amount_cents` when the row has no `price_id` (price_data from our config; with a Stripe Price any positive amount is
 accepted). A mismatch changes nothing, answers 200 and logs at ERROR `payment mismatch, not marked paid: session …
@@ -140,8 +140,15 @@ the row unchanged, answers 200 and logs at ERROR `duplicate payment, refund manu
 … purchase …` (ids only); refund it in the Stripe dashboard. Other events and `payment_status` `unpaid` → 200, ignored.
 Logs carry event/session/purchase ids only, never email, name or keys.
 
-Configure the endpoint in Stripe (test mode) for `https://<backend>/api/billing/webhook` with at least the two
-event types above.
+Refunds: `charge.refunded` finds the purchase by the charge's `payment_intent` (stored when it was marked paid) and
+records `refund_amount_cents` (Stripe's running `amount_refunded`), `refunded_at` and `refund_status`. A full refund
+(`refunded: true`) sets the purchase to `refunded`, which ends the roadmap entitlement; a partial refund is recorded as
+`partial` and the buyer keeps access. A refund of a payment that is not on a purchase (for example a duplicate payment)
+changes nothing. A purchase marked paid before `stripe_payment_intent_id` existed is not found this way; set it to
+`refunded` by hand.
+
+Configure the endpoint in Stripe (test mode) for `https://<backend>/api/billing/webhook` with at least the three
+event types above: `checkout.session.completed`, `checkout.session.async_payment_succeeded` and `charge.refunded`.
 
 ## Local testing (Stripe test mode)
 

@@ -38,4 +38,20 @@ final class StripeSignatureFixture {
                  "customer_details":{"email":"payer@example.com","name":"Pat Payer","address":{"country":"ee"}}}}}
                 """.formatted(eventId, type, sessionId, paymentStatus, amountTotal, currency, clientRef, purchaseId);
     }
+
+    /** A paid checkout.session.completed (1900 eur) that names its PaymentIntent, as Stripe's real sessions do. */
+    static String paidSessionEvent(String eventId, String sessionId, String purchaseId, String paymentIntentId) {
+        return sessionEvent(eventId, "checkout.session.completed", sessionId, "paid", purchaseId)
+                .replace("\"mode\":\"payment\",", "\"mode\":\"payment\",\"payment_intent\":\"" + paymentIntentId + "\",");
+    }
+
+    /** charge.refunded: amountRefunded is Stripe's running total; refunded is true once the whole charge is refunded. */
+    static String chargeRefundedEvent(String eventId, String paymentIntentId, long amountRefunded, boolean refunded) {
+        return """
+                {"id":"%s","object":"event","api_version":"2024-06-20","created":1760600000,"livemode":false,
+                 "type":"charge.refunded","data":{"object":{"id":"ch_test_1","object":"charge","amount":1900,
+                 "amount_refunded":%d,"currency":"eur","payment_intent":"%s","refunded":%s,
+                 "billing_details":{"email":"payer@example.com","name":"Pat Payer"}}}}
+                """.formatted(eventId, amountRefunded, paymentIntentId, refunded);
+    }
 }
