@@ -32,6 +32,9 @@ services:
       # FP-61: public frontend URL for links and Stripe Checkout return urls (never taken from request headers)
       APP_PUBLIC_BASE_URL: ${APP_PUBLIC_BASE_URL:-http://localhost:4200}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      # AI mock interview: Claude when this is set (else OpenAI); model optional, default in MockInterviewCoach
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-}
       # Login users seeded at startup by ProdDataSeeder (FP-19/FP-22). Values come from the
       # gitignored .env next to this file (template: .env.example). A user is created only when
       # both its email and password are set; without .env nothing is seeded. Passwords are never logged.

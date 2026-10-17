@@ -6,7 +6,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AiReadinessService } from '../../services/ai-readiness.service';
 import { AnalyticsService } from '../../services/analytics.service';
 import { AssessmentResult, InterviewQuestion, MockEvaluation } from '../../models/ai-readiness.model';
-import { BillingStatusService } from '../../services/billing-status.service';
+import { MockInterviewStatusService, MockProvider } from '../../services/mock-interview-status.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProofStory, answerFor, emptyStory, isComplete, notAiSuggestion, proofTasks } from './prep-answers';
 
@@ -157,8 +157,8 @@ function emptyMock(): MockDraft {
                     maxlength="2000" class="field mt-3" data-test="mock-answer"
                     placeholder="Say what you would say: the tool, a real task, the result, what you check."></textarea>
           <p class="mt-2 text-[12px] leading-relaxed text-faint">
-            {{ (draft.mock.answers[mockIndex] || '').length }}/2000 · Your answer is sent to OpenAI to be scored and we do
-            not store it. Leave out names and confidential details.
+            {{ (draft.mock.answers[mockIndex] || '').length }}/2000 · Your answer is sent to {{ mockProviderLabel }} to be scored
+            and we do not store it. Leave out names and confidential details.
           </p>
           <button type="button" class="btn-accent mt-4" (click)="score(r)" data-test="mock-score"
                   [disabled]="scoring || (draft.mock.answers[mockIndex] || '').trim().length < 20">
@@ -230,8 +230,10 @@ export class PrepPageComponent implements OnInit {
   questions: InterviewQuestion[] = [];
   questionsError = false;
   draft: Draft = { stories: [], notAi: '', mock: emptyMock() };
-  /** null until /features answers; the mock interview needs the language model (same switch as the AI comment). */
+  /** null until the status answers; on when the server has a language model key (Claude or OpenAI). */
   mockAvailable: boolean | null = null;
+  /** Who receives the answer, for the note under the text box. */
+  mockProviderLabel = '';
   mockIndex = 0;
   scoring = false;
   mockError: string | null = null;
@@ -240,7 +242,7 @@ export class PrepPageComponent implements OnInit {
   professionParam: string | null = null;
   private doneTasks = new Set<string>();
 
-  constructor(private api: AiReadinessService, private analytics: AnalyticsService, private billingStatus: BillingStatusService,
+  constructor(private api: AiReadinessService, private analytics: AnalyticsService, private mockStatus: MockInterviewStatusService,
               private route: ActivatedRoute, private destroyRef: DestroyRef) {}
 
   ngOnInit(): void {
@@ -257,9 +259,10 @@ export class PrepPageComponent implements OnInit {
     this.draft = this.loadDraft(r);
     this.draft.stories.filter(isComplete).forEach(s => this.doneTasks.add(s.task));
     this.analytics.track('prep-open', { profession: r.professionId });
-    this.billingStatus.features().pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(f => {
-        this.mockAvailable = f?.aiComment === true;
+    this.mockStatus.provider().pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((provider: MockProvider | null) => {
+        this.mockAvailable = provider !== null;
+        this.mockProviderLabel = MockInterviewStatusService.label(provider);
         if (this.mockAvailable) {
           this.selectMock(0);
         }

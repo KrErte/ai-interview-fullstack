@@ -8,8 +8,8 @@ import { environment } from '../../../environments/environment';
 
 const URL = `${environment.apiBaseUrl}/api/waitlist`;
 
-/** /features is answered at once: its 5 s timeout would otherwise keep whenStable waiting. */
-function setup(aiComment = false) {
+/** The mock interview status is answered at once: its 5 s timeout would otherwise keep whenStable waiting. */
+function setup(provider: 'anthropic' | 'openai' | null = null) {
   TestBed.configureTestingModule({
     imports: [PrepWaitlistCardComponent], providers: [provideRouter([{ path: 'prep', children: [] }]), provideHttpClient(), provideHttpClientTesting()]
   });
@@ -20,7 +20,7 @@ function setup(aiComment = false) {
   f.componentInstance.professionId = 'onet-13-2011-00';
   f.detectChanges();
   const http = TestBed.inject(HttpTestingController);
-  http.expectOne(`${environment.apiBaseUrl}/api/ai-readiness/features`).flush({ aiComment, billingEnabled: false });
+  http.expectOne(`${environment.apiBaseUrl}/api/ai-readiness/mock-interview/status`).flush({ provider });
   f.detectChanges();
   return { f, el: f.nativeElement as HTMLElement, http, track };
 }
@@ -51,7 +51,7 @@ describe('PrepWaitlistCardComponent', () => {
   });
 
   it('when the mock interview is live it is listed and the email list for it is gone', () => {
-    const { el } = setup(true);
+    const { el } = setup('anthropic');
     expect(el.querySelector('[data-test="prep-mock-bullet"]')).not.toBeNull();
     expect(el.querySelector('[data-test="prep-open"]')).toBeNull();
   });
