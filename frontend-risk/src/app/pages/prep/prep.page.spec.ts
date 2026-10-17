@@ -21,11 +21,11 @@ const RESULT = {
 } as unknown as AssessmentResult;
 
 const QUESTIONS_URL = `${environment.apiBaseUrl}/api/ai-readiness/professions/accountant/interview-questions`;
-const FEATURES_URL = `${environment.apiBaseUrl}/api/ai-readiness/features`; // answered in setup()
+const STATUS_URL = `${environment.apiBaseUrl}/api/ai-readiness/mock-interview/status`; // answered in setup()
 const MOCK_URL = `${environment.apiBaseUrl}/api/ai-readiness/mock-interview`;
 const SIX = [0, 1, 2, 3, 4, 5].map(i => ({ question: `Question ${i + 1}?`, lookFor: 'x', strongAnswer: 'y' }));
 
-function setup(saved: AssessmentResult | null, aiComment = false) {
+function setup(saved: AssessmentResult | null, provider: 'anthropic' | 'openai' | null = null) {
   localStorage.removeItem('ai_prep_drafts');
   TestBed.configureTestingModule({
     imports: [PrepPageComponent], providers: [provideRouter([]), provideHttpClient(), provideHttpClientTesting()]
@@ -36,7 +36,7 @@ function setup(saved: AssessmentResult | null, aiComment = false) {
   f.detectChanges();
   const http = TestBed.inject(HttpTestingController);
   if (saved) {
-    http.expectOne(FEATURES_URL).flush({ aiComment, billingEnabled: false });
+    http.expectOne(STATUS_URL).flush({ provider });
     f.detectChanges();
   }
   return { f, el: f.nativeElement as HTMLElement, http, track };
@@ -106,7 +106,7 @@ describe('PrepPageComponent', () => {
   });
 
   it('with the language model: prefills Q1 from the story, scores it and shows the level, gaps and a stronger version', async () => {
-    const { f, el, http, track } = setup(RESULT, true);
+    const { f, el, http, track } = setup(RESULT, 'anthropic');
     http.expectOne(QUESTIONS_URL).flush(SIX);
     f.detectChanges();
     await f.whenStable();
@@ -118,6 +118,7 @@ describe('PrepPageComponent', () => {
 
     const answer = el.querySelector('[data-test="mock-answer"]') as HTMLTextAreaElement;
     expect(answer.value).toContain('I use Excel Copilot for this part of my work');
+    expect(el.querySelector('[data-test="prep-mock"]')!.textContent).toContain('sent to Anthropic (Claude) to be scored');
     (el.querySelector('[data-test="mock-score"]') as HTMLButtonElement).click();
     const req = http.expectOne(MOCK_URL);
     expect(req.request.body.professionId).toBe('accountant');
@@ -142,7 +143,7 @@ describe('PrepPageComponent', () => {
   });
 
   it('a 503 or 429 from the mock interview gives a clear message and keeps the answer', async () => {
-    const { f, el, http } = setup(RESULT, true);
+    const { f, el, http } = setup(RESULT, 'anthropic');
     http.expectOne(QUESTIONS_URL).flush(SIX);
     f.detectChanges();
     await f.whenStable();

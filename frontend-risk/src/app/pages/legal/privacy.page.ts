@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SaleConfig, saleConfig } from './legal-config';
 import { BillingStatusService } from '../../services/billing-status.service';
+import { MockInterviewStatusService, MockProvider } from '../../services/mock-interview-status.service';
 
 /**
  * Privacy policy. Every statement here describes what the code and the server actually do;
@@ -58,16 +59,22 @@ import { BillingStatusService } from '../../services/billing-status.service';
         and is kept for up to 30 days for abuse monitoring. Legal basis: your consent, which you give by ticking the box.
       </p>
 
-      <h3 id="mock-interview">AI mock interview</h3>
-      <p>
-        When you ask for an answer to be scored in the interview prep, we send OpenAI your profession, the interview
-        question and the answer you typed, so that a language model can score it and suggest a stronger version. Your name
-        and email address are not sent, and we do not store the answer or the score on our server; they stay in your
-        browser. Please leave out names and confidential details. OpenAI may process this data outside the European
-        Economic Area, including in the United States, and under its API terms keeps it for up to 30 days for abuse
-        monitoring and does not use it to train its models. Legal basis: your consent, which you give by pressing
-        "Score my answer".
-      </p>
+      <ng-container *ngIf="mockProvider">
+        <h3 id="mock-interview" data-test="privacy-mock">AI mock interview</h3>
+        <p>
+          When you ask for an answer to be scored in the interview prep, we send {{ mockLabel }} your profession, the
+          interview question and the answer you typed, so that a language model can score it and suggest a stronger
+          version. Your name and email address are not sent, and we do not store the answer or the score on our server;
+          they stay in your browser. Please leave out names and confidential details.
+          <ng-container *ngIf="mockProvider === 'anthropic'">Anthropic may process this data outside the European Economic
+            Area, including in the United States, and under its commercial terms does not use data sent through its API
+            to train its models.</ng-container>
+          <ng-container *ngIf="mockProvider === 'openai'">OpenAI may process this data outside the European Economic Area,
+            including in the United States, and under its API terms keeps it for up to 30 days for abuse monitoring and
+            does not use it to train its models.</ng-container>
+          Legal basis: your consent, which you give by pressing "Score my answer".
+        </p>
+      </ng-container>
 
       <h3>Account (optional)</h3>
       <p>
@@ -165,7 +172,8 @@ import { BillingStatusService } from '../../services/billing-status.service';
       <h2>Who else processes data</h2>
       <ul>
         <li><strong>Contabo GmbH</strong> (Germany) provides the server the service runs on.</li>
-        <li><strong>OpenAI</strong> receives data only for the optional AI comment and the AI mock interview, as described above.</li>
+        <li><strong>OpenAI</strong> receives data only for the optional AI comment<ng-container *ngIf="mockProvider === 'openai'"> and the AI mock interview</ng-container>, as described above.</li>
+        <li *ngIf="mockProvider === 'anthropic'"><strong>Anthropic</strong> receives data only for the AI mock interview, as described above.</li>
         <li *ngIf="sale"><strong>Stripe</strong> processes payments for the full roadmap, as described above.</li>
       </ul>
       <p>Nobody else receives your data. We do not sell it and do not use it for advertising.</p>
@@ -217,10 +225,19 @@ export class PrivacyPageComponent implements OnInit {
   /** Seller config while billing is on; null hides the payment parts (billing off, unknown or seller config missing). */
   sale: SaleConfig | null = null;
 
-  constructor(private billingStatus: BillingStatusService, private destroyRef: DestroyRef) {}
+  /** Who scores the mock interview, or null while it is off (then the policy does not describe it). */
+  mockProvider: MockProvider | null = null;
+  mockLabel = '';
+
+  constructor(private billingStatus: BillingStatusService, private mockStatus: MockInterviewStatusService,
+              private destroyRef: DestroyRef) {}
 
   ngOnInit(): void {
     this.billingStatus.billingEnabled().pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(on => (this.sale = saleConfig(on)));
+    this.mockStatus.provider().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(p => {
+      this.mockProvider = p;
+      this.mockLabel = MockInterviewStatusService.label(p);
+    });
   }
 }

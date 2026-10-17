@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { WaitlistService } from '../../services/waitlist.service';
 import { AnalyticsService } from '../../services/analytics.service';
-import { BillingStatusService } from '../../services/billing-status.service';
+import { MockInterviewStatusService } from '../../services/mock-interview-status.service';
 
 /**
  * The AI interview prep offer on the result (docs/vajadus-ai-ajastul-2026-10-17.md): a link to the free beta (/prep)
@@ -78,15 +78,15 @@ export class PrepWaitlistCardComponent implements OnInit {
   email = '';
   error: string | null = null;
 
-  /** The mock interview is live (same switch as the AI comment): then there is nothing to wait for. */
+  /** The mock interview is live (the server has a language model key): then there is nothing to wait for. */
   mockOn = false;
 
   constructor(private waitlist: WaitlistService, private analytics: AnalyticsService,
-              private billingStatus: BillingStatusService, private destroyRef: DestroyRef) {}
+              private mockStatus: MockInterviewStatusService, private destroyRef: DestroyRef) {}
 
   ngOnInit(): void {
-    this.billingStatus.features().pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(f => (this.mockOn = f?.aiComment === true));
+    this.mockStatus.provider().pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(provider => (this.mockOn = provider !== null));
   }
 
   startBeta(): void {
