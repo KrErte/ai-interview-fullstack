@@ -103,11 +103,11 @@
     </section>
 
     <section class="card">
-      <p class="kicker" style="color:var(--accent)">Coming soon</p>
+      <p class="kicker" style="color:var(--accent)">Free beta</p>
       <h2>Interview or review coming up?</h2>
-      <p class="muted" th:text="'More and more employers ask how you use AI in your work. We are building an AI interview prep for ' + ${p.name()} + ': the AI questions you are likely to get, drills on your own top tasks and a mock interview that scores your answers. €29 one-off, not available yet.'">Offer</p>
+      <p class="muted" th:text="'More and more employers ask how you use AI in your work. AI interview prep for ' + ${p.name()} + ': the AI questions you are likely to get, answers built from your own top tasks and a one-page AI work portfolio. Free while in beta.'">Offer</p>
       <a class="btn" th:href="@{/ai-test(profession=${p.id()})}" data-umami-event="prep-cta-job"
-         th:attr="data-umami-event-profession=${p.id()}">Take the free test, then get early access <span aria-hidden="true">&rarr;</span></a>
+         th:attr="data-umami-event-profession=${p.id()}">Take the free test, then build your answers <span aria-hidden="true">&rarr;</span></a>
     </section>
   </div>
 </main>
